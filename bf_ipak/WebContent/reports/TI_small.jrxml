@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TI_DOGOVOR_VISA_CAP" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="40" rightMargin="20" topMargin="10" bottomMargin="10">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" mode="Opaque" backcolor="#FF3333"/>
+	<style name="style2"/>
+	<parameter name="CLIENT_FULL_NAME" class="java.lang.String"/>
+	<parameter name="CARD_ACCOUNT" class="java.lang.String"/>
+	<parameter name="DOC_SERIAL" class="java.lang.String"/>
+	<parameter name="DOC_NUMBER" class="java.lang.String"/>
+	<parameter name="USD_BALANCE_20206" class="java.lang.String"/>
+	<parameter name="USD_BALANCE_STR_20206" class="java.lang.String"/>
+	<parameter name="SUM_BALANCE_20206" class="java.lang.String"/>
+	<parameter name="SUM_BALANCE_STR_20206" class="java.lang.String"/>
+	<parameter name="RATE" class="java.lang.String"/>
+	<parameter name="BANK_MANAGER_NAME" class="java.lang.String"/>
+	<parameter name="EMP_NAME_TRANS" class="java.lang.String"/>
+	<parameter name="CUR_DATE" class="java.lang.String"/>
+	<parameter name="CARD_NUMBER" class="java.lang.String"/>
+	<parameter name="IYB_NUM" class="java.lang.String"/>
+	<parameter name="ACCOUNT_20206" class="java.lang.String"/>
+	<parameter name="CLIENT_NAME2" class="java.lang.String"/>
+	<parameter name="CLIENT_NAME1" class="java.lang.String"/>
+	<parameter name="USD_BALANCE_STR_20206_UZ" class="java.lang.String"/>
+	<parameter name="CLIENT_NAME3" class="java.lang.String"/>
+	<parameter name="YEAR_LAST_DIGIT" class="java.lang.String"/>
+	<parameter name="DAY_IN_MONTH" class="java.lang.String"/>
+	<parameter name="MONTH_UZ" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select to_char(1)as t from dual]]>
+	</queryString>
+	<field name="T" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="393">
+			<textField>
+				<reportElement mode="Transparent" x="163" y="126" width="353" height="19"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isUnderline="false" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_NAME1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="31" y="145" width="485" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isUnderline="false" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_NAME2}+" "+$P{CLIENT_NAME3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="200" width="291" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
+					<font fontName="Arial" size="12" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{USD_BALANCE_20206}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="219" width="487" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
+					<font fontName="Arial" size="10" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$P{USD_BALANCE_STR_20206_UZ}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="86" y="164" width="353" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isUnderline="false" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DOC_SERIAL}+$P{DOC_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="163" y="103" width="23" height="19"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="14" isBold="false" isUnderline="false" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{YEAR_LAST_DIGIT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="227" y="103" width="23" height="19"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="14" isBold="false" isUnderline="false" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DAY_IN_MONTH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="297" y="103" width="123" height="19"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="14" isBold="false" isUnderline="false" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MONTH_UZ}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

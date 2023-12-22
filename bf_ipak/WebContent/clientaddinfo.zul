@@ -1,0 +1,87 @@
+<?page id="claddinfo"?>
+<zk>
+    <?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+    <panel id="clientaddinfomain" width="100%" apply="com.is.clients.addinfo.AddinfoViewController">
+        <panelchildren>
+            <div id="addinfomaindiv" width="100%">
+                <zscript><![CDATA[
+      			public void setMandatory(java.lang.Long paramid, java.lang.Integer m) {
+    				java.lang.Integer i = 0;
+    				for (i = 0; i < parameters.size(); i++) {
+						if (parameters.get(i).getParam_id() == paramid) {
+							parameters.get(i).setParam_mandatory(m);
+							Label lbl = addinfo.getFellow("lbl_"+parameters.get(i).getParam_id());
+							if (m == 1) {
+								lbl.setVisible(true);
+							} else {
+								lbl.setVisible(false);
+							}
+						}
+					}
+    			}
+    			]]>
+                </zscript>
+
+                <toolbar>
+                    <toolbarbutton id="btn_refresh" label="${labels.refresh}" image="/images/refresh.png"/>
+                    <toolbarbutton id="btn_save_top" label="${labels.save}" image="/images/save.png"/>
+                    <toolbarbutton id="btn_approve" label="${labels.approve} Утвердить" image="/images/locked.png"/>
+                    <toolbarbutton id="btn_noapprove" label="${labels.noapprove} Снять утверждение"
+                                   image="/images/opened.png"/>
+                    <toolbarbutton id="btn_delete" label="${labels.delete}" image="/images/delete.png"/>
+                    <toolbarbutton id="btn_restore" label="Востановить" disabled="true"/>
+                    <separator orient="vertical" spacing="50px"></separator>
+                    <label id="lblstate" style="font-size: 16px"></label>
+                </toolbar>
+                <div id="addinfo" width="100%"></div>
+                <toolbar>
+                    <toolbarbutton id="btn_save_bottom" label="${labels.save}" image="/images/save.png"/>
+                </toolbar>
+                <window id="checklistwnd" closable="true" onClose="self.visible = false; event.stopPropagation();"
+                        sizable="true" maximizable="true" style="overflow-y: none;"
+                        title="Отметьте активные пункты" border="normal" width="1000px" position="center,center"
+                        mode="modal" visible="false">
+                    <div width="100%" height="100%" style="overflow-y: hidden;">
+                        <listbox style="border:none" id="checklist" multiple="true" rows="10" width="100%"
+                                 selectedItem="@{callcentremain$composer.currentchecklist}">
+                            <listhead sizable="true">
+                                <listheader label="" width="40px">
+                                    <checkbox id="checkall" checked="false"></checkbox>
+                                </listheader>
+                                <listheader label="${labels.data}" width="60px"/>
+                                <listheader label="${labels.label}"/>
+                            </listhead>
+                        </listbox>
+                        <toolbar>
+                            <toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png"/>
+                            <toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/delete.png"/>
+                        </toolbar>
+                    </div>
+                </window>
+                <window id="listwnd" closable="true" onClose="self.visible = false; event.stopPropagation();"
+                        sizable="true" maximizable="true" style="overflow-y: none;"
+                        title="Редактирование справочника" border="normal" width="1000px" position="center,center"
+                        mode="modal" visible="false">
+                    <div id="listdiv" width="100%" height="100%" align="center"
+                         style="overflow-y: hidden; overflow-x: hidden;">
+                        <grid id="listgrd" width="100%">
+                            <columns>
+                                <column width="15%"></column>
+                                <column width="35%"></column>
+                                <column width="15%"></column>
+                                <column width="35%"></column>
+                            </columns>
+                            <rows id="listgrdrows">
+
+                            </rows>
+                        </grid>
+                        <toolbar>
+                            <toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png"/>
+                            <toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/delete.png"/>
+                        </toolbar>
+                    </div>
+                </window>
+            </div>
+        </panelchildren>
+    </panel>
+</zk>

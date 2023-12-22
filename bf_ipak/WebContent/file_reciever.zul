@@ -1,0 +1,74 @@
+<zk>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="file_reciever_main" width="100%"  height="100%" border="normal" 
+apply="com.is.file_reciever_view.File_reciever_vc">
+	<hbox width="100%" height="800px">
+		<div id="filter_div">
+			<toolbar>
+			 	<toolbarbutton id="tb_manual" label="Ручной прием файлов" image="images/search.png"/>
+			</toolbar>
+			<grid width="350px" selectedItem="@{file_reciever_main$composer.current_fr_file}">
+				 <columns>
+			        <column width="40%" />
+			        <column width="60%" />
+				 </columns>
+				 <rows>
+				 	<row>
+				 		<label value="Дата"/>
+				 		<datebox id="filter_date_calendar" width="190px"/>
+				 	</row>
+				 	<row>
+				 		<label value="Дата с"/>
+				 		<datebox id="filter_date_from_calendar" width="190px"/>
+				 	</row>
+				 	<row>
+				 		<label value="Дата до"/>
+				 		<datebox id="filter_date_to_calendar" width="190px"/>
+				 	</row>
+				 	<row>
+				 		<label value="Тип файла"/>
+				 		<rcombobox id="file_type" width="190px"/>
+				 	</row>
+				 </rows>
+			</grid>
+			<toolbar id="search_tb">
+			 	<toolbarbutton id="tb_search" label="Поиск" image="images/search.png"/>
+			</toolbar>
+		</div>
+		<div>
+			<paging id="dataPaging" width="100%" />
+            <listbox style="border:none" id="dataGrid" multiple="true" height="100%" width="100%"
+                    selectedItem="@{accountmain$composer.current}">
+                    <listhead sizable="true">
+                    	<listheader label="id" width="90px" />
+                    	<listheader label="Входящий/исходящий" width="150px" />
+                    	<listheader label="Имя файла" width="150px" />
+                    	<listheader label="Тип файла" width="300px" />
+                    	<listheader label="Дата/время получения файла" width="200px" />
+                    	<listheader label="Адрес получения файла" width="200px" />
+                    	<listheader label="Состояние" width="100%" />
+                    </listhead>
+            </listbox>
+		</div>
+	</hbox>
+	<window id="show_details_wnd" mode="overlapped" maximizable="true" width="950px"  height="550px" 
+	position="center,center" visible="false" closable="true"
+	onClose="self.visible = false; event.stopPropagation();">
+		<div width="100%"  height="100%" style="overflow:scroll;">
+			<include id="file_details_frame" width="100%"/>
+		</div>
+		<!-- <iframe id="file_details_frame" width="100%"  height="100%" style="overflow:scroll;"/> -->
+		
+	</window>
+	<window id="manual_wnd" mode="overlapped" maximizable="true" width="950px"  height="550px" 
+	position="center,center" visible="false" closable="true"
+	title="ручной прием файлов"
+	onClose="self.visible = false; event.stopPropagation();">
+	<button id="iias_file" label="файл iias транзакции тието" upload="true"/>
+	<button id="iias_sms_file" label="файл iias sms" upload="true"/>
+	<button id="trbeq_file" label="файл trbeq жемесячные комиссии" upload="true"/>
+	<button id="onus_file" label="файл onus" upload="true"/>
+	<button id="iias_file_process" label="обработать" visible="false"/>
+	</window>
+</window>
+</zk>

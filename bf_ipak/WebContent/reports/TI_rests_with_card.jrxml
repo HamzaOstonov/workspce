@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TI_DOGOVOR_VISA_CAP" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="40" rightMargin="20" topMargin="10" bottomMargin="10">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="736"/>
+	<style name="style1" mode="Opaque" backcolor="#FF3333"/>
+	<style name="style2"/>
+	<parameter name="CLIENT_FULL_NAME" class="java.lang.String"/>
+	<parameter name="CARD_ACCOUNT" class="java.lang.String"/>
+	<parameter name="DOC_SERIAL" class="java.lang.String"/>
+	<parameter name="DOC_NUMBER" class="java.lang.String"/>
+	<parameter name="USD_BALANCE" class="java.lang.String"/>
+	<parameter name="USD_BALANCE_STR" class="java.lang.String"/>
+	<parameter name="SUM_BALANCE" class="java.lang.String"/>
+	<parameter name="SUM_BALANCE_STR" class="java.lang.String"/>
+	<parameter name="RATE" class="java.lang.String"/>
+	<parameter name="BANK_MANAGER_NAME" class="java.lang.String"/>
+	<parameter name="EMP_NAME_TRANS" class="java.lang.String"/>
+	<parameter name="CUR_DATE" class="java.lang.String"/>
+	<parameter name="CARD_NUMBER" class="java.lang.String"/>
+	<parameter name="IYB_NUM" class="java.lang.String"/>
+	<parameter name="CLIENT_NAME1" class="java.lang.String"/>
+	<parameter name="CLIENT_NAME2" class="java.lang.String"/>
+	<parameter name="TIETO_BANK_PHONE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select to_char(1)as t from dual]]>
+	</queryString>
+	<field name="T" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="809">
+			<textField>
+				<reportElement x="0" y="253" width="515" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="14" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TO WHOM IT MAY CONCERN"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="42" y="304" width="457" height="302"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isUnderline="false" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tJoint-Stock Innovative Commercial Bank \"Ipak Yuli\" certifies that "+
+$P{CLIENT_NAME1}+" "+$P{CLIENT_NAME2}+" (passport "+$P{DOC_SERIAL}+$P{DOC_NUMBER}+") holds VISA card N "+$P{CARD_NUMBER}+" account N "+
+$P{CARD_ACCOUNT}+" with our bank.\n\tVisa card issued for this client can be used as means of payment or cash withdrawal in any country of the world where Visa cards are accepted."+
+"\n\t As of "+$P{CUR_DATE}+" the balance of this client's Visa card account equals "+
+$P{USD_BALANCE}+" USD ("+$P{USD_BALANCE_STR}+") \n"+
+"____________________________________________________________________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="302" y="628" width="233" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
+					<font fontName="Arial" size="12" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BANK_MANAGER_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="710" width="175" height="20"/>
+				<textElement verticalAlignment="Bottom" markup="none">
+					<font fontName="Arial" size="12" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{EMP_NAME_TRANS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="766" width="83" height="20"/>
+				<textElement verticalAlignment="Bottom" markup="none">
+					<font fontName="Arial" size="12" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TIETO_BANK_PHONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="30" width="96" height="20"/>
+				<textElement verticalAlignment="Bottom" markup="none">
+					<font fontName="Arial" size="12" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CUR_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

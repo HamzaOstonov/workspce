@@ -1,0 +1,11 @@
+<zk>
+	<?component name="mycombobox" extends="combobox" class="com.is.bpri.utils.MyCombobox"?>
+	<window apply="com.is.bpri.main_scoring.MainScoringCtrl">
+		<div align="center">
+			<mycombobox id="scoring_type" />
+		</div>
+		<div id="scoring_inc">
+
+		</div>
+	</window>
+</zk>

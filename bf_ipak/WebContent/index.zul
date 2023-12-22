@@ -1,0 +1,142 @@
+<?page id="mainpg" title="IS Smart Bank"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+<script defer="true"><![CDATA[
+var _portrait = {'0': true, '180': true}, //default portrait definition
+    _initLandscape = jq.innerWidth() > jq.innerHeight(), // initial orientation is landscape or not
+    _initDefault = _portrait[window.orientation]; //default orientation
+
+zAu.cmd0.clientInfo = function(dtid) {
+    zAu._cInfoReg = true;
+    var orient = '',
+        dpr = 1;
+
+    if (zk.mobile) {
+        //change default portrait definition because landscape is the default orientation for this device/browser.
+        if ((_initLandscape && _initDefault) || (!_initLandscape && !_initDefault))
+            _portrait = {'-90': true, '90': true};
+
+        orient = _portrait[window.orientation] ? 'portrait' : 'landscape';
+    } else {
+        orient = jq.innerWidth() > jq.innerHeight() ? 'landscape' : 'portrait';
+    }
+
+    if (window.devicePixelRatio)
+        dpr = window.devicePixelRatio;
+
+    zAu.send(new zk.Event(zk.Desktop.$(dtid), 'onClientInfo', 
+        [new Date().getTimezoneOffset(),
+        zk.parseInt(screen.width), zk.parseInt(screen.height), screen.colorDepth,
+        zk.parseInt(jq.innerWidth()), zk.parseInt(jq.innerHeight()), zk.parseInt(jq.innerX()), zk.parseInt(jq.innerY()), dpr.toFixed(1), orient],
+        {implicit:true, rtags: {onClientInfo: 1}}));
+}
+]]></script>
+<window border="none"  id="mainwnd"  width="100%"  style="min-height:800px;" apply="com.is.login.ViewController">
+
+        <div id="vbox_logged_out" visible="true">
+
+                <window id="win" border="normal" width="350px" minheight="350"
+                        mode="overlapped" position="center,center">
+                        <grid>
+                                <rows>
+                                        <row>
+                                                Имя :
+                                                <textbox id="tb_username"   width="200px" value=""
+                                                        constraint="no empty: " />
+                                        </row>
+                                        <row>
+                                                Пароль :
+                                                <textbox id="tb_password" width="200px"
+                                                        type="password"
+                                                        constraint="no empty: " />
+                                        </row>
+                                        <row id="r_branch" visible="false">
+	                                                Филиал :
+	                                                <rcombobox id="cb_branch" width="100%"
+	                                                mold="rounded"/>
+	                                        </row>
+                                </rows>
+                        </grid>
+                        <hbox pack="center" width="100%">
+                                <button label="Login" id="btn_login" />
+                        </hbox>
+                </window>
+        </div>
+
+    <div id="div_logged_in"  visible="false" width="100%">
+     
+    <window id="headwnd" width="100%"  height="50px"> 
+    <borderlayout >
+    <west border="none" size="25%">  
+	<image src="/images/logo.png" height="40px"/>  </west> 
+	<center style="background:white" border="none"/>
+    <east border="none" >
+    <hlayout>
+    <label id = "lblusr" style="color:#517a49;font-weight: bold"/>
+    <label visible="false" id = "lblversion" style="color:#517a49;font-weight: bold"/>
+	<hbox visible="false">
+		<label value="Системная Дата" style="color:#517a49;font-weight: bold"/>
+		<label id = "lbldate" style="color:#517a49;font-weight: bold"/>
+	</hbox>
+	<hbox>
+		<label value = "Дата Операционного Дня" style="color:#517a49;font-weight: bold"/>
+		<label id="operationDate" style="color:#517a49;font-weight: bold"/>
+	</hbox>
+	<hbox>
+		<label value="МФО" style="color:#517a49;font-weight: bold"/>
+		<label id="currentBranch" style="color:#517a49;font-weight: bold"/>
+	</hbox>
+    </hlayout>
+    </east>
+    </borderlayout>
+    </window>
+        <menubar id="menubar" >
+<!--  
+        <menu label="File">
+        <menupopup>
+        <menuitem label="exit"  image="/images/export.png" id="btn_logout"/>
+        <menuseparator></menuseparator>
+          <menuitem label="ru" checked="true" id="btn_ru"/>
+          <menuitem label="en" checked="false"  id="btn_en"/>
+          <menuitem label="uz" checked="false"  id="btn_uz"/>
+        </menupopup>
+        </menu>
+        <menu  label="Модули">
+        <menupopup id="mmdl">
+        </menupopup>
+        </menu>
+        <menu label="Help">
+        <menupopup>
+        <menuitem label="help"  image="/images/faq.png"/>
+        </menupopup>
+        </menu>
+-->
+</menubar>
+<toolbar>
+		<label id="module_caption" style="font-size:20px;"/>
+</toolbar>
+
+<div width="100%">
+<include id="ical" src="" style="overflow=vertical"/>
+</div>
+</div>
+
+<window id="pwdwnd"  title="${labels.user.chpwd}" border="normal" width="438px" 
+         position="center,center" mode="popup" visible="false"> 
+
+<grid id="pwdgrd"><rows>
+  <row><label value = "${labels.user.oldpwd}"/><textbox id="oldpwd"  mold="rounded" type="password" constraint="no empty: "/></row> 
+  <row><label value = "${labels.user.newpwd}"/><textbox id="newpwd"  mold="rounded" type="password" constraint="no empty: "/></row>
+  <row><label value = "${labels.user.newpwd1}"/><textbox id="newpwd1"  mold="rounded" type="password" constraint="no empty: "/></row>                                     
+</rows></grid>
+<toolbar>
+<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+</toolbar>
+</window> 
+
+</window>
+
+
+</zk>
+    

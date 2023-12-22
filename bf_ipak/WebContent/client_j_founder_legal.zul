@@ -1,0 +1,471 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="legalFoundermain"
+        apply="com.is.client_personmap.controllers.LegalFounderComposer"
+        border="none">
+
+    <div id="frm">
+        <toolbar id="action_bar"/>
+        <toolbar id="rel_action_bar"/>
+        <groupbox>
+            <grid ctrlKeys="^e#up#down"
+                  visible="true">
+                <columns>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="left"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Процент долевого участия в капитале"/>
+                        <decimalbox id="part_of_capital" hflex="1"
+                                    value="@{legalFoundermain$composer.current.capital.part_of_capital}"
+                                    format="###.##'%'" maxlength="6"/>
+
+                        <label value="Код валюты"/>
+                        <cell colspan="2">
+                            <textbox id="currency_value"
+                                     value="@{legalFoundermain$composer.current.capital.currency}"
+                                     hflex="1"/>
+                            <rcombobox id="currency"
+                                       selecteditem="@{legalFoundermain$composer.current.capital.currency}" hflex="2"
+                                       onChange="legalFoundermain$composer.current.capital.currency=currency.value;
+										currency_value.value=currency.value"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <label value="Сумма долевого участия в капитале"/>
+                        <cell colspan="2">
+                            <decimalbox id="sum_a" hflex="1"
+                                        format="#,###.00"
+                                        value="@{legalFoundermain$composer.current.capital.sum_a}"/>
+                        </cell>
+                        <label value="Оплаченный капитал"/>
+                        <cell colspan="2">
+                            <decimalbox id="sumAOld" hflex="1"
+                                        format="#,###.00"
+                                        value="@{legalFoundermain$composer.current.capital.sum_b}"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <cell colspan="3">
+                            <label
+                                    value="Индикатор: совладелец контролирует фирму/компанию"/>
+                        </cell>
+                        <checkbox id="is_director"/>
+                        <label value="Количество акций"/>
+                        <cell colspan="2">
+                            <decimalbox id="shares_number" hflex="1"
+                                        format="### ### ### ##0.00"
+                                        value="@{legalFoundermain$composer.current.capital.shares_number}"/>
+                        </cell>
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+        <groupbox>
+            <grid ctrlKeys="^e#up#down"
+                  visible="true">
+                <columns>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="${labels.client.code_type}"/>
+                        <cell colspan="3">
+                            <textbox hflex="1" id="code_typeValue"
+                                     value="@{legalFoundermain$composer.current.legalEntity.code_type}"
+                                    onChange="code_type.value = self.value;self.value=code_type.value;legalFoundermain$composer.current.legalEntity.code_form = self.value"/>
+                            <rcombobox id="code_type" hflex="2"
+                                       selecteditem="@{legalFoundermain$composer.current.legalEntity.code_type}"
+                            onChange="legalFoundermain$composer.current.legalEntity.code_type = self.value;self.selecteditem = self.value;code_typeValue.value = self.value"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <label value="${labels.client.name}"/>
+                        <cell colspan="4">
+                            <textbox id="name"
+                                     value="@{legalFoundermain$composer.current.legalEntity.name}" hflex="1"/>
+                        </cell>
+                        <label value="${labels.client.j_short_name}"/>
+                        <cell colspan="2">
+                            <textbox id="short_name"
+                                     value="@{legalFoundermain$composer.current.legalEntity.short_name}"
+                                     hflex="1"/>
+                        </cell>
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+        <groupbox id="jView">
+            <auxhead>
+                <auxheader label="Основные данные ЮЛ"/>
+            </auxhead>
+            <grid ctrlKeys="^e#up#down"
+                  visible="true">
+                <columns>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                    <column hflex="1" align="right"/>
+                </columns>
+                <rows id="mainRows">
+                    <row id="numberRegistrationRow">
+                        <label value="${labels.client.j_number_registration_doc}"/>
+                        <textbox
+                                id="number_registration_doc"
+                                value="@{legalFoundermain$composer.current.legalEntity.number_registration_doc}"
+                                hflex="1"/>
+                        <label value="${labels.client.j_date_registration}"/>
+                        <datebox
+                                id="date_registration"
+                                value="@{legalFoundermain$composer.current.legalEntity.date_registration}"
+                                hflex="1"/>
+                        <label value="${labels.client.j_place_regist_name}"/>
+                        <cell colspan="3">
+                            <textbox
+                                    id="place_regist_name"
+                                    value="@{legalFoundermain$composer.current.legalEntity.place_regist_name}"
+                                    hflex="1"/>
+                        </cell>
+                    </row>
+
+                    <row id="onlyForJ1">
+                        <label value="${labels.client.j_okpo}"/>
+                        <textbox id="okpo"
+                                 value="@{legalFoundermain$composer.current.legalEntity.okpo}" hflex="1"/>
+                        <label value="№ в реестре"/>
+                        <textbox id="reestrNumOld"
+                                 value="@{legalFoundermain$composer.current.legalEntity.reestrNumOld}" hflex="1"/>
+
+                        <!--
+                        <label
+                            value="${labels.client.j_region}"  />
+                        <cell colspan="2">
+                            <textbox id="regionValue"
+                                hflex="1" value="@{legalFoundermain$composer.current.legalEntity.region}"/>
+                            <rcombobox id="region"
+                                hflex="3"
+                                selecteditem="@{legalFoundermain$composer.current.legalEntity.region}" />
+                        </cell>
+                        <label
+                            value="${labels.client.j_distr}"  />
+                        <cell colspan="2">
+                            <textbox id="distrValue"
+                                hflex="1" value="@{legalFoundermain$composer.current.legalEntity.distr}"/>
+                            <rcombobox id="distr"
+                                hflex="3" ctrlKeys="#up#down"
+                                selecteditem="@{legalFoundermain$composer.current.legalEntity.distr}" />
+                        </cell>
+                         -->
+                    </row>
+                    <row id="countryRow">
+                        <label value="${labels.client.code_country}"/>
+                        <cell colspan="2">
+                            <textbox hflex="1" id="countryValue" value="@{legalFoundermain$composer.current.legalEntity.code_country}"/>
+                            <rcombobox id="code_country"
+                                       selecteditem="@{legalFoundermain$composer.current.legalEntity.code_country}"
+                                       hflex="3" forward="onOK=onOKField1"/>
+                        </cell>
+                        <label value="${labels.client.code_resident}"/>
+                        <rcombobox id="code_resident" hflex="1"
+                                   selecteditem="@{legalFoundermain$composer.current.legalEntity.code_resident}"
+                                   onChange="legalFoundermain$composer.current.legalEntity.code_resident=code_resident.value"/>
+                    </row>
+                    <row id="regionRow">
+                        <label value="${labels.client.code_adr_region}"/>
+                        <cell colspan="2">
+                            <textbox hflex="1"
+                                     id="code_adr_regionValue"
+                                     value="@{legalFoundermain$composer.current.legalEntity.post_address_region}"
+                                    />
+                            <rcombobox hflex="2" id="code_adr_region" selecteditem="@{legalFoundermain$composer.current.legalEntity.post_address_region}"/>
+                        </cell>
+                        <label value="${labels.client.code_adr_distr}"/>
+                        <cell colspan="2">
+                            <textbox hflex="1" id="code_adr_distrValue"
+                                     value="@{legalFoundermain$composer.current.legalEntity.post_address_distr}"
+                                     onChange="code_adr_distr.selecteditem=self.value;self.value=code_adr_distr.value"/>
+                            <rcombobox hflex="2" id="code_adr_distr"
+                                       value="@{legalFoundermain$composer.current.legalEntity.post_address_distr}"
+                                       selecteditem="@{legalFoundermain$composer.current.legalEntity.post_address_distr}"
+                                       onChange="self.selecteditem=self.value;
+                                                   legalFoundermain$composer.current.legalEntity.post_address_distr=self.value;
+                                                   code_adr_distrValue.value=legalFoundermain$composer.current.legalEntity.post_address_distr"/>
+                        </cell>
+                    </row>
+
+                    <row id="onlyForJ2">
+                        <label value="${labels.client.j_post_address}"/>
+                        <cell colspan="5">
+                            <textbox id="post_address"
+                                     hflex="1"
+                                     value="@{legalFoundermain$composer.current.legalEntity.post_address}"/>
+                        </cell>
+                    </row>
+                    <row id="onlyForJ3">
+                        <label value="${labels.client.j_number_tax_registration}"/>
+                        <textbox
+                                id="number_tax_registration"
+                                value="@{legalFoundermain$composer.current.legalEntity.number_tax_registration}"
+                                hflex="1"/>
+                        <label
+                                value="${labels.client.j_code_tax_org}"/>
+                        <cell colspan="2">
+                            <textbox id="tax_orgValue"
+                                     value="@{legalFoundermain$composer.current.legalEntity.code_tax_org}"
+                                     hflex="1"
+                                     onChange="code_tax_org.selecteditem=tax_orgValue.value;
+														legalFoundermain$composer.current.legalEntity.code_tax_org=code_tax_org.value;
+														tax_orgValue.value=legalFoundermain$composer.current.legalEntity.code_tax_org"/>
+                            <rcombobox
+                                    id="code_tax_org"
+                                    selecteditem="@{legalFoundermain$composer.current.legalEntity.code_tax_org}"
+                                    hflex="3"
+                                    onChange="legalFoundermain$composer.current
+                                    .legalEntity.code_tax_org=code_tax_org.value;
+												tax_orgValue.value=code_tax_org.value"
+                            />
+
+                        </cell>
+
+                    </row>
+                    <row id="onlyForJ4">
+                        <label value="${labels.client.j_code_head_organization}"/>
+                        <textbox
+                                id="code_head_organization"
+                                value="@{legalFoundermain$composer.current.legalEntity.code_head_organization}"
+                                hflex="1"/>
+                        <label value="${labels.client.j_inn_head_organization}"/>
+                        <textbox
+                                id="inn_head_organization"
+                                value="@{legalFoundermain$composer.current.legalEntity.inn_head_organization}"
+                                hflex="1"/>
+                        <label value="${labels.client.j_soato}"/>
+                        <textbox id="soato"
+                                 value="@{legalFoundermain$composer.current.legalEntity.soato}" hflex="1"/>
+
+                    </row>
+
+                    <row>
+                        <label
+                                value="${labels.client.j_opf}"/>
+                        <cell colspan="6">
+                            <textbox id="opfValue"
+                                     hflex="1"
+                                     value="@{legalFoundermain$composer.current.legalEntity.opf}"
+                                     onChange="opf.selecteditem=opfValue.value;
+											   legalFoundermain$composer.current.legalEntity.opf=opf.value;
+											   opfValue.value=legalFoundermain$composer.current.legalEntity.opf"/>
+                            <rcombobox id="opf"
+                                       selecteditem="@{legalFoundermain$composer.current.legalEntity.opf}"
+                                       hflex="10"
+                                       onChange="legalFoundermain$composer.current.legalEntity.opf=opf.value;
+												opfValue.value=opf.value"/>
+                        </cell>
+
+                    </row>
+                    <!-- <row>
+                        <label
+                            value="${labels.client.code_form}"  />
+                        <cell colspan="6">
+                            <textbox id="formValue"
+                                hflex="1" value="@{legalFoundermain$composer.current.legalEntity.code_form}"/>
+                            <rcombobox id="code_form"
+                                hflex="10"
+                                selecteditem="@{legalFoundermain$composer.current.legalEntity.code_form}"
+                                onChange="legalFoundermain$composer.current.legalEntity.code_form=code_form.value;
+                                                    formValue.value=code_form.value"
+                                 />
+                        </cell>
+                    </row>
+
+                    <row>
+                        <label
+                            value="${labels.client.j_code_sector}"  />
+                        <cell colspan="6">
+                            <textbox id="oldsectorValue"
+                                hflex="1"
+                                value="@{legalFoundermain$composer.current.legalEntity.code_sector_old}"/>
+                            <rcombobox
+                                id="code_sector_old" hflex="10"
+                                selecteditem="@{legalFoundermain$composer.current.legalEntity.code_sector_old}"
+                                onChange="legalFoundermain$composer.current.legalEntity.code_sector_old=code_sector_old.value;
+                                                    oldsectorValue.value=code_sector_old.value"
+                                 />
+                        </cell>
+                    </row>
+                     -->
+                    <row>
+                        <label value="${labels.client.code_form}"  />
+                        <cell colspan="6">
+                            <textbox id="formValue"
+                                     hflex="1"
+                                     value="@{legalFoundermain$composer.current.legalEntity.code_form}"/>
+                            <rcombobox id="code_form"
+                                       hflex="10"
+                                       selecteditem="@{legalFoundermain$composer.current.legalEntity.code_form}"
+                                       onChange="legalFoundermain$composer.current.legalEntity.code_form=code_form.value;
+                                                    formValue.value=code_form.value"
+                            />
+                        </cell>
+                    </row>
+                    <row>
+                        <label value="ОКЭД"
+                        />
+                        <cell colspan="6">
+                            <textbox id="sectorValue"
+                                     value="@{legalFoundermain$composer.current.legalEntity.code_sector}"
+                                     hflex="1" ctrlKeys="#f9"
+                                     onChange="code_sector.selecteditem=sectorValue.value;
+									           legalFoundermain$composer.current.legalEntity.code_sector=code_sector.value;
+											   sectorValue.value=legalFoundermain$composer.current.legalEntity.code_sector"/>
+                            <rcombobox id="code_sector"
+                                       hflex="10"
+                                       selecteditem="@{legalFoundermain$composer.current.legalEntity.code_sector}"
+                                       onChange="legalFoundermain$composer.current.legalEntity.code_sector=code_sector.value;
+													sectorValue.value=code_sector.value"/>
+                            <!--
+                                ctrlKeys="#f9" hflex="10"
+                                onChange="legalFoundermain$composer.current.legalEntity.j_code_sector=aj_code_sector.value;
+                                asectorValue.value=aj_code_sector.value"  -->
+                        </cell>
+                    </row>
+                    <row>
+                        <label value="Вид деятельности субъектов предпринимательства без образования юридического лица"  />
+                        <cell colspan="6">
+                            <textbox id="activity_typeValue"
+                                     hflex="1"
+                                     value="@{legalFoundermain$composer.current.legalEntity.type_activity}"/>
+                            <rcombobox id="activity_type"
+                                       hflex="10"
+                                       selecteditem="@{legalFoundermain$composer.current.legalEntity.type_activity}"
+                                       onChange="
+                                       self.selecteditem = self.value;
+                                       legalFoundermain$composer.current.legalEntity.type_activity=activity_typeValue.value;
+                                                    activity_typeValue.value=self.value"
+                            />
+                        </cell>
+                    </row>
+                    <row>
+                        <label
+                                value="${labels.client.j_code_organ_direct}"/>
+                        <cell colspan="6">
+                            <textbox
+                                    value="@{legalFoundermain$composer.current.legalEntity.code_organ_direct}"
+                                    id="organ_directValue" hflex="1"
+                                    onChange="code_organ_direct.selecteditem=organ_directValue.value;
+														legalFoundermain$composer.current.legalEntity.code_organ_direct=code_organ_direct.value;
+														organ_directValue.value=legalFoundermain$composer.current.legalEntity.code_organ_direct"/>
+                            <rcombobox
+                                    id="code_organ_direct" hflex="10"
+                                    selecteditem="@{legalFoundermain$composer.current.legalEntity.code_organ_direct}"
+                                    onChange="legalFoundermain$composer.current.legalEntity.code_organ_direct=code_organ_direct.value;
+												organ_directValue.value=code_organ_direct.value"/>
+                        </cell>
+                    </row>
+
+					<row>
+						<cell colspan="2">
+						    <checkbox id="small_business" />
+							<label value="Субъект малого бизнеса" />
+						</cell>
+                        <cell colspan="2">
+                          <label value="Дата внесения записи в ЕГРСП"/>
+                          <datebox
+                                id="egrsp_date"
+                                value="@{legalFoundermain$composer.current.legalEntity.egrsp_date}"
+                                hflex="1"/>
+                        </cell>
+						<cell colspan="3">
+						  <label value="Номер записи в ЕГРСП"/>
+							<textbox id="egrsp_number" hflex="1" mold="rounded"
+								value="@{legalFoundermain$composer.current.legalEntity.egrsp_number}"
+												 />
+						</cell>
+  
+					</row>
+
+                    <row>
+                        <label value="${labels.client.j_phone}"/>
+                        <textbox id="j_phone"
+                                 maxlength="12" mold="rounded"
+                                 constraint="no empty:Не верный формат номера телефона - ввод только 12 цифр (998....)"
+                                 value="@{legalFoundermain$composer.current.legalEntity.phone}" hflex="1"
+                                 forward="onOK=onOKField"/>
+                        <label value="${labels.client.j_fax}"/>
+                        <textbox id="j_fax"
+                                 maxlength="12" mold="rounded"
+                                 constraint="/\d+/:Не верный формат номера факса - ввод только 12 цифр (998....)"
+                                 value="@{legalFoundermain$composer.current.legalEntity.fax}" hflex="1"
+                                 forward="onOK=onOKField"/>
+                        <label value="${labels.client.j_email}"/>
+                        <textbox id="j_email" mold="rounded"
+                                 value="@{legalFoundermain$composer.current.legalEntity.email}" hflex="1"/>
+                    </row>
+
+                </rows>
+            </grid>
+        </groupbox>
+    </div>
+
+    <window id="fields_diff_wnd" mode="modal" closable="true"
+            width="90%"
+            onClose="self.visible = false; event.stopPropagation();"
+            title="Сравнение данных"
+            position="center,center" visible="false">
+        <grid id="diff_grid">
+            <columns id="diff_columns" hflex="1" vflex="1">
+                <column label="Поле" width="15%"/>
+                <column label="Локалные данные"/>
+                <column id="diff_sap_col" label="Данные из SAP"/>
+                <column id="diff_sap_col_accept" label="Принять из SAP" width="10%">
+                    <checkbox id="check_all_sap"/>
+                </column>
+                <column id="diff_ebp_col" label="Данные из ЕБП"/>
+                <column id="diff_ebp_col_accept" label="Принять из ЕБП" width="10%">
+                    <checkbox id="check_all_ebp"/>
+                </column>
+            </columns>
+            <rows id="diff_rows"/>
+        </grid>
+        <toolbar>
+            <toolbarbutton id="btn_apply" label="Сохранить"/>
+        </toolbar>
+    </window>
+    <window id="relations_diff_wnd" mode="modal" closable="true"
+            width="90%"
+            onClose="self.visible = false; event.stopPropagation();"
+            title="Сравнение отношений"
+            position="center,center" visible="false">
+        <grid id="diff_grid">
+            <columns id="diff_columns" hflex="1" vflex="1">
+                <column label="Поле" width="15%"/>
+                <column label="Локалные данные"/>
+                <column id="diff_sap_col" label="Данные из SAP"/>
+                <column id="diff_sap_col_accept" label="Принять из SAP" width="10%">
+                    <checkbox id="check_all_sap"/>
+                </column>
+            </columns>
+            <rows id="diff_rows"/>
+        </grid>
+        <toolbar>
+            <toolbarbutton id="btn_apply" label="Сохранить"/>
+        </toolbar>
+    </window>
+</window>

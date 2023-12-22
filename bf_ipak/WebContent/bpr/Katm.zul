@@ -1,0 +1,14 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<window width="100%" height="100%" border="normal" id="main">
+		<button id="btn_print_KatmInfo">
+			Print
+		</button>
+		<window id="katmwnd" mode="overlapped" title="Катм Маълумотнома"
+			apply="com.is.bpri.BproductViewCtrl" position="center,center"
+			visible="false" maximizable="true" width="950px" height="550px"
+			closable="true" contentStyle="overflow:auto"
+			onClose="self.visible = false; event.stopPropagation();">
+		</window>
+	</window>
+</zk>

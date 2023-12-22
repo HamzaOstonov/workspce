@@ -1,0 +1,349 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="nibbdmain" width="100%" border="none"
+		apply="com.is.nibbd.NibbdController">
+	<div align="center">
+		<tabbox id="tabs" onSelect="showButton()">
+			<tabs>
+				<tab label="Клиент"/>
+				<tab label="Счет"/>
+				<tab label="Статистика"/>
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<radiogroup id="client_queries" />
+					<grid id="client_grid">
+						<columns>
+							<column hflex="1" align="right"/> <column hflex="1" align="right"/>
+							<column hflex="1" align="right"/> <column hflex="1" align="right"/>
+							<column hflex="1" align="right"/> <column hflex="1" align="right"/>
+						</columns>
+						<rows>
+							<row>
+								<label value="${labels.client.id_client}"/>
+								<textbox id="id_client" hflex="1" maxlength="8"
+									value="@{nibbdmain$composer.clientQuery.id_client}" forward="onOK=onClick$btn_post" />
+								<label value="${labels.client.code_resident}"/>
+								<textbox id="resident" maxlength="1"
+									value="@{nibbdmain$composer.clientQuery.resident}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.client.code_country}"/>
+								<textbox id="code_country" hflex="1" maxlength="3"
+									value="@{nibbdmain$composer.clientQuery.code_country}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="${labels.client.name}"/>
+								<cell colspan="3">
+									<textbox id="name" hflex="1" maxlength="80"
+										value="@{nibbdmain$composer.clientQuery.name}" forward="onOK=onClick$btn_post" />
+								</cell>
+							</row>
+							<row>
+								<label value="${labels.client.number_registration_doc}"/>
+								<cell colspan="2">
+									<textbox id="number_registration_doc"
+										hflex="1" maxlength="16"
+										value="@{nibbdmain$composer.clientQuery.number_registration_doc}" forward="onOK=onClick$btn_post" />
+								</cell>
+								<label value="${labels.client.date_registration}"/>
+								<datebox id="date_registration" 
+										value="@{nibbdmain$composer.clientQuery.date_registration}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="${labels.client.place_regist_name}"/>
+								<cell colspan="3">
+									<textbox id="place_regist_name" hflex="1" maxlength="50"
+										value="@{nibbdmain$composer.clientQuery.place_regist_name}" forward="onOK=onClick$btn_post" />
+								</cell>
+							</row>
+							<row>
+								<label value="${labels.client.code_type}"/>
+								<textbox id="code_type" maxlength="3" 
+										value="@{nibbdmain$composer.clientQuery.code_type_cyr}" forward="onOK=onClick$btn_post"/>
+						
+								<label value="${labels.client.number_tax_registration}"/>
+								<textbox id="number_tax_registration" maxlength="9"
+										value="@{nibbdmain$composer.clientQuery.number_tax_registration}" forward="onOK=onClick$btn_post"/>
+							
+								<label value="${labels.client.j_soato}"/>
+								<textbox id="soato" maxlength="10"
+										value="@{nibbdmain$composer.clientQuery.soato}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								
+								<label value="ПИНФЛ"/>							
+                    <cell colspan="2">							
+								<textbox id="pinfl" maxlength="14"
+										value="@{nibbdmain$composer.clientQuery.pinfl}" forward="onOK=onClick$btn_post"/>
+					</cell>			
+							</row>
+							<row>
+								<label value="${labels.client.j_inn_head_organization}"/>
+								<textbox id="inn_head_organization" maxlength="9" hflex="1"
+										value="@{nibbdmain$composer.clientQuery.inn_head_organization}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.client.j_code_head_organization}"/>
+								<textbox id="code_head_organization" maxlength="8" hflex="1"
+										value="@{nibbdmain$composer.clientQuery.code_head_organization}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.client.j_okpo}"/>
+								<textbox id="okpo" maxlength="8"
+										value="@{nibbdmain$composer.clientQuery.okpo}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="${labels.client.opf}"/>
+								<textbox id="opf" maxlength="3"
+										value="@{nibbdmain$composer.clientQuery.opf}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.client.code_form}"/>
+								<textbox id="code_form" maxlength="3"
+										value="@{nibbdmain$composer.clientQuery.code_form}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.client.j_code_sector}"/>
+								<textbox id="code_sector" maxlength="5"
+										value="@{nibbdmain$composer.clientQuery.code_sector}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="Обоснование"/>
+								<cell colspan="3">
+									<textbox id="reasoning" hflex="1" 
+										value="@{nibbdmain$composer.clientQuery.reasoning}" forward="onOK=onClick$btn_post" />
+								</cell>
+							</row>
+							<row>
+								<label value="${labels.account.acc_bal}"/>
+								<textbox id="acc_bal" maxlength="5"
+										value="@{nibbdmain$composer.clientQuery.acc_bal}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.account.currency}"/>
+								<textbox id="currency" maxlength="3"
+										value="@{nibbdmain$composer.clientQuery.currency}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.account.id_order}"/>
+								<textbox id="id_order" maxlength="3"
+										value="@{nibbdmain$composer.clientQuery.id_order}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="Старый 20-значный счет"/>
+								<textbox id="old_acc" maxlength="20"
+										value="@{nibbdmain$composer.clientQuery.old_acc}" forward="onOK=onClick$btn_post"/>
+								<label value="Новый 20-значный счет"/>
+								<textbox id="new_acc" maxlength="20"
+										value="@{nibbdmain$composer.clientQuery.new_acc}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="${labels.client.region}"/>
+								<textbox id="region" maxlength="2"
+										value="@{nibbdmain$composer.clientQuery.region}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.client.distr}"/>
+								<textbox id="district" maxlength="3"
+										value="@{nibbdmain$composer.clientQuery.district}" forward="onOK=onClick$btn_post"/>
+								<label value="Дата выдачи основания"/>
+								<datebox id="query_date" 
+										value="@{nibbdmain$composer.clientQuery.query_date}" forward="onOK=onClick$btn_post"/>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<radiogroup id="account_queries" />
+					<!-- <radio label="Запрос №2" value="2"/>
+						<radio label="Запрос №3" value="3"/>
+						<radio label="Запрос №4" value="4"/>
+						<radio label="Запрос №6" value="6"/>
+						<radio label="Запрос №7" value="7"/> -->						
+					<grid id="account_grid">
+						<columns>
+							<column hflex="1" align="right"/> <column hflex="1" align="right"/>
+							<column hflex="1" align="right"/> <column hflex="1" align="right"/>
+							<column hflex="1" align="right"/> <column hflex="1" align="right"/>
+						</columns>
+						<rows>
+							<row>
+								<label value="${labels.client.id_client}"/>
+								<textbox id="id_client_acc" hflex="1" maxlength="8"
+									value="@{nibbdmain$composer.accountQuery.id_client}" forward="onOK=onClick$btn_post" />
+							</row>
+							<row>
+								<label value="${labels.account.acc_bal}"/>
+								<textbox id="acc_bal_acc" maxlength="5"
+										value="@{nibbdmain$composer.accountQuery.acc_bal}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.account.currency}"/>
+								<textbox id="currency_acc" maxlength="3"
+										value="@{nibbdmain$composer.accountQuery.currency}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.account.id_order}"/>
+								<textbox id="id_order_acc" maxlength="3"
+										value="@{nibbdmain$composer.accountQuery.id_order}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="Признак открытия/перевода счета"/>
+								<cell colspan="3">
+									<textbox id="account_actionValue" hflex="1" 
+										value="@{nibbdmain$composer.accountQuery.account_action}" forward="onOK=onClick$btn_post"/>
+									<rcombobox id="account_action" hflex="4" 
+										selecteditem="@{nibbdmain$composer.accountQuery.account_action}"
+										onChange="nibbdmain$composer.accountQuery.account_action=account_action.value;
+												account_actionValue.value=account_action.value"/>
+								</cell>
+							</row>
+							<row>
+								<label value="${labels.client.j_code_head_organization}"/>
+								<textbox id="code_head_organization_acc" maxlength="8"
+										value="@{nibbdmain$composer.accountQuery.code_head_organization}" forward="onOK=onClick$btn_post"/>
+								<label value="${labels.client.j_inn_head_organization}"/>
+								<textbox id="inn_head_organization_acc" maxlength="9"
+										value="@{nibbdmain$composer.accountQuery.inn_head_organization}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="Обоснование"/>
+								<cell colspan="3">
+									<textbox id="reasoning_acc" hflex="1" 
+										value="@{nibbdmain$composer.accountQuery.reasoning}" forward="onOK=onClick$btn_post" />
+								</cell>
+								<label value="Дата выдачи основания"/>
+								<datebox id="query_date_acc" 
+										value="@{nibbdmain$composer.accountQuery.query_date}" forward="onOK=onClick$btn_post"/>
+							</row>
+							<row>
+								<label value="Лицевой счет"/>
+								<cell colspan="3">
+									<textbox id="client_account" hflex="1" maxlength="20"
+										value="@{nibbdmain$composer.accountQuery.client_account}" forward="onOK=onClick$btn_post" />
+								</cell>
+							</row>
+							<row>
+								<label value="Код банка куда переводится счет"/>
+								<textbox id="new_bank" hflex="1" maxlength="5"
+										value="@{nibbdmain$composer.accountQuery.new_bank}" forward="onOK=onClick$btn_post" />
+							</row>
+							<row>
+								<label value="Признак блокировки"/>
+								<cell colspan="3">
+									<textbox id="block_signValue" hflex="1" 
+										value="@{nibbdmain$composer.accountQuery.block_sign}" forward="onOK=onClick$btn_post"/>
+									<rcombobox id="block_sign" hflex="4" 
+										selecteditem="@{nibbdmain$composer.accountQuery.block_sign}"
+										onChange="nibbdmain$composer.accountQuery.block_sign=block_sign.value;
+												block_signValue.value=block_sign.value" forward="onOK=onClick$btn_post"/>
+								</cell>
+							</row>
+							<row>
+								<label value="Дата последнего движения счета"/>
+								<datebox id="last_account_movement" 
+										value="@{nibbdmain$composer.accountQuery.last_account_movement}" forward="onOK=onClick$btn_post"/>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<div id="grd">
+						<toolbar>
+							<toolbarbutton id="btn_make_reis" label="Сформировать рейс"/>
+							<toolbarbutton id="btn_receive_reis" label="Принять рейс" visible="false"/>
+							<toolbarbutton id="btn_handle_reis" label="Обработать рейс" visible="false"/>
+							<toolbarbutton id="btn_delete" label="${labels.delete} запрос"
+								image="/images/delete.png" visible="false"/>
+						</toolbar>						
+						<toolbar>
+							<toolbarbutton id="btn_show_filter" label="${labels.search}"
+								image="/images/search.png"/>
+							<toolbarbutton id="btn_refresh" label="${labels.refresh}"
+								image="/images/refresh.png"/>
+							<!--  
+							<toolbarbutton id="btn_first" label="${labels.first}"
+								image="/images/backward.png" />
+							<toolbarbutton id="btn_prev" label="${labels.prev}"
+								image="/images/back.png" />
+							<toolbarbutton id="btn_next" label="${labels.next}"
+								image="/images/front.png" />
+							<toolbarbutton id="btn_last" label="${labels.last}"
+								image="/images/forward.png" />
+							-->
+							<toolbarbutton id="btn_receive" label="Перевести в Принят" visible="false"/>
+							<toolbarbutton id="btn_send" label="Переаести в Отправлен" visible="false"/>
+							<toolbarbutton id="btn_client" label="Занести в карточку клиента" visible="false"/>
+							<toolbarbutton id="btn_client_change" label="Изменить объектив. данные клмента" visible="false"/>
+							
+						</toolbar>
+						<paging id="nibbdPaging" visible="false	"/>
+						<listbox id="dataGrid" selectedItem="@{nibbdmain$composer.current}" rows="5" >
+							<listhead sizable="true">
+								<listheader label="№ строки" width="5%" sort="auto(str_num)"/>
+								<listheader label="№ запроса" width="5%" sort="auto(query_num)"/>
+								<listheader label="№ рейса" width="5%" sort="auto(reis_num)"/>
+								<listheader label="Состояние" width="20%" sort="auto(state)"/>
+								<listheader label="Наименование" sort="auto(name)"/>
+								<listheader label="Дата запроса" width="8%" sort="auto(query_date)"/>
+							</listhead>
+						</listbox>
+						<grid>
+							<columns><column/><column/></columns>
+							<rows>
+								<row>
+									<textbox id="query_in" hflex="1" vflex="1" rows="3" multiline="true" style="resize: none; background: white"
+										value="@{nibbdmain$composer.current.query_inp}"/>
+									<textbox id="query_out" hflex="1" vflex="1" rows="3" multiline="true" style="resize: none;"
+										value="@{nibbdmain$composer.current.query_out}"/>
+								</row>
+							</rows>
+						</grid>
+					</div>
+					<div>
+						<label value="Протокол"/>
+						<listbox id="protocolData" rows="5">
+							<listhead>
+								<listheader label="Филиал" width="10%"/>
+								<listheader label="Сообщение"/>
+								<listheader label="Дата" width="10%"/>
+							</listhead>
+						</listbox>
+					</div>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		<toolbar id="tb" align="end">
+			<toolbarbutton id="btn_post" label="В НИББД" style="background: #4CAF50;color: white;"/>
+		</toolbar>
+<zscript><![CDATA[  
+		void showButton(){
+			int index = tabs.getSelectedIndex();
+			tb.setVisible(index != 2);
+		}
+	]]>
+	</zscript>	
+	</div>
+	
+	<window id="filter_modal" mode="modal" closable="true"
+			width="50%"
+			onClose="self.visible = false; event.stopPropagation();"
+			title="Фильтр"
+			position="center,center" visible="false">
+			<grid id="filter_grd">
+				<columns><column /><column /><column /><column /></columns>
+				<rows>
+					<row>
+						<label value="Дата с"/>
+						<datebox id="date_from" hflex="1" value="@{nibbdmain$composer.filter.date_from}"/>
+						<label value="Дата по"/>
+						<datebox id="date_to" hflex="1" value="@{nibbdmain$composer.filter.date_to}"/>
+					</row>
+					<row>
+						<label value="номер запроса"/>
+						<textbox id="query_no" hflex="1" value="@{nibbdmain$composer.filter.query_num}"/>
+					</row>
+					<row>
+						<label value="состояние"/>
+						<rcombobox id="state" hflex="1" selecteditem="@{nibbdmain$composer.filter.state}"/>
+						<label value="ID клиента"/>
+						<textbox id="id_client" hflex="1" value="@{nibbdmain$composer.filter.id_client}"/>
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_find" label="Найти"/>
+				<toolbarbutton id="btn_clear" label="Очистить"/>
+			</toolbar>
+	</window>
+	
+	<window id="client_modal" mode="modal" closable="true"
+			width="80%"
+			onClose="self.visible = false; event.stopPropagation();"
+			title="Клиенты"
+			position="center,center" visible="false">
+		<include id="incl_client"/>
+	</window>
+	
+</window>

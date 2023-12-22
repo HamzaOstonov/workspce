@@ -1,0 +1,230 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="personmainmain"
+        apply="com.is.client_personmap.controllers.PersonMapViewCtrl"
+        border="none">
+    <toolbar id="tb">
+        <toolbarbutton id="btn_add" image="/images/+.png" label="Добавить"/>
+        <toolbarbutton id="btn_add_from_sap" image="/images/search.png" label="Найти в SAP"/>
+        <toolbarbutton id="btn_refresh" image="/images/refresh.png" label="Обновить список"/>
+        <toolbarbutton id="btn_list" label="Список"/>
+    </toolbar>
+    <tabbox id="tabs">
+        <tabs>
+            <tab label="Контактные лица" id="tab_cp"/>
+            <tab label="Учредители" id="tab_founders"/>
+            <tab visible="true" label="Бенефециарные собственники" id="tab_beneficiaries"/>
+        </tabs>
+    </tabbox>
+
+    <div id="contact_person" vflex="1">
+        <toolbarbutton label="Показать Связанных лиц в SAP" id="btnShowSAPContactPersons"/>
+        <div id="grd">
+            <listbox id="contactPersonList" style="border:none"
+                     selectedItem="@{personmainmain$composer.currentCP}" rows="10">
+                <listhead>
+                    <listheader label="Филиал"/>
+                    <listheader label="Вид лица"/>
+                    <listheader label="Имя" sort="auto"/>
+                    <listheader label="Тип" sort="auto"/>
+                    <listheader label="Состояние" sort="auto"/>
+                </listhead>
+
+            </listbox>
+        </div>
+
+    </div>
+    <div id="founders">
+        <toolbarbutton label="Показать Учредителей в SAP" id="btnShowSAPFounders"/>
+        <listbox id="founders_list" rows="5"
+                 selectedItem="@{personmainmain$composer.currentFounder}">
+            <listhead>
+                <listheader label="Филиал"/>
+                <listheader label="Вид лица" sort="auto"/>
+                <listheader label="Имя" sort="auto"/>
+                <listheader label="%" sort="auto"/>
+                <listheader label="Состояние" sort="auto"/>
+            </listhead>
+        </listbox>
+    </div>
+    
+    <div id="beneficiaries">
+        <listbox id="beneficiaries_list" rows="5"
+                 selectedItem="@{personmainmain$composer.currentBeneficiary}">
+            <listhead>
+                <listheader label="Филиал"/>
+                <listheader label="Вид лица" sort="auto"/>
+                <listheader label="Имя" sort="auto"/>
+                <listheader label="%" sort="auto"/>
+                <listheader label="Состояние" sort="auto"/>
+            </listhead>
+        </listbox>
+    </div>    
+    <div id="search_client" align="center">
+        <div id="search_grid">
+            <grid>
+                <columns>
+                    <!-- <column hflex="1" label="Филиал" /> -->
+                    <column hflex="1" label="Фамилия"/>
+                    <column hflex="1" label="Имя"/>
+                    <column hflex="1" label="Отчество"/>
+                    <column hflex="1" label="Дата рождения"/>
+                    <column hflex="1" label="Серия паспорта"/>
+                    <column hflex="1" label="Номер паспорта"/>
+                    <column hflex="1" label="Тип Документа"/>
+                </columns>
+                <rows id="rows">
+                    <row>
+                        <!-- <textbox value="@{searchclientmain$composer.current.branch}" mold="rounded" width="100%"/> -->
+                        <textbox
+                                value="@{personmainmain$composer.bpFilter.lastName}"
+                                mold="rounded" width="100%"/>
+                        <textbox
+                                value="@{personmainmain$composer.bpFilter.firstName}"
+                                mold="rounded" width="100%"/>
+                        <textbox
+                                value="@{personmainmain$composer.bpFilter.middleName}"
+                                mold="rounded" width="100%"/>
+                        <datebox id="date_from"
+                                 value="@{personmainmain$composer.bpFilter.birthday}"
+                                 format="dd.MM.yyyy" mold="rounded" width="100%"/>
+                        <textbox
+                                value="@{personmainmain$composer.bpFilter.documentSerial}"
+                                mold="rounded" width="100%"/>
+                        <textbox
+                                value="@{personmainmain$composer.bpFilter.documentNumber}"
+                                mold="rounded" width="100%"/>
+                        <rcombobox hflex="1" id="type_document1"
+                                   selecteditem="@{personmainmain$composer.bpFilter.documentType}"
+                                   onChange="personmainmain$composer.bpFilter.documentType = type_document1.value"/>
+                    </row>
+                </rows>
+            </grid>
+            <separator spacing="20px"/>
+            <toolbar id="toolbar_control">
+                <toolbarbutton label="Ок" image="/images/search.png"
+                               id="btn_find_individual"/>
+                <toolbarbutton label="Очистить" id="btn_clear"/>
+            </toolbar>
+        </div>
+
+        <div id="resultdiv">
+            <listbox id="resultListbox" width="100%"
+                     rows="8" style="border:normal">
+                <listhead sizable="true">
+                    <listheader label="NCI Код" sort="auto"/>
+                    <listheader label="SAP Код" sort="auto"/>
+                    <listheader label="Фамилия" sort="auto"/>
+                    <listheader label="Имя" sort="auto"/>
+                    <listheader label="Отчество" sort="auto"/>
+                    <listheader label="Дата Рождения" sort="auto"/>
+                </listhead>
+            </listbox>
+        </div>
+    </div>
+    <div id="search_org">
+        <grid>
+            <columns>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+            </columns>
+            <rows>
+                <row>
+                    <label value="Идентификатор"/>
+                    <textbox id="sap_docId" hflex="1"/>
+                    <label value="Тип документа"/>
+                    <rcombobox id="sap_docType" hflex="1"/>
+                    <label value="Наименование"/>
+                    <cell colspan="3">
+                        <textbox id="sap_client_name" hflex="1"/>
+                    </cell>
+                </row>
+            </rows>
+        </grid>
+        <toolbar>
+            <toolbarbutton id="btn_find_legal"
+                           label="${labels.search}" image="/images/search.png"/>
+            <toolbarbutton id="btn_clear_legal" label="Очистить"/>
+        </toolbar>
+        <listbox id="sap_list" rows="5">
+            <listhead>
+                <listheader label="sap id"/>
+                <listheader label="NCI id"/>
+                <listheader label="Филиал"/>
+                <listheader label="Наименование"/>
+                <listheader label="Краткое наим"/>
+                <listheader label="Тип клиента"/>
+                <listheader label="ОПФ"/>
+            </listhead>
+        </listbox>
+    </div>
+    <window id="dp_wnd" mode="modal" closable="true"
+            width="100%" contentStyle="overflow:auto"
+            title="Создание связки"
+            position="center,center" visible="false">
+        <include id="incl_cp"/>
+    </window> 
+    <window id="founder_type_wnd" mode="modal" closable="true"
+            width="35%"
+            onClose="self.visible = false; event.stopPropagation();"
+            title="Выбор типа учредителя"
+            position="center,center" visible="false">
+        <label value="Выберите тип учредителя"/>
+        <radiogroup id="type_radio"/>
+        <radio label="Физическое лицо" value="0" radiogroup="type_radio"/>
+        <radio label="Юридическое лицо" value="1" radiogroup="type_radio"/>
+        <toolbar>
+            <toolbarbutton id="btn_get_type" label="OK"/>
+        </toolbar>
+    </window>
+    <window id="legalFounder_wnd" mode="modal" closable="true"
+            width="80%"
+            title="Учредитель(юр лицо)"
+            position="center,center" visible="false">
+        <div id="legal_div"/>
+    </window>
+    <window id="individFounder_wnd" mode="modal" closable="true"
+            width="80%"
+            onClose="self.visible = false; event.stopPropagation();"
+            title="Учредитель(физ лицо)"
+            position="center,center" visible="false">
+        <div id="individ_div"/>
+    </window>
+    <window id="beneficiaryFounder_wnd" mode="modal" closable="true"
+            width="80%"
+            onClose="self.visible = false; event.stopPropagation();"
+            title="Бенефициарный собственник"
+            position="center,center" visible="false">
+        <div id="beneficiary_div"/>
+    </window>
+    
+    <window id="sapFoundersWnd" mode="modal" closable="true" width="80%"
+            onClose="self.visible= false;event.stopPropagation();"
+            position="center,center" visible="false" title="Учредители в SAP">
+        <listbox id="founders_list" rows="5">
+            <listhead>
+                <listheader label="Наименование"/>
+                <listheader label="Процент"/>
+                <listheader label="Сумма долевого участия"/>
+                <listheader label="Валюта"/>
+            </listhead>
+        </listbox>
+    </window>
+
+    <window id="sapContactPersons" mode="modal" closable="true" width="80%"
+                onClose="self.visible= false;event.stopPropagation();"
+                position="center,center" visible="false" title="Связанные лица в SAP">
+            <listbox id="list" rows="5">
+                <listhead>
+                    <listheader label="SAP Id"/>
+                    <listheader label="Имя"/>
+                    <listheader label="Тип"/>
+                </listhead>
+            </listbox>
+    </window>
+</window>

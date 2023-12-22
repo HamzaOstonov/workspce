@@ -1,0 +1,165 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<?component name="clcbox" extends="combobox" class="com.is.clients.ClientCBox"?>
+<window id="kaznaccwnd" closable="true"
+        onClose="self.visible = false; event.stopPropagation();" sizable="true"
+        maximizable="true" style="overflow-y: auto;"
+    		title="${labels.document.kazns}" border="normal" width="1000px" height="90%"
+        position="center,center" mode="modal" visible="true"
+    		apply="com.is.payments.spr.s_kaznacc.KaznaccViewCtrl">
+        	<div id="kaznaccdiv" width="100%" height="100%" style="overflow-y: scroll;">
+        		<style src="/css/inp.css"></style>
+				<groupbox mold="3d" open="true" closable="true" width="100%" sclass="clb-groupbox" >
+				<caption label="${labels.document.fkazns}"/>
+					<grid id="fgrd" sclass="clb-grid">
+			           	<columns>
+		                	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		             	</columns>
+		              	<rows>
+		              		<row>
+		              			<cell colspan="2">
+		              				<label value="${labels.document.kaznacc.budget}" />
+		              			</cell>
+		              			<cell colspan="3">
+		              				<textbox id="fbudget" value="@{kaznaccwnd$composer.bfilter.budget}" width="94%"/>
+		              			</cell>
+		              			<cell colspan="1" align="right">
+			              			<label value="${labels.document.kaznacc.kod_acc}" />
+			              		</cell>
+			              		<cell colspan="1">
+			              			<textbox id="fkod_acc" value="@{kaznaccwnd$composer.bfilter.kod_acc}" width="94%"/>
+			              		</cell>
+			              		<cell colspan="1" align="right">
+		              				<label value="${labels.document.kaznacc.kod_uns}" />
+		              			</cell>
+		              			<cell colspan="2">
+		              				<textbox id="fkod_uns" value="@{kaznaccwnd$composer.bfilter.kod_uns}" width="91%"/>
+		              			</cell>
+		              		</row>
+		              		<row>
+		              			<cell colspan="2">
+		              				<label value="${labels.document.kaznacc.namebudget}" />
+		              			</cell>
+		              			<cell colspan="8">
+		              				<textbox id="fnamebudget" value="@{kaznaccwnd$composer.bfilter.namebudget}" width="98%"/>
+		              			</cell>
+		              		</row>
+			           	</rows>
+			       	</grid>
+					<toolbar>
+				    	<toolbarbutton id="btn_find" label="${labels.find}" image="/images/search.png"/>
+		                <toolbarbutton  id="btn_find_clear" label="${labels.clear}" image="/images/clear_filter.png"/>
+		                <toolbarbutton id="btn_find_cancel" label="${labels.cancel}" image="/images/cancel_filter.png"/>
+				    </toolbar>
+		        </groupbox>
+	        	<groupbox mold="3d" open="true" closable="true" width="100%" sclass="clb-groupbox" >
+	        	<caption label="${labels.document.kazns}" />	
+	        		<toolbar id="tb" width="100%" align="center" height="35px">
+			        		<div width="100%" align="center" height="35px">
+								<hbox width="100%" widths="100%,50px,200px" align="center" height="35px">
+									<hbox width="100%">
+										<toolbarbutton id="btn_refresh" tooltiptext="${labels.refresh}" image="/images/refresh.png"/>
+										<separator orient="vertical" spacing="10px" bar="true" height="24px" style="color: white;"></separator>
+										<toolbarbutton id="btn_first" tooltiptext="${labels.first}" image="/images/backward.png"/>
+								        <toolbarbutton id="btn_prev" tooltiptext="${labels.prev}" image="/images/back.png"/>
+								        <toolbarbutton id="btn_next" tooltiptext="${labels.next}" image="/images/front.png"/>
+								        <toolbarbutton id="btn_last" tooltiptext="${labels.last}" image="/images/forward.png"/>
+								        <separator orient="vertical" spacing="10px" bar="true" height="24px" style="color: white;"></separator>
+										<toolbarbutton id="btn_send" label="${labels.document.btn_setkazndata}"
+                                                       image="/images/template.png"/>
+									</hbox>
+									<rcombobox id="pagesize" mold="rounded" selecteditem="" width="50px"/>
+									<paging id="kaznaccPaging" width="200px" sclass="sp-paging"/>
+								</hbox>
+							</div>
+					</toolbar>
+			        <div id="grd" width="100%">
+			            <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                                 selectedItem="@{kaznaccwnd$composer.bcurrent}"
+                                 sclass="clb-list">
+			            	<listhead sizable="true">
+								<!-- <listheader label="${labels.document.kaznacc.nci_id}" /> -->
+								<listheader label="${labels.document.kaznacc.budget}" sort="auto(budget)" width="200px"/>
+								<listheader label="${labels.document.kaznacc.kod_doh}" sort="auto(kod_doh)" width="70px"/>
+								<listheader label="${labels.document.kaznacc.kod_soato}" sort="auto(kod_soato)" width="50px"/>
+								<listheader label="${labels.document.kaznacc.kod_acc}" sort="auto(kod_acc)" width="50px"/>
+								<listheader label="${labels.document.kaznacc.kod_uns}" sort="auto(kod_uns)" width="50px"/>
+								<listheader label="${labels.document.kaznacc.namebudget}" sort="auto(namebudget)"/>
+								<!-- <listheader label="${labels.document.kaznacc.date_open}" />
+								<listheader label="${labels.document.kaznacc.date_close}" />
+								<listheader label="${labels.document.kaznacc.act}" /> -->
+			                </listhead>
+						</listbox>
+			        </div>
+	        	</groupbox>
+	        	<groupbox mold="3d" open="true" closable="true" width="100%" sclass="clb-groupbox" >
+	        	<caption label="${labels.document.spr.addinfo}" />	
+	        		<div id="frmdiv">
+						<grid id="frmgrd" ctrlKeys="^e#up#down" width="100%" visible="true" sclass="clb-grid">
+			            	<columns>
+			                	<column width="10%" />
+			                 	<column width="10%" />
+			                 	<column width="10%" />
+			                 	<column width="10%" />
+			                 	<column width="10%" />
+			                 	<column width="10%" />
+			                 	<column width="10%" />
+			                 	<column width="10%" />
+			                 	<column width="10%" />
+			                 	<column width="10%" />
+			             	</columns>
+			              	<rows>
+								<!--  
+								<row><label value="${labels.kaznacc.nci_id}" /><textbox id="nci_id"  mold="rounded"  value="@{kaznaccmain$composer.current.nci_id}" /></row>
+								<row><label value="${labels.kaznacc.budget}" /><textbox id="budget"  mold="rounded"  value="@{kaznaccmain$composer.current.budget}" /></row>
+								<row><label value="${labels.kaznacc.kod_doh}" /><textbox id="kod_doh"  mold="rounded"  value="@{kaznaccmain$composer.current.kod_doh}" /></row>
+								<row><label value="${labels.kaznacc.kod_soato}" /><textbox id="kod_soato"  mold="rounded"  value="@{kaznaccmain$composer.current.kod_soato}" /></row>
+								<row><label value="${labels.kaznacc.kod_acc}" /><textbox id="kod_acc"  mold="rounded"  value="@{kaznaccmain$composer.current.kod_acc}" /></row>
+								<row><label value="${labels.kaznacc.kod_uns}" /><textbox id="kod_uns"  mold="rounded"  value="@{kaznaccmain$composer.current.kod_uns}" /></row>
+								<row><label value="${labels.kaznacc.namebudget}" /><textbox id="namebudget"  mold="rounded"  value="@{kaznaccmain$composer.current.namebudget}" /></row>
+								<row><label value="${labels.kaznacc.date_open}" /><datebox id="date_open"  mold="rounded"  value="@{kaznaccmain$composer.current.date_open}" /></row>
+								<row><label value="${labels.kaznacc.date_close}" /><datebox id="date_close"  mold="rounded"  value="@{kaznaccmain$composer.current.date_close}" /></row>
+								<row><label value="${labels.kaznacc.act}" /><textbox id="act"  mold="rounded"  value="@{kaznaccmain$composer.current.act}" /></row>
+								-->
+								<row>
+			              			<cell colspan="2">
+			              				<label value="${labels.document.kaznacc.budget}" />
+			              			</cell>
+			              			<cell colspan="3">
+			              				<textbox id="budget" value="@{kaznaccwnd$composer.bcurrent.budget}" width="94%"/>
+			              			</cell>
+			              			<cell colspan="1" align="right">
+				              			<label value="${labels.document.kaznacc.kod_acc}" />
+				              		</cell>
+				              		<cell colspan="1">
+				              			<textbox id="kod_acc" value="@{kaznaccwnd$composer.bcurrent.kod_acc}" width="94%"/>
+				              		</cell>
+				              		<cell colspan="1" align="right">
+			              				<label value="${labels.document.kaznacc.kod_uns}" />
+			              			</cell>
+			              			<cell colspan="2">
+			              				<textbox id="kod_uns" value="@{kaznaccwnd$composer.bcurrent.kod_uns}" width="91%"/>
+			              			</cell>
+			              		</row>
+			              		<row>
+			              			<cell colspan="2">
+			              				<label value="${labels.document.kaznacc.namebudget}" />
+			              			</cell>
+			              			<cell colspan="8">
+			              				<textbox id="namebudget" value="@{kaznaccwnd$composer.bcurrent.namebudget}" width="98%"/>
+			              			</cell>
+			              		</row>
+							</rows>
+						</grid>	
+		          	</div>
+	        	</groupbox>
+          	</div>
+        </window>

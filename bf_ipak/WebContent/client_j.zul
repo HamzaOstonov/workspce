@@ -1,0 +1,3884 @@
+<zk>
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+	<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+	<window id="clientmain" width="100%" border="none"
+		apply="com.is.clients.controllers.ClientJViewCtrl">
+		<toolbar id="top_tb">
+			<toolbarbutton id="btn_back" tooltiptext="${labels.back}"
+				image="/images/folder.png" />
+			<toolbarbutton id="btn_refresh"
+				tooltiptext="${labels.refresh}" image="/images/refresh.png" />
+			<toolbarbutton id="btn_show_search" visible="false"
+				tooltiptext="${labels.search}" image="/images/search.png" />
+			<toolbarbutton id="btn_show_search_sap" label="Поиск"
+				image="/images/search.png" />
+			<toolbarbutton id="btn_new" tooltiptext="${labels.add}"
+				image="/images/+.png" />
+			<toolbarbutton id="btn_first" tooltiptext="${labels.first}"
+				image="/images/backward.png" />
+			<toolbarbutton id="btn_prev" tooltiptext="${labels.prev}"
+				image="/images/back.png" />
+			<toolbarbutton id="btn_next" tooltiptext="${labels.next}"
+				image="/images/front.png" />
+			<toolbarbutton id="btn_last" tooltiptext="${labels.last}"
+				image="/images/forward.png" />
+			<toolbarbutton id="btn_word" tooltiptext="excel"
+				image="/images/forward.png" visible="false"/>
+
+			<toolbarbutton id="btn_nibbd" label="НИББД" />
+			<toolbarbutton id="btn_approve" label="Утвердить" 
+			    image="/images/add.png" />
+
+			<toolbarbutton label="Идентификация субъекта" popup="mp, type=toggle" />
+			<menupopup id="mp">
+				<menuitem id="btn_subInn" label="Идентификация субъекта(ЮЛ) по ИНН" />
+				<menuitem id="btn_subPinfl" label="Идентификация субъекта(ЮЛ) по ПИНФЛ" onClick="alert(self.label)" />
+				<menuitem id="btn_idenReg" label="Идентификация зарегистрированных счетов субъекта" onClick="alert(self.label)" />
+				<menuitem id="btn_idenBloc" label="Идентификация заблокированных счетов субъекта" onClick="alert(self.label)" />
+                <menuitem id="btn_idenBloc2" label="Идентификация заблокированных счетов субъекта(2)" onClick="alert(self.label)" />
+			</menupopup>
+
+		</toolbar>
+		<div id="chooseSearch">
+			<grid>
+				<columns>
+					<column align="left" />
+					<column align="left" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Поиск" />
+						<checkbox id="chbLocalSearch"
+							label="Локальный поиск" />
+					</row>
+				</rows>
+			</grid>
+		</div>
+
+		<div id="sap" visible="true">
+			<grid>
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="ID документа" />
+						<textbox id="sap_docId" hflex="1"
+							forward="onOK=onClick$btn_find_sap" />
+						<label value="Тип документа" />
+						<rcombobox id="sap_docType" hflex="1" />
+						<label value="Наименование" />
+						<cell colspan="3">
+							<textbox id="sap_client_name" hflex="1"
+								forward="onOK=onClick$btn_find_sap" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_find_sap"
+					label="${labels.search}" image="/images/search.png" />
+				<toolbarbutton id="btn_clear_sap_search"
+					label="Очистить" />
+			</toolbar>
+			<listbox id="sap_list">
+				<listhead>
+					<listheader label="sap id" />
+					<listheader label="NCI id" />
+					<listheader label="Филиал" />
+					<listheader label="Наименование" />
+					<listheader label="Краткое наим" />
+					<listheader label="Тип клиента" />
+					<listheader label="ОПФ" />
+				</listhead>
+			</listbox>
+		</div>
+
+		<div id="grd">
+			<paging id="clientJPaging" width="100%" />
+			<listbox style="border:none" id="dataGrid" multiple="true"
+				rows="4" selectedItem="@{clientmain$composer.currentListItem}">
+				<listhead sizable="true">
+					<listheader label="${labels.client.id}" />
+					<listheader label="${labels.client.id_client}" />
+					<listheader label="${labels.client.name}" />
+					<listheader label="${labels.client.code_subject}" />
+					<listheader label="${labels.client.state}" />
+				</listhead>
+			</listbox>
+
+			<iframe id="iframe" width="100%" height="90%"
+				visible="false" />
+		</div>
+
+		<tabbox id="cl_tabs" visible="false">
+			<tabs>
+				<tab label="Основные данные" />
+				<!-- <tab label="Доп инфо"/> -->
+				<tab label="Связанные лица" id="persons_tab" />
+				<tab label="Анкета по внутреннему контролю"
+					id="cl_add_tab" />
+				<tab label="Счета клиента" id="acc_tab" />
+				<tab label="Спец. характеристики клиента"
+					id="specclt_tab" />
+				<tab label="Приложения" id="attach_tab" />
+				<tab label="История по клиенту" id="history_tab" />
+				<tab id="tabAdditionalClientInfo" label="Дополнительная информация" />
+				<!--<tab label="Карточки" id="cards_tab"/>-->
+				
+			</tabs>
+			<tabpanels id="panels">
+				<tabpanel>
+					<toolbar id="actions_bar" />
+					<div id="frm">
+						<groupbox>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label value="sign_100" />
+										<cell colspan="3">
+											<textbox
+												value="@{clientmain$composer.current.sign_100}"
+												readonly="true" hflex="1" mold="rounded" />
+										</cell>
+										<label value="ID SAP" />
+										<textbox
+											value="@{clientmain$composer.current.id_sap}" readonly="true"
+											hflex="1" mold="rounded" />
+										<label value="J_327" />
+										<textbox
+											value="@{clientmain$composer.current.j_327}" readonly="true"
+											hflex="1" mold="rounded" />
+									</row>
+									<row id="row">
+										<label
+											value="${labels.client.id_client}" />
+										<textbox id="id_client"
+											readonly="true" mold="rounded"
+											value="@{clientmain$composer.current.id_client}" hflex="1" />
+										<label
+											value="${labels.client.date_open}" />
+										<datebox id="date_open"
+											buttonVisible="false" readonly="true" mold="rounded"
+											value="@{clientmain$composer.current.date_open}" hflex="1" />
+										<label
+											value="${labels.client.date_close}" />
+										<datebox id="date_close"
+											buttonVisible="false" readonly="true" mold="rounded"
+											value="@{clientmain$composer.current.date_close}" hflex="1" />
+										<label
+											value="${labels.client.state}" />
+										<rcombobox id="state"
+											readonly="true" mold="rounded"
+											selecteditem="@{clientmain$composer.current.state}" hflex="1"
+											buttonVisible="false" />
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox mold="3d" closable="false">
+							<label value="Наименование клиента: "
+								style="font-weight:bold" />
+							<label
+								value="@{clientmain$composer.current.name}"
+								style="font-weight:bold" />
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.client.code_type}" style="font-weight: bold" />
+										<cell colspan="2">
+											<textbox hflex="1"
+												id="typeValue" mold="rounded"
+												value="@{clientmain$composer.current.code_type}"
+												onOK="code_type.focus();code_type.select()" />
+											<rcombobox id="code_type"
+												mold="rounded"
+												selecteditem="@{clientmain$composer.current.code_type}"
+												hflex="3" forward="onOK=onOKField1" />
+										</cell>
+
+										<label
+											value="Страна регистрации" style="font-weight: bold"
+											id="countryLabel" />
+										<cell colspan="2">
+											<textbox
+												id="code_country_value" hflex="1"
+												value="@{clientmain$composer.current.code_country}" />
+											<rcombobox hflex="3"
+												id="code_country" mold="rounded"
+												selecteditem="@{clientmain$composer.current.code_country}" />
+										</cell>
+										<label
+											value="${labels.client.code_resident}"
+											style="font-weight: bold" id="resLabel" />
+										<rcombobox id="code_resident"
+											mold="rounded"
+											selecteditem="@{clientmain$composer.current.code_resident}"
+											hflex="1" forward="onOK=onOKField1" />
+									</row>
+									<row id="ipFio_cyr"
+										visible="false">
+										<label
+											value="${labels.client_p.p_last_name_cyr}"
+											style="font-weight: bold" />
+										<textbox id="p_last_name_cyr"
+											hflex="1" constraint="${letterConst}" mold="rounded"
+											value="@{clientmain$composer.current.p_last_name_cyr}" />
+										<label
+											value="${labels.client_p.p_first_name_cyr}"
+											style="font-weight: bold" />
+										<textbox id="p_first_name_cyr"
+											hflex="1" constraint="${letterConst}" mold="rounded"
+											value="@{clientmain$composer.current.p_first_name_cyr}" />
+										<label
+											value="${labels.client_p.p_patronymic_cyr}"
+											style="font-weight: bold" />
+										<textbox id="p_patronymic_cyr"
+											hflex="1" constraint="${letterConst}" mold="rounded"
+											value="@{clientmain$composer.current.p_patronymic_cyr}" />
+									</row>
+									<row id="name_row">
+										<label
+											value="${labels.client.name}" style="font-weight: bold" />
+										<cell colspan="5">
+											<textbox id="name"
+												maxlength="80" mold="rounded"
+												value="@{clientmain$composer.current.name}" hflex="1"
+												forward="onOK=onOKField1" />
+										</cell>
+										<label
+											value="${labels.client.j_short_name}" id="j_short_name_label" />
+										<cell colspan="3">
+											<textbox id="j_short_name"
+												maxlength="25" mold="rounded"
+												value="@{clientmain$composer.current.j_short_name}"
+												hflex="1" forward="onOK=onOKField1" />
+										</cell>
+									</row>
+
+									<row id="ipFio" visible="false">
+										<label
+											value="${labels.client_p.p_family}"
+											style="font-weight: bold" />
+										<textbox id="p_family" hflex="1"
+											constraint="${latinConst}" readonly="true" mold="rounded"
+											value="@{clientmain$composer.current.p_family}" />
+										<label
+											value="${labels.client_p.p_first_name}"
+											style="font-weight: bold" />
+										<textbox id="p_first_name"
+											hflex="1" constraint="${latinConst}" readonly="true"
+											mold="rounded"
+											value="@{clientmain$composer.current.p_first_name}" />
+										<label
+											value="${labels.client_p.p_patronymic}" />
+										<textbox id="p_patronymic"
+											hflex="1" constraint="${latinConst}" mold="rounded"
+											readonly="true"
+											value="@{clientmain$composer.current.p_patronymic}" />
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="j_view"><!-- форма-редактирование -->
+							<auxhead>
+								<auxheader label="Основные данные ЮЛ" />
+							</auxhead>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.client.j_number_registration_doc}"
+											style="font-weight: bold" />
+										<textbox
+											id="j_number_registration_doc" mold="rounded"
+											value="@{clientmain$composer.current.j_number_registration_doc}"
+											hflex="1" forward="onOK=onOKField1" />
+										<label
+											value="${labels.client.j_date_registration}"
+											style="font-weight: bold" />
+										<datebox
+											id="j_date_registration" mold="rounded"
+											value="@{clientmain$composer.current.j_date_registration}"
+											hflex="1" forward="onOK=onOKField1" />
+										<label
+											value="${labels.client.j_place_regist_name}"
+											style="font-weight: bold" />
+										<cell colspan="3">
+											<textbox
+												id="j_place_regist_name" mold="rounded"
+												value="@{clientmain$composer.current.j_place_regist_name}"
+												hflex="1" forward="onOK=onOKField1" />
+										</cell>
+									</row>
+									<row>
+										<cell>
+											<label
+												value="${labels.client.j_soato}" style="font-weight: bold" />
+											<label value="(F9)" />
+										</cell>
+										<textbox id="j_soato"
+											mold="rounded" value="@{clientmain$composer.current.j_soato}"
+											ctrlKeys="#f9" hflex="1" forward="onOK=onOKField1" />
+										<label value="Страна"
+											style="font-weight:bold" />
+										<cell colspan="2">
+											<textbox hflex="1"
+												id="addressCountryText" mold="rounded"
+												value="@{clientmain$composer.current.addressCountry}" />
+											<rcombobox
+												id="addressCountry" mold="rounded" hflex="3"
+												selecteditem="@{clientmain$composer.current.addressCountry}" />
+										</cell>
+									</row>
+									<row id="onlyForJ1">
+										<label
+											value="${labels.client.j_region}" style="font-weight: bold" />
+										<cell colspan="2">
+											<textbox id="regionValue"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_region}"
+												onOK="j_region.focus();j_region.select()" />
+											<rcombobox id="j_region"
+												hflex="3" mold="rounded"
+												selecteditem="@{clientmain$composer.current.j_region}"
+												forward="onOK=onOKField1" />
+										</cell>
+										<label
+											value="${labels.client.j_distr}" style="font-weight: bold" />
+										<cell colspan="2">
+											<textbox id="distrValue"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_distr}"
+												onOK="j_distr.focus();j_distr.select()" />
+											<rcombobox id="j_distr"
+												hflex="3" mold="rounded" ctrlKeys="#up#down"
+												selecteditem="@{clientmain$composer.current.j_distr}"
+												forward="onOK=onOKField1" />
+										</cell>
+									</row>
+									<row id="onlyForJ2">
+										<label
+											value="${labels.client.j_post_address}" />
+										<cell colspan="7">
+											<textbox id="j_post_address"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_post_address}"
+												forward="onOK=onOKField1" />
+										</cell>
+									</row>
+									<row id="onlyForJ3">
+										<label
+											value="${labels.client.j_number_tax_registration}"
+											style="font-weight: bold" />
+										<textbox
+											id="j_number_tax_registration" maxlength="9" mold="rounded"
+											value="@{clientmain$composer.current.j_number_tax_registration}"
+											hflex="1" forward="onOK=onOKField1" />
+											 <label
+											value="ПИНФЛ" />
+										<textbox maxlength="14"
+											id="p_pinfl" hflex="1" mold="rounded"
+											value="@{clientmain$composer.current.p_pinfl}" />
+										<label
+											value="${labels.client.j_code_tax_org}" />
+										<cell colspan="2">
+											<textbox id="tax_orgValue"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_code_tax_org}"
+												onOK="j_code_tax_org.focus();j_code_tax_org.select()" />
+											<rcombobox
+												id="j_code_tax_org"
+												selecteditem="@{clientmain$composer.current.j_code_tax_org}"
+												hflex="3" mold="rounded" forward="onOK=onOKField1" />
+										</cell>
+
+									</row>
+									<row id="onlyForJ4">
+										<label
+											value="${labels.client.j_code_head_organization}"
+											style="font-weight: bold" />
+										<textbox
+											id="j_code_head_organization" mold="rounded"
+											value="@{clientmain$composer.current.j_code_head_organization}"
+											hflex="1" forward="onOK=onOKField1" />
+										<label
+											value="${labels.client.j_inn_head_organization}"
+											style="font-weight: bold" />
+										<textbox
+											id="j_inn_head_organization" mold="rounded"
+											value="@{clientmain$composer.current.j_inn_head_organization}"
+											hflex="1" forward="onOK=onOKField1" />
+										<label id="okpo_label"
+											value="${labels.client.j_okpo}" style="font-weight: bold" />
+										<textbox id="j_okpo"
+											mold="rounded" value="@{clientmain$composer.current.j_okpo}"
+											hflex="1" forward="onOK=onOKField1" />
+									</row>
+
+									<row>
+										<label
+											value="${labels.client.j_opf}" style="font-weight: bold" />
+										<cell colspan="6">
+											<textbox id="opfValue"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_opf}"
+												onOK="j_opf.focus();j_opf.select()" />
+											<rcombobox id="j_opf"
+												mold="rounded"
+												selecteditem="@{clientmain$composer.current.j_opf}"
+												hflex="10" forward="onOK=onOKField1" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.code_form}" style="font-weight: bold" />
+										<cell colspan="6">
+											<textbox id="formValue"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.code_form}"
+												onOK="code_form.focus();code_form.select();" />
+											<rcombobox id="code_form"
+												hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.current.code_form}"
+												forward="onOK=onOKField1" />
+										</cell>
+									</row>
+									<row id="row_OKED">
+										<label value="ОКЕД(F9)"
+											style="font-weight: bold" />
+										<cell colspan="6">
+											<textbox id="sectorValue"
+												hflex="1" mold="rounded" ctrlKeys="#f9"
+												value="@{clientmain$composer.current.j_code_sector}"
+												onOK="j_code_sector.focus();j_code_sector.select()" />
+											<rcombobox
+												id="j_code_sector" ctrlKeys="#f9" hflex="10" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.j_code_sector}" />
+										</cell>
+									</row>
+									<row id="activity_type_row">
+										<label
+											value="${labels.client.cl_activity_type_id}" />
+										<cell colspan="6">
+											<textbox
+												id="cl_activity_type_idValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_type_activity}"
+												onOK="cl_activity_type_id.focus();cl_activity_type_id.select()" />
+											<rcombobox
+												id="cl_activity_type_id" hflex="10" mold="rounded"
+												forward="onOK=onOKField"
+												selecteditem="@{clientmain$composer.current.j_type_activity}" />
+										</cell>
+									</row>
+									<row>
+										<cell>
+											<label
+												value="${labels.client.j_code_organ_direct}" />
+											<label value="(F9)" />
+										</cell>
+										<cell colspan="6">
+											<textbox
+												id="organ_directValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_code_organ_direct}"
+												ctrlKeys="#f9"
+												onOK="j_code_organ_direct.focus();j_code_organ_direct.select()" />
+											<rcombobox
+												id="j_code_organ_direct" hflex="10" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.j_code_organ_direct}" />
+										</cell>
+									</row>
+									<row id="row_non_resident">
+										<label value="Тип нерезидента" />
+										<cell colspan="6">
+											<textbox
+												id="type_non_residentValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.type_non_resident}"
+												onOK="type_non_resident.focus();type_non_resident.select()" />
+											<rcombobox
+												id="type_non_resident" hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.current.type_non_resident}" />
+										</cell>
+									</row>
+									<row>
+										<label value="Подразделение" />
+										<cell colspan="6">
+											<textbox
+												id="file_nameValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.file_name}"
+												onOK="file_name.focus();file_name.select()" />
+											<rcombobox
+												id="file_name" hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.current.file_name}" />
+										</cell>
+									</row>
+									<row>
+										<label value="Код О.Б.У." />
+										<cell colspan="6">
+											<textbox
+												id="subbranchValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.subbranch}"
+												onOK="subbranch.focus();subbranch.select()" />
+											<rcombobox
+												id="subbranch" hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.current.subbranch}" />
+										</cell>
+									</row>
+									
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="ipView" visible="false">
+							<auxhead>
+								<auxheader label="Основные данные ФЛ" />
+							</auxhead>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.client.p_type_document}" />
+										<cell colspan="2">
+											<textbox
+												id="p_type_document_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.p_type_document}"
+												onOK="p_type_document.focus();p_type_document.select()" />
+											<rcombobox
+												id="p_type_document" hflex="3" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.p_type_document}" />
+										</cell>
+										<label
+											value="${labels.client.p_passport_serial}" />
+										<textbox id="p_passport_serial"
+											hflex="1" mold="rounded"
+											value="@{clientmain$composer.current.p_passport_serial}"
+											onOK="p_passport_number.focus();p_passport_number.select()" />
+										<label
+											value="${labels.client.p_passport_number}" />
+										<textbox id="p_passport_number"
+											hflex="1" mold="rounded" forward="onOK=onOKField1"
+											value="@{clientmain$composer.current.p_passport_number}" />
+									</row>
+									<row>
+										<label
+											value="${labels.client.p_passport_place_registration}" />
+										<cell align="end">
+											<label
+												value="Вне Территории РУз" />
+											<checkbox
+												forward="onCheck=onCheckField" id="p_pass_place_checkbox" />
+										</cell>
+										<label hflex="1"
+											value="${labels.client.region}" />
+										<cell colspan="2">
+											<textbox
+												id="p_pass_place_region_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.p_pass_place_region}"
+												onOK="p_pass_place_region.focus();p_pass_place_region.select();" />
+											<rcombobox
+												id="p_pass_place_region" hflex="3" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.p_pass_place_region}" />
+										</cell>
+										<label
+											value="${labels.client.distr}" />
+										<cell colspan="2">
+											<textbox
+												id="p_pass_place_distr_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.p_pass_place_district}"
+												onOK="p_pass_place_district.focus();p_pass_place_district.select();" />
+											<rcombobox
+												id="p_pass_place_district" hflex="3" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.p_pass_place_district}" />
+										</cell>
+									</row>
+									<row>
+										<label />
+										<cell colspan="5">
+											<textbox
+												id="p_passport_place_registration" hflex="1" mold="rounded"
+												forward="onOK=onOKField1"
+												value="@{clientmain$composer.current.p_passport_place_registration}" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.p_passport_date_registration}" />
+										<datebox
+											id="p_passport_date_registration" hflex="1" mold="rounded"
+											forward="onOK=onOKField1"
+											value="@{clientmain$composer.current.p_passport_date_registration}" />
+										<label
+											value="${labels.client.p_passport_date_expiration}" />
+										<datebox
+											id="p_passport_date_expiration" hflex="1" mold="rounded"
+											forward="onOK=onOKField1"
+											value="@{clientmain$composer.current.p_passport_date_expiration}" />
+										<label
+											value="${labels.client.p_code_nation}" />
+										<rcombobox id="p_code_nation"
+											hflex="1" mold="rounded" forward="onOK=onOKField1"
+											selecteditem="@{clientmain$composer.current.p_code_nation}" />
+									</row>
+									<row>
+										<label
+											value="${labels.client.p_code_citizenship}" />
+										<cell colspan="2">
+											<textbox
+												id="p_code_citizenship_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.p_code_citizenship}"
+												onOK="p_code_citizenship.focus();p_code_citizenship.select()" />
+											<rcombobox
+												id="p_code_citizenship" hflex="3" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.p_code_citizenship}" />
+										</cell>
+										<label
+											value="${labels.client.code_resident}"
+											style="font-weight: bold" />
+										<rcombobox id="code_resident1"
+											selecteditem="@{clientmain$composer.current.code_resident}"
+											hflex="1" mold="rounded" forward="onOK=onOKField1" />
+										<label
+											value="${labels.client.p_code_gender}" />
+										<rcombobox id="p_code_gender"
+											hflex="1" mold="rounded" forward="onOK=onOKField1"
+											selecteditem="@{clientmain$composer.current.p_code_gender}" />
+									</row>
+									<row>
+										<label
+											value="${labels.client.p_birthday}" />
+										<datebox id="p_birthday"
+											mold="rounded" forward="onOK=onOKField1" hflex="1"
+											value="@{clientmain$composer.current.p_birthday}" />
+										<label
+											value="${labels.client.p_birth_place}" />
+										<cell colspan="4">
+											<textbox id="p_birth_place"
+												hflex="1" mold="rounded" forward="onOK=onOKField1"
+												value="@{clientmain$composer.current.p_birth_place}" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="ipView2" visible="false">
+							<auxhead>
+								<auxheader label="Адрес Местожительства"
+									colspan="6" rowspan="1" />
+							</auxhead>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label style="font-weight: bold"
+											value="${labels.client.code_country}" />
+										<cell colspan="2">
+											<textbox id="countryValue1"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.post_address_country}"
+												onOK="acode_country1.focus();acode_country1.select()" />
+											<rcombobox
+												id="code_country1" hflex="2" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.post_address_country}" />
+										</cell>
+										<label hflex="1"
+											value="${labels.client.region}" />
+										<cell>
+											<textbox
+												id="p_code_adr_region_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.p_code_adr_region}"
+												onOK="p_code_adr_region.focus();p_code_adr_region.select()" />
+											<rcombobox
+												id="p_code_adr_region" hflex="3" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.p_code_adr_region}" />
+										</cell>
+										<label
+											value="${labels.client.distr}" />
+										<cell>
+											<textbox
+												id="p_code_adr_distr_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.p_code_adr_distr}"
+												onOK="p_code_adr_distr.focus();p_code_adr_distr.select()" />
+											<rcombobox
+												id="p_code_adr_distr" hflex="3" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.p_code_adr_distr}" />
+										</cell>
+									</row>
+									<row visible="false">
+										<label value="Улица"
+											style="font-weight: bold" />
+										<textbox
+											id="p_post_address_street" hflex="1" mold="rounded"
+											forward="onOK=onOKField1"
+											value="@{clientmain$composer.current.p_post_address_street}" />
+										<label value="Массив/Квартал"
+											style="font-weight: bold" />
+										<textbox
+											id="p_post_address_quarter" hflex="1" mold="rounded"
+											forward="onOK=onOKField1"
+											value="@{clientmain$composer.current.p_post_address_quarter}" />
+										<label value="Дом"
+											style="font-weight: bold" />
+										<textbox
+											id="p_post_address_house" hflex="1" mold="rounded"
+											forward="onOK=onOKField1"
+											value="@{clientmain$composer.current.p_post_address_house}" />
+
+										<label value="Квартира" />
+										<textbox
+											id="p_post_address_flat" hflex="1" mold="rounded"
+											forward="onOK=onOKField1"
+											value="@{clientmain$composer.current.p_post_address_flat}" />
+									</row>
+									<row>
+										<label
+											value="${labels.client.post_address}" />
+										<cell colspan="7">
+											<textbox id="p_post_address"
+												mold="rounded" hflex="1" forward="onOK=onOKField1"
+												value="@{clientmain$composer.current.p_post_address}" />
+										</cell>
+									</row>
+
+									<row visible="false">
+										<label
+											value="${labels.client.j_number_tax_registration}" />
+										<textbox
+											id="p_number_tax_registration" hflex="1" mold="rounded"
+											forward="onOK=onOKField1"
+											value="@{clientmain$composer.current.p_number_tax_registration}" />
+											
+                                       	
+										<label
+											value="${labels.client.j_code_tax_org}" />
+										<cell colspan="2">
+											<textbox
+												id="p_code_tax_orgValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.p_code_tax_org}"
+												onOK="p_code_tax_org.focus();p_code_tax_org.select()" />
+											<rcombobox
+												id="p_code_tax_org" hflex="3" mold="rounded"
+												forward="onOK=onOKField1"
+												selecteditem="@{clientmain$composer.current.p_code_tax_org}" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client_p.p_inps}" />
+										<textbox maxlength="14"
+											id="p_inps" hflex="1" mold="rounded"
+											value="@{clientmain$composer.current.p_inps}" />
+																				
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="j_acc_grid">
+							<auxhead>
+								<auxheader
+									label="Основной расчетный счет" />
+							</auxhead>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.client.j_code_bank}" />
+
+										<cell colspan="6">
+											<textbox id="bankValue"
+												hflex="1" readonly="true" mold="rounded"
+												style="color: #FF0000 !important;"
+												value="@{clientmain$composer.current.j_code_bank}" />
+											<rcombobox id="j_code_bank"
+												hflex="8" mold="rounded" style="color: #FF0000 !important;"
+												buttonVisible="false" readonly="true"
+												selecteditem="@{clientmain$composer.current.j_code_bank}" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.j_account}" />
+										<cell colspan="3">
+											<textbox id="j_account"
+												mold="rounded"
+												value="@{clientmain$composer.current.j_account}" hflex="1" />
+										</cell>
+									</row>
+									<row id="ppRow_frm"
+										visible="false">
+										<label
+											value="${labels.client.j_director_name}" />
+										<cell colspan="9">
+											<textbox
+												id="p_director_name" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_director_name}" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="j_other_grid">
+							<auxhead>
+								<auxheader label="Другие данные" />
+							</auxhead>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row visible="false">
+										<checkbox id="j_sign_trade"
+											visible="false" />
+										<cell colspan="4"
+											visible="false">
+											<label
+												value="${labels.client.j_sign_trade}"
+												forward="onClick=onOKField" />
+										</cell>
+									</row>
+									<row id="rowIpViewPatentExp">
+										<label
+											value="${labels.client.j_patent_expiration}" />
+										<datebox
+											id="j_patent_expiration" hflex="1" mold="rounded"
+											value="@{clientmain$composer.current.j_patent_expiration}" />
+									</row>
+									<row>
+										<checkbox id="j_small_business" />
+										<cell colspan="3">
+											<label
+												value="Субъект малого бизнеса" />
+										</cell>
+										<cell colspan="2">
+											<label
+												value="${labels.client.j_responsible_emp}" />
+										</cell>
+										<cell colspan="2">
+											<textbox
+												id="j_responsible_emp" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.j_responsible_emp}" />
+										</cell>
+									</row>
+									<row>
+										<checkbox id="j_sign_dep_acc" />
+										<cell colspan="5">
+											<label
+												value="${labels.client.j_sign_dep_acc}" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="j_contact_grid">
+							<auxhead>
+								<auxheader label="Контактные данные" />
+							</auxhead>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.client.j_phone}" />
+										<textbox id="j_phone"
+											mold="rounded" value="@{clientmain$composer.current.j_phone}"
+											hflex="1" forward="onOK=onOKField1" />
+										<label
+											value="${labels.client.j_fax}" />
+										<textbox id="j_fax"
+											maxlength="12" mold="rounded"
+											value="@{clientmain$composer.current.j_fax}" hflex="1"
+											forward="onOK=onOKField1" />
+										<label
+											value="${labels.client.j_email}" />
+										<textbox id="j_email"
+											mold="rounded" value="@{clientmain$composer.current.j_email}"
+											hflex="1" />
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="client_bank__grid_main"
+							visible="false">
+							<auxhead>
+								<auxheader label="Основные данные" />
+							</auxhead>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.client.j_number_registration_doc}" />
+										<textbox
+											id="i_number_registration_doc" mold="rounded"
+											value="@{clientmain$composer.current.j_number_registration_doc}"
+											hflex="1" forward="onOK=onOKField1" />
+										<label
+											value="${labels.client.i_date_registration}"
+											style="font-weight: bold" />
+										<datebox
+											id="i_date_registration" mold="rounded"
+											value="@{clientmain$composer.current.j_date_registration}"
+											hflex="1" forward="onOK=onOKField1" />
+										<label
+											value="${labels.client.i_place_regist_name}" />
+										<cell colspan="3">
+											<textbox
+												id="i_place_regist_name" mold="rounded"
+												value="@{clientmain$composer.current.j_place_regist_name}"
+												hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.i_number_tax_registration}" />
+										<textbox
+											id="i_number_tax_registration" maxlength="9" mold="rounded"
+											value="@{clientmain$composer.current.j_number_tax_registration}"
+											hflex="1" />
+									</row>
+									<row>
+										<label
+											value="${labels.client.j_opf}" style="font-weight: bold" />
+										<cell colspan="6">
+											<textbox id="iopfValue"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.i_opf}" />
+											<rcombobox id="i_opf"
+												mold="rounded"
+												selecteditem="@{clientmain$composer.current.i_opf}"
+												hflex="10" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.code_form}" />
+										<cell colspan="6">
+											<textbox id="iformValue"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.i_form}" />
+											<rcombobox id="i_form"
+												hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.current.i_form}" />
+										</cell>
+									</row>
+									<row>
+										<label value="ОКЕД(F9)"
+											style="font-weight: bold" />
+										<cell colspan="6">
+											<textbox id="isectorValue"
+												hflex="1" mold="rounded" ctrlKeys="#f9"
+												value="@{clientmain$composer.current.i_sector}" />
+											<rcombobox id="i_sector"
+												ctrlKeys="#f9" hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.current.i_sector}" />
+										</cell>
+									</row>
+
+									<row>
+										<label
+											value="${labels.client.j_code_organ_direct}" />
+										<cell colspan="6">
+											<textbox
+												id="iorgan_directValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.i_organ_direct}" />
+											<rcombobox
+												id="i_organ_direct" hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.current.i_organ_direct}" />
+										</cell>
+									</row>
+									<row>
+										<label value="swift_id" />
+										<cell colspan="6">
+											<textbox id="swift_idValue"
+												hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.swift_id}"
+												onOK="swift_id.focus();swift_id.select()" />
+											<rcombobox id="swift_id"
+												hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.current.swift_id}" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="client_bank_grid_acc"
+							visible="false">
+							<auxhead>
+								<auxheader
+									label="Основной расчетный счет" />
+							</auxhead>
+							<grid ctrlKeys="^e#up#down"
+								visible="true">
+								<columns>
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+									<column hflex="1" align="right" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.client.j_account}" />
+										<cell colspan="3">
+											<textbox id="i_account"
+												readonly="true" mold="rounded"
+												value="@{clientmain$composer.current.i_account}" hflex="1" />
+										</cell>
+										<label
+											value="${labels.client.j_post_address}" />
+										<cell colspan="3">
+											<textbox id="i_post_address"
+												readonly="true" mold="rounded"
+												value="@{clientmain$composer.current.i_post_address}"
+												hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.j_director_name}" />
+										<cell colspan="9">
+											<textbox
+												id="i_director_name" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.i_director_name}" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.i_chief_accounter_name}" />
+										<cell colspan="9">
+											<textbox
+												id="i_chief_accounter_name" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.i_chief_accounter_name}" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.j_phone}" />
+										<textbox id="i_phone"
+											maxlength="12" mold="rounded"
+											value="@{clientmain$composer.current.i_phone}" hflex="1" />
+										<label
+											value="${labels.client.j_fax}" />
+										<textbox id="i_fax"
+											maxlength="12" mold="rounded"
+											value="@{clientmain$composer.current.i_fax}" hflex="1" />
+										<label
+											value="${labels.client.j_email}" />
+										<textbox id="i_email"
+											mold="rounded" value="@{clientmain$composer.current.i_email}"
+											hflex="1" />
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="director_grb" visible="false">
+							<auxhead>
+								<auxheader label="Данные директора" />
+							</auxhead>
+							<toolbarbutton id="btn_find_dir_c"
+								label="Найти другое лицо" />
+							<grid ctrlKeys="^e#up#down"
+								sizedByContent="true" span="true" style="border:normal">
+								<columns>
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+								</columns>
+								<rows>
+									<row id="director_ipFio_cyr">
+										<cell align="end">
+											<label
+												value="${labels.client_p.p_last_name_cyr}" />
+										</cell>
+										<textbox
+											id="director_p_last_name_cyr" hflex="1"
+											value="@{clientmain$composer.current.director.family_local}" />
+										<cell align="end">
+											<label
+												value="${labels.client_p.p_first_name_cyr}" />
+										</cell>
+										<textbox
+											id="director_p_first_name_cyr" hflex="1"
+											value="@{clientmain$composer.current.director.first_name_local}" />
+										<cell align="end">
+											<label
+												value="${labels.client_p.p_patronymic_cyr}" />
+										</cell>
+										<textbox
+											id="director_p_patronymic_cyr" hflex="1"
+											value="@{clientmain$composer.current.director.patronymic_local}" />
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.family}" />
+										</cell>
+										<textbox id="director_family"
+											mold="rounded" hflex="1"
+											value="@{clientmain$composer.current.director.family}" />
+										<cell align="end">
+											<label
+												value="${labels.client.first_name}" />
+										</cell>
+										<textbox
+											id="director_first_name" mold="rounded" hflex="1"
+											value="@{clientmain$composer.current.director.first_name}" />
+										<cell align="end">
+											<label
+												value="${labels.client.patronymic}" />
+										</cell>
+										<textbox
+											id="director_patronymic" mold="rounded" hflex="1"
+											value="@{clientmain$composer.current.director.patronymic}" />
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.passport_type}" />
+										</cell>
+										<cell colspan="2">
+											<textbox hflex="1"
+												value="@{clientmain$composer.current.director.type_document}"
+												mold="rounded" id="director_type_document_text" />
+											<rcombobox
+												id="director_type_document" mold="rounded" hflex="3"
+												selecteditem="@{clientmain$composer.current.director.type_document}" />
+										</cell>
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.passport_serial}" />
+										</cell>
+										<textbox hflex="1" maxlength="2"
+											id="director_passport_serial" mold="rounded"
+											value="@{clientmain$composer.current.director.passport_serial}" />
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.passport_number}" />
+										</cell>
+										<textbox
+											id="director_passport_number" mold="rounded" hflex="3"
+											maxlength="7"
+											value="@{clientmain$composer.current.director.passport_number}" />
+									</row>
+									<row id="director_pass_place_row">
+										<label
+											value="${labels.client.passport_place_registration}" />
+										<cell align="end">
+											<label
+												value="Вне Территории РУз" />
+											<checkbox
+												id="director_pass_place_checkbox" />
+										</cell>
+										<label hflex="1"
+											value="${labels.client.p_code_adr_region}" />
+										<cell colspan="2">
+											<textbox hflex="1"
+												value="@{clientmain$composer.current.director.pass_place_region}"
+												mold="rounded" id="director_pass_place_region_text" />
+											<rcombobox
+												id="director_pass_place_region" mold="rounded" hflex="2"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.director.pass_place_region}" />
+										</cell>
+										<label hflex="1"
+											value="${labels.client.p_code_adr_distr}" />
+										<cell colspan="2">
+											<textbox hflex="1"
+												value="@{clientmain$composer.current.director.pass_place_district}"
+												mold="rounded" id="director_pass_place_distr_text" />
+											<rcombobox
+												id="director_pass_place_distr" mold="rounded"
+												selecteditem="@{clientmain$composer.current.director.pass_place_district}"
+												hflex="2" readonly="true" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.p_passport_place_registration}" />
+										<cell colspan="7">
+											<textbox
+												id="director_passport_place_registration" mold="rounded"
+												hflex="1"
+												value="@{clientmain$composer.current.director.passport_place_registration}" />
+										</cell>
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.passport_date_registration}" />
+										</cell>
+										<datebox hflex="1"
+											id="director_passport_date_registration" mold="rounded"
+											format="dd.MM.yyyy" lenient="false"
+											value="@{clientmain$composer.current.director.passport_date_registration}" />
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.passport_date_expiration}" />
+										</cell>
+										<datebox format="dd.MM.yyyy"
+											lenient="false" id="director_passport_date_expiration"
+											mold="rounded" hflex="1"
+											value="@{clientmain$composer.current.director.passport_date_expiration}" />
+										<cell align="end">
+											<label
+												value="${labels.client.code_nation}" />
+										</cell>
+										<rcombobox
+											id="director_code_nation" mold="rounded" hflex="1"
+											readonly="true"
+											selecteditem="@{clientmain$composer.current.director.code_nation}" />
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.code_citizenship}" />
+										</cell>
+
+										<cell align="end" colspan="2">
+											<textbox hflex="1"
+												id="director_code_citizenship_text" mold="rounded"
+												value="@{clientmain$composer.current.director.code_citizenship}" />
+											<rcombobox
+												id="director_code_citizenship" hflex="3" mold="rounded"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.director.code_citizenship}" />
+										</cell>
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.code_resident}" />
+										</cell>
+										<rcombobox
+											id="director_code_resident" mold="rounded" hflex="1"
+											readonly="true"
+											selecteditem="@{clientmain$composer.current.director.code_resident}" />
+										<cell align="end">
+											<label
+												value="${labels.client.code_gender}" />
+										</cell>
+										<rcombobox
+											id="director_code_gender" mold="rounded" hflex="1"
+											readonly="true"
+											selecteditem="@{clientmain$composer.current.director.code_gender}" />
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.birthday}" />
+										</cell>
+										<datebox id="director_birthday"
+											format="dd.MM.yyyy" mold="rounded" lenient="false" hflex="1"
+											value="@{clientmain$composer.current.director.birthday}" />
+										<cell align="end">
+											<label
+												value="${labels.client.birth_place}" />
+										</cell>
+										<cell colspan="3">
+											<textbox
+												id="director_birth_place" mold="rounded" hflex="1"
+												value="@{clientmain$composer.current.director.birth_place}" />
+										</cell>
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.code_country}" />
+										</cell>
+										<cell colspan="2">
+											<textbox
+												id="director_code_country_text" mold="rounded" hflex="1"
+												value="@{clientmain$composer.current.director.code_country}" />
+											<rcombobox
+												id="director_code_country" mold="rounded" hflex="3"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.director.code_country}" />
+										</cell>
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.code_adr_region}" />
+										</cell>
+										<cell>
+											<textbox
+												id="director_code_adr_region_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.director.code_adr_region}" />
+											<rcombobox
+												id="director_code_adr_region" mold="rounded" hflex="3"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.director.code_adr_region}" />
+										</cell>
+										<cell align="end">
+											<label
+												value="${labels.client.code_adr_distr}" />
+										</cell>
+										<cell>
+											<textbox
+												id="director_code_adr_distr_text" mold="rounded" hflex="1"
+												value="@{clientmain$composer.current.director.code_adr_distr}" />
+											<rcombobox
+												id="director_code_adr_distr" mold="rounded" hflex="3"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.director.code_adr_distr}" />
+										</cell>
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.post_address}" />
+										</cell>
+										<cell colspan="7">
+											<textbox
+												id="director_post_address" mold="rounded" hflex="1"
+												value="@{clientmain$composer.current.director.post_address}" />
+										</cell>
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.number_tax_registration}" />
+										</cell>
+										<textbox
+											id="director_number_tax_registration" mold="rounded"
+											hflex="1" maxlength="9"
+											value="@{clientmain$composer.current.director.number_tax_registration}" />
+										<cell align="end">
+											<label
+												value="${labels.client.code_tax_org}" />
+										</cell>
+										<cell colspan="2">
+											<textbox
+												id="director_code_tax_org_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.director.code_tax_org}" />
+											<rcombobox
+												id="director_code_tax_org" mold="rounded" hflex="3"
+												selecteditem="@{clientmain$composer.current.director.code_tax_org}" />
+										</cell>
+										<cell align="end">
+											<label
+												value="${labels.client_p.p_inps}" />
+										</cell>
+										<textbox maxlength="14"
+											id="director_inps" hflex="1"
+											value="@{clientmain$composer.current.director.inps}" />
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox id="accounter_grb" visible="false">
+							<auxhead>
+								<auxheader label="Данные бухгалтера" />
+							</auxhead>
+							<toolbarbutton id="btn_find_accountant_c"
+								label="Найти другое лицо" />
+							<grid ctrlKeys="^e#up#down"
+								sizedByContent="true" span="true" style="border:normal">
+								<columns>
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+									<column hflex="1" />
+								</columns>
+								<rows>
+									<row id="accountant_ipFio_cyr">
+										<cell align="end">
+											<label
+												value="${labels.client_p.p_last_name_cyr}" />
+										</cell>
+										<textbox
+											id="accountant_p_last_name_cyr" hflex="1"
+											value="@{clientmain$composer.current.accountant.family_local}" />
+										<cell align="end">
+											<label
+												value="${labels.client_p.p_first_name_cyr}" />
+										</cell>
+										<textbox
+											id="accountant_p_first_name_cyr" hflex="1"
+											value="@{clientmain$composer.current.accountant.first_name_local}" />
+										<cell align="end">
+											<label
+												value="${labels.client_p.p_patronymic_cyr}" />
+										</cell>
+										<textbox
+											id="accountant_p_patronymic_cyr" hflex="1"
+											value="@{clientmain$composer.current.accountant.patronymic_local}" />
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.family}" />
+										</cell>
+										<textbox id="accountant_family"
+											mold="rounded" hflex="1"
+											value="@{clientmain$composer.current.accountant.family}" />
+										<cell align="end">
+											<label
+												value="${labels.client.first_name}" />
+										</cell>
+										<textbox
+											id="accountant_first_name" mold="rounded" hflex="1"
+											value="@{clientmain$composer.current.accountant.first_name}" />
+										<cell align="end">
+											<label
+												value="${labels.client.patronymic}" />
+										</cell>
+										<textbox
+											id="accountant_patronymic" mold="rounded" hflex="1"
+											value="@{clientmain$composer.current.accountant.patronymic}" />
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.passport_type}" />
+										</cell>
+										<cell colspan="2">
+											<textbox
+												id="accountant_type_document_text" hflex="1"
+												value="@{clientmain$composer.current.accountant.type_document}"
+												mold="rounded" />
+											<rcombobox
+												id="accountant_type_document" mold="rounded" hflex="3"
+												selecteditem="@{clientmain$composer.current.accountant.type_document}" />
+										</cell>
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.passport_serial}" />
+										</cell>
+										<textbox hflex="1" maxlength="2"
+											id="accountant_passport_serial" mold="rounded"
+											value="@{clientmain$composer.current.accountant.passport_serial}" />
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.passport_number}" />
+										</cell>
+										<textbox
+											id="accountant_passport_number" mold="rounded" hflex="3"
+											maxlength="7"
+											value="@{clientmain$composer.current.accountant.passport_number}" />
+									</row>
+									<row
+										id="accountant_pass_place_row">
+										<label
+											value="${labels.client.passport_place_registration}" />
+										<cell align="end">
+											<label
+												value="Вне Территории РУз" />
+											<checkbox
+												id="accountant_pass_place_checkbox" />
+										</cell>
+										<label hflex="1"
+											value="${labels.client.p_code_adr_region}" />
+										<cell colspan="2">
+											<textbox hflex="1"
+												value="@{clientmain$composer.current.accountant.pass_place_region}"
+												mold="rounded" id="accountant_pass_place_region_text" />
+											<rcombobox
+												id="accountant_pass_place_region" mold="rounded" hflex="2"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.accountant.pass_place_region}" />
+										</cell>
+										<label hflex="1"
+											value="${labels.client.p_code_adr_distr}" />
+										<cell colspan="2">
+											<textbox hflex="1"
+												value="@{clientmain$composer.current.accountant.pass_place_district}"
+												mold="rounded" id="accountant_pass_place_distr_text" />
+											<rcombobox
+												id="accountant_pass_place_distr" mold="rounded"
+												selecteditem="@{clientmain$composer.current.accountant.pass_place_district}"
+												hflex="2" readonly="true" />
+										</cell>
+									</row>
+									<row>
+										<label
+											value="${labels.client.p_passport_place_registration}" />
+										<cell colspan="7">
+											<textbox
+												id="accountant_passport_place_registration" mold="rounded"
+												hflex="1"
+												value="@{clientmain$composer.current.accountant.passport_place_registration}" />
+										</cell>
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.passport_date_registration}" />
+										</cell>
+										<datebox hflex="1"
+											id="accountant_passport_date_registration" mold="rounded"
+											format="dd.MM.yyyy" lenient="false"
+											value="@{clientmain$composer.current.accountant.passport_date_registration}" />
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.passport_date_expiration}" />
+										</cell>
+										<datebox format="dd.MM.yyyy"
+											lenient="false" id="accountant_passport_date_expiration"
+											mold="rounded" hflex="1"
+											value="@{clientmain$composer.current.accountant.passport_date_expiration}" />
+										<cell align="end">
+											<label
+												value="${labels.client.code_nation}" />
+										</cell>
+										<rcombobox
+											id="accountant_code_nation" mold="rounded" hflex="1"
+											readonly="true"
+											selecteditem="@{clientmain$composer.current.accountant.code_nation}" />
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.code_citizenship}" />
+										</cell>
+										<cell align="end" colspan="2">
+											<textbox hflex="1"
+												id="accountant_code_citizenship_text" mold="rounded"
+												value="@{clientmain$composer.current.accountant.code_citizenship}" />
+											<rcombobox
+												id="accountant_code_citizenship" hflex="3" mold="rounded"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.accountant.code_citizenship}" />
+										</cell>
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.code_resident}" />
+										</cell>
+										<rcombobox
+											id="accountant_code_resident" mold="rounded" hflex="1"
+											readonly="true"
+											selecteditem="@{clientmain$composer.current.accountant.code_resident}" />
+										<cell align="end">
+											<label
+												value="${labels.client.code_gender}" />
+										</cell>
+										<rcombobox
+											id="accountant_code_gender" mold="rounded" hflex="1"
+											readonly="true"
+											selecteditem="@{clientmain$composer.current.accountant.code_gender}" />
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.birthday}" />
+										</cell>
+										<datebox
+											id="accountant_birthday" format="dd.MM.yyyy" mold="rounded"
+											lenient="false" hflex="1"
+											value="@{clientmain$composer.current.accountant.birthday}" />
+										<cell align="end">
+											<label
+												value="${labels.client.birth_place}" />
+										</cell>
+										<cell colspan="3">
+											<textbox
+												id="accountant_birth_place" mold="rounded" hflex="1"
+												value="@{clientmain$composer.current.accountant.birth_place}" />
+										</cell>
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.code_country}" />
+										</cell>
+										<cell colspan="2">
+											<textbox
+												id="accountant_code_country_text" mold="rounded" hflex="1"
+												value="@{clientmain$composer.current.accountant.code_country}" />
+											<rcombobox
+												id="accountant_code_country" mold="rounded" hflex="3"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.accountant.code_country}" />
+										</cell>
+										<cell align="end">
+											<label hflex="1"
+												value="${labels.client.code_adr_region}" />
+										</cell>
+										<cell>
+											<textbox
+												id="accountant_code_adr_region_text" hflex="1"
+												mold="rounded"
+												value="@{clientmain$composer.current.accountant.code_adr_region}" />
+											<rcombobox
+												id="accountant_code_adr_region" mold="rounded" hflex="3"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.accountant.code_adr_region}" />
+										</cell>
+										<cell align="end">
+											<label
+												value="${labels.client.code_adr_distr}" />
+										</cell>
+										<cell>
+											<textbox
+												id="accountant_code_adr_distr_text" mold="rounded" hflex="1"
+												value="@{clientmain$composer.current.accountant.code_adr_distr}" />
+											<rcombobox
+												id="accountant_code_adr_distr" mold="rounded" hflex="3"
+												readonly="true"
+												selecteditem="@{clientmain$composer.current.accountant.code_adr_distr}" />
+										</cell>
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.post_address}" />
+										</cell>
+										<cell colspan="7">
+											<textbox
+												id="accountant_post_address" mold="rounded" hflex="1"
+												value="@{clientmain$composer.current.accountant.post_address}" />
+										</cell>
+									</row>
+									<row>
+										<cell align="end">
+											<label
+												value="${labels.client.number_tax_registration}" />
+										</cell>
+										<textbox
+											id="accountant_number_tax_registration" mold="rounded"
+											hflex="1" maxlength="9"
+											value="@{clientmain$composer.current.accountant.number_tax_registration}" />
+										<cell align="end">
+											<label
+												value="${labels.client.code_tax_org}" />
+										</cell>
+										<cell colspan="2">
+											<textbox
+												id="accountant_code_tax_org_text" hflex="1" mold="rounded"
+												value="@{clientmain$composer.current.accountant.code_tax_org}" />
+											<rcombobox
+												id="accountant_code_tax_org" mold="rounded" hflex="3"
+												selecteditem="@{clientmain$composer.current.accountant.code_tax_org}" />
+										</cell>
+										<cell align="end">
+											<label
+												value="${labels.client_p.p_inps}" />
+										</cell>
+										<textbox maxlength="14"
+											id="accountant_inps" hflex="1"
+											value="@{clientmain$composer.current.accountant.inps}" />
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+					</div>
+
+				</tabpanel>
+				<tabpanel id="cl_card">
+					<div id="persons_div" />
+				</tabpanel>
+				<tabpanel>
+					<include id="incl_control" />
+				</tabpanel>
+				<tabpanel>
+					<div id="account_parent" />
+				</tabpanel>
+				<tabpanel>
+					<div id="specclt_div" />
+				</tabpanel>
+				<tabpanel>
+
+					<vlayout>
+						<vbox>
+							<label value="Тип Прикрепляемого Документа"
+								style="font-weight:bold" />
+							<rcombobox id="attch_types" readonly="true" />
+						</vbox>
+						<space orient="vertical" />
+						<vbox>
+							<label id="fileName"
+								style="font-weight:bold" />
+							<label value="Номер Документа/Описание"
+								style="font-weight:bold" />
+							<textbox id="description" multiline="true"
+								value="@{attachmentWnd$composer.attachment.description}" />
+						</vbox>
+						<space orient="vertical" />
+						<vbox>
+							<label value="Дата документа"
+								style="font-weight:bold" />
+							<datebox id="documentDate" mold="rounded"
+								value="@{attachmentWnd$composer.attachment.doc_date}" />
+						</vbox>
+						<space orient="vertical" />
+						<toolbar sclass="flat">
+							<toolbarbutton id="btn_sendFile"
+								upload="true" disabled="true" label="Загрузить файл"
+								image="/images/z-upload.png" />
+							<toolbarbutton id="btn_getFile"
+								label="Обновить Список" image="/images/z-reload.png" />
+							<toolbarbutton id="btn_URL" visible="false"
+								label="URL(Ссылка)" image="/images/z-url.png" />
+							<toolbarbutton id="btn_deleteFile"
+								label="Удалить файл" image="/images/z-btn-minus.png" />
+						</toolbar>
+					</vlayout>
+					<space orient="vertical" />
+					<div>
+						<listbox id="atachments"
+							selectedItem="@{attachmentWnd$composer.current}">
+							<listhead sizable="true">
+								<listheader label="Имя Файла" />
+								<listheader label="Тип Документа" />
+								<listheader
+									label="Номер Документа/Описание" />
+								<listheader label="Дата документа" />
+								<listheader
+									label="Дата создания(прикрепления)" sort="auto" />
+								<listheader label="Удалить" />
+							</listhead>
+						</listbox>
+					</div>
+
+				</tabpanel>
+				<tabpanel>
+					<listbox id="history">
+						<listhead>
+							<listheader label="Дата О.Д." width="20%"
+								sort="auto(date_correct)" />
+							<listheader label="Действие" width="30%"
+								sort="auto(name)" />
+							<listheader label="Инициатор"
+								sort="auto(full_name)" />
+							<listheader label="Системное время"
+								width="20%" sort="auto(date_time)" />
+						</listhead>
+					</listbox>
+
+				</tabpanel>
+				<tabpanel>
+				      <include id="includeAdditionalClientInfo" />
+				</tabpanel>
+				<!-- <tabpanel>
+				  <include id="incl_cards" />
+			    </tabpanel> -->
+			</tabpanels>
+		</tabbox>
+
+		<div id="filterdiv" visible="false">
+			<grid>
+				<columns>
+					<column align="center" />
+					<column align="center" />
+				</columns>
+				<rows>
+					<row>
+						<cell>
+							<checkbox id="fsign_registr1"
+								label="имеет основ.счет" />
+						</cell>
+						<cell>
+							<checkbox id="fsign_registr3"
+								label="имеет втор.счет" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<groupbox id="grpfltmain">
+				<grid ctrlKeys="^e#up#down" visible="true"
+					style="width:1200px	;" id="gr_grpfltmain">
+					<columns>
+						<column hflex="3" align="right" />
+						<column hflex="2" align="left" />
+						<column hflex="2" align="left" />
+						<column hflex="2" align="right" />
+						<column hflex="2" align="right" />
+						<column hflex="2" align="right" />
+						<column hflex="3" align="right" />
+					</columns>
+					<rows>
+						<row id="frow">
+							<label value="${labels.client.id_client}" />
+							<textbox id="fid_client"
+								value="@{clientmain$composer.filter.id_client}" hflex="1"
+								forward="onOK=onOkToFilter" />
+							<label value="${labels.client.state}" />
+							<rcombobox id="fstate"
+								selecteditem="@{clientmain$composer.filter.state}" hflex="1"
+								forward="onOK=onOkToFilter" />
+							<label value="${labels.client.code_type}" />
+							<textbox hflex="1" id="ftypeValue"
+								value="@{clientmain$composer.filter.code_type}"
+								forward="onOK=onOkToFilter" />
+							<rcombobox id="fcode_type"
+								selecteditem="@{clientmain$composer.filter.code_type}" hflex="3"
+								forward="onOK=onOkToFilter" />
+						</row>
+						<row>
+							<label value="${labels.client.name}" />
+							<cell colspan="6">
+								<textbox id="fname"
+									value="@{clientmain$composer.filter.name}" hflex="1"
+									forward="onOK=onOkToFilter" />
+							</cell>
+						</row>
+						<row>
+							<label
+								value="${labels.client.j_number_tax_registration}" />
+							<cell>
+								<textbox id="fj_number_tax_registration"
+									value="@{clientmain$composer.filter.j_number_tax_registration}"
+									hflex="1" forward="onOK=onOkToFilter" />
+							</cell>
+							<label
+								value="ПИНФЛ" />
+							<cell colspan="2">
+								<textbox id="fp_pinfl"
+									value="@{clientmain$composer.filter.p_pinfl}"
+									hflex="1" forward="onOK=onOkToFilter" />
+							</cell>
+
+							<label
+								value="${labels.client.j_code_tax_org}" />
+							<textbox id="ftax_orgValue" hflex="1"
+								value="@{clientmain$composer.filter.j_code_tax_org}"
+								forward="onOK=onOkToFilter" />
+							<cell colspan="2">
+								<rcombobox id="fj_code_tax_org"
+									selecteditem="@{clientmain$composer.filter.j_code_tax_org}"
+									hflex="3" forward="onOK=onOkToFilter" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.client.j_okpo}" />
+							<cell colspan="2">
+								<textbox id="fj_okpo"
+									value="@{clientmain$composer.filter.j_okpo}" hflex="1"
+									forward="onOK=onOkToFilter" />
+							</cell>
+							<cell></cell>
+							<label value="${labels.client.j_soato}" />
+							<cell colspan="2">
+								<textbox id="fj_soato"
+									value="@{clientmain$composer.filter.j_soato}" hflex="1"
+									forward="onOK=onOkToFilter" />
+							</cell>
+						</row>
+						<row>
+							<label value="ОКЕД" />
+							<textbox id="fsectorValue" hflex="1"
+								ctrlKeys="#f9"
+								value="@{clientmain$composer.filter.j_code_sector}"
+								forward="onOK=onOkToFilter" />
+							<cell colspan="5">
+								<rcombobox id="fj_code_sector"
+									ctrlKeys="#f9" hflex="3"
+									selecteditem="@{clientmain$composer.filter.j_code_sector}"
+									forward="onOK=onOkToFilter" />
+							</cell>
+						</row>
+						<row>
+							<label
+								value="${labels.client.cl_activity_type_id}" />
+							<textbox id="fcl_activity_type_idValue"
+								hflex="1" value="@{clientmain$composer.filter.j_type_activity}"
+								forward="onOK=onOkToFilter" />
+							<cell colspan="5">
+								<rcombobox id="fcl_activity_type_id"
+									hflex="10"
+									selecteditem="@{clientmain$composer.filter.j_type_activity}"
+									forward="onOK=onOkToFilter" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.client.code_form}" />
+							<textbox id="fformValue" hflex="1"
+								value="@{clientmain$composer.filter.code_form}"
+								forward="onOK=onOkToFilter" />
+							<cell colspan="2">
+								<rcombobox id="fcode_form" hflex="1"
+									selecteditem="@{clientmain$composer.filter.code_form}"
+									forward="onOK=onOkToFilter" />
+							</cell>
+							<label value="${labels.client.j_opf}" />
+							<cell colspan="2">
+								<textbox id="fopfValue" hflex="1"
+									value="@{clientmain$composer.filter.j_opf}"
+									forward="onOK=onOkToFilter" />
+								<rcombobox id="fj_opf"
+									selecteditem="@{clientmain$composer.filter.j_opf}" hflex="3"
+									forward="onOK=onOkToFilter" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+			<grid>
+				<columns>
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<groupbox>
+							<caption>Дата утверждения</caption>
+							<grid>
+								<columns>
+									<column hflex="1"></column>
+									<column hflex="2"></column>
+									<column hflex="2"></column>
+									<column hflex="1"></column>
+								</columns>
+								<rows>
+									<row>
+										<cell></cell>
+										<cell rowspan="2">
+											<radiogroup
+												id="type_radio_open1" orient="vertical">
+												<radio
+													label="Любая дата" checked="true" />
+												<radio
+													label="Конкретная дата" />
+												<radio label="Период" />
+											</radiogroup>
+										</cell>
+										<cell align="right">
+											<label
+												value="${labels.client.filter_begin}" />
+											<datebox id="fdate_open"
+												mold="rounded" disabled="true"
+												value="@{clientmain$composer.filter.date_open}" />
+										</cell>
+										<cell></cell>
+									</row>
+									<row>
+										<cell></cell>
+										<cell align="right">
+											<label
+												value="${labels.client.filter_end}" />
+											<datebox id="fdate_open1"
+												mold="rounded" disabled="true"
+												value="@{clientmain$composer.filter.date_open1}" />
+										</cell>
+										<cell></cell>
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox>
+
+							<caption>Дата закрытия</caption>
+							<grid>
+								<columns>
+									<column hflex="1"></column>
+									<column hflex="2"></column>
+									<column hflex="2"></column>
+									<column hflex="1"></column>
+								</columns>
+								<rows>
+									<row>
+										<cell></cell>
+										<cell rowspan="2">
+											<radiogroup
+												id="type_radio_close1" orient="vertical">
+												<radio
+													label="Любая дата" checked="true" />
+												<radio
+													label="Конкретная дата" />
+												<radio label="Период" />
+											</radiogroup>
+										</cell>
+										<cell align="right">
+											<label
+												value="${labels.client.filter_begin}" />
+											<datebox id="fdate_close"
+												mold="rounded" disabled="true"
+												value="@{clientmain$composer.filter.date_close}" />
+										</cell>
+										<cell></cell>
+									</row>
+									<row>
+										<cell></cell>
+										<cell align="right">
+											<label
+												value="${labels.client.filter_end}" />
+											<datebox id="fdate_close1"
+												mold="rounded" disabled="true"
+												value="@{clientmain$composer.filter.date_close1}" />
+										</cell>
+										<cell></cell>
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+
+					</row>
+				</rows>
+			</grid>
+
+		</div>
+
+		<div id="addgrd">
+			<toolbar>
+				<toolbarbutton id="btn_createOrg" label="Открыть"
+					image="/images/send.png" />
+				<toolbarbutton id="btn_fetch_sap"
+					label="Взять данные из SAP" image="/images/z-sap.png" />
+				<toolbarbutton id="btn_fetch_ebp"
+					label="Взять данные из ЕБП"
+					style="background:#4CAF50;color:#FFFFFF;" />
+				<toolbarbutton id="btn_get_ip" label="Найти ИП-ФЛ" />
+				<toolbarbutton id="btnCompareWithSapAndEbp"
+					label="Сравнить данные с SAP и EBP"
+					style="background:#4CAF50;color:#FFFFFF;" />
+			</toolbar>
+			<groupbox>
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+
+						<row id="arow">
+							<label value="${labels.client.id_client}" />
+							<textbox id="aid_client" readonly="true"
+								mold="rounded" value="@{clientmain$composer.newcl.id_client}"
+								hflex="1" />
+							<label value="${labels.client.date_open}" />
+							<datebox id="adate_open"
+								buttonVisible="false" readonly="true" mold="rounded"
+								value="@{clientmain$composer.newcl.date_open}" hflex="1" />
+							<label value="${labels.client.date_close}" />
+							<datebox id="adate_close"
+								buttonVisible="false" readonly="true" mold="rounded"
+								value="@{clientmain$composer.newcl.date_close}" hflex="1" />
+							<label value="${labels.client.state}" />
+							<rcombobox id="astate" buttonVisible="false"
+								readonly="true" mold="rounded"
+								selecteditem="@{clientmain$composer.newcl.state}" hflex="1" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox mold="3d" closable="false">
+				<caption label="@{clientmain$composer.newcl.name}"
+					style="font-size: 200%; font-weight: bold" />
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.client.code_type}"
+								style="font-weight: bold" />
+							<cell colspan="2">
+								<textbox hflex="1" id="atypeValue"
+									mold="rounded" value="@{clientmain$composer.newcl.code_type}"
+									onOK="acode_type.focus();acode_type.select()" />
+								<rcombobox id="acode_type"
+									mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.code_type}" hflex="3"
+									forward="onOK=onOKField" />
+							</cell>
+							<label value="Страна регистрации"
+								style="font-weight: bold" id="acode_countryLabel" />
+							<cell colspan="2">
+								<textbox id="acode_country_value"
+									hflex="1" value="@{clientmain$composer.newcl.code_country}" />
+								<rcombobox hflex="3" id="acode_country"
+									mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.code_country}" />
+							</cell>
+							<label
+								value="${labels.client.code_resident}" style="font-weight: bold"
+								id="aresLabel" />
+							<rcombobox id="acode_resident"
+								selecteditem="@{clientmain$composer.newcl.code_resident}"
+								hflex="1" mold="rounded" forward="onOK=onOKField" />
+						</row>
+						<row id="row_non_resident_new"
+							visible="false">
+							<label value="Тип нерезидента" />
+							<cell colspan="6">
+								<textbox id="atype_non_residentValue"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.type_non_resident}"
+									onOK="type_non_resident.focus();type_non_resident.select()" />
+								<rcombobox id="atype_non_resident"
+									hflex="10" mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.type_non_resident}" />
+							</cell>
+						</row>
+						<row id="aipFio_cyr" visible="false">
+							<label
+								value="${labels.client_p.p_last_name_cyr}"
+								style="font-weight: bold" />
+							<textbox id="ap_last_name_cyr" hflex="1"
+								constraint="${letterConst}" maxlength="40" mold="rounded"
+								value="@{clientmain$composer.newcl.p_last_name_cyr}" />
+							<label
+								value="${labels.client_p.p_first_name_cyr}"
+								style="font-weight: bold" />
+							<textbox id="ap_first_name_cyr" hflex="1"
+								constraint="${letterConst}" maxlength="40" mold="rounded"
+								value="@{clientmain$composer.newcl.p_first_name_cyr}" />
+							<label
+								value="${labels.client_p.p_patronymic_cyr}"
+								style="font-weight: bold" />
+							<textbox id="ap_patronymic_cyr" hflex="1"
+								constraint="${letterConst}" maxlength="40" mold="rounded"
+								value="@{clientmain$composer.newcl.p_patronymic_cyr}" />
+						</row>
+						<row id="aname_row">
+							<label value="${labels.client.name}"
+								style="font-weight: bold"/>
+							<cell colspan="5">
+								<textbox id="aname" maxlength="80"
+									mold="rounded" value="@{clientmain$composer.newcl.name}"
+									hflex="1" forward="onOK=onOKField" />
+							</cell>
+							<label id="aj_short_name_label"
+								value="${labels.client.j_short_name}" />
+							<cell colspan="3">
+								<textbox id="aj_short_name"
+									maxlength="25" mold="rounded"
+									value="@{clientmain$composer.newcl.j_short_name}" hflex="1"
+									forward="onOK=onOKField" />
+							</cell>
+						</row>
+
+						<row id="aipFio" visible="false">
+							<label value="${labels.client_p.p_family}"
+								style="font-weight: bold" />
+							<textbox id="ap_family" hflex="1"
+								constraint="${latinConst}" readonly="true" mold="rounded"
+								value="@{clientmain$composer.newcl.p_family}" />
+							<label
+								value="${labels.client_p.p_first_name}"
+								style="font-weight: bold" />
+							<textbox id="ap_first_name" hflex="1"
+								constraint="${latinConst}" readonly="true" mold="rounded"
+								value="@{clientmain$composer.newcl.p_first_name}" />
+							<label
+								value="${labels.client_p.p_patronymic}" />
+							<textbox id="ap_patronymic" hflex="1"
+								constraint="${latinConst}" readonly="true" mold="rounded"
+								value="@{clientmain$composer.newcl.p_patronymic}" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="aj_view"><!-- добавление новое -->
+				<auxhead>
+					<auxheader label="Основные данные ЮЛ" />
+				</auxhead>
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<label
+								value="${labels.client.j_number_registration_doc}"
+								style="font-weight: bold" />
+							<textbox id="aj_number_registration_doc"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.j_number_registration_doc}"
+								forward="onOK=onOKField" />
+							<label
+								value="${labels.client.j_date_registration}"
+								style="font-weight: bold" />
+							<datebox id="aj_date_registration" hflex="1"
+								mold="rounded"
+								value="@{clientmain$composer.newcl.j_date_registration}"
+								forward="onOK=onOKField" />
+							<label
+								value="${labels.client.j_place_regist_name}"
+								style="font-weight: bold" />
+							<cell colspan="3">
+								<textbox id="aj_place_regist_name"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.j_place_regist_name}"
+									forward="onOK=onOKField" />
+							</cell>
+						</row>
+						<row>
+							<cell>
+								<label value="${labels.client.j_soato}"
+									style="font-weight: bold" />
+								<label value="(F9)"
+									style="font-weight: bold" />
+							</cell>
+							<textbox id="aj_soato" hflex="1"
+								mold="rounded" value="@{clientmain$composer.newcl.j_soato}"
+								ctrlKeys="#f9" forward="onOK=onOKField" />
+							<label value="Страна"
+								style="font-weight:bold" />
+							<cell colspan="2">
+								<textbox id="aaddressCountryText"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.addressCountry}" />
+								<rcombobox id="aaddressCountry"
+									hflex="3" mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.addressCountry}" />
+							</cell>
+
+						</row>
+						<row id="aonlyForJ1">
+							<label value="${labels.client.j_region}"
+								style="font-weight: bold" />
+							<cell colspan="2">
+								<textbox id="aregionValue" hflex="1"
+									mold="rounded" value="@{clientmain$composer.newcl.j_region}"
+									onOK="aj_region.focus();aj_region.select()" />
+								<rcombobox id="aj_region" hflex="3"
+									mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.j_region}"
+									forward="onOK=onOKField" />
+							</cell>
+							<label value="${labels.client.j_distr}"
+								style="font-weight: bold" />
+							<cell colspan="2">
+								<textbox id="adistrValue" hflex="1"
+									mold="rounded" value="@{clientmain$composer.newcl.j_distr}"
+									onOK="aj_distr.focus();aj_distr.select()" />
+								<rcombobox id="aj_distr" hflex="3"
+									mold="rounded" ctrlKeys="#up#down"
+									selecteditem="@{clientmain$composer.newcl.j_distr}"
+									forward="onOK=onOKField" />
+							</cell>
+						</row>
+						<row id="aonlyForJ2">
+							<label
+								value="${labels.client.j_post_address}" />
+							<cell colspan="7">
+								<textbox id="aj_post_address" hflex="1"
+									mold="rounded"
+									value="@{clientmain$composer.newcl.j_post_address}"
+									forward="onOK=onOKField" />
+							</cell>
+						</row>
+						<row id="aonlyForJ3">
+							<label
+								value="${labels.client.j_number_tax_registration}"
+								style="font-weight: bold" />
+							<textbox id="aj_number_tax_registration"
+								hflex="1" mold="rounded" maxlength="9"
+								value="@{clientmain$composer.newcl.j_number_tax_registration}"
+								forward="onOK=onOKField" />
+							<label value="ПИНФЛ" />
+							<textbox maxlength="14" id="ap_pinfl"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.p_pinfl}" />
+
+							<label
+								value="${labels.client.j_code_tax_org}" />
+							<cell colspan="2">
+								<textbox id="atax_orgValue" hflex="1"
+									mold="rounded"
+									value="@{clientmain$composer.newcl.j_code_tax_org}"
+									onOK="aj_code_tax_org.focus();aj_code_tax_org.select()" />
+								<rcombobox id="aj_code_tax_org"
+									selecteditem="@{clientmain$composer.newcl.j_code_tax_org}"
+									hflex="3" mold="rounded" forward="onOK=onOKField" />
+							</cell>
+
+						</row>
+						<row id="aonlyForJ4">
+							<label
+								value="${labels.client.j_code_head_organization}"
+								style="font-weight: bold" />
+							<textbox id="aj_code_head_organization"
+								mold="rounded"
+								value="@{clientmain$composer.newcl.j_code_head_organization}"
+								hflex="1" forward="onOK=onOKField" />
+							<label
+								value="${labels.client.j_inn_head_organization}"
+								style="font-weight: bold" />
+							<textbox id="aj_inn_head_organization"
+								mold="rounded"
+								value="@{clientmain$composer.newcl.j_inn_head_organization}"
+								hflex="1" forward="onOK=onOKField" />
+							<label id="aokpo_label"
+								value="${labels.client.j_okpo}" style="font-weight: bold" />
+							<textbox id="aj_okpo" mold="rounded"
+								value="@{clientmain$composer.newcl.j_okpo}" hflex="1"
+								forward="onOK=onOKField" />
+						</row>
+
+						<row>
+							<label value="${labels.client.j_opf}"
+								style="font-weight: bold" />
+							<cell colspan="6">
+								<textbox id="aopfValue" hflex="1"
+									mold="rounded" value="@{clientmain$composer.newcl.j_opf}"
+									onOK="aj_opf.focus();aj_opf.select()" />
+								<rcombobox id="aj_opf" mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.j_opf}" hflex="10"
+									forward="onOK=onOKField" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.client.code_form}"
+								style="font-weight: bold" />
+							<cell colspan="6">
+								<textbox id="aformValue" hflex="1"
+									mold="rounded" value="@{clientmain$composer.newcl.code_form}"
+									onOK="acode_form.focus();acode_form.select();" />
+								<rcombobox id="acode_form" hflex="10"
+									mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.code_form}"
+									forward="onOK=onOKField" />
+							</cell>
+						</row>
+						<row id="row_OKED_new">
+							<label value="ОКЕД(F9)"
+								style="font-weight: bold" />
+							<cell colspan="6">
+								<textbox id="asectorValue" hflex="1"
+									mold="rounded" ctrlKeys="#f9"
+									value="@{clientmain$composer.newcl.j_code_sector}"
+									onOK="aj_code_sector.focus();aj_code_sector.select()" />
+								<rcombobox id="aj_code_sector"
+									ctrlKeys="#f9" hflex="10" mold="rounded"
+									forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.j_code_sector}" />
+							</cell>
+						</row>
+						<row id="aactivity_type_row">
+							<label
+								value="${labels.client.cl_activity_type_id}" />
+							<cell colspan="6">
+								<textbox id="acl_activity_type_idValue"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.j_type_activity}" />
+								<rcombobox id="acl_activity_type_id"
+									hflex="10" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.j_type_activity}" />
+							</cell>
+						</row>
+						<row>
+							<cell>
+								<label
+									value="${labels.client.j_code_organ_direct}" />
+								<label value="(F9)" />
+							</cell>
+							<cell colspan="6">
+								<textbox id="aorgan_directValue"
+									hflex="1" mold="rounded" ctrlKeys="#f9"
+									value="@{clientmain$composer.newcl.j_code_organ_direct}"
+									onOK="aj_code_organ_direct.focus();aj_code_organ_direct.select()" />
+								<rcombobox id="aj_code_organ_direct"
+									hflex="10" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.j_code_organ_direct}" />
+							</cell>
+						</row>
+						<row>
+										<label value="Подразделение" />
+										<cell colspan="6">
+											<textbox
+												id="afile_nameValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.newcl.file_name}"
+												onOK="file_name.focus();file_name.select()" />
+											<rcombobox
+												id="afile_name" hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.newcl.file_name}" />
+										</cell>
+									</row>
+									<row>
+										<label value="Код О.Б.У." />
+										<cell colspan="6">
+											<textbox
+												id="asubbranchValue" hflex="1" mold="rounded"
+												value="@{clientmain$composer.newcl.subbranch}"
+												onOK="subbranch.focus();subbranch.select()" />
+											<rcombobox
+												id="asubbranch" hflex="10" mold="rounded"
+												selecteditem="@{clientmain$composer.newcl.subbranch}" />
+										</cell>
+									</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="aipView" visible="false">
+				<auxhead>
+					<auxheader label="Основные данные ФЛ" />
+				</auxhead>
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<label
+								value="${labels.client.p_type_document}" />
+
+							<cell colspan="2">
+								<textbox id="ap_type_document_text"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.p_type_document}"
+									onOK="ap_type_document.focus();ap_type_document.select()" />
+								<rcombobox id="ap_type_document"
+									hflex="3" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.p_type_document}" />
+							</cell>
+							<label
+								value="${labels.client.p_passport_serial}" />
+							<textbox id="ap_passport_serial" hflex="1"
+								mold="rounded"
+								value="@{clientmain$composer.newcl.p_passport_serial}"
+								onOK="ap_passport_number.focus();ap_passport_number.select()" />
+							<label
+								value="${labels.client.p_passport_number}" />
+							<textbox id="ap_passport_number" hflex="1"
+								mold="rounded" forward="onOK=onOKField"
+								value="@{clientmain$composer.newcl.p_passport_number}" />
+						</row>
+						<row>
+							<label
+								value="${labels.client.p_passport_place_registration}" />
+							<cell align="end">
+								<label value="Вне Территории РУз" />
+								<checkbox forward="onCheck=onCheckField"
+									id="ap_pass_place_checkbox" />
+							</cell>
+							<label hflex="1"
+								value="${labels.client.region}" />
+							<cell colspan="2">
+								<textbox id="ap_pass_place_region_text"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.p_pass_place_region}"
+									onOK="ap_pass_place_region.focus();ap_pass_place_region.select();" />
+								<rcombobox id="ap_pass_place_region"
+									hflex="3" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.p_pass_place_region}" />
+							</cell>
+							<label hflex="1"
+								value="${labels.client.distr}" />
+							<cell colspan="2">
+								<textbox id="ap_pass_place_distr_text"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.p_pass_place_district}"
+									onOK="ap_pass_place_district.focus();ap_pass_place_district.select();" />
+								<rcombobox id="ap_pass_place_district"
+									hflex="3" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.p_pass_place_district}" />
+							</cell>
+						</row>
+						<row>
+							<label />
+							<cell colspan="5">
+								<textbox
+									id="ap_passport_place_registration" hflex="1" mold="rounded"
+									forward="onOK=onOKField"
+									value="@{clientmain$composer.newcl.p_passport_place_registration}" />
+							</cell>
+						</row>
+						<row>
+							<label
+								value="${labels.client.p_passport_date_registration}" />
+							<datebox id="ap_passport_date_registration"
+								hflex="1" mold="rounded" forward="onOK=onOKField"
+								value="@{clientmain$composer.newcl.p_passport_date_registration}" />
+							<label
+								value="${labels.client.p_passport_date_expiration}" />
+							<datebox id="ap_passport_date_expiration"
+								hflex="1" mold="rounded" forward="onOK=onOKField"
+								value="@{clientmain$composer.newcl.p_passport_date_expiration}" />
+							<label
+								value="${labels.client.p_code_nation}" />
+							<rcombobox id="ap_code_nation" hflex="1"
+								mold="rounded" forward="onOK=onOKField"
+								selecteditem="@{clientmain$composer.newcl.p_code_nation}" />
+						</row>
+						<row>
+							<label
+								value="${labels.client.p_code_citizenship}" />
+							<cell colspan="2">
+								<textbox id="ap_code_citizenship_text"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.p_code_citizenship}"
+									onOK="ap_code_citizenship.focus();ap_code_citizenship.select()" />
+								<rcombobox id="ap_code_citizenship"
+									hflex="3" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.p_code_citizenship}" />
+							</cell>
+							<label
+								value="${labels.client.code_resident     }"
+								style="font-weight: bold" />
+							<rcombobox id="acode_resident1"
+								selecteditem="@{clientmain$composer.newcl.code_resident}"
+								hflex="1" mold="rounded" forward="onOK=onOKField" />
+							<label
+								value="${labels.client.p_code_gender}" />
+							<rcombobox id="ap_code_gender" hflex="1"
+								mold="rounded" forward="onOK=onOKField"
+								selecteditem="@{clientmain$composer.newcl.p_code_gender}" />
+						</row>
+						<row>
+							<label value="${labels.client.p_birthday}" />
+							<datebox id="ap_birthday"
+								forward="onOK=onOKField" hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.p_birthday}" />
+							<label
+								value="${labels.client.p_birth_place}" />
+							<cell colspan="4">
+								<textbox id="ap_birth_place" hflex="1"
+									mold="rounded" forward="onOK=onOKField"
+									value="@{clientmain$composer.newcl.p_birth_place}" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="aipView2" visible="false">
+				<auxhead>
+					<auxheader label="Адрес Местожительства" colspan="6"
+						rowspan="1" />
+				</auxhead>
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<label style="font-weight: bold"
+								value="${labels.client.code_country}" />
+							<cell colspan="2">
+								<textbox id="acountryValue1" hflex="1"
+									mold="rounded"
+									value="@{clientmain$composer.newcl.post_address_country}"
+									onOK="acode_country1.focus();acode_country1.select()" />
+								<rcombobox id="acode_country1" hflex="2"
+									mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.post_address_country}" />
+							</cell>
+							<label hflex="1"
+								value="${labels.client.region}" />
+							<cell>
+								<textbox id="ap_code_adr_region_text"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.p_code_adr_region}"
+									onOK="ap_code_adr_region.focus();ap_code_adr_region.select()" />
+								<rcombobox id="ap_code_adr_region"
+									hflex="3" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.p_code_adr_region}" />
+							</cell>
+							<label value="${labels.client.distr}" />
+							<cell>
+								<textbox id="ap_code_adr_distr_text"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.p_code_adr_distr}"
+									onOK="ap_code_adr_distr.focus();ap_code_adr_distr.select()" />
+								<rcombobox id="ap_code_adr_distr"
+									hflex="3" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.p_code_adr_distr}" />
+							</cell>
+						</row>
+						<row visible="false">
+							<label value="Улица"
+								style="font-weight: bold" />
+							<textbox id="ap_post_address_street"
+								hflex="1" mold="rounded" forward="onOK=onOKField"
+								value="@{clientmain$composer.newcl.p_post_address_street}" />
+							<label value="Массив/Квартал"
+								style="font-weight: bold" />
+							<textbox id="ap_post_address_quarter"
+								hflex="1" mold="rounded" forward="onOK=onOKField"
+								value="@{clientmain$composer.newcl.p_post_address_quarter}" />
+							<label value="Дом"
+								style="font-weight: bold" />
+							<textbox id="ap_post_address_house"
+								hflex="1" mold="rounded" forward="onOK=onOKField"
+								value="@{clientmain$composer.newcl.p_post_address_house}" />
+							<label value="Квартира" />
+							<textbox id="ap_post_address_flat" hflex="1"
+								mold="rounded" forward="onOK=onOKField"
+								value="@{clientmain$composer.newcl.p_post_address_flat}" />
+						</row>
+						<row>
+							<label
+								value="${labels.client.post_address}" />
+							<cell colspan="7">
+								<textbox id="ap_post_address" hflex="1"
+									mold="rounded" forward="onOK=onOKField"
+									value="@{clientmain$composer.newcl.p_post_address}" />
+							</cell>
+						</row>
+
+						<row visible="false">
+							<label
+								value="${labels.client.j_number_tax_registration}" />
+							<textbox id="ap_number_tax_registration"
+								hflex="1" mold="rounded" forward="onOK=onOKField"
+								value="@{clientmain$composer.newcl.p_number_tax_registration}" />
+							<label
+								value="${labels.client.j_code_tax_org}" />
+							<cell colspan="2">
+								<textbox id="ap_code_tax_orgValue"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.p_code_tax_org}"
+									onOK="ap_code_tax_org.focus();ap_code_tax_org.select()" />
+								<rcombobox id="ap_code_tax_org"
+									hflex="3" mold="rounded" forward="onOK=onOKField"
+									selecteditem="@{clientmain$composer.newcl.p_code_tax_org}" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.client_p.p_inps}" />
+							<textbox maxlength="14" id="ap_inps"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.p_inps}" />
+								
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="aj_acc_grid">
+				<auxhead>
+					<auxheader label="Основной расчетный счет" />
+				</auxhead>
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.client.j_code_bank}" />
+
+							<cell colspan="6">
+								<textbox id="abankValue" hflex="1"
+									mold="rounded" style="color: #FF0000 !important;"
+									readonly="true"
+									value="@{clientmain$composer.newcl.j_code_bank}" />
+								<rcombobox id="aj_code_bank" hflex="8"
+									mold="rounded" style="color: #FF0000 !important;"
+									readonly="true" buttonVisible="false"
+									selecteditem="@{clientmain$composer.newcl.j_code_bank}" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.client.j_account}" />
+							<cell colspan="3">
+								<textbox id="aj_account" hflex="1"
+									mold="rounded" readonly="true"
+									value="@{clientmain$composer.newcl.j_account}" />
+							</cell>
+						</row>
+						<row id="appRow_frm" visible="false">
+							<label
+								value="${labels.client.j_director_name}" />
+							<cell colspan="9">
+								<textbox id="ap_director_name" hflex="1"
+									mold="rounded"
+									value="@{clientmain$composer.newcl.j_director_name}" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+			<groupbox id="aj_other_grid">
+				<auxhead>
+					<auxheader label="Другие данные" />
+				</auxhead>
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<checkbox id="aj_sign_trade"
+								visible="false" />
+							<cell colspan="4" visible="false">
+								<label
+									value="${labels.client.j_sign_trade}"
+									forward="onClick=onOKField" />
+							</cell>
+						</row>
+						<row id="rowIpViewPatentExpNew">
+							<label
+								value="${labels.client.j_patent_expiration}" />
+							<datebox id="aj_patent_expiration" hflex="1"
+								mold="rounded"
+								value="@{clientmain$composer.newcl.j_patent_expiration}" />
+						</row>
+						<row>
+							<checkbox id="aj_small_business" />
+							<cell colspan="3">
+								<label value="Субъект малого бизнеса" />
+							</cell>
+							<cell colspan="2">
+								<label
+									value="${labels.client.j_responsible_emp}" />
+							</cell>
+							<cell colspan="2">
+								<textbox id="aj_responsible_emp"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.j_responsible_emp}" />
+							</cell>
+						</row>
+						<row>
+							<checkbox id="aj_sign_dep_acc"
+								onCheck="adirector_grb.setVisible(!aj_sign_dep_acc.isChecked());
+																				aaccounter_grb.setVisible(!aj_sign_dep_acc.isChecked())" />
+							<cell colspan="5">
+								<label
+									value="${labels.client.j_sign_dep_acc}" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="aj_contact_grid">
+				<auxhead>
+					<auxheader label="Контактные данные" />
+				</auxhead>
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.client.j_phone}" />
+							<textbox id="aj_phone" maxlength="12"
+								mold="rounded"
+								constraint="no empty:Не верный формат номера телефона - ввод только 12 цифр (998....)"
+								value="@{clientmain$composer.newcl.j_phone}" hflex="1"
+								forward="onOK=onOKField" />
+							<label value="${labels.client.j_fax}" />
+							<textbox id="aj_fax" maxlength="12"
+								mold="rounded"
+								constraint="/\d+/:Не верный формат номера факса - ввод только 12 цифр (998....)"
+								value="@{clientmain$composer.newcl.j_fax}" hflex="1"
+								forward="onOK=onOKField" />
+							<label value="${labels.client.j_email}" />
+							<textbox id="aj_email" mold="rounded"
+								value="@{clientmain$composer.newcl.j_email}" hflex="1" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="aclient_bank_grid_main" visible="false">
+				<auxhead>
+					<auxheader label="Основные данные" />
+				</auxhead>
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<label
+								value="${labels.client.j_number_registration_doc}" />
+							<textbox id="ai_number_registration_doc"
+								mold="rounded"
+								value="@{clientmain$composer.newcl.j_number_registration_doc}"
+								hflex="1" forward="onOK=onOKField1" />
+							<label
+								value="${labels.client.i_date_registration}"
+								style="font-weight: bold" />
+							<datebox id="ai_date_registration"
+								mold="rounded"
+								value="@{clientmain$composer.newcl.j_date_registration}"
+								hflex="1" forward="onOK=onOKField1" />
+							<label
+								value="${labels.client.j_place_regist_name}" />
+							<cell colspan="3">
+								<textbox id="ai_place_regist_name"
+									mold="rounded"
+									value="@{clientmain$composer.newcl.j_place_regist_name}"
+									hflex="1" />
+							</cell>
+						</row>
+						<row>
+							<label
+								value="${labels.client.i_number_tax_registration}" />
+							<textbox id="ai_number_tax_registration"
+								maxlength="9" mold="rounded"
+								value="@{clientmain$composer.newcl.i_number_tax_registration}"
+								hflex="1" />
+						</row>
+						<row>
+							<label value="${labels.client.j_opf}"
+								style="font-weight: bold" />
+							<cell colspan="6">
+								<textbox id="aiopfValue" hflex="1"
+									mold="rounded" value="@{clientmain$composer.newcl.i_opf}" />
+								<rcombobox id="ai_opf" hflex="10"
+									mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.i_opf}" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.client.code_form}" />
+							<cell colspan="6">
+								<textbox id="aiformValue" hflex="1"
+									mold="rounded" value="@{clientmain$composer.newcl.i_form}" />
+								<rcombobox id="ai_form" hflex="10"
+									mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.i_form}" />
+							</cell>
+						</row>
+						<row>
+							<label value="ОКЕД(F9)"
+								style="font-weight: bold" />
+							<cell colspan="6">
+								<textbox id="aisectorValue" hflex="1"
+									mold="rounded" ctrlKeys="#f9"
+									value="@{clientmain$composer.newcl.i_sector}" />
+								<rcombobox id="ai_code_sector"
+									ctrlKeys="#f9" hflex="10" mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.i_sector}" />
+							</cell>
+						</row>
+
+						<row>
+							<label
+								value="${labels.client.j_code_organ_direct}" />
+							<cell colspan="6">
+								<textbox id="aiorgan_directValue"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.i_organ_direct}" />
+								<rcombobox id="ai_code_organ_direct"
+									hflex="10" mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.i_organ_direct}" />
+							</cell>
+						</row>
+						<row>
+							<label value="swift_id" />
+							<cell colspan="6">
+								<textbox id="aswift_idValue" hflex="1"
+									mold="rounded" value="@{clientmain$composer.newcl.swift_id}" />
+								<rcombobox id="aswift_id" hflex="10"
+									mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.swift_id}" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="aclient_bank_grid_acc" visible="false">
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+						<column hflex="1" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.client.j_account}" />
+							<cell colspan="3">
+								<textbox id="ai_account" mold="rounded"
+									readonly="true" value="@{clientmain$composer.newcl.i_account}"
+									hflex="1" />
+							</cell>
+							<label
+								value="${labels.client.j_post_address}" />
+							<cell colspan="3">
+								<textbox id="ai_post_address"
+									mold="rounded" readonly="true"
+									value="@{clientmain$composer.newcl.i_post_address}" hflex="1" />
+							</cell>
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.client.j_director_name}" />
+							<cell colspan="9">
+								<textbox id="ai_director_name" hflex="1"
+									mold="rounded"
+									value="@{clientmain$composer.newcl.i_director_name}" />
+							</cell>
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.client.i_chief_accounter_name}" />
+							<cell colspan="9">
+								<textbox id="ai_chief_accounter_name"
+									hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.i_chief_accounter_name}" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.client.j_phone}" />
+							<textbox id="ai_phone" maxlength="12"
+								mold="rounded" value="@{clientmain$composer.newcl.i_phone}"
+								hflex="1" />
+							<label value="${labels.client.j_fax}" />
+							<textbox id="ai_fax" maxlength="12"
+								mold="rounded" value="@{clientmain$composer.newcl.i_fax}"
+								hflex="1" />
+							<label value="${labels.client.j_email}" />
+							<textbox id="ai_email" mold="rounded"
+								value="@{clientmain$composer.newcl.i_email}" hflex="1" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="adirector_grb" mold="3d" closable="false">
+				<caption id="adir_caption" label="Директор" />
+				<toolbarbutton id="btn_find_dir_n"
+					label="Найти другое лицо" />
+				<toolbarbutton id="btn_clear_dir_n" label="Очистить" />
+				<checkbox id="isAccountantCheckbox"
+					label="Является Бухгалтером" />
+				<grid ctrlKeys="^e#up#down" sizedByContent="true"
+					span="true" style="border:normal">
+					<columns>
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+					</columns>
+					<rows>
+						<row id="adirector_ipFio_cyr">
+							<cell align="end">
+								<label
+									value="${labels.client_p.p_last_name_cyr}" />
+							</cell>
+							<textbox id="adirector_p_last_name_cyr"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.director.family_local}" />
+							<cell align="end">
+								<label
+									value="${labels.client_p.p_first_name_cyr}" />
+							</cell>
+							<textbox id="adirector_p_first_name_cyr"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.director.first_name_local}" />
+							<cell align="end">
+								<label
+									value="${labels.client_p.p_patronymic_cyr}" />
+							</cell>
+							<textbox id="adirector_p_patronymic_cyr"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.director.patronymic_local}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label value="${labels.client.family}" />
+							</cell>
+							<textbox id="adirector_family"
+								mold="rounded" hflex="1"
+								value="@{clientmain$composer.newcl.director.family}" />
+							<cell align="end">
+								<label
+									value="${labels.client.first_name}" />
+							</cell>
+							<textbox id="adirector_first_name"
+								mold="rounded" hflex="1"
+								value="@{clientmain$composer.newcl.director.first_name}" />
+							<cell align="end">
+								<label
+									value="${labels.client.patronymic}" />
+							</cell>
+							<textbox id="adirector_patronymic"
+								mold="rounded" hflex="1"
+								value="@{clientmain$composer.newcl.director.patronymic}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.passport_type}" />
+							</cell>
+							<cell colspan="2">
+								<textbox hflex="1"
+									value="@{clientmain$composer.newcl.director.type_document}"
+									mold="rounded" id="adirector_type_document_text" />
+								<rcombobox id="adirector_type_document"
+									mold="rounded" hflex="3"
+									selecteditem="@{clientmain$composer.newcl.director.type_document}" />
+							</cell>
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.passport_serial}" />
+							</cell>
+							<textbox hflex="1" maxlength="2"
+								id="adirector_passport_serial" mold="rounded"
+								value="@{clientmain$composer.newcl.director.passport_serial}" />
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.passport_number}" />
+							</cell>
+							<textbox id="adirector_passport_number"
+								mold="rounded" hflex="3" maxlength="7"
+								value="@{clientmain$composer.newcl.director.passport_number}" />
+						</row>
+						<row id="adirector_pass_place_row">
+							<label
+								value="${labels.client.passport_place_registration}" />
+							<cell align="end">
+								<label value="Вне Территории РУз" />
+								<checkbox
+									id="adirector_pass_place_checkbox" />
+							</cell>
+							<label hflex="1"
+								value="${labels.client.p_code_adr_region}" />
+							<cell colspan="2">
+								<textbox hflex="1"
+									value="@{clientmain$composer.newcl.director.pass_place_region}"
+									mold="rounded" id="adirector_pass_place_region_text" />
+								<rcombobox
+									id="adirector_pass_place_region" mold="rounded" hflex="2"
+									readonly="true"
+									selecteditem="@{clientmain$composer.newcl.director.pass_place_region}" />
+							</cell>
+							<label hflex="1"
+								value="${labels.client.p_code_adr_distr}" />
+							<cell colspan="2">
+								<textbox hflex="1"
+									value="@{clientmain$composer.newcl.director.pass_place_district}"
+									mold="rounded" id="adirector_pass_place_distr_text" />
+								<rcombobox
+									id="adirector_pass_place_distr" mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.director.pass_place_district}"
+									hflex="2" readonly="true" />
+							</cell>
+						</row>
+						<row>
+							<label
+								value="${labels.client.p_passport_place_registration}" />
+							<cell colspan="7">
+								<textbox
+									id="adirector_passport_place_registration" mold="rounded"
+									hflex="1"
+									value="@{clientmain$composer.newcl.director.passport_place_registration}" />
+							</cell>
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.passport_date_registration}" />
+							</cell>
+							<datebox hflex="1"
+								id="adirector_passport_date_registration" mold="rounded"
+								format="dd.MM.yyyy" lenient="false"
+								value="@{clientmain$composer.newcl.director.passport_date_registration}" />
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.passport_date_expiration}" />
+							</cell>
+							<datebox format="dd.MM.yyyy" lenient="false"
+								id="adirector_passport_date_expiration" mold="rounded" hflex="1"
+								value="@{clientmain$composer.newcl.director.passport_date_expiration}" />
+							<cell align="end">
+								<label
+									value="${labels.client.code_nation}" />
+							</cell>
+							<rcombobox id="adirector_code_nation"
+								mold="rounded" hflex="1" readonly="true"
+								selecteditem="@{clientmain$composer.newcl.director.code_nation}" />
+                            <cell align="end">
+								<label
+									value="ПИНФЛ" />
+							</cell>
+							<textbox maxlength="14" id="adirector_pinfl"
+								hflex="1" value="@{clientmain$composer.newcl.director.pinfl}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.code_citizenship}" />
+							</cell>
+
+							<cell align="end" colspan="2">
+								<textbox hflex="1"
+									id="adirector_code_citizenship_text" mold="rounded"
+									value="@{clientmain$composer.newcl.director.code_citizenship}" />
+								<rcombobox
+									id="adirector_code_citizenship" hflex="3" mold="rounded"
+									readonly="true"
+									selecteditem="@{clientmain$composer.newcl.director.code_citizenship}" />
+							</cell>
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.code_resident}" />
+							</cell>
+							<rcombobox id="adirector_code_resident"
+								mold="rounded" hflex="1" readonly="true"
+								selecteditem="@{clientmain$composer.newcl.director.code_resident}" />
+							<cell align="end">
+								<label
+									value="${labels.client.code_gender}" />
+							</cell>
+							<rcombobox id="adirector_code_gender"
+								mold="rounded" hflex="1" readonly="true"
+								selecteditem="@{clientmain$composer.newcl.director.code_gender}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.birthday}" />
+							</cell>
+							<datebox id="adirector_birthday"
+								format="dd.MM.yyyy" mold="rounded" lenient="false" hflex="1"
+								value="@{clientmain$composer.newcl.director.birthday}" />
+							<cell align="end">
+								<label
+									value="${labels.client.birth_place}" />
+							</cell>
+							<cell colspan="3">
+								<textbox id="adirector_birth_place"
+									mold="rounded" hflex="1"
+									value="@{clientmain$composer.newcl.director.birth_place}" />
+							</cell>
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.code_country}" />
+							</cell>
+							<cell colspan="2">
+								<textbox
+									id="adirector_code_country_text" mold="rounded" hflex="1"
+									value="@{clientmain$composer.newcl.director.code_country}" />
+								<rcombobox id="adirector_code_country"
+									mold="rounded" hflex="3" readonly="true"
+									selecteditem="@{clientmain$composer.newcl.director.code_country}" />
+							</cell>
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.code_adr_region}" />
+							</cell>
+							<cell>
+								<textbox
+									id="adirector_code_adr_region_text" hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.director.code_adr_region}" />
+								<rcombobox
+									id="adirector_code_adr_region" mold="rounded" hflex="3"
+									readonly="true"
+									selecteditem="@{clientmain$composer.newcl.director.code_adr_region}" />
+							</cell>
+							<cell align="end">
+								<label
+									value="${labels.client.code_adr_distr}" />
+							</cell>
+							<cell>
+								<textbox
+									id="adirector_code_adr_distr_text" mold="rounded" hflex="1"
+									value="@{clientmain$composer.newcl.director.code_adr_distr}" />
+								<rcombobox id="adirector_code_adr_distr"
+									mold="rounded" hflex="3" readonly="true"
+									selecteditem="@{clientmain$composer.newcl.director.code_adr_distr}" />
+							</cell>
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.post_address}" />
+							</cell>
+							<cell colspan="7">
+								<textbox id="adirector_post_address"
+									mold="rounded" hflex="1"
+									value="@{clientmain$composer.newcl.director.post_address}" />
+							</cell>
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.number_tax_registration}" />
+							</cell>
+							<textbox
+								id="adirector_number_tax_registration" mold="rounded" hflex="1"
+								maxlength="9"
+								value="@{clientmain$composer.newcl.director.number_tax_registration}" />
+							<cell align="end">
+								<label
+									value="${labels.client.code_tax_org}" />
+							</cell>
+							<cell colspan="2">
+								<textbox
+									id="adirector_code_tax_org_text" hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.director.code_tax_org}" />
+								<rcombobox id="adirector_code_tax_org"
+									mold="rounded" hflex="3"
+									selecteditem="@{clientmain$composer.newcl.director.code_tax_org}" />
+							</cell>
+							<cell align="end">
+								<label
+									value="${labels.client_p.p_inps}" />
+							</cell>
+							<textbox maxlength="14" id="adirector_inps"
+								hflex="1" value="@{clientmain$composer.newcl.director.inps}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client_p.phone_mobile}" />
+							</cell>
+							<textbox
+								value="@{clientmain$composer.newcl.director.phone_mobile}" />
+							<cell align="end">
+								<label
+									value="${labels.client_p.phone_home}" />
+							</cell>
+							<cell colspan="2">
+								<textbox
+									value="@{clientmain$composer.newcl.director.phone_home}" />
+							</cell>
+							<cell align="end">
+								<label value="${labels.client_p.email}" />
+							</cell>
+							<textbox
+								value="@{clientmain$composer.newcl.director.email_address}" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="aaccounter_grb" mold="3d" closable="false">
+				<caption id="aacc_caption" label="Бухгалтер" />
+				<toolbarbutton id="btn_find_accountant_n"
+					label="Найти другое лицо" />
+				<toolbarbutton id="btn_clear_accountant_n"
+					label="Очистить" />
+				<grid ctrlKeys="^e#up#down" sizedByContent="true"
+					span="true" style="border:normal">
+					<columns>
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+						<column hflex="1" />
+					</columns>
+					<rows>
+						<row id="aaccountant_ipFio_cyr">
+							<cell align="end">
+								<label
+									value="${labels.client_p.p_last_name_cyr}" />
+							</cell>
+							<textbox id="aaccountant_p_last_name_cyr"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.accountant.family_local}" />
+							<cell align="end">
+								<label
+									value="${labels.client_p.p_first_name_cyr}" />
+							</cell>
+							<textbox id="aaccountant_p_first_name_cyr"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.accountant.first_name_local}" />
+							<cell align="end">
+								<label
+									value="${labels.client_p.p_patronymic_cyr}" />
+							</cell>
+							<textbox id="aaccountant_p_patronymic_cyr"
+								hflex="1" mold="rounded"
+								value="@{clientmain$composer.newcl.accountant.patronymic_local}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label value="${labels.client.family}" />
+							</cell>
+							<textbox id="aaccountant_family"
+								mold="rounded" hflex="1"
+								value="@{clientmain$composer.newcl.accountant.family}" />
+							<cell align="end">
+								<label
+									value="${labels.client.first_name}" />
+							</cell>
+							<textbox id="aaccountant_first_name"
+								mold="rounded" hflex="1"
+								value="@{clientmain$composer.newcl.accountant.first_name}" />
+							<cell align="end">
+								<label
+									value="${labels.client.patronymic}" />
+							</cell>
+							<textbox id="aaccountant_patronymic"
+								mold="rounded" hflex="1"
+								value="@{clientmain$composer.newcl.accountant.patronymic}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.passport_type}" />
+							</cell>
+							<cell colspan="2">
+								<textbox
+									id="aaccountant_type_document_text" hflex="1"
+									value="@{clientmain$composer.newcl.accountant.type_document}"
+									mold="rounded" />
+								<rcombobox
+									id="aaccountant_type_document" mold="rounded" hflex="3"
+									selecteditem="@{clientmain$composer.newcl.accountant.type_document}" />
+							</cell>
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.passport_serial}" />
+							</cell>
+							<textbox hflex="1" maxlength="2"
+								id="aaccountant_passport_serial" mold="rounded"
+								value="@{clientmain$composer.newcl.accountant.passport_serial}" />
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.passport_number}" />
+							</cell>
+							<textbox id="aaccountant_passport_number"
+								mold="rounded" hflex="3" maxlength="7"
+								value="@{clientmain$composer.newcl.accountant.passport_number}" />
+						</row>
+						<row id="aaccountant_pass_place_row">
+							<label
+								value="${labels.client.passport_place_registration}" />
+							<cell align="end">
+								<label value="Вне Территории РУз" />
+								<checkbox
+									id="aaccountant_pass_place_checkbox" />
+							</cell>
+							<label hflex="1"
+								value="${labels.client.p_code_adr_region}" />
+							<cell colspan="2">
+								<textbox hflex="1"
+									value="@{clientmain$composer.newcl.accountant.pass_place_region}"
+									mold="rounded" id="aaccountant_pass_place_region_text" />
+								<rcombobox
+									id="aaccountant_pass_place_region" mold="rounded" hflex="2"
+									readonly="true"
+									selecteditem="@{clientmain$composer.newcl.accountant.pass_place_region}" />
+							</cell>
+							<label hflex="1"
+								value="${labels.client.p_code_adr_distr}" />
+							<cell colspan="2">
+								<textbox hflex="1"
+									value="@{clientmain$composer.newcl.accountant.pass_place_district}"
+									mold="rounded" id="aaccountant_pass_place_distr_text" />
+								<rcombobox
+									id="aaccountant_pass_place_distr" mold="rounded"
+									selecteditem="@{clientmain$composer.newcl.accountant.pass_place_district}"
+									hflex="2" readonly="true" />
+							</cell>
+						</row>
+						<row>
+							<label
+								value="${labels.client.p_passport_place_registration}" />
+							<cell colspan="7">
+								<textbox
+									id="aaccountant_passport_place_registration" mold="rounded"
+									hflex="1"
+									value="@{clientmain$composer.newcl.accountant.passport_place_registration}" />
+							</cell>
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.passport_date_registration}" />
+							</cell>
+							<datebox hflex="1"
+								id="aaccountant_passport_date_registration" mold="rounded"
+								format="dd.MM.yyyy" lenient="false"
+								value="@{clientmain$composer.newcl.accountant.passport_date_registration}" />
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.passport_date_expiration}" />
+							</cell>
+							<datebox format="dd.MM.yyyy" lenient="false"
+								id="aaccountant_passport_date_expiration" mold="rounded"
+								hflex="1"
+								value="@{clientmain$composer.newcl.accountant.passport_date_expiration}" />
+							<cell align="end">
+								<label
+									value="${labels.client.code_nation}" />
+							</cell>
+							<rcombobox id="aaccountant_code_nation"
+								mold="rounded" hflex="1" readonly="true"
+								selecteditem="@{clientmain$composer.newcl.accountant.code_nation}" />
+                            <cell align="end">
+								<label
+									value="ПИНФЛ" />
+							</cell>
+							<textbox maxlength="14" id="aaccountant_pinfl"
+								hflex="1" value="@{clientmain$composer.newcl.accountant.pinfl}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.code_citizenship}" />
+							</cell>
+
+							<cell align="end" colspan="2">
+								<textbox hflex="1"
+									id="aaccountant_code_citizenship_text" mold="rounded"
+									value="@{clientmain$composer.newcl.accountant.code_citizenship}" />
+								<rcombobox
+									id="aaccountant_code_citizenship" hflex="3" mold="rounded"
+									readonly="true"
+									selecteditem="@{clientmain$composer.newcl.accountant.code_citizenship}" />
+							</cell>
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.code_resident}" />
+							</cell>
+							<rcombobox id="aaccountant_code_resident"
+								mold="rounded" hflex="1" readonly="true"
+								selecteditem="@{clientmain$composer.newcl.accountant.code_resident}" />
+							<cell align="end">
+								<label
+									value="${labels.client.code_gender}" />
+							</cell>
+							<rcombobox id="aaccountant_code_gender"
+								mold="rounded" hflex="1" readonly="true"
+								selecteditem="@{clientmain$composer.newcl.accountant.code_gender}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.birthday}" />
+							</cell>
+							<datebox id="aaccountant_birthday"
+								format="dd.MM.yyyy" mold="rounded" lenient="false" hflex="1"
+								value="@{clientmain$composer.newcl.accountant.birthday}" />
+							<cell align="end">
+								<label
+									value="${labels.client.birth_place}" />
+							</cell>
+							<cell colspan="3">
+								<textbox id="aaccountant_birth_place"
+									mold="rounded" hflex="1"
+									value="@{clientmain$composer.newcl.accountant.birth_place}" />
+							</cell>
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.code_country}" />
+							</cell>
+							<cell colspan="2">
+								<textbox
+									id="aaccountant_code_country_text" mold="rounded" hflex="1"
+									value="@{clientmain$composer.newcl.accountant.code_country}" />
+								<rcombobox id="aaccountant_code_country"
+									mold="rounded" hflex="3" readonly="true"
+									selecteditem="@{clientmain$composer.newcl.accountant.code_country}" />
+							</cell>
+							<cell align="end">
+								<label hflex="1"
+									value="${labels.client.code_adr_region}" />
+							</cell>
+							<cell>
+								<textbox
+									id="aaccountant_code_adr_region_text" hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.accountant.code_adr_region}" />
+								<rcombobox
+									id="aaccountant_code_adr_region" mold="rounded" hflex="3"
+									readonly="true"
+									selecteditem="@{clientmain$composer.newcl.accountant.code_adr_region}" />
+							</cell>
+							<cell align="end">
+								<label
+									value="${labels.client.code_adr_distr}" />
+							</cell>
+							<cell>
+								<textbox
+									id="aaccountant_code_adr_distr_text" mold="rounded" hflex="1"
+									value="@{clientmain$composer.newcl.accountant.code_adr_distr}" />
+								<rcombobox
+									id="aaccountant_code_adr_distr" mold="rounded" hflex="3"
+									readonly="true"
+									selecteditem="@{clientmain$composer.newcl.accountant.code_adr_distr}" />
+							</cell>
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.post_address}" />
+							</cell>
+							<cell colspan="7">
+								<textbox id="aaccountant_post_address"
+									mold="rounded" hflex="1"
+									value="@{clientmain$composer.newcl.accountant.post_address}" />
+							</cell>
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client.number_tax_registration}" />
+							</cell>
+							<textbox
+								id="aaccountant_number_tax_registration" mold="rounded"
+								hflex="1" maxlength="9"
+								value="@{clientmain$composer.newcl.accountant.number_tax_registration}" />
+							<cell align="end">
+								<label
+									value="${labels.client.code_tax_org}" />
+							</cell>
+							<cell colspan="2">
+								<textbox
+									id="aaccountant_code_tax_org_text" hflex="1" mold="rounded"
+									value="@{clientmain$composer.newcl.accountant.code_tax_org}" />
+								<rcombobox id="aaccountant_code_tax_org"
+									mold="rounded" hflex="3"
+									selecteditem="@{clientmain$composer.newcl.accountant.code_tax_org}" />
+							</cell>
+							<cell align="end">
+								<label
+									value="${labels.client_p.p_inps}" />
+							</cell>
+							<textbox maxlength="14"
+								id="aaccountant_inps" hflex="1"
+								value="@{clientmain$composer.newcl.accountant.inps}" />
+						</row>
+						<row>
+							<cell align="end">
+								<label
+									value="${labels.client_p.phone_mobile}" />
+							</cell>
+							<textbox
+								value="@{clientmain$composer.newcl.accountant.phone_mobile}" />
+							<cell align="end">
+								<label
+									value="${labels.client_p.phone_home}" />
+							</cell>
+							<cell colspan="2">
+								<textbox
+									value="@{clientmain$composer.newcl.accountant.phone_home}" />
+							</cell>
+							<cell align="end">
+								<label value="${labels.client_p.email}" />
+							</cell>
+							<textbox
+								value="@{clientmain$composer.newcl.accountant.email_address}" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+		</div>
+
+		<toolbar id="tb" visible="false">
+			<toolbarbutton id="btn_save" label="${labels.save}"
+				type="submit" image="/images/save.png" />
+			<!-- 	<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+			-->
+			<toolbarbutton id="btn_clear" label="Очистить" />
+		</toolbar>
+
+		<window id="sector_wnd" mode="modal" closable="true" width="85%"
+			onClose="self.visible = false; event.stopPropagation();"
+			title="Классификатор видов экономической деятельности РУз"
+			position="center,center" visible="false">
+			<grid width="100%">
+				<columns>
+					<column width="10%" />
+					<column width="20%" />
+					<column width="10%" />
+					<column width="10%" />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="Название" />
+						<textbox id="item" hflex="1" />
+					</row>
+					<row>
+						<label value="Группа секторов" />
+						<cell colspan="3" width="100%">
+							<rcombobox id="sectorGroups" readonly="true"
+								hflex="2" />
+						</cell>
+					</row>
+					<row>
+						<cell colspan="3">
+							<hlayout>
+								<toolbar>
+									<toolbarbutton id="find_sector"
+										label="Найти" />
+									<toolbarbutton id="clear"
+										label="Очистить" />
+								</toolbar>
+							</hlayout>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<listbox id="sectors" rows="15">
+				<listhead sizable="true">
+					<listheader label="Код" width="20%" />
+					<listheader label="Наименование" />
+				</listhead>
+			</listbox>
+			<toolbar>
+				<toolbarbutton id="btn_pick" label="Выбрать" />
+			</toolbar>
+		</window>
+
+		<window id="nibbd_modal" mode="modal" closable="true"
+			width="80%" onClose="self.visible = false; event.stopPropagation();"
+			title="НИББД" position="center,center" visible="false" />
+
+		<window id="dp_wnd" mode="modal" closable="true"
+			contentStyle="overflow: auto" height="700px" width="100%"
+			onClose="self.visible = false; event.stopPropagation();"
+			title="Создание связки" position="center,center" visible="false">
+			<include id="incl_cp" />
+		</window>
+
+		<window id="fields_diff_wnd" mode="modal" closable="true"
+			width="90%" onClose="self.visible = false; event.stopPropagation();"
+			title="Сравнение данных" position="center,center" visible="false">
+			<grid id="diff_grid">
+				<columns id="diff_columns" hflex="1" vflex="1">
+					<column label="Поле" width="15%" />
+					<column label="Локалные данные" />
+					<column id="diff_sap_col" label="Данные из SAP" />
+					<column id="diff_sap_col_accept"
+						label="Принять из SAP" width="10%">
+						<checkbox id="check_all_sap" />
+					</column>
+					<column id="diff_ebp_col" label="Данные из ЕБП" />
+					<column id="diff_ebp_col_accept"
+						label="Принять из ЕБП" width="10%">
+						<checkbox id="check_all_ebp" />
+					</column>
+				</columns>
+				<rows id="diff_rows" />
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_apply" label="Сохранить" />
+			</toolbar>
+		</window>
+		<window id="director_search_wnd" mode="modal" closable="true"
+			width="70%" onClose="self.visible = false; event.stopPropagation();"
+			title="Сравнение данных" position="center,center" visible="false">
+			<div>
+				<include id="search_incl" src="/customer/SAPSearch.zul" />
+			</div>
+		</window>
+		<window id="clt_dlg_wnd" mode="modal" closable="true"
+			width="50%" onClose="self.visible = false; event.stopPropagation();"
+			title="Создать клиента" position="center,center" visible="false">
+			<div>
+				<div id="div_radio_grp" style="padding: 10px;">
+					<radiogroup id="paths" orient="vertical">
+					</radiogroup>
+				</div>
+				<toolbar>
+					<toolbarbutton id="btn_choose" label="Выбрать" />
+				</toolbar>
+
+			</div>
+		</window>
+		<window id="wind_approve" width="1000px" height="300px" title="Данные по НИББД" border="normal" mode="overlapped"
+        	position="center,center" visible="false" closable="true" maximizable="true"
+        	onClose="self.visible = false; event.stopPropagation();">
+
+            <grid id="windgrd" ctrlKeys="^e#up#down" visible="true">
+            	<columns>
+					<column width="17%" />
+					<column width="83%" />
+				</columns>
+				<rows>
+				    <row>
+				    <hbox>
+				    <label value="Код счета клиента" />
+				    </hbox>
+            		<hbox align="center"><textbox id="account" /><space bar="false" spacing="20px"/>
+            		<label value="Валюта" /><space bar="false" spacing="10px"/><textbox id="currency" /><space bar="false" spacing="20px"/>
+            		<label value="Порядковый номер счета" /><space bar="false" spacing="10px"/><textbox id="id_order" />
+            		</hbox>
+            		</row>
+            		
+            		<row>
+            		<label value="Вид закрытия" />
+            		<hbox align="left"><textbox id="type_close_id" width="80%" constraint="no empty: " style="color: #FF0000"/>
+            		<rcombobox id="type_close_name" width="250%" constraint="no empty: " style="color: #FF0000"/>
+            		</hbox>
+            		</row>
+            		<row><label value="Номер документа основания" /><textbox id="id_doc" width="30%" /></row>
+            		<row><label value="Дата документа основания" /><datebox id="date_doc" width="30%" /></row>
+            		<row><label value="Лицевой счет" /><textbox id="acc" width="30%" /></row>
+            		<row><label value="ИНН" /><textbox id="inn" width="30%" value="@{clientmain$composer.current.j_number_tax_registration}" /></row>
+
+            	</rows>
+            </grid>
+            <toolbar id="tb"
+        		style="padding-top:7px; padding-bottom:7px;">
+        		<toolbarbutton id="btn_send" label="Запросить НИББД"
+        			image="/images/forward.png" autodisable="self" />
+        		<toolbarbutton id="btn_close" label="Отмена"
+        			image="/images/delete.png" autodisable="self" />
+        	</toolbar>
+        </window>
+	</window>
+
+</zk>

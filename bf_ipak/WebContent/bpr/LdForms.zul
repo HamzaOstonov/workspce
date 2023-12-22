@@ -1,0 +1,820 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="bfldformsmain" width="100%" border="normal"
+	apply="com.is.bpr.bfLdFormsViewCtrl" contentStyle="overflow:auto">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" label="${labels.back}"
+			image="/images/file.png" />
+
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<!-- <toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" 
+			/> -->
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+		<rcombobox id="dbbranch" mold="rounded" width="500px"
+			visible="true" />
+
+		<textbox id="executer" width="270px" value="" />
+		<toolbarbutton id="btnenter" label="Подтвердить" image="/images/statics.png" />
+		<toolbarbutton id="btnconfirm" label="Разрешить ввод"
+			image="/images/statics.png" />
+		<toolbarbutton id="btnconfirm2" label="Утвердить"
+			image="/images/statics.png" />
+
+	</toolbar>
+
+	<div id="grd">
+
+		<paging id="bfldformsPaging" width="100%" />
+		<listbox style="border:none" id="dataGrid" multiple="true"
+			rows="6" width="100%" selectedItem="@{bfldformsmain$composer.current}">
+			<listhead sizable="true">
+
+				<listheader label="${labels.bfldforms.branch}" width="70px" />
+				<listheader label="${labels.bfldforms.id}" width="100px" />
+				<listheader label="${labels.bfldforms.d_date}" width="120px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.d_confirm}" width="120px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.state}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.client}" width="80px" />
+				<listheader label="${labels.bfldforms.name}" width="200px" />
+				<listheader label="${labels.bfldforms.emp_count}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.sub_name}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.sub_addr}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.use_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.phone_dir}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.phone_chief}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.stage_dir}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.stage_chief}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.acc_state}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.is_sec}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.sec_amount}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.is_ld}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.is_building}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.status_build_up_prc}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.doc_name_st}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.doc_num_st}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.doc_date_st}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.date_start}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.transh}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.emp_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.head_of_bank}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.eq_num}" width="100px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.eq_date}" width="100px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.currency}" width="80px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.amount}" width="120px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.p_num}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.p_date}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.crc_num}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.crc_date}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.t_author}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.t_date}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.t_type}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.is_inv}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.currency_inv}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.amount_inv}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.ld_num}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.ld_date}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.cl_num}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.shifr_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.prod_name}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.sred_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.ld_period}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.target}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.ld_amount}" width="200px" />
+				<listheader label="${labels.bfldforms.date_begin}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.date_end}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.calc_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.date_fee}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.arrears_reason}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.term_type}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.kred_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.klass_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.status}" width="100px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.al_num}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.is_tax}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.tax_rate}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.pk}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.klassp_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.ld_type}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.status_prc}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.acceptance}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.niki_id}" width="200px" />
+				<listheader label="${labels.bfldforms.kred_id_cb}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.use_branch}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.ldays}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.cres}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.date_close}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.kod_int}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.kod_fin}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.id_client}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.type_id}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.code_country}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.code_type}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.code_resident}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.code_subject}"
+					width="200px" visible="false" />
+				<listheader label="${labels.bfldforms.code_form}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.date_open}" width="200px"
+					visible="false" />
+				<listheader label="${labels.bfldforms.sign_registr}"
+					width="200px" visible="false" />
+			</listhead>
+
+		</listbox>
+
+
+
+	</div>
+	<div id="frm" visible="false">
+
+		<tabbox width="100%" height="100%">
+			<tabs>
+				<tab label="Анкеты Ссуды к получению" image="/images/open-folder.png"
+					hoverImage="/images/down3.png" />
+				<tab id="A" label="График погашения" image="/images/open-folder.png"
+					hoverImage="/images/down3.png" />
+				<tab label="Дополнительные характеристики" image="/images/open-folder.png"
+					hoverImage="/images/down3.png" />
+
+
+			</tabs>
+			<tabpanels>
+
+
+
+				<tabpanel style="color:#336699;">
+
+					<div id="frmgrd" visible="true">
+						<grid id="frmgrd1" ctrlKeys="^e#up#down" visible="true">
+							<columns>
+								<column width="20%" />
+								<column width="80%" />
+							</columns>
+							<rows>
+
+								<row>
+									<label value="${labels.bfldforms.branch}" />
+									<textbox id="branch" mold="rounded"
+										value="@{bfldformsmain$composer.current.branch}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.id}" />
+									<textbox id="id" mold="rounded"
+										value="@{bfldformsmain$composer.current.id}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.d_date}" />
+									<textbox id="d_date" mold="rounded"
+										value="@{bfldformsmain$composer.current.d_date}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.d_confirm}" />
+									<textbox id="d_confirm" mold="rounded"
+										value="@{bfldformsmain$composer.current.d_confirm}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.state}" />
+									<rcombobox id="state" width="200px" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.state}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.client}" />
+									<textbox id="client" mold="rounded"
+										value="@{bfldformsmain$composer.current.client}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.name}" />
+									<textbox id="name" mold="rounded" width="400px"
+										value="@{bfldformsmain$composer.current.name}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.emp_count}" /><textbox 
+									id="emp_count" mold="rounded" value="@{bfldformsmain$composer.current.emp_count}" 
+									/></row> <row><label value="${labels.bfldforms.sub_name}" /><textbox id="sub_name" 
+									mold="rounded" value="@{bfldformsmain$composer.current.sub_name}" /></row> 
+									<row><label value="${labels.bfldforms.sub_addr}" /><textbox id="sub_addr" 
+									mold="rounded" value="@{bfldformsmain$composer.current.sub_addr}" /></row> 
+									<row><label value="${labels.bfldforms.use_id}" /><textbox id="use_id" mold="rounded" 
+									value="@{bfldformsmain$composer.current.use_id}" /></row> <row><label value="${labels.bfldforms.phone_dir}" 
+									/><textbox id="phone_dir" mold="rounded" value="@{bfldformsmain$composer.current.phone_dir}" 
+									/></row> <row><label value="${labels.bfldforms.phone_chief}" /><textbox id="phone_chief" 
+									mold="rounded" value="@{bfldformsmain$composer.current.phone_chief}" /></row> 
+									<row><label value="${labels.bfldforms.stage_dir}" /><textbox id="stage_dir" 
+									mold="rounded" value="@{bfldformsmain$composer.current.stage_dir}" /></row> 
+									<row><label value="${labels.bfldforms.stage_chief}" /><textbox id="stage_chief" 
+									mold="rounded" value="@{bfldformsmain$composer.current.stage_chief}" /></row> 
+									<row><label value="${labels.bfldforms.acc_state}" /><textbox id="acc_state" 
+									mold="rounded" value="@{bfldformsmain$composer.current.acc_state}" /></row> 
+									<row><label value="${labels.bfldforms.is_sec}" /><textbox id="is_sec" mold="rounded" 
+									value="@{bfldformsmain$composer.current.is_sec}" /></row> <row><label value="${labels.bfldforms.sec_amount}" 
+									/><textbox id="sec_amount" mold="rounded" value="@{bfldformsmain$composer.current.sec_amount}" 
+									/></row> <row><label value="${labels.bfldforms.is_ld}" /><textbox id="is_ld" 
+									mold="rounded" value="@{bfldformsmain$composer.current.is_ld}" /></row> <row><label 
+									value="${labels.bfldforms.is_building}" /><textbox id="is_building" mold="rounded" 
+									value="@{bfldformsmain$composer.current.is_building}" /></row> <row><label 
+									value="${labels.bfldforms.status_build_up_prc}" /><textbox id="status_build_up_prc" 
+									mold="rounded" value="@{bfldformsmain$composer.current.status_build_up_prc}" 
+									/></row> <row><label value="${labels.bfldforms.doc_name_st}" /><textbox id="doc_name_st" 
+									mold="rounded" value="@{bfldformsmain$composer.current.doc_name_st}" /></row> 
+									<row><label value="${labels.bfldforms.doc_num_st}" /><textbox id="doc_num_st" 
+									mold="rounded" value="@{bfldformsmain$composer.current.doc_num_st}" /></row> 
+									<row><label value="${labels.bfldforms.doc_date_st}" /><textbox id="doc_date_st" 
+									mold="rounded" value="@{bfldformsmain$composer.current.doc_date_st}" /></row> 
+									<row><label value="${labels.bfldforms.date_start}" /><textbox id="date_start" 
+									mold="rounded" value="@{bfldformsmain$composer.current.date_start}" /></row> 
+									<row><label value="${labels.bfldforms.transh}" /><textbox id="transh" mold="rounded" 
+									value="@{bfldformsmain$composer.current.transh}" /></row> <row><label value="${labels.bfldforms.emp_id}" 
+									/><textbox id="emp_id" mold="rounded" value="@{bfldformsmain$composer.current.emp_id}" 
+									/></row> -->
+								<row>
+									<label value="${labels.bfldforms.head_of_bank}" />
+									<textbox id="head_of_bank" mold="rounded"
+										value="@{bfldformsmain$composer.current.head_of_bank}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.niki_id}" />
+									<textbox id="niki_id" mold="rounded"
+										value="@{bfldformsmain$composer.current.niki_id}" />
+								</row>
+
+								<row>
+									<label value="${labels.bfldforms.eq_date}" />
+									<textbox id="eq_date" mold="rounded"
+										value="@{bfldformsmain$composer.current.eq_date}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.currency}" />
+									<rcombobox id="currency" width="350px" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.currency}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.amount}" />
+									<textbox id="amount" mold="rounded"
+										value="@{bfldformsmain$composer.current.amount}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.p_num}" /><textbox id="p_num" 
+									mold="rounded" value="@{bfldformsmain$composer.current.p_num}" /></row> <row><label 
+									value="${labels.bfldforms.p_date}" /><textbox id="p_date" mold="rounded" 
+									value="@{bfldformsmain$composer.current.p_date}" /></row> -->
+								<row>
+									<label value="${labels.bfldforms.crc_num}" />
+									<textbox id="crc_num" mold="rounded"
+										value="@{bfldformsmain$composer.current.crc_num}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.crc_date}" />
+									<textbox id="crc_date" mold="rounded"
+										value="@{bfldformsmain$composer.current.crc_date}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.t_author}" /><textbox 
+									id="t_author" mold="rounded" value="@{bfldformsmain$composer.current.t_author}" 
+									/></row> <row><label value="${labels.bfldforms.t_date}" /><textbox id="t_date" 
+									mold="rounded" value="@{bfldformsmain$composer.current.t_date}" /></row> 
+									<row><label value="${labels.bfldforms.t_type}" /><textbox id="t_type" mold="rounded" 
+									value="@{bfldformsmain$composer.current.t_type}" /></row> <row><label value="${labels.bfldforms.is_inv}" 
+									/><textbox id="is_inv" mold="rounded" value="@{bfldformsmain$composer.current.is_inv}" 
+									/></row> <row><label value="${labels.bfldforms.currency_inv}" /><textbox 
+									id="currency_inv" mold="rounded" value="@{bfldformsmain$composer.current.currency_inv}" 
+									/></row> <row><label value="${labels.bfldforms.amount_inv}" /><textbox id="amount_inv" 
+									mold="rounded" value="@{bfldformsmain$composer.current.amount_inv}" /></row> -->
+								<row>
+									<label value="${labels.bfldforms.ld_num}" />
+									<textbox id="ld_num" mold="rounded"
+										value="@{bfldformsmain$composer.current.ld_num}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.ld_date}" />
+									<textbox id="ld_date" mold="rounded"
+										value="@{bfldformsmain$composer.current.ld_date}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.cl_num}" /><textbox id="cl_num" 
+									mold="rounded" value="@{bfldformsmain$composer.current.cl_num}" /></row> -->
+								<row>
+									<label value="${labels.bfldforms.shifr_id}" />
+									<rcombobox id="shifr_id" width="550px" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.shifr_id}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.prod_name}" />
+									<textbox id="prod_name" width="300px" mold="rounded"
+										value="@{bfldformsmain$composer.current.prod_name}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.sred_id}" />
+									<rcombobox id="sred_id" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.sred_id}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.ld_period}" /><textbox 
+									id="ld_period" mold="rounded" value="@{bfldformsmain$composer.current.ld_period}" 
+									/></row> -->
+								<row>
+									<label value="${labels.bfldforms.target}" />
+									<textbox id="target" mold="rounded" width="550px"
+										value="@{bfldformsmain$composer.current.target}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.ld_amount}" />
+									<textbox id="ld_amount" mold="rounded"
+										value="@{bfldformsmain$composer.current.ld_amount}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.date_begin}" /><textbox 
+									id="date_begin" mold="rounded" value="@{bfldformsmain$composer.current.date_begin}" 
+									/></row> -->
+								<row>
+									<label value="${labels.bfldforms.date_end}" />
+									<textbox id="date_end" mold="rounded"
+										value="@{bfldformsmain$composer.current.date_end}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.calc_id}" />
+									<rcombobox id="calc_id" width="300px" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.calc_id}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.date_fee}" />
+									<textbox id="date_fee" mold="rounded"
+										value="@{bfldformsmain$composer.current.date_fee}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.arrears_reason}" /><textbox 
+									id="arrears_reason" mold="rounded" value="@{bfldformsmain$composer.current.arrears_reason}" 
+									/></row> -->
+								<row>
+									<label value="${labels.bfldforms.term_type}" />
+									<rcombobox id="term_type" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.term_type}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.kred_id}" />
+									<rcombobox id="kred_id" width="550px" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.kred_id}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.klass_id}" />
+									<rcombobox id="klass_id" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.klass_id}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.status}" />
+									<rcombobox id="status" width="250px" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.status}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.al_num}" />
+									<textbox id="al_num" mold="rounded"
+										value="@{bfldformsmain$composer.current.al_num}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.is_tax}" />
+									<textbox id="is_tax" mold="rounded"
+										value="@{bfldformsmain$composer.current.is_tax}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.tax_rate}" />
+									<textbox id="tax_rate" mold="rounded"
+										value="@{bfldformsmain$composer.current.tax_rate}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.pk}" /><textbox id="pk" 
+									mold="rounded" value="@{bfldformsmain$composer.current.pk}" /></row> -->
+								<row>
+									<label value="${labels.bfldforms.klassp_id}" />
+									<rcombobox id="klassp_id" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.klassp_id}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.ld_type}" /><textbox id="ld_type" 
+									mold="rounded" value="@{bfldformsmain$composer.current.ld_type}" /></row> -->
+								<row>
+									<label value="${labels.bfldforms.status_prc}" />
+									<rcombobox id="status_prc" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.status_prc}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.acceptance}" /><textbox 
+									id="acceptance" mold="rounded" value="@{bfldformsmain$composer.current.acceptance}" 
+									/></row> <row><label value="${labels.bfldforms.eq_num}" /><textbox id="eq_num" 
+									mold="rounded" value="@{bfldformsmain$composer.current.eq_num}" /></row> 
+									<row><label value="${labels.bfldforms.kred_id_cb}" /><textbox id="kred_id_cb" 
+									mold="rounded" value="@{bfldformsmain$composer.current.kred_id_cb}" /></row> 
+									<row><label value="${labels.bfldforms.use_branch}" /><textbox id="use_branch" 
+									mold="rounded" value="@{bfldformsmain$composer.current.use_branch}" /></row> 
+									<row><label value="${labels.bfldforms.ldays}" /><textbox id="ldays" mold="rounded" 
+									value="@{bfldformsmain$composer.current.ldays}" /></row> <row><label value="${labels.bfldforms.cres}" 
+									/><textbox id="cres" mold="rounded" value="@{bfldformsmain$composer.current.cres}" 
+									/></row> <row><label value="${labels.bfldforms.date_close}" /><textbox id="date_close" 
+									mold="rounded" value="@{bfldformsmain$composer.current.date_close}" /></row> -->
+
+								<row>
+									<label value="${labels.bfldforms.kod_int}" />
+									<rcombobox id="kod_int" width="200px" mold="rounded"
+										selecteditem="@{bfldformsmain$composer.current.kod_int}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.kod_fin}" /><textbox id="kod_fin" 
+									mold="rounded" value="@{bfldformsmain$composer.current.kod_fin}" /></row> 
+									<row><label value="${labels.bfldforms.faza_abr}" /><textbox id="faza_abr" 
+									mold="rounded" value="@{bfldformsmain$composer.current.faza_abr}" /></row> 
+									<row><label value="${labels.bfldforms.id_client}" /><textbox id="id_client" 
+									mold="rounded" value="@{bfldformsmain$composer.current.id_client}" /></row> 
+									<row><label value="${labels.bfldforms.type_id}" /><textbox id="type_id" mold="rounded" 
+									value="@{bfldformsmain$composer.current.type_id}" /></row> <row><label value="${labels.bfldforms.code_country}" 
+									/><textbox id="code_country" mold="rounded" value="@{bfldformsmain$composer.current.code_country}" 
+									/></row> <row><label value="${labels.bfldforms.code_type}" /><textbox id="code_type" 
+									mold="rounded" value="@{bfldformsmain$composer.current.code_type}" /></row> 
+									<row><label value="${labels.bfldforms.code_resident}" /><textbox id="code_resident" 
+									mold="rounded" value="@{bfldformsmain$composer.current.code_resident}" /></row> 
+									<row><label value="${labels.bfldforms.code_subject}" /><textbox id="code_subject" 
+									mold="rounded" value="@{bfldformsmain$composer.current.code_subject}" /></row> 
+									<row><label value="${labels.bfldforms.code_form}" /><textbox id="code_form" 
+									mold="rounded" value="@{bfldformsmain$composer.current.code_form}" /></row> 
+									<row><label value="${labels.bfldforms.date_open}" /><textbox id="date_open" 
+									mold="rounded" value="@{bfldformsmain$composer.current.date_open}" /></row> 
+									<row><label value="${labels.bfldforms.sign_registr}" /><textbox id="sign_registr" 
+									mold="rounded" value="@{bfldformsmain$composer.current.sign_registr}" /></row> -->
+							</rows>
+						</grid>
+
+						<grid id="fgrd" visible="false">
+							<columns>
+								<column width="20%" />
+								<column width="80%" />
+							</columns>
+							<rows>
+
+								<row>
+									<label value="${labels.bfldforms.branch}" />
+									<textbox id="fbranch" mold="rounded"
+										value="@{bfldformsmain$composer.filter.branch}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.id}" />
+									<longbox id="fid" mold="rounded"
+										value="@{bfldformsmain$composer.filter.id}" />
+								</row>
+								<row>
+									<label value="${labels.bfldforms.client}" />
+									<textbox id="fclient" mold="rounded"
+										value="@{bfldformsmain$composer.filter.client}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.d_date}" /><textbox id="fd_date" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.d_date}" /></row> <row><label 
+									value="${labels.bfldforms.d_confirm}" /><textbox id="fd_confirm" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.d_confirm}" /></row> <row><label value="${labels.bfldforms.state}" 
+									/><textbox id="fstate" mold="rounded" value="@{bfldformsmain$composer.filter.state}" 
+									/></row> <row><label value="${labels.bfldforms.type_id}" /><textbox id="ftype_id" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.type_id}" /></row> 
+									<row><label value="${labels.bfldforms.emp_count}" /><textbox id="femp_count" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.emp_count}" /></row> 
+									<row><label value="${labels.bfldforms.sub_name}" /><textbox id="fsub_name" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.sub_name}" /></row> 
+									<row><label value="${labels.bfldforms.sub_addr}" /><textbox id="fsub_addr" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.sub_addr}" /></row> 
+									<row><label value="${labels.bfldforms.use_id}" /><textbox id="fuse_id" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.use_id}" /></row> <row><label value="${labels.bfldforms.phone_dir}" 
+									/><textbox id="fphone_dir" mold="rounded" value="@{bfldformsmain$composer.filter.phone_dir}" 
+									/></row> <row><label value="${labels.bfldforms.phone_chief}" /><textbox id="fphone_chief" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.phone_chief}" /></row> 
+									<row><label value="${labels.bfldforms.stage_dir}" /><textbox id="fstage_dir" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.stage_dir}" /></row> 
+									<row><label value="${labels.bfldforms.stage_chief}" /><textbox id="fstage_chief" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.stage_chief}" /></row> 
+									<row><label value="${labels.bfldforms.acc_state}" /><textbox id="facc_state" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.acc_state}" /></row> 
+									<row><label value="${labels.bfldforms.is_sec}" /><textbox id="fis_sec" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.is_sec}" /></row> <row><label value="${labels.bfldforms.sec_amount}" 
+									/><textbox id="fsec_amount" mold="rounded" value="@{bfldformsmain$composer.filter.sec_amount}" 
+									/></row> <row><label value="${labels.bfldforms.is_ld}" /><textbox id="fis_ld" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.is_ld}" /></row> <row><label 
+									value="${labels.bfldforms.is_building}" /><textbox id="fis_building" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.is_building}" /></row> <row><label 
+									value="${labels.bfldforms.status_build_up_prc}" /><textbox id="fstatus_build_up_prc" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.status_build_up_prc}" 
+									/></row> <row><label value="${labels.bfldforms.doc_name_st}" /><textbox id="fdoc_name_st" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.doc_name_st}" /></row> 
+									<row><label value="${labels.bfldforms.doc_num_st}" /><textbox id="fdoc_num_st" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.doc_num_st}" /></row> 
+									<row><label value="${labels.bfldforms.doc_date_st}" /><textbox id="fdoc_date_st" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.doc_date_st}" /></row> 
+									<row><label value="${labels.bfldforms.date_start}" /><textbox id="fdate_start" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.date_start}" /></row> 
+									<row><label value="${labels.bfldforms.transh}" /><textbox id="ftransh" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.transh}" /></row> <row><label value="${labels.bfldforms.emp_id}" 
+									/><textbox id="femp_id" mold="rounded" value="@{bfldformsmain$composer.filter.emp_id}" 
+									/></row> <row><label value="${labels.bfldforms.head_of_bank}" /><textbox 
+									id="fhead_of_bank" mold="rounded" value="@{bfldformsmain$composer.filter.head_of_bank}" 
+									/></row> <row><label value="${labels.bfldforms.eq_num}" /><textbox id="feq_num" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.eq_num}" /></row> <row><label 
+									value="${labels.bfldforms.eq_date}" /><textbox id="feq_date" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.eq_date}" /></row> <row><label value="${labels.bfldforms.currency}" 
+									/><textbox id="fcurrency" mold="rounded" value="@{bfldformsmain$composer.filter.currency}" 
+									/></row> <row><label value="${labels.bfldforms.amount}" /><textbox id="famount" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.amount}" /></row> <row><label 
+									value="${labels.bfldforms.p_num}" /><textbox id="fp_num" mold="rounded" value="@{bfldformsmain$composer.filter.p_num}" 
+									/></row> <row><label value="${labels.bfldforms.p_date}" /><textbox id="fp_date" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.p_date}" /></row> <row><label 
+									value="${labels.bfldforms.crc_num}" /><textbox id="fcrc_num" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.crc_num}" /></row> <row><label value="${labels.bfldforms.crc_date}" 
+									/><textbox id="fcrc_date" mold="rounded" value="@{bfldformsmain$composer.filter.crc_date}" 
+									/></row> <row><label value="${labels.bfldforms.t_author}" /><textbox id="ft_author" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.t_author}" /></row> 
+									<row><label value="${labels.bfldforms.t_date}" /><textbox id="ft_date" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.t_date}" /></row> <row><label value="${labels.bfldforms.t_type}" 
+									/><textbox id="ft_type" mold="rounded" value="@{bfldformsmain$composer.filter.t_type}" 
+									/></row> <row><label value="${labels.bfldforms.is_inv}" /><textbox id="fis_inv" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.is_inv}" /></row> <row><label 
+									value="${labels.bfldforms.currency_inv}" /><textbox id="fcurrency_inv" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.currency_inv}" /></row> <row><label 
+									value="${labels.bfldforms.amount_inv}" /><textbox id="famount_inv" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.amount_inv}" /></row> <row><label 
+									value="${labels.bfldforms.ld_num}" /><textbox id="fld_num" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.ld_num}" /></row> <row><label value="${labels.bfldforms.ld_date}" 
+									/><textbox id="fld_date" mold="rounded" value="@{bfldformsmain$composer.filter.ld_date}" 
+									/></row> <row><label value="${labels.bfldforms.cl_num}" /><textbox id="fcl_num" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.cl_num}" /></row> <row><label 
+									value="${labels.bfldforms.shifr_id}" /><textbox id="fshifr_id" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.shifr_id}" /></row> <row><label value="${labels.bfldforms.prod_name}" 
+									/><textbox id="fprod_name" mold="rounded" value="@{bfldformsmain$composer.filter.prod_name}" 
+									/></row> <row><label value="${labels.bfldforms.sred_id}" /><textbox id="fsred_id" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.sred_id}" /></row> 
+									<row><label value="${labels.bfldforms.ld_period}" /><textbox id="fld_period" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.ld_period}" /></row> 
+									<row><label value="${labels.bfldforms.target}" /><textbox id="ftarget" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.target}" /></row> -->
+								<row>
+									<label value="${labels.bfldforms.ld_amount}" />
+									<longbox id="fld_amount" mold="rounded"
+										value="@{bfldformsmain$composer.filter.ld_amount}" />
+								</row>
+								<!-- <row><label value="${labels.bfldforms.date_begin}" /><textbox 
+									id="fdate_begin" mold="rounded" value="@{bfldformsmain$composer.filter.date_begin}" 
+									/></row> <row><label value="${labels.bfldforms.date_end}" /><textbox id="fdate_end" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.date_end}" /></row> 
+									<row><label value="${labels.bfldforms.calc_id}" /><textbox id="fcalc_id" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.calc_id}" /></row> 
+									<row><label value="${labels.bfldforms.date_fee}" /><textbox id="fdate_fee" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.date_fee}" /></row> 
+									<row><label value="${labels.bfldforms.arrears_reason}" /><textbox id="farrears_reason" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.arrears_reason}" /></row> 
+									<row><label value="${labels.bfldforms.term_type}" /><textbox id="fterm_type" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.term_type}" /></row> 
+									<row><label value="${labels.bfldforms.kred_id}" /><textbox id="fkred_id" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.kred_id}" /></row> 
+									<row><label value="${labels.bfldforms.klass_id}" /><textbox id="fklass_id" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.klass_id}" /></row> 
+									<row><label value="${labels.bfldforms.status}" /><textbox id="fstatus" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.status}" /></row> <row><label value="${labels.bfldforms.al_num}" 
+									/><textbox id="fal_num" mold="rounded" value="@{bfldformsmain$composer.filter.al_num}" 
+									/></row> <row><label value="${labels.bfldforms.is_tax}" /><textbox id="fis_tax" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.is_tax}" /></row> <row><label 
+									value="${labels.bfldforms.tax_rate}" /><textbox id="ftax_rate" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.tax_rate}" /></row> <row><label value="${labels.bfldforms.pk}" 
+									/><textbox id="fpk" mold="rounded" value="@{bfldformsmain$composer.filter.pk}" 
+									/></row> <row><label value="${labels.bfldforms.klassp_id}" /><textbox id="fklassp_id" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.klassp_id}" /></row> 
+									<row><label value="${labels.bfldforms.ld_type}" /><textbox id="fld_type" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.ld_type}" /></row> 
+									<row><label value="${labels.bfldforms.status_prc}" /><textbox id="fstatus_prc" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.status_prc}" /></row> 
+									<row><label value="${labels.bfldforms.acceptance}" /><textbox id="facceptance" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.acceptance}" /></row> 
+									<row><label value="${labels.bfldforms.niki_id}" /><textbox id="fniki_id" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.niki_id}" /></row> 
+									<row><label value="${labels.bfldforms.kred_id_cb}" /><textbox id="fkred_id_cb" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.kred_id_cb}" /></row> 
+									<row><label value="${labels.bfldforms.use_branch}" /><textbox id="fuse_branch" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.use_branch}" /></row> 
+									<row><label value="${labels.bfldforms.ldays}" /><textbox id="fldays" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.ldays}" /></row> <row><label value="${labels.bfldforms.cres}" 
+									/><textbox id="fcres" mold="rounded" value="@{bfldformsmain$composer.filter.cres}" 
+									/></row> <row><label value="${labels.bfldforms.date_close}" /><textbox id="fdate_close" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.date_close}" /></row> 
+									<row><label value="${labels.bfldforms.kod_int}" /><textbox id="fkod_int" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.kod_int}" /></row> 
+									<row><label value="${labels.bfldforms.kod_fin}" /><textbox id="fkod_fin" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.kod_fin}" /></row> -->
+								<!-- <row><label value="${labels.bfldforms.faza_abr}" /><textbox 
+									id="ffaza_abr" mold="rounded" value="@{bfldformsmain$composer.filter.faza_abr}" 
+									/></row> <row><label value="${labels.bfldforms.id_client}" /><textbox id="fid_client" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.id_client}" /></row> 
+									<row><label value="${labels.bfldforms.name}" /><textbox id="fname" mold="rounded" 
+									value="@{bfldformsmain$composer.filter.name}" /></row> <row><label value="${labels.bfldforms.code_country}" 
+									/><textbox id="fcode_country" mold="rounded" value="@{bfldformsmain$composer.filter.code_country}" 
+									/></row> <row><label value="${labels.bfldforms.code_type}" /><textbox id="fcode_type" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.code_type}" /></row> 
+									<row><label value="${labels.bfldforms.code_resident}" /><textbox id="fcode_resident" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.code_resident}" /></row> 
+									<row><label value="${labels.bfldforms.code_subject}" /><textbox id="fcode_subject" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.code_subject}" /></row> 
+									<row><label value="${labels.bfldforms.code_form}" /><textbox id="fcode_form" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.code_form}" /></row> 
+									<row><label value="${labels.bfldforms.date_open}" /><textbox id="fdate_open" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.date_open}" /></row> 
+									<row><label value="${labels.bfldforms.sign_registr}" /><textbox id="fsign_registr" 
+									mold="rounded" value="@{bfldformsmain$composer.filter.sign_registr}" /></row> -->
+
+							</rows>
+						</grid>
+
+
+						<toolbar>
+
+							<toolbarbutton id="btn_save" label="${labels.search}"
+								image="/images/save.png" />
+
+							<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+								image="/images/stop.png" />
+						</toolbar>
+					</div>
+				</tabpanel>
+
+				<tabpanel style="color:#336699;" height="100%">
+					<include id="a" height="600px" />
+				</tabpanel>
+				<tabpanel style="color:#336699;">
+					<div id="addinfo" width="100%"></div>
+				</tabpanel>
+
+
+			</tabpanels>
+
+		</tabbox>
+		<grid id="addgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<!-- <row><label value="${labels.bfldforms.branch}" /><textbox id="abranch" 
+					mold="rounded" /></row> <row><label value="${labels.bfldforms.id}" /><textbox 
+					id="aid" mold="rounded" /></row> <row><label value="${labels.bfldforms.d_date}" 
+					/><textbox id="ad_date" mold="rounded" /></row> <row><label value="${labels.bfldforms.d_confirm}" 
+					/><textbox id="ad_confirm" mold="rounded" /></row> <row><label value="${labels.bfldforms.state}" 
+					/><textbox id="astate" mold="rounded" /></row> <row><label value="${labels.bfldforms.client}" 
+					/><textbox id="aclient" mold="rounded" /></row> <row><label value="${labels.bfldforms.type_id}" 
+					/><textbox id="atype_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.emp_count}" 
+					/><textbox id="aemp_count" mold="rounded" /></row> <row><label value="${labels.bfldforms.sub_name}" 
+					/><textbox id="asub_name" mold="rounded" /></row> <row><label value="${labels.bfldforms.sub_addr}" 
+					/><textbox id="asub_addr" mold="rounded" /></row> <row><label value="${labels.bfldforms.use_id}" 
+					/><textbox id="ause_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.phone_dir}" 
+					/><textbox id="aphone_dir" mold="rounded" /></row> <row><label value="${labels.bfldforms.phone_chief}" 
+					/><textbox id="aphone_chief" mold="rounded" /></row> <row><label value="${labels.bfldforms.stage_dir}" 
+					/><textbox id="astage_dir" mold="rounded" /></row> <row><label value="${labels.bfldforms.stage_chief}" 
+					/><textbox id="astage_chief" mold="rounded" /></row> <row><label value="${labels.bfldforms.acc_state}" 
+					/><textbox id="aacc_state" mold="rounded" /></row> <row><label value="${labels.bfldforms.is_sec}" 
+					/><textbox id="ais_sec" mold="rounded" /></row> <row><label value="${labels.bfldforms.sec_amount}" 
+					/><textbox id="asec_amount" mold="rounded" /></row> <row><label value="${labels.bfldforms.is_ld}" 
+					/><textbox id="ais_ld" mold="rounded" /></row> <row><label value="${labels.bfldforms.is_building}" 
+					/><textbox id="ais_building" mold="rounded" /></row> <row><label value="${labels.bfldforms.status_build_up_prc}" 
+					/><textbox id="astatus_build_up_prc" mold="rounded" /></row> <row><label 
+					value="${labels.bfldforms.doc_name_st}" /><textbox id="adoc_name_st" mold="rounded" 
+					/></row> <row><label value="${labels.bfldforms.doc_num_st}" /><textbox id="adoc_num_st" 
+					mold="rounded" /></row> <row><label value="${labels.bfldforms.doc_date_st}" 
+					/><textbox id="adoc_date_st" mold="rounded" /></row> <row><label value="${labels.bfldforms.date_start}" 
+					/><textbox id="adate_start" mold="rounded" /></row> <row><label value="${labels.bfldforms.transh}" 
+					/><textbox id="atransh" mold="rounded" /></row> <row><label value="${labels.bfldforms.emp_id}" 
+					/><textbox id="aemp_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.head_of_bank}" 
+					/><textbox id="ahead_of_bank" mold="rounded" /></row> <row><label value="${labels.bfldforms.eq_num}" 
+					/><textbox id="aeq_num" mold="rounded" /></row> <row><label value="${labels.bfldforms.eq_date}" 
+					/><textbox id="aeq_date" mold="rounded" /></row> <row><label value="${labels.bfldforms.currency}" 
+					/><textbox id="acurrency" mold="rounded" /></row> <row><label value="${labels.bfldforms.amount}" 
+					/><textbox id="aamount" mold="rounded" /></row> <row><label value="${labels.bfldforms.p_num}" 
+					/><textbox id="ap_num" mold="rounded" /></row> <row><label value="${labels.bfldforms.p_date}" 
+					/><textbox id="ap_date" mold="rounded" /></row> <row><label value="${labels.bfldforms.crc_num}" 
+					/><textbox id="acrc_num" mold="rounded" /></row> <row><label value="${labels.bfldforms.crc_date}" 
+					/><textbox id="acrc_date" mold="rounded" /></row> <row><label value="${labels.bfldforms.t_author}" 
+					/><textbox id="at_author" mold="rounded" /></row> <row><label value="${labels.bfldforms.t_date}" 
+					/><textbox id="at_date" mold="rounded" /></row> <row><label value="${labels.bfldforms.t_type}" 
+					/><textbox id="at_type" mold="rounded" /></row> <row><label value="${labels.bfldforms.is_inv}" 
+					/><textbox id="ais_inv" mold="rounded" /></row> <row><label value="${labels.bfldforms.currency_inv}" 
+					/><textbox id="acurrency_inv" mold="rounded" /></row> <row><label value="${labels.bfldforms.amount_inv}" 
+					/><textbox id="aamount_inv" mold="rounded" /></row> <row><label value="${labels.bfldforms.ld_num}" 
+					/><textbox id="ald_num" mold="rounded" /></row> <row><label value="${labels.bfldforms.ld_date}" 
+					/><textbox id="ald_date" mold="rounded" /></row> <row><label value="${labels.bfldforms.cl_num}" 
+					/><textbox id="acl_num" mold="rounded" /></row> <row><label value="${labels.bfldforms.shifr_id}" 
+					/><textbox id="ashifr_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.prod_name}" 
+					/><textbox id="aprod_name" mold="rounded" /></row> <row><label value="${labels.bfldforms.sred_id}" 
+					/><textbox id="asred_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.ld_period}" 
+					/><textbox id="ald_period" mold="rounded" /></row> <row><label value="${labels.bfldforms.target}" 
+					/><textbox id="atarget" mold="rounded" /></row> <row><label value="${labels.bfldforms.ld_amount}" 
+					/><textbox id="ald_amount" mold="rounded" /></row> <row><label value="${labels.bfldforms.date_begin}" 
+					/><textbox id="adate_begin" mold="rounded" /></row> <row><label value="${labels.bfldforms.date_end}" 
+					/><textbox id="adate_end" mold="rounded" /></row> <row><label value="${labels.bfldforms.calc_id}" 
+					/><textbox id="acalc_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.date_fee}" 
+					/><textbox id="adate_fee" mold="rounded" /></row> <row><label value="${labels.bfldforms.arrears_reason}" 
+					/><textbox id="aarrears_reason" mold="rounded" /></row> <row><label value="${labels.bfldforms.term_type}" 
+					/><textbox id="aterm_type" mold="rounded" /></row> <row><label value="${labels.bfldforms.kred_id}" 
+					/><textbox id="akred_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.klass_id}" 
+					/><textbox id="aklass_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.status}" 
+					/><textbox id="astatus" mold="rounded" /></row> <row><label value="${labels.bfldforms.al_num}" 
+					/><textbox id="aal_num" mold="rounded" /></row> <row><label value="${labels.bfldforms.is_tax}" 
+					/><textbox id="ais_tax" mold="rounded" /></row> <row><label value="${labels.bfldforms.tax_rate}" 
+					/><textbox id="atax_rate" mold="rounded" /></row> <row><label value="${labels.bfldforms.pk}" 
+					/><textbox id="apk" mold="rounded" /></row> <row><label value="${labels.bfldforms.klassp_id}" 
+					/><textbox id="aklassp_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.ld_type}" 
+					/><textbox id="ald_type" mold="rounded" /></row> <row><label value="${labels.bfldforms.status_prc}" 
+					/><textbox id="astatus_prc" mold="rounded" /></row> <row><label value="${labels.bfldforms.acceptance}" 
+					/><textbox id="aacceptance" mold="rounded" /></row> <row><label value="${labels.bfldforms.niki_id}" 
+					/><textbox id="aniki_id" mold="rounded" /></row> <row><label value="${labels.bfldforms.kred_id_cb}" 
+					/><textbox id="akred_id_cb" mold="rounded" /></row> <row><label value="${labels.bfldforms.use_branch}" 
+					/><textbox id="ause_branch" mold="rounded" /></row> <row><label value="${labels.bfldforms.ldays}" 
+					/><textbox id="aldays" mold="rounded" /></row> <row><label value="${labels.bfldforms.cres}" 
+					/><textbox id="acres" mold="rounded" /></row> <row><label value="${labels.bfldforms.date_close}" 
+					/><textbox id="adate_close" mold="rounded" /></row> <row><label value="${labels.bfldforms.kod_int}" 
+					/><textbox id="akod_int" mold="rounded" /></row> <row><label value="${labels.bfldforms.kod_fin}" 
+					/><textbox id="akod_fin" mold="rounded" /></row> <row><label value="${labels.bfldforms.faza_abr}" 
+					/><textbox id="afaza_abr" mold="rounded" /></row> <row><label value="${labels.bfldforms.id_client}" 
+					/><textbox id="aid_client" mold="rounded" /></row> <row><label value="${labels.bfldforms.name}" 
+					/><textbox id="aname" mold="rounded" /></row> <row><label value="${labels.bfldforms.code_country}" 
+					/><textbox id="acode_country" mold="rounded" /></row> <row><label value="${labels.bfldforms.code_type}" 
+					/><textbox id="acode_type" mold="rounded" /></row> <row><label value="${labels.bfldforms.code_resident}" 
+					/><textbox id="acode_resident" mold="rounded" /></row> <row><label value="${labels.bfldforms.code_subject}" 
+					/><textbox id="acode_subject" mold="rounded" /></row> <row><label value="${labels.bfldforms.code_form}" 
+					/><textbox id="acode_form" mold="rounded" /></row> <row><label value="${labels.bfldforms.date_open}" 
+					/><textbox id="adate_open" mold="rounded" /></row> <row><label value="${labels.bfldforms.sign_registr}" 
+					/><textbox id="asign_registr" mold="rounded" /></row> -->
+			</rows>
+		</grid>
+
+
+
+	</div>
+
+</window>

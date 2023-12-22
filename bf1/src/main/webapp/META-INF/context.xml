@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/bf" docbase="webapps/bf/">
+<!--    
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 190.44.131.221)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = UBOY)(INSTANCE_NAME = UBOY1)))"
+              username="u004_munis" password="qazwsx123" maxActive="300" maxIdle="10" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank394"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+
+<Resource name="jdbc/tieto"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@192.168.128.213:1521:bo"
+              username= "user_nci" password="A123456" maxActive="18" maxIdle="4" minIdle="1"
+              defaultAutoCommit="false"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+              
+ -->     
+  
+  <!--  
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.209:1521:ipakyuli"
+              username="iy00444" password="iy00444" maxActive="18" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=iy00444"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60" 
+              jdbcInterceptors="ConnectionState;StatementFinalizer;ResetAbandonedTimer" 
+              testOnBorrow="true" validationQuery="select 1 from dual"/>
+   
+
+ 
+<Resource name="jdbc/tieto"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.117:1521:db"
+              username="tieto" password="tieto" maxActive="18" maxIdle="4" minIdle="1"
+              defaultAutoCommit="false" 
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+
+
+ -->
+ 
+
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.209:1521:agro"
+              username="bank394" password="bank394" maxActive="18" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank394"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+              
+   <!--          
+     
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.209:1521:ipakyuli"
+              username="admin" password="admin" maxActive="18" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=iy00444"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+    
+-->
+
+   <!-- 
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.10.1)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = UBOY)))"
+              username="u004_munis" password="qazwsx123" maxActive="300" maxIdle="10" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank394"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"
+	          validationQuery="select 1 from dual" 
+              testWhileIdle="true"/>
+-->
+
+ <!--
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.10.1)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = UBOY)))"
+              username="u004_uzcrt" password="u004uzcrt" maxActive="300" maxIdle="10" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank394"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"
+	          validationQuery="select 1 from dual" 
+              testWhileIdle="true"/>
+-->
+ <!--  
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.209:1521:single"
+              username="bank1142" password="bank1142" maxActive="18" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank1142"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+-->
+
+<!--  
+<Resource name="jdbc/klb_clientbank"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.117:1521:db"
+              username="klb" password="klb" maxActive="10" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=klb"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.209:1521:single"
+              username="bank1066" password="bank1066" maxActive="18" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank1066"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+
+-->
+
+<!--  
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.10.1)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = UBOY)))"
+              username="u004_HUMO" password="humo9004" maxActive="300" maxIdle="10" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank394"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"
+	          validationQuery="select 1 from dual" 
+              testWhileIdle="true"/>
+              -->
+              
+</Context>

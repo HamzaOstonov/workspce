@@ -1,0 +1,59 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="batchWnd" width="100%" border="none"
+        apply="com.is.batch.BatchComposer">
+    <vlayout>
+        <hlayout>
+            <label value="Код Организации"/>
+            <textbox value="@{batchWnd$composer.current.organizationId}"/>
+            <label value="Состояние"/>
+            <rcombobox id="state"
+                       onChange="batchWnd$composer.current.state = self.value"
+                       selecteditem="@{batchWnd$composer.current.state}"/>
+        </hlayout>
+        <hlayout visible="false">
+            <label value="Наименование Организации"/>
+            <textbox value="@{batchWnd$composer.current.organizationName}"/>
+        </hlayout>
+        <hlayout>
+            <label value="Тип счета"/>
+            <rcombobox id="accountType"/>
+            <label value="Балансовый"/>
+            <textbox id="accountBal"/>
+            <label value="Порядковый"/>
+            <textbox id="accountNum"/>
+        </hlayout>
+        <hlayout visible="false">
+            <label id="Порядковый"/>
+            <textbox/>
+            <rcombobox/>
+        </hlayout>
+        <toolbar>
+            <toolbarbutton id="btnRefresh" label="Обновить"/>
+            <toolbarbutton id="packageOpen" label="Пакетное Открытие"/>
+            <toolbarbutton id="packageConfirmation" label="Пакетное Утверждение"/>
+            <toolbarbutton id="packageAccountOpen" label="Открытие счетов"/>
+            <toolbarbutton id="packageAccountConfirmation" label="Утверждение счетов"/>
+        </toolbar>
+    </vlayout>
+    <div>
+        <paging id="paging"/>
+        <listbox id="resultListbox">
+            <listhead sizable="true">
+                <listheader label="Филиал"/>
+                <listheader label="Код Организации"/>
+                <listheader label="Наименование Организации"/>
+                <listheader label="Код клиента"/>
+                <listheader label="Состояние"/>
+                <listheader label="Наименование"/>
+                <listheader label="Дата Рождения"/>
+                <listheader label="Сообщение"/>
+            </listhead>
+        </listbox>
+    </div>
+    <!--<window id="includeWnd" width="95%" title=" " height="95%" closable="true" border="normal"
+            mode="modal" position="center,top" visible="false" contentStyle="overflow:auto"
+            onClose="self.setVisible(false);event.stopPropagation()">
+        <include id="customerIncl_" src="/customer/localcustomer.zul" visible="false"/>
+        <include id="sapSearchInclude_" src="/customer/sapSearch.zul" visible="false"/>
+    </window>-->
+</window>

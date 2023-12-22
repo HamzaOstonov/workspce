@@ -1,0 +1,160 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<?component name="clcbox" extends="combobox" class="com.is.clients.ClientCBox"?>
+<window id="budgetwnd" closable="true" onClose="self.visible = false; event.stopPropagation();" sizable="true"
+        maximizable="true" style="overflow-y: auto;"
+        title="${labels.document.budgetets}" border="normal" width="1000px" height="90%" position="center,center"
+        mode="modal" visible="true"
+        apply="com.is.payments.spr.s_budspr.BudgetViewCtrl">
+    <div id="budgetdiv" width="100%" height="100%" style="overflow-y: scroll;">
+        <groupbox mold="3d" open="true" closable="true" width="100%" sclass="clb-groupbox">
+            <caption label="${labels.search} ${labels.document.fbudgetets}"/>
+            <grid id="fgrd" sclass="clb-grid">
+                <columns>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                    <column width="10%"/>
+                </columns>
+                <rows>
+                    <!--
+                    <row><label value="${labels.document.nci_id}" /><textbox id="fnci_id"  mold="rounded"  value="@{budgetwnd$composer.filter.nci_id}" /></row>
+                  <row><label value="${labels.document.treasure_id}" /><textbox id="ftreasure_id"  mold="rounded"  value="@{budgetwnd$composer.filter.treasure_id}" /></row>
+                  <row><label value="${labels.document.date_open}" /><datebox id="fdate_open"  mold="rounded"  value="@{budgetwnd$composer.filter.date_open}" /></row>
+                  <row><label value="${labels.document.date_close}" /><datebox id="fdate_close"  mold="rounded"  value="@{budgetwnd$composer.filter.date_close}" /></row>
+                  <row><label value="${labels.document.act}" /><textbox id="fact"  mold="rounded"  value="@{budgetwnd$composer.filter.act}" /></row>
+                  <row><label value="${labels.document.bank_id}" /><textbox id="fbank_id"  mold="rounded"  value="@{budgetwnd$composer.filter.bank_id}" /></row>
+                  <row><label value="${labels.document.bankacc}" /><textbox id="fbankacc"  mold="rounded"  value="@{budgetwnd$composer.filter.bankacc}" /></row>
+                  <row><label value="${labels.document.bankinn}" /><textbox id="fbankinn"  mold="rounded"  value="@{budgetwnd$composer.filter.bankinn}" /></row>
+                  <row><label value="${labels.document.bankaccname}" /><textbox id="fbankaccname"  mold="rounded"  value="@{budgetwnd$composer.filter.bankaccname}" /></row>
+                    -->
+                    <row>
+                        <label value="${labels.document.account}"/>
+                        <cell colspan="6">
+                            <textbox id="faccount" value="@{budgetwnd$composer.bfilter.account}" width="94%"/>
+                        </cell>
+                        <label value="${labels.document.inn}"/>
+                        <cell colspan="2">
+                            <textbox id="finn" value="@{budgetwnd$composer.bfilter.inn}" width="91%"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <label value="${labels.document.name}"/>
+                        <cell colspan="9">
+                            <textbox id="fname" value="@{budgetwnd$composer.bfilter.name}" width="98%"/>
+                        </cell>
+                    </row>
+                </rows>
+            </grid>
+            <toolbar>
+                <toolbarbutton id="btn_find" label="${labels.find}" image="/images/search.png"/>
+                <toolbarbutton id="btn_find_clear" label="${labels.clear}" image="/images/clear_filter.png"/>
+                <toolbarbutton id="btn_find_cancel" label="${labels.cancel}" image="/images/cancel_filter.png"/>
+            </toolbar>
+        </groupbox>
+        <groupbox mold="3d" open="true" closable="true" width="100%" sclass="clb-groupbox">
+            <caption label="${labels.document.budgetets}"/>
+            <toolbar id="tb" width="100%" align="center" height="35px">
+                <div width="100%" align="center" height="35px">
+                    <hbox width="100%" widths="100%,50px,200px" align="center" height="35px">
+                        <hbox width="100%">
+                            <toolbarbutton id="btn_refresh" label="${labels.refresh}" image="/images/refresh.png"/>
+                            <separator orient="vertical" spacing="10px" bar="true" height="24px"
+                                       style="color: white;"></separator>
+                            <toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png"/>
+                            <toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png"/>
+                            <toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png"/>
+                            <toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png"/>
+                            <separator orient="vertical" spacing="10px" bar="true" height="24px"
+                                       style="color: white;"></separator>
+                            <toolbarbutton id="btn_send"
+                                           label="${labels.document.btn_setbudgetdata}"
+                                           image="/images/template.png"/>
+                        </hbox>
+                        <rcombobox id="pagesize" mold="rounded" selecteditem="" width="50px"/>
+                        <paging id="s_budsprPaging" width="200px" sclass="sp-paging"/>
+                    </hbox>
+                </div>
+            </toolbar>
+            <div id="grd" width="100%">
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                         selectedItem="@{budgetwnd$composer.bcurrent}" sclass="clb-list">
+                    <listhead sizable="true">
+                        <!--
+                        <listheader label="${labels.document.nci_id}" />
+                        <listheader label="${labels.document.treasure_id}" />
+                        -->
+                        <listheader label="${labels.document.account}" width="220px" sort="auto(account)"/>
+                        <listheader label="${labels.document.inn}" width="80px" sort="auto(inn)"/>
+                        <listheader label="${labels.document.name}" sort="auto(name)"/>
+                        <!--
+                        <listheader label="${labels.document.date_open}" />
+                        <listheader label="${labels.document.date_close}" />
+                        <listheader label="${labels.document.act}" />
+                        <listheader label="${labels.document.bank_id}" />
+                        <listheader label="${labels.document.bankacc}" />
+                        <listheader label="${labels.document.bankinn}" />
+                        <listheader label="${labels.document.bankaccname}" />
+                        -->
+                    </listhead>
+                </listbox>
+            </div>
+        </groupbox>
+        <groupbox mold="3d" open="true" closable="true" width="100%" sclass="clb-groupbox">
+            <caption label="${labels.spr.addinfo}"/>
+            <div id="frmdiv">
+                <grid id="frmgrd" ctrlKeys="^e#up#down" width="100%" visible="true" sclass="clb-grid">
+                    <columns>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                        <column width="10%"/>
+                    </columns>
+                    <rows>
+                        <!--
+                        <row><label value="${labels.s_budspr.nci_id}" /><textbox id="nci_id"  mold="rounded"  value="@{s_budsprmain$composer.current.nci_id}" /></row>
+                        <row><label value="${labels.s_budspr.treasure_id}" /><textbox id="treasure_id"  mold="rounded"  value="@{s_budsprmain$composer.current.treasure_id}" /></row>
+                        <row><label value="${labels.s_budspr.account}" /><textbox id="account"  mold="rounded"  value="@{s_budsprmain$composer.current.account}" /></row>
+                        <row><label value="${labels.s_budspr.inn}" /><textbox id="inn"  mold="rounded"  value="@{s_budsprmain$composer.current.inn}" /></row>
+                        <row><label value="${labels.s_budspr.name}" /><textbox id="name"  mold="rounded"  value="@{s_budsprmain$composer.current.name}" /></row>
+                        <row><label value="${labels.s_budspr.date_open}" /><datebox id="date_open"  mold="rounded"  value="@{s_budsprmain$composer.current.date_open}" /></row>
+                        <row><label value="${labels.s_budspr.date_close}" /><datebox id="date_close"  mold="rounded"  value="@{s_budsprmain$composer.current.date_close}" /></row>
+                        <row><label value="${labels.s_budspr.act}" /><textbox id="act"  mold="rounded"  value="@{s_budsprmain$composer.current.act}" /></row>
+                        <row><label value="${labels.s_budspr.bank_id}" /><textbox id="bank_id"  mold="rounded"  value="@{s_budsprmain$composer.current.bank_id}" /></row>
+                        <row><label value="${labels.s_budspr.bankacc}" /><textbox id="bankacc"  mold="rounded"  value="@{s_budsprmain$composer.current.bankacc}" /></row>
+                        <row><label value="${labels.s_budspr.bankinn}" /><textbox id="bankinn"  mold="rounded"  value="@{s_budsprmain$composer.current.bankinn}" /></row>
+                        <row><label value="${labels.s_budspr.bankaccname}" /><textbox id="bankaccname"  mold="rounded"  value="@{s_budsprmain$composer.current.bankaccname}" /></row>
+                        -->
+                        <row>
+                            <label value="${labels.document.account}"/>
+                            <cell colspan="6">
+                                <textbox id="account" value="@{budgetwnd$composer.bcurrent.account}" width="96%"/>
+                            </cell>
+                            <label value="${labels.document.inn}"/>
+                            <cell colspan="2">
+                                <textbox id="inn" value="@{budgetwnd$composer.bcurrent.inn}" width="91%"/>
+                            </cell>
+                        </row>
+                        <row>
+                            <label value="${labels.document.name}"/>
+                            <cell colspan="9">
+                                <textbox id="name" value="@{budgetwnd$composer.bcurrent.name}" width="98%"/>
+                            </cell>
+                        </row>
+                    </rows>
+                </grid>
+            </div>
+        </groupbox>
+    </div>
+</window>

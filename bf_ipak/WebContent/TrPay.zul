@@ -1,0 +1,329 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utilsti.RefCBox"?>
+<window id="trpaymain" width="100%"  height="100%" border="normal" apply="com.is.trpayti.TrPayViewCtrl">
+        <toolbar id="tb">
+        		
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+<!--  
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+-->
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                <toolbarbutton id="btn_refresh" label="Обновить" style = "mergin-left:200px;"
+                        image="/images/refresh.png" />
+
+        </toolbar>
+        
+        <toolbar id = "toolbar_filter">
+        		<label value="Фильтр по состояниям:" />
+        		<rcombobox id="filter_box" width="300px"/>
+        		<label value="Фильтр по дате:" style="margin-left:20px; margin-right:5px;"/><datebox id="fl_date"/>
+        </toolbar>
+        <toolbar>
+        		<toolbarbutton id="btn_print_selected" label="Печать выбраных"
+                        image="/images/printer.png" />
+                <toolbarbutton id="btn_print_all" label="Печать всех"
+                        image="/images/printer.png" />
+                <toolbarbutton id="btn_print_unprinted" label="Печать непечатаных за день"
+                        image="/images/printer.png" />
+        		<toolbarbutton id="btn_filter_act" label="Показывать активные" style="margin-left:100px;"
+                        image="/images/filter.png" />
+                <toolbarbutton id="btn_r_filter_act" label="Показывать все"
+                        image="/images/filter(delete).png" />
+                <toolbarbutton id="btn_print_duplicate" label="Печать Пополненных:"
+                        image="/images/printer.png" />
+                		<textbox id="txt_duplicate" width="50px"></textbox>
+                <toolbarbutton id="btn_print_duplicate_d" label="Печать Списанных:"
+                        image="/images/printer.png" />
+                        <textbox id="txt_duplicate_d" width="50px"></textbox>
+                
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="trpayPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="10" width="100%" 
+                        selectedItem="@{trpaymain$composer.current}">
+                        <listhead sizable="true">
+                        		<listheader label="id" width="10px"/>
+                        		<listheader label="№" width="50px" id="nnmb_h"/>
+                                <listheader label="${labels.trpay.branch}" width="40px" sort="auto(branch)"/>
+                                <listheader label="${labels.trpay.cur_acc}" width="160px" sort="auto(cur_acc)"/>
+                                <listheader label="${labels.trpay.card_acc}" width="160px" sort="auto(card_acc)"/>
+                                <listheader label="${labels.trpay.account_no}" width="150px" sort="auto(account_no)"/>
+                                <listheader label="${labels.trpay.amount}" width="100px" sort="auto(amount)"/>
+                                <listheader label="${labels.trpay.date_created}" width="80px" sort="auto(date_created)"/>
+                                 <listheader label="Действие" width="150px" />
+                                <listheader label="${labels.trpay.cl_name}" width="180px" sort="auto(cl_name)"/>
+                                <listheader label="${labels.trpay.state}" width="150px" sort="auto(state)"/>
+                                <listheader label="Операция" width="180px" sort="auto(state)"/>
+                                <listheader label="Печать" sort="auto(state)"/>
+                                <!--  
+                                <listheader label="${labels.trpay.id}" width="200px" />
+                                <listheader label="${labels.trpay.operation_id}" width="200px" />
+                                <listheader label="${labels.trpay.parent_group_id}" width="200px" />
+                                
+                                
+                                -->
+                        </listhead>
+
+                </listbox>
+
+
+        </div>
+        <div id="frm" visible="false">
+                  
+            <tabbox id="tbfrm" visible="true">
+                <tabs id="tabs">
+                  <tab  label="Транзакция" />
+                  <tab  label="Темплейт" />
+                  <tab  label="Документы" />
+               </tabs>
+               <tabpanels> 
+               <tabpanel>                 
+                  <grid id="frmgrd" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                                <rows>
+                                  
+                                  <row><label value="${labels.trpay.id}" /><textbox id="id"  mold="rounded"  value="@{trpaymain$composer.current.id}" /></row>
+                                  <row><label value="${labels.trpay.branch}" /><textbox id="branch"  mold="rounded"  value="@{trpaymain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.trpay.operation_id}" /><textbox id="operation_id"  mold="rounded"  value="@{trpaymain$composer.current.operation_id}" /></row>
+                                  <row><label value="${labels.trpay.amount}" /><textbox id="amount"  mold="rounded"  value="@{trpaymain$composer.current.amount}" /></row>
+                                  <row><label value="${labels.trpay.card_acc}" /><textbox id="card_acc"  mold="rounded"  value="@{trpaymain$composer.current.card_acc}" /></row>
+                                  <row><label value="${labels.trpay.cur_acc}" /><textbox id="cur_acc"  mold="rounded"  value="@{trpaymain$composer.current.cur_acc}" /></row>
+                                  <row><label value="${labels.trpay.date_created}" /><datebox id="date_created"  mold="rounded"  value="@{trpaymain$composer.current.date_created}" /></row>
+                                  <row><label value="${labels.trpay.parent_group_id}" /><textbox id="parent_group_id"  mold="rounded"  value="@{trpaymain$composer.current.parent_group_id}" /></row>
+                                  <row><label value="${labels.trpay.state}" /><textbox id="state"  mold="rounded"  value="@{trpaymain$composer.current.state}" /></row>
+                                  <row><label value="${labels.trpay.account_no}" /><textbox id="account_no"  mold="rounded"  value="@{trpaymain$composer.current.account_no}" /></row>
+                                  <row><label value="${labels.trpay.cl_name}" /><textbox id="cl_name"  mold="rounded"  value="@{trpaymain$composer.current.cl_name}" /></row>
+                          </rows>
+                  </grid>
+                 </tabpanel>
+                 <tabpanel>
+                <listbox style="border:none" id="paytmpGrid" multiple="true" rows="4" width="100%"
+                selectedItem="@{trpaymain$composer.tcurrent}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.trpaydocs.pay_id}" width="20px" />
+                                <listheader label="${labels.trpaydocs.branch}" width="50px" />
+                                <listheader label="${labels.trpaydocs.d_date}" width="70px" />
+                                <listheader label="${labels.trpaydocs.bank_cl}" width="50px" />
+                                <listheader label="${labels.trpaydocs.acc_cl}" width="150px" />
+                                <listheader label="${labels.trpaydocs.name_cl}" width="200px" />
+                                <listheader label="${labels.trpaydocs.bank_co}" width="50px" />
+                                <listheader label="${labels.trpaydocs.acc_co}" width="150px" />
+                                <listheader label="${labels.trpaydocs.name_co}" width="200px" />
+                                <listheader label="${labels.trpaydocs.summa}" width="70px" />
+<!--  
+ 
+                                <listheader label="${labels.trpaydocs.id}" width="20px" />
+ 
+                                <listheader label="${labels.trpaydocs.purpose}" width="200px" />
+                                <listheader label="${labels.trpaydocs.type_doc}" width="10px" />
+                                <listheader label="${labels.trpaydocs.pdc}" width="10px" />
+                                <listheader label="${labels.trpaydocs.parent_group_id}" width="10px" />
+                                <listheader label="${labels.trpaydocs.parent_id}" width="10px" />
+                                <listheader label="${labels.trpaydocs.cash_code}" width="10px" />
+                                <listheader label="${labels.trpaydocs.id_transh_purp}" width="10px" />
+                                <listheader label="${labels.trpaydocs.schema_name}" width="50px" />
+                                <listheader label="${labels.trpaydocs.ord}" width="10px" />
+                                <listheader label="${labels.trpaydocs.g_branch}" width="50px" />
+                                <listheader label="${labels.trpaydocs.g_docid}" width="50px" />
+-->                                
+                        </listhead>
+
+                </listbox> 
+<hbox>                
+
+                                  <grid id="frmtrdocl" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.trpaydocs.id}" /><textbox id="tid"  mold="rounded"  value="@{trpaymain$composer.tcurrent.id}" /></row>
+
+                                  <row><label value="${labels.trpaydocs.pay_id}" /><textbox id="tpay_id"  mold="rounded"  value="@{trpaymain$composer.tcurrent.pay_id}" /></row>
+                                  
+                                  <row><label value="${labels.trpaydocs.branch}" /><textbox id="tbranch"  mold="rounded"  value="@{trpaymain$composer.tcurrent.branch}" /></row>
+                                  <row><label value="${labels.trpaydocs.d_date}" /><textbox id="td_date"  mold="rounded"  value="@{trpaymain$composer.tcurrent.d_date}" /></row>
+                                  <row><label value="${labels.trpaydocs.bank_cl}" /><textbox id="tbank_cl"  mold="rounded"  value="@{trpaymain$composer.tcurrent.bank_cl}" /></row>
+                                  <row><label value="${labels.trpaydocs.acc_cl}" /><textbox id="tacc_cl"  mold="rounded"  value="@{trpaymain$composer.tcurrent.acc_cl}" /></row>
+                                  <row><label value="${labels.trpaydocs.name_cl}" /><textbox id="tname_cl"  mold="rounded"  value="@{trpaymain$composer.tcurrent.name_cl}" /></row>
+
+                          </rows>
+                  </grid> 
+                  <grid id="frmtrdoc" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <row><label value="${labels.trpaydocs.bank_co}" /><textbox id="tbank_co"  mold="rounded"  value="@{trpaymain$composer.tcurrent.bank_co}" /></row>
+                                  <row><label value="${labels.trpaydocs.acc_co}" /><textbox id="tacc_co"  mold="rounded"  value="@{trpaymain$composer.tcurrent.acc_co}" /></row>
+                                  <row><label value="${labels.trpaydocs.name_co}" /><textbox id="tname_co"  mold="rounded"  value="@{trpaymain$composer.tcurrent.name_co}" /></row>
+                                  <row><label value="${labels.trpaydocs.summa}" /><textbox id="tsumma"  mold="rounded"  value="@{trpaymain$composer.tcurrent.summa}" /></row>
+                                  <row><label value="${labels.trpaydocs.purpose}" /><textbox id="tpurpose"  mold="rounded"  value="@{trpaymain$composer.tcurrent.purpose}" /></row>
+                                  <row><label value="${labels.trpaydocs.type_doc}" /><textbox id="ttype_doc"  mold="rounded"  value="@{trpaymain$composer.tcurrent.type_doc}" /></row>
+                                  <row><label value="${labels.trpaydocs.pdc}" /><textbox id="tpdc"  mold="rounded"  value="@{trpaymain$composer.tcurrent.pdc}" /></row>
+                                  <row><label value="${labels.trpaydocs.parent_group_id}" /><textbox id="tparent_group_id"  mold="rounded"  value="@{trpaymain$composer.tcurrent.parent_group_id}" /></row>
+
+
+                         </rows>
+                  </grid>
+                  <grid id="frmtrdocr" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <row><label value="${labels.trpaydocs.parent_id}" /><textbox id="tparent_id"  mold="rounded"  value="@{trpaymain$composer.tcurrent.parent_id}" /></row>
+                                  <row><label value="${labels.trpaydocs.cash_code}" /><textbox id="tcash_code"  mold="rounded"  value="@{trpaymain$composer.tcurrent.cash_code}" /></row>
+                                  <row><label value="${labels.trpaydocs.id_transh_purp}" /><textbox id="tid_transh_purp"  mold="rounded"  value="@{trpaymain$composer.tcurrent.id_transh_purp}" /></row>
+                                  <row><label value="${labels.trpaydocs.schema_name}" /><textbox id="tschema_name"  mold="rounded"  value="@{trpaymain$composer.tcurrent.schema_name}" /></row>
+                                  <row><label value="${labels.trpaydocs.ord}" /><textbox id="tord"  mold="rounded"  value="@{trpaymain$composer.tcurrent.ord}" /></row>
+                                  <row><label value="${labels.trpaydocs.g_branch}" /><textbox id="tg_branch"  mold="rounded"  value="@{trpaymain$composer.tcurrent.g_branch}" /></row>
+                                  <row><label value="${labels.trpaydocs.g_docid}" /><textbox id="tg_docid"  mold="rounded"  value="@{trpaymain$composer.tcurrent.g_docid}" /></row>
+                          </rows>
+                  </grid>                
+                                 
+</hbox>                 
+                 </tabpanel>
+                 <tabpanel>
+                 
+                 	<listbox style="border:none" id="documentsGrid" multiple="true" rows="4" width="100%">
+                <!-- selectedItem="@{trpaymain$composer.tcurrent}"-->
+                        <listhead sizable="true">
+                                
+                                <listheader label="ORD" width="40px" />
+                                <listheader label="BRANCH" width="60px" />
+                                <listheader label="D_DATE" width="80px" />
+                                <listheader label="BANK_CL" width="65px" />
+                                <listheader label="ACC_CL" width="150px" />
+                                <listheader label="NAME_CL" width="160px" />
+                                <listheader label="BANK_CO" width="65px" />
+                                <listheader label="ACC_CO" width="150px" />
+                                <listheader label="NAME_CO" width="160px" />
+                                <listheader label="PURPOSE" width="150px" />
+                                <listheader label="SUMMA" width="100px" />
+                                <listheader label="TYPEDOC" width="120px" />
+                                <listheader label="PDC" width="50px" />
+                                <listheader label="CASH_CODE" width="80px" />
+                                <listheader label="ID_TRANSH_PURP" width="130px" />
+                                <listheader label="G_BRANCH" width="100px" />
+                                <listheader label="G_DOCID" width="100px" />
+  
+                        </listhead>
+
+                </listbox> 
+                 
+				 </tabpanel> 
+                 </tabpanels>
+                </tabbox>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.trpay.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.operation_id}" /><textbox id="aoperation_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.amount}" /><textbox id="aamount"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.card_acc}" /><textbox id="acard_acc"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.cur_acc}" /><textbox id="acur_acc"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.date_created}" /><datebox id="adate_created"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.parent_group_id}" /><textbox id="aparent_group_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.account_no}" /><textbox id="aaccount_no"  mold="rounded"  /></row>
+                                  <row><label value="${labels.trpay.cl_name}" /><textbox id="acl_name"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <div id="dfgrd" visible="false">
+                  
+                  <grid id="fgrd">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.trpay.id}" /><textbox id="fid"  mold="rounded"  value="@{trpaymain$composer.filter.id}" /></row>
+                                  <row visible="false"><label value="${labels.trpay.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{trpaymain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.trpay.operation_id}" /><textbox id="foperation_id"  mold="rounded"  value="@{trpaymain$composer.filter.operation_id}" /></row>
+                                  <row><label value="${labels.trpay.amount}" /><textbox id="famount"  mold="rounded"  value="@{trpaymain$composer.filter.amount}" /></row>
+                                  <row><label value="${labels.trpay.card_acc}" /><textbox id="fcard_acc"  mold="rounded"  value="@{trpaymain$composer.filter.card_acc}" /></row>
+                                  <row><label value="${labels.trpay.cur_acc}" /><textbox id="fcur_acc"  mold="rounded"  value="@{trpaymain$composer.filter.cur_acc}" /></row>
+                                  <row><label value="${labels.trpay.date_created}" /><datebox id="fdate_created"  mold="rounded"  value="@{trpaymain$composer.filter.date_created}" /></row>
+                                  <row><label value="${labels.trpay.parent_group_id}" /><textbox id="fparent_group_id"  mold="rounded"  value="@{trpaymain$composer.filter.parent_group_id}" /></row>
+                                  <row><label value="${labels.trpay.state}" /><textbox id="fstate"  mold="rounded"  value="@{trpaymain$composer.filter.state}" /></row>
+                                  <row><label value="${labels.trpay.account_no}" /><textbox id="faccount_no"  mold="rounded"  value="@{trpaymain$composer.filter.account_no}" /></row>
+                                  <row><label value="${labels.trpay.cl_name}" /><textbox id="fcl_name"  mold="rounded"  value="@{trpaymain$composer.filter.cl_name}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.search}" image="/images/search.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+                  </div>
+        </div>
+
+<window id="refwnd" mode="overlapped" title="Отмена" position="center,center" width="400px" visible="false">
+		<grid>
+						  <columns>
+                                  <column width="100%" />
+                          </columns>
+                          <rows>
+                                  <row><label value="Причина отмены:" /></row>
+                                  <row><textbox id="description"  mold="rounded" multiline="true"  width="400px" height="200px"/></row>
+                          </rows>
+		</grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_ref"
+                                  label="Отменить" image="/images/-.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="Закрыть" image="/images/stop.png" />
+                  </toolbar>
+</window>
+
+<window id="printwnd" mode="modal" title="${labels.print}" closable="true" onClose="self.visible = false; event.stopPropagation();"
+		position="center,center" visible="false">
+		<iframe id="rpframe" width="950px" height="550px" />
+		<toolbar>
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</window>
+	
+<!-- 	<window id="printwnd"     mode="overlapped" title="${labels.print}" position="center,center" visible="false" maximizable="true" width="950px"  
+height="550px" closable="true" onClose="self.visible = false; event.stopPropagation();" >
+<script src="scripts/iprint.js"/>
+
+
+<iframe id="rpframe" width="100%"  height="100%"/>
+<iframe id="rpframe" width="950px"  height="550px"/>
+                   <toolbar>
+                          <toolbarbutton id="btn_cancel"
+                                  label="Закрыть" image="/images/delete.png" />
+                  </toolbar>
+</window> -->
+
+</window>

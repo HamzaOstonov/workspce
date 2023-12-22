@@ -1,0 +1,8 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="relationsDifferWnd" border="normal" title="Сравнение Отношений" closable="true"
+        style="font-weight:bold" sizable="true" maximizable="true"
+        apply="com.is.client_personmap.controllers.PersonMapDiffer">
+        <div>
+            <grid id="differGrd"/>
+        </div>
+</window>

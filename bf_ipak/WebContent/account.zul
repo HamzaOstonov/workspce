@@ -1,0 +1,690 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="accountmain" width="100%" border="none"
+	apply="com.is.account.AccountViewCtrl">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" tooltiptext="${labels.back}"
+			image="/images/file.png" />
+		<toolbarbutton id="btn_search" tooltiptext="${labels.search}"
+			image="/images/search.png" />
+		<toolbarbutton id="btn_refresh" tooltiptext="${labels.refresh}"
+			image="/images/refresh.png" />
+		<toolbarbutton id="btn_add" tooltiptext="${labels.add}"
+			image="/images/+.png" />
+		<toolbarbutton id="btn_first" tooltiptext="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" tooltiptext="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" tooltiptext="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" tooltiptext="${labels.last}"
+			image="/images/forward.png" />
+		<separator />
+	</toolbar>
+	<div id="grd">
+		<!-- <paging id="accountPaging" width="100%" />
+		-->
+		<listbox style="border:none" id="dataGrid" multiple="true"
+			rows="12" width="100%"
+			selectedItem="@{accountmain$composer.currentListItem}">
+			<listhead sizable="true">
+				<listheader label="${labels.account.branch}" width="5%"
+					sort="auto(branch)" />
+				<listheader label="${labels.account.id}" width="12%"
+					sort="auto(id)" />
+				<listheader label="${labels.account.name}" width="30%"
+					sort="auto(name)" />
+				<listheader label="${labels.account.dt}" width="13%"
+					sort="auto(dt)" />
+				<listheader label="${labels.account.ct}" width="13%"
+					sort="auto(ct)" />
+				<listheader label="${labels.account.s_out}" width="13%"
+					sort="auto(s_out)" />
+				<listheader label="${labels.account.l_date}" width="8%"
+					sort="auto(l_date)" />
+				<listheader label="${labels.account.state}" width="6%"
+					sort="auto(state)" />
+			</listhead>
+		</listbox>
+	</div>
+	<tabbox id="acc_tabs" visible="false">
+		<tabs>
+			<tab label="Подробная информация" />
+			<tab label="Спец. характеристики счета" />
+			<tab label="История по счету" />
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+				<div id="acc_info">
+					<toolbar id="action_bar" />
+					<groupbox>
+						<grid id="frmgrd" ctrlKeys="^e#up#down"
+							visible="true">
+							<columns>
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+							</columns>
+							<rows>
+								<row>
+									<label value="${labels.account.id}" />
+									<cell colspan="2">
+										<textbox id="id" mold="rounded"
+											readonly="true" value="@{accountmain$composer.current.id}"
+											hflex="1" />
+									</cell>
+									<label
+										value="${labels.account.state}" />
+									<cell colspan="2">
+										<rcombobox id="state"
+											mold="rounded" buttonVisible="false" readonly="true"
+											selecteditem="@{accountmain$composer.current.state}"
+											hflex="1" />
+									</cell>
+								</row>
+								<row>
+									<label
+										value="${labels.account.date_open}" />
+									<datebox id="date_open"
+										mold="rounded" buttonVisible="false"
+										value="@{accountmain$composer.current.date_open}" hflex="1"
+										readonly="true" />
+									<label
+										value="${labels.account.date_close}" />
+									<datebox id="date_close"
+										mold="rounded" buttonVisible="false"
+										value="@{accountmain$composer.current.date_close}" hflex="1"
+										readonly="true" />
+									<label
+										value="${labels.account.l_date}" />
+									<datebox id="l_date" mold="rounded"
+										readonly="true" buttonVisible="false"
+										value="@{accountmain$composer.current.l_date}" hflex="1" />
+								</row>
+								<row>
+									<label
+										value="${labels.account.client}" />
+									<textbox id="client" mold="rounded"
+										readonly="true" value="@{accountmain$composer.current.client}"
+										hflex="1" />
+									<cell colspan="4">
+										<textbox id="client_name"
+											readonly="true" hflex="1"
+											value="@{accountmain$composer.current.client_name}" />
+									</cell>
+								</row>
+								<row>
+									<label
+										value="${labels.account.acc_bal}" />
+									<textbox id="acc_bal_text"
+										mold="rounded" hflex="1"
+										value="@{accountmain$composer.current.acc_bal}"
+										forward="onOK=onOkField" />
+									<cell colspan="2">
+										<rcombobox id="acc_bal"
+											mold="rounded" hflex="1"
+											selecteditem="@{accountmain$composer.current.acc_bal}" />
+									</cell>
+									<label
+										value="${labels.account.currency}" />
+									<cell>
+										<textbox id="currencyValue"
+											hflex="1" value="@{accountmain$composer.current.currency}"
+											forward="onOK=onOkField" />
+										<rcombobox id="currency"
+											mold="rounded" hflex="3"
+											selecteditem="@{accountmain$composer.current.currency}" />
+									</cell>
+								</row>
+								<row>
+									<label
+										value="${labels.account.id_order}" />
+									<textbox id="id_order"
+										mold="rounded" hflex="1"
+										value="@{accountmain$composer.current.id_order}" />
+									<label
+										value="${labels.account.acc_group_id}" />
+									<cell colspan="3">
+										<textbox id="acc_group_idText"
+											hflex="1"
+											value="@{accountmain$composer.current.acc_group_id}"
+											forward="onOK=onOkField" />
+										<rcombobox id="acc_group_id"
+											mold="rounded" hflex="4"
+											selecteditem="@{accountmain$composer.current.acc_group_id}"
+											onChange="accountmain$composer.current.acc_group_id=acc_group_id.value;
+													acc_group_idText.value=acc_group_id.value" />
+									</cell>
+								</row>
+								<row>
+									<label
+										value="${labels.account.name}" />
+									<cell colspan="5">
+										<textbox id="name"
+											mold="rounded" value="@{accountmain$composer.current.name}"
+											hflex="1" />
+									</cell>
+								</row>
+								<row>
+									<label
+										value="${labels.account.sgn}" />
+									<cell colspan="2">
+										<rcombobox id="sgn"
+											readonly="true" buttonVisible="false" mold="rounded"
+											hflex="1" selecteditem="@{accountmain$composer.current.sgn}" />
+									</cell>
+									<label
+										value="${labels.account.bal}" />
+									<cell colspan="2">
+										<rcombobox id="bal"
+											mold="rounded" hflex="1" readonly="true"
+											buttonVisible="false"
+											selecteditem="@{accountmain$composer.current.bal}" />
+									</cell>
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+					<hbox>
+						<groupbox closable="false">
+							<caption label="Проведенные" />
+							<grid>
+								<columns>
+									<column />
+									<column />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.account.s_in}" />
+										<decimalbox id="s_in"
+											mold="rounded" hflex="1"
+											value="@{accountmain$composer.current.s_in}"
+											format="### ### ### ##0.00" />
+									</row>
+									<row>
+										<label
+											value="${labels.account.dt}" />
+										<decimalbox id="dt"
+											mold="rounded" hflex="1"
+											value="@{accountmain$composer.current.dt}"
+											format="### ### ### ##0.00" />
+									</row>
+									<row>
+										<label
+											value="${labels.account.ct}" />
+										<decimalbox id="ct"
+											mold="rounded" hflex="1"
+											value="@{accountmain$composer.current.ct}"
+											format="### ### ### ##0.00" />
+									</row>
+									<row>
+										<label
+											value="${labels.account.s_out}" />
+										<decimalbox id="s_out"
+											mold="rounded" hflex="1"
+											value="@{accountmain$composer.current.s_out}"
+											format="### ### ### ##0.00" />
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
+						<groupbox closable="false">
+							<caption label="Непроведенные" />
+							<grid>
+								<columns>
+									<column />
+									<column />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.account.s_in_tmp}" />
+										<decimalbox id="s_in_tmp"
+											mold="rounded" hflex="1"
+											value="@{accountmain$composer.current.s_in_tmp}"
+											format="### ### ### ##0.00" />
+									</row>
+									<row>
+										<label
+											value="${labels.account.dt_tmp}" />
+										<decimalbox id="dt_tmp"
+											mold="rounded" hflex="1"
+											value="@{accountmain$composer.current.dt_tmp}"
+											format="### ### ### ##0.00" />
+									</row>
+									<row>
+										<label
+											value="${labels.account.ct_tmp}" />
+										<decimalbox id="ct_tmp"
+											mold="rounded" hflex="1"
+											value="@{accountmain$composer.current.ct_tmp}"
+											format="### ### ### ##0.00" />
+									</row>
+									<row>
+										<label
+											value="${labels.account.s_out_tmp}" />
+										<decimalbox id="s_out_tmp"
+											mold="rounded" hflex="1"
+											value="@{accountmain$composer.current.s_out_tmp}"
+											format="### ### ### ##0.00" />
+									</row>
+									<!--
+										<row><label value="${labels.account.sgn}" /><textbox id="sgn"  mold="rounded"  value="@{accountmain$composer.current.sgn}" /></row>
+										
+										<row><label value="${labels.account.sign_registr}" /><textbox id="sign_registr"  mold="rounded"  value="@{accountmain$composer.current.sign_registr}" /></row>
+										<row><label value="${labels.account.branch}" /><textbox id="branch"  mold="rounded"  value="@{accountmain$composer.current.branch}" /></row>
+									-->
+								</rows>
+							</grid>
+						</groupbox>
+					</hbox>
+				</div>
+			</tabpanel>
+			<tabpanel>
+				<div id="spec_acc_parent" />
+			</tabpanel>
+			<tabpanel>
+				<listbox id="history">
+					<listhead>
+						<listheader label="Дата О.Д." width="20%" />
+						<listheader label="Действие" width="30%" />
+						<listheader label="Инициатор" />
+						<listheader label="Системное время" width="20%" />
+					</listhead>
+				</listbox>
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+	<div id="filter_div" visible="false">
+		<label value="Фильтр" />
+		<div>
+			<groupbox>
+				<grid id="ffrmgrd" ctrlKeys="^e#up#down"
+					visible="true">
+					<columns>
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.account.id}" />
+							<cell colspan="2">
+								<textbox id="fid" mold="rounded"
+									value="@{accountmain$composer.filter.id}" hflex="1" />
+							</cell>
+							<label value="${labels.account.state}" />
+							<cell colspan="2">
+								<rcombobox id="fstate" mold="rounded"
+									selecteditem="@{accountmain$composer.filter.state}" hflex="1" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.account.date_open}" />
+							<datebox id="fdate_open" mold="rounded"
+								value="@{accountmain$composer.filter.date_open}" hflex="1" />
+							<label value="${labels.account.date_close}" />
+							<datebox id="fdate_close" mold="rounded"
+								value="@{accountmain$composer.filter.date_close}" hflex="1" />
+							<label value="${labels.account.l_date}" />
+							<datebox id="fl_date" mold="rounded"
+								value="@{accountmain$composer.filter.l_date}" hflex="1" />
+						</row>
+						<row>
+							<label value="${labels.account.client}" />
+							<textbox id="fclient" mold="rounded"
+								value="@{accountmain$composer.filter.client}" hflex="1" />
+							<cell colspan="4">
+								<textbox id="fclient_name" readonly="true" hflex="1" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.account.acc_bal}" />
+							<textbox id="facc_bal_text" mold="rounded"
+								hflex="1" value="@{accountmain$composer.filter.acc_bal}" />
+							<cell colspan="2">
+								<rcombobox id="facc_bal" mold="rounded"
+									hflex="1"
+									selecteditem="@{accountmain$composer.filter.acc_bal}" />
+							</cell>
+							<label value="${labels.account.currency}" />
+							<cell>
+								<textbox id="fcurrencyValue" hflex="1"
+									value="@{accountmain$composer.filter.currency}" />
+								<rcombobox id="fcurrency" mold="rounded"
+									hflex="1"
+									selecteditem="@{accountmain$composer.filter.currency}" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.account.id_order}" />
+							<textbox id="fid_order" mold="rounded"
+								hflex="1" value="@{accountmain$composer.filter.id_order}" />
+							<label
+								value="${labels.account.acc_group_id}" />
+							<cell colspan="3">
+								<rcombobox id="facc_group_id"
+									mold="rounded" hflex="1"
+									selecteditem="@{accountmain$composer.filter.acc_group_id}" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.account.name}" />
+							<cell colspan="5">
+								<textbox id="fname" mold="rounded"
+									value="@{accountmain$composer.filter.name}" hflex="1" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.account.sgn}" />
+							<cell colspan="2">
+								<rcombobox id="fsgn"
+									selecteditem="@{accountmain$composer.filter.sgn}"
+									mold="rounded" hflex="1" />
+							</cell>
+							<label value="${labels.account.bal}" />
+							<cell colspan="2">
+								<rcombobox id="fbal"
+									selecteditem="@{accountmain$composer.filter.bal}"
+									mold="rounded" hflex="1" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<hbox>
+				<groupbox closable="false">
+					<caption label="Проведенные" />
+					<grid>
+						<columns>
+							<column />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<label value="${labels.account.s_in}" />
+								<decimalbox id="fs_in" mold="rounded"
+									hflex="1" value="@{accountmain$composer.filter.s_in}"
+									format="### ### ### ##0.00" />
+							</row>
+							<row>
+								<label value="${labels.account.dt}" />
+								<decimalbox id="fdt" mold="rounded"
+									hflex="1" value="@{accountmain$composer.filter.dt}"
+									format="### ### ### ##0.00" />
+							</row>
+							<row>
+								<label value="${labels.account.ct}" />
+								<decimalbox id="fct" mold="rounded"
+									hflex="1" value="@{accountmain$composer.filter.ct}"
+									format="### ### ### ##0.00" />
+							</row>
+							<row>
+								<label value="${labels.account.s_out}" />
+								<decimalbox id="fs_out" mold="rounded"
+									hflex="1" value="@{accountmain$composer.filter.s_out}"
+									format="### ### ### ##0.00" />
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+				<groupbox closable="false">
+					<caption label="Непроведенные" />
+					<grid>
+						<columns>
+							<column />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<label
+									value="${labels.account.s_in_tmp}" />
+								<decimalbox id="fs_in_tmp"
+									mold="rounded" hflex="1"
+									value="@{accountmain$composer.filter.s_in_tmp}"
+									format="### ### ### ##0.00" />
+							</row>
+							<row>
+								<label value="${labels.account.dt_tmp}" />
+								<decimalbox id="fdt_tmp" mold="rounded"
+									hflex="1" value="@{accountmain$composer.filter.dt_tmp}"
+									format="### ### ### ##0.00" />
+							</row>
+							<row>
+								<label value="${labels.account.ct_tmp}" />
+								<decimalbox id="fct_tmp" mold="rounded"
+									hflex="1" value="@{accountmain$composer.filter.ct_tmp}"
+									format="### ### ### ##0.00" />
+							</row>
+							<row>
+								<label
+									value="${labels.account.s_out_tmp}" />
+								<decimalbox id="fs_out_tmp"
+									mold="rounded" hflex="1"
+									value="@{accountmain$composer.filter.s_out_tmp}"
+									format="### ### ### ##0.00" />
+							</row>
+							<!--
+								<row><label value="${labels.account.sgn}" /><textbox id="fsgn"  mold="rounded"  value="@{accountmain$composer.filter.sgn}" /></row>
+								
+								<row><label value="${labels.account.sign_registr}" /><textbox id="fsign_registr"  mold="rounded"  value="@{accountmain$composer.filter.sign_registr}" /></row>
+								<row><label value="${labels.account.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{accountmain$composer.filter.branch}" /></row>
+							-->
+						</rows>
+					</grid>
+				</groupbox>
+			</hbox>
+			<toolbar>
+				<toolbarbutton id="btn_find" label="${labels.search}"
+					image="/images/search.png" />
+				<toolbarbutton id="btn_cancel_filter"
+					label="${labels.cancel}" image="/images/stop.png" />
+			</toolbar>
+		</div>
+	</div>
+	<div id="new_acc" visible="false">
+		<label value="Новый счет" />
+		<groupbox>
+			<grid id="afrmgrd" ctrlKeys="^e#up#down" visible="true">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.account.id}" />
+						<cell colspan="2">
+							<textbox id="aid" mold="rounded"
+								readonly="true" value="@{accountmain$composer.newAcc.id}"
+								hflex="1" />
+						</cell>
+						<label value="${labels.account.state}" />
+						<cell colspan="2">
+							<rcombobox id="astate" mold="rounded"
+								readonly="true" buttonVisible="false"
+								selecteditem="@{accountmain$composer.newAcc.state}" hflex="1" />
+						</cell>
+					</row>
+					<row>
+						<label value="${labels.account.date_open}" />
+						<datebox id="adate_open" mold="rounded"
+							readonly="true" buttonVisible="false"
+							value="@{accountmain$composer.newAcc.date_open}" hflex="1" />
+						<label value="${labels.account.date_close}" />
+						<datebox id="adate_close" mold="rounded"
+							readonly="true" buttonVisible="false"
+							value="@{accountmain$composer.newAcc.date_close}" hflex="1" />
+						<label value="${labels.account.l_date}" />
+						<datebox id="al_date" mold="rounded"
+							readonly="true" buttonVisible="false"
+							value="@{accountmain$composer.newAcc.l_date}" hflex="1" />
+					</row>
+					<row>
+						<label value="${labels.account.client}" />
+						<textbox id="aclient" mold="rounded"
+							readonly="true" value="@{accountmain$composer.newAcc.client}"
+							hflex="1" />
+						<cell colspan="4">
+							<textbox id="aclient_name" readonly="true"
+								hflex="1" value="@{accountmain$composer.newAcc.client_name}" />
+						</cell>
+					</row>
+					<row>
+						<label value="${labels.account.acc_bal}" />
+						<textbox id="aacc_bal_text" mold="rounded"
+							hflex="1" value="@{accountmain$composer.newAcc.acc_bal}"
+							forward="onOK=onOkFieldNew" />
+						<cell colspan="2">
+							<rcombobox id="aacc_bal" mold="rounded"
+								hflex="1" selecteditem="@{accountmain$composer.newAcc.acc_bal}" />
+						</cell>
+						<label value="${labels.account.currency}" />
+						<cell>
+							<textbox id="acurrencyValue" hflex="1"
+								value="@{accountmain$composer.newAcc.currency}"
+								forward="onOK=onOkFieldNew" />
+							<rcombobox id="acurrency" mold="rounded"
+								hflex="1"
+								selecteditem="@{accountmain$composer.newAcc.currency}" />
+						</cell>
+					</row>
+					<row>
+						<label value="${labels.account.id_order}" />
+						<textbox id="aid_order" mold="rounded" hflex="1"
+							value="@{accountmain$composer.newAcc.id_order}" />
+						<label value="${labels.account.acc_group_id}" />
+						<cell colspan="3">
+							<textbox id="aacc_group_idText" hflex="1"
+								value="@{accountmain$composer.newAcc.acc_group_id}"
+								forward="onOK=onOkFieldNew" />
+							<rcombobox id="aacc_group_id" mold="rounded"
+								hflex="4"
+								selecteditem="@{accountmain$composer.newAcc.acc_group_id}"
+								onChange="accountmain$composer.newAcc.acc_group_id=aacc_group_id.value;
+										aacc_group_idText.value=aacc_group_id.value" />
+						</cell>
+					</row>
+					<row>
+						<label value="${labels.account.name}" />
+						<cell colspan="5">
+							<textbox id="aname" mold="rounded"
+								value="@{accountmain$composer.newAcc.name}" hflex="1"
+								forward="onOK=onOkFieldNew" />
+						</cell>
+					</row>
+					<row>
+						<label value="${labels.account.sgn}" />
+						<cell colspan="2">
+							<rcombobox id="asgn" readonly="true"
+								buttonVisible="false" mold="rounded" hflex="1"
+								selecteditem="@{accountmain$composer.newAcc.sgn}" />
+						</cell>
+						<label value="${labels.account.bal}" />
+						<cell colspan="2">
+							<rcombobox id="abal" readonly="true"
+								buttonVisible="false" mold="rounded" hflex="1"
+								selecteditem="@{accountmain$composer.newAcc.bal}" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<hbox>
+			<groupbox closable="false">
+				<caption label="Проведенные" />
+				<grid>
+					<columns>
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.account.s_in}" />
+							<decimalbox id="as_in" mold="rounded"
+								hflex="1" value="@{accountmain$composer.newAcc.s_in}"
+								format="### ### ### ##0.00" />
+						</row>
+						<row>
+							<label value="${labels.account.dt}" />
+							<decimalbox id="adt" mold="rounded"
+								hflex="1" value="@{accountmain$composer.newAcc.dt}"
+								format="### ### ### ##0.00" />
+						</row>
+						<row>
+							<label value="${labels.account.ct}" />
+							<decimalbox id="act" mold="rounded"
+								hflex="1" value="@{accountmain$composer.newAcc.ct}"
+								format="### ### ### ##0.00" />
+						</row>
+						<row>
+							<label value="${labels.account.s_out}" />
+							<decimalbox id="as_out" mold="rounded"
+								hflex="1" value="@{accountmain$composer.newAcc.s_out}"
+								format="### ### ### ##0.00" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox closable="false">
+				<caption label="Непроведенные" />
+				<grid>
+					<columns>
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.account.s_in_tmp}" />
+							<decimalbox id="as_in_tmp" mold="rounded"
+								hflex="1" value="@{accountmain$composer.newAcc.s_in_tmp}"
+								format="### ### ### ##0.00" />
+						</row>
+						<row>
+							<label value="${labels.account.dt_tmp}" />
+							<decimalbox id="adt_tmp" mold="rounded"
+								hflex="1" value="@{accountmain$composer.newAcc.dt_tmp}"
+								format="### ### ### ##0.00" />
+						</row>
+						<row>
+							<label value="${labels.account.ct_tmp}" />
+							<decimalbox id="act_tmp" mold="rounded"
+								hflex="1" value="@{accountmain$composer.newAcc.ct_tmp}"
+								format="### ### ### ##0.00" />
+						</row>
+						<row>
+							<label value="${labels.account.s_out_tmp}" />
+							<decimalbox id="as_out_tmp" mold="rounded"
+								hflex="1" value="@{accountmain$composer.newAcc.s_out_tmp}"
+								format="### ### ### ##0.00" />
+						</row>
+						<!--
+							<row><label value="${labels.account.sgn}" /><textbox id="asgn"  mold="rounded"  value="@{accountmain$composer.newAcc.sgn}" /></row>
+							
+							<row><label value="${labels.account.sign_registr}" /><textbox id="asign_registr"  mold="rounded"  value="@{accountmain$composer.newAcc.sign_registr}" /></row>
+							<row><label value="${labels.account.branch}" /><textbox id="abranch"  mold="rounded"  value="@{accountmain$composer.newAcc.branch}" /></row>
+						-->
+					</rows>
+				</grid>
+			</groupbox>
+		</hbox>
+		<toolbar>
+			<toolbarbutton id="btn_save" label="Открыть" />
+			<toolbarbutton id="btn_cancel" label="Отмена" />
+		</toolbar>
+	</div>
+
+	<window id="nibbd_modal" mode="modal" closable="true" width="80%"
+		onClose="self.visible = false; event.stopPropagation();" title="НИББД"
+		position="center,center" visible="false">
+	</window>
+</window>

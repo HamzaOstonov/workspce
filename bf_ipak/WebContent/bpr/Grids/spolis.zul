@@ -1,0 +1,104 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<div id="spolisdiv" hflex="1" visible="false"
+		apply="com.is.bpri.ldguarrgrids.Spolis">
+		<grid id="spolisgrd" hflex="1">
+			<columns>
+				<column width="20%" />
+				<column width="20%" />
+				<column width="20%" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="Номер клиента" />
+					<textbox id="id_client" width="80%" maxlength="8" />
+					<label value="Наименования клиента" />
+					<textbox id="name" width="40%" />
+				</row>
+				<row>
+					<label value="Область" />
+					<rcombobox id="region_id" width="80%" />
+					<label value="Район" />
+					<rcombobox id="distr_id" width="40%" />
+				</row>
+				<row>
+					<label value="Махалля,Квартал" />
+					<textbox id="massiv" width="80%" />
+					<label value="Улица" />
+					<textbox id="street" width="40%" />
+				</row>
+				<row>
+					<label value="Дом" />
+					<textbox id="home" width="80%" />
+					<label value="Квартира" />
+					<textbox id="home_num" width="40%" />
+				</row>
+				<row>
+					<label value="Валюта" />
+					<rcombobox id="currency" width="80%" />
+					<label value="Сумма" />
+					<decimalbox id="amount" format="#0.00" width="40%"
+						maxlength="22" />
+				</row>
+				<row>
+					<label value="№ документа" />
+					<textbox id="doc_num" width="80%" />
+					<label value="Дата документа" />
+					<datebox id="doc_date" format="dd.MM.yyyy" width="40%" />
+				</row>
+				<row>
+					<label value="Класс обеспечения" />
+					<rcombobox id="klass_o" width="80%" />
+					<label value="Номер нотариального удостоверения" />
+					<textbox id="notarial_doc_numb" width="40%" maxlength="10" />
+				</row>
+				<row>
+					<label value="Дата истечения страхового полиса" />
+					<datebox id="end_date" format="dd.MM.yyyy" width="80%" />
+					<label value="Дата нотариального удостоверения" />
+					<datebox id="start_date" format="dd.MM.yyyy" width="40%" />
+				</row>
+				<row>
+					<label value="Наименование страховой организации" />
+					<textbox id="name2" width="80%" />
+					<label value="ИНН страховой компании" />
+					<textbox id="insc_inn" width="40%" maxlength="9" />
+				</row>
+				<row>
+					<label value="Номер договора страхования" />
+					<textbox id="insc_num" width="80%" maxlength="10" />
+					<label value="Дата договора страхования" />
+					<datebox id="insc_date" format="dd.MM.yyyy" width="40%" />
+				</row>
+				<row>
+					<label value="Наименование оценочной компании" />
+					<rcombobox id="acomp_name" width="80%" maxlength="100" />
+					<label value="Дата отчета об оценки" />
+					<datebox id="acomp_date" format="dd.MM.yyyy" width="40%" />
+				</row>
+				<row>
+					<label value="Валюта оценки рыночной стоимости" />
+					<rcombobox id="acomp_curr" width="80%" />
+					<label value="Рыночная стоимость объекта залога" />
+					<decimalbox id="acomp_summa" format="#0.00" width="40%"
+						maxlength="20" />
+				</row>
+				<row>
+					<label value="Номер страхового полиса" />
+					<textbox id="polis_num" maxlength="50" width="80%" />
+					<label value="Дата страхового полиса" />
+					<datebox id="polis_date" format="dd.MM.yyyy" width="40%" />
+				</row>
+			</rows>
+		</grid>
+		<toolbar>
+			<toolbarbutton id="btn_saving" label="${labels.save}"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_del" label="Удалить" image="/images/delete.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+</zk>

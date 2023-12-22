@@ -1,0 +1,47 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<div id="maindiv" apply="com.is.bpri.bpr_employee.BprEmployeeController">
+		<toolbar id="tb">
+			<toolbarbutton id="btn_back" label="${labels.back}"
+				image="/images/file.png" />
+			<toolbarbutton id="btn_search" label="${labels.search}"
+				image="/images/search.png" />
+			<toolbarbutton id="btn_add" label="${labels.add}"
+				image="/images/+.png" />
+		</toolbar>
+		<div id="grd">
+			<paging id="employeePaging" />
+			<listbox style="border:none" id="dataGrid" multiple="true"
+				width="100%" height="100%">
+				<listhead sizable="true">
+					<listheader label="МФО сотрудника" />
+					<listheader label="Тип сотрудника" />
+					<listheader label="ФИО Сотрудника" />
+					<listheader label="Удаление" />
+				</listhead>
+			</listbox>
+		</div>
+		<div id="addgrd" visible="false">
+			<grid>
+				<rows>
+					<row>
+						<label value="МФО сотрудника" />
+						<rcombobox width="40%" id="branch_employee" />
+					</row>
+					<row>
+						<label value="Тип сотрудника" />
+						<rcombobox maxlength="250" width="40%" id="type_employee" />
+					</row>
+					<row>
+						<label value="ФИО сотрудника" />
+						<textbox maxlength="250" width="40%" id="name_employee" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_save" label="Сохранить" />
+				<toolbarbutton id="btn_cancel" label="Отмена" />
+			</toolbar>
+		</div>
+	</div>
+</zk>

@@ -1,0 +1,589 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="client_pmain" width="100%"  border="normal" apply="com.is.client_p.Client_pViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" visible="false" label="${labels.add}"
+                        image="/images/+.png" />
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png"  />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+        </toolbar>
+        <toolbar id="tb_actions">
+                
+                <toolbarbutton id="btn_001" label="${labels.last}"
+                        image="/images/forward.png" />
+                
+        </toolbar>
+        			
+        <div id="grd">
+
+                <paging id="client_pPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{client_pmain$composer.current}">
+                        <listhead sizable="true">
+                                <listheader label="${labels.client_p.id}" width="200px" />
+                                <listheader label="${labels.client_p.branch}" width="200px" />
+                                <listheader label="${labels.client_p.id_client}" width="200px" />
+                                <listheader label="${labels.client_p.name}" width="200px" />
+                                <listheader label="${labels.client_p.code_country}" width="200px" />
+                                <listheader label="${labels.client_p.code_type}" width="200px" />
+                                <listheader label="${labels.client_p.code_resident}" width="200px" />
+                                <listheader label="${labels.client_p.code_subject}" width="200px" />
+                                <listheader label="${labels.client_p.sign_registr}" width="200px" />
+                                <listheader label="${labels.client_p.code_form}" width="200px" />
+                                <listheader label="${labels.client_p.date_open}" width="200px" />
+                                <listheader label="${labels.client_p.date_close}" width="200px" />
+                                <listheader label="${labels.client_p.state}" width="200px" />
+                                <listheader label="${labels.client_p.kod_err}" width="200px" />
+                                <listheader label="${labels.client_p.file_name}" width="200px" />
+                                <listheader label="${labels.client_p.p_birthday}" width="200px" />
+                                <listheader label="${labels.client_p.p_post_address}" width="200px" />
+                                <listheader label="${labels.client_p.p_passport_type}" width="200px" />
+                                <listheader label="${labels.client_p.p_passport_serial}" width="200px" />
+                                <listheader label="${labels.client_p.p_passport_number}" width="200px" />
+                                <listheader label="${labels.client_p.p_passport_place_registration}" width="200px" />
+                                <listheader label="${labels.client_p.p_passport_date_registration}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_tax_org}" width="200px" />
+                                <listheader label="${labels.client_p.p_number_tax_registration}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_bank}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_class_credit}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_citizenship}" width="200px" />
+                                <listheader label="${labels.client_p.p_birth_place}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_capacity}" width="200px" />
+                                <listheader label="${labels.client_p.p_capacity_status_date}" width="200px" />
+                                <listheader label="${labels.client_p.p_capacity_status_place}" width="200px" />
+                                <listheader label="${labels.client_p.p_num_certif_capacity}" width="200px" />
+                                <listheader label="${labels.client_p.p_phone_home}" width="200px" />
+                                <listheader label="${labels.client_p.p_phone_mobile}" width="200px" />
+                                <listheader label="${labels.client_p.p_email_address}" width="200px" />
+                                <listheader label="${labels.client_p.p_pension_sertif_serial}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_gender}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_nation}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_birth_region}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_birth_distr}" width="200px" />
+                                <listheader label="${labels.client_p.p_type_document}" width="200px" />
+                                <listheader label="${labels.client_p.p_passport_date_expiration}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_adr_region}" width="200px" />
+                                <listheader label="${labels.client_p.p_code_adr_distr}" width="200px" />
+                                <listheader label="${labels.client_p.p_inps}" width="200px" />
+                                <listheader label="${labels.client_p.p_family}" width="200px" />
+                                <listheader label="${labels.client_p.p_first_name}" width="200px" />
+                                <listheader label="${labels.client_p.p_patronymic}" width="200px" />
+                                <listheader label="${labels.client_p.p_sign_vip}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+        </div>
+        <div id="frm" visible="false">
+         
+            <groupbox>           
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+                          </columns>
+                          <rows>
+                            <row>
+                                  <cell colspan="2">
+							      <label value="${labels.client_p.id_client}" /> </cell>
+							      <textbox id="id" readonly="true" mold="rounded" hflex="1" value="@{client_pmain$composer.current.id_client}" /> 
+                                  <label value="${labels.client_p.state}" />
+                                  <cell colspan="3">
+							        <rcombobox id="state_cbox" hflex="1" mold="rounded" readonly="true" ButtonVisible="false" />
+						          </cell>
+                                  <cell>
+							      <label value="${labels.client_p.date_open}" /> </cell>
+   						          <cell>
+							      <datebox id="date_open" ButtonVisible="false" readonly="true" mold="rounded" hflex="1" value="@{client_pmain$composer.current.date_open}" />
+							      </cell>
+							      <cell> <label value="${labels.client_p.date_close}" /> </cell>
+							      <cell>
+						               <datebox id="date_close" ButtonVisible="false" readonly="true" mold="rounded" hflex="1" value="@{client_pmain$composer.current.date_close}" /> 
+							      </cell>
+                              </row>
+                                  
+                              <row><cell colspan="2"><label value="${labels.client_p.name}" /></cell>
+                                  <cell colspan="9">
+                                  <textbox id="name"  mold="rounded"  value="@{client_pmain$composer.current.name}" hflex="1"/>
+                                  </cell>
+                              </row>
+
+                              <row><cell colspan="2"> <label value="${labels.client_p.p_family}" /></cell>
+                                  <cell colspan="3"><textbox id="p_family"  mold="rounded" hflex="1" value="@{client_pmain$composer.current.p_family}" /></cell>
+                                  <label value="${labels.client_p.p_first_name}" /> 
+                                  <cell colspan="2"><textbox id="p_first_name" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_first_name}" /></cell>
+                                  <cell><label value="${labels.client_p.p_patronymic}" /></cell>
+                                  <cell colspan="2"><textbox id="p_patronymic" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_patronymic}" /></cell> 
+                              </row>
+                              
+                              <row>
+                                  <cell colspan="2"> <label value="${labels.client_p.code_type}" /> </cell> 
+                                  <cell colspan="3"> 
+                                    <textbox id="code_type"  mold="rounded" readonly="true" hflex="1" value="@{client_pmain$composer.current.code_type}" />
+                                    <rcombobox id="code_type_cbox" mold="rounded" readonly="true" hflex="5" ButtonVisible="false" />
+									</cell>
+                                  <label value="${labels.client_p.p_code_citizenship}" />
+                                  <cell colspan="3">
+                                  <textbox id="p_code_citizenship" mold="rounded" hflex="1" value="@{client_pmain$composer.current.p_code_citizenship}" />
+                                  <rcombobox id="p_code_citizenship_cbox" mold="rounded" hflex="6"  />
+                                  </cell>
+                                  <cell> <label value="${labels.client_p.code_resident}" /> </cell>
+                                  <cell>   <rcombobox id="code_resident_cbox" mold="rounded" hflex="1"  />  </cell>
+                              </row>
+                              <row>
+                                  <cell colspan="2"><label value="${labels.client_p.p_type_document}" /></cell>
+                                  <cell colspan="2"><textbox id="p_type_document" hflex="1" mold="rounded"  value="@{client_pmain$composer.current.p_type_document}" />
+                                  <rcombobox id="p_type_document_cbox" mold="rounded"  />
+                                  </cell>
+                                  <label value="${labels.client_p.p_passport_serial}" />
+                                  <textbox id="passport_serial" hflex="1"  mold="rounded" value="@{client_pmain$composer.current.p_passport_serial}" />
+                                  <label value="${labels.client_p.p_passport_number}" />
+                                  <textbox id="p_passport_number" hflex="1"  mold="rounded"  value="@{client_pmain$composer.current.p_passport_number}" />
+                                  <label value="${labels.client_p.p_code_nation}" />
+                                  <cell colspan="2"><textbox id="p_code_nation" hflex="1"  mold="rounded"  value="@{client_pmain$composer.current.p_code_nation}" />
+                                      <rcombobox id="p_code_nation_cbox" mold="rounded" />
+									</cell>
+                              </row>
+                              <row><cell colspan="2"><label value="${labels.client_p.p_birthday}" /></cell>
+                                  <datebox id="p_birthday1" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_birthday}" />
+                                  <label value="${labels.client_p.p_passport_date_registration}" />
+                                  <datebox id="p_passport_date_registration1" hflex="1" mold="rounded"  value="@{client_pmain$composer.current.p_passport_date_registration}" />                           
+                                  <label value="${labels.client_p.p_passport_date_expiration}" />
+                                  <datebox id="p_passport_date_expiration1" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_passport_date_expiration}" />
+                                  <label value="${labels.client_p.p_code_gender}" />
+                                  <cell colspan="3">
+                                    <textbox id="p_code_gender" mold="rounded" hflex="1" value="@{client_pmain$composer.current.p_code_gender}" />
+                                    <rcombobox id="p_code_gender_cbox"  mold="rounded" hflex="8" />
+                                  </cell>                              
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_passport_place_registration}" /></cell>
+                                   <cell colspan="9"><textbox id="p_passport_place_registration" hflex="1" mold="rounded"  value="@{client_pmain$composer.current.p_passport_place_registration}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_birth_place}" /> </cell>
+                                   <cell colspan="9"><textbox id="p_birth_place"  mold="rounded" hflex="1" value="@{client_pmain$composer.current.p_birth_place}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.code_country}" />
+                                   </cell>
+                                  <cell colspan="2"><textbox id="code_country" hflex="1" mold="rounded" value="@{client_pmain$composer.current.code_country}" />
+                                   <rcombobox id="code_country_cbox" mold="rounded" />
+                                  </cell>                              
+                                   <label value="${labels.client_p.p_code_adr_region}" />
+                                   <cell colspan="2">
+                                      <textbox id="p_code_adr_region" hflex="1" mold="rounded"  value="@{client_pmain$composer.current.p_code_adr_region}" />
+                                      <rcombobox id="p_code_adr_region_cbox" hflex="3" mold="rounded" 
+									   selecteditem="@{client_pmain$composer.current.p_code_adr_region}"  />
+                                   </cell>
+                                   <label value="${labels.client_p.p_code_adr_distr}" />
+                                   <cell colspan="3">
+                                   <textbox id="p_code_adr_distr" mold="rounded" hflex="1" value="@{client_pmain$composer.current.p_code_adr_distr}" />
+                                      <rcombobox id="p_code_adr_distr_cbox" mold="rounded" hflex="6" />
+                                   </cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_post_address}" /></cell>
+                                   <cell colspan="9"><textbox id="p_post_address" hflex="1" mold="rounded"  value="@{client_pmain$composer.current.p_post_address}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_phone_home}" /> </cell>
+                                   <cell colspan="2"><textbox id="p_phone_home" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_phone_home}" /></cell>
+                                   <label value="${labels.client_p.p_phone_mobile}" />
+                                   <cell colspan="2"><textbox id="p_phone_mobile" mold="rounded" hflex="1" value="@{client_pmain$composer.current.p_phone_mobile}" /></cell>
+                                   <label value="${labels.client_p.p_email_address}" />
+                                   <cell colspan="3"><textbox id="p_email_address" hflex="1" mold="rounded"  value="@{client_pmain$composer.current.p_email_address}" /></cell>
+                              </row>                              
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_capacity}" /></cell>
+                                   <cell colspan="3">
+                                       <textbox id="p_code_capacity"  mold="rounded"  value="@{client_pmain$composer.current.p_code_capacity}" />
+                                          <rcombobox id="p_code_capacity_cbox" mold="rounded" 
+				                          selecteditem="@{client_pmain$composer.current.p_code_capacity}"  />
+                                   </cell>
+                                   <label value="${labels.client_p.p_pension_sertif_serial}" />
+                                   <textbox id="p_pension_sertif_serial" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_pension_sertif_serial}" />
+                                   <label value="${labels.client_p.p_num_certif_capacity}" />
+                                   <textbox id="p_num_certif_capacity" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_num_certif_capacity}" />
+                                   <label value="${labels.client_p.p_capacity_status_date}" />
+                                   <datebox id="p_capacity_status_date1" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_capacity_status_date}" />
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_capacity_status_place}" /></cell>
+                                   <cell colspan="9"><textbox id="p_capacity_status_place"  mold="rounded" hflex="1" value="@{client_pmain$composer.current.p_capacity_status_place}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_bank}" /></cell>
+                                   <cell colspan="5">
+                                      <textbox id="p_code_bank" mold="rounded" hflex="1" readonly="true" value="@{client_pmain$composer.current.p_code_bank}" />
+                                          <rcombobox id="p_code_bank_cbox" mold="rounded" hflex="5" readonly="true" ButtonVisible="false" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_code_class_credit}" />
+                                   <cell colspan="3"><textbox id="p_code_class_credit"  mold="rounded"  value="@{client_pmain$composer.current.p_code_class_credit}" />
+                                         <rcombobox id="p_code_class_credit_cbox" mold="rounded" />
+                                   </cell>
+                               </row>
+                               <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_tax_org}" /></cell>
+                                   <cell colspan="3"><textbox id="p_code_tax_org" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_code_tax_org}" />
+                                         <rcombobox id="p_code_tax_org_cbox" mold="rounded" hflex="6" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_number_tax_registration}" />
+                                   <cell colspan="2"><textbox id="p_number_tax_registration" hflex="1" mold="rounded" value="@{client_pmain$composer.current.p_number_tax_registration}" /></cell>
+                                   <label value="${labels.client_p.p_inps}" />
+                                   <cell colspan="2"><textbox id="p_inps" mold="rounded" hflex="1" value="@{client_pmain$composer.current.p_inps}" /></cell>                             
+                               </row>
+                          </rows>
+                  </grid>
+          </groupbox>
+            <groupbox>           
+                  <grid id="addgrd" visible="false">
+                          <columns>
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+                          </columns>
+                          <rows>
+                            <row>
+                                  <cell colspan="2">
+							      <label value="${labels.client_p.id_client}" /> </cell>
+							      <textbox id="aid_client" readonly="true" mold="rounded" hflex="1" /> 
+                                  <label value="${labels.client_p.state}" />
+                                  <cell colspan="3">
+							        <rcombobox id="astate_cbox" hflex="1" mold="rounded" readonly="true" ButtonVisible="false" />
+						          </cell>
+                                  <cell>
+							      <label value="${labels.client_p.date_open}" /> </cell>
+   						          <cell>
+							      <datebox id="adate_open" ButtonVisible="false" readonly="true" mold="rounded" hflex="1" />
+							      </cell>
+							      <cell> <label value="${labels.client_p.date_close}" /> </cell>
+							      <cell>
+						               <datebox id="adate_close" ButtonVisible="false" readonly="true" mold="rounded" hflex="1"  /> 
+							      </cell>
+                              </row>
+                                  
+                              <row><cell colspan="2"><label value="${labels.client_p.name}" /></cell>
+                                  <cell colspan="9">
+                                  <textbox id="aname" mold="rounded" value="@{client_pmain$composer.tclient.name}" hflex="1"/>
+                                  </cell>
+                              </row>
+
+                              <row><cell colspan="2"> <label value="${labels.client_p.p_family}" /></cell>
+                                  <cell colspan="3"><textbox id="ap_family"  mold="rounded" hflex="1"  /></cell>
+                                  <label value="${labels.client_p.p_first_name}" /> 
+                                  <cell colspan="2"><textbox id="ap_first_name" hflex="1" mold="rounded" /></cell>
+                                  <cell><label value="${labels.client_p.p_patronymic}" /></cell>
+                                  <cell colspan="2"><textbox id="ap_patronymic" hflex="1" mold="rounded"  /></cell> 
+                              </row>
+                              
+                              <row>
+                                  <cell colspan="2"> <label value="${labels.client_p.code_type}" /> </cell> 
+                                  <cell colspan="3"> 
+                                    <textbox id="acode_type"  mold="rounded" readonly="true" hflex="1" value="08" />
+                                    <rcombobox id="acode_type_cbox" mold="rounded" readonly="true" hflex="5" ButtonVisible="false"  />
+									</cell>
+                                  <label value="${labels.client_p.p_code_citizenship}" />
+                                  <cell colspan="3">
+                                  <textbox id="ap_code_citizenship" mold="rounded" hflex="1"  />
+                                  <rcombobox id="ap_code_citizenship_cbox" mold="rounded" hflex="6" 
+									selecteditem="@{client_pmain$composer.tclient.p_code_citizenship}" />
+                                  </cell>
+                                  <cell> <label value="${labels.client_p.code_resident}" /> </cell>
+                                  <cell> <rcombobox id="acode_resident_cbox" mold="rounded" hflex="1" />  </cell>
+                              </row>
+                              <row>
+                                  <cell colspan="2"><label value="${labels.client_p.p_type_document}" /></cell>
+                                  <cell colspan="2"><textbox id="ap_type_document" hflex="1" mold="rounded" />
+                                  <rcombobox id="ap_type_document_cbox" mold="rounded" />
+                                  </cell>
+                                  <label value="${labels.client_p.p_passport_serial}" />
+                                  <textbox id="ap_passport_serial" hflex="1"  mold="rounded" />
+                                  <label value="${labels.client_p.p_passport_number}" />
+                                  <textbox id="ap_passport_number" hflex="1"  mold="rounded" />
+                                  <label value="${labels.client_p.p_code_nation}" />
+                                  <cell colspan="2"><textbox id="ap_code_nation" hflex="1"  mold="rounded" />
+                                      <rcombobox id="ap_code_nation_cbox" mold="rounded" />
+									</cell>
+                              </row>
+                              <row><cell colspan="2"><label value="${labels.client_p.p_birthday}" /></cell>
+                                  <datebox id="ap_birthday1" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_birthday}" />
+                                  <label value="${labels.client_p.p_passport_date_registration}" />
+                                  <datebox id="ap_passport_date_registration1" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_passport_date_registration}" />                           
+                                  <label value="${labels.client_p.p_passport_date_expiration}" />
+                                  <datebox id="ap_passport_date_expiration1" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_passport_date_expiration}" />
+                                  <label value="${labels.client_p.p_code_gender}" />
+                                  <cell colspan="3">
+                                    <textbox id="ap_code_gender" mold="rounded" hflex="1" value="@{client_pmain$composer.tclient.p_code_gender}" />
+                                    <rcombobox id="ap_code_gender_cbox"  mold="rounded" hflex="8" />
+                                  </cell>                              
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_passport_place_registration}" /></cell>
+                                   <cell colspan="9"><textbox id="ap_passport_place_registration" hflex="1" mold="rounded"  value="@{client_pmain$composer.tclient.p_passport_place_registration}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_birth_place}" /> </cell>
+                                   <cell colspan="9"><textbox id="ap_birth_place"  mold="rounded" hflex="1" value="@{client_pmain$composer.tclient.p_birth_place}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.code_country}" />
+                                   </cell>
+                                  <cell colspan="2"><textbox id="acode_country" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.code_country}" />
+                                   <rcombobox id="acode_country_cbox" mold="rounded" />
+                                  </cell>                              
+                                   <label value="${labels.client_p.p_code_adr_region}" />
+                                   <cell colspan="2">
+                                      <textbox id="ap_code_adr_region" hflex="1" mold="rounded"  value="@{client_pmain$composer.tclient.p_code_adr_region}" />
+                                      <rcombobox id="ap_code_adr_region_cbox" hflex="3" mold="rounded" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_code_adr_distr}" />
+                                   <cell colspan="3">
+                                   <textbox id="ap_code_adr_distr" mold="rounded" hflex="1" value="@{client_pmain$composer.tclient.p_code_adr_distr}" />
+                                      <rcombobox id="ap_code_adr_distr_cbox" mold="rounded" hflex="6" />
+                                   </cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_post_address}" /></cell>
+                                   <cell colspan="9"><textbox id="ap_post_address" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_post_address}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_phone_home}" /> </cell>
+                                   <cell colspan="2"><textbox id="ap_phone_home" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_phone_home}" /></cell>
+                                   <label value="${labels.client_p.p_phone_mobile}" />
+                                   <cell colspan="2"><textbox id="ap_phone_mobile" mold="rounded" hflex="1" value="@{client_pmain$composer.tclient.p_phone_mobile}" /></cell>
+                                   <label value="${labels.client_p.p_email_address}" />
+                                   <cell colspan="3"><textbox id="ap_email_address" hflex="1" mold="rounded"  value="@{client_pmain$composer.tclient.p_email_address}" /></cell>
+                              </row>                              
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_capacity}" /></cell>
+                                   <cell colspan="3">
+                                       <textbox id="ap_code_capacity"  mold="rounded"  value="@{client_pmain$composer.tclient.p_code_capacity}" />
+                                          <rcombobox id="ap_code_capacity_cbox" mold="rounded" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_pension_sertif_serial}" />
+                                   <textbox id="ap_pension_sertif_serial" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_pension_sertif_serial}" />
+                                   <label value="${labels.client_p.p_num_certif_capacity}" />
+                                   <textbox id="ap_num_certif_capacity" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_num_certif_capacity}" />
+                                   <label value="${labels.client_p.p_capacity_status_date}" />
+                                   <datebox id="ap_capacity_status_date1" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_capacity_status_date}" />
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_capacity_status_place}" /></cell>
+                                   <cell colspan="9"><textbox id="ap_capacity_status_place"  mold="rounded" hflex="1" value="@{client_pmain$composer.tclient.p_capacity_status_place}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_bank}" /></cell>
+                                   <cell colspan="5">
+                                      <textbox id="ap_code_bank" mold="rounded" hflex="1" readonly="true" value="@{client_pmain$composer.tclient.p_code_bank}" />
+                                          <rcombobox id="ap_code_bank_cbox" mold="rounded" hflex="5" readonly="true" ButtonVisible="false" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_code_class_credit}" />
+                                   <cell colspan="3"><textbox id="ap_code_class_credit"  mold="rounded"  value="@{client_pmain$composer.tclient.p_code_class_credit}" />
+                                         <rcombobox id="ap_code_class_credit_cbox" mold="rounded" />
+                                   </cell>
+                               </row>
+                               <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_tax_org}" /></cell>
+                                   <cell colspan="3"><textbox id="ap_code_tax_org" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_code_tax_org}" />
+                                         <rcombobox id="ap_code_tax_org_cbox" mold="rounded" hflex="6" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_number_tax_registration}" />
+                                   <cell colspan="2"><textbox id="ap_number_tax_registration" hflex="1" mold="rounded" value="@{client_pmain$composer.tclient.p_number_tax_registration}" /></cell>
+                                   <label value="${labels.client_p.p_inps}" />
+                                   <cell colspan="2"><textbox id="ap_inps" mold="rounded" hflex="1" value="@{client_pmain$composer.tclient.p_inps}" /></cell>                             
+                               </row>
+                          </rows>
+                  </grid>
+          </groupbox>
+          
+            <groupbox>           
+                   <grid id="fgrd" visible="false">
+                          <columns>
+					<column/><column/>
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+					<column hflex="1" /><column hflex="1" />
+                          </columns>
+                          <rows>
+                            <row>
+                                  <cell colspan="2">
+							      <label value="${labels.client_p.id_client}" /> </cell>
+							      <textbox id="fid_client" readonly="true" mold="rounded" hflex="1" value="@{client_pmain$composer.filter.id_client}" /> 
+                                  <label value="${labels.client_p.state}" />
+                                  <cell colspan="3">
+							        <rcombobox id="fstate_cbox" hflex="1" mold="rounded" selecteditem="@{client_pmain$composer.filter.state}" />
+						          </cell>
+                                  <cell>
+							      <label value="${labels.client_p.date_open}" /> </cell>
+   						          <cell>
+							      <datebox id="fdate_open" ButtonVisible="false" readonly="true" mold="rounded" hflex="1" value="@{client_pmain$composer.filter.date_open}" />
+							      </cell>
+							      <cell> <label value="${labels.client_p.date_close}" /> </cell>
+							      <cell>
+						               <datebox id="fdate_close" ButtonVisible="false" readonly="true" mold="rounded" hflex="1" value="@{client_pmain$composer.filter.date_close}" /> 
+							      </cell>
+                              </row>
+                                  
+                              <row><cell colspan="2"><label value="${labels.client_p.name}" /></cell>
+                                  <cell colspan="9">
+                                  <textbox id="fname"  mold="rounded"  value="@{client_pmain$composer.filter.name}" hflex="1"/>
+                                  </cell>
+                              </row>
+
+                              <row><cell colspan="2"> <label value="${labels.client_p.p_family}" /></cell>
+                                  <cell colspan="3"><textbox id="fp_family"  mold="rounded" hflex="1" value="@{client_pmain$composer.filter.p_family}" /></cell>
+                                  <label value="${labels.client_p.p_first_name}" /> 
+                                  <cell colspan="2"><textbox id="fp_first_name" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_first_name}" /></cell>
+                                  <cell><label value="${labels.client_p.p_patronymic}" /></cell>
+                                  <cell colspan="2"><textbox id="fp_patronymic" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_patronymic}" /></cell> 
+                              </row>
+                              
+                              <row>
+                                  <cell colspan="2"> <label value="${labels.client_p.code_type}" /> </cell> 
+                                  <cell colspan="3"> 
+                                    <textbox id="fcode_type" mold="rounded" readonly="true" hflex="1" value="@{client_pmain$composer.filter.code_type}" />
+                                    <rcombobox id="fcode_type_cbox" mold="rounded" readonly="true" hflex="5" ButtonVisible="false"  />
+									</cell>
+                                  <label value="${labels.client_p.p_code_citizenship}" />
+                                  <cell colspan="3">
+                                  <textbox id="fp_code_citizenship"  mold="rounded" hflex="1" value="@{client_pmain$composer.filter.p_code_citizenship}" />
+                                  <rcombobox id="fp_code_citizenship_cbox" mold="rounded" hflex="6" />
+                                  </cell>
+                                  <cell> <label value="${labels.client_p.code_resident}" /> </cell>
+                                  <cell>   <rcombobox id="fcode_resident_cbox" mold="rounded" hflex="1" />  </cell>
+                              </row>
+                              <row>
+                                  <cell colspan="2"><label value="${labels.client_p.p_type_document}" /></cell>
+                                  <cell colspan="2"><textbox id="fp_type_document" hflex="1" mold="rounded"  value="@{client_pmain$composer.filter.p_type_document}" />
+                                  <rcombobox id="fp_type_document_cbox" mold="rounded" />
+                                  </cell>
+                                  <label value="${labels.client_p.p_passport_serial}" />
+                                  <textbox id="fpassport_serial" hflex="1"  mold="rounded"  value="@{client_pmain$composer.filter.p_passport_serial}" />
+                                  <label value="${labels.client_p.p_passport_number}" />
+                                  <textbox id="fp_passport_number" hflex="1"  mold="rounded"  value="@{client_pmain$composer.filter.p_passport_number}" />
+                                  <label value="${labels.client_p.p_code_nation}" />
+                                  <cell colspan="2"><textbox id="fp_code_nation" hflex="1"  mold="rounded"  value="@{client_pmain$composer.filter.p_code_nation}" />
+                                      <rcombobox id="fp_code_nation_cbox" mold="rounded" />
+									</cell>
+                              </row>
+                              <row><cell colspan="2"><label value="${labels.client_p.p_birthday}" /></cell>
+                                  <datebox id="fp_birthday1" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_birthday}" />
+                                  <label value="${labels.client_p.p_passport_date_registration}" />
+                                  <datebox id="fp_passport_date_registration1" hflex="1" mold="rounded"  value="@{client_pmain$composer.filter.p_passport_date_registration}" />                           
+                                  <label value="${labels.client_p.p_passport_date_expiration}" />
+                                  <datebox id="fp_passport_date_expiration1" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_passport_date_expiration}" />
+                                  <label value="${labels.client_p.p_code_gender}" />
+                                  <cell colspan="3">
+                                    <textbox id="fp_code_gender" mold="rounded" hflex="1" value="@{client_pmain$composer.filter.p_code_gender}" />
+                                    <rcombobox id="fp_code_gender_cbox"  mold="rounded" hflex="8" />
+                                  </cell>                              
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_passport_place_registration}" /></cell>
+                                   <cell colspan="9"><textbox id="fp_passport_place_registration" hflex="1" mold="rounded"  value="@{client_pmain$composer.filter.p_passport_place_registration}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_birth_place}" /> </cell>
+                                   <cell colspan="9"><textbox id="fp_birth_place"  mold="rounded" hflex="1" value="@{client_pmain$composer.filter.p_birth_place}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.code_country}" />
+                                   </cell>
+                                  <cell colspan="2"><textbox id="fcode_country" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.code_country}" />
+                                   <rcombobox id="fcode_country_cbox" mold="rounded"/>
+                                  </cell>                              
+                                   <label value="${labels.client_p.p_code_adr_region}" />
+                                   <cell colspan="2">
+                                      <textbox id="fp_code_adr_region" hflex="1" mold="rounded"  value="@{client_pmain$composer.filter.p_code_adr_region}" />
+                                      <rcombobox id="fp_code_adr_region_cbox" hflex="3" mold="rounded" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_code_adr_distr}" />
+                                   <cell colspan="3">
+                                   <textbox id="fp_code_adr_distr" mold="rounded" hflex="1" value="@{client_pmain$composer.filter.p_code_adr_distr}" />
+                                      <rcombobox id="fp_code_adr_distr_cbox" mold="rounded" hflex="6"  />
+                                   </cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_post_address}" /></cell>
+                                   <cell colspan="9"><textbox id="fp_post_address" hflex="1" mold="rounded"  value="@{client_pmain$composer.filter.p_post_address}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_phone_home}" /> </cell>
+                                   <cell colspan="2"><textbox id="fp_phone_home" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_phone_home}" /></cell>
+                                   <label value="${labels.client_p.p_phone_mobile}" />
+                                   <cell colspan="2"><textbox id="fp_phone_mobile" mold="rounded" hflex="1" value="@{client_pmain$composer.filter.p_phone_mobile}" /></cell>
+                                   <label value="${labels.client_p.p_email_address}" />
+                                   <cell colspan="3"><textbox id="fp_email_address" hflex="1" mold="rounded"  value="@{client_pmain$composer.filter.p_email_address}" /></cell>
+                              </row>                              
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_capacity}" /></cell>
+                                   <cell colspan="3">
+                                       <textbox id="fp_code_capacity"  mold="rounded"  value="@{client_pmain$composer.filter.p_code_capacity}" />
+                                          <rcombobox id="fp_code_capacity_cbox" mold="rounded"  />
+                                   </cell>
+                                   <label value="${labels.client_p.p_pension_sertif_serial}" />
+                                   <textbox id="fp_pension_sertif_serial" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_pension_sertif_serial}" />
+                                   <label value="${labels.client_p.p_num_certif_capacity}" />
+                                   <textbox id="fp_num_certif_capacity" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_num_certif_capacity}" />
+                                   <label value="${labels.client_p.p_capacity_status_date}" />
+                                   <datebox id="fp_capacity_status_date1" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_capacity_status_date}" />
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_capacity_status_place}" /></cell>
+                                   <cell colspan="9"><textbox id="fp_capacity_status_place"  mold="rounded" hflex="1" value="@{client_pmain$composer.filter.p_capacity_status_place}" /></cell>
+                              </row>
+                              <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_bank}" /></cell>
+                                   <cell colspan="5">
+                                      <textbox id="fp_code_bank" mold="rounded" hflex="1" readonly="true" value="@{client_pmain$composer.filter.p_code_bank}" />
+                                          <rcombobox id="fp_code_bank_cbox" mold="rounded" hflex="5" readonly="true" ButtonVisible="false" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_code_class_credit}" />
+                                   <cell colspan="3"><textbox id="fp_code_class_credit"  mold="rounded"  value="@{client_pmain$composer.filter.p_code_class_credit}" />
+                                         <rcombobox id="fp_code_class_credit_cbox" mold="rounded" />
+                                   </cell>
+                               </row>
+                               <row>
+                                   <cell colspan="2"><label value="${labels.client_p.p_code_tax_org}" /></cell>
+                                   <cell colspan="3"><textbox id="fp_code_tax_org" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_code_tax_org}" />
+                                         <rcombobox id="fp_code_tax_org_cbox" mold="rounded" hflex="6" />
+                                   </cell>
+                                   <label value="${labels.client_p.p_number_tax_registration}" />
+                                   <cell colspan="2"><textbox id="fp_number_tax_registration" hflex="1" mold="rounded" value="@{client_pmain$composer.filter.p_number_tax_registration}" /></cell>
+                                   <label value="${labels.client_p.p_inps}" />
+                                   <cell colspan="2"><textbox id="fp_inps" mold="rounded" hflex="1" value="@{client_pmain$composer.filter.p_inps}" /></cell>                             
+                               </row>
+                          </rows>
+                  </grid>
+          </groupbox>
+          
+          <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+          </toolbar>
+        </div>
+
+</window>

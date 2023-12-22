@@ -1,0 +1,235 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<style>
+		.customIcon{
+		width: 100%;
+		height: 25px;
+		text-align: center;
+		background: -webkit-linear-gradient(-90deg, rgba(52,133,209,1) 0,
+		rgba(55,141,211,0.5) 24%, rgba(47,125,188,0.2) 50%,
+		rgba(55,141,211,0.5) 79%, rgba(52,133,209,1) 100%);
+		background: -moz-linear-gradient(180deg, rgba(52,133,209,1) 0,
+		rgba(55,141,211,0.5) 24%, rgba(47,125,188,0.2) 50%,
+		rgba(55,141,211,0.5) 79%, rgba(52,133,209,1) 100%);
+		background: linear-gradient(180deg, rgba(52,133,209,1) 0, rgba(55,141,211,0.5)
+		24%, rgba(47,125,188,0.2) 50%, rgba(55,141,211,0.5) 79%,
+		rgba(52,133,209,1) 100%);
+		background-repeat: repeat;
+		}
+		.z-fieldset legend {
+		font-size: 20px;
+		font-weight: 900;
+		font-style: oblique;
+		}
+	</style>
+	<window id="bprtypemain" apply="com.is.bpri.BprTypeViewCtrl"
+		contentStyle="overflow:auto;">
+		<toolbar id="tb">
+			<toolbarbutton id="btn_back" label="${labels.back}"
+				image="/images/file.png" />
+			<toolbarbutton id="btn_search" label="${labels.search}"
+				image="/images/search.png" />
+			<toolbarbutton id="btn_add" label="${labels.add}"
+				image="/images/+.png" />
+			<toolbarbutton id="btn_delete" label="${labels.delete}"
+				image="/images/delete.png" />
+			<toolbarbutton id="btn_first" label="${labels.first}"
+				image="/images/backward.png" />
+			<toolbarbutton id="btn_prev" label="${labels.prev}"
+				image="/images/back.png" />
+			<toolbarbutton id="btn_next" label="${labels.next}"
+				image="/images/front.png" />
+			<toolbarbutton id="btn_last" label="${labels.last}"
+				image="/images/forward.png" />
+			<toolbarbutton id="btn_saving" label="Утвердить шаблон"
+				image="/images/approved.png" visible="false" />
+			<toolbarbutton id="btn_close" label="закрыть шаблон"
+				image="/images/-.png" visible="false" />
+			<toolbarbutton id="btn_recreate" label="Создать копию этого шаблна"
+				visible="false" />
+		</toolbar>
+		<div id="grd">
+			<paging id="bprtypePaging" />
+			<listbox style="border:none" id="dataGrid" multiple="true"
+				selectedItem="@{bprtypemain$composer.current}">
+				<listhead sizable="true">
+					<listheader label="Тип банковского продукта" />
+					<listheader label="Номер банковского продукта" />
+					<listheader label="Наименование банковского продукта" />
+					<listheader label="Валюта" />
+					<listheader label="Вид сделки" />
+					<listheader label="Мфо" />
+					<listheader label="Регион" />
+					<listheader label="Процент обеспечения кредита депозитом" />
+					<listheader label="Состояние" />
+				</listhead>
+			</listbox>
+		</div>
+		<div id="frm" visible="false">
+			<groupbox id="bprtype_tab">
+				<caption label="Наименование Банковских продуктов" sclass="customIcon" />
+				<grid id="frmgrd">
+					<columns>
+					</columns>
+					<rows>
+						<row>
+							<label value="Тип банковского продукта" />
+							<rcombobox id="bpr_type" mold="rounded"
+								selecteditem="@{bprtypemain$composer.current.bpr_type}" />
+						</row>
+						<row>
+							<label value="Наименование банковского продукта" />
+							<textbox id="name" mold="rounded"
+								value="@{bprtypemain$composer.current.name}" />
+						</row> <!-- selecteditem="@{bprtypemain$composer.current.bpr_id}" -->
+						<row>
+							<label value="Назначение" />
+							<rcombobox id="target_clients"
+								selecteditem="@{bprtypemain$composer.current.target_clients}"
+								mold="rounded" />
+						</row>
+						<row>
+							<label value="Валюта" />
+							<rcombobox id="currency" mold="rounded"
+								selecteditem="@{bprtypemain$composer.current.currency}" />
+						</row>
+						<row>
+							<label value="Вид сделки" />
+							<rcombobox id="deal_id" mold="rounded"
+								selecteditem="@{bprtypemain$composer.current.detail_id" />
+						</row>
+						<row>
+							<label value="Регион" />
+							<rcombobox id="fregion" />
+						</row>
+						<row>
+							<label value="Филиал" />
+							<rcombobox id="fmfo" selecteditem="@{bprtypemain$composer.current.mfo}" />
+						</row>
+						<row id="provisrow">
+							<label value="Процент обеспечения кредита депозитом" />
+							<textbox id="provision" mold="rounded"
+								value="@{bprtypemain$composer.current.provision}" />
+						</row>
+					</rows>
+				</grid>
+				<grid id="addgrd" visible="false">
+					<columns>
+					</columns>
+					<rows>
+						<row>
+							<label value="Тип банковского продукта" />
+							<rcombobox id="abpr_type" />
+						</row>
+						<row id="addrow" visible="false">
+							<label value="Наименование банковского продукта" />
+							<textbox id="aname" />
+						</row>
+						<row id="searchrow" visible="false">
+							<label value="Наименование банковского продукта" />
+							<rcombobox id="dname" />
+						</row>
+						<row>
+							<label value="Назначение" />
+							<rcombobox id="atarget_clients" mold="rounded" />
+						</row>
+						<row>
+							<label value="Валюта" />
+							<rcombobox id="acurrency" />
+						</row>
+						<row>
+							<label value="Вид сделки" />
+							<rcombobox id="adeal_id" />
+						</row>
+						<row>
+							<label value="Регион" />
+							<rcombobox id="region" />
+						</row>
+						<row>
+							<label value="Филиал" />
+							<rcombobox id="mfo" />
+						</row>
+						<row id="provrow" visible="false">
+							<label id="aprovision_lbl" value="Процент обеспечения кредита депозитом" />
+							<textbox id="aprovision" />
+						</row>
+						<row id="staterow" visible="false">
+							<label value="Состояние" />
+							<rcombobox id="astate" />
+						</row>
+					</rows>
+				</grid>
+				<grid id="fgrd" visible="false">
+					<rows>
+						<row>
+							<label value="Номер банковского продукта" />
+							<rcombobox id="fid" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="nireq_tab" open="false">
+				<caption label="Кредитная заявка" sclass="customIcon" />
+				<include id="nireq" />
+			</groupbox>
+			<groupbox id="ho_tab" open="false">
+				<caption label="Общая характеристика анкеты" sclass="customIcon" />
+				<include id="ldproduct" />
+			</groupbox>
+			<groupbox id="ldhisrate_tab" open="false">
+				<caption label="История ставок" sclass="customIcon" />
+				<include id="hisrate" />
+			</groupbox>
+			<groupbox id="ldguarr_tab" open="false">
+				<caption label="Обеспечение кредита" sclass="customIcon" />
+				<include id="ldguarr" />
+			</groupbox>
+			<groupbox id="ldgr_tab" open="false">
+				<caption label="Прогнозные графики" sclass="customIcon" />
+				<include id="ldgr" />
+			</groupbox>
+			<groupbox id="ldforms_tab" open="false">
+				<caption label="Дополнительные характеристики" sclass="customIcon" />
+				<include id="bprLdForms" />
+			</groupbox>
+			<groupbox id="ldaccount_tab" open="false">
+				<caption label="Счета" sclass="customIcon" />
+				<include id="bprLdAccount" />
+			</groupbox>
+			<groupbox id="changelimit_tab" open="false">
+				<caption label="Лимиты" sclass="customIcon" />
+				<include id="bprChangeLimit" />
+			</groupbox>
+			<groupbox id="bpr_specialfrm" open="false">
+				<caption label="Спец Характеристики Анкет" sclass="customIcon" />
+				<include id="bprspecialfrm" />
+			</groupbox>
+			<groupbox id="authorizedacctab" open="false" visible="false">
+				<caption label="Разрешённые на выдачу счета" sclass="customIcon" />
+				<include id="authorizedacc" />
+			</groupbox>
+			<groupbox id="scoringtab" open="false" visible="false">
+				<caption label="Скоринг" sclass="customIcon" />
+				<include id="scoringInc" />
+			</groupbox>
+			<groupbox id="scoringapp" open="false">
+				<caption label="Анкета кредитной заявки" sclass="customIcon" />
+				<include id="scoringappInc" />
+			</groupbox>
+			<groupbox id="otherSettingsBox" open="false">
+				<caption label="Прочие настройки" sclass="customIcon" />
+				<include id="otherSettings" />
+			</groupbox>
+			<toolbar>
+				<toolbarbutton id="btn_save" visible="false" label="${labels.save}"
+					image="/images/save.png" />
+				<toolbarbutton id="btn_del" visible="false" label="${labels.delete}"
+					image="/images/delete.png" />
+				<toolbarbutton id="btn_cancel" visible="false"
+					label="${labels.cancel}" image="/images/stop.png" />
+			</toolbar>
+
+		</div>
+	</window>
+</zk>
+

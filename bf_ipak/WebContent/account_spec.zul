@@ -1,0 +1,503 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="specAccmain" width="100%" border="none" height="1300px"
+	apply="com.is.account.spec.SpecAccViewCtrl">
+	
+	<toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" disabled="true" />
+                <toolbarbutton id="btn_del" label="${labels.delete}"
+                        image="/images/-.png" disabled="true" />
+				<separator orient="vertical" spacing="10px" bar="true"
+							height="24px" style="color: white;"/>
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                <separator orient="vertical" spacing="10px" bar="true"
+							height="24px" style="color: white;"/>
+                <toolbarbutton id="btn_history" label="История" />
+        </toolbar>
+	
+	<div id="grd" >
+		<paging id="specialaccPaging" width="100%" />
+		<listbox id="dataGrid" selectedItem="@{specAccmain$composer.current}">
+			<listhead>
+				<listheader label="${labels.spechar.id_special}"/>
+				<listheader label="${labels.spechar.acc}"/>
+				<listheader label="${labels.spechar.name}"/>
+				<listheader label="${labels.spechar.code_currency}"/>
+				<listheader label="${labels.spechar.sum_acc}"/>
+			</listhead>
+		</listbox>
+	</div>
+	<div id="frm" visible="false">
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.acc}"/>
+						</cell>
+						<cell colspan="3">
+							<textbox id="acc" 
+							value="@{specAccmain$composer.current.acc}" 
+							mold="rounded" readonly="true" hflex="1"/>
+						</cell>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_client}"/>
+						</cell>
+						<cell colspan="3">
+							<textbox id="client" 
+							value="@{specAccmain$composer.current.client}" 
+							mold="rounded" readonly="true" hflex="1"/>
+						</cell>
+					</row>
+					
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.name}"/>
+						</cell>
+						<cell colspan="6">
+							<textbox id="name" 
+								value="@{specAccmain$composer.current.name}"
+								mold="rounded" readonly="true" hflex="1"/>
+						</cell>
+						<label value="${labels.spechar.id_order}"/>
+						<textbox id="id_order" 
+								value="@{specAccmain$composer.current.id_order}" 
+								mold="rounded" readonly="true" hflex="1"/>
+					</row>
+					
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.acc_bal}"/>
+						</cell>
+						<textbox  id="acc_bal_text" 
+							value="@{specAccmain$composer.current.acc_bal}" 
+							mold="rounded" readonly="true" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="acc_bal" 
+								selecteditem="@{specAccmain$composer.current.acc_bal}" 
+								mold="rounded" readonly="true" hflex="1" buttonVisible="false"
+								onChange="specAccmain$composer.current.acc_bal=acc_bal.value;
+										acc_bal_text.value=acc_bal.value"/>
+						</cell>
+						
+						<cell colspan="2">
+							<label value="${labels.spechar.currency}"/>
+						</cell>
+						<textbox  id="currency_text" 
+							value="@{specAccmain$composer.current.currency}" 
+							mold="rounded" readonly="true" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="currency" 
+								selecteditem="@{specAccmain$composer.current.currency}" 
+								mold="rounded" readonly="true" hflex="1" buttonVisible="false"
+								onChange="specAccmain$composer.current.currency=currency.value;
+										currency_text.value=currency.value"/>
+						</cell>
+					</row>
+					
+				</rows>
+			</grid>
+		</groupbox>
+	 	<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_special}"/>
+						</cell>
+						<textbox id="id_specialText" 
+							value="@{specAccmain$composer.current.id_special}" 
+							mold="rounded" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="id_special" 
+							selecteditem="@{specAccmain$composer.current.id_special}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.current.id_special=id_special.value;
+									id_specialText.value=id_special.value"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.currency}"/>
+						</cell>
+						<textbox id="code_currencyText" 
+						value="@{specAccmain$composer.current.code_currency}" 
+						mold="rounded" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="code_currency" 
+							selecteditem="@{specAccmain$composer.current.code_currency}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.current.code_currency=code_currency.value;
+									code_currencyText.value=code_currency.value"/>
+						</cell>
+						<cell colspan="2">
+							<label value="${labels.spechar.sum_acc}"/>
+						</cell>
+						<cell colspan="3">
+							<decimalbox id="sum_acc" 
+							value="@{specAccmain$composer.current.sum_acc}" 
+							mold="rounded" hflex="1" 
+							format="### ### ### ##0.00"/> 
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label
+								value="${labels.spechar.branch_slave}" />
+						</cell>
+						<textbox id="branch_slaveText" 
+							value="@{specAccmain$composer.current.branch_slave}" 
+							mold="rounded" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="branch_slave" 
+							selecteditem="@{specAccmain$composer.current.branch_slave}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.current.branch_slave=branch_slave.value;
+									branch_slaveText.value=branch_slave.value"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</div>
+	<div id="fgrd" visible="false">
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.acc}"/>
+						</cell>
+						<cell colspan="3">
+							<textbox id="facc" 
+							value="@{specAccmain$composer.filter.acc}" 
+							mold="rounded" hflex="1"/>
+						</cell>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_client}"/>
+						</cell>
+						<cell colspan="3">
+							<textbox id="fclient" 
+							value="@{specAccmain$composer.filter.client}" 
+							mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+					
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.name}"/>
+						</cell>
+						<cell colspan="6">
+							<textbox id="fname" 
+								value="@{specAccmain$composer.filter.name}"
+								mold="rounded" hflex="1"/>
+						</cell>
+						<label value="${labels.spechar.id_order}"/>
+						<textbox id="fid_order" 
+								value="@{specAccmain$composer.filter.id_order}" 
+								mold="rounded" hflex="1"/>
+					</row>
+					
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.acc_bal}"/>
+						</cell>
+						<textbox  id="facc_bal_text" 
+							value="@{specAccmain$composer.filter.acc_bal}" 
+							mold="rounded" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="facc_bal" 
+							selecteditem="@{specAccmain$composer.filter.acc_bal}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.filter.acc_bal=facc_bal.value;
+									facc_bal_text.value=facc_bal.value"/>
+						</cell>
+						
+						<cell colspan="2">
+							<label value="${labels.spechar.currency}"/>
+						</cell>
+						<textbox  id="fcurrency_text" 
+						value="@{specAccmain$composer.filter.currency}" 
+						mold="rounded" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="fcurrency" 
+								selecteditem="@{specAccmain$composer.filter.currency}" 
+								mold="rounded" hflex="1"
+								onChange="specAccmain$composer.filter.currency=fcurrency.value;
+										fcurrency_text.value=fcurrency.value"/>
+						</cell>
+					</row>
+					
+				</rows>
+			</grid>
+		</groupbox>
+	 	<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_special}"/>
+						</cell>
+						<textbox id="fid_specialText" 
+							value="@{specAccmain$composer.filter.id_special}" 
+							mold="rounded" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="fid_special" 
+							selecteditem="@{specAccmain$composer.filter.id_special}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.filter.id_special=fid_special.value;
+									fid_specialText.value=fid_special.value"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.currency}"/>
+						</cell>
+						<textbox id="fcode_currencyText" 
+						value="@{specAccmain$composer.filter.code_currency}" 
+						mold="rounded" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="fcode_currency" 
+							selecteditem="@{specAccmain$composer.filter.code_currency}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.filter.code_currency=fcode_currency.value;
+									fcode_currencyText.value=fcode_currency.value"/>
+						</cell>
+						<cell colspan="2">
+							<label value="${labels.spechar.sum_acc}"/>
+						</cell>
+						<cell colspan="3">
+							<decimalbox id="fsum_acc" 
+							value="@{specAccmain$composer.filter.sum_acc}" 
+							mold="rounded" hflex="1" 
+							format="### ### ### ##0.00"/> 
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.branch_slave}"/>
+						</cell>
+						<textbox id="fbranch_slaveText" 
+							value="@{specAccmain$composer.filter.branch_slave}" 
+							mold="rounded" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="fbranch_slave" 
+							selecteditem="@{specAccmain$composer.filter.branch_slave}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.filter.branch_slave=fbranch_slave.value;
+									fbranch_slaveText.value=fbranch_slave.value"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</div>
+	<div id="addgrd" visible="false">
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.acc}"/>
+						</cell>
+						<cell colspan="3">
+							<textbox id="aacc" 
+							value="@{specAccmain$composer.newSpecAcc.acc}" 
+							mold="rounded" readonly="true" hflex="1"/>
+						</cell>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_client}"/>
+						</cell>
+						<cell colspan="3">
+							<textbox id="aclient" 
+							value="@{specAccmain$composer.newSpecAcc.client}" 
+							mold="rounded" readonly="true" hflex="1"/>
+						</cell>
+					</row>
+					
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.name}"/>
+						</cell>
+						<cell colspan="6">
+							<textbox id="aname" 
+								value="@{specAccmain$composer.newSpecAcc.name}"
+								mold="rounded" readonly="true" hflex="1"/>
+						</cell>
+						<label value="${labels.spechar.id_order}"/>
+						<textbox id="aid_order" 
+								value="@{specAccmain$composer.newSpecAcc.id_order}" 
+								mold="rounded" readonly="true" hflex="1"/>
+					</row>
+					
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.acc_bal}"/>
+						</cell>
+						<textbox  id="aacc_bal_text" 
+							value="@{specAccmain$composer.newSpecAcc.acc_bal}" 
+							mold="rounded" readonly="true" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="aacc_bal" 
+							selecteditem="@{specAccmain$composer.newSpecAcc.acc_bal}" 
+							mold="rounded" readonly="true" hflex="1" buttonVisible="false"
+							onChange="specAccmain$composer.newSpecAcc.acc_bal=aacc_bal.value;
+									aacc_bal_text.value=aacc_bal.value"/>
+						</cell>
+						
+						<cell colspan="2">
+							<label value="${labels.spechar.currency}"/>
+						</cell>
+						<textbox  id="acurrency_text" 
+						value="@{specAccmain$composer.newSpecAcc.currency}" 
+						mold="rounded" readonly="true" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="acurrency" 
+								selecteditem="@{specAccmain$composer.newSpecAcc.currency}" 
+								mold="rounded" readonly="true" hflex="1" buttonVisible="false"
+								onChange="specAccmain$composer.newSpecAcc.currency=acurrency.value;
+										acurrency_text.value=acurrency.value"/>
+						</cell>
+					</row>
+					
+				</rows>
+			</grid>
+		</groupbox>
+	 	<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_special}"/>
+						</cell>
+						<textbox id="aid_specialText" 
+							value="@{specAccmain$composer.newSpecAcc.id_special}" 
+							mold="rounded" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="aid_special" 
+							selecteditem="@{specAccmain$composer.newSpecAcc.id_special}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.newSpecAcc.id_special=aid_special.value;
+									aid_specialText.value=aid_special.value"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.currency}"/>
+						</cell>
+						<textbox id="acode_currencyText" 
+						value="@{specAccmain$composer.newSpecAcc.code_currency}" 
+						mold="rounded" hflex="1"/>
+						<cell colspan="2">
+							<rcombobox id="acode_currency" 
+							selecteditem="@{specAccmain$composer.newSpecAcc.code_currency}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.newSpecAcc.code_currency=acode_currency.value;
+									acode_currencyText.value=acode_currency.value"/>
+						</cell>
+						<cell colspan="2">
+							<label value="${labels.spechar.sum_acc}"/>
+						</cell>
+						<cell colspan="3">
+							<decimalbox id="asum_acc" 
+							value="@{specAccmain$composer.newSpecAcc.sum_acc}" 
+							mold="rounded" hflex="1" 
+							format="### ### ### ##0.00"/> 
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.branch_slave}"/>
+						</cell>
+						<textbox id="abranch_slaveText" 
+							value="@{specAccmain$composer.newSpecAcc.branch_slave}" 
+							mold="rounded" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="abranch_slave" 
+							selecteditem="@{specAccmain$composer.newSpecAcc.branch_slave}" 
+							mold="rounded" hflex="1"
+							onChange="specAccmain$composer.newSpecAcc.branch_slave=abranch_slave.value;
+									abranch_slaveText.value=abranch_slave.value"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		
+	</div>
+	<toolbar>
+			<toolbarbutton id="btn_save" visible="false"
+                                  label="${labels.save}" image="/images/save.png" />
+            <toolbarbutton id="btn_cancel" visible="false"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+		</toolbar>
+	<window id="spec_history" mode="modal" closable="true" width="80%" 
+		onClose="self.visible = false; event.stopPropagation();"
+		title="История по Спец характеристикам клиента" position="center,center"
+		visible="false">
+		<div>
+			<listbox id="history" rows="10">
+				<listhead>
+					<listheader label="Дата О.Д." width="20%"/>
+					<listheader label="Действие" width="30%"/>
+					<listheader label="Инициатор"/>
+					<listheader label="Системное время" width="20%"/>
+				</listhead>
+			</listbox>
+		</div>
+	
+	</window>
+</window>

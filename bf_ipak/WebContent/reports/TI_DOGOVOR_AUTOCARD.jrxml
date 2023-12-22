@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TI_DOGOVOR_VISA_CAP" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="40" rightMargin="20" topMargin="10" bottomMargin="10">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="535"/>
+	<style name="style1" mode="Opaque" backcolor="#FF3333"/>
+	<style name="style2"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\PROJECTS\\TIET\\REPORTS\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_TYPE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_TYPE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_SERIAL" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_SERIAL>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_NUMBER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_DATE_ISSUE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_DATE_ISSUE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_ISSUE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_ISSUE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_BIRTHDAY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_BIRTHDAY>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PHONE_PASSWORD" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PHONE_PASSWORD>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="POST_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<POST_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CITIZENSHIP" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CITIZENSHIP>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PHONE_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PHONE_NUMBER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="JOB_PLACE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<JOB_PLACE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PHONE_WORK" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PHONE_WORK>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EMAIL" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<EMAIL>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_VID" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_VID>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_DEPARTMENT_EXEC" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_DEPARTMENT_EXEC>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MICRO_DEPARTMENT_EXEC" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<MICRO_DEPARTMENT_EXEC>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CONTRACT_NUM" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CONTRACT_NUM>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BANK_PERSON" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<<BANK_PERSON>>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BRANCH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BANK_INN" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BANK_INN>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BANK_OKONH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BANK_OKONH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_FULL_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_FULL_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH_NAME" class="java.lang.String"/>
+	<parameter name="BRANCH_ADDRESS" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select to_char(1)as t from dual]]>
+	</queryString>
+	<field name="T" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="809">
+			<staticText>
+				<reportElement x="0" y="235" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1. ОБЩИЕ ПОЛОЖЕНИЯ ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="247" width="535" height="51"/>
+				<textElement markup="none">
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tДоговор применим в отношении СВКС, карточки и Держателя, и разъясняет права и обязанности сторон.\n\tБанк выпускает карточку на имя Держателя, сроком на 5 (пять) календарных лет и выдает ее Держателю в течение трех банковских дней после подписания настоящего Договора обеими сторонами.\n\tДля получения карточки Держатель должен открыть СВКС и депозит до востребования в иностранной валюте в Банке.\n\tКарточка является собственностью Банка и подлежит обязательному возврату Держателем в Банк по окончании срока действия, при замене, или по требованию Банка.\n\tБанк взимает комиссию за выпуск и обслуживание карточки, а также за совершенные Держателем транзакции согласно тарифам Банка. "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="299" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[2. ОБЯЗАННОСТИ И ПРАВА СТОРОН ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="313" width="535" height="97"/>
+				<textElement markup="none">
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tБанк: \n\tв течение двух банковских дней после подписания договора открывает на имя Держателя СВКС; \n\tосуществляет дебетование СВКС Держателя на сумму всех транзакций осуществленных по карточке; \n\tпо письменному заявлению Держателя выдает выписку по СВКС; \n\tосуществляет кредитование СВКС Держателя на сумму возврата оплаты; \n\tвправе дебетовать СВКС Держателя на сумму комиссионного вознаграждения Банка за совершенные операции по карточке согласно тарифам Банка. \n\tДержатель: \n\tиспользует карточку в соответствии с условиями настоящего договора; \n\tоплачивает все расходы, понесенные Банком при нарушении условий договора со стороны Держателя; \n\tнезамедлительно сообщает в Банк об изменении места жительства или паспортных данных; \n\tпри утере/кражи карточки, обязан в течение 24 часов письменно уведомить Банк об этом; \n\tвправе пополнять остаток на своем СВКС; \n\tвправе письменно запрашивать выписки с СВКС по совершенным транзакциям; \n\tне вправе требовать от Банка возврата платежа до момента получения сведений о транзакции от ТСП. "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="68" y="215" width="451" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[любой возврат денежных средств на Карточный счет Клиента, осуществляемый ТСП; ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="197" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ТСП]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="54" width="128" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[АИКБ «Ипак Йули», далее «Банк», в лице ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="1" width="515" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ДОГОВОР №____________"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="68" y="177" width="467" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[персональный идентификационный номер, используемый при совершении Транзакции с помощью Банковской карты;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="94" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ОПРЕДЕЛЕНИЯ, ПРИМЕНЯЕМЫЕ В НАСТОЯЩЕМ ДОГОВОРЕ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="129" width="467" height="25"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[пластиковая карточка в иностранной валюте, эмитированная Банком на имя Держателя; ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="64" width="274" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[, далее «Клиент», также индивидуально именуемые как «Сторона» и вместе как «Стороны»,]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="415" y="41" width="100" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="68" y="165" width="467" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[безналичный платеж или операция по получению наличных денежных средств, совершаемых Клиентом с помощью Банковской карты;]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="128" y="54" width="200" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="21" width="515" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["на выпуск и обслуживание международных пластиковых карт и обслуживания карточных счетов"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="177" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ПИН-код]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="74" width="333" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["заключили настоящий договор : на нижеследующих условиях"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="215" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Возврат оплаты]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="30" width="233" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="64" width="18" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[и ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="197" width="467" height="18"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[торгово-сервисное предприятие, принимающее Банковскую карту в качестве оплаты за товары (работы, услуги), как на территории Республики Узбекистан, так и за рубежом;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="154" width="467" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[специальный карточный счет, открываемый в Банке на имя Клиента, для отражения транзакций  (операций) по Банковской карте;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="129" width="68" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Банковская карта]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="18" y="64" width="243" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="165" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Транзакция]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="41" width="100" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[г._____________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="54" width="207" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[действующего на основании ______________, с одной стороны,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="154" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[СВКС]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="112" width="68" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Договор]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="112" width="467" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[настоящий договор, все приложения и дополнения к нему, письменные инструкции Банка;]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="425" width="535" height="29"/>
+				<textElement markup="none">
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tБанк несет ответственность за неправомерно произведенные трансакции по карточке третьими лицами по истечении 5 (пяти) банковских дней со дня письменного оповещения Держателем о краже и/или утере карточки. \n\tДержатель несет ответственность за достоверность всей информации, предоставляемой Банку."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="411" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[3. ОТВЕТСТВЕННОСТЬ СТОРОН ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="457" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[4. КОНФИДЕНЦИАЛЬНОСТЬ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="471" width="535" height="21"/>
+				<textElement markup="none">
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tВся информация, ставшая известной сторонам в период действия настоящего договора является конфиденциальной и не подлежит передаче третьим лицам без письменного разрешения на то стороны по договору, кроме случаев предусмотренных действующим законодательством Республики Узбекистан."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="496" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[5. ФОРС-МАЖОР]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="510" width="535" height="29"/>
+				<textElement markup="none">
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tСтороны не несут ответственности за неисполнение или ненадлежащее исполнение своих обязательств по настоящему Договору, если это явилось следствием обстоятельств не зависящих от воли сторон и обстоятельств непреодолимой силы: война, землетрясение, пожар, стихийные бедствия. \n\tОбстоятельства непреодолимой силы будут считаться форс-мажором при подтверждении их в установленном законом порядке, уполномоченными на то органами."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="541" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[6. РЕКЛАМАЦИИ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="555" width="535" height="11"/>
+				<textElement markup="none">
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tВсе споры, возникшие из настоящего договора, разрешаются в соответствии с действующим законодательством Республики Узбекистан."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="569" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[7. ДРУГИЕ УСЛОВИЯ ДОГОВОРА]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="583" width="535" height="57"/>
+				<textElement markup="none">
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tНастоящий договор вступает в силу со дня подписания его обеими сторонами. \n\tВ настоящий договор могут быть внесены изменения и дополнения, которые вступают в силу, в случае и только после их подписания сторонами. \n\tНастоящий договор заключается сроком на 1 (один) календарный год и автоматически продлевается на следующий срок, если ни одна из сторон письменно не сообщила о своем намерении прекратить действие договор не менее чем за 20 календарных дней до истечения срока действия договора. \n\tНастоящий договор может быть расторгнут по инициативе любой из сторон, при условии выполнения всех своих обязательств по настоящему Договору. \n\tНастоящий договор заключен в 2-х экземплярах, имеющих одинаковую юридическую силу, по одному для каждой из сторон."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="677" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К/cч:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="677" width="193" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="19" y="687" width="50" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HO_BRANCH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="687" width="18" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[МФО:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="667" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Адрес:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="667" width="193" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRANCH_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="299" y="697" width="237" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[с правилами использования карточки и тарифами Банка ознакомлен и согласен]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="687" width="18" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ИНН:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="657" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Банк:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="667" width="44" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Адрес]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="319" y="667" width="217" height="20"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="715" width="261" height="1"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="657" width="193" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="687" width="80" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HO_BANK_OKONH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="151" y="687" width="32" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ОКОНХ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="657" width="44" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Клиент]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="687" width="60" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HO_BANK_INN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="657" width="217" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="716" width="68" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Подпись)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="687" width="44" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Дом.Тел]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="697" width="261" height="18"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="717" width="68" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Подпись)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="319" y="687" width="217" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PHONE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="644" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[8.Адреса и реквизиты сторон]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TI_MEMORDER_ALL" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="545" leftMargin="25" rightMargin="25" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="DOC_DATASET">
+		<parameter name="PAYDOC_ID" class="java.math.BigDecimal" isForPrompting="false"/>
+		<parameter name="P_OPER" class="java.lang.String" isForPrompting="false"/>
+		<queryString>
+			<![CDATA[Select g.id as_doc_id,
+       pd.id as paydoc_id,
+       g.doc_num as m_num,
+       g.d_date as doc_date,
+       g.name_cl,
+       g.acc_cl,
+      bf.GET_ACC_INN(g.acc_cl,g.bank_cl) as inn_cl,
+       smfo_cl.bank_name as bank_name_cl,
+       g.bank_cl,
+       g.name_co,
+       g.acc_co,
+       smfo_co.bank_name as bank_name_co,
+       g.bank_co,
+       g.purpose,
+       g.summa,
+       RPAD(g.summa, LENGTH(g.summa) - 2)||'.'||substr(g.summa,-2,2)sumprint,
+       bf.get_sum_str_1(replace(g.summa/100,',','.'),vl.kod_b,'.') sumstr,
+       vl.kod_b as currency,
+       us.full_name as opername,
+       sg.name as state_name
+
+
+From   (Select PD.ID,
+               PD.PAY_ID,
+               PD.BRANCH,
+               PD.D_DATE,
+               PD.BANK_CL,
+               PD.ACC_CL,
+               PD.NAME_CL,
+               PD.BANK_CO,
+               PD.ACC_CO,
+               PD.NAME_CO,
+               PD.SUMMA,
+               PD.PURPOSE,
+               PD.TYPE_DOC,
+               PD.PDC,
+               PD.PARENT_GROUP_ID,
+               PD.PARENT_ID,
+               PD.CASH_CODE,
+               PD.ID_TRANSH_PURP,
+               PD.SCHEMA_NAME,
+               PD.ORD,
+               PD.G_BRANCH,
+               (CASE
+                    WHEN PD.PAY_TYPE = 2 THEN
+                     (Select T.GENERAL_ID
+                      From   DOCVAL_GENERAL T
+                      Where  T.ID = PD.G_DOCID
+                             and T.BRANCH = PD.G_BRANCH)
+                    ELSE
+                     PD.G_DOCID
+               END) AS G_DOCID,
+               PD.PURP_CODE,
+               PD.PAY_TYPE,
+               PD.TRANS_TYPE,
+               PD.ACC_DT_ID,
+               PD.ACC_CT_ID
+        From   BF_TR_PAYDOCS PD) PD,
+       general g,
+       s_mfo smfo_cl,
+       s_mfo smfo_co,
+       s_val vl,
+       users us,
+       state_general sg
+Where  --PD.PAY_ID = 2245
+        pd.id = $P{PAYDOC_ID}--2143
+       --and PD.TYPE_DOC = '06'
+       and g.branch = pd.g_branch
+       and g.id = pd.g_docid
+       and g.bank_cl = smfo_cl.bank_id
+       and g.bank_co = smfo_co.bank_id
+       and vl.kod = g.currency
+       and us.branch = g.branch
+       and us.id = g.emp_id
+       and sg.deal_id = g.s_deal_id
+       and sg.id = g.state
+union all
+Select g.id as_doc_id,
+       pd.id as paydoc_id,
+       g.doc_num as m_num,
+       g.d_date as doc_date,
+       g.name_cl,
+       g.acc_cl,
+      bf.GET_ACC_INN(g.acc_cl,g.bank_cl) as inn_cl,
+       smfo_cl.bank_name as bank_name_cl,
+       g.bank_cl,
+       g.name_co,
+       g.acc_co,
+       smfo_co.bank_name as bank_name_co,
+       g.bank_co,
+       g.purpose,
+       g.summa,
+       RPAD(g.summa, LENGTH(g.summa) - 2)||'.'||substr(g.summa,-2,2)sumprint,
+       bf.get_sum_str_1(replace(g.summa/100,',','.'),vl.kod_b,'.') sumstr,
+       vl.kod_b as currency,
+       us.full_name as opername,
+       sg.name as state_name
+
+
+From   (Select PD.ID,
+               PD.PAY_ID,
+               PD.BRANCH,
+               PD.D_DATE,
+               PD.BANK_CL,
+               PD.ACC_CL,
+               PD.NAME_CL,
+               PD.BANK_CO,
+               PD.ACC_CO,
+               PD.NAME_CO,
+               PD.SUMMA,
+               PD.PURPOSE,
+               PD.TYPE_DOC,
+               PD.PDC,
+               PD.PARENT_GROUP_ID,
+               PD.PARENT_ID,
+               PD.CASH_CODE,
+               PD.ID_TRANSH_PURP,
+               PD.SCHEMA_NAME,
+               PD.ORD,
+               PD.G_BRANCH,
+               (CASE
+                    WHEN PD.PAY_TYPE = 2 THEN
+                     (Select T.GENERAL_ID
+                      From   DOCVAL_GENERAL T
+                      Where  T.ID = PD.G_DOCID
+                             and T.BRANCH = PD.G_BRANCH)
+                    ELSE
+                     PD.G_DOCID
+               END) AS G_DOCID,
+               PD.PURP_CODE,
+               PD.PAY_TYPE,
+               PD.TRANS_TYPE,
+               PD.ACC_DT_ID,
+               PD.ACC_CT_ID
+        From   BF_TR_PAYDOCS PD) PD,
+       general_arh g,
+       s_mfo smfo_cl,
+       s_mfo smfo_co,
+       s_val vl,
+       users us,
+       state_general sg
+Where  --PD.PAY_ID = 2245
+        pd.id = $P{PAYDOC_ID}--2143
+       --and PD.TYPE_DOC = '06'
+       and g.branch = pd.g_branch
+       and g.id = pd.g_docid
+       and g.bank_cl = smfo_cl.bank_id
+       and g.bank_co = smfo_co.bank_id
+       and vl.kod = g.currency
+       and us.branch = g.branch
+       and us.id = g.emp_id
+       and sg.deal_id = g.s_deal_id
+       and sg.id = g.state]]>
+		</queryString>
+		<field name="AS_DOC_ID" class="java.math.BigDecimal"/>
+		<field name="PAYDOC_ID" class="java.math.BigDecimal"/>
+		<field name="M_NUM" class="java.lang.String"/>
+		<field name="DOC_DATE" class="java.sql.Timestamp"/>
+		<field name="NAME_CL" class="java.lang.String"/>
+		<field name="ACC_CL" class="java.lang.String"/>
+		<field name="INN_CL" class="java.lang.String"/>
+		<field name="BANK_NAME_CL" class="java.lang.String"/>
+		<field name="BANK_CL" class="java.lang.String"/>
+		<field name="NAME_CO" class="java.lang.String"/>
+		<field name="ACC_CO" class="java.lang.String"/>
+		<field name="BANK_NAME_CO" class="java.lang.String"/>
+		<field name="BANK_CO" class="java.lang.String"/>
+		<field name="PURPOSE" class="java.lang.String"/>
+		<field name="SUMMA" class="java.math.BigDecimal"/>
+		<field name="SUMPRINT" class="java.lang.String"/>
+		<field name="SUMSTR" class="java.lang.String"/>
+		<field name="CURRENCY" class="java.lang.String"/>
+		<field name="OPERNAME" class="java.lang.String"/>
+		<field name="STATE_NAME" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="P_OPER_NAME" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["<<P_OPER_NAME>>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_PAYID" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_BRANCH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select pd.id as paydoc_id
+From   BF_TR_PAY BTP,
+       BF_TR_PAYDOCS PD
+Where  BTP.DEAL_GROUP = 144
+       and BTP.STATE NOT in
+       (Select ST.ID
+            From   BF_TR_STATE ST
+            Where  ST.DEAL_ID = BTP.DEAL_ID
+                   and (ST.FLAG_CREATEDOC = 1 OR ST.FLAG_CREATEDOCT = 1 OR
+                   ST.FLAG_DELETEDOC = 1))
+       and pd.pay_id = btp.id
+       and pd.type_doc = '06'
+       and pd.branch = $P{P_BRANCH}]]>
+	</queryString>
+	<field name="PAYDOC_ID" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="7" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="249" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="545" height="248"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="DOC_DATASET">
+						<datasetParameter name="PAYDOC_ID">
+							<datasetParameterExpression><![CDATA[$F{PAYDOC_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="P_OPER">
+							<datasetParameterExpression><![CDATA[$P{P_OPER_NAME}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="248" width="545">
+						<staticText>
+							<reportElement x="0" y="0" width="123" height="15"/>
+							<box>
+								<topPen lineWidth="1.0"/>
+							</box>
+							<textElement/>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="0" width="173" height="15"/>
+							<box>
+								<topPen lineWidth="1.0"/>
+							</box>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Мемориальный ордер № "+$F{M_NUM}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="296" y="0" width="249" height="15"/>
+							<box>
+								<topPen lineWidth="1.0"/>
+							</box>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Отв. "+$F{OPERNAME}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="15" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Дата]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="15" width="287" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format($F{DOC_DATE})]]></textFieldExpression>
+						</textField>
+						<textField pattern="dd/MM/yyyy">
+							<reportElement x="410" y="15" width="135" height="12"/>
+							<textElement textAlignment="Right">
+								<font size="7" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Изг. "+new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())+" NCI Bank"]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="27" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Наименование плательщика]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="27" width="422" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{NAME_CL}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="39" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Дебет счет плательщика]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="39" width="287" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ACC_CL}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="410" y="39" width="24" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[ИНН]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="434" y="39" width="111" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{INN_CL}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="63" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Наим. банка плательщика]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="63" width="287" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BANK_NAME_CL}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="410" y="63" width="99" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Код банка плательщика]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="509" y="63" width="36" height="12"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Right">
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BANK_CL}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="75" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Сумма]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="75" width="422" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SUMPRINT}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="87" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Наименование получателя]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="87" width="422" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{NAME_CO}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="51" width="545" height="12"/>
+							<textElement>
+								<font pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="111" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Кредит счет получателя]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="111" width="422" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ACC_CO}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="123" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Наим. банка получателя]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="123" width="422" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BANK_NAME_CO}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="410" y="135" width="99" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Код банка получателя]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="509" y="135" width="36" height="12"/>
+							<textElement textAlignment="Right">
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{BANK_CO}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="147" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Сумма прописью]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="147" width="422" height="12"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{SUMSTR}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="159" width="123" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Детали платежа]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="123" y="159" width="422" height="12"/>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{PURPOSE}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="181" width="77" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Руководитель]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="171" width="545" height="10"/>
+							<textElement>
+								<font pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="77" y="181" width="131" height="12"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="320" y="181" width="131" height="12"/>
+							<box>
+								<bottomPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="230" y="181" width="90" height="12"/>
+							<textElement>
+								<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Главный бухгалтер]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="77" y="193" width="131" height="12"/>
+							<textElement textAlignment="Center">
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[подпись]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="320" y="193" width="131" height="12"/>
+							<textElement textAlignment="Center">
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[подпись]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="105" y="236" width="76" height="12"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Подпись]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="240" y="236" width="91" height="12"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center">
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<text><![CDATA[Подпись]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="362" y="225" width="183" height="23"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format($F{DOC_DATE})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="362" y="213" width="183" height="12"/>
+							<textElement textAlignment="Center">
+								<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{STATE_NAME}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="99" width="545" height="12"/>
+				<textElement>
+					<font pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="135" width="410" height="12"/>
+				<textElement>
+					<font pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="205" width="545" height="8"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="12" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="213" width="131" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Проверен]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="213" width="154" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Одобрен]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="225" width="44" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[М.П.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="225" width="33" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[БАНК]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="248" width="545" height="0"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

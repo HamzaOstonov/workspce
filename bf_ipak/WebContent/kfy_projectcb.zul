@@ -1,0 +1,1342 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="kfy_projectcbmain" width="100%" height="100%"
+	border="normal" apply="com.is.kfy_projectcb.Kfy_projectcbViewCtrl">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" label="${labels.back}"
+			image="/images/file.png" />
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<toolbarbutton id="btn_add" label="${labels.add}"
+			image="/images/+.png" />
+
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+		<toolbarbutton id="btn_delete" label="${labels.delete}"
+			image="/images/delete.png" />
+		<toolbarbutton id="btn_last2" label="${labels.last}"
+			image="/images/forward.png" />
+	</toolbar>
+
+	<div id="grd">
+
+		<!--         contentStyle="overflow: auto" -->
+
+		<paging id="kfy_projectcbPaging" width="100%" />
+		<listbox style="border:none" id="dataGrid" multiple="true"
+			rows="4" width="100%"
+			selectedItem="@{kfy_projectcbmain$composer.current}">
+			<listhead sizable="true">
+
+
+
+				<listheader label="${labels.kfy_projectcb.pr_num}"
+					width="50px" />
+				<listheader label="${labels.kfy_projectcb.docu_number}"
+					width="100px" />
+				<listheader label="${labels.kfy_projectcb.bayon_band}"
+					width="100px" />
+				<listheader label="${labels.kfy_projectcb.bayon_text}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.district}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.city_region}"
+					width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.progect_owner}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.progect_purpose}" width="200px" />
+				<listheader label="${labels.kfy_projectcb.net_name}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.net_direct}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.goods_type}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.metric}"
+					width="40px" />
+				<listheader
+					label="${labels.kfy_projectcb.natural_metric}" width="200px" />
+				<listheader label="${labels.kfy_projectcb.amount1}"
+					width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.eksport_amount}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.progect_amount}" width="200px" />
+				<listheader label="${labels.kfy_projectcb.own_amount}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.banks_credit}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.bank_invest}"
+					width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.foreign_invest}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.all_bank_amount1}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.progect_end_date}" width="100px" />
+				<listheader
+					label="${labels.kfy_projectcb.main_executor}" width="200px" />
+				<listheader label="${labels.kfy_projectcb.exec_bank}"
+					width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.new_work_place1}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.extended_rhythm}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.dublicate_projects}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.all_progect_amount}" width="200px" />
+				<listheader label="${labels.kfy_projectcb.own_amount2}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.currency1}"
+					width="50px" />
+				<listheader
+					label="${labels.kfy_projectcb.banks_credits}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.banks_credits2}" width="200px" />
+				<listheader label="${labels.kfy_projectcb.credit_date}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.currency2}"
+					width="50px" />
+				<listheader label="${labels.kfy_projectcb.banks_invest}"
+					width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.banks_credits3}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.investment_date}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.foreign_invest2}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.new_work_place2}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.all_bank_amount2}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.credit_sourse}" width="200px" />
+				<listheader label="${labels.kfy_projectcb.credit_id}"
+					width="50px" />
+				<listheader label="${labels.kfy_projectcb.inn}"
+					width="100px" />
+				<listheader label="${labels.kfy_projectcb.comments}"
+					width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.progect_start}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.progect_problem}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.bank_problems}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.bank_problems2}" width="200px" />
+				<listheader
+					label="${labels.kfy_projectcb.credit_account}" width="200px" />
+				<listheader label="${labels.kfy_projectcb.branch_code}"
+					width="60px" />
+				<listheader label="${labels.kfy_projectcb.branch_name}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.company_head}"
+					width="200px" />
+				<listheader label="${labels.kfy_projectcb.phone_number}"
+					width="100px" />
+				<listheader
+					label="${labels.kfy_projectcb.sb_create_data}" width="100px" />
+				<listheader
+					label="${labels.kfy_projectcb.bank_create_data}" width="100px" />
+				<listheader label="${labels.kfy_projectcb.according1}"
+					width="300px" />
+				<listheader label="${labels.kfy_projectcb.fact1}"
+					width="300px" />
+				<listheader label="${labels.kfy_projectcb.according2}"
+					width="300px" />
+				<listheader label="${labels.kfy_projectcb.fact2}"
+					width="300px" />
+				<listheader label="${labels.kfy_projectcb.according3}"
+					width="300px" />
+				<listheader label="${labels.kfy_projectcb.fact3}"
+					width="300px" />
+
+			</listhead>
+		</listbox>
+	</div>
+
+	<div id="frm" visible="false">
+		<hbox>
+			<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.docu_number}" />
+						<longbox id="docu_number" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.docu_number}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bayon_band}" />
+						<textbox id="bayon_band" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.bayon_band}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.district}" />
+						<rcombobox id="district" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.district}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.city_region}" />
+						<rcombobox id="city_region" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.city_region}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bayon_text}" />
+						<textbox id="bayon_text" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.bayon_text}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_owner}" />
+						<textbox id="progect_owner" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.progect_owner}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_purpose}" />
+						<textbox id="progect_purpose" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.progect_purpose}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.net_name}" />
+						<rcombobox id="net_name" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.net_name}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.net_direct}" />
+						<rcombobox id="net_direct" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.net_direct}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.goods_type}" />
+						<textbox id="goods_type" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.goods_type}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.metric}" />
+						<textbox id="metric" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.metric}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.natural_metric}" />
+						<textbox id="natural_metric" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.natural_metric}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.amount1}" />
+						<doublebox id="amount1" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.amount1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.eksport_amount}" />
+						<doublebox id="eksport_amount" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.eksport_amount}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_amount}" />
+						<doublebox id="progect_amount" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.progect_amount}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.own_amount}" />
+						<doublebox id="own_amount" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.own_amount}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credit}" />
+						<doublebox id="banks_credit" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.banks_credit}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_invest}" />
+						<doublebox id="bank_invest" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.bank_invest}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.foreign_invest}" />
+						<doublebox id="foreign_invest" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.foreign_invest}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_bank_amount1}" />
+						<doublebox id="all_bank_amount1" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.all_bank_amount1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_end_date}" />
+						<datebox id="progect_end_date" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.progect_end_date}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.main_executor}" />
+						<textbox id="main_executor" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.main_executor}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.exec_bank}" />
+						<rcombobox id="exec_bank" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.exec_bank}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.new_work_place1}" />
+						<textbox id="new_work_place1" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.new_work_place1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.extended_rhythm}" />
+						<textbox id="extended_rhythm" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.extended_rhythm}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.dublicate_projects}" />
+						<textbox id="dublicate_projects" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.dublicate_projects}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_progect_amount}" />
+						<doublebox id="all_progect_amount"
+							mold="rounded" width="200px"
+							value="@{kfy_projectcbmain$composer.current.all_progect_amount}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.own_amount2}" />
+						<doublebox id="own_amount2" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.own_amount2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits}" />
+						<doublebox id="banks_credits" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.banks_credits}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits2}" />
+						<doublebox id="banks_credits2" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.banks_credits2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_date}" />
+						<datebox id="credit_date" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.credit_date}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.currency1}" />
+						<rcombobox id="currency1" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.currency1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_invest}" />
+						<doublebox id="banks_invest" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.banks_invest}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits3}" />
+						<doublebox id="banks_credits3" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.banks_credits3}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.investment_date}" />
+						<datebox id="investment_date" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.investment_date}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.currency2}" />
+						<rcombobox id="currency2" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.currency2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.foreign_invest2}" />
+						<doublebox id="foreign_invest2" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.foreign_invest2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.new_work_place2}" />
+						<textbox id="new_work_place2" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.new_work_place2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_bank_amount2}" />
+						<doublebox id="all_bank_amount2" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.all_bank_amount2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_sourse}" />
+						<rcombobox id="credit_sourse" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.credit_sourse}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_id}" />
+						<textbox id="credit_id" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.credit_id}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.inn}" />
+						<textbox id="inn" mold="rounded" width="200px"
+							value="@{kfy_projectcbmain$composer.current.inn}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.comments}" />
+						<textbox id="comments" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.comments}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_start}" />
+						<rcombobox id="progect_start" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.progect_start}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_problem}" />
+						<rcombobox id="progect_problem" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.progect_problem}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_problems}" />
+						<textbox id="bank_problems" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.bank_problems}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_problems2}" />
+						<rcombobox id="bank_problems2" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.bank_problems2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_account}" />
+						<textbox id="credit_account" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.credit_account}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.branch_code}" />
+						<rcombobox id="branch_code" mold="rounded"
+							width="200px"
+							selecteditem="@{kfy_projectcbmain$composer.current.branch_code}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.branch_name}" />
+						<rcombobox id="branch_name" mold="rounded"
+							width="500px"
+							selecteditem="@{kfy_projectcbmain$composer.current.branch_name}" />
+					</row>
+
+					<row>
+						<label
+							value="${labels.kfy_projectcb.company_head}" />
+						<textbox id="company_head" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.company_head}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.phone_number}" />
+						<textbox id="phone_number" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.phone_number}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.sb_create_data}" />
+						<datebox id="sb_create_data" width="200px"
+							value="@{kfy_projectcbmain$composer.current.sb_create_data}"
+							readonly="true" buttonVisible="false" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_create_data}" />
+						<datebox id="bank_create_data" width="200px"
+							value="@{kfy_projectcbmain$composer.current.bank_create_data}"
+							readonly="true" buttonVisible="false" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according1}" />
+						<doublebox id="according1" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.according1}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact1}" />
+						<doublebox id="fact1" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.fact1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according2}" />
+						<doublebox id="according2" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.according2}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact2}" />
+						<doublebox id="fact2" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.fact2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according3}" />
+						<doublebox id="according3" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.according3}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact3}" />
+						<doublebox id="fact3" mold="rounded"
+							width="200px"
+							value="@{kfy_projectcbmain$composer.current.fact3}" />
+					</row>
+
+				</rows>
+			</grid>
+			<grid id="addgrd" visible="false">
+				<columns>
+					<column width="15%" />
+					<column width="30%" />
+					<column width="10%" />
+					<column width="15%" />
+					<column width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.docu_number}" />
+						<longbox id="adocu_number" mold="rounded"
+							width="200px" />
+						<cell></cell>
+						<label
+							value="${labels.kfy_projectcb.bayon_band}" />
+						<textbox id="abayon_band" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.district}" />
+						<rcombobox id="adistrict" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.city_region}" />
+						<rcombobox id="acity_region" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bayon_text}" />
+						<textbox id="abayon_text" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_owner}" />
+						<textbox id="aprogect_owner" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_purpose}" />
+						<textbox id="aprogect_purpose" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.net_name}" />
+						<rcombobox id="anet_name" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.net_direct}" />
+						<rcombobox id="anet_direct" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.goods_type}" />
+						<textbox id="agoods_type" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.metric}" />
+						<textbox id="ametric" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.natural_metric}" />
+						<textbox id="anatural_metric" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.amount1}" />
+						<doublebox id="aamount1" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.eksport_amount}" />
+						<doublebox id="aeksport_amount" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_amount}" />
+						<doublebox id="aprogect_amount" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.own_amount}" />
+						<doublebox id="aown_amount" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credit}" />
+						<doublebox id="abanks_credit" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_invest}" />
+						<doublebox id="abank_invest" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.foreign_invest}" />
+						<doublebox id="aforeign_invest" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_bank_amount1}" />
+						<doublebox id="aall_bank_amount1" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_end_date}" />
+						<datebox id="aprogect_end_date" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.main_executor}" />
+						<textbox id="amain_executor" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.exec_bank}" />
+						<rcombobox id="aexec_bank" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.new_work_place1}" />
+						<textbox id="anew_work_place1" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.extended_rhythm}" />
+						<textbox id="aextended_rhythm" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.dublicate_projects}" />
+						<textbox id="adublicate_projects" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_progect_amount}" />
+						<doublebox id="aall_progect_amount"
+							mold="rounded" width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.own_amount2}" />
+						<doublebox id="aown_amount2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits}" />
+						<doublebox id="abanks_credits" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits2}" />
+						<doublebox id="abanks_credits2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_date}" />
+						<datebox id="acredit_date" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.currency1}" />
+						<rcombobox id="acurrency1" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_invest}" />
+						<doublebox id="abanks_invest" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits3}" />
+						<doublebox id="abanks_credits3" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.investment_date}" />
+						<datebox id="ainvestment_date" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.currency2}" />
+						<rcombobox id="acurrency2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.foreign_invest2}" />
+						<doublebox id="aforeign_invest2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.new_work_place2}" />
+						<textbox id="anew_work_place2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_bank_amount2}" />
+						<doublebox id="aall_bank_amount2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_sourse}" />
+						<rcombobox id="acredit_sourse" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_id}" />
+						<textbox id="acredit_id" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.inn}" />
+						<textbox id="ainn" mold="rounded" width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.comments}" />
+						<textbox id="acomments" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_start}" />
+						<rcombobox id="aprogect_start" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_problem}" />
+						<rcombobox id="aprogect_problem" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_problems}" />
+						<textbox id="abank_problems" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_problems2}" />
+						<rcombobox id="abank_problems2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_account}" />
+						<textbox id="acredit_account" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.branch_code}" />
+						<rcombobox id="abranch_code" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.branch_name}" />
+						<rcombobox id="abranch_name" mold="rounded"
+							width="500px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.company_head}" />
+						<textbox id="acompany_head" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.phone_number}" />
+						<textbox id="aphone_number" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.sb_create_data}" />
+						<datebox id="asb_create_data" mold="rounded"
+							readonly="true" buttonVisible="false" width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_create_data}" />
+						<datebox id="abank_create_data" mold="rounded"
+							readonly="true" buttonVisible="false" width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according1}" />
+						<doublebox id="aaccording1" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact1}" />
+						<doublebox id="afact1" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according2}" />
+						<doublebox id="aaccording2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact2}" />
+						<doublebox id="afact2" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according3}" />
+						<doublebox id="aaccording3" mold="rounded"
+							width="200px" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact3}" />
+						<doublebox id="afact3" mold="rounded"
+							width="200px" />
+					</row>
+
+				</rows>
+			</grid>
+			<grid id="fgrd" visible="false">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+
+
+					<row>
+						<label value="${labels.kfy_projectcb.pr_num}" />
+						<longbox id="fpr_num" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.pr_num}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.docu_number}" />
+						<longbox id="fdocu_number" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.docu_number}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bayon_band}" />
+						<textbox id="fbayon_band" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.bayon_band}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.district}" />
+						<rcombobox id="fdistrict" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.district}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.city_region}" />
+						<rcombobox id="fcity_region" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.city_region}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bayon_text}" />
+						<textbox id="fbayon_text" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.bayon_text}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_owner}" />
+						<textbox id="fprogect_owner" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.progect_owner}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_purpose}" />
+						<textbox id="fprogect_purpose" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.progect_purpose}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.net_name}" />
+						<rcombobox id="fnet_name" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.net_name}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.net_direct}" />
+						<rcombobox id="fnet_direct" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.net_direct}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.goods_type}" />
+						<textbox id="fgoods_type" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.goods_type}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.metric}" />
+						<textbox id="fmetric" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.metric}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.natural_metric}" />
+						<textbox id="fnatural_metric" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.natural_metric}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.amount1}" />
+						<doublebox id="famount1" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.amount1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.eksport_amount}" />
+						<doublebox id="feksport_amount" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.eksport_amount}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_amount}" />
+						<doublebox id="fprogect_amount" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.progect_amount}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.own_amount}" />
+						<doublebox id="fown_amount" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.own_amount}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credit}" />
+						<doublebox id="fbanks_credit" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.banks_credit}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_invest}" />
+						<doublebox id="fbank_invest" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.bank_invest}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.foreign_invest}" />
+						<doublebox id="fforeign_invest" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.foreign_invest}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_bank_amount1}" />
+						<doublebox id="fall_bank_amount1" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.all_bank_amount1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_end_date}" />
+						<datebox id="fprogect_end_date" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.progect_end_date}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.main_executor}" />
+						<textbox id="fmain_executor" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.main_executor}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.exec_bank}" />
+						<rcombobox id="fexec_bank" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.exec_bank}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.new_work_place1}" />
+						<textbox id="fnew_work_place1" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.new_work_place1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.extended_rhythm}" />
+						<textbox id="fextended_rhythm" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.extended_rhythm}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.dublicate_projects}" />
+						<textbox id="fdublicate_projects" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.dublicate_projects}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_progect_amount}" />
+						<doublebox id="fall_progect_amount"
+							mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.all_progect_amount}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.own_amount2}" />
+						<doublebox id="fown_amount2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.own_amount2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits}" />
+						<doublebox id="fbanks_credits" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.banks_credits}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits2}" />
+						<doublebox id="fbanks_credits2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.banks_credits2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_date}" />
+						<datebox id="fcredit_date" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.credit_date}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.currency1}" />
+						<rcombobox id="fcurrency1" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.currency1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_invest}" />
+						<doublebox id="fbanks_invest" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.banks_invest}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.banks_credits3}" />
+						<doublebox id="fbanks_credits3" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.banks_credits3}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.investment_date}" />
+						<datebox id="finvestment_date" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.investment_date}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.currency2}" />
+						<rcombobox id="fcurrency2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.currency2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.ekvival_amount2}" />
+						<textbox id="fekvival_amount2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.ekvival_amount2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.foreign_invest2}" />
+						<doublebox id="fforeign_invest2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.foreign_invest2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.new_work_place2}" />
+						<textbox id="fnew_work_place2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.new_work_place2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.all_bank_amount2}" />
+						<doublebox id="fall_bank_amount2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.all_bank_amount2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_sourse}" />
+						<rcombobox id="fcredit_sourse" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.credit_sourse}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_id}" />
+						<textbox id="fcredit_id" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.credit_id}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.inn}" />
+						<textbox id="finn" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.inn}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.comments}" />
+						<textbox id="fcomments" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.comments}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_start}" />
+						<rcombobox id="fprogect_start" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.progect_start}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.progect_problem}" />
+						<rcombobox id="fprogect_problem" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.progect_problem}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_problems}" />
+						<textbox id="fbank_problems" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.bank_problems}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_problems2}" />
+						<rcombobox id="fbank_problems2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.bank_problems2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.credit_account}" />
+						<textbox id="fcredit_account" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.credit_account}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.branch_code}" />
+						<rcombobox id="fbranch_code" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.branch_code}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.branch_name}" />
+						<rcombobox id="fbranch_name" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.branch_name}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.company_head}" />
+						<textbox id="fcompany_head" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.company_head}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.phone_number}" />
+						<textbox id="fphone_number" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.phone_number}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.sb_create_data}" />
+						<datebox id="fsb_create_data" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.sb_create_data}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.bank_create_data}" />
+						<datebox id="fbank_create_data" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.bank_create_data}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according1}" />
+						<doublebox id="faccording1" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.according1}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact1}" />
+						<doublebox id="ffact1" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.fact1}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according2}" />
+						<doublebox id="faccording2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.according2}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact2}" />
+						<doublebox id="ffact2" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.fact2}" />
+					</row>
+					<row>
+						<label
+							value="${labels.kfy_projectcb.according3}" />
+						<doublebox id="faccording3" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.according3}" />
+					</row>
+					<row>
+						<label value="${labels.kfy_projectcb.fact3}" />
+						<doublebox id="ffact3" mold="rounded"
+							value="@{kfy_projectcbmain$composer.filter.fact3}" />
+					</row>
+
+				</rows>
+			</grid>
+
+			<grid width="400px" height="400px" id="adddata_grid"
+				style="vertical-overflow:auto;" visible="false">
+				<columns>
+					<column width="200px" />
+					<column width="200px" />
+				</columns>
+				<rows id="adddata_rows"></rows>
+			</grid>
+		</hbox>
+
+
+		<toolbar>
+			<toolbarbutton id="btn_save" label="${labels.save}"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+
+</window>

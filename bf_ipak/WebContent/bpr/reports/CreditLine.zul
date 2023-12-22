@@ -1,0 +1,8 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<div apply="com.is.bpri.reports.CreditLine" align="center">
+		<rcombobox id="mfo" width="20%" />
+		<button id="print" label="Распечатать отчёт" />
+	</div>
+</zk>

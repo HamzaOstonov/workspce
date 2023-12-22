@@ -1,0 +1,32 @@
+package com.is.account.util;
+
+public enum AccountEnum {
+	BRANCH, 
+	ID, 
+	ACC_BAL,
+	ACC_BAL_TEXT,
+	CURRENCY, 
+	CURRENCYVALUE,
+	CLIENT, 
+	ID_ORDER, 
+	NAME, 
+	SGN, 
+	BAL, 
+	SIGN_REGISTR, 
+	S_IN, 
+	S_OUT, 
+	DT, 
+	CT, 
+	S_IN_TMP, 
+	S_OUT_TMP, 
+	DT_TMP, 
+	CT_TMP, 
+	L_DATE, 
+	DATE_OPEN, 
+	DATE_CLOSE, 
+	ACC_GROUP_ID, 
+	ACC_GROUP_IDTEXT,
+	STATE, 
+	STATE_DESC, 
+	CLIENT_NAME;
+}

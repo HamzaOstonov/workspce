@@ -1,0 +1,88 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="deltaWnd" width="100%" border="none"
+        apply="com.is.delta.Controller">
+    <zscript>
+        <![CDATA[
+                import java.util.Comparator;
+                import com.is.delta.DeltaDateComparator;
+
+                Comparator dateAsc = new DeltaDateComparator(true);
+                Comparator dateDesc = new DeltaDateComparator(false);
+            ]]>
+    </zscript>
+    <tabbox>
+        <tabs>
+            <tab label="Клиенты "/>
+            <tab label="Отношения"/>
+        </tabs>
+        <tabpanels>
+            <tabpanel>
+                <div>
+                    <grid hflex="min" style="border:normal" width="50%">
+                        <columns>
+                            <column hflex="min" align="right"/>
+                            <column hflex="min"/>
+                            <column hflex="min" align="right"/>
+                            <column hflex="min"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <label value="Тип Клиента"/>
+                                <rcombobox id="customer_type" hflex="1"
+                                           selecteditem="@{deltaWnd$composer.filter.customer_type}"/>
+                                <label value="Действие"/>
+                                <rcombobox id="action_type" hflex="1"
+                                           selecteditem="@{deltaWnd$composer.filter.action_type}"
+                                           onChange="deltaWnd$composer.filter.action_type = action_type.value"/>
+                            </row>
+                            <row>
+                                <label value="Код Клиента"/>
+                                <textbox hflex="1" value="@{deltaWnd$composer.filter.client_id}"/>
+                                <label value="Состояние"/>
+                                <rcombobox id="state_type" hflex="1" selecteditem="@{deltaWnd$composer.filter.state}"
+                                           onChange="deltaWnd$composer.filter.state = state_type.value"/>
+                            </row>
+                        </rows>
+                    </grid>
+                </div>
+                <div>
+                    <toolbar>
+                        <toolbarbutton id="btn_refresh" label="${labels.refresh}"
+                                       image="/images/refresh.png"/>
+                        <toolbarbutton id="btnTurnOnEmergencyMode" label="Включить Аварийный Режим"/>
+                        <toolbarbutton id="btnTurnOffEmergencyMode" label="Выключить Аварийный Режим"/>
+                    </toolbar>
+                    <label id="statusbar" style="background:#4CAF50;color:#FFFFFF;"/>
+                    <paging id="paging"/>
+                    <listbox id="resultListbox">
+                        <listhead sizable="true">
+                            <listheader label="Филиал"
+                                        width="5%"/>
+                            <listheader label="Код клиента"
+                                        width="10%"/>
+                            <listheader label="Тип клиента"
+                                        width="10%"/>
+                            <listheader label="Наименование"
+                                        width="30%"/>
+                            <listheader label="Действие"
+                                        width="10%"/>
+                            <listheader label="Состояние"
+                                        width="10%"/>
+                            <listheader label="Сообщение"
+                                        width="25%"/>
+                            <listheader label="Дата" width="10%" sortAscending="${dateAsc}"
+                                        sortDescending="${dateDesc}"/>
+                        </listhead>
+                    </listbox>
+                </div>
+            </tabpanel>
+            <tabpanel>
+                <include id="incl_relations" src="delta_relations.zul"/>
+            </tabpanel>
+        </tabpanels>
+    </tabbox>
+    <window id="includeWnd" width="95%" title=" " closable="true" border="normal"
+            mode="modal" position="center,center" visible="false" maximizable="true">
+        <include id="includePage"/>
+    </window>
+</window>

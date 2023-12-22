@@ -1,0 +1,67 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="deltaRelationMain" width="100%" border="none"
+        apply="com.is.delta_relations.DeltaRelationController">
+        <toolbar>
+            <toolbarbutton id="btn_refresh" label="${labels.refresh}"
+                           image="/images/refresh.png"/>
+                          
+            <toolbarbutton id="btn_send" label="Обработать"/>
+            <toolbarbutton id="btn_send_all" label="Обработать все" visible="false"/>
+            <toolbarbutton id="btn_first" tooltiptext="${labels.first}"
+				image="/images/backward.png" />
+			<toolbarbutton id="btn_prev" tooltiptext="${labels.prev}"
+				image="/images/back.png" />
+			<toolbarbutton id="btn_next" tooltiptext="${labels.next}"
+				image="/images/front.png" />
+			<toolbarbutton id="btn_last" tooltiptext="${labels.last}"
+				image="/images/forward.png" />
+        </toolbar>
+        <div>
+        	<grid id="filter_grid">
+        		<columns>
+					<column align="left"/><column align="left"/><column align="left"/>
+					<column align="left"/><column align="left"/><column align="left"/>
+				</columns>
+				<rows>
+					<row>
+						<label value="Дата с"/>
+						<datebox value="${deltaRelationMain$composer.filter.dateFrom}" hflex="1"/>
+						<label value="Дата по"/>
+						<datebox value="${deltaRelationMain$composer.filter.dateTo}" hflex="1"/>
+						<label value="тип отношения"/>
+						<rcombobox id="fperson_kind" selecteditem="${deltaRelationMain$composer.filter.personKind}" hflex="1"/>
+					</row>
+				</rows>
+        	</grid>
+        	<toolbarbutton id="btn_filter" label="${labels.search}"/>
+        	<toolbarbutton id="btn_filter_clear" label="Очистить"/>
+       	</div>
+        
+		<div>	
+			<paging id="deltaRelationPaging" width="100%" />
+			<listbox id="dataGrid" selectedItem="@{deltaRelationMain$composer.current}">
+			    <listhead sizable="true">
+			        <listheader label="филиал" width="5%"/>
+			        <listheader label="действие" width="10%"/>
+			        <listheader label="имя ЮЛ" width="30%"/>
+			        <listheader label="имя связ лица" width="30%"/>
+			        <listheader label="тип отношения" width="15%"/>
+			        <listheader label="дата" width="10%"/>
+			    </listhead>
+			</listbox>
+			<grid>
+				<columns>
+					<column align="left"/><column align="left"/><column align="left"/>
+					<column align="left"/><column align="left"/><column align="left"/>
+				</columns>
+				<rows>
+					<row>
+						<label value="Сообщение об ошибке"/>
+						<cell colspan="5">
+							<textbox value="${deltaRelationMain$composer.current.message}" readonly="true" hflex="1"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</div>               
+</window>

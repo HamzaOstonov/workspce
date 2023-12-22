@@ -1,0 +1,20 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="mappingWnd" border="normal" title="Выбор Меппинга" closable="true"
+        style="font-weight:bold" sizable="true" maximizable="true"
+        apply="com.is.customer_.mapping.MappingComposer">
+        <!--onClose="self.setVisible(false);event.stopPropagation()">-->
+    <include id="customerInclude_" src="/customer/localcustomer.zul" visible="false"/>
+    <listbox id="mappingList" multiple="true" rows="10">
+        <listhead>
+            <listheader label="МФО" hflex="1"/>
+            <listheader label="NCI Id" hflex="2"/>
+            <listheader label="Состояние" hflex="2"/>
+            <listheader label="ФИО" hflex="4"/>
+            <listheader label="Дата Рождения" hflex="2"/>
+            <listheader label="Тип Документа" hflex="2"/>
+            <listheader label="Серия" hflex="1"/>
+            <listheader label="Номер" hflex="2"/>
+            <listheader label="Адрес" hflex="4"/>
+        </listhead>
+    </listbox>
+</window>

@@ -1,0 +1,47 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="${arg.title}" width="350pt" closable="true" sclass="z-messagebox-window"
+use="com.is.exception_window.Exception_window_impl" xmlns:w="http://www.zkoss.org/2005/zk/client">
+<hbox>
+		<div sclass="${arg.icon}"/>
+		<separator spacing="13px" />
+		<div sclass="z-messagebox">
+			<label value="${arg.message}" multiline="true" >
+			<attribute w:name="onBind">
+					var node = this.$n(),
+						tr = node.parentNode.parentNode.parentNode,
+						width = node.offsetWidth + tr.cells[0].offsetWidth,
+						win = this.$o(),
+						cave = win.$n('cave'),
+						outer = win.$n();
+					width += zk(cave).padBorderWidth()
+						+ zk((cave = cave.parentNode)).padBorderWidth()
+						+ zk((cave = cave.parentNode)).padBorderWidth()
+						+ zk((cave = cave.parentNode)).padBorderWidth();
+				
+					outer.style.width = jq.px0(Math.min(Math.max(width, 330), jq.innerWidth() - 20));
+					zk(outer).center();
+					var top = zk.parseInt(outer.style.top), y = jq.innerY();
+					if (y) {
+						var y1 = top - y;
+						if (y1 > 100) outer.style.top = jq.px0(top - (y1 - 100));
+					} else if (top > 100)
+						outer.style.top = "100px";
+					win.onSize();
+				</attribute>
+			</label>
+		</div>
+</hbox>
+<separator spacing="15px"/>
+	<hbox style="margin-left:auto; margin-right:auto">
+	<button id="btn1" label="OK" sclass="z-messagebox-btn" use="com.is.exception_window.Exception_window_impl$Button"/>
+	</hbox>
+<separator spacing="15px"/>
+<hbox>
+	<groupbox width="100%" mold="3d" open="false">
+       <caption label=">>" width="100%"/>
+       <label value="${arg.detais}" multiline="true"/>
+    </groupbox>
+</hbox>
+</window>
+</zk>

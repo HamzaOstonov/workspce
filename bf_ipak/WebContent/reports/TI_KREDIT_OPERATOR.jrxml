@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TI_KREDIT_OPERATOR" pageWidth="595" pageHeight="850" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="321"/>
+	<parameter name="INCLIENT_NAME1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<INCLIENT_NAME1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="INCLIENT_NAME2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<INCLIENT_NAME2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="INCLIENT_NAME3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<INCLIENT_NAME3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BANK_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BANK_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NAME2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<NAME2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MY_BRANCH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<MY_BRANCH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="V_DATE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<V_DATE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="POST_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<POST_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ESUMMA6" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ESUMMA6>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUMMA6" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<SUMMA6>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PSUMMA6" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PSUMMA6>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="UZPSUMMA6" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<UZPSUMMA6>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PESUMMA6" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PESUMMA6>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="UZPESUMMA6" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<UZPESUMMA6>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="KARTA_NUM" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<KARTA_NUM>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_IMG_PATH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\apache-tomcat-6.0.26\\webapps\\ti\\images\\Ipak.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SEQ" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<SEQ>"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="797">
+			<textField>
+				<reportElement x="392" y="24" width="163" height="80"/>
+				<textElement>
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["От  "+$P{INCLIENT_NAME1}+
+"Проживающего (ей) по адресу:"
++$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="103" width="554" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Заявления на покупку иностранной валюты]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="122" width="555" height="28"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Прошу Вас обменять национальную валюту в сумме  _"+$P{ESUMMA6}+
+"_  (_"+$P{PESUMMA6}+"_)"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="149" width="555" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[(сумма цифрами и прописью)                        ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="160" width="553" height="44"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Находящуюся на персональной банковской карте № ____________________"+
+" банка на иностранную валюту доллары США на сумму "+"(_"+$P{SUMMA6}+"_)"+
+" (_"+$P{PSUMMA6}+"_)"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="203" width="555" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[(сумма цифрами и прописью)                        ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="216" width="512" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[С открытием международной платежной карты _____________  и зачислением на нее средств в иностранной валюте]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="15" y="217" width="17" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="15" y="245" width="17" height="16"/>
+			</rectangle>
+			<textField>
+				<reportElement x="7" y="280" width="220" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial" size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NAME2}+" _____________"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="294" width="220" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Подпись сотрудника банка                        ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="298" width="555" height="13"/>
+				<textElement/>
+				<text><![CDATA[___________________________________________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="346" width="555" height="49"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[AKSIYADORLIK INNOVATSIYA TIJORAT BANKI                                                                     ___________________________________
+IPAK YO’LI                                                                                                                                (konversion operatsialar bo’limining shtampi)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="328" width="86" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[09017-shakl]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="394" width="554" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["IYB-"+$P{MY_BRANCH}+"/ "+$P{SEQ}+"-sonli ma`lumotnoma"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="266" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{V_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="414" width="99" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{V_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="429" width="554" height="40"/>
+				<textElement>
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{INCLIENT_NAME1}+" "+$P{INCLIENT_NAME2}+" "+$P{INCLIENT_NAME3}+" ning "+
+   $P{ESUMMA6}+"   ("+$P{UZPESUMMA6}+")   Bank plastik kartasidan/hisob raqamidan to'landi "+
+   $P{SUMMA6}+"   ("+$P{UZPSUMMA6}+")   Xalqaro to’lov kartasiga o’tkazib berildi."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="475" width="555" height="20"/>
+				<textElement>
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Mijozning imzosi ________________                                            _______________ Mas’ul hodimninig shtampi va imzosi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="489" width="553" height="13"/>
+				<textElement/>
+				<text><![CDATA[______________________________________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="520" width="86" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[09017-shakl]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="575" width="554" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["IYB-"+$P{MY_BRANCH}+"/ "+$P{SEQ}+"-sonli ma`lumotnoma"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="595" width="99" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{V_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="613" width="554" height="40"/>
+				<textElement>
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{INCLIENT_NAME1}+" "+$P{INCLIENT_NAME2}+" "+$P{INCLIENT_NAME3}+" ning "+
+   $P{ESUMMA6}+"   ("+$P{UZPESUMMA6}+")   Bank plastik kartasidan/hisob raqamidan to'landi "+
+   $P{SUMMA6}+"   ("+$P{UZPSUMMA6}+")   Xalqaro to’lov kartasiga o’tkazib berildi."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="658" width="554" height="20"/>
+				<textElement>
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Mijozning imzosi ________________                                            _______________ Mas’ul hodimninig shtampi va imzosi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="392" y="0" width="163" height="24"/>
+				<textElement>
+					<font fontName="Arial" size="10" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BANK_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="240" width="512" height="26"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["С зачислением на международную платежную карту №_"+$P{KARTA_NUM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="538" width="555" height="37"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[AKSIYADORLIK INNOVATSIYA TIJORAT BANKI                                                                     ___________________________________
+IPAK YO’LI                                                                                                                                (konversion operatsialar bo’limining shtampi)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="266" width="220" height="15"/>
+				<textElement>
+					<font fontName="Arial" pdfFontName="arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA["Подпись заявителя __________________"]]></text>
+			</staticText>
+			<image scaleImage="RealSize" onErrorType="Blank">
+				<reportElement x="174" y="311" width="197" height="35"/>
+				<imageExpression><![CDATA[$P{P_IMG_PATH}]]></imageExpression>
+			</image>
+			<image scaleImage="RealSize" onErrorType="Blank">
+				<reportElement x="174" y="502" width="197" height="35"/>
+				<imageExpression><![CDATA[$P{P_IMG_PATH}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

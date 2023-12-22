@@ -1,0 +1,379 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<style src="/css/plain-grid.css" />
+	<window id="customerWnd" border="none"
+		apply="com.is.customer_.core.composer.CustomerComposer">
+		<zscript><![CDATA[
+	import com.is.customer_.core.constraint.NoEmptyConstraint;
+	import com.is.customer_.core.constraint.LatinConstraint;
+	import com.is.customer_.core.constraint.LetterConstraint;
+	import com.is.customer_.core.constraint.DigitConstraint;
+	import com.is.customer_.core.constraint.PassportSerialConstraint;
+	import com.is.customer_.core.constraint.PassportNumberConstraint;
+	import com.is.customer_.core.constraint.EmailConstraint;
+	import com.is.customer_.core.constraint.InnConstraint;
+	import com.is.customer_.core.constraint.InpsConstraint;
+	NoEmptyConstraint noempty = new NoEmptyConstraint();
+	LatinConstraint latinConst = new LatinConstraint();
+	LetterConstraint letterConst = new LetterConstraint();
+	DigitConstraint digitConst = new DigitConstraint();
+	PassportSerialConstraint passportSerialConst = new PassportSerialConstraint();
+	PassportNumberConstraint passportNumberConst = new PassportNumberConstraint();
+	EmailConstraint emailConst = new EmailConstraint();
+	InnConstraint innConst = new InnConstraint();
+	InpsConstraint inpsConst = new InpsConstraint();
+]]>
+        </zscript>
+		<div id="main" width="100%">
+
+
+			<groupbox id="grbCustSearch">
+				<grid ctrlKeys="^e#up#down" sclass="fgrid" hflex="1">
+					<columns>
+						<column align="right" hflex="2" />
+						<column align="left" hflex="3" />
+						<column align="right" hflex="3" />
+						<column hflex="3" />
+						<column align="right" hflex="2" />
+						<column align="left" hflex="3" />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.client_p.id_client}" />
+							<textbox id="id" readonly="true"
+								value="@{customerWnd$composer.customer.id}" />
+							<label value="${labels.client.state}" />
+							<rcombobox id="state"
+								buttonVisible="false" readonly="true"
+								selecteditem="@{customerWnd$composer.customer.state}" hflex="1"
+								onChange="customerWnd$composer.customer.state = state.value" />
+							<label value="${labels.client_p.code_type}" />
+							<rcombobox id="code_type" 
+								hflex="1" buttonVisible="false" readonly="true" disabled="true" />
+						</row>
+						<row>
+							<label value="${labels.client_p.fio}" />
+							<cell colspan="3">
+								<textbox id="name_search" hflex="1"
+									value="@{customerWnd$composer.customer.name_search}" />
+							</cell>
+							<label value="ИД_НИББД" />
+							<textbox id="id_nibbd" readonly="true"
+								value="@{customerWnd$composer.customer.p_id_nibbd}" />
+						</row>
+						<row>
+							<label
+								value="${labels.client_p.p_number_tax_registration}" />
+							<textbox id="p_number_tax_registration"
+								hflex="1"
+								value="@{customerWnd$composer.customer.p_number_tax_registration}" />
+							<label
+								value="${labels.client_p.p_code_tax_org}" />
+							<cell>
+								<textbox id="p_code_tax_org_text"
+								    hflex="1"
+									onChange="p_code_tax_org.selecteditem = self.value;
+                                               self.value = p_code_tax_org.value;
+                                               customerWnd$composer.customer.p_code_tax_org = p_code_tax_org.value"
+									value="@{customerWnd$composer.customer.p_code_tax_org}" />
+								<rcombobox readonly="true"
+									id="p_code_tax_org" hflex="3"
+									selecteditem="@{customerWnd$composer.customer.p_code_tax_org}"
+									onChange="customerWnd$composer.customer.p_code_tax_org = p_code_tax_org.value;
+												p_code_tax_org_text.value = customerWnd$composer.customer.p_code_tax_org" />
+							</cell>
+
+							<label
+								value="${labels.client_p.code_country}" />
+							<cell>
+								<textbox
+									onChange="code_country.selecteditem = self.value;
+                                              customerWnd$composer.customer.code_country = code_country.value;
+                                              self.value = code_country.value"
+									id="code_country_text" hflex="1"
+									value="@{customerWnd$composer.customer.code_country}" />
+								<rcombobox readonly="true"
+									id="code_country" constraint="no empty"
+									hflex="2"
+									selecteditem="@{customerWnd$composer.customer.code_country}"
+									onChange="customerWnd$composer.customer.code_country = code_country.value;
+												code_country_text.value = customerWnd$composer.customer.code_country" />
+							</cell>
+						</row>
+						<row>
+							<label
+								value="${labels.client_p.p_birthday}" />
+							<cell>
+								<datebox id="p_birthday"
+									format="dd.MM.yyyy" lenient="false"
+									value="@{customerWnd$composer.customer.p_birthday}" hflex="2" />
+
+								<label
+									value="${labels.client_p.p_code_citizenship}" hflex="1" />
+							</cell>
+							<cell>
+								<textbox id="p_code_citizenship_text"
+									onChange="p_code_citizenship.selecteditem = self.value;
+                                              customerWnd$composer.customer.p_code_citizenship = p_code_citizenship.value;
+                                              self.value = p_code_citizenship.value"
+									value="@{customerWnd$composer.customer.p_code_citizenship}"
+									hflex="1" />
+								<rcombobox readonly="true"
+									id="p_code_citizenship" constraint="no empty"
+									selecteditem="@{customerWnd$composer.customer.p_code_citizenship}"
+									onChange="customerWnd$composer.customer.p_code_citizenship = p_code_citizenship.value;
+													p_code_citizenship_text.value = customerWnd$composer.customer.p_code_citizenship;"
+									hflex="3" />
+							</cell>
+							<cell align="right">
+								<label hflex="1"
+									value="${labels.client_p.p_passport_serial}" />
+								<textbox hflex="1" maxlength="2"
+									id="p_passport_serial" constraint="${passportSerialConst}"
+									value="@{customerWnd$composer.customer.p_passport_serial}" />
+							</cell>
+							<label hflex="1"
+								value="${labels.client_p.p_passport_number}" />
+							<textbox id="p_passport_number"
+								constraint="${passportNumberConst}" hflex="3" maxlength="7"
+								value="@{customerWnd$composer.customer.p_passport_number}" />
+						</row>
+						<row>
+							<cell colspan="3">
+								<groupbox>
+									<caption>Дата утверждения</caption>
+									<grid>
+										<columns>
+											<column hflex="1"></column>
+											<column hflex="2"></column>
+											<column hflex="2"></column>
+											<column hflex="1"></column>
+										</columns>
+										<rows>
+											<row>
+												<cell></cell>
+												<cell rowspan="2">
+													<radiogroup
+														id="type_radio_open" orient="vertical">
+														<radio
+															label="Любая дата" checked="true" />
+														<radio
+															label="Конкретная дата" />
+														<radio
+															label="Период" />
+													</radiogroup>
+												</cell>
+												<cell align="right">
+													<label
+														value="${labels.client.filter_begin}" />
+													<datebox
+														id="date_open" disabled="true"
+														value="@{customerWnd$composer.customer.date_open}" />
+												</cell>
+												<cell></cell>
+											</row>
+											<row>
+												<cell></cell>
+												<cell align="right">
+													<label
+														value="${labels.client.filter_end}" />
+													<datebox
+														id="date_open1" disabled="true"
+														value="@{customerWnd$composer.customer.date_open1}" />
+												</cell>
+												<cell></cell>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+
+							</cell>
+
+							<cell colspan="3">
+								<groupbox>
+
+									<caption>Дата закрытия</caption>
+									<grid>
+										<columns>
+											<column hflex="1"></column>
+											<column hflex="2"></column>
+											<column hflex="2"></column>
+											<column hflex="1"></column>
+										</columns>
+										<rows>
+											<row>
+												<cell></cell>
+												<cell rowspan="2">
+													<radiogroup
+														id="type_radio_close" orient="vertical">
+														<radio
+															label="Любая дата" checked="true" />
+														<radio
+															label="Конкретная дата" />
+														<radio
+															label="Период" />
+													</radiogroup>
+												</cell>
+												<cell align="right">
+													<label
+														value="${labels.client.filter_begin}" />
+													<datebox
+														id="date_close" disabled="true"
+														value="@{customerWnd$composer.customer.date_close}" />
+												</cell>
+												<cell></cell>
+											</row>
+											<row>
+												<cell></cell>
+												<cell align="right">
+													<label
+														value="${labels.client.filter_end}" />
+													<datebox
+														id="date_close1" disabled="true"
+														value="@{customerWnd$composer.customer.date_close1}" />
+												</cell>
+												<cell></cell>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+		</div>
+
+		<div id="nonevisible" width="100%" visible="false">
+			<textbox value="@{customerWnd$composer.customer.idSap}"
+				hflex="1" readonly="true" />
+			<rcombobox id="code_subject" buttonVisible="false"
+				readonly="true" hflex="1" disabled="true" mold="rounded"
+				selecteditem="@{customerWnd$composer.customer.code_subject}" />
+			<textbox id="branch_text" disabled="true" readonly="true"
+				constraint="no empty" hflex="1"
+				value="@{customerWnd$composer.customer.branch}" />
+			<textbox maxlength="40" id="p_family_local" hflex="1"
+				constraint="${letterConst}"
+				value="@{customerWnd$composer.customer.p_family_local}" />
+			<textbox maxlength="40" id="p_first_name_local" hflex="1"
+				constraint="${letterConst}"
+				value="@{customerWnd$composer.customer.p_first_name_local}" />
+			<textbox maxlength="40" id="p_patronymic_local" hflex="1"
+				constraint="${letterConst}"
+				value="@{customerWnd$composer.customer.p_patronymic_local}" />
+			<textbox id="p_family" maxlength="40" hflex="1"
+				constraint="${latinConst}"
+				value="@{customerWnd$composer.customer.p_family}" />
+			<textbox id="p_first_name" maxlength="40" hflex="1"
+				constraint="${latinConst}"
+				value="@{customerWnd$composer.customer.p_first_name}" />
+			<textbox id="p_patronymic" maxlength="40" hflex="1"
+				constraint="${latinConst}"
+				value="@{customerWnd$composer.customer.p_patronymic}" />
+			<rcombobox readonly="true" id="p_type_document"
+				constraint="no empty" hflex="3"
+				selecteditem="@{customerWnd$composer.customer.p_type_document}" />
+			<rcombobox readonly="true" mold="rounded"
+				selecteditem="@{customerWnd$composer.customer.p_pass_place_region}"
+				hflex="2" id="p_pass_place_region" />
+			<textbox hflex="1"
+				value="@{customerWnd$composer.customer.p_pass_place_district}"
+				id="p_pass_place_district_text" />
+			<rcombobox readonly="true" mold="rounded"
+				selecteditem="@{customerWnd$composer.customer.p_pass_place_district}"
+				hflex="2" id="p_pass_place_district" />
+			<textbox id="p_passport_place_registration" hflex="1"
+				constraint="${noempty}"
+				value="@{customerWnd$composer.customer.p_passport_place_registration}" />
+			<datebox mold="rounded" format="dd.MM.yyyy"
+				constraint="between 19000101 and 22000101;no empty" lenient="false"
+				id="p_passport_date_expiration" hflex="1"
+				value="@{customerWnd$composer.customer.p_passport_date_expiration}">
+			</datebox>
+			<rcombobox readonly="true" mold="rounded" id="p_code_nation"
+				hflex="1" constraint="no empty"
+				selecteditem="@{customerWnd$composer.customer.p_code_nation}"
+				onChange="customerWnd$composer.customer.p_code_nation = p_code_nation.value" />
+			<rcombobox readonly="true" mold="rounded" id="code_resident"
+				constraint="no empty" hflex="1"
+				selecteditem="@{customerWnd$composer.customer.code_resident}"
+				onChange="customerWnd$composer.customer.code_resident = code_resident.value" />
+			<rcombobox readonly="true" id="p_code_gender" hflex="1"
+				mold="rounded"
+				selecteditem="@{customerWnd$composer.customer.p_code_gender}"
+				onChange="customerWnd$composer.customer.p_code_gender = p_code_gender.value"
+				constraint="no empty" />
+			<textbox id="p_birth_place" hflex="1"
+				constraint="${noempty}"
+				value="@{customerWnd$composer.customer.p_birth_place}" />
+			<rcombobox readonly="true" mold="rounded"
+				id="p_code_adr_region" constraint="no empty" hflex="3"
+				selecteditem="@{customerWnd$composer.customer.p_code_adr_region}" />
+			<rcombobox mold="rounded" readonly="true"
+				id="p_code_adr_distr" hflex="3"
+				selecteditem="@{customerWnd$composer.customer.p_code_adr_distr}" />
+			<rcombobox readonly="true" mold="rounded"
+				id="p_code_class_credit" hflex="3"
+				selecteditem="@{customerWnd$composer.customer.p_code_class_credit}"
+				onChange="customerWnd$composer.customer.p_code_class_credit = self.value;
+										     p_code_class_credit_text.value = self.value " />
+			<rcombobox mold="rounded" readonly="true"
+				id="p_code_capacity" constraint="no empty" hflex="3"
+				selecteditem="@{customerWnd$composer.customer.p_code_capacity}"
+				onChange="customerWnd$composer.customer.p_code_capacity = p_code_capacity.value;
+							p_code_capacity_text.value = customerWnd$composer.customer.p_code_capacity" />
+
+			<rcombobox mold="rounded" readonly="true" visible="false"
+				id="file_name" constraint="no empty" hflex="3"
+				selecteditem="@{customerWnd$composer.customer.file_name}"
+				onChange="customerWnd$composer.customer.file_name = file_name.value;
+							file_name.value = customerWnd$composer.customer.file_name" />
+			<rcombobox mold="rounded" readonly="true" visible="false"
+				id="subbranch" constraint="no empty" hflex="3"
+				selecteditem="@{customerWnd$composer.customer.subbranch}"
+				onChange="customerWnd$composer.customer.subbranch = subbranch.value;
+							subbranch.value = customerWnd$composer.customer.subbranch" />
+
+		</div>
+
+		<window id="sourceDataWnd" title="Исходные данные" width="70%"
+			height="70%" mode="modal" position="center,center" visible="false"
+			closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+			<grid id="sourceDataGrid" vflex="1"
+				sizedByContent="false">
+				<columns>
+					<column label="Название Поля" hflex="3" />
+					<column label="Данные Филиала" hflex="5" />
+					<column label="Данные SAP" hflex="5" />
+					<column label="Выбрать Все" hflex="2">
+						<checkbox id="selectAllCheckbox" />
+					</column>
+				</columns>
+				<rows></rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton label="Принять данные SAP" id="btnSave"
+					image="/images/accept.png" />
+			</toolbar>
+		</window>
+		<window id="matchesWnd" width="90%" title="Дупликаты"
+			height="50%" mode="modal" position="center,center" visible="false"
+			closable="true"
+			onClose="self.setVisible(false); event.stopPropagation();">
+			<listbox id="matchesListbox" multiple="true" rows="5">
+				<listhead sizable="true">
+					<listheader label="SAP Код" hflex="2" />
+					<listheader label="Фамилия" hflex="3" />
+					<listheader label="Имя" hflex="3" />
+					<listheader label="Отчество" hflex="3" />
+					<listheader label="Дата Рождения" hflex="2" />
+					<listheader label="Тип документа" hflex="2" />
+					<listheader label="Серия" hflex="1" />
+					<listheader label="Номер" hflex="1" />
+				</listhead>
+			</listbox>
+		</window>
+	</window>
+</zk>

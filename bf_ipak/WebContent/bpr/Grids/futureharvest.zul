@@ -1,0 +1,98 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<div id="futureharvestdiv" hflex="1" visible="false"
+		apply="com.is.bpri.ldguarrgrids.FutureHarvest">
+		<grid>
+			<rows>
+				<row>
+					<label value="Номер клиента" />
+					<textbox id="id_client" width="100%" maxlength="8" />
+					<label value="Наименования клиента" />
+					<textbox id="name" width="100%" />
+				</row>
+				<row>
+					<label value="Область" />
+					<rcombobox id="region_id" width="100%" />
+					<label value="Район" />
+					<rcombobox id="distr_id" width="100%" />
+				</row>
+				<row>
+					<label value="Махалля,Квартал" />
+					<textbox id="massiv" width="100%" />
+					<label value="Улица" />
+					<textbox id="street" width="100%" />
+				</row>
+				<row>
+					<label value="Дом" />
+					<textbox id="home" width="100%" />
+					<label value="Квартира" />
+					<textbox id="home_num" width="100%" />
+				</row>
+				<row>
+					<label value="Валюта" />
+					<rcombobox id="currency" width="100%" />
+					<label value="Сумма" />
+					<decimalbox format="#0.00" id="amount" width="100%"
+						maxlength="22" />
+				</row>
+				<row>
+					<label value="№ документа" />
+					<textbox id="doc_num" width="100%" />
+					<label value="Дата документа" />
+					<datebox id="doc_date" format="dd.MM.yyyy" width="100%" />
+				</row>
+				<row>
+					<label value="Класс обеспечения" />
+					<rcombobox id="klass_o" width="100%" />
+					<label value="Признак юридического/физического лица" />
+					<rcombobox id="code_subject" width="100%" />
+				</row>
+				<row>
+					<label value="ИНН (залг. Реестр)" />
+					<textbox id="inn_reestr" maxlength="9" width="100%" />
+					<label value="Номер нотариального удостоверения" />
+					<textbox id="notarial_doc_numb" maxlength="10" width="100%" />
+				</row>
+				<row>
+					<label value="ИНН" />
+					<textbox id="inn" maxlength="9" width="100%" />
+					<label value="Дата выдачи нотариального удостоверения" />
+					<datebox id="start_date" maxlength="10" format="dd.MM.yyyy"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Полное наименование залога" />
+					<textbox id="name2" maxlength="100" width="100%" />
+					<label value="Признак резидентности владельца залога" />
+					<rcombobox id="niki_res1" width="100%" />
+				</row>
+				<row>
+					<label value="Наименование оценочной компании" />
+					<rcombobox id="acomp_name" width="100%" />
+					<label value="Дата отчета об оценки" />
+					<datebox id="acomp_date" format="dd.MM.yyyy" maxlength="10"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Валюта оценки рыночной стоимости" />
+					<rcombobox id="acomp_curr" width="100%" />
+					<label value="Рыночная стоимость объекта залога" />
+					<decimalbox id="acomp_summa" format="#0.00" maxlength="20"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Посевная площадь" />
+					<textbox id="sowing_area" maxlength="6" width="100%" />
+				</row>
+			</rows>
+		</grid>
+		<toolbar>
+			<toolbarbutton id="btn_saving" label="${labels.save}"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_del" label="Удалить" image="/images/delete.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+</zk>

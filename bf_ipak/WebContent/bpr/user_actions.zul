@@ -1,0 +1,58 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<div id="usermain" width="100%" height="100%"
+		apply="com.is.bpri.user_actions.User_actionViewCtrl">
+		<toolbar id="tb">
+			<toolbarbutton id="btn_search" label="${labels.search}"
+				image="/images/search.png" />
+			<toolbarbutton id="btn_first" label="${labels.first}"
+				image="/images/backward.png" />
+			<toolbarbutton id="btn_prev" label="${labels.prev}"
+				image="/images/back.png" />
+			<toolbarbutton id="btn_next" label="${labels.next}"
+				image="/images/front.png" />
+			<toolbarbutton id="btn_last" label="${labels.last}"
+				image="/images/forward.png" />
+		</toolbar>
+		<div id="grd">   <!-- -->
+			<paging id="user_actionsPaging" width="100%" />
+			<listbox style="border:none" id="dataGrid" multiple="true"
+				width="100%" height="100%"> <!-- selectedItem="@{usermain$composer.current}" -->
+				<listhead sizable="true">
+					<listheader label="id" visible="false" />
+					<listheader label="user_id" visible="false" />
+					<listheader label="act_type" visible="false" />
+					<listheader label="Пользователь" />
+					<listheader label="Дата действия" />
+					<listheader label="Тип действия" />
+					<listheader label="Id действия" />
+					<listheader label="Номер клиента" />
+				</listhead>
+			</listbox>
+		</div>
+		<div id="frm" visible="false">
+			<grid>
+				<rows>
+					<row>
+						<label value="Дата действия" />
+						<datebox id="action_date" format="dd.MM.yyyy" maxlength="10" />
+					</row>
+					<row>
+						<label value="Тип действия" />
+						<rcombobox id="type_action" />
+					</row>
+					<row>
+						<label value="Номер клиента" />
+						<textbox id="client" maxlength="8" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_saving" label="${labels.search}"
+					image="/images/search.png" />
+				<toolbarbutton id="btn_canceling" label="${labels.cancel}"
+					image="/images/stop.png" />
+			</toolbar>
+		</div>
+	</div>
+</zk>

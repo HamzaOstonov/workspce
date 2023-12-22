@@ -1,0 +1,60 @@
+package com.is.customer_;
+
+public enum ActionsEnum {
+	// --- Actions
+	ACTION_CLOSE_BUSINESS_PARTNER(3),
+	ACTION_CONFIRM_CLOSED_BUSINESS_PARTNER(20),
+	ACTION_CORRECT_PHONE(21),
+	ACTION_CONFIRM_BUSINESS_PARTNER(2),
+	ACTION_CORRECT_BUSINESS_PARTNER(19),
+	ACTION_CREATE_BUSINESS_PARTNER(1),
+	ACTION_DELETE_BUSINESS_PARTNER(6),
+	// --- BP Types
+	TYPE_BUSINESS_PARTNER("1"),
+	TYPE_BUSINESS_PARTNER_J("2"),
+	TYPE_RELATIONSHIP("BUR001"),
+	TYPE_RELATIONSHIP_ACCOUNTANT("ZIY050"),
+	TYPE_RELATIONSHIP_DIRECTOR("ZIY051"),
+	// --- Relationship modes
+	RELATIONSHIP_MODE_CREATE(""),
+	RELATIONSHIP_MODE_DELETE("D"),
+	// Identification Types
+	TYPE_TAX_NUMBER("51"),
+	// ---- Event Types
+	EVENT_ACTION_CREATE_CONTACT_PERSON("BP45"),
+	EVENT_ACTION_DELETE_CONTACT_PERSON("BP80"),
+	EVENT_ACTION_PAYMENT_OPERATION("BP20"),
+	// ----- SAP Constants
+	SAP_ENDPOINT_RELATIONSHIP("SAP_REL_ENDPOINT"),
+	SAP_ENDPOINT_CONTENT_TYPE("SAP_CONTENT_SERVER"),
+	SAP_ENDPOINT_CUSTOMER("SAP_CUST_ENDPOINT"),
+	SAP_ENDPOINT_ROLE("SAP_ROLE_ENDPOINT"),
+	SAP_ENDPOINT_CONTENT_DELETE("SAP_CONTENTDELETE_SRV"),
+	SAP_USERNAME("SAP_WS_ENDPOINT_USERNAME"),
+	SAP_PASSWORD("SAP_WS_ENDPOINT_PASSWORD");
+	
+	
+	private int action;
+	private String value;
+	
+	private ActionsEnum(int action){
+		this.action = action;
+	}
+	
+	private ActionsEnum(String value){
+		this.value = value;
+	}
+	
+	public int action(){
+		return action;
+	}
+	
+	public String value(){
+		return value;
+	}
+	
+	public String toString(){
+		return Integer.toString(action);
+	}
+	
+}

@@ -1,0 +1,208 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="bproductmain" width="100%" height="100%" border="normal"
+	apply="com.is.bpri.BproductViewCtrl">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" label="${labels.back}"
+			image="/images/file.png" />
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<!-- <toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" 
+			/> -->
+
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+
+		<toolbarbutton id="btn_show_details" label="Показать детали"
+			image="/images/+.png" />
+		<!-- <toolbarbutton id="btn_giveBankProduct" label="Открыть кредит" image="/images/+.png" 
+			/> -->
+
+		<!-- dobavleno knoka noviy <toolbarbutton id="btn_giveBankProductCreditAnket" 
+			label="выдача кредитный Анкета" image="/images/+.png" /> <toolbarbutton id="btn_giveBankProductCreditApp" 
+			label="выдача кредит" image="/images/+.png" /> -->
+
+
+	</toolbar>
+
+	<div id="grd">   <!-- -->
+
+
+		<paging id="bproductPaging" width="100%" />
+		<listbox id="dataGrid" multiple="true" rows="4" width="100%"
+			style="overflow:scroll" selectedItem="@{bproductmain$composer.current}"
+			height="800px">
+			<listhead sizable="true" id="lh_main">
+
+				<listheader label="${labels.bproduct.id}" width="100px" />
+				<listheader label="${labels.bproduct.branch}" width="100px" />
+				<listheader label="${labels.bproduct.customer}" width="100px" />
+				<listheader label="${labels.bproduct.prodid}" width="100px" />
+				<listheader label="${labels.bproduct.vdate}" width="100px" />
+				<listheader label="${labels.bproduct.currency}" width="100px" />
+				<listheader label="${labels.bproduct.amount}" width="150px" />
+				<listheader label="${labels.bproduct.emp_id}" width="100px" />
+				<listheader label="${labels.bproduct.state}" width="100px" />
+			</listhead>
+
+		</listbox>
+
+
+
+
+
+	</div>
+	<div id="frm" visible="false">
+
+		<!-- Основная форма после doubleClick() -->
+		<hbox id="mainBox">
+			<tabbox>
+				<tabs>
+					<tab id="bpr_els1" label="Общие характеристики" width="200px" />
+					<tab id="dep_tab" label="Дополнительная информация" width="200px" />
+					<!-- <tab id="cred_tab" label="Выданный кредит" width="200px"/> <tab 
+						id="bpr_els4" label="Дополнительные характеристики" width="200px"/> -->
+				</tabs>
+				<tabpanels style="background-color:white;">
+
+					<tabpanel id="frmgrdTab">
+						<hbox id="frmgrd" height="100%">
+							<grid id="frmgrdl">
+								<columns>
+									<column width="20%" />
+									<column width="80%" />
+								</columns>
+								<rows>
+
+									<row>
+										<label value="${labels.bproduct.id}" />
+										<textbox id="id" mold="rounded"
+											value="@{bproductmain$composer.current.id}" />
+									</row>
+									<row>
+										<label value="${labels.bproduct.branch}" />
+										<textbox id="branch" mold="rounded"
+											value="@{bproductmain$composer.current.branch}" />
+									</row>
+									<row>
+										<label value="${labels.bproduct.customer}" />
+										<textbox id="customer" mold="rounded"
+											value="@{bproductmain$composer.current.customer}" />
+									</row>
+									<row>
+										<label value="${labels.bproduct.prodid}" />
+										<textbox id="prodid" mold="rounded"
+											value="@{bproductmain$composer.current.prodid}" />
+									</row>
+									<row>
+										<label value="${labels.bproduct.vdate}" />
+										<textbox id="vdate" mold="rounded"
+											value="@{bproductmain$composer.current.vdate}" />
+									</row>
+									<row>
+										<label value="${labels.bproduct.currency}" />
+										<textbox id="currency" mold="rounded"
+											value="@{bproductmain$composer.current.currency}" />
+									</row>
+									<row>
+										<label value="${labels.bproduct.amount}" />
+										<textbox id="amount" mold="rounded"
+											value="@{bproductmain$composer.current.amount}" />
+									</row>
+									<row>
+										<label value="${labels.bproduct.emp_id}" />
+										<textbox id="emp_id" mold="rounded"
+											value="@{bproductmain$composer.current.emp_id}" />
+									</row>
+									<row>
+										<label value="${labels.bproduct.state}" />
+										<textbox id="state" mold="rounded"
+											value="@{bproductmain$composer.current.state}" />
+									</row>
+								</rows>
+							</grid>
+						</hbox>
+
+
+						<!-- Форма для заполнения добавлений в таблицу появляется после нажатия 
+							кнопки btn_add() -->
+
+						<!-- <vbox id="addgrd" visible="false"> <grid id="addgrdl" height="110px"> 
+							<columns> <column width="25%" /> <column width="25%" /> <column width="25%" 
+							/> <column width="25%" /> </columns> <rows> <row><label value="${labels.bproduct.customer}" 
+							/><hlayout><textbox id="acustomer" mold="rounded" /><toolbarbutton id="btn_enter_client" 
+							label="Подтвердить" image="/images/+.png" /></hlayout> <label value="${labels.bproduct.prodid}" 
+							/><rcombobox id="aprodid" mold="rounded" selecteditem="@{bproductmain$composer.current.prodid}" 
+							/></row> <row><label value="Дата окончания кредитного договора" /><datebox 
+							id="avdate" mold="rounded" /> <label value="Сумма кредита" /><textbox id="aamount" 
+							mold="rounded" /></row> <row> <label value="Сумма обеспечения (для кредита 
+							под залог депозита)" /> <hlayout> <textbox id="aamountProvision" mold="rounded" 
+							width="130px"/> <toolbarbutton id="btn_show_provision_amount" label="Показать 
+							сумму обеспечения" image="/images/+.png" /> </hlayout> </row> </rows> </grid> 
+							<include src="search_clients.zul" /> <grid id="addgrdl"> <columns> <column 
+							width="20%" /> <column width="80%" /> </columns> <rows> <row><label value="${labels.bproduct.id}" 
+							/><textbox id="aid" mold="rounded" /></row> <row><label value="${labels.bproduct.branch}" 
+							/><textbox id="abranch" mold="rounded" /></row> <row><label value="${labels.bproduct.customer}" 
+							/><textbox id="acustomer" mold="rounded" /></row> <row><label value="${labels.bproduct.prodid}" 
+							/><textbox id="aprodid" mold="rounded" /></row> <row><label value="${labels.bproduct.vdate}" 
+							/><textbox id="avdate" mold="rounded" /></row> <row><label value="${labels.bproduct.currency}" 
+							/><textbox id="acurrency" mold="rounded" /></row> <row><label value="${labels.bproduct.amount}" 
+							/><textbox id="aamount" mold="rounded" /></row> <row><label value="${labels.bproduct.emp_id}" 
+							/><textbox id="aemp_id" mold="rounded" /></row> <row><label value="${labels.bproduct.state}" 
+							/><textbox id="astate" mold="rounded" /></row> </rows> </grid> </vbox> -->
+
+
+					</tabpanel>
+
+
+
+					<tabpanel id="depositTab">
+
+						<include id="bprDesc" height="800px" />
+
+					</tabpanel>
+
+
+					<!-- <tabpanel id="creditTab"> <vbox id="creditBox"> <paging id="bprAddInfoPaging" 
+						width="890px" /> <listbox style="border:none" id="bprAddInfodataGrid" multiple="true" 
+						rows="10" width="900px"> <listhead sizable="true"> <listheader label="Номер 
+						Анкеты" width="100px" /> <listheader label="Номер Банковского Продукта" width="200px" 
+						/> <listheader label="Номер описания банковского продукта" width="250px" 
+						/> <listheader label="Номер параметра" width="120px" /> <listheader label="Филиал" 
+						width="70px" /> <listheader label="Значение параметра" width="150px" /> </listhead> 
+						</listbox> </vbox> </tabpanel> <tabpanel id ="addInfo_tab"> <include id="bprAddInfo" 
+						height="800px"/> </tabpanel> -->
+
+
+				</tabpanels>
+			</tabbox>
+		</hbox>
+
+		<!-- <hbox id="fgrd" visible="false"> <grid id="fgrdl"> <columns> <column 
+			width="20%" /> <column width="80%" /> </columns> <rows> <row><label value="${labels.bproduct.id}" 
+			/><textbox id="fid" mold="rounded" value="@{bproductmain$composer.filter.id}" 
+			/></row> <row><label value="${labels.bproduct.branch}" /><textbox id="fbranch" 
+			mold="rounded" value="@{bproductmain$composer.filter.branch}" /></row> <row><label 
+			value="${labels.bproduct.customer}" /><textbox id="fcustomer" mold="rounded" 
+			value="@{bproductmain$composer.filter.customer}" /></row> <row><label value="${labels.bproduct.prodid}" 
+			/><textbox id="fprodid" mold="rounded" value="@{bproductmain$composer.filter.prodid}" 
+			/></row> <row><label value="${labels.bproduct.vdate}" /><textbox id="fvdate" 
+			mold="rounded" value="@{bproductmain$composer.filter.vdate}" /></row> <row><label 
+			value="${labels.bproduct.currency}" /><textbox id="fcurrency" mold="rounded" 
+			value="@{bproductmain$composer.filter.currency}" /></row> <row><label value="${labels.bproduct.amount}" 
+			/><textbox id="famount" mold="rounded" value="@{bproductmain$composer.filter.amount}" 
+			/></row> <row><label value="${labels.bproduct.emp_id}" /><textbox id="femp_id" 
+			mold="rounded" value="@{bproductmain$composer.filter.emp_id}" /></row> <row><label 
+			value="${labels.bproduct.state}" /><textbox id="fstate" mold="rounded" value="@{bproductmain$composer.filter.state}" 
+			/></row> </rows> </grid> </hbox> <vbox> <toolbar> <toolbarbutton id="btn_save" 
+			label="${labels.save}" image="/images/save.png" /> <toolbarbutton id="btn_cancel" 
+			label="${labels.cancel}" image="/images/stop.png" /> </toolbar> </vbox> -->
+	</div>
+
+</window>

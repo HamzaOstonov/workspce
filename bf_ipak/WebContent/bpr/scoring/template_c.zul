@@ -1,0 +1,71 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<style>
+		.z-combobox-disd, .z-combobox-disd * { color: black !important;}
+	</style>
+	<div id="maindiv" apply="com.is.bpri.template_c.Template">
+		<toolbar>
+			<toolbarbutton label="Добавить" id="btn_add" image="/images/+.png" />
+			<toolbarbutton label="Удалить" id="btn_del" image="/images/-.png" />
+		</toolbar>
+		<listbox id="templateList" mold="paging" pageSize="15">
+			<listhead>
+				<listheader label="Номер" visible="false" />
+				<listheader label="Наименование шаблона" align="center" />
+				<listheader label="Файл" visible="false" />
+			</listhead>
+		</listbox>
+		<div id="divgrd" visible="false">
+			<grid>
+				<rows>
+					<row>
+						<cell colspan="2" width="30%">
+							<label value="Наименование шаблона" />
+						</cell>
+						<cell colspan="2" width="70%">
+							<textbox width="80%" maxlength="150" id="main_name" />
+						</cell>
+					</row>
+					<!-- <row> <cell colspan="2" width="30%"> <label value="Текст заголовок"/> 
+						</cell> <cell colspan="2" width="70%"> <textbox width="80%" maxlength="150" 
+						id="banner_text"/> </cell> </row> -->
+					<row>
+						<cell colspan="2" width="30%">
+							<label value="Файл" />
+						</cell>
+						<cell colspan="2" width="70%">
+							<textbox width="80%" maxlength="150" id="file_name" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<grid>
+				<rows id="dRows" />
+			</grid>
+			<grid>
+				<rows>
+					<row>
+						<button id="btn_addField" label="Добавить поле" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_save" label="Сохранить" />
+				<toolbarbutton id="btn_cancel" label="Отмена" visible="false" />
+			</toolbar>
+		</div>
+		<div id="divSetting" visible="false">
+			<grid>
+				<rows>
+					<row>
+						<rcombobox id="ss_reference" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_saving" label="Сохранить" />
+				<toolbarbutton id="btn_canceling" label="Отмена" />
+			</toolbar>
+		</div>
+	</div>
+</zk>

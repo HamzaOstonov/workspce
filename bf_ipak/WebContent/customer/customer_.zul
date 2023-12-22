@@ -1,0 +1,811 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+    <style src="/css/plain-grid.css"/>
+    <window id="customerWnd" border="none" width="99%"
+            apply="com.is.customer_.core.composer.CustomerComposer">
+        <zscript><![CDATA[
+	import com.is.customer_.core.constraint.NoEmptyConstraint;
+	import com.is.customer_.core.constraint.LatinConstraint;
+	import com.is.customer_.core.constraint.LetterConstraint;
+	import com.is.customer_.core.constraint.DigitConstraint;
+	import com.is.customer_.core.constraint.PassportSerialConstraint;
+	import com.is.customer_.core.constraint.PassportNumberConstraint;
+	import com.is.customer_.core.constraint.EmailConstraint;
+	import com.is.customer_.core.constraint.InnConstraint;
+	import com.is.customer_.core.constraint.InpsConstraint;
+	import com.is.customer_.core.constraint.PinflConstraint;
+
+	NoEmptyConstraint noempty = new NoEmptyConstraint();
+	LatinConstraint latinConst = new LatinConstraint();
+	LetterConstraint letterConst = new LetterConstraint();
+	DigitConstraint digitConst = new DigitConstraint();
+	PassportSerialConstraint passportSerialConst = new PassportSerialConstraint();
+	PassportNumberConstraint passportNumberConst = new PassportNumberConstraint();
+	EmailConstraint emailConst = new EmailConstraint();
+	InnConstraint innConst = new InnConstraint();
+	InpsConstraint inpsConst = new InpsConstraint();
+	PinflConstraint pinflConst = new PinflConstraint();
+]]>
+        </zscript>
+        <div id="main" width="100%">
+        	<grid id="openSearchGrid">
+        		<rows>
+        			<row align="center">
+        				<button id="openSearchWnd" label="Поиск клиента"/>
+        			</row>
+        		</rows>
+        	</grid>
+        	<grid id="searchGrid" visible="false">
+        		<columns>
+        			<column width="20%"/>
+        			<column/>
+        			<column width="160px"/>
+        		</columns>
+        		<rows>
+        			<row visible="true">
+        				<cell colspan="2">
+        					<radiogroup id="radioGroup">
+        						<vbox>
+        							<radio value="1" label="Дата рождения и ПИНФЛ" selected="true"/>
+        							<radio value="2" label="Дата рождения и Паспортные данные"/>
+        							<radio value="3" label="Дата рождения, ПИНФЛ и Паспортные данные"/>        							
+        						</vbox>
+        					</radiogroup>
+        				</cell>
+       					<cell >
+          				  <image id="myImage" width="150px" height="150px" style=" border:1px solid #b9b9b9; border-radius:0px; color:#ccc; min-width:100px; min-height:100px; float: right;" />       					 
+        			    </cell>
+        			</row>
+        			<row id="birth_date_row" visible="true">
+       					<label value="Дата рождения"/>
+       					<datebox id="birth_date" format="dd.MM.yyyy" />
+        			</row>
+        			<row id="pinfl_row" visible="true">
+       					<label value="ПИНФЛ"/>
+       					<textbox id="pinfl"/>
+        			</row>
+        			<row id="passport_row" visible="false">
+       					<label value="Паспортные данные(серия + номер)"/>
+       					<cell>
+       					<textbox id="pasport_ser"/>
+       					<textbox id="pasport_num" visible="false"/>
+       					</cell>
+        			</row>
+        			<row id="doc_date_row" visible="false">
+       					<label value="Дата регистрации паспорта"/>
+       					<datebox id="doc_date" format="dd.MM.yyyy"/>
+        			</row>
+        			
+        			<row>
+        				<button id="closeSearchWnd" label="Скрыть окно поиска"/>
+        				<cell>
+        				<checkbox id="check_agreement" label="Согласие клиента"/>
+        				<button id="fill_client_form_btn" label="Запрос ГЦП" image="/images/arrow_double_down.png" visible="false"/>
+        				<button id="fill_FizCommon_btn" label="Запрос (FizAddress + FizPhoto)" image="/images/arrow_double_down.png" visible="false"/>
+        				<button id="fill_FizDoc_adr_btn" label="Запрос (FizAddress + FizDocs)" image="/images/arrow_double_down.png"/>
+        				</cell>
+        			</row>
+        			
+        			<row id="inn_row" visible="false">
+						<label value="ИНН"/>
+       					<textbox id="inn"/>        				
+        			</row>
+
+        			<row visible="false">
+        				<cell colspan="2">
+        				<button id="fill_FizAddress_btn" label="Запрос новый(FizAddress)" image="/images/arrow_double_down.png"/>
+        				<button id="fill_FizInfoDetails_btn" label="Запрос новый(FizInfoDetails)" image="/images/arrow_double_down.png"/>
+        				<button id="fill_FizPhoto_btn" label="Запрос новый(FizPhoto)" image="/images/arrow_double_down.png"/>        				
+        				</cell>
+        			</row>
+        			
+        		</rows>
+        	</grid>
+            <grid ctrlKeys="^e#up#down"
+                  sclass="fgrid" hflex="1">
+                <columns>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="CRM Код"/>
+                        <textbox value="@{customerWnd$composer.customer.idSap}" hflex="1" readonly="true"/>
+                        <label value="Статус"/>
+                        <textbox value="@{customerWnd$composer.customer.sign_100}" hflex="1" readonly="true"/>
+                        <label
+                                value="Union Код"/>
+                        <textbox id="union_id"
+                                 readonly="true" hflex="1"
+                                 value="@{customerWnd$composer.customer.union_id}"/>
+                    </row>
+                    <row>
+                        <label
+                                value="${labels.client_p.code_subject}"/>
+                        <rcombobox
+                                id="code_subject" buttonVisible="false" readonly="true"
+                                hflex="1" disabled="true" mold="rounded"
+                                selecteditem="@{customerWnd$composer.customer.code_subject}"/>
+                        <label
+                                value="${labels.client_p.branch}"/>
+                        <textbox id="branch_text" disabled="true"
+                                 readonly="true" constraint="no empty" hflex="1"
+                                 value="@{customerWnd$composer.customer.branch}"/>
+                        <label
+                                value="${labels.client_p.id_client}"/>
+                        <textbox id="id"
+                                 readonly="true" hflex="1"
+                                 value="@{customerWnd$composer.customer.id}"/>
+                    </row>
+                    <row>
+                        <label
+                                value="${labels.client_p.date_open}"/>
+                        <datebox id="date_open" mold="rounded"
+                                 hflex="1" readonly="true" disabled="true"
+                                 value="@{customerWnd$composer.customer.date_open}"/>
+                        <label
+                                value="${labels.client_p.date_close}"/>
+                        <datebox id="date_close" mold="rounded"
+                                 hflex="1" readonly="true" disabled="true"
+                                 value="@{customerWnd$composer.customer.date_close}"/>
+                        <label
+                                value="${labels.client_p.state}"/>
+                        <rcombobox id="state" mold="rounded"
+                                   buttonVisible="false" readonly="true"
+                                   selecteditem="@{customerWnd$composer.customer.state}" hflex="1"
+                                   onChange="customerWnd$composer.customer.state = state.value"/>
+                    </row>
+                    <row>
+                        <label value="Подразделение"/>
+                        <cell colspan="2">
+                        <textbox
+                                    hflex="1"
+                                    id="file_name_text"
+                                    onChange=
+                                            "file_name.selecteditem = self.value;
+                                              customerWnd$composer.customer.file_name = file_name.value;
+                                              self.value = file_name.value"
+                                    value="@{customerWnd$composer.customer.file_name}"/>
+                            <rcombobox readonly="true" mold="rounded"
+                                       id="file_name" hflex="2" 
+                                       selecteditem="@{customerWnd$composer.customer.file_name}"
+                                       onChange="customerWnd$composer.customer.file_name = file_name.value;
+													file_name_text.value = customerWnd$composer.customer.file_name;"/>
+                        </cell>
+                        <label value="Код ОБУ"/>
+                        <cell colspan="2">
+                        
+                        <textbox
+                                    hflex="1"
+                                    id="subbranch_text"
+                                    onChange=
+                                            "subbranch.selecteditem = self.value;
+                                              customerWnd$composer.customer.subbranch = subbranch.value;
+                                              self.value = subbranch.value"
+                                    value="@{customerWnd$composer.customer.subbranch}"/>
+                            <rcombobox readonly="true" mold="rounded"
+                                       id="subbranch" hflex="2" 
+                                       selecteditem="@{customerWnd$composer.customer.subbranch}"
+                                       onChange="customerWnd$composer.customer.subbranch = subbranch.value;
+													subbranch_text.value = customerWnd$composer.customer.subbranch;"/>
+                        
+                        </cell>
+                    </row>                    
+                </rows>
+            </grid>
+            <grid ctrlKeys="^e#up#down"
+                  sclass="fgrid" hflex="1">
+                <columns>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_last_name_cyr}"/>
+                        <textbox maxlength="40"
+                                 id="p_family_local" hflex="1" constraint="${letterConst}"
+                                 value="@{customerWnd$composer.customer.p_family_local}"/>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_first_name_cyr}"/>
+                        <textbox maxlength="40"
+                                id="p_first_name_local" hflex="1"
+                                constraint="${letterConst}"
+                                value="@{customerWnd$composer.customer.p_first_name_local}"/>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_patronymic_cyr}"/>
+                        <textbox
+                                maxlength="40"
+                                id="p_patronymic_local" hflex="1" constraint="${letterConst}"
+                                value="@{customerWnd$composer.customer.p_patronymic_local}"/>
+                    </row>
+                    <row>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_family}"/>
+                        <textbox id="p_family"
+                                 maxlength="40"
+                                 hflex="1" constraint="${latinConst}"
+                                 value="@{customerWnd$composer.customer.p_family}"/>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_first_name}"/>
+                        <textbox id="p_first_name"
+                                 maxlength="40"
+                                 hflex="1" constraint="${latinConst}"
+                                 value="@{customerWnd$composer.customer.p_first_name}"/>
+                        <label
+                                value="${labels.client_p.p_patronymic}"/>
+                        <textbox id="p_patronymic"
+                                 maxlength="40"
+                                 hflex="1" constraint="${latinConst}"
+                                 value="@{customerWnd$composer.customer.p_patronymic}"/>
+                    </row>
+                </rows>
+            </grid>
+            
+            <div id="div_prava" class="z-auxheader-cnt" style="font-weight: bold;"> 
+              <label id="lbl_prava" style="cursor: pointer;">+ Водительское удостоверение</label>
+            </div>
+             
+            <grid id="grid_prava" sclass="fgrid" visible="false"
+                  ctrlKeys="^e#up#down" hflex="1">
+                <columns>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                       <label
+                                style="color:red;font-weight:bold"
+                                value="Серия"/>
+                       <textbox id="permit_ser" hflex="1" 
+                           value="@{customerWnd$composer.customer.p_drive_permit_ser}" />
+                       <label
+                                style="color:red;font-weight:bold"
+                                value="Номер"/>
+                       <textbox id="permit_num" hflex="1" 
+                         value="@{customerWnd$composer.customer.p_drive_permit_num}" />
+                       <label
+                                style="color:red;font-weight:bold"
+                                value="Дата выдачи"/>
+                       <datebox
+                                mold="rounded"
+                                id="permit_reg_d"
+                                format="dd.MM.yyyy"
+                                constraint="between 19000101 and 22000101;no empty"
+                                value="@{customerWnd$composer.customer.p_drive_permit_reg_d}" >
+                       </datebox>
+                    </row>
+                    <row>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="Дата действительности"/>
+                        <datebox
+                                mold="rounded"
+                                id="permit_exp_d"
+                                format="dd.MM.yyyy" 
+                                constraint="between 19000101 and 22000101;no empty"
+                                value="@{customerWnd$composer.customer.p_drive_permit_exp_d}" >
+                        </datebox>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="Место выдачи"/>
+                        <cell colspan="3">
+                            <textbox id="permit_place" hflex="1" 
+                            value="@{customerWnd$composer.customer.p_drive_permit_place}" />
+                        </cell>
+                    </row>
+                    
+                </rows>
+            </grid>
+            
+            <auxhead>
+                <auxheader label="Паспортные Данные" style="font-weight:bold"
+                           colspan="6" rowspan="1"/>
+            </auxhead>
+            <grid sclass="fgrid"
+                  ctrlKeys="^e#up#down" hflex="1">
+                <columns>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_passport_type}"/>
+                        <cell>
+                            <textbox
+                                    id="p_type_document_text" hflex="1"
+                                    value="@{customerWnd$composer.customer.p_type_document}"/>
+                            <rcombobox readonly="true"
+                                       id="p_type_document" constraint="no empty" hflex="3"
+                                       selecteditem="@{customerWnd$composer.customer.p_type_document}"/>
+                        </cell>
+                        <label style="color:red;font-weight:bold"
+                                hflex="1" value="${labels.client_p.p_passport_serial}"/>
+                        <textbox hflex="1"
+                                 maxlength="2" id="p_passport_serial"
+                                 constraint="${passportSerialConst}"
+                                 value="@{customerWnd$composer.customer.p_passport_serial}"/>
+                        <label
+                                style="color:red;font-weight:bold"
+                                hflex="1"
+                                value="${labels.client_p.p_passport_number}"/>
+                        <cell hflex="3">
+                        	<textbox
+                                id="p_passport_number" constraint="${passportNumberConst}"
+                                width="80%" maxlength="7"
+                                value="@{customerWnd$composer.customer.p_passport_number}"/>
+                            
+                        </cell>
+                    </row>
+                    <row visible="false">
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_passport_place_registration}"/>
+                        <cell align="end">
+                            <label
+                                    value="Вне Территории РУз"/>
+                            <checkbox
+                                    forward="onCheck=onCheckField" id="p_pass_place_checkbox"/>
+                        </cell>
+                        <label hflex="1"
+                               value="${labels.client_p.p_code_adr_region}"/>
+                        <cell>
+                            <textbox hflex="1"
+                                     value="@{customerWnd$composer.customer.p_pass_place_region}"
+                                     id="p_pass_place_region_text"/>
+                            <rcombobox readonly="true" mold="rounded"
+                                       selecteditem="@{customerWnd$composer.customer.p_pass_place_region}"
+                                       hflex="2" id="p_pass_place_region"/>
+                        </cell>
+                        <label hflex="1"
+                               value="${labels.client_p.p_code_adr_distr}"/>
+                        <cell>
+                            <textbox hflex="1"
+                                     value="@{customerWnd$composer.customer.p_pass_place_district}"
+                                     id="p_pass_place_district_text"/>
+                            <rcombobox readonly="true" mold="rounded"
+                                       selecteditem="@{customerWnd$composer.customer.p_pass_place_district}"
+                                       hflex="2" id="p_pass_place_district"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_passport_place_registration}"/>
+                        <cell colspan="5">
+                            <textbox
+                                    id="p_passport_place_registration" hflex="1"
+                                    constraint="${noempty}"
+                                    value="@{customerWnd$composer.customer.p_passport_place_registration}"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_passport_date_registration}"/>
+                        <datebox hflex="1" mold="rounded"
+                                 id="p_passport_date_registration"
+                                 format="dd.MM.yyyy"
+                                 constraint="between 19000101 and 22000101;no empty"
+                                 value="@{customerWnd$composer.customer.p_passport_date_registration}">
+                        </datebox>
+                        <label
+                                style="color:red;font-weight:bold"
+                                hflex="1"
+                               value="${labels.client_p.p_passport_date_expiration}"/>
+                        <datebox mold="rounded"
+                                format="dd.MM.yyyy"
+                                constraint="between 19000101 and 22000101"
+                                id="p_passport_date_expiration" hflex="1"
+                                value="@{customerWnd$composer.customer.p_passport_date_expiration}"/>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_code_nation}"/>
+                        <rcombobox readonly="true" mold="rounded"
+                                   id="p_code_nation" hflex="1" constraint="no empty"
+                                   selecteditem="@{customerWnd$composer.customer.p_code_nation}"
+                                   onChange="customerWnd$composer.customer.p_code_nation = p_code_nation.value"/>
+                    </row>
+                    <row>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_code_citizenship}"/>
+
+                        <cell>
+                            <textbox
+                                    hflex="1"
+                                    id="p_code_citizenship_text"
+                                    onChange=
+                                            "p_code_citizenship.selecteditem = self.value;
+                                              customerWnd$composer.customer.p_code_citizenship = p_code_citizenship.value;
+                                              self.value = p_code_citizenship.value"
+                                    value="@{customerWnd$composer.customer.p_code_citizenship}"/>
+                            <rcombobox readonly="true" mold="rounded"
+                                       id="p_code_citizenship" hflex="2" constraint="no empty"
+                                       selecteditem="@{customerWnd$composer.customer.p_code_citizenship}"
+                                       onChange="customerWnd$composer.customer.p_code_citizenship = p_code_citizenship.value;
+													p_code_citizenship_text.value = customerWnd$composer.customer.p_code_citizenship;"/>
+                        </cell>
+                        <label
+                                style="color:red;font-weight:bold"
+                                hflex="1" value="${labels.client_p.code_resident}"/>
+                        <rcombobox readonly="true" mold="rounded"
+                                   id="code_resident" constraint="no empty" hflex="1"
+                                   selecteditem="@{customerWnd$composer.customer.code_resident}"
+                                   onChange="customerWnd$composer.customer.code_resident = code_resident.value"/>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_code_gender}"/>
+                        <rcombobox
+                                readonly="true"
+                                id="p_code_gender" hflex="1" mold="rounded"
+                                selecteditem="@{customerWnd$composer.customer.p_code_gender}"
+                                onChange="customerWnd$composer.customer.p_code_gender = p_code_gender.value"
+                                constraint="no empty"/>
+                    </row>
+                    <row>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_birthday}"/>
+                        <datebox
+                                mold="rounded"
+                                id="p_birthday"
+                                format="dd.MM.yyyy"
+                                constraint="between 19000101 and 22000101;no empty"
+                                hflex="1" value="@{customerWnd$composer.customer.p_birthday}"/>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_birth_place}"/>
+                        <cell colspan="3">
+                            <textbox
+                                    id="p_birth_place" hflex="1" constraint="${noempty}"
+                                    value="@{customerWnd$composer.customer.p_birth_place}"/>
+                        </cell>
+                    </row>
+
+                    
+                </rows>
+            </grid>
+            <auxhead>
+                <auxheader
+                        label="Адресные и Коммуникационные данные" colspan="6" rowspan="1" style="font-weight:bold"/>
+            </auxhead>
+            <grid ctrlKeys="^e#up#down"
+                  sclass="fgrid" hflex="1">
+                <columns>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.code_country}"/>
+                        <cell>
+                            <textbox
+                                    onChange="code_country.selecteditem = self.value;
+                                              customerWnd$composer.customer.code_country = code_country.value;
+                                              self.value = code_country.value"
+                                    id="code_country_text" hflex="1"
+                                    value="@{customerWnd$composer.customer.code_country}"/>
+                            <rcombobox
+                                    readonly="true" mold="rounded"
+                                    id="code_country" constraint="no empty" hflex="2"
+                                    selecteditem="@{customerWnd$composer.customer.code_country}"
+                                    onChange="customerWnd$composer.customer.code_country = code_country.value;
+												code_country_text.value = customerWnd$composer.customer.code_country"/>
+                        </cell>
+                        <label style="color:red;font-weight:bold"
+                                hflex="1" value="${labels.client_p.p_code_adr_region}"/>
+                        <cell>
+                            <textbox
+                                     id="p_code_adr_region_text" hflex="1"
+                                     value="@{customerWnd$composer.customer.p_code_adr_region}"/>
+                            <rcombobox readonly="true" mold="rounded"
+                                       id="p_code_adr_region" constraint="no empty" hflex="3"
+                                       selecteditem="@{customerWnd$composer.customer.p_code_adr_region}"/>
+                        </cell>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_code_adr_distr}"/>
+                        <cell>
+                            <textbox
+
+                                    id="p_code_adr_distr_text" hflex="1"
+                                    value="@{customerWnd$composer.customer.p_code_adr_distr}"/>
+                            <rcombobox mold="rounded"
+                                    readonly="true"
+                                    id="p_code_adr_distr" hflex="3"
+                                    selecteditem="@{customerWnd$composer.customer.p_code_adr_distr}"/>
+                        </cell>
+                    </row>
+                    <row visible="false">
+                        <label
+                                value="Массив/Квартал" style="color:red"/>
+                        <textbox
+                                id="p_post_address_quarter" hflex="1"
+                                value="@{customerWnd$composer.customer.p_post_address_quarter}"/>
+                        <label value="Улица"
+                               style="color:red"/>
+                        <textbox
+                                id="p_post_address_street" hflex="1"
+                                value="@{customerWnd$composer.customer.p_post_address_street}"/>
+                        <cell colspan="2"
+                              align="right">
+                            <hbox>
+                                <label value="Дом"
+                                       style="color:red"/>
+                                <textbox
+                                        id="p_post_address_house"
+                                        value="@{customerWnd$composer.customer.p_post_address_house}"/>
+                                <label
+                                        value="Квартира"/>
+                                <textbox
+                                        id="p_post_address_flat"
+                                        value="@{customerWnd$composer.customer.p_post_address_flat}"/>
+                            </hbox>
+                        </cell>
+                    </row>
+                    <row>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_post_address}"/>
+                        <cell colspan="3">
+                            <textbox
+                                    id="p_post_address" hflex="1"
+                                    value="@{customerWnd$composer.customer.p_post_address}"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <label
+                                value="${labels.client_p.p_phone_home}"/>
+                        <cell>
+                            <textbox
+                                    id="p_phone_home" hflex="3"
+                                    value="@{customerWnd$composer.customer.p_phone_home}">
+                            </textbox>
+                        </cell>
+                        <label
+                                value="${labels.client_p.p_phone_mobile}"/>
+                        <cell>
+                            <textbox
+                                    id="p_phone_mobile" hflex="3"
+                                    value="@{customerWnd$composer.customer.p_phone_mobile}"/>
+                        </cell>
+                        <label
+                                value="${labels.client_p.p_email_address}"/>
+                        <textbox
+                                id="p_email_address" hflex="1" constraint="${emailConst}"
+                                value="@{customerWnd$composer.customer.p_email_address}"/>
+                    </row>
+                </rows>
+            </grid>
+            <auxhead>
+                <auxheader label="Другие Данные" style="font-weight:bold"/>
+            </auxhead>
+            <grid ctrlKeys="^e#up#down"
+                  sclass="fgrid" hflex="1">
+                <columns>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label
+                                value="${labels.client_p.p_number_tax_registration}"/>
+                        <textbox
+                                id="p_number_tax_registration" hflex="1" maxlength="9"
+                                constraint="${innConst}"
+                                value="@{customerWnd$composer.customer.p_number_tax_registration}"/>
+                        <label
+                                value="${labels.client_p.p_code_tax_org}"/>
+                        <cell colspan="2">
+                            <textbox id="p_code_tax_org_text" hflex="1"
+                                     onChange="p_code_tax_org.selecteditem = self.value;
+                                               self.value = p_code_tax_org.value;
+                                               customerWnd$composer.customer.p_code_tax_org = p_code_tax_org.value"
+                                     value="@{customerWnd$composer.customer.p_code_tax_org}"/>
+                            <rcombobox readonly="true" mold="rounded"
+                                       id="p_code_tax_org" hflex="3"
+                                       selecteditem="@{customerWnd$composer.customer.p_code_tax_org}"
+                                       onChange="customerWnd$composer.customer.p_code_tax_org = p_code_tax_org.value;
+												p_code_tax_org_text.value = customerWnd$composer.customer.p_code_tax_org"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <cell>
+                           <label visible="false" value="${labels.client_p.p_inps}" />
+                           <textbox visible="false"
+                              constraint="${inpsConst}" maxlength="14" id="p_inps" 
+                              hflex="1" value="@{customerWnd$composer.customer.p_inps}"/>
+                           <label value="ИД_НИББД"/>
+                        </cell>
+                        
+                        <textbox id="p_id_nibbd" readonly="true"
+                                hflex="1" value="@{customerWnd$composer.customer.p_id_nibbd}"/>
+
+                        <label
+                                value="ПИНФЛ"/>
+                        <textbox
+                                constraint="${pinflConst}" maxlength="14" id="p_pinfl"
+                                hflex="1" value="@{customerWnd$composer.customer.p_pinfl}"/>
+
+                        <label
+                                value="${labels.client_p.p_code_class_credit}"/>
+                        <cell>
+                            <textbox onChange="p_code_class_credit.selecteditem = self.value;
+                                               self.value = p_code_class_credit.value;
+                                               customerWnd$composer.customer.p_code_class_credit = p_code_class_credit.value"
+                                     id="p_code_class_credit_text" hflex="1"
+                                     value="@{customerWnd$composer.customer.p_code_class_credit}"/>
+                            <rcombobox readonly="true" mold="rounded"
+                                       id="p_code_class_credit" hflex="3"
+                                       selecteditem="@{customerWnd$composer.customer.p_code_class_credit}"
+                                       onChange=
+                                               "customerWnd$composer.customer.p_code_class_credit = self.value;
+										     p_code_class_credit_text.value = self.value "/>
+                        </cell>
+                        
+                    </row>
+                    
+                    <row id="row_pdl_1" visible="false" >
+							<cell/>
+							<cell align="end">
+								<label value="Является ПДЛ" />
+								<checkbox id="sign_public_official" forward="onCheck=onCheckField" />
+							</cell>
+                        
+							<cell align="end">
+								<label value="Фактическая должность" />
+							</cell>
+							<textbox maxlength="40" id="po_job_title"
+								hflex="1" value="@{customerWnd$composer.customer.po_job_title}" />								
+                    </row>
+                    
+                    <row id="row_pdl_2" visible="false">
+							<cell align="end">
+								<label value="Источник благосостояния" />
+							</cell>
+							<textbox maxlength="40" id="po_welfare_source"
+								hflex="1" value="@{customerWnd$composer.customer.po_welfare_source}" />
+							<cell align="end">
+								<label value="Иные данные ПДЛ" />
+							</cell>
+							<textbox maxlength="40" id="po_other_data"
+								hflex="1" value="@{customerWnd$composer.customer.po_other_data}" />																
+                    </row>
+                    
+                </rows>
+            </grid>
+
+            <auxhead>
+                <auxheader
+                        label="Статус Трудоспособности" colspan="6" rowspan="1"
+                        align="left" style="font-weight:bold"/>
+            </auxhead>
+            <grid ctrlKeys="^e#up#down"
+                  sclass="fgrid">
+                <columns>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                    <column align="right"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label style="color:red;font-weight:bold"
+                                value="${labels.client_p.p_code_capacity}"/>
+                        <cell colspan="2">
+                            <textbox
+                                     id="p_code_capacity_text" hflex="1"
+                                     value="@{customerWnd$composer.customer.p_code_capacity}"/>
+                            <rcombobox mold="rounded"
+                                    readonly="true"
+                                    id="p_code_capacity" constraint="no empty" hflex="3"
+                                    selecteditem="@{customerWnd$composer.customer.p_code_capacity}"
+                                    onChange="customerWnd$composer.customer.p_code_capacity = p_code_capacity.value;
+											p_code_capacity_text.value = customerWnd$composer.customer.p_code_capacity"/>
+                        </cell>
+                    </row>
+                    <row>
+                        <cell/>
+                        <label value="Удостоверение нетрудоспособности"/>
+                    </row>
+                    <row>
+                        <label
+                                value="Серия"/>
+                        <textbox
+                                id="p_pension_sertif_serial" hflex="2"
+                                maxlength="9"
+                                value="@{customerWnd$composer.customer.p_pension_sertif_serial}"/>
+                        <label
+                                value="Номер"/>
+                        <textbox
+                                id="p_num_certif_capacity" hflex="1" maxlength="10"
+                                value="@{customerWnd$composer.customer.p_num_certif_capacity}"/>
+                        <label
+                                value="${labels.client_p.p_capacity_status_date}"/>
+                        <datebox mold="rounded"
+                                id="p_capacity_status_date" hflex="1"
+                                constraint="between 19000101 and 22000101"
+                                value="@{customerWnd$composer.customer.p_capacity_status_date}"/>
+                    </row>
+                    <row>
+                        <label
+                                 value="${labels.client_p.p_capacity_status_place}"/>
+                        <cell colspan="5">
+                            <textbox
+                                    id="p_capacity_status_place" hflex="1"
+                                    value="@{customerWnd$composer.customer.p_capacity_status_place}"/>
+                        </cell>
+                    </row>
+                </rows>
+            </grid>
+        </div>
+        <window id="sourceDataWnd" title="Исходные данные" width="70%"
+                height="70%" mode="modal" position="center,center" visible="false"
+                closable="true"
+                onClose="self.visible = false; event.stopPropagation();">
+            <grid id="sourceDataGrid" vflex="1"
+                  sizedByContent="false">
+                <columns>
+                    <column label="Название Поля" hflex="3"/>
+                    <column label="Данные Филиала" hflex="5"/>
+                    <column label="Данные SAP" hflex="5"/>
+                    <column label="Выбрать Все" hflex="2">
+                        <checkbox id="selectAllCheckbox"/>
+                    </column>
+                </columns>
+                <rows></rows>
+            </grid>
+            <toolbar>
+                <toolbarbutton
+                        label="Принять данные SAP" id="btnSave"
+                        image="/images/accept.png"/>
+            </toolbar>
+        </window>
+        <window id="matchesWnd" width="90%" title="Дупликаты"
+                height="50%" mode="modal" position="center,center" visible="false"
+                closable="true"
+                onClose="self.setVisible(false); event.stopPropagation();">
+            <listbox id="matchesListbox" multiple="true" vflex="1" rows="10">
+                <listhead sizable="true">
+                    <listheader label="SAP Код" hflex="2"/>
+                    <listheader label="Фамилия" hflex="3"/>
+                    <listheader label="Имя" hflex="3"/>
+                    <listheader label="Отчество" hflex="3"/>
+                    <listheader label="Дата Рождения" hflex="2"/>
+                    <listheader label="Тип документа" hflex="2"/>
+                    <listheader label="Серия" hflex="1"/>
+                    <listheader label="Номер" hflex="1"/>
+                </listhead>
+            </listbox>
+            <toolbar align="center">
+                <toolbarbutton id="btnLink" label="Объеденить"></toolbarbutton>
+                <toolbarbutton id="btnForceCreate" label="Создать"></toolbarbutton>
+            </toolbar>
+        </window>
+    </window>
+</zk>

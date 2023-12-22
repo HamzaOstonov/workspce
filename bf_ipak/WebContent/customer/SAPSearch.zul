@@ -1,0 +1,79 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+    <window id="SAPSearchWnd"
+            apply="com.is.customer_.search.SAPSearch.SAPSearchComposer">
+        <toolbar id="toolbarAction" visible="false">
+            <toolbarbutton id="btnCreateCustomer" label="Создать Клиента" style="background:#4CAF50;color:#FFFFFF;"/>
+        </toolbar>
+        <checkbox id="isBranchSearch" label="Локальный Поиск" visible="false"/>
+        <div id="userFormDiv">
+            <grid id="userFormGrid">
+                <columns>
+                    <column label="Фамилия" hflex="4"/>
+                    <column label="Имя" hflex="4"/>
+                    <column label="Отчество" hflex="4"/>
+                    <column label="Дата Рождения" hflex="3"/>
+                    <column label="Номер Документа" hflex="3"/>
+                    <column label="Тип Документа" hflex="6"/>
+                </columns>
+                <rows>
+                    <row>
+                        <textbox width="85%"
+                                 value="@{SAPSearchWnd$composer.userForm.lastName}"/>
+                        <textbox width="85%"
+                                 value="@{SAPSearchWnd$composer.userForm.firstName}"/>
+                        <textbox width="85%"
+                                 value="@{SAPSearchWnd$composer.userForm.middleName}"/>
+                        <datebox
+                                value="@{SAPSearchWnd$composer.userForm.birthday}" lenient="false"
+                                constraint="between 19000101 and 22000101" width="85%"/>
+                        <textbox width="85%" id="documentNumber"
+                                 value="@{SAPSearchWnd$composer.userForm.documentNumber}"/>
+                        <rcombobox id="documentType" width="90%"
+                                   onChange="SAPSearchWnd$composer.userForm.documentType = documentType.value"
+                                   selecteditem="@{SAPSearchWnd$composer.userForm.documentType}"/>
+                    </row>
+                    <row>
+                        <cell colspan="6" style="background:white;text-align:center">
+                            <button id="btnSubmit" label="Поиск"
+                                    width="100px" height="30px"/>
+                            <button id="btnClear" label="Очистить"
+                                    width="100px" height="30px"/>
+                        </cell>
+                    </row>
+                </rows>
+            </grid>
+        </div>
+        <zscript>
+            <![CDATA[
+                import java.util.Comparator;
+                import com.is.customer_.search.SAPSearch.NameComparator;
+                import com.is.customer_.search.SAPSearch.DateComparator;
+                import com.is.customer_.search.SAPSearch.IdComparator;
+
+                Comparator lastNameAsc = new NameComparator(true,1);
+                Comparator lastNameDesc = new NameComparator(false,1);
+                Comparator firstNameAsc = new NameComparator(true,2);
+                Comparator firstNameDesc = new NameComparator(false,2);
+                Comparator dateAsc = new DateComparator(true);
+                Comparator dateDesc = new DateComparator(false);
+                Comparator idAsc = new IdComparator(true);
+                Comparator idDesc = new IdComparator(false);
+            ]]>
+        </zscript>
+        <div id="resultDiv" visible="false">
+            <listbox id="resultListbox" rows="8" vflex="1">
+                <listhead sizable="true" >
+                    <listheader label="SAP Код" hflex="2" sortAscending="${idAsc}" sortDescending="${idDesc}"/>
+                    <listheader label="Фамилия" hflex="3"
+                                sortAscending="${lastNameAsc}" sortDescending="${lastNameDesc}"/>
+                    <listheader label="Имя" hflex="3"
+                                sortAscending="${firstNameAsc}" sortDescending="${firstNameDesc}"/>
+                    <listheader label="Отчество" hflex="3"/>
+                    <listheader label="Дата Рождения" hflex="1" sortAscending="${dateAsc}"
+                                sortDescending="${dateDesc}"/>
+                </listhead>
+            </listbox>
+        </div>
+    </window>
+</zk>

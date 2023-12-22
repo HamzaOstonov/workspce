@@ -1,0 +1,36 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+	<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+	<window title="" border="none" id="localSearchWnd"
+		apply="com.is.customer_.search.searchBaseLocal.LocalSearchComposer">
+		<div id="main" hflex="1">
+			<include id="searchInclude" src="/customer/customerSearch.zul"/>
+			<toolbar>
+				<toolbarbutton id="btnSearch" label="Поиск"
+					style="background:#4CAF50;color:#FFFFFF;" />
+				<toolbarbutton id="btnClear" label="Очистить"
+					style="background:#4CAF50;color:#FFFFFF;" />
+			</toolbar>
+			<div id="basesearchDiv">
+				<paging id="searchPaging" />
+				<listbox id="basesearchListbox" multiple="true"
+					rows="15" selecteditem="@{localSearchWnd$composer.current}">
+					<listhead>
+						<listheader label="Код Клиента" hflex="2" sort="auto(id)"/>
+						<listheader label="Состояние" hflex="2" sort="auto(state)"/>
+						<listheader label="Фамилия" hflex="3" sort="auto(p_family)"/>
+						<listheader label="Имя" hflex="3" sort="auto(p_first_name)"/>
+						<listheader label="Отчество" hflex="3" sort="auto(p_patronymic)"/>
+						<listheader label="Дата Рождения" hflex="2" sort="auto(p_birthday)" />
+						<listheader label="Серия" hflex="1" sort="auto(p_passport_serial)"/>
+						<listheader label="Номер" hflex="3" sort="auto(p_passport_number)"/>
+						<listheader label="Адрес" hflex="5" sort="auto(p_post_address)"/>						
+					</listhead>
+				</listbox>
+			</div>
+		</div>
+		<div id="includeDiv" visible="false">
+			<toolbarbutton id="btnBack" label="Назад"
+					style="background:#4CAF50;color:#FFFFFF;" />
+			<include id="include" src="/customer/localcustomer.zul"/>
+		</div>
+	</window>

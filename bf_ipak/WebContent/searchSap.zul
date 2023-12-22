@@ -1,0 +1,92 @@
+<?page title="Search" contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+    <window id="personWnd" border="none"
+            apply="com.is.searchSap.SearchSapComposer">
+        <div>
+            <toolbarbutton id="btnBack" label="Назад"
+                           image="/images/back.png" visible="false"/>
+            <toolbar id="toolbarAction" visible="true">
+                <toolbarbutton id="btnCreateBusinessPartner"
+                               label="Создать Клиента" image="/images/+.png"/>
+                <toolbarbutton id="btnCreatePotentialPartner"
+                               label="Создать Потенциального Клиента для Разовых Операций"
+                               image="/images/+.png"/>
+            </toolbar>
+        </div>
+        <div id="userFormDiv">
+            <grid id="userFormGrid">
+                <columns>
+                    <column label="Фамилия" hflex="4"/>
+                    <column label="Имя" hflex="4"/>
+                    <column label="Отчество" hflex="4"/>
+                    <column label="Дата Рождения" hflex="3"/>
+                    <column label="Номер" hflex="3"/>
+                    <column label="Тип Документа" hflex="6"/>
+                </columns>
+                <rows>
+                    <row>
+                        <textbox width="85%"
+                                 value="@{personWnd$composer.userForm.lastName}"/>
+                        <textbox width="85%"
+                                 value="@{personWnd$composer.userForm.firstName}"/>
+                        <textbox width="85%"
+                                 value="@{personWnd$composer.userForm.middleName}"/>
+                        <datebox
+                                value="@{personWnd$composer.userForm.birthday}" lenient="false"
+                                constraint="between 19000101 and 22000101" width="85%"/>
+                        <textbox width="85%"
+                                 value="@{personWnd$composer.userForm.documentNumber}"/>
+                        <rcombobox id="documentType" width="90%"
+                                   onChange="personWnd$composer.userForm.documentType = documentType.value"
+                                   selecteditem="@{personWnd$composer.userForm.documentType}"/>
+                    </row>
+                    <row>
+                        <cell colspan="6" style="background:white;text-align:center">
+                            <button id="btnSubmit" label="Поиск"
+                                    width="100px" height="30px"/>
+                            <button id="btnClear" label="Очистить"
+                                    width="100px" height="30px"/>
+                        </cell>
+                    </row>
+                </rows>
+            </grid>
+        </div>
+        <div id="resultDiv" visible="false">
+            <listbox id="resultListbox" rows="8">
+                <listhead>
+                    <listheader label="SAP Код" hflex="2"/>
+                    <listheader label="Фамилия" hflex="3"/>
+                    <listheader label="Имя" hflex="3"/>
+                    <listheader label="Отчество" hflex="3"/>
+                    <listheader label="Дата Рождения" hflex="1"/>
+                </listhead>
+            </listbox>
+        </div>
+
+        <div id="tabDiv" visible="false">
+            <auxhead>
+                <auxheader id="userNameCaption"
+                           style="font-size:20px;font-weight:bold"/>
+            </auxhead>
+            <include id="personInclude"/>
+        </div>
+        <window id="mappingWnd" width="85%" title=" " height="50%"
+                mode="modal" position="center,center" visible="false" closable="true"
+                onClose="self.setVisible(false);event.stopPropagation()">
+            <listbox id="mappingList" multiple="true" rows="10">
+                <listhead>
+                    <listheader label="МФО" hflex="1"/>
+                    <listheader label="NCI Id" hflex="2"/>
+                    <listheader label="Состояние" hflex="2"/>
+                    <listheader label="ФИО" hflex="4"/>
+                    <listheader label="Дата Рождения" hflex="2"/>
+                    <listheader label="Тип Документа" hflex="2"/>
+                    <listheader label="Серия" hflex="1"/>
+                    <listheader label="Номер" hflex="2"/>
+                    <listheader label="Адрес" hflex="4"/>
+                </listhead>
+            </listbox>
+        </window>
+    </window>
+</zk>

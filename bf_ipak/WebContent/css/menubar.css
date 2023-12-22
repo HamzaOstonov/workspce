@@ -1,0 +1,11 @@
+.flat-menu.z-menubar-hor {
+    position : relative;
+    display: block;
+    padding : 2px 0px;
+    background:white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: normal;
+    background-image: none;
+}

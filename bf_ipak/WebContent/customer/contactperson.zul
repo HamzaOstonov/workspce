@@ -1,0 +1,64 @@
+<zk>
+    <?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+    <window id="contactpersonWnd" apply="com.is.customer_.contact.ContactPersonComposer">
+        <style src="/css/flat.css"/>
+        <vlayout>
+            <hlayout>
+                <label value="Должность"/>
+                <rcombobox id="contact_types"/>
+                <checkbox id="isAccountantCheckbox"
+					label="Является Бухгалтером"/>
+                
+                <menubar id="actions" sclass="flat">
+                </menubar>
+                <menubar id="rel_actions" sclass="flat">
+                </menubar>
+                <menubar sclass="flat">
+                    <menuitem id="btnSynchronize" label="Синхронизировать"/>
+                    <menuitem id="btnRefresh" label="Обновить"/>
+                </menubar>
+            </hlayout>
+
+            <hlayout id="contact_hlayout" visible="false">
+                <menubar id="contact_menu" sclass="flat">
+                    <menuitem id="btnCreateContactPerson"
+                              label="Открыть Контактное Лицо"/>
+                    <menuitem id="btnConfirmContactPerson"
+                              label="Утвердить контактное лицо"/>
+                    <menuitem id="btnCorrectContactPerson"
+                              label="Корректировать Контактное Лицо"/>
+                </menubar>
+            </hlayout>
+            <menubar id="relationship_menu" sclass="flat" visible="false">
+                <menuitem id="btnCreateRelationship"
+                          label="Создать Отношение" image="/images/link16.png"/>
+                <menuitem id="btnConfirmRelationship"
+                          label="Утвердить отношение"/>
+                <menuitem id="btnDeleteRelationship"
+                          label="Удалить Отношение"
+                          image="/images/delete.png"/>
+            </menubar>
+            <hlayout sclass="z-valign-top">
+                <menubar id="general_menu" orient="vertical" sclass="flat" hflex="1">
+                    <menuitem id="btnSourceData"
+                              image="/images/info.png" label="Исходные Данные"/>
+                    <menuseparator/>
+                </menubar>
+                <tabbox id="contactTabbox" hflex="8">
+                    <tabs>
+                        <tab label="Основные данные"/>
+                        <tab label="Приложения" id="appsTab"/>
+                    </tabs>
+                    <tabpanels>
+                        <tabpanel>
+                            <include id="include_" src="/customer/customer_.zul" hflex="1"/>
+                        </tabpanel>
+                        <tabpanel>
+                            <div id="appsDiv"/>
+                        </tabpanel>
+                    </tabpanels>
+                </tabbox>
+            </hlayout>
+        </vlayout>
+    </window>
+</zk>

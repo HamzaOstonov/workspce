@@ -1,0 +1,702 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="uz_card_main" width="100%" border="normal"
+	apply="com.is.uzcard.UzCardViewCtrl">
+
+	<div id="top_div">
+		<hbox align="middle">
+
+			<label value="Клиент:" />
+			<label style="font-weight:bold" width="240px" id="cust" />
+			<label value="Выбрать действие:" />
+			<rcombobox readonly="true" mold="rounded" width="600px"
+				id="actionComboBox" />
+		</hbox>
+	</div>
+	<!-- <div id="crmDiv"> <include src="crm.zul"></include> </div> -->
+
+
+	<!-- <div id="card_list_div" visible="false"> <paging id="cardPaging" width="100%" 
+		/> <listbox style="border:none" mold="paging" id="cardGrid" multiple="true" 
+		rows="4" width="100%" selectedItem="@{cardmain$composer.current}"> <listhead 
+		sizable="true"> <listheader label="${labels.card.branch}" width="200px" /> 
+		<listheader label="${labels.card.card_number}" width="200px" /> <listheader 
+		label="${labels.card.is_primary}" width="200px" /> <listheader label="${labels.card.card_type}" 
+		width="200px" /> <listheader label="${labels.card.embossed_ch_name}" width="200px" 
+		/> <listheader label="${labels.card.expiration_date}" width="200px" /> <listheader 
+		label="${labels.card.card_status}" width="200px" /> <listheader label="${labels.card.contract_id}" 
+		width="200px" /> <listheader label="${labels.card.hot_card_status}" width="200px" 
+		/> </listhead> </listbox> </div> -->
+
+	<div id="cardListDiv" visible="false">
+		<vbox width="100%">
+
+			<div id="grd">
+				<listbox mold="paging" rows="5" style="border:normal" id="cardList"
+					multiple="true" width="100%">
+					<listhead sizable="true">
+
+						<listheader label="Филиал" width="200px" />
+						<listheader label="${labels.btrt01.card_number}" width="200px" />
+						<listheader label="${labels.btrt01.is_primary}" width="50px" />
+						<listheader label="${labels.btrt01.card_type}" width="50px" />
+						<listheader label="DEF POS ACCOUNT" width="200px" />
+						<listheader label="${labels.btrt01.embossed_ch_name}"
+							width="200px" />
+						<listheader label="${labels.btrt01.expiration_date}"
+							width="50px" />
+						<listheader label="Статус карты" width="100px" />
+						<listheader label="${labels.btrt01.contract_id}" width="100px" />
+						<listheader label="Hot card status" width="50px" />
+
+						<!-- <listheader label="Код клиента" /> <listheader label="Фамилия" 
+							/> <listheader label="Имя" /> <listheader label="Отчество" /> <listheader 
+							label="Дата рождения" /> <listheader label="Серия" /> <listheader label="Номер" 
+							/> <listheader label="Номер карты" /> <listheader label="APP ID" /> <listheader 
+							label="Наименование на карте" /> <listheader label="Идентификатор контракта" 
+							/> <listheader label="Филиал" /> -->
+
+					</listhead>
+
+				</listbox>
+
+			</div>
+
+		</vbox>
+		<div id="btrtToolBar" visible="true">
+			<toolbar visible="true">
+				<toolbarbutton id="btnOpenCard"
+					label="BTRT01 Выпуск новой карты с привязкой новых счетов для нового клиента и нового держателя карты"
+					image="/images/+.png" />
+			</toolbar>
+			<toolbar>
+				<toolbarbutton id="btnOpenCardbtrt2"
+					label="BTRT02 Выпуск новой карты для нового держателя карты в ветке существующего клиента с привязкой существующих счетов"
+					image="/images/+.png" />
+			</toolbar>
+			<toolbar>
+				<toolbarbutton id="btnOpenCardbtrt3"
+					label="BTRT03 Выпуск новой карты для существующих клиента и держателя карты, с привязкой существующих счетов"
+					image="/images/+.png" />
+			</toolbar>
+			<toolbar>
+				<toolbarbutton id="btnOpenCardbtrt20"
+					label="BTRT20 Перевыпуск, переиздание, пролонгация" image="/images/+.png" />
+			</toolbar>
+			<toolbar>
+				<toolbarbutton id="btnOpenCardbtrt30" label="BTRT30 Изменение данных клиента"
+					image="/images/+.png" />
+			</toolbar>
+		</div>
+	</div>
+
+	<window id="openAcc" mode="modal" title="Открыть и утвердить счёт"
+		closable="true" width="60%" onClose="self.visible = false; event.stopPropagation();"
+		position="center,center" visible="false">
+		<hbox width="100%">
+			<div id="grd">
+
+				<listbox style="border:none" id="dataGrid" multiple="true"
+					rows="4" width="100%">
+					<listhead sizable="true">
+
+						<listheader label="Баланс. счёт" width="200px" />
+						<listheader label="Валюта" width="200px" />
+						<listheader label="Порядковый номер" width="200px" />
+
+					</listhead>
+
+				</listbox>
+			</div>
+		</hbox>
+		<toolbar>
+			<toolbarbutton id="btn_ok" label="${labels.add}" image="/images/+.png" />
+			<toolbarbutton id="btn_cancel"
+				onClick="openAcc.visible = false; event.stopPropagation();" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</window>
+
+	<window id="findAcc" mode="modal" title="Выбрать из справочника"
+		closable="true" width="60%" onClose="self.visible = false; event.stopPropagation();"
+		position="center,center" visible="false">
+		<hbox width="100%">
+
+			<div id="grd">
+				<label value="Фильтр по коду или наименованию" />
+				<textbox id="searchFilterTextBox" />
+				<button label="Применить" id="applyFilterBtn" />
+				<listbox style="border:none" id="dataGrid" multiple="true"
+					rows="10" width="100%">
+					<listhead sizable="true">
+
+						<listheader label="Код" width="20%" />
+						<listheader label="Наименование" width="80%" />
+
+					</listhead>
+
+				</listbox>
+				<paging id="paging" width="100%" />
+			</div>
+		</hbox>
+		<toolbar>
+			<toolbarbutton id="btn_ok" label="${labels.add}" image="/images/+.png" />
+			<toolbarbutton id="btn_ok_work" label="${labels.add}"
+				visible="false" image="/images/+.png" />
+			<toolbarbutton id="btn_ok_st_emp" label="${labels.add}"
+				visible="false" image="/images/+.png" />
+			<toolbarbutton id="btn_cancel"
+				onClick="findAcc.visible = false; event.stopPropagation();" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</window>
+
+
+	<div id="dt">
+		<tabbox id="tabbox">
+			<tabs id="tabs">
+				<tab id="app" label="Заявление" />
+				<tab id="app_list" label="Просмотр" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<hbox>
+						<vbox width="100%">
+							<window id="card_applications" title="Основные параметры заявления"
+								border="none" width="100%" position="center, top" visible="false">
+								<!-- <div id="card_applications"> -->
+
+								<grid>
+									<columns>
+										<column hflex="1" />
+										<column hflex="4" />
+										<!-- <column hflex="1" /> -->
+										<column hflex="4" />
+										<column hflex="1" />
+										<column hflex="4" />
+									</columns>
+									<rows>
+										<row>
+											<label value="${labels.btrt01.customer_id}" />
+											<textbox width="100%" id="customer_id" disabled="true"
+												mold="rounded" />
+											<!-- <label value="${labels.btrt01.customer_desc}" /> -->
+											<textbox width="100%" id="customer_desc" mold="rounded"
+												disabled="true" />
+											<label style="color:red" value="${labels.btrt01.contract_id}" />
+											<rcombobox width="75%" id="contract_id" mold="rounded" />
+										</row>
+
+
+									</rows>
+								</grid>
+
+							</window>
+
+							<window id="app_card_ch_person_info" title="Основные параметры держателя карты"
+								border="none" visible="false" width="100%">
+								<div>
+									<grid>
+										<columns>
+											<column hflex="1" />
+											<column hflex="4" />
+											<column hflex="1" />
+											<column hflex="4" />
+											<column hflex="1" />
+											<column hflex="4" />
+										</columns>
+										<rows>
+											<row>
+												<label style="color:red" value="${labels.btrt01.surname}" />
+												<textbox width="100%" id="second_name" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.first_name}" />
+												<textbox width="100%" id="first_name" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.second_name}" />
+												<textbox width="100%" id="patronymic" mold="rounded" />
+
+											</row>
+
+											<row>
+
+												<label style="color:red" value="${labels.btrt01.birth_date}" />
+												<datebox id="birth_date" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.sex}" />
+												<rcombobox id="sex" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.residence}" />
+												<rcombobox id="residence" mold="rounded" />
+											</row>
+
+											<row>
+												<label style="color:red" value="${labels.btrt01.p_id_type}" />
+												<rcombobox width="50%" id="p_id_type" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.p_id_series}" />
+												<textbox id="p_id_series" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.p_id_number}" />
+												<textbox id="p_id_number" mold="rounded" />
+
+											</row>
+
+
+											<row>
+												<label style="color:red" value="${labels.btrt01.p_id_authority}" />
+												<textbox width="100%" id="p_id_authority" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.p_id_issue_date}" />
+												<datebox id="p_id_issue_date" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.security_id}" />
+												<textbox width="100%" id="security_id" mold="rounded" />
+											</row>
+
+										</rows>
+									</grid>
+								</div>
+							</window>
+
+							<window id="app_card" title="Инициализационные параметры карты"
+								border="none" visible="false">
+								<div>
+
+									<grid sizedByContent="true">
+										<columns>
+											<column hflex="1" />
+											<column hflex="4" />
+										</columns>
+
+										<rows>
+
+											<row>
+												<label value="${labels.btrt01.card_number}" />
+												<textbox id="card_number" mold="rounded" />
+											</row>
+											<row>
+												<label value="${labels.btrt01.card_type}" />
+												<textbox id="card_type" mold="rounded" />
+											</row>
+
+											<row>
+												<label value="${labels.btrt01.embossed_ch_name}" />
+												<textbox width="100%" id="embossed_ch_name" mold="rounded" />
+											</row>
+											<row>
+												<label value="${labels.btrt01.company_name_card}" />
+												<textbox width="50%" id="company_name_card" mold="rounded" />
+											</row>
+										</rows>
+									</grid>
+
+								</div>
+							</window>
+							<!-- </vbox> <vbox> -->
+							<window id="app_card_customer" title="Параметры Плетельщика"
+								border="none" visible="false" width="100%">
+								<div>
+									<grid>
+										<columns>
+											<column hflex="1" />
+											<column hflex="4" />
+										</columns>
+										<rows>
+											<row>
+												<label value="${labels.btrt01.vip_flag}" />
+												<rcombobox width="50%" id="vip_flag" mold="rounded" />
+											</row>
+											<row>
+												<label style="color:red" value="${labels.btrt01.customer_desc}" />
+												<textbox width="100%" id="customer_desc" mold="rounded" />
+											</row>
+											<row>
+												<label value="${labels.btrt01.inn}" />
+												<textbox id="inn" mold="rounded" />
+											</row>
+											<row>
+												<label value="${labels.btrt01.okpo}" />
+												<textbox id="okpo" mold="rounded" />
+											</row>
+										</rows>
+									</grid>
+								</div>
+							</window>
+
+							<window id="app_card_ch_address" title="Параметры адреса"
+								border="none" visible="false" width="100%">
+								<div>
+									<grid>
+										<columns>
+											<column hflex="1" />
+											<column hflex="4" />
+											<column hflex="1" />
+											<column hflex="4" />
+										</columns>
+										<rows>
+											<row>
+												<label value="${labels.btrt01.address_type}" />
+												<rcombobox width="50%" id="address_type" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.address_line1}" />
+												<textbox width="100%" id="address_line1" mold="rounded" />
+											</row>
+
+											<row>
+												<label style="color:red" value="${labels.btrt01.address_line2}" />
+												<textbox width="100%" id="address_line2" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.region}" />
+												<rcombobox width="100%" id="region" mold="rounded" />
+											</row>
+											<row>
+												<label style="color:red" value="${labels.btrt01.country}" />
+												<rcombobox id="country" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.primary_phone}" />
+												<textbox id="primary_phone" mold="rounded" />
+											</row>
+											<row>
+												<label style="color:red" value="${labels.btrt01.mobile_phone}" />
+												<textbox id="mobile_phone" mold="rounded" />
+												<label style="color:red" value="${labels.btrt01.email}" />
+												<textbox id="email" mold="rounded" />
+											</row>
+										</rows>
+									</grid>
+								</div>
+							</window>
+
+							<window id="btrt30Tail" title="Счёт и номер карты" border="none"
+								visible="false">
+
+								<div>
+									<grid>
+										<columns>
+											<column hflex="1" />
+											<column hflex="4" />
+										</columns>
+										<rows>
+											<row>
+												<label value="Счёт" />
+												<textbox width="100%" id="account_number" mold="rounded">
+												</textbox>
+											</row>
+											<row>
+												<label value="Номер карты" />
+												<textbox width="100%" id="card_number" mold="rounded">
+												</textbox>
+											</row>
+										</rows>
+									</grid>
+								</div>
+							</window>
+
+							<window id="app_card_account" title="Инициализационные параметры счёта и карты"
+								border="none" visible="false">
+								<div>
+									<grid>
+										<columns>
+											<column hflex="2" />
+											<column hflex="3" />
+											<column hflex="5" />
+										</columns>
+										<rows>
+											<row>
+												<label style="color:red" value="${labels.btrt01.account_number}" />
+												<textbox width="100%" id="account_number" ctrlKeys="#f9"
+													mold="rounded">
+												</textbox>
+												<button id="buttonOpenAcc" label="Открыть и утвердить счёт" />
+											</row>
+											<row>
+												<label value="${labels.btrt01.currency}" />
+												<textbox id="currency" value="860" mold="rounded" />
+											</row>
+											<row>
+												<label style="color:red" value="${labels.btrt01.embossed_ch_name}" />
+												<textbox width="100%" id="embossed_ch_name" mold="rounded" />
+											</row>
+										</rows>
+									</grid>
+								</div>
+							</window>
+						</vbox>
+					</hbox>
+
+
+
+					<window id="job" title="Место работы" border="none" visible="false">
+						<div>
+							<grid>
+								<columns>
+									<column hflex="1" />
+									<column hflex="2" />
+									<column hflex="2" />
+									<!-- <column width="20%" /> -->
+								</columns>
+								<rows>
+									<row>
+										<checkbox id="is_st_emp" label="Бюджетник" />
+									</row>
+									<row id="not_st_emp">
+										<label value="Код организации (F9)" />
+										<textbox width="100%" id="work_id" mold="rounded"
+											ctrlKeys="#f9" />
+										<textbox width="100%" id="work_name" mold="rounded" />
+										<!-- <button id="save_work_name_button" label="Сохранить" /> -->
+									</row>
+
+								</rows>
+							</grid>
+							<grid>
+								<columns>
+									<column width="12%" />
+									<column width="22%" />
+									<column width="7%" />
+									<column width="24%" />
+									<column width="23%" />
+									<column width="13%" />
+								</columns>
+								<rows>
+									<row id="st_emp">
+										<label value="Счёт бюджет. (F9)" />
+										<textbox width="90%" id="acc_st_emp" mold="rounded"
+											ctrlKeys="#f9" />
+										<label value="ИНН" />
+										<textbox width="100%" id="inn_st_emp" mold="rounded" />
+										<textbox width="100%" id="name_st_emp" mold="rounded" />
+										<button id="save_st_name_button" label="Сохранить" />
+									</row>
+								</rows>
+							</grid>
+						</div>
+					</window>
+
+					<window id="btrt03Wnd" title="${labels.btrt01.btrt03_label}"
+						border="none" visible="false">
+						<div>
+							<grid>
+								<columns>
+									<column hflex="1" />
+									<column hflex="4" />
+								</columns>
+								<rows>
+									<row>
+										<label value="Филиал:" />
+										<label id="filial_label" />
+									</row>
+									<row>
+										<label value="Код клента:" />
+										<label id="client_id_label" />
+									</row>
+									<row>
+										<label value="Фамилия:" />
+										<label id="last_name_label" />
+									</row>
+									<row>
+										<label value="Имя:" />
+										<label id="first_name_label" />
+									</row>
+									<row>
+										<label value="Отчество:" />
+										<label id="patronymic_label" />
+									</row>
+									<row>
+										<label value="Счёт:" />
+										<label id="account_label" />
+									</row>
+									<row>
+										<label value="Наименование на карте:" />
+										<label id="card_name_label" />
+									</row>
+									<row>
+										<label value="ID контракта:" />
+										<label id="contract_id_label" />
+									</row>
+									<row>
+										<label value="Состояние:" />
+										<label id="state_label" />
+									</row>
+									<row>
+										<label value="APP ID:" />
+										<label id="app_id_label" />
+									</row>
+								</rows>
+							</grid>
+							<hbox width="100%" widths="10%,40%,5%,45%">
+								<label value="${labels.btrt01.contract_id}" />
+								<rcombobox width="80%" id="contract_id" mold="rounded" />
+								<label value="Счёт:" />
+								<textbox width="80%" id="account" readonly="true" />
+							</hbox>
+						</div>
+						<toolbar visible="true">
+							<toolbarbutton id="btnSave" label="Формировать"
+								image="/images/+.png" />
+							<toolbarbutton id="btnCancel" label="${labels.cancel}"
+								onClick="dt.visible = false; cardListDiv.visible = true; btrtToolBar.visible = true; event.stopPropagation();"
+								image="/images/stop.png" />
+						</toolbar>
+					</window>
+					<window id="btrt20" title="BTRT20" border="none" visible="false">
+						<vbox width="100%">
+
+							<div id="grd">
+								<listbox mold="paging" rows="5" style="border:normal"
+									id="cardList" multiple="true" width="100%">
+									<listhead sizable="true">
+
+										<listheader label="Код клиента" />
+										<listheader label="Фамилия" />
+										<listheader label="Имя" />
+										<listheader label="Отчество" />
+										<listheader label="Дата рождения" />
+										<listheader label="Серия" />
+										<listheader label="Номер" />
+										<listheader label="Номер карты" />
+										<listheader label="APP ID" />
+										<listheader label="Наименование на карте" />
+										<listheader label="Идентификатор контракта" />
+										<listheader label="Филиал" />
+
+									</listhead>
+
+								</listbox>
+
+							</div>
+							<hbox width="100%" widths="30%, 30%, 40%">
+								<vbox>
+									<label style="color:red" value="${labels.btrt01.first_name}" />
+									<textbox width="100%" id="first_name" readonly="true"
+										mold="rounded" />
+
+									<label style="color:red" value="${labels.btrt01.second_name}" />
+									<textbox width="100%" id="second_name" readonly="true"
+										mold="rounded" />
+
+									<label style="color:red" value="${labels.btrt01.surname}" />
+									<textbox width="100%" id="patronymic" readonly="true"
+										mold="rounded" />
+
+								</vbox>
+								<vbox>
+									<label value="${labels.btrt01.birth_date}" />
+									<datebox id="birth_date" mold="rounded" readonly="true" />
+									<label value="${labels.btrt01.contract_id}" />
+									<textbox id="contract_id" mold="rounded" readonly="true" />
+									<label value="${labels.btrt01.p_id_type}" />
+									<rcombobox width="100%" id="p_id_type" readonly="true"
+										mold="rounded" />
+								</vbox>
+								<vbox>
+
+
+									<label value="${labels.btrt01.p_id_series}" />
+									<textbox id="p_id_series" mold="rounded" readonly="true" />
+
+									<label value="${labels.btrt01.p_id_number}" />
+									<textbox id="p_id_number" mold="rounded" readonly="true" />
+
+									<label value="${labels.btrt01.embossed_ch_name}" />
+									<textbox width="100%" id="embossed_ch_name" readonly="true"
+										mold="rounded" />
+
+								</vbox>
+							</hbox>
+							<hbox width="100%">
+								<label value="Команда переиздания" />
+								<rcombobox width="400px" id="actionId" mold="rounded" />
+							</hbox>
+						</vbox>
+						<toolbar visible="true">
+							<toolbarbutton id="btnSave" label="Формировать"
+								image="/images/+.png" />
+							<toolbarbutton id="btnCancel" label="${labels.cancel}"
+								onClick="dt.visible = false; cardListDiv.visible = true; btrtToolBar.visible = true; event.stopPropagation();"
+								image="/images/stop.png" />
+
+						</toolbar>
+					</window>
+
+					<window id="btrt25" title="Измененение кредитного лимита"
+						border="none" visible="false">
+						<vbox width="100%">
+
+							<div id="grd">
+								<listbox mold="paging" rows="5" style="border:normal"
+									id="cardList" multiple="true" width="100%">
+									<listhead sizable="true">
+
+										<listheader label="Филиал" />
+										<listheader label="Клиент" />
+										<listheader label="Фамилия" />
+										<listheader label="Имя" />
+										<listheader label="Отчество" />
+										<listheader label="Счёт" />
+										<listheader label="Номер карты" />
+										<listheader label="Срок действия" />
+										<listheader label="Идентификатор контракта" />
+										<listheader label="PERSON_ID" />
+
+
+									</listhead>
+
+								</listbox>
+
+							</div>
+							<hbox>
+								<label value="Сумма лимита: " />
+								<textbox id="limit" width="100%" mold="rounded" />
+							</hbox>
+						</vbox>
+						<toolbar visible="true">
+							<toolbarbutton id="btnSave" label="Формировать"
+								image="/images/+.png" />
+							<toolbarbutton id="btnCancel" label="${labels.cancel}"
+								onClick="dt.visible = false; cardListDiv.visible = true; btrtToolBar.visible = true; event.stopPropagation();"
+								image="/images/stop.png" />
+
+						</toolbar>
+					</window>
+
+					<toolbar id="tb01_02_05_06" visible="true">
+						<toolbarbutton id="btnSave" label="Формировать"
+							image="/images/+.png" />
+						<toolbarbutton id="btnCancel" label="${labels.cancel}"
+							onClick="dt.visible = false; cardListDiv.visible = true; btrtToolBar.visible = true; event.stopPropagation();"
+							image="/images/stop.png" />
+
+					</toolbar>
+					<toolbar id="tb30" visible="true">
+						<toolbarbutton id="btnSave30" label="Формировать"
+							image="/images/+.png" />
+						<toolbarbutton id="btnCancel30" label="${labels.cancel}"
+							onClick="dt.visible = false; cardListDiv.visible = true; btrtToolBar.visible = true; event.stopPropagation();"
+							image="/images/stop.png" />
+
+					</toolbar>
+				</tabpanel>
+				<tabpanel>
+					<div id="grdAppL01152030" visible="false">
+						<listbox mold="paging" rows="5" style="border:normal" id="appList01152030"
+							multiple="true" width="100%">
+							<listhead sizable="true">
+								<listheader label="Филиал" />
+								<listheader label="Код клиента" />
+								<listheader label="Наименование клиента" />
+								<listheader label="Состояние" />
+								<listheader label="App ID" />
+								<listheader label="Ошибка" />
+							</listhead>
+						</listbox>
+
+					</div>
+
+					<div id="filesDiv" height="50px">
+						<listbox mold="paging" rows="5" style="border:normal" id="fileList01152030"
+							multiple="true" width="100%">
+							<listhead sizable="true">
+								<listheader label="Отправленный файл" />
+								<listheader label="Дата отправки" />
+								<listheader label="Принятый файл" />
+								<listheader label="Дата приёма" />
+							</listhead>
+						</listbox>
+					</div>
+				</tabpanel>
+			</tabpanels>
+
+		</tabbox>
+	</div>
+
+</window>

@@ -1,0 +1,86 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<window title="" border="none" id="attachmentWnd"
+		apply="com.is.customer_.attachments.AttachmentComposer">
+
+		<vlayout>
+			<vbox>
+				<label value="Тип Прикрепляемого Документа"
+					style="font-weight:bold" />
+				<rcombobox id="appsTypes"
+					selecteditem="@{attachmentWnd$composer.attachment.doc_type}"
+					onChange="attachmentWnd$composer.attachment.doc_type = self.value"
+					style="border:none" constraint="no empty" />
+			</vbox>
+			<space orient="vertical" />
+			<vbox>
+				<label id="fileName" style="font-weight:bold" />
+				<label value="Номер Документа/Описание"
+					style="font-weight:bold" />
+				<textbox id="description" multiline="true"
+					value="@{attachmentWnd$composer.attachment.description}" />
+			</vbox>
+			<space orient="vertical" />
+			<vbox>
+				<label value="Дата документа" style="font-weight:bold" />
+				<datebox id="documentDate" mold="rounded"
+					value="@{attachmentWnd$composer.attachment.doc_date}" />
+			</vbox>
+			<space orient="vertical" />
+			<toolbar sclass="flat">
+				<toolbarbutton id="btnUploadFile" upload="true"
+					disabled="true" label="Загрузить файл"
+					image="/images/z-upload.png" />
+				<toolbarbutton id="btn_getFile" label="Обновить Список"
+					image="/images/z-reload.png" />
+				<toolbarbutton id="btn_URL" label="URL(Ссылка)"
+					image="/images/z-url.png" />
+				<toolbarbutton id="btn_deleteFile" label="Удалить файл"
+					image="/images/z-btn-minus.png" />
+				<toolbarbutton id="btn_deleteFile2" visible="false"
+					label="Удалить файл 2" image="/images/z-btn-minus.png" />
+			</toolbar>
+		</vlayout>
+		<space orient="vertical" />
+		<div>
+			<listbox id="appsListbox"
+				 selectedItem="@{attachmentWnd$composer.current}" >
+				<listhead sizable="true">
+					<listheader label="Имя Файла" />
+					<listheader label="Тип Документа" />
+					<listheader label="Номер Документа/Описание" />
+					<listheader label="Дата документа" />
+					<listheader label="Дата создания(прикрепления)"
+						sort="auto" />
+					<listheader label="Удалить" />
+				</listhead>
+			</listbox>
+			<!--  -->
+		</div>
+		<window id="urlWnd" title="Загрузка Ссылок" width="50%"
+			mode="modal" visible="false" maximizable="true" closable="true"
+			onClose="self.setVisible(false); event.stopPropagation();">
+			<vbox>
+				<span>
+					<label value="URL" style="font-weight:bold" />
+					<textbox
+						value="@{attachmentWnd$composer.attachment.url}"
+						style="text-decoration:underline" />
+				</span>
+				<space orient="vertical" />
+				<span>
+					<label value="Номер Документа/Описание"
+						style="font-weight:bold" />
+					<textbox id="description" multiline="true"
+						value="@{attachmentWnd$composer.attachment.description}" />
+				</span>
+			</vbox>
+			<space orient="vertical" />
+			<toolbar sclass="flat">
+				<toolbarbutton id="btnAdd" label="Добавить"
+					image="/images/z-btn-plus.png" />
+			</toolbar>
+		</window>
+	</window>
+</zk>

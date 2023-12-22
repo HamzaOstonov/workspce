@@ -1,0 +1,244 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window title="" border="none" id="localcustomerWnd"
+        apply="com.is.customer_.local.LocalCustomerComposer">
+    <style src="/css/flat.css"/>
+    <hlayout>
+        <menubar id="_actions" visible="true" sclass="flat">
+            <menuitem id="btnCreateCustomer" label="Открыть"
+                      image="/images/send.png"/>
+            <menuitem id="btnConfirm" label="Утвердить"
+                      image="/images/accept.png"/>
+            <menuitem id="btnConfirmClosed"
+                      image="/images/approved.png" label="Утвердить Закрытого"/>
+            <menuitem id="btnCorrect" label="Корректировать "
+                      image="/images/edit.png"/>
+            <menuitem id="btnCorrectPhone"
+                      image="/images/contacts.png"
+                      label="Корректировка мобильного телефона"/>
+            <menuitem id="btnClose" label="Закрыть"
+                      image="/images/stop.png"/>
+            <menuitem id="btnDelete" label="Удалить"
+                      image="/images/delete.png"/>
+        </menubar>
+        <menubar id="helpActions" sclass="flat">
+            <menuitem id="btnRefresh" label="Обновить"
+                      image="/images/refresh.png"/>
+            <menuitem id="btnSynchronize" image="" label="Синхронизировать"/>
+        </menubar>
+    </hlayout>
+    <separator orient="horizontal" bar="true"/>
+    <hlayout sclass="z-valign-top">
+        <vlayout hflex="1">
+            <vlayout id="v_modules">
+                <menubar id="localsearch_menu" visible="false" orient="vertical" sclass="flat">
+                    <menuitem id="btnShowMatches"
+                              image="/images/alert.png"
+                              label="Совпадения"/>
+                    <menuseparator/>
+                </menubar>
+                <menubar id="general_menu" orient="vertical" sclass="flat">
+                    <menuitem id="btnSourceData"
+                              image="/images/info.png" label="Исходные Данные"/>
+                    <menuseparator/>
+                    <menuitem id="btnShowMapping"
+                              image="/images/link16.png" label="Связка"/>
+                    <menuseparator/>
+                    <menuitem label="История Клиента" id="btnHistory"
+                              image="/images/software.png"/>
+                    <menuseparator/>
+                </menubar>
+
+                <menubar id="modules" sclass="flat">
+                    <menu label="Модули">
+                        <menupopup>
+                            <menuitem id="btnAccounts" label="Счета"/>
+                            <menuitem id="btnSpecialChars" label="Спец. Характеристики"/>
+                        </menupopup>
+                    </menu>
+                </menubar>
+
+                <menubar id="reports" sclass="flat">
+                    <menu label="Отчеты">
+                        <menupopup>
+                            <menuitem id="btnWordReport" label="Отчет Word"/>
+                            <menuitem id="btnExcelReport" label="Отчет Excel"/>
+                        </menupopup>
+                    </menu>
+                </menubar>
+            </vlayout>
+        </vlayout>
+        <vlayout id="customerLayout" hflex="8">
+            <tabbox id="customerTab">
+                <tabs>
+                    <tab label="Основные Данные"/>
+                    <tab label="Приложения" id="appsTab"/>
+                    <tab label="Анкета Внутреннего Контроля" id="internalControlTab"/>
+                    <tab label="Регистрация клиента в мобильном приложении" id="mobileCustomerTab"/>
+                    <tab id="tabDeposits" label="Депозиты" visible="false" />
+                    <tab id="tabCards" label="Карточки" visible="false" />
+			        <tab id="tabTransfers" label="Денежные переводы" visible="false" />
+			        <tab id="tabAdditionalClientInfo" label="Дополнительная информация" visible="false" />
+			        <tab id="tabBankProduct" label="Банковский продукт" visible="false" />
+			        <tab id="tabTieto" label="Visa-Front" visible="false" />
+                </tabs>
+                <tabpanels>
+                    <tabpanel>
+                        <include id="customerInclude" mode="instant"
+                                 src="/customer/customer_.zul"/>
+                    </tabpanel>
+                    <tabpanel>
+                        <div id="appsDiv"/>
+                        <!--<vlayout>
+                            <hlayout style="padding:10px">
+                                <label value="Тип Прикрепляемого Документа" style="font-weight:bold"/>
+                                <space orient="horizontal"/>
+                                <rcombobox id="appsTypes"
+                                           style="border:none" constraint="no empty"/>
+                                <label id="fileName"/>
+                                <space orient="horizontal"/>
+                                <toolbar sclass="flat">
+                                    <toolbarbutton id="btnUploadFile" upload="true"
+                                                   label="Загрузить файл" image="/images/upload.png"/>
+                                    <toolbarbutton id="btn_getFile"
+                                                   label="Обновить Список" image="/images/refresh.png"/>
+                                </toolbar>
+                            </hlayout>
+                        </vlayout>
+                        <div>
+                            <listbox id="appsListbox">
+                                <listhead>
+                                    <listheader label="Имя Файла"/>
+                                    <listheader label="Тип Документа"/>
+                                    <listheader label="Описание"/>
+                                    <listheader label="Дата документа"/>
+                                    <listheader label="Номер документа"/>
+                                </listhead>
+                            </listbox>
+                        </div>-->
+                    </tabpanel>
+                    <tabpanel>
+                      <include id="internalControlInclude"/>
+                    </tabpanel>
+                    <tabpanel>
+                        <div id="mobileCustomerDiv">
+                           <grid width="50%">
+                            <columns>
+                                <column align="left"/>
+                                <column align="left"/>
+                                <column align="right"/>
+                                <column align="left"/>
+                                <column align="right" />
+                                <column align="left" />
+                             </columns>
+                             <rows>
+                                <row>
+                                    <label value="Статус" />
+                                    <cell colspan="2">
+                                    <rcombobox id="mobileCustomerStates"
+                                        buttonVisible="false" readonly="true"
+                                        selecteditem="@{localcustomerWnd$composer.mobileCustomer.state}" hflex="1"
+                                        onChange="localcustomerWnd$composer.mobileCustomer.state = mobileCustomerStates.value"/>
+                                     </cell>
+
+                                     <label value="Дата создания" />
+                                     <cell colspan="2">
+                                     <textbox readonly="true" value="@{localcustomerWnd$composer.mobileCustomer.registrationDate}"/>
+                                     </cell>
+                                </row>
+                                <row>
+                                    <label value="Телефон"/>
+                                    <textbox id="mobilePhone" hflex="1" maxlength="12" value="@{localcustomerWnd$composer.mobileCustomer.phone}"/>
+                                </row>
+                                <row>
+                                    <label value="Электронная почта"/>
+                                    <textbox id="mobileEmail" hflex="1" value="@{localcustomerWnd$composer.mobileCustomer.emailAddress}"/>
+                                </row>
+                             </rows>
+                           </grid>
+                           <separator orient="horizontal" bar="true"/>
+                           <toolbar id="toolbarMobileRegister">
+                                <toolbarbutton
+                                    label="Зарегистрировать" id="btnRegister" style="background:#4CAF50;color:#FFFFFF;"/>
+                            </toolbar>
+                            <toolbar id="toolbarMobileActions">
+                                <toolbarbutton label="Обновить" id="btnUpdateBinds" style="background:#4CAF50;color:#FFFFFF;"/>
+                                <toolbarbutton id="btnActivate" label="Активировать" style="background:#4CAF50;color:#FFFFFF;"/>
+                                <toolbarbutton id="btnBlock" label="Заблокировать" style="background:#4CAF50;color:#FFFFFF;"/>
+                            </toolbar>
+                        </div>
+                    </tabpanel>
+                    <tabpanel visible="false">
+				      <include id="includeDeposits" />
+			        </tabpanel>
+			        <tabpanel visible="false">
+				      <include id="includeCards" />
+			        </tabpanel>
+			        <tabpanel visible="false">
+				      <include id="includeTransfers" />
+			        </tabpanel>
+			        <tabpanel visible="false">
+				      <include id="includeAdditionalClientInfo" />
+			        </tabpanel>
+			        <tabpanel visible="false">
+				      <include id="includeBpr" />
+			        </tabpanel>
+			        <tabpanel visible="false">
+				      <include id="includeTieto" />
+			        </tabpanel>
+                </tabpanels>
+            </tabbox>
+        </vlayout>
+    </hlayout>
+    <window id="modulesWindow" title=" " width="85%"
+            mode="modal" position="center,center" visible="false"
+            closable="true"
+            onClose="self.setVisible(false); event.stopPropagation();">
+        <include id="modules" width="100%"/>
+    </window>
+    <window id="historyWnd" title="История по клиенту" width="70%"
+            height="50%" mode="modal" position="center,center" visible="false"
+            closable="true"
+            onClose="self.setVisible(false); event.stopPropagation();">
+        <listbox id="historyListbox" multiple="true" rows="5"
+                 vflex="1">
+            <listhead>
+                <listheader label="Дата О.Д"/>
+                <listheader label="Действие"/>
+                <listheader label="Инициатор"/>
+                <listheader label="Cистемное Время" sort="auto"/>
+            </listhead>
+        </listbox>
+    </window>
+    <window id="mappingWnd" width="85%" title=" " height="50%"
+            position="center,center" visible="false"
+            closable="true"
+            onClose="self.setVisible(false);event.stopPropagation()">
+        <listbox id="mappingList" multiple="true" rows="10" hflex="1" vflex="1">
+            <listhead>
+                <listheader label="МФО" hflex="1"/>
+                <listheader label="NCI Id" hflex="2"/>
+                <listheader label="Состояние" hflex="2"/>
+                <listheader label="ФИО" hflex="4"/>
+                <listheader label="Дата Рождения" hflex="2"/>
+                <listheader label="Тип Документа" hflex="2"/>
+                <listheader label="Серия" hflex="1"/>
+                <listheader label="Номер" hflex="2"/>
+                <listheader label="Адрес" hflex="4"/>
+            </listhead>
+        </listbox>
+    </window>
+
+    <window id="mobileConfirmationCodeWnd" width="20%" title="Введите код подтвержения"
+                    height="20%" mode="modal" position="center,center" visible="false"
+                    closable="true"
+                    onClose="self.setVisible(false); event.stopPropagation();">
+                <div hflex="1" align="center">
+                    <label value="Код подтверждения" />
+                    <textbox id="confirmation" />
+                </div>
+                <toolbar align="center">
+                    <toolbarbutton id="btnConfirm" label="Ввести"></toolbarbutton>
+                    <toolbarbutton id="btnCancel" label="Отмена"></toolbarbutton>
+                </toolbar>
+            </window>
+</window>

@@ -1,0 +1,81 @@
+<zk>
+	<div apply="com.is.bpri.ball_scoring.BallScoringCtrl">
+		<style>
+			.customIcon{
+			width: 100%;
+			height: 25px;
+			text-align: center;
+			background: -webkit-linear-gradient(-90deg, rgba(52,133,209,1) 0,
+			rgba(55,141,211,0.5) 24%, rgba(47,125,188,0.2) 50%,
+			rgba(55,141,211,0.5) 79%, rgba(52,133,209,1) 100%);
+			background: -moz-linear-gradient(180deg, rgba(52,133,209,1) 0,
+			rgba(55,141,211,0.5) 24%, rgba(47,125,188,0.2) 50%,
+			rgba(55,141,211,0.5) 79%, rgba(52,133,209,1) 100%);
+			background: linear-gradient(180deg, rgba(52,133,209,1) 0, rgba(55,141,211,0.5)
+			24%, rgba(47,125,188,0.2) 50%, rgba(55,141,211,0.5) 79%,
+			rgba(52,133,209,1) 100%);
+			background-repeat: repeat;
+			}
+			.z-fieldset legend {
+			font-size: 20px;
+			font-weight: 900;
+			font-style: oblique;
+			}
+		</style>
+		<groupbox open="false">
+			<caption label="Вопросник" sclass="customIcon" />
+			<toolbar>
+				<toolbarbutton id="btn_add" label="Добавить вопрос"
+					image="/images/+.png" />
+			</toolbar>
+			<div id="question_list_div">
+				<paging id="paging" />
+				<listbox id="question_box">
+					<listhead>
+						<listheader label="Порядковый номер" width="15%" />
+						<listheader label="Вопрос" width="80%" />
+						<listheader width="5%" />
+					</listhead>
+				</listbox>
+			</div>
+			<div id="add_div" visible="false" />
+			<toolbar id="tb" visible="false">
+				<toolbarbutton id="btn_save" label="Сохранить" />
+				<toolbarbutton id="btn_cancel" label="Отмена"
+					image="/images/stop.png" />
+			</toolbar>
+		</groupbox>
+		<groupbox open="false">
+			<caption label="Результаты заёмщика" sclass="customIcon" />
+			<button id="btn_result_add" label="Добавить результат" image="/images/+.png" />
+			<div id="result_list_div">
+				<paging id="result_paging" />
+				<listbox id="result_box">
+					<listhead>
+						<listheader label="Наименование результата" />
+						<listheader label="Интервал от" />
+						<listheader label="Интервал до" />
+						<listheader label="Разрешение на выдачу" />
+						<listheader width="4%" />
+					</listhead>
+				</listbox>
+			</div>
+			<grid id="add_result_div" visible="false">
+				<columns>
+					<column label="Наименование результата" />
+					<column label="Интервал от" />
+					<column label="Интервал до" />
+					<column label="Разрешение на выдачу" />
+					<column width="4%" />
+				</columns>
+				<rows id="result_rows" />
+			</grid>
+			<button id="add_result_row" label="Добавить результат"
+				visible="false" />
+			<toolbar id="tb_result" visible="false">
+				<toolbarbutton id="btn_save_result" label="Сохранить результат" />
+				<toolbarbutton id="btn_cancel_result" label="Отмена" />
+			</toolbar>
+		</groupbox>
+	</div>
+</zk>

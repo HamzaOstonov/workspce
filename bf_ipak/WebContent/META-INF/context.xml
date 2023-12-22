@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/bf_ipak" docbase="webapps/bf_ipak/">
+	<!-- ipakyuli  -->
+	<Resource name="jdbc/myoracle" auth="Container"
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" type="javax.sql.DataSource"
+		driverClassName="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@128.10.10.209:1521:ipakyuli"
+		username="admin" password="admin" maxActive="20" maxIdle="6"
+		minIdle="1" initSQL="ALTER SESSION SET CURRENT_SCHEMA=iy00444"
+		defaultAutoCommit="false" alternateUsernameAllowed="true" maxWait="-1"
+		removeAbandoned="true" removeAbandonedTimeout="600"/>
+   
+    <!-- ipakyuli end -->
+	<!-- ipakyuli 2 
+	<Resource name="jdbc/myoracle" auth="Container"
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" type="javax.sql.DataSource"
+		driverClassName="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@128.10.10.109:1521:ipakyuli"
+		username="admin" password="admin" maxActive="20" maxIdle="6"
+		minIdle="1" initSQL="ALTER SESSION SET CURRENT_SCHEMA=iy00444"
+		defaultAutoCommit="false" alternateUsernameAllowed="true" maxWait="-1"
+		removeAbandoned="true" removeAbandonedTimeout="600"/>
+		-->
+    <!-- ipakyuli 2 end -->
+    
+	<!-- davrbank 
+	<Resource name="jdbc/myoracle" auth="Container"
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" type="javax.sql.DataSource"
+		driverClassName="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@128.10.10.209:1521:davr"
+		username="admin" password="admin" maxActive="20" maxIdle="6"
+		minIdle="1" initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank981"
+		defaultAutoCommit="false" alternateUsernameAllowed="true" maxWait="-1"
+		removeAbandoned="true" removeAbandonedTimeout="600"/>
+		-->
+	<!-- davrbank end -->
+	<Resource name="jdbc/tieto"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.117:1521:db"
+              username="tieto" password="tieto" maxActive="18" maxIdle="4" minIdle="1"
+              defaultAutoCommit="false" 
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/> 
+	
+</Context>
+

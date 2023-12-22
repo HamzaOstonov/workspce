@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?><?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="trtemplatemain" width="100%" height="100%" border="normal"
+	apply="com.is.trtemplate.TrTemplateViewCtrl">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" label="${labels.back}"
+			image="/images/file.png" />
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" />
+
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+
+	</toolbar>
+	<toolbar>
+	<rcombobox readonly="true" id="moperation_id" mold="rounded"
+			selecteditem="@{trtemplatemain$composer.filter.operation_id}" width="600px" />
+	</toolbar>
+	<div id="grd">
+		
+
+		<paging id="trtemplatePaging" width="100%" />
+		<listbox style="border:none" id="dataGrid" multiple="true"
+			rows="4" width="100%" selectedItem="@{trtemplatemain$composer.current}">
+			<listhead sizable="true">
+				<!-- <listheader label="${labels.trtemplate.id}" width="200px" /> <listheader 
+					label="${labels.trtemplate.operation_id}" width="200px" /> <listheader label="${labels.trtemplate.currency}" 
+					width="200px" /> <listheader label="${labels.trtemplate.doc_type}" width="200px" 
+					/> <listheader label="${labels.trtemplate.cash_code}" width="200px" /> <listheader 
+					label="${labels.trtemplate.purpose_code}" width="200px" /> -->
+				<listheader label="${labels.trtemplate.ord}" width="50px" />
+				<listheader label="${labels.trtemplate.acc_dt}" width="200px" />
+				<listheader label="${labels.trtemplate.acc_ct}" width="200px" />
+				<listheader label="${labels.trtemplate.purpose}" width="600px" />
+				<listheader label="" width="200px" />
+
+
+			</listhead>
+
+		</listbox>
+
+
+
+	</div>
+	<div id="frm" visible="false">
+	<hbox id="frmgrd"  visible="true">
+		
+		<grid id="frmgrdl"  visible="true">
+		
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+			   <row>
+					<label value="${labels.trtemplate.operation_id}" />
+					<label id="operation_id" value="" style="font-family:georgia;font-size:22px;font-weight: bold"/>
+				</row>
+				<row>
+					<label value="${labels.trtemplate.ord}" />
+					<textbox id="ord" mold="rounded"
+						value="@{trtemplatemain$composer.current.ord}"
+						 constraint="/^[0-9]*$/: ${labels.error_number}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.acc_dt}" />
+					<rcombobox readonly="true" id="acc_dt" mold="rounded"
+						selecteditem="@{trtemplatemain$composer.current.acc_dt}" width="500px" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.pdc}" />
+					<rcombobox readonly="true" id="pdc" mold="rounded"
+						selecteditem="@{trtemplatemain$composer.current.pdc}" width="100px" />
+				</row>
+
+				<row>
+					<label value="${labels.trtemplate.acc_ct}" />
+					<rcombobox readonly="true" id="acc_ct" mold="rounded"
+						selecteditem="@{trtemplatemain$composer.current.acc_ct}" width="500px" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.currency}" />
+					<hbox>
+						<rcombobox readonly="true" id="currency" mold="rounded" 
+							selecteditem="@{trtemplatemain$composer.current.currency}" width="500px" />
+					</hbox>
+				</row>
+				<row>
+					<label value="${labels.trtemplate.doc_type}" />
+					<rcombobox readonly="true" id="doc_type" mold="rounded"
+						selecteditem="@{trtemplatemain$composer.current.doc_type}" width="500px" />
+				</row>
+
+
+			</rows>
+		</grid>
+		
+	   <grid id="frmgrdr"  visible="true">
+		
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.trtemplate.cash_code}" />
+					<textbox id="cash_code" mold="rounded"
+						value="@{trtemplatemain$composer.current.cash_code}"
+						/>
+				</row>
+				<row>
+					<label value="${labels.trtemplate.purpose}" />
+					<textbox id="purpose" mold="rounded"
+						value="@{trtemplatemain$composer.current.purpose}" width="600px" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.purpose_code}" />
+					<rcombobox id="purpose_code" mold="rounded"
+						onChange="trtemplatemain$composer.current.purpose_code = purpose_code.value"
+						selecteditem="@{trtemplatemain$composer.current.purpose_code}"
+						width="500px" />
+				</row>
+
+				<row>
+					<label value="${labels.trtemplate.id_transh_purp}" />
+					<textbox id="id_transh_purp" mold="rounded"
+						value="@{trtemplatemain$composer.current.id_transh_purp}"
+						 />
+				</row>
+				<row>
+					<label value="Тип транзакции" />
+					<rcombobox readonly="true" id="operation_type" mold="rounded" width="500px"
+						selecteditem="@{trtemplatemain$composer.current.pay_type}" />
+				</row>
+				<row>
+					<label value="Вид сделки" />
+					<rcombobox readonly="true" id="suboperation_type" mold="rounded" width="500px"
+						selecteditem="@{trtemplatemain$composer.current.trans_type}"/>
+				</row>
+				<row>
+					<label value="% от общей суммы в проводке" />
+					<textbox id="perc_for_trans" mold="rounded" value="@{trtemplatemain$composer.current.perc_for_tr}"
+					/>
+				</row>
+				<row>
+					<label value="сумма" />
+					<textbox id="amount" mold="rounded"
+					value="@{trtemplatemain$composer.current.amount}"
+					/>
+				</row>
+
+
+			</rows>
+		</grid>
+		
+		
+		</hbox>
+		<hbox id="addgrd" visible="false">
+		<grid id="addgrdl" >
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+
+				<row>
+					<label value="${labels.trtemplate.operation_id}" />
+					<label id="operation_id1" value="" style="font-family:georgia;font-size:22px;font-weight: bold"/>
+				</row>
+				<row>
+					<label value="${labels.trtemplate.ord}" />
+					<textbox id="aord" mold="rounded" 
+					/>
+				</row>
+				<row>
+					<label value="${labels.trtemplate.acc_dt}" />
+					<rcombobox readonly="true" id="aacc_dt" mold="rounded" width="500px" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.pdc}" />
+					<rcombobox readonly="true" id="apdc" mold="rounded"
+						 width="500px" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.acc_ct}" />
+					<rcombobox readonly="true" id="aacc_ct" mold="rounded" width="500px" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.currency}" />
+					<rcombobox readonly="true" id="acurrency" mold="rounded"
+						 width="500px" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.doc_type}" />
+					<rcombobox readonly="true" id="adoc_type" mold="rounded"
+						 width="500px" />
+				</row>
+
+			</rows>
+		</grid>
+		
+		<grid id="addgrdr" >
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+
+
+
+				<row>
+					<label value="${labels.trtemplate.cash_code}" />
+					<textbox id="acash_code" mold="rounded"
+					 />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.purpose}" />
+					<textbox id="apurpose" mold="rounded" width="600px" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.purpose_code}" />
+					<rcombobox readonly="true" id="apurpose_code" mold="rounded" width="500px"
+						 />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.id_transh_purp}" />
+					<textbox id="aid_transh_purp" mold="rounded" 
+					/>
+				</row>
+				<row>
+					<label value="Тип транзакции" />
+					<rcombobox readonly="true" id="aoperation_type" mold="rounded" width="500px" />
+				</row>
+				<row>
+					<label value="Вид сделки" />
+					<rcombobox readonly="true" id="asuboperation_type" mold="rounded" width="500px" />
+				</row>
+				<row>
+					<label value="% от общей суммы в проводке" />
+					<textbox id="aperc_for_trans" mold="rounded"
+					/>
+				</row>
+				<row>
+					<label value="сумма" />
+					<textbox id="aamount" mold="rounded"
+					/>
+				</row>
+			</rows>
+		</grid>
+		
+        </hbox>
+		<grid id="fgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.trtemplate.ord}" />
+					<textbox id="ford" mold="rounded"
+						value="@{trtemplatemain$composer.filter.ord}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.id}" />
+					<textbox id="fid" mold="rounded"
+						value="@{trtemplatemain$composer.filter.id}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.operation_id}" />
+					<textbox id="foperation_id" mold="rounded"
+						value="@{trtemplatemain$composer.filter.operation_id}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.acc_dt}" />
+					<textbox id="facc_dt" mold="rounded"
+						value="@{trtemplatemain$composer.filter.acc_dt}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.acc_ct}" />
+					<textbox id="facc_ct" mold="rounded"
+						value="@{trtemplatemain$composer.filter.acc_ct}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.currency}" />
+					<textbox id="fcurrency" mold="rounded"
+						value="@{trtemplatemain$composer.filter.currency}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.doc_type}" />
+					<textbox id="fdoc_type" mold="rounded"
+						value="@{trtemplatemain$composer.filter.doc_type}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.cash_code}" />
+					<textbox id="fcash_code" mold="rounded"
+						value="@{trtemplatemain$composer.filter.cash_code}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.purpose}" />
+					<textbox id="fpurpose" mold="rounded"
+						value="@{trtemplatemain$composer.filter.purpose}" />
+				</row>
+				<row>
+					<label value="${labels.trtemplate.purpose_code}" />
+					<textbox id="fpurpose_code" mold="rounded"
+						value="@{trtemplatemain$composer.filter.purpose_code}" />
+				</row>
+
+			</rows>
+		</grid>
+
+		<toolbar>
+			<toolbarbutton id="btn_save" label="${labels.save}"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+
+</window>

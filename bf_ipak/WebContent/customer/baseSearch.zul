@@ -1,0 +1,50 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="" border="none" id="baseSearch" apply="com.is.customer_.search.SAPSearch.BaseSearchComposer">
+		<div id="main">
+        <toolbar id="toolbarAction">
+			<toolbarbutton id="btn_show_search_sap" label="Поиск"
+				image="/images/search.png" />
+            <toolbarbutton id="btnCreateCustomer" label="Создать Клиента" style="background:#4CAF50;color:#FFFFFF;"/>
+        </toolbar>
+			<div id="chld">
+				<grid>
+					<columns>
+						<column align="left" />
+						<column align="left" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Поиск" />
+							<cell>
+								<checkbox id="chbBaseSearch" label="Локальный поиск"/>
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</div>
+			<tabbox id="searchTab" visible="false"
+				mold="accordion-lite">
+				<tabs>
+					<tab label="Поиск" />
+					<tab label="Расширенный Поиск" />
+				</tabs>
+				<tabpanels>
+					<tabpanel>
+						<include src="/customer/SAPSearch.zul" />
+					</tabpanel>
+					<tabpanel>
+						<include src="/customer/searchLocal.zul" />
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+			<div id="findSAP">
+				<include src="/customer/SAPSearch.zul" />
+			</div>
+			<div id="findLocal" visible="false">
+				<include src="/customer/searchLocal.zul" />
+			</div>
+
+		</div>
+	</window>
+</zk>

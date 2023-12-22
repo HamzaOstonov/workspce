@@ -1,0 +1,205 @@
+<?page title="Payment" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window title="" border="normal" id="paymentWnd"
+        apply="com.is.payments.ui.PaymentController">
+    <div>
+        <include id="searchInclude" src="/customer/SAPSearch.zul"/>
+    </div>
+    <div height="250px" width="100%">
+        <grid id="paymentGrid" style="border:none">
+            <columns>
+                <column hflex="1"/>
+                <column hflex="3"/>
+            </columns>
+            <rows>
+                <row>
+                    <label value="Связанное лицо" style="font-weight:bold"/>
+                    <textbox id="connectedPerson"
+                             readonly="true" width="70%"
+                             value="@{paymentWnd$composer.current.personName}"/>
+                </row>
+                <row>
+                    <label value="Тип платежа" style="font-weight:bold"/>
+                    <cell>
+                        <rcombobox id="paymentTypes" readonly="true" width="35%"
+                                   selecteditem="@{paymentWnd$composer.current.paymentType}"
+                                   onChange="paymentWnd$composer.current.paymentType = paymentTypes.value"/>
+                        <separator spacing="10px"/>
+                        <checkbox id="budgetCheckbox" label="В бюджет" disabled="true"/>
+                        <checkbox id="treasuryCheckbox" label="Казначейские Счета" disabled="true"/>
+                    </cell>
+                </row>
+                <row>
+                    <label value="МФО Отправителя" style="font-weight:bold"/>
+                    <cell>
+                        <textbox id="branchSendText" hflex="1" readonly="true"
+                                 value="@{paymentWnd$composer.current.branchSend}"/>
+                        <rcombobox id="branchSend" readonly="true" hflex="4"
+                                   onChange="paymentWnd$composer.current.branchSend = branchSend.value;
+                                             branchSendText.value = branchSend.value"
+                                   selecteditem="@{paymentWnd$composer.current.branchSend}"/>
+                    </cell>
+                </row>
+                <row>
+                    <label value="Счет Отправителя" style="font-weight:bold"/>
+                    <cell>
+                        <textbox id="senderAccount" hflex="1" readonly="true"
+                                 value="@{paymentWnd$composer.current.accountSend}"/>
+                        <textbox id="senderAccountName" hflex="1" readonly="true"
+                                 value="@{paymentWnd$composer.current.accountSendName}"/>
+                    </cell>
+                </row>
+                <row id="budgetAccountRow" visible="false">
+                    <label value="Счет бюджетополучателя" style="font-weight:bold"/>
+                    <textbox id="budgetAccount" ctrlKeys="#f9"
+                             hflex="1" maxlength="27"
+                             value="@{paymentWnd$composer.current.budgetAccount}"/>
+                </row>
+                <row id="taxNumberRegistrationRow" visible="false">
+                    <label value="ИНН" style="font-weight:bold"/>
+                    <cell>
+                        <textbox id="taxNumberRegistration" hflex="1"
+                                 value="@{paymentWnd$composer.current.taxNumberRegistration}"/>
+                        <label id="taxNumberRegistrationName"/>
+                    </cell>
+                </row>
+                <row id="budgetAccountNameRow" visible="false">
+                    <label style="font-weight:bold" value="Наименование счета бюджетополучателя"/>
+                    <cell>
+                        <textbox id="budgetAccountName"
+                                 value="@{paymentWnd$composer.current.budgetAccountName}" hflex="1"/>
+                    </cell>
+                </row>
+                <row>
+                    <label value="МФО Получателя" style="font-weight:bold"/>
+                    <cell>
+                        <textbox id="branchReceiveText"
+                                 hflex="1" value="@{paymentWnd$composer.current.branchReceive}"/>
+                        <rcombobox id="branchReceive" hflex="3" readonly="true"
+                                   onChange="paymentWnd$composer.current.branchReceive=branchReceive.value;
+							          branchReceiveText.value = branchReceive.value"
+                                   selecteditem="@{paymentWnd$composer.current.branchReceive}"/>
+                    </cell>
+                </row>
+                <row>
+                    <label value="Счет получателя" style="font-weight:bold"/>
+                    <cell width="30%">
+                        <textbox xmlns:w="client" id="receiverAccount" hflex="1" maxlength="20"
+                                 onChange='Clients.evalJavaScript("checkInput(event)")' ctrlKeys="#f9"
+                                 value="@{paymentWnd$composer.current.accountReceive}">
+                            <!--<attribute w:name="doKeyDown_"><![CDATA[
+			function (evt) {
+				var keyCode = event.keyCode;
+				if( keyCode == 8 // back space
+				    || keyCode == 9 // Tab
+					|| keyCode == 13 // enter
+					|| keyCode == 16 // enter
+					|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+					|| keyCode == 46) { // Delete
+					this.$doKeyDown_(evt);
+				} else if ( !evt.shiftKey &&  // only do without shift key
+					(keyCode >= 48 && keyCode <= 57)
+					|| (keyCode >= 96 && keyCode <= 105)) {// number range
+					this.$doKeyDown_(evt);
+				} else {
+					evt.stop();
+					return;
+				}
+			}
+		]]></attribute>-->
+                        </textbox>
+                        <textbox id="receiverAccountName" hflex="1"
+                                 value="@{paymentWnd$composer.current.accountReceiveName}"/>
+                    </cell>
+                </row>
+                <row id="treasuryAccountRow" visible="false">
+                    <label value="Казначейский Счет" style="font-weight:bold"/>
+                    <textbox xmlns:w="client" id="treasuryAccount" width="50%"
+                             maxlength="25" ctrlKeys="#f9"
+                             value="@{paymentWnd$composer.current.treasuryAccount}">
+                        <!--<attribute w:name="doKeyDown_"><![CDATA[
+			function (evt) {
+				var keyCode = event.keyCode;
+				if( keyCode == 8 // back space
+				    || keyCode == 9 // Tab
+					|| keyCode == 13 // enter
+					|| keyCode == 16 // enter
+					|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+					|| keyCode == 46
+					|| keyCode == 120) { // Delete
+					this.$doKeyDown_(evt);
+				} else if ( !evt.shiftKey &&  // only do without shift key
+					(keyCode >= 48 && keyCode <= 57)
+					|| (keyCode >= 96 && keyCode <= 105)) {// number range
+					this.$doKeyDown_(evt);
+				} else {
+					evt.stop();
+					return;
+				}
+			}
+		]]></attribute>-->
+                    </textbox>
+                </row>
+                <row>
+                    <label value="Кассовый Символ" style="font-weight:bold"/>
+                    <cell>
+                        <textbox id="cashSymbolText"
+                                 value="@{paymentWnd$composer.current.cashSymbol}"/>
+                        <rcombobox id="cashSymbol" width="50%"
+                                   selecteditem="@{paymentWnd$composer.current.cashSymbol}"/>
+                    </cell>
+                </row>
+                <row>
+                    <label value="Кассовый Подсимвол" style="font-weight:bold"/>
+                    <cell>
+                        <textbox id="cashSymbolDescriptionText"
+                                 value="@{paymentWnd$composer.current.cashSymbolDescription}"/>
+                        <rcombobox id="cashSymbolDescription"
+                                   width="50%"
+                                   onChange="cashSymbolDescriptionText.value = cashSymbolDescription.value;
+							paymentWnd$composer.current.cashSymbolDescription = cashSymbolDescription.value"
+                                   selecteditem="@{paymentWnd$composer.current.cashSymbolDescription}"/>
+                    </cell>
+                </row>
+                <row>
+                    <label value="Сумма" style="font-weight:bold"/>
+                    <decimalbox id="sum" width="30%" format="###,###.00"
+                                value="@{paymentWnd$composer.current.sum}"/>
+                </row>
+                <row>
+                    <label value="Назначение платежа" style="font-weight:bold"/>
+                    <textbox id="purposePayment" hflex="1"
+                             value="@{paymentWnd$composer.current.purposePayment}"/>
+                </row>
+                <row>
+                    <label value="Код назначения платежа" style="font-weight:bold"/>
+                    <cell>
+                        <textbox id="purposeCodeText"
+                                 value="@{paymentWnd$composer.current.purposeCode}"/>
+                        <!--onChange="paymentWnd$composer.current.purposeCode = purposeCodeText.value;
+                                  purposeCode.value = purposeCodeText.value"/>-->
+                        <rcombobox id="purposeCode" hflex="1"
+                                   selecteditem="@{paymentWnd$composer.current.purposeCode}"
+                                   onChange="paymentWnd$composer.current.purposeCode = purposeCode.value;
+                                             purposeCodeText.value = purposeCode.value"/>
+                    </cell>
+                </row>
+            </rows>
+        </grid>
+        <toolbar style="background:white">
+            <toolbarbutton id="btnOk" image="/images/forward.png"
+                           label="Совершить платеж"/>
+        </toolbar>
+    </div>
+    <window id="filterWnd" title=" " width="70%" height="50%"
+            mode="modal" position="center,center" visible="false" closable="true"
+            onClose="self.visible = false; event.stopPropagation();">
+        <listbox id="listbox">
+            <listhead>
+                <listheader label="Филиал"/>
+                <listheader label="Счет"/>
+            </listhead>
+        </listbox>
+    </window>
+</window>

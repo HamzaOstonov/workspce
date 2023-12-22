@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="customermain" width="100%"
+	apply="com.is.tietovisa.customer.AddCstViewCtrl" 
+	contentStyle="overflow:auto">
+
+	<menupopup id="editPopup">
+		<menuitem id="pop_open_cl" label="${labels.openway.opencl}" />
+	</menupopup>
+
+	<hlayout sclass="z-valign-top" style="overflow:auto;">
+
+		<div id="leftToolbar" visible="true" width="240px">
+			<grid id="tfgrd">
+				<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Код клиента NCI" />
+						<textbox id="txbId_client"
+							value="@{customermain$composer.filter.id_client}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="ПИНФЛ" />
+						<textbox id="txbPinfl"
+							value="@{customermain$composer.filter.p_pinfl}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="Имя" />
+						<textbox id="txbName"
+							value="@{customermain$composer.filter.name}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="Фамилия" />
+						<textbox id="txbLastName"
+							value="@{customermain$composer.filter.p_family}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="Дата рождения" />
+						<datebox id="dbxB_date"
+							value="@{customermain$composer.filter.p_birthday}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="Номер мобильного телефона" />
+						<textbox id="txbMobilePhone"
+							value="@{customermain$composer.filter.p_phone_mobile}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="Номер карты" />
+						<textbox id="txbCardNumber"
+							value="@{customermain$composer.filter.card}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="Код TIETO" />
+						<textbox id="txbId_tieto"
+							value="@{customermain$composer.filter.t_client}" forward="onOK=onOkToFilter" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar visible="true" orient="vertical">
+				<toolbarbutton id="tbtn_search"
+					label="Поиск" image="/images/search.png" />
+				<toolbarbutton id="btn_utv"
+					label="${labels.openway.comm}" visible="false"
+					image="/images/stop.png" />
+				<toolbarbutton id="btn_add_everywhere"
+					label="${labels.openway.openclall}"
+					image="/tnbtn_addimages/uses.png" />
+				<toolbarbutton id="btn_add_acc"
+					label="Открыть счет и счетовой контракт"
+					image="/images/+.png" />
+				<toolbarbutton id="btn_add_card"
+					label="Открыть карту"
+					image="/images/+.png" />
+				<toolbarbutton id="tbtn_card_oprations"
+					label="${labels.openway.AddCstViewCtrl.cardoper}"
+					image="/images/credit_card2.png" />
+
+			</toolbar>
+		</div>
+
+		<vlayout id="tgrd" hflex="1">
+
+			<listbox
+				style="border:normal; background-color:white;height:240px;"
+				id="branch_customers" multiple="true"
+				selectedItem="@{customermain$composer.current}">
+				<auxhead>
+					<auxheader />
+					<auxheader />
+					<auxheader label="Данные IBS" colspan="5" align="middle" />
+					<auxheader />
+					<auxheader label="Данные TIETO"	colspan="5" align="middle" />
+				</auxhead>
+				<listhead sizable="false">
+
+					<listheader width="34px" />
+					<listheader width="34px" />
+					
+					<listheader width="34px" />
+					<listheader width="34px" />
+					<listheader width="34px" />
+					<listheader width="34px" />
+					
+                    <listheader label="МФО" width="6%" />
+                    <listheader label="Код клиента" width="8%" />
+					<listheader label="ФИО" width="15%" />
+					<listheader label="Дата рождения" width="8%" />
+					<listheader label="ПИНФЛ" width="9%" />					
+                    
+                    <listheader width="34px" />
+                    
+                    <listheader label="Код TIETO" width="8%" />
+                    <listheader label="Код CLIENT_B" width="9%" />
+					<listheader label="ФИО" width="15%" />
+					<listheader label="Дата рождения" width="8%" />
+					<listheader label="ПИНФЛ/Паспорт" width="9%" />
+
+				</listhead>
+
+			</listbox>
+
+			<paging id="bankdataPaging" />
+
+			<hlayout style="overflow:auto;">
+				<listbox id="accGrid" rows="8" 
+					hflex="1" selectedItem="@{customermain$composer.curr_acc}">					
+					<listhead sizable="true">
+						
+						<listheader
+							label="ContractNumberIBS" width="220px"
+							sort="auto(ab_expirity)" />
+						<listheader label="Contract number WAY"
+							width="120px" sort="auto(card_acct)" />
+						<listheader label="Tranz acct"
+							width="200px" sort="auto(tranz_acct)" />
+						<listheader label="Product code"
+							width="120px" sort="auto(status1)" />
+                        <listheader width="35px" />
+					</listhead>
+
+				</listbox>
+
+				<listbox id="cardGrid" rows="8"
+					hflex="1" selectedItem="@{customermain$composer.curr_card}">
+					<listhead sizable="true">
+                      <!-- <ContractNumber>430142______2890</ContractNumber> .ContractNumber -->
+						<listheader label="ContractNumber(Way)"
+							width="200px" />
+						<listheader label="CardExpiry"	width="90px" />
+			    	  <!-- bf_openway_contract_card.sub_product_code VISA_CLASSIC_USD .productcode1 -->
+						<listheader label="Product Code(IBS)" width="120px"  />
+					  <!-- bf_openway_contract_card.cbs_number 430142______2890  .cbsNumber -->
+						<listheader
+							label="ContractNumber(IBS)" width="100px" />
+					  <!-- bf_openway_contract_card.rbs_number 9058-P-547326-0000003 .rbsNumberIbs -->
+						<listheader label="RbsNumber(IBS)"
+							width="200px"  />
+						<listheader label="${labels.accinfo.status1}"
+							width="70px"  />
+						<listheader label="status2 "
+							width="70px" />
+						<!--<listheader label="Action"
+							width="70px" /> -->
+					</listhead>
+				</listbox>
+
+			</hlayout>
+		</vlayout>
+
+
+	</hlayout>
+
+	<window id="add_everywhere" mode="modal" width="70%" closable="true"
+		onClose="self.visible = false; event.stopPropagation();"
+		title="Открытие клиента в НПС HUMO" position="center,center"
+		visible="false">
+
+		<vlayout hflex="1">
+			<hlayout id="addgrd" width="100%">
+				<grid id="addgrdl" hflex="1">
+					<columns>
+						<column width="40%" />
+						<column width="60%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Тип клиента(категория) *" />
+							<rcombobox id="ao_category_client"
+								selecteditem="@{customermain$composer.current.o_client_type}" />
+						</row>
+						<row>
+							<label value="Код клиента " />
+							<textbox id="aid_client"
+								value="@{customermain$composer.current.id_client}"
+								readonly="true" />
+						</row>
+						<row>
+							<label value="Тип документа *" />
+							<rcombobox id="ap_type_document"
+								selecteditem="@{customermain$composer.current.p_type_document}" />
+						</row>
+						<row>
+							<label value="Серия паспорта(Д.У.Л.) *" />
+							<textbox id="ap_passport_serial"
+								value="@{customermain$composer.current.p_passport_serial}" />
+						</row>
+						<row>
+							<label value="Номер паспорта(Д.У.Л.) *" />
+							<textbox id="ap_passport_number"
+								value="@{customermain$composer.current.p_passport_number}" />
+						</row>
+						<row>
+							<label
+								value="Дата регистрации паспорта(Д.У.Л.) *" />
+							<datebox id="ap_passport_date_registration"
+								value="@{customermain$composer.current.p_passport_date_registration}" />
+						</row>
+						<row>
+							<label value="Действителен до " />
+							<datebox id="ap_passport_date_expiration"
+								value="@{customermain$composer.current.p_passport_date_expiration}" />
+						</row>
+						<row>
+							<label
+								value="Место регистрации паспорта(Д.У.Л.) *" />
+							<textbox id="ap_passport_place_registration"
+								value="@{customermain$composer.current.p_passport_place_registration}" />
+						</row>
+						<row>
+							<label value="ПИНФЛ *" />
+							<textbox id="ap_pinfl"
+								value="@{customermain$composer.current.p_pinfl}" />
+						</row>
+						<row>
+							<label value="Фамилия *" />
+							<textbox id="ap_family"
+								value="@{customermain$composer.current.p_family}" />
+						</row>
+						<row>
+							<label value="Имя *" />
+							<textbox id="ap_first_name"
+								value="@{customermain$composer.current.p_first_name}" />
+						</row>
+						<row>
+							<label value="Отчество " />
+							<textbox id="ap_patronymic"
+								value="@{customermain$composer.current.p_patronymic}" />
+						</row>
+						<row>
+							<label value="ИНН" />
+							<textbox id="ap_number_tax_registration"
+								value="@{customermain$composer.current.p_number_tax_registration}" />
+						</row>
+						<row>
+							<label
+								value="Кодовое слово для идентификации клиента *" />
+							<textbox id="ao_security_name"
+								value="@{customermain$composer.current.o_security_name}" />
+						</row>
+						<row>
+							<label value="Страна *" />
+							<rcombobox id="acode_country"
+								selecteditem="@{customermain$composer.current.code_country}" />
+						</row>
+						<row>
+							<label value="Гражданство *" />
+							<rcombobox id="ap_code_citizenship"
+								selecteditem="@{customermain$composer.current.p_code_citizenship}" />
+						</row>
+					</rows>
+				</grid>
+				<grid id="addgrdr" hflex="1">
+					<columns>
+						<column width="40%" />
+						<column width="60%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Дата рождения *" />
+							<datebox id="ap_birthday"
+								value="@{customermain$composer.current.p_birthday}" />
+						</row>
+						<row>
+							<label value="Место рождения *" />
+							<textbox id="ap_birth_place"
+								value="@{customermain$composer.current.p_birth_place}" />
+						</row>
+						<row>
+							<label value="Пол" />
+							<rcombobox id="ap_code_gender"
+								selecteditem="@{customermain$composer.current.p_code_gender}" />
+						</row>
+						<row>
+							<label value="Номер телефона домашный" />
+							<textbox id="ap_phone_home"
+								value="@{customermain$composer.current.p_phone_home}" />
+						</row>
+						<row>
+							<label value="Номер телефона мобильный *" />
+							<textbox id="ap_phone_mobile"
+								value="@{customermain$composer.current.p_phone_mobile}" />
+						</row>
+						<row>
+							<label value="email *" />
+							<textbox id="ap_email_address"
+								value="@{customermain$composer.current.p_email_address}" />
+						</row>
+						<row>
+							<label value="Код области адреса *" />
+							<rcombobox id="ap_code_adr_region"
+								selecteditem="@{customermain$composer.current.p_code_adr_region}" />
+						</row>
+						<row>
+							<label value="Код района адреса *" />
+							<rcombobox id="ap_code_adr_distr"
+								selecteditem="@{customermain$composer.current.p_code_adr_distr}" />
+						</row>
+						<row>
+							<label value="Город *" />
+							<textbox id="ao_city"
+								value="@{customermain$composer.current.o_city}" />
+						</row>
+						<row>
+							<label value="Почтовый индекс *" />
+							<textbox id="ap_zip_code"
+								value="@{customermain$composer.current.p_zip_code}" />
+						</row>
+						<row>
+							<label value="Адрес *" />
+							<textbox id="ap_post_address"
+								value="@{customermain$composer.current.p_post_address}" />
+						</row>
+						<row>
+							<label value="Фактический адрес " />
+							<textbox id="ao_post_address_fact"
+								value="@{customermain$composer.current.o_post_address_fact}" />
+						</row>
+						<row>
+							<label
+								value="Дата активации использования адреса * " />
+							<label
+								value="Дата активации использования адреса * " />
+						</row>
+						<row>
+							<label value="Резидентность *" />
+							<rcombobox id="acode_resident"
+								selecteditem="@{customermain$composer.current.code_resident}" />
+						</row>
+						<row>
+							<label value="Национальность *" />
+							<rcombobox id="ap_code_nation"
+								selecteditem="@{customermain$composer.current.p_code_nation}" />
+						</row>
+						<row>
+							<label value="Код налоговой организации" />
+							<rcombobox id="ap_code_tax_org"
+								selecteditem="@{customermain$composer.current.p_code_tax_org}" />
+						</row>
+					</rows>
+				</grid>
+			</hlayout>
+
+			<toolbar>
+				<toolbarbutton id="add_btn" label="Сохранить"
+					image="/images/+.png" />
+				<toolbarbutton id="close_btn" label="Закрыть"
+					image="/images/stop.png" />
+				<label value=" * - поля обязательны к заполнению"></label>
+			</toolbar>
+		</vlayout>
+	</window>
+	
+	<window id="add_account" mode="modal" width="55%" closable="true"
+		onClose="self.visible = false; event.stopPropagation();"
+		title="Открытие счета(АБС) и контракта(WAY)" position="center,center"
+		visible="false">
+
+		<vlayout hflex="1">
+			<hlayout id="addgrd" width="100%">
+				<grid id="addgrdl" hflex="1">
+					<columns>
+						<column width="40%" />
+						<column width="60%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Код балансового счета *" />
+							<rcombobox id="acc_bal"
+								selecteditem="@{customermain$composer.curr_acc.acc_bal}" />
+						</row>
+						<row>
+							<label value="Порядковый номер счета *" />
+							<textbox id="id_order"
+								value="@{customermain$composer.curr_acc.id_order}"  />
+						</row>
+							<row>
+							<label value="Счет" />
+							<textbox id="ranz_acct" readonly="true"
+								value="@{customermain$composer.curr_acc.tranz_acct}"  />
+						</row>
+						
+						<row>
+							<label value="Код счетевого продукта *" />
+							<rcombobox id="o_product_code1"
+								selecteditem="@{customermain$composer.curr_acc.productCode1}" />
+						</row>
+						<row visible="false">
+							<label value="Комментарий " />
+							<textbox id="o_comment_text"
+								value="@{customermain$composer.curr_acc.commentText}" />
+						</row>
+			
+					</rows>
+				</grid>
+				
+			</hlayout>
+
+			<toolbar>
+				<toolbarbutton id="add_acc_btn" label="Сохранить"
+					image="/images/+.png" />
+				<toolbarbutton id="close_wnd_acc_btn" label="Закрыть"
+					image="/images/stop.png" />
+				<label value=" * - поля обязательны к заполнению"></label>
+			</toolbar>
+		</vlayout>
+	</window>
+
+    <window id="add_card_wnd" mode="modal" width="55%" closable="true"
+		onClose="self.visible = false; event.stopPropagation();"
+		title="Открытие карточного контракта(WAY)" position="center,center"
+		visible="false">
+
+		<vlayout hflex="1">
+			<hlayout id="addgrd" width="100%">
+				<grid id="addgrdl" hflex="1">
+					<columns>
+						<column width="40%" />
+						<column width="60%" />
+					</columns>
+					<rows>
+
+						<row visible="false">
+							<label value="RBS Number" />
+							<textbox id="o_rbs_number" readonly="true"
+								value="@{customermain$composer.curr_card.rbsNumber}"  />
+						</row>
+						<row>
+							<label value="Код карточного продукта *" />
+							<rcombobox id="o_product_code1"
+								selecteditem="@{customermain$composer.curr_card.productCode1}" />
+						</row>
+						<row visible="false">
+							<label value="Комментарий " />
+							<textbox id="o_comment_text"
+								value="@{customermain$composer.curr_card.commentText}" />
+						</row>
+			
+					</rows>
+				</grid>
+				
+			</hlayout>
+
+			<toolbar>
+				<toolbarbutton id="add_card_btn" label="Сохранить"
+					image="/images/+.png" />
+				<toolbarbutton id="close_wnd_card_btn" label="Закрыть"
+					image="/images/stop.png" />
+				<label value=" * - поля обязательны к заполнению"></label>
+			</toolbar>
+		</vlayout>
+	</window>
+
+</window>
