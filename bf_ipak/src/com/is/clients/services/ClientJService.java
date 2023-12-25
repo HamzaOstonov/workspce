@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -19,7 +20,6 @@ import com.is.customer_.core.ConnectionUtils;
 import com.is.customer_.core.utils.CustomerUtils;
 import com.is.customer_.core.utils.GeneralUtils;
 
-import org.apache.commons.httpclient.util.HttpURLConnection;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -760,7 +760,7 @@ public class ClientJService {
 		return url;
 	}
     
-    public static ResInn sendInn(ClientJ query, String un, String pw ) throws Exception {
+    public static ResInn sendInn(String query, String un, String pw ) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		ResInn str = null;
 		String url = getUrl()+ "getAccountByInn/014/00444";
@@ -834,5 +834,5 @@ public class ClientJService {
 	      e.printStackTrace();
 	    }
 	    return message;// writer.toString();
-	  } 
+	  }  
 }

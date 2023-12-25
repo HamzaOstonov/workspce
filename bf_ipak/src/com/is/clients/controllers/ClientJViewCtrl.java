@@ -92,11 +92,11 @@ public class ClientJViewCtrl extends AbstractClientController {
     private AbstractSapOrganizationService<ClientJ> localOrganizationService;
 
     enum CltPaths {
-        LEGAL_ENTITY("Юридический"),
-        // IP("Индивидуальный предприниматель"),
-        LEGAL_ENTITY_NIBBD("Юридический, имеющий основной счет в другом банке");
-        // IP_ENTITY_NIBBD("Индивидуальный предприниматель, имеющий основной
-        // счет в другом банке");
+        LEGAL_ENTITY("Р®СЂРёРґРёС‡РµСЃРєРёР№"),
+        // IP("РРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Р№ РїСЂРµРґРїСЂРёРЅРёРјР°С‚РµР»СЊ"),
+        LEGAL_ENTITY_NIBBD("Р®СЂРёРґРёС‡РµСЃРєРёР№, РёРјРµСЋС‰РёР№ РѕСЃРЅРѕРІРЅРѕР№ СЃС‡РµС‚ РІ РґСЂСѓРіРѕРј Р±Р°РЅРєРµ");
+        // IP_ENTITY_NIBBD("РРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Р№ РїСЂРµРґРїСЂРёРЅРёРјР°С‚РµР»СЊ, РёРјРµСЋС‰РёР№ РѕСЃРЅРѕРІРЅРѕР№
+        // СЃС‡РµС‚ РІ РґСЂСѓРіРѕРј Р±Р°РЅРєРµ");
 
         private String desc;
 
@@ -160,10 +160,10 @@ public class ClientJViewCtrl extends AbstractClientController {
 
         if (mode == null) {
             initRenderers();
-            // refreshModel(_startPageNumber, true); //Хамза, заремил в
+            // refreshModel(_startPageNumber, true); //РҐР°РјР·Р°, Р·Р°СЂРµРјРёР» РІ
             // 24,11,2017.
-            // потому что вытягивает все клиенты при запуске страницы, если надо
-            // будет потом можно выташить по определенному филтру
+            // РїРѕС‚РѕРјСѓ С‡С‚Рѕ РІС‹С‚СЏРіРёРІР°РµС‚ РІСЃРµ РєР»РёРµРЅС‚С‹ РїСЂРё Р·Р°РїСѓСЃРєРµ СЃС‚СЂР°РЅРёС†С‹, РµСЃР»Рё РЅР°РґРѕ
+            // Р±СѓРґРµС‚ РїРѕС‚РѕРј РјРѕР¶РЅРѕ РІС‹С‚Р°С€РёС‚СЊ РїРѕ РѕРїСЂРµРґРµР»РµРЅРЅРѕРјСѓ С„РёР»С‚СЂСѓ
             hideAll();
             grd.setVisible(true);
             setAvailableTabs(userId);
@@ -175,7 +175,7 @@ public class ClientJViewCtrl extends AbstractClientController {
                 initForNibbd(parameter[0]);
             }
         }
-        // кнопка НИББД
+        // РєРЅРѕРїРєР° РќРР‘Р‘Р”
         Connection c = null;
         try {
             c = ConnectionPool.getConnection(alias);
@@ -249,7 +249,7 @@ public class ClientJViewCtrl extends AbstractClientController {
         filter.setId_client(id_client[0]);
         refreshModel(0, false);
         if (dataGrid.getItems().size() == 0) {
-            alert("Клиент не найден!");
+            alert("РљР»РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ!");
             return;
         }
         onDoubleClick$dataGrid$grd();
@@ -344,7 +344,7 @@ public class ClientJViewCtrl extends AbstractClientController {
         newcl.setCode_form(fields[14]);
         newcl.setJ_soato(fields[15]);
         newcl.setJ_okpo(fields[16]);
-        // Не проставлять окед для ИП
+        // РќРµ РїСЂРѕСЃС‚Р°РІР»СЏС‚СЊ РѕРєРµРґ РґР»СЏ РРџ
         if (!newcl.isIP())
             newcl.setJ_code_sector(fields[17]);
         else
@@ -528,7 +528,7 @@ public class ClientJViewCtrl extends AbstractClientController {
             sap_list.setModel(new BindingListModelList(listFromSap, true));
         } else {
             sap_list.setModel(new ListModelList());
-            alert("Поиск не дал результатов");
+            alert("РџРѕРёСЃРє РЅРµ РґР°Р» СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ");
         }
     }
 
@@ -554,8 +554,8 @@ public class ClientJViewCtrl extends AbstractClientController {
             atachments.setModel(new BindingListModelList(convertToLocalAttachments(sapClient.getAttachments()), true));
         }
         ClientJ fetchedFromSap = Mappers.mapToClientJ(sapClient);
-        // filter = new ClientJFilter(); //хамза, комментировал в 21,11,2017
-        filter.clearFilterFields();// новый метод от 21,11,2017
+        // filter = new ClientJFilter(); //С…Р°РјР·Р°, РєРѕРјРјРµРЅС‚РёСЂРѕРІР°Р» РІ 21,11,2017
+        filter.clearFilterFields();// РЅРѕРІС‹Р№ РјРµС‚РѕРґ РѕС‚ 21,11,2017
         filter.setJ_number_tax_registration(fetchedFromSap.getJ_number_tax_registration());
         if (fetchedFromSap.getJ_number_tax_registration() == null
                 || fetchedFromSap.getCode_type().equals(ClientUtil.CODE_TYPE_IP)) {
@@ -610,7 +610,7 @@ public class ClientJViewCtrl extends AbstractClientController {
     private ClientJAttachmentService clientJAttachmentService = new ClientJAttachmentService();
 
     public void onClick$btn_deleteFile() throws InterruptedException {
-        Messagebox.show("Вы действительно хотите выполнить удалить документ :" ,"",
+        Messagebox.show("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РІС‹РїРѕР»РЅРёС‚СЊ СѓРґР°Р»РёС‚СЊ РґРѕРєСѓРјРµРЅС‚ :" ,"",
                 Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION, new EventListener() {
 
                     @Override
@@ -648,11 +648,11 @@ public class ClientJViewCtrl extends AbstractClientController {
 	/*
 	 * public void onUpload$btn_sendFile(UploadEvent event) { try { Media media
 	 * = event.getMedia(); if (CheckNull.isEmpty(attch_types.getValue())) {
-	 * Messagebox.show("Выберите тип документа"); return; } if (media.getName()
+	 * Messagebox.show("Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°"); return; } if (media.getName()
 	 * == null || media.getName().length() >= 18) { Messagebox.show(
-	 * "Длина имени файла не должна быть больше либо равно 18 знакам: " +
+	 * "Р”Р»РёРЅР° РёРјРµРЅРё С„Р°Р№Р»Р° РЅРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ Р»РёР±Рѕ СЂР°РІРЅРѕ 18 Р·РЅР°РєР°Рј: " +
 	 * media.getName()); return; } if (!FileUtil.isValidName(media.getName())) {
-	 * Messagebox.show("Неверное название файла"); return; } if (media != null)
+	 * Messagebox.show("РќРµРІРµСЂРЅРѕРµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°"); return; } if (media != null)
 	 * { byte[] data =
 	 * org.apache.commons.io.IOUtils.toByteArray(media.getStreamData());
 	 * 
@@ -662,7 +662,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 	 * 
 	 * organizationService.sendAttacments(current, attachments); } } catch
 	 * (Exception e) { e.printStackTrace(); alert(e.getMessage()); return; }
-	 * refreshAtachmentList(); alert("Файл Загружен"); }
+	 * refreshAtachmentList(); alert("Р¤Р°Р№Р» Р—Р°РіСЂСѓР¶РµРЅ"); }
 	 */
 
     public void onChange$attch_types(InputEvent event) {
@@ -676,21 +676,21 @@ public class ClientJViewCtrl extends AbstractClientController {
     public void onUpload$btn_sendFile(UploadEvent event) throws Exception {
         Media media = event.getMedia();
         if (CheckNull.isEmpty(attch_types.getValue())) {
-            Messagebox.show("Выберите тип документа");
+            Messagebox.show("Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°");
             return;
         }
         if (CheckNull.isEmpty(documentDate.getValue())) {
-            Messagebox.show("Выберите дата");
+            Messagebox.show("Р’С‹Р±РµСЂРёС‚Рµ РґР°С‚Р°");
             return;
         }
 
         // if (media.getName() == null || media.getName().length() >= 18) {
-        // Messagebox.show("Длина имени файла не должна быть больше либо равно
-        // 18 знакам: " + media.getName());
+        // Messagebox.show("Р”Р»РёРЅР° РёРјРµРЅРё С„Р°Р№Р»Р° РЅРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ Р»РёР±Рѕ СЂР°РІРЅРѕ
+        // 18 Р·РЅР°РєР°Рј: " + media.getName());
         // return;
         // }
         // if (!FileUtil.isValidName(media.getName())) {
-        // Messagebox.show("Неверное название файла");
+        // Messagebox.show("РќРµРІРµСЂРЅРѕРµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°");
         // return;
         // }
         if (media != null) {
@@ -712,18 +712,18 @@ public class ClientJViewCtrl extends AbstractClientController {
 
         }
         refreshAtachmentList();
-        Messagebox.show("Файл Загружен");
+        Messagebox.show("Р¤Р°Р№Р» Р—Р°РіСЂСѓР¶РµРЅ");
     }
 
     public void onClick$btn_nibbd() {
         initNibbd(null);
     }
     
-//	--  Кнопка "Утвердить"
+//	--  РљРЅРѕРїРєР° "РЈС‚РІРµСЂРґРёС‚СЊ"
 	public void onClick$btn_approve() {
 		type_close_name.setModel(new ListModelList(ClientJService.getCloseType(alias)));
 		
-		if(newcl.getName() != null) {
+		if(current.getName() != null) {
 			wind_approve.setVisible(true);
 		} else {
 			wind_approve.setVisible(false);
@@ -731,47 +731,53 @@ public class ClientJViewCtrl extends AbstractClientController {
 		
 	}
 	
-//	--  Кнопка - 'Запросить НИББД'
+//	--  РљРЅРѕРїРєР° - 'Р—Р°РїСЂРѕСЃРёС‚СЊ РќРР‘Р‘Р”'
+	@SuppressWarnings("unused")
 	public void onClick$btn_send$wind_approve() {
 		
-		ClientJ clientJ = new ClientJ();
+//		ClientJ clientJ = new ClientJ();
+		String clientJ = null;
 		ResInn resInn = null;
 
 		try {
-			clientJ.setJ_number_tax_registration(newcl.getJ_number_tax_registration());
+			clientJ = current.getJ_number_tax_registration();
 			resInn = ClientJService.sendInn(clientJ, un, pw);
 			if (resInn.getCode().equals("02000")) {
-				alert("Код: " + resInn.getCode() + " Cообщение: " + resInn.getMessage());
+				alert("РљРѕРґ: " + resInn.getCode() + " CРѕРѕР±С‰РµРЅРёРµ: " + resInn.getMessage());
+			} else if (resInn == null) {
+				alert("РќРµС‚ СЃРѕРµРґРёРЅРµРЅРёРµ СЃ Р°РґСЂРµСЃРѕРј: " + ClientJService.getUrl());
 			} else {
-				alert("Код ошибки: " + resInn.getCode() + " Cообщение: " + resInn.getMessage());
+				alert("РљРѕРґ: " + resInn.getCode() + " CРѕРѕР±С‰РµРЅРёРµ: " + resInn.getMessage());
+				ISLogger.getLogger().error("ResInn objectMapper.readValue. content: " + resInn.getCode());
+				ISLogger.getLogger().error("ResInn objectMapper.readValue error: " + resInn.getMessage());
 			}
 			
 //			if(account.getValue() == null){
-//			    alert("Пустой ввод не разрешен в поле '''Код счета клиента''' ");
+//			    alert("РџСѓСЃС‚РѕР№ РІРІРѕРґ РЅРµ СЂР°Р·СЂРµС€РµРЅ РІ РїРѕР»Рµ '''РљРѕРґ СЃС‡РµС‚Р° РєР»РёРµРЅС‚Р°''' ");
 //			} else if(currency.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Валюта''' ");
+//				alert("РџСѓСЃС‚РѕР№ РІРІРѕРґ РЅРµ СЂР°Р·СЂРµС€РµРЅ РІ РїРѕР»Рµ '''Р’Р°Р»СЋС‚Р°''' ");
 //			} else if(id_order.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Порядковый номер счета''' ");
+//				alert("РџСѓСЃС‚РѕР№ РІРІРѕРґ РЅРµ СЂР°Р·СЂРµС€РµРЅ РІ РїРѕР»Рµ '''РџРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ СЃС‡РµС‚Р°''' ");
 //			} else if(type_close_id.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Вид закрытия''' ");
+//				alert("РџСѓСЃС‚РѕР№ РІРІРѕРґ РЅРµ СЂР°Р·СЂРµС€РµРЅ РІ РїРѕР»Рµ '''Р’РёРґ Р·Р°РєСЂС‹С‚РёСЏ''' ");
 //			} else if(type_close_name.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Вид закрытия''' ");
+//				alert("РџСѓСЃС‚РѕР№ РІРІРѕРґ РЅРµ СЂР°Р·СЂРµС€РµРЅ РІ РїРѕР»Рµ '''Р’РёРґ Р·Р°РєСЂС‹С‚РёСЏ''' ");
 //			} else if(id_doc.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Номер документа основания''' ");
+//				alert("РџСѓСЃС‚РѕР№ РІРІРѕРґ РЅРµ СЂР°Р·СЂРµС€РµРЅ РІ РїРѕР»Рµ '''РќРѕРјРµСЂ РґРѕРєСѓРјРµРЅС‚Р° РѕСЃРЅРѕРІР°РЅРёСЏ''' ");
 //			} else if(date_doc.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Дата документа основания''' ");
+//				alert("РџСѓСЃС‚РѕР№ РІРІРѕРґ РЅРµ СЂР°Р·СЂРµС€РµРЅ РІ РїРѕР»Рµ '''Р”Р°С‚Р° РґРѕРєСѓРјРµРЅС‚Р° РѕСЃРЅРѕРІР°РЅРёСЏ''' ");
 //			} else if(acc.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Лицевой счет''' ");
+//				alert("РџСѓСЃС‚РѕР№ РІРІРѕРґ РЅРµ СЂР°Р·СЂРµС€РµРЅ РІ РїРѕР»Рµ '''Р›РёС†РµРІРѕР№ СЃС‡РµС‚''' ");
 //			}
 		} catch (Exception e) {
-			alert("Код ошибки: " + resInn.getCode() + " Cообщение: " + resInn.getMessage());
-			ISLogger.getLogger().error("ResInn objectMapper.readValue. content: " + resInn.getCode());
-			ISLogger.getLogger().error("ResInn objectMapper.readValue error: " + resInn.getMessage());
+			alert("РќРµС‚ СЃРѕРµРґРёРЅРµРЅРёРµ СЃ Р°РґСЂРµСЃРѕРј: " + ClientJService.getUrl());
+			e.printStackTrace();
+			ISLogger.getLogger().error(e.getMessage());
 		}
 
 	}
 	
-//	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ИНН'
+//	--  РњРµРЅСЋ РєРЅРѕРїРєР° - 'РРґРµРЅС‚РёС„РёРєР°С†РёСЏ СЃСѓР±СЉРµРєС‚Р°(Р®Р›) РїРѕ РРќРќ'
 	public void onClick$btn_subInn() {
 		wind_approve.setVisible(true);
 
@@ -779,7 +785,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 
     public void onClick$btn_fetch_ebp() {
         if (CheckNull.isEmpty(newcl.getCode_type())) {
-            alert("Введите тип клиента");
+            alert("Р’РІРµРґРёС‚Рµ С‚РёРї РєР»РёРµРЅС‚Р°");
             return;
         }
 
@@ -792,7 +798,7 @@ public class ClientJViewCtrl extends AbstractClientController {
                 //        .mapIndividualDetails(EbpService.individualDetails(null, newcl.getJ_number_tax_registration()));
 
                 if (CheckNull.isEmpty(newcl.getP_pinfl())) {
-                    alert("Введите ПИНФЛ");
+                    alert("Р’РІРµРґРёС‚Рµ РџРРќР¤Р›");
                     return;
                 }
             	
@@ -803,7 +809,7 @@ public class ClientJViewCtrl extends AbstractClientController {
             } else {
 
                 if (CheckNull.isEmpty(newcl.getJ_number_tax_registration())) {
-                    alert("Введите ИНН");
+                    alert("Р’РІРµРґРёС‚Рµ РРќРќ");
                     return;
                 }
             	
@@ -811,7 +817,7 @@ public class ClientJViewCtrl extends AbstractClientController {
                         EbpService.legalEntityDetails(null, newcl.getJ_number_tax_registration()));
             }
             if (ebpClient != null) {
-                // Сохраняем старые значения
+                // РЎРѕС…СЂР°РЅСЏРµРј СЃС‚Р°СЂС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
                 String code_organ_direct = newcl.getJ_code_organ_direct();
                 String code_country_address = newcl.getAddressCountry();
                 String pinfl = newcl.getP_pinfl();                
@@ -839,7 +845,7 @@ public class ClientJViewCtrl extends AbstractClientController {
                 binder.loadAll();
                 showCodesForNewcl();
             } else {
-                throw new RuntimeException("Клиент не найден!");
+                throw new RuntimeException("РљР»РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ!");
             }
         } catch (Exception e) {
             logger.error(CheckNull.getPstr(e));
@@ -849,7 +855,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 
     public void onClick$btn_fetch_sap() {
         if (CheckNull.isEmpty(newcl.getJ_number_tax_registration())) {
-            alert("Введите ИНН");
+            alert("Р’РІРµРґРёС‚Рµ РРќРќ");
             return;
         }
         BusinessOrganizationComplex boc = organizationService.getDetailsByInn(newcl.getJ_number_tax_registration());
@@ -902,7 +908,7 @@ public class ClientJViewCtrl extends AbstractClientController {
     @Override
     protected void openClient(int action) {
         if (newcl.getCode_type() == null)
-            throw new RuntimeException("Выберите тип клиента ");
+            throw new RuntimeException("Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РєР»РёРµРЅС‚Р° ");
 
         // iterate(addgrd);
         if (!check_some_fields_to_open()) {
@@ -933,7 +939,7 @@ public class ClientJViewCtrl extends AbstractClientController {
             return;
         }
         String currentId = res.getName();
-        filter.clearFilterFields();// новый метод от 21,11,2017
+        filter.clearFilterFields();// РЅРѕРІС‹Р№ РјРµС‚РѕРґ РѕС‚ 21,11,2017
         filter.setId_client(currentId);
 
 
@@ -943,11 +949,11 @@ public class ClientJViewCtrl extends AbstractClientController {
 
     void confirmAction(final int action) {
         if (!cl_tabs.isVisible() || current == null) {
-            alert("Выберите клиента");
+            alert("Р’С‹Р±РµСЂРёС‚Рµ РєР»РёРµРЅС‚Р°");
             return;
         }
         try {
-            Messagebox.show("вы действительно хотите выполнить действие:" + actionsMap.get(action) + "?", "",
+            Messagebox.show("РІС‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РІС‹РїРѕР»РЅРёС‚СЊ РґРµР№СЃС‚РІРёРµ:" + actionsMap.get(action) + "?", "",
                     Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION, new EventListener() {
 
                         @Override
@@ -972,11 +978,11 @@ public class ClientJViewCtrl extends AbstractClientController {
             current.setJ_sign_trade(j_sign_trade.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
             current.setJ_small_business(j_small_business.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
             if (action == 4 && !current.hasObjectiveChanges(copyOfCurrent)) {
-                alert("Нет измененных данных для изменения объективных данных");
+                alert("РќРµС‚ РёР·РјРµРЅРµРЅРЅС‹С… РґР°РЅРЅС‹С… РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ РѕР±СЉРµРєС‚РёРІРЅС‹С… РґР°РЅРЅС‹С…");
                 return;
             }
             if (action == 19 && current.hasObjectiveChanges(copyOfCurrent)) {
-                alert("Затронуты объективные данные");
+                alert("Р—Р°С‚СЂРѕРЅСѓС‚С‹ РѕР±СЉРµРєС‚РёРІРЅС‹Рµ РґР°РЅРЅС‹Рµ");
                 current.rollBackObjectiveChanges(copyOfCurrent);
                 current.setName(copyOfCurrent.getName());
                 binder.loadAll();
@@ -984,13 +990,13 @@ public class ClientJViewCtrl extends AbstractClientController {
             }
             if ((action == ClientUtil.ACTION_CHANGE || action == ClientUtil.ACTION_CONFIRM_CLOSED)
                     && !CheckClient.isTaxNumberValid(current.getJ_number_tax_registration(), alias)) {
-                alert("Неверный ИНН");
+                alert("РќРµРІРµСЂРЅС‹Р№ РРќРќ");
                 return;
             }
 
             Validator<ClientJ> check = CheckClient.checkExisting(alias, action);
             if (!check.isValid(current)) {
-                alert("Ошибка вводных данных :" + check.getMessage());
+                alert("РћС€РёР±РєР° РІРІРѕРґРЅС‹С… РґР°РЅРЅС‹С… :" + check.getMessage());
                 return;
             }
             // hamza 2017-11-23
@@ -1009,7 +1015,7 @@ public class ClientJViewCtrl extends AbstractClientController {
             return;
         }
         // filter = new ClientJFilter();
-        filter.clearFilterFields();// новый метод от 21,11,2017
+        filter.clearFilterFields();// РЅРѕРІС‹Р№ РјРµС‚РѕРґ РѕС‚ 21,11,2017
         filter.setJ_number_tax_registration(current.getJ_number_tax_registration());
         if (current.getJ_number_tax_registration() == null) {
         	filter.setP_pinfl(current.getP_pinfl());
@@ -1119,7 +1125,7 @@ public class ClientJViewCtrl extends AbstractClientController {
             });
             actions_bar.appendChild(button);
         }
-        button = new Toolbarbutton("Сравнить с данными SAP и ЕБП");
+        button = new Toolbarbutton("РЎСЂР°РІРЅРёС‚СЊ СЃ РґР°РЅРЅС‹РјРё SAP Рё Р•Р‘Рџ");
         button.setImage("/images/z-sap.png");
         button.addEventListener(Events.ON_CLICK, new EventListener() {
 
@@ -1130,8 +1136,8 @@ public class ClientJViewCtrl extends AbstractClientController {
         });
         actions_bar.appendChild(button);
       
-        // --- в эксел
-        button = new Toolbarbutton("в MS WORD");
+        // --- РІ СЌРєСЃРµР»
+        button = new Toolbarbutton("РІ MS WORD");
         button.setImage("/images/word.png");
         button.addEventListener(Events.ON_CLICK, new EventListener() {
             @Override
@@ -1142,7 +1148,7 @@ public class ClientJViewCtrl extends AbstractClientController {
         actions_bar.appendChild(button);
         //
         if (mode != null && mode.equals(ClientUtil.MODE_DELTA)) {
-            button = new Toolbarbutton("Отправить в SAP");
+            button = new Toolbarbutton("РћС‚РїСЂР°РІРёС‚СЊ РІ SAP");
             button.addEventListener(Events.ON_CLICK, new EventListener() {
 
                 @Override
@@ -1153,7 +1159,7 @@ public class ClientJViewCtrl extends AbstractClientController {
                     }
                     try {
                         organizationService.createIfAbsent(current);
-                        alert("Успешно!");
+                        alert("РЈСЃРїРµС€РЅРѕ!");
                     } catch (Exception e) {
                         alert(e.getMessage());
                     }
@@ -1254,7 +1260,7 @@ public class ClientJViewCtrl extends AbstractClientController {
     }
 
     private void createSAPOrg() throws InterruptedException {
-        Messagebox.show("вы действительно хотите выполнить действие: открыть?", "", Messagebox.OK | Messagebox.CANCEL,
+        Messagebox.show("РІС‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РІС‹РїРѕР»РЅРёС‚СЊ РґРµР№СЃС‚РІРёРµ: РѕС‚РєСЂС‹С‚СЊ?", "", Messagebox.OK | Messagebox.CANCEL,
                 Messagebox.QUESTION, new EventListener() {
 
                     @Override
@@ -1270,192 +1276,192 @@ public class ClientJViewCtrl extends AbstractClientController {
     public boolean check_some_fields_to_open() {
         err_msg = "";
         if (!CheckNull.isEmpty(acode_country_value.getValue()) && CheckNull.isEmpty(acode_country.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страна";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅР°";
             return false;
         }
         if (!CheckNull.isEmpty(aaddressCountryText.getValue()) && CheckNull.isEmpty(aaddressCountry.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страна";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅР°";
             return false;
         }
         if (!CheckNull.isEmpty(aregionValue.getValue()) && CheckNull.isEmpty(aj_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР°";
             return false;
         }
         if (!CheckNull.isEmpty(adistrValue.getValue()) && CheckNull.isEmpty(aj_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР°";
             return false;
         }
         if (!CheckNull.isEmpty(atax_orgValue.getValue()) && CheckNull.isEmpty(aj_code_tax_org.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код налоговой.";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№.";
             return false;
         }
         if (!CheckNull.isEmpty(aopfValue.getValue()) && CheckNull.isEmpty(aj_opf.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код ОПФ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РћРџР¤";
             return false;
         }
         if (!CheckNull.isEmpty(aformValue.getValue()) && CheckNull.isEmpty(acode_form.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код формы собственности";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ С„РѕСЂРјС‹ СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё";
             return false;
         }
         if (!code_type.getValue().equalsIgnoreCase(ClientUtil.CODE_TYPE_IP)
                 && !CheckNull.isEmpty(asectorValue.getValue()) && CheckNull.isEmpty(aj_code_sector.getValue())
                 && !asectorValue.getValue().equals("0")) {
-            err_msg = "Неправильное значение в поле:  ОКЕД ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РћРљР•Р” ";
             return false;
         }
         if (!CheckNull.isEmpty(acl_activity_type_idValue.getValue())
                 && CheckNull.isEmpty(acl_activity_type_id.getValue())) {
-            err_msg = "Неправильное значение в поле:  Вид деятельности";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё";
             return false;
         }
         if (!CheckNull.isEmpty(aorgan_directValue.getValue()) && CheckNull.isEmpty(aj_code_organ_direct.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код орган управления";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РѕСЂРіР°РЅ СѓРїСЂР°РІР»РµРЅРёСЏ";
             return false;
         }
         if (!CheckNull.isEmpty(atype_non_residentValue.getValue())
                 && CheckNull.isEmpty(atype_non_resident.getValue())) {
-            err_msg = "Неправильное значение в поле:  Тип нерезидентности";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РўРёРї РЅРµСЂРµР·РёРґРµРЅС‚РЅРѕСЃС‚Рё";
             return false;
         }
         if (!CheckNull.isEmpty(ap_type_document_text.getValue()) && CheckNull.isEmpty(ap_type_document.getValue())) {
-            err_msg = "Неправильное значение в поле:  Тип документа ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РўРёРї РґРѕРєСѓРјРµРЅС‚Р° ";
             return false;
         }
         if (!CheckNull.isEmpty(ap_pass_place_region_text.getValue())
                 && CheckNull.isEmpty(ap_pass_place_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° ";
             return false;
         }
         if (!CheckNull.isEmpty(ap_pass_place_distr_text.getValue())
                 && CheckNull.isEmpty(ap_pass_place_district.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° ";
             return false;
         }
         if (!CheckNull.isEmpty(ap_code_citizenship_text.getValue())
                 && CheckNull.isEmpty(ap_code_citizenship.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код гражданство ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ ";
             return false;
         }
         if ((!CheckNull.isEmpty(acode_type.getValue()) && acode_type.getValue().equals(ClientUtil.CODE_TYPE_IP))
                 && !CheckNull.isEmpty(acountryValue1.getValue()) && CheckNull.isEmpty(acode_country1.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страна-местожителство";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅР°-РјРµСЃС‚РѕР¶РёС‚РµР»СЃС‚РІРѕ";
             return false;
         }
         if (!CheckNull.isEmpty(ap_code_adr_region_text.getValue())
                 && CheckNull.isEmpty(ap_code_adr_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона-местожителство ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР°-РјРµСЃС‚РѕР¶РёС‚РµР»СЃС‚РІРѕ ";
             return false;
         }
         if (!CheckNull.isEmpty(ap_code_adr_distr_text.getValue()) && CheckNull.isEmpty(ap_code_adr_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района-местожителство";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР°-РјРµСЃС‚РѕР¶РёС‚РµР»СЃС‚РІРѕ";
             return false;
         }
         if (!CheckNull.isEmpty(ap_code_tax_orgValue.getValue()) && CheckNull.isEmpty(ap_code_tax_org.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код налоговой для ФЛ. ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№ РґР»СЏ Р¤Р›. ";
             return false;
         }
         if (!CheckNull.isEmpty(abankValue.getValue()) && CheckNull.isEmpty(aj_code_bank.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код банка";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ Р±Р°РЅРєР°";
             return false;
         }
         if (!CheckNull.isEmpty(aiopfValue.getValue()) && CheckNull.isEmpty(ai_opf.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код ОПФ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РћРџР¤";
             return false;
         }
         if (!CheckNull.isEmpty(aiformValue.getValue()) && CheckNull.isEmpty(ai_form.getValue())) {
-            err_msg = "Неправильное значение в поле:  Форма собственности ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  Р¤РѕСЂРјР° СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё ";
             return false;
         }
         if (!CheckNull.isEmpty(aisectorValue.getValue()) && CheckNull.isEmpty(ai_sector.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код сектора ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃРµРєС‚РѕСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(aiorgan_directValue.getValue()) && CheckNull.isEmpty(ai_organ_direct.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код орган управления ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РѕСЂРіР°РЅ СѓРїСЂР°РІР»РµРЅРёСЏ ";
             return false;
         }
         if (!CheckNull.isEmpty(aswift_idValue.getValue()) && CheckNull.isEmpty(aswift_id.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код свифт";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃРІРёС„С‚";
             return false;
         }
         if (!CheckNull.isEmpty(adirector_type_document_text.getValue())
                 && CheckNull.isEmpty(adirector_type_document.getValue())) {
-            err_msg = "Неправильное значение в поле:  Тип документа директора ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РўРёРї РґРѕРєСѓРјРµРЅС‚Р° РґРёСЂРµРєС‚РѕСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(adirector_pass_place_region_text.getValue())
                 && CheckNull.isEmpty(adirector_pass_place_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(adirector_pass_place_distr_text.getValue())
                 && CheckNull.isEmpty(adirector_pass_place_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района директора ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° РґРёСЂРµРєС‚РѕСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(adirector_code_citizenship_text.getValue())
                 && CheckNull.isEmpty(adirector_code_citizenship.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код гражданство директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(adirector_code_country_text.getValue())
                 && CheckNull.isEmpty(adirector_code_country.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страна директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅР° РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(adirector_code_adr_region_text.getValue())
                 && CheckNull.isEmpty(adirector_code_adr_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона директора ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° РґРёСЂРµРєС‚РѕСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(adirector_code_adr_distr_text.getValue())
                 && CheckNull.isEmpty(adirector_code_adr_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(adirector_code_tax_org_text.getValue())
                 && CheckNull.isEmpty(adirector_code_tax_org.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код налоговой директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№ РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(aaccountant_type_document_text.getValue())
                 && CheckNull.isEmpty(aaccountant_type_document.getValue())) {
-            err_msg = "Неправильное значение в поле:  Тип документ бухгалтера ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РўРёРї РґРѕРєСѓРјРµРЅС‚ Р±СѓС…РіР°Р»С‚РµСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(aaccountant_pass_place_region_text.getValue())
                 && CheckNull.isEmpty(aaccountant_pass_place_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(aaccountant_pass_place_distr_text.getValue())
                 && CheckNull.isEmpty(aaccountant_pass_place_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(aaccountant_code_citizenship_text.getValue())
                 && CheckNull.isEmpty(aaccountant_code_citizenship.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код гражданство бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(aaccountant_code_country_text.getValue())
                 && CheckNull.isEmpty(aaccountant_code_country.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страны бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅС‹ Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(aaccountant_code_adr_region_text.getValue())
                 && CheckNull.isEmpty(aaccountant_code_adr_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона адреса бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° Р°РґСЂРµСЃР° Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(aaccountant_code_adr_distr_text.getValue())
                 && CheckNull.isEmpty(aaccountant_code_adr_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района адреса бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° Р°РґСЂРµСЃР° Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(aaccountant_code_tax_org_text.getValue())
                 && CheckNull.isEmpty(aaccountant_code_tax_org.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код налоговой бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№ Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         return true;
@@ -1464,188 +1470,188 @@ public class ClientJViewCtrl extends AbstractClientController {
     public boolean check_some_fields_to_edit() {
         err_msg = "";
         if (!CheckNull.isEmpty(code_country_value.getValue()) && CheckNull.isEmpty(code_country.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страна";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅР°";
             return false;
         }
         if (!CheckNull.isEmpty(addressCountryText.getValue()) && CheckNull.isEmpty(addressCountry.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страна";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅР°";
             return false;
         }
         if (!CheckNull.isEmpty(regionValue.getValue()) && CheckNull.isEmpty(j_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР°";
             return false;
         }
         if (!CheckNull.isEmpty(distrValue.getValue()) && CheckNull.isEmpty(j_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР°";
             return false;
         }
         if (!CheckNull.isEmpty(tax_orgValue.getValue()) && CheckNull.isEmpty(j_code_tax_org.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код налоговой.";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№.";
             return false;
         }
         if (!CheckNull.isEmpty(opfValue.getValue()) && CheckNull.isEmpty(j_opf.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код ОПФ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РћРџР¤";
             return false;
         }
         if (!CheckNull.isEmpty(formValue.getValue()) && CheckNull.isEmpty(code_form.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код формы собственности";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ С„РѕСЂРјС‹ СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё";
             return false;
         }
         if (!CheckNull.isEmpty(sectorValue.getValue()) && CheckNull.isEmpty(j_code_sector.getValue())
                 && !sectorValue.getValue().equals("0")) {
-            err_msg = "Неправильное значение в поле:  ОКЕД ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РћРљР•Р” ";
             return false;
         }
         if (!CheckNull.isEmpty(cl_activity_type_idValue.getValue())
                 && CheckNull.isEmpty(cl_activity_type_id.getValue())) {
-            err_msg = "Неправильное значение в поле:  Вид деятельности";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё";
             return false;
         }
         if (!CheckNull.isEmpty(organ_directValue.getValue()) && CheckNull.isEmpty(j_code_organ_direct.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код орган управления";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РѕСЂРіР°РЅ СѓРїСЂР°РІР»РµРЅРёСЏ";
             return false;
         }
         if (!CheckNull.isEmpty(type_non_residentValue.getValue()) && CheckNull.isEmpty(type_non_resident.getValue())) {
-            err_msg = "Неправильное значение в поле:  Тип нерезидентности";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РўРёРї РЅРµСЂРµР·РёРґРµРЅС‚РЅРѕСЃС‚Рё";
             return false;
         }
         if (!CheckNull.isEmpty(p_type_document_text.getValue()) && CheckNull.isEmpty(p_type_document.getValue())) {
-            err_msg = "Неправильное значение в поле:  Тип документа ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РўРёРї РґРѕРєСѓРјРµРЅС‚Р° ";
             return false;
         }
         if (!CheckNull.isEmpty(p_pass_place_region_text.getValue())
                 && CheckNull.isEmpty(p_pass_place_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° ";
             return false;
         }
         if (!CheckNull.isEmpty(p_pass_place_distr_text.getValue())
                 && CheckNull.isEmpty(p_pass_place_district.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° ";
             return false;
         }
         if (!CheckNull.isEmpty(p_code_citizenship_text.getValue())
                 && CheckNull.isEmpty(p_code_citizenship.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код гражданство ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ ";
             return false;
         }
         if (!CheckNull.isEmpty(countryValue1.getValue()) && CheckNull.isEmpty(code_country1.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страна ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅР° ";
             return false;
         }
         if (!CheckNull.isEmpty(p_code_adr_region_text.getValue()) && CheckNull.isEmpty(p_code_adr_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона-местожителство ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР°-РјРµСЃС‚РѕР¶РёС‚РµР»СЃС‚РІРѕ ";
             return false;
         }
         if (!CheckNull.isEmpty(p_code_adr_distr_text.getValue()) && CheckNull.isEmpty(p_code_adr_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района-местожителство";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР°-РјРµСЃС‚РѕР¶РёС‚РµР»СЃС‚РІРѕ";
             return false;
         }
         if (!CheckNull.isEmpty(p_code_tax_orgValue.getValue()) && CheckNull.isEmpty(p_code_tax_org.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код налоговой для ФЛ. ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№ РґР»СЏ Р¤Р›. ";
             return false;
         }
         if (!CheckNull.isEmpty(bankValue.getValue()) && CheckNull.isEmpty(j_code_bank.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код банка";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ Р±Р°РЅРєР°";
             return false;
         }
         if (!CheckNull.isEmpty(iopfValue.getValue()) && CheckNull.isEmpty(i_opf.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код ОПФ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РћРџР¤";
             return false;
         }
         if (!CheckNull.isEmpty(iformValue.getValue()) && CheckNull.isEmpty(i_form.getValue())) {
-            err_msg = "Неправильное значение в поле:  Форма собственности ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  Р¤РѕСЂРјР° СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё ";
             return false;
         }
         if (!CheckNull.isEmpty(isectorValue.getValue()) && CheckNull.isEmpty(i_sector.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код сектора ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃРµРєС‚РѕСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(iorgan_directValue.getValue()) && CheckNull.isEmpty(i_organ_direct.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код орган управления ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РѕСЂРіР°РЅ СѓРїСЂР°РІР»РµРЅРёСЏ ";
             return false;
         }
         if (!CheckNull.isEmpty(swift_idValue.getValue()) && CheckNull.isEmpty(swift_id.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код свифт";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃРІРёС„С‚";
             return false;
         }
         if (!CheckNull.isEmpty(director_type_document_text.getValue())
                 && CheckNull.isEmpty(director_type_document.getValue())) {
-            err_msg = "Неправильное значение в поле:  Тип документа директора ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РўРёРї РґРѕРєСѓРјРµРЅС‚Р° РґРёСЂРµРєС‚РѕСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(director_pass_place_region_text.getValue())
                 && CheckNull.isEmpty(director_pass_place_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(director_pass_place_distr_text.getValue())
                 && CheckNull.isEmpty(director_pass_place_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района директора ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° РґРёСЂРµРєС‚РѕСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(director_code_citizenship_text.getValue())
                 && CheckNull.isEmpty(director_code_citizenship.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код гражданство директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(director_code_country_text.getValue())
                 && CheckNull.isEmpty(director_code_country.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страна директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅР° РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(director_code_adr_region_text.getValue())
                 && CheckNull.isEmpty(director_code_adr_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона директора ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° РґРёСЂРµРєС‚РѕСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(director_code_adr_distr_text.getValue())
                 && CheckNull.isEmpty(director_code_adr_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(director_code_tax_org_text.getValue())
                 && CheckNull.isEmpty(director_code_tax_org.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код налоговой директора";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№ РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(accountant_type_document_text.getValue())
                 && CheckNull.isEmpty(accountant_type_document.getValue())) {
-            err_msg = "Неправильное значение в поле:  Тип документ бухгалтера ";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РўРёРї РґРѕРєСѓРјРµРЅС‚ Р±СѓС…РіР°Р»С‚РµСЂР° ";
             return false;
         }
         if (!CheckNull.isEmpty(accountant_pass_place_region_text.getValue())
                 && CheckNull.isEmpty(accountant_pass_place_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(accountant_pass_place_distr_text.getValue())
                 && CheckNull.isEmpty(accountant_pass_place_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(accountant_code_citizenship_text.getValue())
                 && CheckNull.isEmpty(accountant_code_citizenship.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код гражданство бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(accountant_code_country_text.getValue())
                 && CheckNull.isEmpty(accountant_code_country.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код страны бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЃС‚СЂР°РЅС‹ Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(accountant_code_adr_region_text.getValue())
                 && CheckNull.isEmpty(accountant_code_adr_region.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код региона адреса бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂРµРіРёРѕРЅР° Р°РґСЂРµСЃР° Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(accountant_code_adr_distr_text.getValue())
                 && CheckNull.isEmpty(accountant_code_adr_distr.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код района адреса бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ СЂР°Р№РѕРЅР° Р°РґСЂРµСЃР° Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
         if (!CheckNull.isEmpty(accountant_code_tax_org_text.getValue())
                 && CheckNull.isEmpty(accountant_code_tax_org.getValue())) {
-            err_msg = "Неправильное значение в поле:  Код налоговой бухгалтера";
+            err_msg = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№ Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
 
