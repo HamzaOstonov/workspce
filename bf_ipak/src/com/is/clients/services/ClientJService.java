@@ -788,6 +788,35 @@ public class ClientJService {
 			ISLogger.getLogger().error("RequestOpenClientForEdit objectMapper.readValue. content is \"\" or null.");
 		return str;
 	}
+	
+	public static ResInn sendPinfl(String query, String un, String pw ) throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		ResInn str = null;
+		String url = getUrl()+ "getSubjectByPin/014/00444";
+
+
+		String p_data = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(query);
+
+		System.out.println(p_data);
+
+		String content = sendData(url, p_data, un, pw);
+
+		String contNew = new String(content.getBytes(), "UTF-8");
+
+		if (!contNew.equals(""))
+			try {
+				str = objectMapper.readValue(contNew, ResInn.class);
+			} catch (Exception e) { 
+				str.setCode("-1");
+				str.setMessage(e.getMessage());
+				ISLogger.getLogger().error("RequestOpenClientForEdit objectMapper.readValue. content: " + contNew);
+				ISLogger.getLogger().error("RequestOpenClientForEdit objectMapper.readValue error: " + e.getMessage());
+				throw new Exception("RequestOpenClientForEdit objectMapper.readValue error: " + e.getMessage());
+			}
+		else
+			ISLogger.getLogger().error("RequestOpenClientForEdit objectMapper.readValue. content is \"\" or null.");
+		return str;
+	}
     
     public static String sendData(String p_url, String p_data, String un, String pw) {
 

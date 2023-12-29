@@ -540,7 +540,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 
 	public void onClick$btn_open() {
 		try {
-			Messagebox.show("вы действительно хотите выполнить действие: открыть?", "",
+			Messagebox.show("РІС‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РІС‹РїРѕР»РЅРёС‚СЊ РґРµР№СЃС‚РІРёРµ: РѕС‚РєСЂС‹С‚СЊ?", "",
 					Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION, new EventListener() {
 
 						@Override
@@ -657,11 +657,11 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 		switch (searchMode) {
 		case DIR_NEW:
 			newcl.setDirector(person);
-			adir_caption.setLabel("Бухгалтер - " + person.getName());
+			adir_caption.setLabel("Р‘СѓС…РіР°Р»С‚РµСЂ - " + person.getName());
 			break;
 		case ACC_NEW:
 			newcl.setAccountant(person);
-			aacc_caption.setLabel("Директор - " + person.getName());
+			aacc_caption.setLabel("Р”РёСЂРµРєС‚РѕСЂ - " + person.getName());
 			break;
 		case DIR_FOR_CURRENT:
 			current.setDirector(person);
@@ -734,7 +734,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	public void onClick$btn_cancel() {
 		if (filterdiv.isVisible()) {
 			// filter = new ClientJFilter();
-			filter.clearFilterFields();// новый метод от 21,11,2017
+			filter.clearFilterFields();// РЅРѕРІС‹Р№ РјРµС‚РѕРґ РѕС‚ 21,11,2017
 		}
 		onClick$btn_back();
 		refreshModel(_startPageNumber, false);
@@ -743,7 +743,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	public void onClick$btn_refresh() {
 		if (grd.isVisible()) {
 			// filter = new ClientJFilter();
-			filter.clearFilterFields();// новый метод от 21,11,2017
+			filter.clearFilterFields();// РЅРѕРІС‹Р№ РјРµС‚РѕРґ РѕС‚ 21,11,2017
 			refreshModel(_startPageNumber, true);
 		} else if (cl_tabs.isVisible() && cl_tabs.getSelectedIndex() == 0) {
 			refreshCurrent();
@@ -774,7 +774,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 
 	public void onClick$btn_clear() {
 		// filter = new ClientJFilter();
-		filter.clearFilterFields();// новый метод от 21,11,2017
+		filter.clearFilterFields();// РЅРѕРІС‹Р№ РјРµС‚РѕРґ РѕС‚ 21,11,2017
 		ZkUtils.clearForm(filterdiv);
 		fsign_registr1.setChecked(false);
 		fsign_registr3.setChecked(false);
@@ -868,7 +868,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 			rowIpViewPatentExp.setVisible(isIp || isAllowed);
 			Label j_patent_expiration_label = (Label) j_patent_expiration.getPreviousSibling();
 			j_patent_expiration_label
-					.setValue(isAllowed == true ? "Срок действия аккредитация" : "Срок действия патента");
+					.setValue(isAllowed == true ? "РЎСЂРѕРє РґРµР№СЃС‚РІРёСЏ Р°РєРєСЂРµРґРёС‚Р°С†РёСЏ" : "РЎСЂРѕРє РґРµР№СЃС‚РІРёСЏ РїР°С‚РµРЅС‚Р°");
 		}
 	}
 
@@ -1029,8 +1029,8 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 			// aj_patent_expiration.setDisabled(!(isIp || isAllowed));
 			rowIpViewPatentExpNew.setVisible(isIp || isAllowed);
 			Label j_patent_expiration_label = (Label) aj_patent_expiration.getPreviousSibling();
-			String patent_expiration_label_value = isAllowed == true ? "Срок действия аккредитации"
-					: "Срок действия патента";
+			String patent_expiration_label_value = isAllowed == true ? "РЎСЂРѕРє РґРµР№СЃС‚РІРёСЏ Р°РєРєСЂРµРґРёС‚Р°С†РёРё"
+					: "РЎСЂРѕРє РґРµР№СЃС‚РІРёСЏ РїР°С‚РµРЅС‚Р°";
 			j_patent_expiration_label.setValue(patent_expiration_label_value);
 		}
 	}
@@ -1253,7 +1253,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 		soogunWnd.setVisible(true);
 		soogunWnd.doModal();
 		soogunWnd.setClosable(true);
-		soogunWnd.setTitle("Органы управления");
+		soogunWnd.setTitle("РћСЂРіР°РЅС‹ СѓРїСЂР°РІР»РµРЅРёСЏ");
 		soogunWnd.setMaximizable(true);
 		soogunWnd.addEventListener("onNotifySoogun", new EventListener() {
 			@Override
@@ -1792,7 +1792,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 		//row_OKED_new.setVisible(!isIp);
 		aj_short_name.setVisible(!isIp);
 		// 05-03-2018
-		// Label для сокращенного наименования
+		// Label РґР»СЏ СЃРѕРєСЂР°С‰РµРЅРЅРѕРіРѕ РЅР°РёРјРµРЅРѕРІР°РЅРёСЏ
 		aj_short_name_label.setVisible(!isIp);
 	}
 
@@ -1922,7 +1922,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 
 	public void onChange$p_pass_place_district() {
 		p_pass_place_distr_text.setValue(p_pass_place_district.getValue());
-		String text = p_pass_place_region.getText() + " " + p_pass_place_district.getText() + " " + "ИИБ";
+		String text = p_pass_place_region.getText() + " " + p_pass_place_district.getText() + " " + "РРР‘";
 		p_passport_place_registration.setText(text);
 		current.setP_pass_place_district(p_pass_place_district.getValue());
 		current.setP_passport_place_registration(text);
@@ -1943,7 +1943,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 
 	public void onChange$p_pass_place_distr_text() {
 		p_pass_place_district.setSelecteditem(p_pass_place_distr_text.getValue());
-		String text = p_pass_place_region.getText() + " " + p_pass_place_district.getText() + " " + "ИИБ";
+		String text = p_pass_place_region.getText() + " " + p_pass_place_district.getText() + " " + "РРР‘";
 		p_passport_place_registration.setText(text);
 		current.setP_passport_place_registration(text);
 		current.setP_pass_place_district(p_pass_place_distr_text.getValue());
@@ -2163,7 +2163,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	public void onChange$ap_pass_place_district() {
 		newcl.setP_pass_place_district(ap_pass_place_district.getValue());
 		ap_pass_place_distr_text.setValue(ap_pass_place_district.getValue());
-		String text = ap_pass_place_region.getText() + " " + ap_pass_place_district.getText() + " " + "ИИБ";
+		String text = ap_pass_place_region.getText() + " " + ap_pass_place_district.getText() + " " + "РРР‘";
 		newcl.setP_passport_place_registration(text);
 		ap_passport_place_registration.setText(text);
 		newcl.setP_code_tax_org(DbUtils.getGniByDistrCode(ap_pass_place_district.getValue()));
@@ -2172,7 +2172,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	public void onChange$ap_pass_place_distr_text() {
 		newcl.setP_pass_place_district(ap_pass_place_distr_text.getValue());
 		ap_pass_place_district.setSelecteditem(ap_pass_place_distr_text.getValue());
-		String text = ap_pass_place_region.getText() + " " + ap_pass_place_district.getText() + " " + "ИИБ";
+		String text = ap_pass_place_region.getText() + " " + ap_pass_place_district.getText() + " " + "РРР‘";
 		newcl.setP_passport_place_registration(text);
 		ap_passport_place_registration.setText(text);
 		newcl.setP_code_tax_org(DbUtils.getGniByDistrCode(newcl.getP_pass_place_district()));
@@ -2286,7 +2286,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	 */
 
 	private void names(ClientJ client) {
-		// Конкатенировать только в том случае когда наименование пустое
+		// РљРѕРЅРєР°С‚РµРЅРёСЂРѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РІ С‚РѕРј СЃР»СѓС‡Р°Рµ РєРѕРіРґР° РЅР°РёРјРµРЅРѕРІР°РЅРёРµ РїСѓСЃС‚РѕРµ
 		// 05-03-2018
 		if ((addgrd.isVisible() && StringUtils.isBlank(aname.getValue()))
 				|| (!addgrd.isVisible()) && StringUtils.isBlank(name.getValue())) {
@@ -2449,9 +2449,9 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	public void onChange$adirector_pass_place_distr() {
 		adirector_pass_place_distr_text.setValue(adirector_pass_place_distr.getValue());
 		adirector_passport_place_registration.setText(
-				adirector_pass_place_region.getText() + " " + adirector_pass_place_distr.getText() + " " + "ИИБ");
+				adirector_pass_place_region.getText() + " " + adirector_pass_place_distr.getText() + " " + "РРР‘");
 		newcl.getDirector().setPassport_place_registration(
-				adirector_pass_place_region.getText() + " " + adirector_pass_place_distr.getText() + " " + "ИИБ");
+				adirector_pass_place_region.getText() + " " + adirector_pass_place_distr.getText() + " " + "РРР‘");
 		newcl.getDirector().setPass_place_district(adirector_pass_place_distr.getValue());
 		// newcl.getDirector().setCode_tax_org(DbUtils.getGniByDistrCode(newcl.getDirector().getPass_place_district()));
 	}
@@ -2459,9 +2459,9 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	public void onChange$adirector_pass_place_distr_text() {
 		adirector_pass_place_distr.setSelecteditem(adirector_pass_place_distr_text.getValue());
 		adirector_passport_place_registration.setText(
-				adirector_pass_place_region.getText() + " " + adirector_pass_place_distr.getText() + " " + "ИИБ");
+				adirector_pass_place_region.getText() + " " + adirector_pass_place_distr.getText() + " " + "РРР‘");
 		newcl.getDirector().setPassport_place_registration(
-				adirector_pass_place_region.getText() + " " + adirector_pass_place_distr.getText() + " " + "ИИБ");
+				adirector_pass_place_region.getText() + " " + adirector_pass_place_distr.getText() + " " + "РРР‘");
 		newcl.getDirector().setPass_place_district(adirector_pass_place_distr.getValue());
 		// newcl.getDirector().setCode_tax_org(DbUtils.getGniByDistrCode(newcl.getDirector().getPass_place_district()));
 	}
@@ -2667,9 +2667,9 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	public void onChange$aaccountant_pass_place_distr() {
 		aaccountant_pass_place_distr_text.setValue(aaccountant_pass_place_distr.getValue());
 		aaccountant_passport_place_registration.setText(
-				aaccountant_pass_place_region.getText() + " " + aaccountant_pass_place_distr.getText() + " " + "ИИБ");
+				aaccountant_pass_place_region.getText() + " " + aaccountant_pass_place_distr.getText() + " " + "РРР‘");
 		newcl.getAccountant().setPassport_place_registration(
-				aaccountant_pass_place_region.getText() + " " + aaccountant_pass_place_distr.getText() + " " + "ИИБ");
+				aaccountant_pass_place_region.getText() + " " + aaccountant_pass_place_distr.getText() + " " + "РРР‘");
 		newcl.getAccountant().setPass_place_district(aaccountant_pass_place_distr.getValue());
 		newcl.getAccountant()
 				.setCode_tax_org(DbUtils.getGniByDistrCode(newcl.getAccountant().getPass_place_district()));
@@ -2678,9 +2678,9 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	public void onChange$aaccountant_pass_place_distr_text() {
 		aaccountant_pass_place_distr.setSelecteditem(aaccountant_pass_place_distr_text.getValue());
 		aaccountant_passport_place_registration.setText(
-				aaccountant_pass_place_region.getText() + " " + aaccountant_pass_place_distr.getText() + " " + "ИИБ");
+				aaccountant_pass_place_region.getText() + " " + aaccountant_pass_place_distr.getText() + " " + "РРР‘");
 		newcl.getAccountant().setPassport_place_registration(
-				aaccountant_pass_place_region.getText() + " " + aaccountant_pass_place_distr.getText() + " " + "ИИБ");
+				aaccountant_pass_place_region.getText() + " " + aaccountant_pass_place_distr.getText() + " " + "РРР‘");
 		newcl.getAccountant().setPass_place_district(aaccountant_pass_place_distr.getValue());
 		newcl.getAccountant()
 				.setCode_tax_org(DbUtils.getGniByDistrCode(newcl.getAccountant().getPass_place_district()));
@@ -3351,7 +3351,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 				}
 
 				comboboxList = new ArrayList<RefData>();
-				// создает список комбобоксов с значениями их
+				// СЃРѕР·РґР°РµС‚ СЃРїРёСЃРѕРє РєРѕРјР±РѕР±РѕРєСЃРѕРІ СЃ Р·РЅР°С‡РµРЅРёСЏРјРё РёС…
 				iterate(frm);
 				for (int i = 0; i <= comboboxList.size() - 1; i++) {
 					if (!CheckNull.isEmpty(comboboxList.get(i).getLabel()))

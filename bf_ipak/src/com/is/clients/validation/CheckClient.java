@@ -87,12 +87,12 @@ public class CheckClient extends Validator<ClientJ> {
             Validator<Person> personValidator = PersonValidator.fullCheck(alias);
             client.getDirector().setEmp_id(client.getEmp_id()); //2023.02.27
             if (!personValidator.isValid(client.getDirector())) {
-                message = "Данные директора: " + personValidator.getMessage();
+                message = "Р”Р°РЅРЅС‹Рµ РґРёСЂРµРєС‚РѕСЂР°: " + personValidator.getMessage();
                 return false;
             }
             client.getAccountant().setEmp_id(client.getEmp_id()); //2023.02.27
             if (!personValidator.isValid(client.getAccountant())) {
-                message = "Данные бухгалтера: " + personValidator.getMessage();
+                message = "Р”Р°РЅРЅС‹Рµ Р±СѓС…РіР°Р»С‚РµСЂР°: " + personValidator.getMessage();
                 return false;
             }
         }
@@ -300,30 +300,30 @@ public class CheckClient extends Validator<ClientJ> {
     
     private boolean checkCommonInfo() {
         if (CheckNull.isEmpty(client.getName())) {
-            message = "Введите наименование";
+            message = "Р’РІРµРґРёС‚Рµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ";
             return false;
         }
         if (client.getName() != null && client.getName().length() > 80) {
-            message = "Длина поля Наименование не должна превышать 80 символов";
+            message = "Р”Р»РёРЅР° РїРѕР»СЏ РќР°РёРјРµРЅРѕРІР°РЅРёРµ РЅРµ РґРѕР»Р¶РЅР° РїСЂРµРІС‹С€Р°С‚СЊ 80 СЃРёРјРІРѕР»РѕРІ";
             return false;
         }
         if (CheckNull.isEmpty(client.getCode_country())) {
-            message = "Введите код страны регистрации";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ СЃС‚СЂР°РЅС‹ СЂРµРіРёСЃС‚СЂР°С†РёРё";
             return false;
         }
         if (CheckNull.isEmpty(client.getCode_resident())) {
-            message = "Введите код резидентства";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ СЂРµР·РёРґРµРЅС‚СЃС‚РІР°";
             return false;
         }
         if (CheckNull.isEmpty(client.getCode_type())) {
-            message = "Введите код тип клиента";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ С‚РёРї РєР»РёРµРЅС‚Р°";
             return false;
         }
-        // Если другие типы клиентов не проверять на резидентность
+        // Р•СЃР»Рё РґСЂСѓРіРёРµ С‚РёРїС‹ РєР»РёРµРЅС‚РѕРІ РЅРµ РїСЂРѕРІРµСЂСЏС‚СЊ РЅР° СЂРµР·РёРґРµРЅС‚РЅРѕСЃС‚СЊ
         if (!client.getCode_type().equals("05")){
             if (client.getAddressCountry() != null && client.getCode_resident() != null &&
                     client.getAddressCountry().equals("860") && !client.getCode_resident().equals("1")){
-                message = "Страна адреса не соотвествует резидентности";
+                message = "РЎС‚СЂР°РЅР° Р°РґСЂРµСЃР° РЅРµ СЃРѕРѕС‚РІРµСЃС‚РІСѓРµС‚ СЂРµР·РёРґРµРЅС‚РЅРѕСЃС‚Рё";
                 return false;
             }
         }
@@ -344,36 +344,36 @@ public class CheckClient extends Validator<ClientJ> {
     private boolean checkObjectiveData() {
 
         if (CheckNull.isEmpty(client.getJ_date_registration())) {
-            message = "Введите дату регистрации";
+            message = "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ СЂРµРіРёСЃС‚СЂР°С†РёРё";
             return false;
         }
         if (CheckNull.isEmpty(client.getJ_number_registration_doc())) {
-            message = "Введите регистрационный номер";
+            message = "Р’РІРµРґРёС‚Рµ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ";
             return false;
         }
         if (CheckNull.isEmpty(client.getJ_place_regist_name())) {
-            message = "Введите место регистрации";
+            message = "Р’РІРµРґРёС‚Рµ РјРµСЃС‚Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё";
             return false;
         }
         if (client.getJ_place_regist_name().length() > 50) {
-            message = "Поле \"Место регистрации\" должно содержать не более 50 символов. Длина поля - " + client.getJ_place_regist_name().length();
+            message = "РџРѕР»Рµ \"РњРµСЃС‚Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё\" РґРѕР»Р¶РЅРѕ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ Р±РѕР»РµРµ 50 СЃРёРјРІРѕР»РѕРІ. Р”Р»РёРЅР° РїРѕР»СЏ - " + client.getJ_place_regist_name().length();
             return false;
         }
         if (CheckNull.isEmpty(client.getCode_form())) {
-            message = "Введите форма собственности";
+            message = "Р’РІРµРґРёС‚Рµ С„РѕСЂРјР° СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё";
             return false;
         }
 
         if (new DateTime(client.getJ_date_registration()).isAfter(getOperDay())) {
-            message = "Дата регистрации не может быть больше банковской даты";
+            message = "Р”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ Р±Р°РЅРєРѕРІСЃРєРѕР№ РґР°С‚С‹";
             return false;
         }
         if (CheckNull.isEmpty(client.getJ_region())) {
-            message = "Введите код области";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РѕР±Р»Р°СЃС‚Рё";
             return false;
         }
         if (CheckNull.isEmpty(client.getJ_distr())) {
-            message = "Введите код района";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ СЂР°Р№РѕРЅР°";
             return false;
         }
         return true;
@@ -381,39 +381,39 @@ public class CheckClient extends Validator<ClientJ> {
 
     private boolean checkRest() {
         if (CheckNull.isEmpty(client.substringShortName())) {
-            message = "Введите краткое имя";
+            message = "Р’РІРµРґРёС‚Рµ РєСЂР°С‚РєРѕРµ РёРјСЏ";
             return false;
         }
         if (client.getJ_short_name() != null && client.getJ_short_name().length() > 25) {
-            message = "Длина поля Краткое имя не должна превышать 25 символов";
+            message = "Р”Р»РёРЅР° РїРѕР»СЏ РљСЂР°С‚РєРѕРµ РёРјСЏ РЅРµ РґРѕР»Р¶РЅР° РїСЂРµРІС‹С€Р°С‚СЊ 25 СЃРёРјРІРѕР»РѕРІ";
             return false;
         }
         if (CheckNull.isEmpty(client.getJ_code_organ_direct())) {
-            message = "Введите орган управления";
+            message = "Р’РІРµРґРёС‚Рµ РѕСЂРіР°РЅ СѓРїСЂР°РІР»РµРЅРёСЏ";
             return false;
         }
         if (CheckNull.isEmpty(client.getJ_code_bank())) {
-            message = "Введите код банка";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ Р±Р°РЅРєР°";
             return false;
         }
         if (CheckNull.isEmpty(client.getJ_post_address())) {
-            message = "Введите адрес";
+            message = "Р’РІРµРґРёС‚Рµ Р°РґСЂРµСЃ";
             return false;
         }
         if (client.getJ_fax() != null && client.getJ_fax().length() > 12) {
-            message = "Длина поля Факс не должна превышать 12 символов";
+            message = "Р”Р»РёРЅР° РїРѕР»СЏ Р¤Р°РєСЃ РЅРµ РґРѕР»Р¶РЅР° РїСЂРµРІС‹С€Р°С‚СЊ 12 СЃРёРјРІРѕР»РѕРІ";
             return false;
         }
         if (client.getJ_email() != null && client.getJ_email().length() > 40) {
-            message = "Длина поля Почта не должна превышать 40 символов";
+            message = "Р”Р»РёРЅР° РїРѕР»СЏ РџРѕС‡С‚Р° РЅРµ РґРѕР»Р¶РЅР° РїСЂРµРІС‹С€Р°С‚СЊ 40 СЃРёРјРІРѕР»РѕРІ";
             return false;
         }
         if (!CheckNull.isEmpty(client.getJ_phone()) && !isPhoneCorrect(client.getJ_phone())) {
-            message = "Не верный формат номера телефона - ввод только 12 цифр (998....)";
+            message = "РќРµ РІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ РЅРѕРјРµСЂР° С‚РµР»РµС„РѕРЅР° - РІРІРѕРґ С‚РѕР»СЊРєРѕ 12 С†РёС„СЂ (998....)";
             return false;
         }
         if (!CheckNull.isEmpty(client.getJ_email()) && !EmailValidator.getInstance(true).isValid(client.getJ_email())){
-            message = "Неправильное значение в поле:  - email!";
+            message = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  - email!";
             return false;
         }
         return true;
@@ -422,57 +422,57 @@ public class CheckClient extends Validator<ClientJ> {
 
     private boolean checkJur() {
         if (!isIp() && CheckNull.isEmpty(client.getJ_number_tax_registration())) {
-            message = "Введите ИНН";
+            message = "Р’РІРµРґРёС‚Рµ РРќРќ";
             return false;
         }
         if (!isIp() && client.getJ_number_tax_registration() != null && client.getJ_number_tax_registration().length() != 9) {
-            message = "Длина поля ИНН должна быть равна 9 символов";
+            message = "Р”Р»РёРЅР° РїРѕР»СЏ РРќРќ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ СЂР°РІРЅР° 9 СЃРёРјРІРѕР»РѕРІ";
             return false;
         }
         if (!isIp() && client.getJ_number_tax_registration() != null && client.getJ_number_tax_registration().charAt(0) != '2' &&
                 client.getJ_number_tax_registration().charAt(0) != '3' && client.getJ_number_tax_registration().charAt(0) != '9') {
-            message = "ИНН юридического лица должно начинаться на 2,3 или 9";
+            message = "РРќРќ СЋСЂРёРґРёС‡РµСЃРєРѕРіРѕ Р»РёС†Р° РґРѕР»Р¶РЅРѕ РЅР°С‡РёРЅР°С‚СЊСЃСЏ РЅР° 2,3 РёР»Рё 9";
             return false;
         }
         if (CheckNull.isEmpty(client.getJ_opf())) {
-            message = "Введите орг.-правовая форма";
+            message = "Р’РІРµРґРёС‚Рµ РѕСЂРі.-РїСЂР°РІРѕРІР°СЏ С„РѕСЂРјР°";
             return false;
         }
         if (!isIp() && CheckNull.isEmpty(client.getJ_code_sector())) {
-            message = "Введите код отрасли";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РѕС‚СЂР°СЃР»Рё";
             return false;
         }
         if (!isIp() && CheckNull.isEmpty(client.getJ_code_tax_org())) {
-            message = "Введите код налоговой(ЮЛ)";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РЅР°Р»РѕРіРѕРІРѕР№(Р®Р›)";
             return false;
         }
         if (!isIp() && CheckNull.isEmpty(client.getJ_code_head_organization())) {
-            message = "Введите код головного предприятия";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РіРѕР»РѕРІРЅРѕРіРѕ РїСЂРµРґРїСЂРёСЏС‚РёСЏ";
             return false;
         }
         if (!isIp() && CheckNull.isEmpty(client.getJ_inn_head_organization())) {
-            message = "Введите ИНН гол. предприятия";
+            message = "Р’РІРµРґРёС‚Рµ РРќРќ РіРѕР». РїСЂРµРґРїСЂРёСЏС‚РёСЏ";
             return false;
         }
         if (!isIp() && CheckNull.isEmpty(client.getJ_soato())) {
-            message = "Введите код адреса";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ Р°РґСЂРµСЃР°";
             return false;
         }
 //		if(client.getJ_soato()!=null && client.getJ_soato().length()>8){
-//			message = "Длина поля Код адреса не должна превышать 8 символов";
+//			message = "Р”Р»РёРЅР° РїРѕР»СЏ РљРѕРґ Р°РґСЂРµСЃР° РЅРµ РґРѕР»Р¶РЅР° РїСЂРµРІС‹С€Р°С‚СЊ 8 СЃРёРјРІРѕР»РѕРІ";
 //		}
         if (!isIp() && CheckNull.isEmpty(client.getJ_okpo())) {
-            message = "Введите код юридического лица";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ СЋСЂРёРґРёС‡РµСЃРєРѕРіРѕ Р»РёС†Р°";
             return false;
         }
         if (!isIp() && client.getJ_okpo() != null && client.getJ_okpo().length() > 8) {
-            message = "Длина поля Код юридического лица не должна превышать 8 символов";
+            message = "Р”Р»РёРЅР° РїРѕР»СЏ РљРѕРґ СЋСЂРёРґРёС‡РµСЃРєРѕРіРѕ Р»РёС†Р° РЅРµ РґРѕР»Р¶РЅР° РїСЂРµРІС‹С€Р°С‚СЊ 8 СЃРёРјРІРѕР»РѕРІ";
             return false;
         }
 
         if (!isIp() && !client.getJ_code_head_organization().equals("0") &&
                 client.getJ_code_head_organization().length() != 8) {
-            message = "код головного предприятия может быть - 0, или 8 знаков";
+            message = "РєРѕРґ РіРѕР»РѕРІРЅРѕРіРѕ РїСЂРµРґРїСЂРёСЏС‚РёСЏ РјРѕР¶РµС‚ Р±С‹С‚СЊ - 0, РёР»Рё 8 Р·РЅР°РєРѕРІ";
             return false;
         }
         if (!isIp()
@@ -482,7 +482,7 @@ public class CheckClient extends Validator<ClientJ> {
                 (!client.getJ_code_head_organization().equals("0") &&
                         client.getJ_inn_head_organization().length() != 9))) {
 
-            message = "ИНН головного предприятия должен быть - 0, если код головного предприятия 0, иначе 9 знаков(цифровых)";
+            message = "РРќРќ РіРѕР»РѕРІРЅРѕРіРѕ РїСЂРµРґРїСЂРёСЏС‚РёСЏ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ - 0, РµСЃР»Рё РєРѕРґ РіРѕР»РѕРІРЅРѕРіРѕ РїСЂРµРґРїСЂРёСЏС‚РёСЏ 0, РёРЅР°С‡Рµ 9 Р·РЅР°РєРѕРІ(С†РёС„СЂРѕРІС‹С…)";
             return false;
         }
         return true;
@@ -491,154 +491,154 @@ public class CheckClient extends Validator<ClientJ> {
 
     private boolean checkIp() {
         if (CheckNull.isEmpty(client.getP_last_name_cyr())){
-            message = "Введите фамилию";
+            message = "Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_first_name_cyr())){
-            message = "Введите имя";
+            message = "Р’РІРµРґРёС‚Рµ РёРјСЏ";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_patronymic_cyr())){
-            message = "Введите отчество";
+            message = "Р’РІРµРґРёС‚Рµ РѕС‚С‡РµСЃС‚РІРѕ";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_code_gender())) {
-            message = "Введите пол";
+            message = "Р’РІРµРґРёС‚Рµ РїРѕР»";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_birthday())) {
-            message = "Введите день рождения";
+            message = "Р’РІРµРґРёС‚Рµ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_type_document())) {
-            message = "Введите тип документа";
+            message = "Р’РІРµРґРёС‚Рµ С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_passport_serial())) {
-            message = "Введите серия пасспорта";
+            message = "Р’РІРµРґРёС‚Рµ СЃРµСЂРёСЏ РїР°СЃСЃРїРѕСЂС‚Р°";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_passport_number())) {
-            message = "Введите номер пасспорта";
+            message = "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РїР°СЃСЃРїРѕСЂС‚Р°";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_passport_date_registration())) {
-            message = "Введите дата получения";
+            message = "Р’РІРµРґРёС‚Рµ РґР°С‚Р° РїРѕР»СѓС‡РµРЅРёСЏ";
             return false;
         }
         if (client.getP_type_document().equalsIgnoreCase("6") && CheckNull.isEmpty(client.getP_passport_date_expiration())) {
-            message = "Введите действителен до";
+            message = "Р’РІРµРґРёС‚Рµ РґРµР№СЃС‚РІРёС‚РµР»РµРЅ РґРѕ";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_passport_place_registration())) {
-            message = "Введите кем выдан";
+            message = "Р’РІРµРґРёС‚Рµ РєРµРј РІС‹РґР°РЅ";
             return false;
         }
 
         if (CheckNull.isEmpty(client.getP_post_address())) {
-            message = "Введите место прописки";
+            message = "Р’РІРµРґРёС‚Рµ РјРµСЃС‚Рѕ РїСЂРѕРїРёСЃРєРё";
             return false;
         }
 //		if(CheckNull.isEmpty(client.getP_code_adr_region())){
-//			message = "Введите регион прописки";
+//			message = "Р’РІРµРґРёС‚Рµ СЂРµРіРёРѕРЅ РїСЂРѕРїРёСЃРєРё";
 //		}
 //		if(CheckNull.isEmpty(client.getP_code_adr_distr())){
-//			message = "Введите район прописки";
+//			message = "Р’РІРµРґРёС‚Рµ СЂР°Р№РѕРЅ РїСЂРѕРїРёСЃРєРё";
 //		}
         if (CheckNull.isEmpty(client.getP_birth_place())) {
-            message = "Введите место рождения";
+            message = "Р’РІРµРґРёС‚Рµ РјРµСЃС‚Рѕ СЂРѕР¶РґРµРЅРёСЏ";
             return false;
         }
         if (CheckNull.isEmpty(client.getP_code_citizenship())) {
-            message = "Введите код гражданства";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РіСЂР°Р¶РґР°РЅСЃС‚РІР°";
             return false;
         }
         //if (CheckNull.isEmpty(client.getP_code_tax_org())) {
-        //   message = "Введите код налоговой(ИП-ФЛ)";
+        //   message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РЅР°Р»РѕРіРѕРІРѕР№(РРџ-Р¤Р›)";
         //   return false;
         //}
         if (CheckNull.isEmpty(client.getJ_code_tax_org())) {
-            message = "Введите код налоговой(ИП-ЮЛ)";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РЅР°Р»РѕРіРѕРІРѕР№(РРџ-Р®Р›)";
             return false;
         }
 
         if (CheckNull.isEmpty(client.getJ_type_activity())){
-            message = "Введите код деятельности";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё";
             return false;
         }
 
-        // Проверка на корректность ИНН
+        // РџСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ РРќРќ
         //		if (!isTaxNumberExists(client.getP_number_tax_registration())) {
-        //			message = "Такой Инн Уже Существует";
+        //			message = "РўР°РєРѕР№ РРЅРЅ РЈР¶Рµ РЎСѓС‰РµСЃС‚РІСѓРµС‚";
         //		}
         //if (!isTaxNumberCorrect(client.getP_number_tax_registration())) {
-        //    message = "ИНН должен состоять из 9 цифр";
+        //    message = "РРќРќ РґРѕР»Р¶РµРЅ СЃРѕСЃС‚РѕСЏС‚СЊ РёР· 9 С†РёС„СЂ";
         //    return false;
         //}
         //if (!checkTaxNumberDigits(client.getP_number_tax_registration())) {
-        //    message = "У физического лица ИНН должен начинаться с цифр 4,5,6";
+        //    message = "РЈ С„РёР·РёС‡РµСЃРєРѕРіРѕ Р»РёС†Р° РРќРќ РґРѕР»Р¶РµРЅ РЅР°С‡РёРЅР°С‚СЊСЃСЏ СЃ С†РёС„СЂ 4,5,6";
         //    return false;
         //}
         //if (!checkTaxNumberConsecutive(client.getP_number_tax_registration())) {
-        //    message = "ИНН должен содержать не более 8 одинаковых цифр";
+        //    message = "РРќРќ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ Р±РѕР»РµРµ 8 РѕРґРёРЅР°РєРѕРІС‹С… С†РёС„СЂ";
         //    return false;
         //}
         //if (!CheckNull.isEmpty(client.getP_number_tax_registration())) {
         //    if (CheckNull.isEmpty(client.getP_code_tax_org())) {
-        //        message = "Введите код налоговой";
+        //        message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РЅР°Р»РѕРіРѕРІРѕР№";
         //        return false;
         //    }
         //}
-        // Проверка на соответствие полей типу документа
+        // РџСЂРѕРІРµСЂРєР° РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РїРѕР»РµР№ С‚РёРїСѓ РґРѕРєСѓРјРµРЅС‚Р°
         /*if (!isForeignCitizenResident()) {
-            message = "Инностраный гражданин не может быть резидентом";
+            message = "РРЅРЅРѕСЃС‚СЂР°РЅС‹Р№ РіСЂР°Р¶РґР°РЅРёРЅ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂРµР·РёРґРµРЅС‚РѕРј";
             return false;
         }*/
         if (!isForeignCitizenOfUzbekistan()) {
-            message = "Иностранный гражданин не может быть гражданином  Узбекистана";
+            message = "РРЅРѕСЃС‚СЂР°РЅРЅС‹Р№ РіСЂР°Р¶РґР°РЅРёРЅ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РіСЂР°Р¶РґР°РЅРёРЅРѕРј  РЈР·Р±РµРєРёСЃС‚Р°РЅР°";
             return false;
         }
         if (!isResidentTypeDocCorrect()) {
-            message = "У нерезидентного физического лица неправильный тип документа";
+            message = "РЈ РЅРµСЂРµР·РёРґРµРЅС‚РЅРѕРіРѕ С„РёР·РёС‡РµСЃРєРѕРіРѕ Р»РёС†Р° РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°";
             return false;
         }
         if (!isCitizenshipCorrect()) {
-            message = "Несоотвествие между полями тип документа и гражданство";
+            message = "РќРµСЃРѕРѕС‚РІРµСЃС‚РІРёРµ РјРµР¶РґСѓ РїРѕР»СЏРјРё С‚РёРї РґРѕРєСѓРјРµРЅС‚Р° Рё РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ";
             return false;
         }
-        // Если тип документа - Вид на жительство
+        // Р•СЃР»Рё С‚РёРї РґРѕРєСѓРјРµРЅС‚Р° - Р’РёРґ РЅР° Р¶РёС‚РµР»СЊСЃС‚РІРѕ
         if (client.getP_type_document().equals("5")) {
             if (client.getP_code_citizenship().equals("860")) {
-                message = "Несоотвествие между полями тип документа вид на жительство и гражданство";
+                message = "РќРµСЃРѕРѕС‚РІРµСЃС‚РІРёРµ РјРµР¶РґСѓ РїРѕР»СЏРјРё С‚РёРї РґРѕРєСѓРјРµРЅС‚Р° РІРёРґ РЅР° Р¶РёС‚РµР»СЊСЃС‚РІРѕ Рё РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ";
                 return false;
             }
             if (!client.getCode_resident().equals("1")) {
-                message = "Несоответсвие между полями тип документа вид на жительство и резидентность";
+                message = "РќРµСЃРѕРѕС‚РІРµС‚СЃРІРёРµ РјРµР¶РґСѓ РїРѕР»СЏРјРё С‚РёРї РґРѕРєСѓРјРµРЅС‚Р° РІРёРґ РЅР° Р¶РёС‚РµР»СЊСЃС‚РІРѕ Рё СЂРµР·РёРґРµРЅС‚РЅРѕСЃС‚СЊ";
                 return false;
             }
         }
-        // Проверка на существуемость клиента
+        // РџСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІСѓРµРјРѕСЃС‚СЊ РєР»РёРµРЅС‚Р°
         if (!CheckNull.isEmpty(client.getState()) && client.getState().equals("0") && isClientExists(client.getP_passport_serial(), client.getP_passport_number())) {
-            message = "Такой клиент уже существует!";
+            message = "РўР°РєРѕР№ РєР»РёРµРЅС‚ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!";
             return false;
         }
 
         if (!client.getP_type_document().equals("4") && client.getP_passport_serial().length() != 2) {
-            message = "Серия паспорта должна состоять из 2 символа";
+            message = "РЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅР° СЃРѕСЃС‚РѕСЏС‚СЊ РёР· 2 СЃРёРјРІРѕР»Р°";
             return false;
         }
         if (!Util.isLetter(client.getP_passport_serial())) {
-            message = "Серия паспорта должна состоять из латинских букв";
+            message = "РЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅР° СЃРѕСЃС‚РѕСЏС‚СЊ РёР· Р»Р°С‚РёРЅСЃРєРёС… Р±СѓРєРІ";
             return false;
         }
         if (new DateTime(client.getP_passport_date_registration()).
                 isBefore(
                         new DateTime(1992, 01, 01, 0, 0, 0, 0))) {
-            message = "Дата выдачи паспорта не должна быть раньше 01.01.1992 года";
+            message = "Р”Р°С‚Р° РІС‹РґР°С‡Рё РїР°СЃРїРѕСЂС‚Р° РЅРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ СЂР°РЅСЊС€Рµ 01.01.1992 РіРѕРґР°";
             return false;
         }
         if (new DateTime(client.getP_passport_date_registration()).isAfter(getOperDay())) {
-            message = "Дата выдачи паспорта не должно быть больше даты операционного дня";
+            message = "Р”Р°С‚Р° РІС‹РґР°С‡Рё РїР°СЃРїРѕСЂС‚Р° РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РґР°С‚С‹ РѕРїРµСЂР°С†РёРѕРЅРЅРѕРіРѕ РґРЅСЏ";
             return false;
         }
 
@@ -647,7 +647,7 @@ public class CheckClient extends Validator<ClientJ> {
             DateTime dateExp = new DateTime(client.getP_passport_date_expiration());
             dateExp = dateExp.plusDays(1);
             if (new Period(dateReg, dateExp).getYears() != 10) {
-                message = "Дата действия паспорта должно быть: от даты рождения 10 лет минус 1 день (Биометрический паспорт)";
+                message = "Р”Р°С‚Р° РґРµР№СЃС‚РІРёСЏ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: РѕС‚ РґР°С‚С‹ СЂРѕР¶РґРµРЅРёСЏ 10 Р»РµС‚ РјРёРЅСѓСЃ 1 РґРµРЅСЊ (Р‘РёРѕРјРµС‚СЂРёС‡РµСЃРєРёР№ РїР°СЃРїРѕСЂС‚)";
                 return false;
             }
         }
@@ -656,41 +656,41 @@ public class CheckClient extends Validator<ClientJ> {
             DateTime dateExp = new DateTime(client.getP_passport_date_expiration());
             dateExp = dateExp.plusDays(1);
             if (new Period(dateReg, dateExp).getYears() != 25) {
-                message = "Дата действия паспорта должно быть: от даты рождения 25 лет минус 1 день (старый паспорт)";
+                message = "Р”Р°С‚Р° РґРµР№СЃС‚РІРёСЏ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: РѕС‚ РґР°С‚С‹ СЂРѕР¶РґРµРЅРёСЏ 25 Р»РµС‚ РјРёРЅСѓСЃ 1 РґРµРЅСЊ (СЃС‚Р°СЂС‹Р№ РїР°СЃРїРѕСЂС‚)";
                 return false;
             }
         }*/
 //		if(new Period(
 //				new DateTime(client.getP_passport_date_registration()), 
 //				new DateTime(client.getP_birthday())).getYears() <16){
-//			message = "Разность между датой получения паспорта и датой рождения не должна быть меньше, чем 16 лет";
+//			message = "Р Р°Р·РЅРѕСЃС‚СЊ РјРµР¶РґСѓ РґР°С‚РѕР№ РїРѕР»СѓС‡РµРЅРёСЏ РїР°СЃРїРѕСЂС‚Р° Рё РґР°С‚РѕР№ СЂРѕР¶РґРµРЅРёСЏ РЅРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РјРµРЅСЊС€Рµ, С‡РµРј 16 Р»РµС‚";
 //		}
         if (new DateTime(client.getP_passport_date_expiration()).isBefore(getOperDay())) {
-            message = "Дата действия паспорта не должно быть меньше даты операционного дня";
+            message = "Р”Р°С‚Р° РґРµР№СЃС‚РІРёСЏ РїР°СЃРїРѕСЂС‚Р° РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ РґР°С‚С‹ РѕРїРµСЂР°С†РёРѕРЅРЅРѕРіРѕ РґРЅСЏ";
             return false;
         }
         if (new DateTime(client.getP_birthday().getTime()).
                 isBefore(
                         new DateTime(1910, 01, 01, 0, 0, 0, 0))) {
-            message = "Дата рождения не должна быть раньше 01.01.1910 года";
+            message = "Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ РЅРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ СЂР°РЅСЊС€Рµ 01.01.1910 РіРѕРґР°";
             return false;
         }
         if (new DateTime(client.getP_birthday().getTime()).
                 isAfter(
                         getOperDay())) {
-            message = "Дата рождения не может быть больше банковской даты";
+            message = "Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ Р±Р°РЅРєРѕРІСЃРєРѕР№ РґР°С‚С‹";
             return false;
         }
         /*if (!CheckNull.isEmpty(client.getP_email_address()) && !EmailValidator.getInstance(true).isValid(client.getP_email_address())){
-            message = "Неправильное значение в поле:  email !";
+            message = "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ:  email !";
             return false;
         }*/
         if (!CheckNull.isEmpty(client.getP_phone_home()) && !isPhoneCorrect(client.getP_phone_home())){
-            message = "Не верный формат номера телефона - ввод только 12 цифр (998....)";
+            message = "РќРµ РІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ РЅРѕРјРµСЂР° С‚РµР»РµС„РѕРЅР° - РІРІРѕРґ С‚РѕР»СЊРєРѕ 12 С†РёС„СЂ (998....)";
             return false;
         }
         if (!CheckNull.isEmpty(client.getP_phone_mobile()) && !isPhoneCorrect(client.getP_phone_mobile())){
-            message = "Не верный формат номера телефона - ввод только 12 цифр (998....)";
+            message = "РќРµ РІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ РЅРѕРјРµСЂР° С‚РµР»РµС„РѕРЅР° - РІРІРѕРґ С‚РѕР»СЊРєРѕ 12 С†РёС„СЂ (998....)";
             return false;
         }
         return true;
@@ -702,35 +702,35 @@ public class CheckClient extends Validator<ClientJ> {
 
     private boolean checkBankClient() {
         if (CheckNull.isEmpty(client.getI_number_tax_registration())) {
-            message = "Введите ИНН";
+            message = "Р’РІРµРґРёС‚Рµ РРќРќ";
             return false;
         }
         if (CheckNull.isEmpty(client.getI_opf())) {
-            message = "Введите орг.-правовая форма";
+            message = "Р’РІРµРґРёС‚Рµ РѕСЂРі.-РїСЂР°РІРѕРІР°СЏ С„РѕСЂРјР°";
             return false;
         }
         if (!isIp() && CheckNull.isEmpty(client.getI_sector())) {
-            message = "Введите код отрасли";
+            message = "Р’РІРµРґРёС‚Рµ РєРѕРґ РѕС‚СЂР°СЃР»Рё";
             return false;
         }
         if (CheckNull.isEmpty(client.getI_organ_direct())) {
-            message = "Введите орган управления";
+            message = "Р’РІРµРґРёС‚Рµ РѕСЂРіР°РЅ СѓРїСЂР°РІР»РµРЅРёСЏ";
             return false;
         }
         if (CheckNull.isEmpty(client.getI_form())) {
-            message = "Введите форма собственности";
+            message = "Р’РІРµРґРёС‚Рµ С„РѕСЂРјР° СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё";
             return false;
         }
         if (CheckNull.isEmpty(client.getI_post_address())) {
-            message = "Введите адрес";
+            message = "Р’РІРµРґРёС‚Рµ Р°РґСЂРµСЃ";
             return false;
         }
         if (CheckNull.isEmpty(client.getI_director_name())) {
-            message = "Введите имя директора";
+            message = "Р’РІРµРґРёС‚Рµ РёРјСЏ РґРёСЂРµРєС‚РѕСЂР°";
             return false;
         }
         if (CheckNull.isEmpty(client.getI_chief_accounter_name())) {
-            message = "Введите имя гл. бухгалтера";
+            message = "Р’РІРµРґРёС‚Рµ РёРјСЏ РіР». Р±СѓС…РіР°Р»С‚РµСЂР°";
             return false;
         }
 
@@ -740,7 +740,7 @@ public class CheckClient extends Validator<ClientJ> {
 //	private String checkAcc(){
 //		return !CheckNull.isEmpty(client.getJ_account())&&
 //				client.getJ_account().matches("^[1-9]{1}\\d{19}")?"":
-//			"Расчетный счет должен состоять из 20 цифровых знаков";
+//			"Р Р°СЃС‡РµС‚РЅС‹Р№ СЃС‡РµС‚ РґРѕР»Р¶РµРЅ СЃРѕСЃС‚РѕСЏС‚СЊ РёР· 20 С†РёС„СЂРѕРІС‹С… Р·РЅР°РєРѕРІ";
 //	}
 
     private Boolean checkTaxNumberDigits(String text) {
@@ -748,7 +748,7 @@ public class CheckClient extends Validator<ClientJ> {
                 || text.startsWith("5") || text.startsWith("6"));
     }
 
-    // Проверка на 8 одинаковых последовательных чисел
+    // РџСЂРѕРІРµСЂРєР° РЅР° 8 РѕРґРёРЅР°РєРѕРІС‹С… РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹С… С‡РёСЃРµР»
     private Boolean checkTaxNumberConsecutive(String text) {
         if (text != null && !text.isEmpty()) {
             char c = 0;

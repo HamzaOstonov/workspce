@@ -109,9 +109,9 @@ public class ClientJViewCtrl extends AbstractClientController {
         }
     }
 
-    private Window dp_wnd, wind_approve;
+    private Window dp_wnd, wind_approve, wind_approve2;
     private Include dp_wnd$incl_cp;
-    private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn;
+    private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
     private RefCBox type_close_name;
     private Datebox date_doc;
 
@@ -777,10 +777,48 @@ public class ClientJViewCtrl extends AbstractClientController {
 
 	}
 	
+//	--  Кнопка - 'Запросить НИББД'
+	@SuppressWarnings("unused")
+	public void onClick$btn_send$wind_approve2() {
+		
+//		ClientJ clientJ = new ClientJ();
+		String clientJ = null;
+		ResInn resInn = null;
+
+		try {
+			clientJ = current.getP_pinfl();
+			resInn = ClientJService.sendPinfl(clientJ, un, pw);
+			if (resInn.getCode().equals("02000")) {
+				alert("Код: " + resInn.getCode() + " Cообщение: " + resInn.getMessage());
+			} else if (resInn == null) {
+				alert("Нет соединение с адресом: " + ClientJService.getUrl());
+			} else {
+				alert("Код: " + resInn.getCode() + " Cообщение: " + resInn.getMessage());
+				ISLogger.getLogger().error("ResInn objectMapper.readValue. content: " + resInn.getCode());
+				ISLogger.getLogger().error("ResInn objectMapper.readValue error: " + resInn.getMessage());
+			}
+			
+		} catch (Exception e) {
+			alert("Нет соединение с адресом: " + ClientJService.getUrl());
+			e.printStackTrace();
+			ISLogger.getLogger().error(e.getMessage());
+		}
+
+	}
+	
 //	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ИНН'
 	public void onClick$btn_subInn() {
 		wind_approve.setVisible(true);
-
+	}
+	
+//	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ПИНФЛ'
+	public void onClick$btn_subPinfl() {
+		if(current.getCode_type() == "11") {
+			wind_approve2.setVisible(true);
+		} else {
+			wind_approve2.setVisible(false);
+		}
+		
 	}
 
     public void onClick$btn_fetch_ebp() {
