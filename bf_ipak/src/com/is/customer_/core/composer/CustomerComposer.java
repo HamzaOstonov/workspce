@@ -739,7 +739,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
         	msg="Сервис fizDocs - Ошибка при обрашении к сервису";
         }
     	
-    	FizAddressResponse far = TheService.fizAddressResponse (null, pin); 
+    	FizAddressResponse far = TheService.fizAddressResponse (null, pin);
     	
     	if (far!=null) {
     		if (far.getAnswereId()==1){
