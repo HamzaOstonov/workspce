@@ -58,7 +58,7 @@ import lombok.Setter;
 public class AccountViewCtrl extends GenericForwardComposer {
 
 	private static Logger logger = Logger.getLogger(AccountViewCtrl.class);
-	private Window nibbd_wnd, nibbd_modal, spec_acc_wnd;
+	private Window nibbd_wnd, nibbd_modal, spec_acc_wnd, wind_nibbd;
 	private Div filter_div, new_acc, spec_acc_parent;
 	private Tabbox acc_tabs;
 	private Div grd;
@@ -357,6 +357,15 @@ public class AccountViewCtrl extends GenericForwardComposer {
 	}
 
 	private Textbox aclient_name;
+	
+	//	--  νξοκΰ "„ ‘χεςΰ"
+	public void onClick$btn_approve() {
+		if(current.getId() != null) {
+			wind_nibbd.setVisible(true);
+		} else {
+			wind_nibbd.setVisible(true);
+		}
+	}
 
 	public void onClick$btn_add() {
 		hideAll();
