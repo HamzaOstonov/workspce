@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.is.ConnectionPool;
 import com.is.base.Action;
 import com.is.base.CommonDictionaries;
 import com.is.base.LongConnection;
@@ -92,6 +93,8 @@ public class DictionaryKeeper {
 	@Getter
 	private static HashMap<String, List<RefData>> subbranchs_map;
 
+	private static String nibbdBankUrl;
+	
 	private static Logger logger = Logger.getLogger(DictionaryKeeper.class);
 
 	private DictionaryKeeper(String alias) {
@@ -280,5 +283,13 @@ public class DictionaryKeeper {
 		}*/
 		return distrList;
 	}
+
+	public static String getNibbdJurBankUrl(){
+		if (nibbdBankUrl==null) {
+			nibbdBankUrl = ConnectionPool.getValue("NIBBD_JUR_BANK_URL");
+		}  
+		return nibbdBankUrl;
+	}
+	
 
 }

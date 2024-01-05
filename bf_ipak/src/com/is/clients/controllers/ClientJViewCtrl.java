@@ -109,12 +109,12 @@ public class ClientJViewCtrl extends AbstractClientController {
         }
     }
 
-    private Window dp_wnd, wind_approve;
+    private Window dp_wnd, wind_nibbd;
     private Include dp_wnd$incl_cp;
     private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
     private RefCBox type_close_name;
     private Datebox date_doc;
-    private Row wind_approve$innRow, wind_approve$pinRow;
+    private Row wind_nibbd$innRow, wind_nibbd$pinRow;
 
     private ServiceFactory serviceFactory;
 
@@ -725,16 +725,16 @@ public class ClientJViewCtrl extends AbstractClientController {
 		type_close_name.setModel(new ListModelList(ClientJService.getCloseType(alias)));
 		
 		if(current.getName() != null) {
-			wind_approve.setVisible(true);
+			wind_nibbd.setVisible(true);
 		} else {
-			wind_approve.setVisible(false);
+			wind_nibbd.setVisible(false);
 		}
 		
 	}
 	
 //	--  Кнопка - 'Запросить НИББД'
 	@SuppressWarnings("unused")
-	public void onClick$btn_send$wind_approve() {
+	public void onClick$btn_send$wind_nibbd() {
 		
 //		ClientJ clientJ = new ClientJ();
 		String clientJ = null;
@@ -789,20 +789,21 @@ public class ClientJViewCtrl extends AbstractClientController {
 	
 //	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ИНН'
 	public void onClick$btn_subInn() {
-		wind_approve.setVisible(true);
-		wind_approve$pinRow.setVisible(false);
+		wind_nibbd.setVisible(true);
+		wind_nibbd$pinRow.setVisible(false);
+		wind_nibbd$innRow.setVisible(true);
 	}
 	
 //	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ПИНФЛ'
 	public void onClick$btn_subPinfl() {
 		if(current.getCode_type().equals("11")) {
-			wind_approve.setVisible(true);
-			wind_approve$innRow.setVisible(false);
+			wind_nibbd.setVisible(true);
+			wind_nibbd$pinRow.setVisible(true);
+			wind_nibbd$innRow.setVisible(false);
 		} else {
-			wind_approve.setVisible(false);
+			wind_nibbd.setVisible(false);
 			alert("Этот пункт для клиентов ЯТТ");
 		}
-		
 	}
 
     public void onClick$btn_fetch_ebp() {

@@ -3838,7 +3838,7 @@
 
 			</div>
 		</window>
-		<window id="wind_approve" width="1000px" height="300px" title="Данные по НИББД" border="normal" mode="overlapped"
+		<window id="wind_nibbd" width="1000px" height="300px" title="Данные по НИББД" border="normal" mode="overlapped"
         	position="center,center" visible="false" closable="true" maximizable="true"
         	onClose="self.visible = false; event.stopPropagation();">
 

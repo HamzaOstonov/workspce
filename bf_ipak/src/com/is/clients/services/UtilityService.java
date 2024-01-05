@@ -1,16 +1,29 @@
 package com.is.clients.services;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.is.ConnectionPool;
+import com.is.ISLogger;
 import com.is.base.SqlScripts;
 import com.is.base.utils.DbUtils;
+import com.is.clients.ebp.models.Res;
+import com.is.clients.models.SubjectByInnResponse;
+import com.is.customer_.core.utils.CustomerUtils;
+import com.is.customer_.service.model.FizDocsRequest;
+import com.is.customer_.service.model.FizDocsResponse;
 import com.is.utils.CheckNull;
 
 public class UtilityService {
@@ -87,6 +100,85 @@ public class UtilityService {
 			DbUtils.closeStmt(cs);
 		}
 		return count;
+	}
+	
+	public static SubjectByInnResponse nibbdSubjectByInn(String branch, String p_data) throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		SubjectByInnResponse myObj=null;
+		Res res = new Res();
+		res.setCode(-1);
+		String url = "";
+
+		url = DictionaryKeeper.getNibbdJurBankUrl();
+		
+		String content = sendData(url, p_data);
+
+		if (!content.equals(""))
+			try {
+				myObj = objectMapper.readValue(content, SubjectByInnResponse.class);
+			} catch (Exception e) {
+				ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content: " + content);
+	    	    ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue error: " + e.getMessage());	    	  
+	    	    throw new Exception("SubjectByInnResponse objectMapper.readValue error: "+ e.getMessage());
+	        }
+	    else
+	    	ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content is \"\" or null." );
+
+		return myObj;
+	}
+	
+	public static String sendData(String p_url, String p_data) {
+		ISLogger.getLogger().error("url = " + p_url);		
+		ISLogger.getLogger().error("sendData data! : "+p_data);
+		String message = "";
+		String message_err = "";
+		int responseCode = 0;
+		try {
+			URL url = new URL(p_url);
+
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type","application/json;charset=UTF-8");
+
+			String auth = "piuser" + ":" + "user_for_pi!1";
+			byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(/*StandardCharsets.UTF_8*/"UTF-8"));
+			String authHeaderValue = "Basic " + new String(encodedAuth);						
+			connection.setRequestProperty("Authorization", authHeaderValue);
+			
+			connection.setDoOutput(true);
+			DataOutputStream wr = new DataOutputStream(	connection.getOutputStream());
+			wr.writeBytes(p_data);
+			wr.flush();
+			responseCode = connection.getResponseCode();
+			
+			BufferedReader br = null;
+			if (100 <= connection.getResponseCode() && connection.getResponseCode() <= 399) {
+			    br = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+			} else {
+			    br = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+			    message_err = connection.getResponseMessage() + ", code: "+ responseCode;
+			}
+
+			StringBuilder sb = new StringBuilder();
+			String output;
+			while ((output = br.readLine()) != null) {
+			  sb.append(output);
+			}
+			message = sb.toString();
+			if (!message_err.equals("") && message_err!="" ){
+				message=message+". error result: "+message_err;
+			}
+			
+			ISLogger.getLogger().error(	"response code: " + responseCode + ". body: " + message);
+		} catch (Exception e) {
+			ISLogger.getLogger().error("url = " + p_url);		
+			ISLogger.getLogger().error("sendData data : "+p_data);
+			ISLogger.getLogger().error("responseCode: " + responseCode);
+			ISLogger.getLogger().error("sendData err Message: "+e.getMessage());
+			ISLogger.getLogger().error("sendData err Cause: "+e.getCause());
+			e.printStackTrace();
+		}
+		return message;// writer.toString();
 	}
 	
 }
