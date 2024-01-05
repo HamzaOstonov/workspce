@@ -750,22 +750,44 @@ public class ClientJViewCtrl extends AbstractClientController {
 		}
 
 		SubjectByInnResponse innResp = UtilityService.nibbdSubjectByInn ("", inn_pinfl);
-		Row rr = new Row();
-		rr.appendChild(new Label("Client:"));
-		rr.appendChild(new Label(innResp.getResponse().getClient()));
-		wind_nibbd$res_grid.getRows().appendChild(rr);
-		
-		rr = new Row();
-		rr.appendChild(new Label("Name"));
-		rr.appendChild(new Label(innResp.getResponse().getName()));
-		wind_nibbd$res_grid.getRows().appendChild(rr);
-		
-		rr = new Row();
-		rr.appendChild(new Label("Opened"));
-		rr.appendChild(new Label(innResp.getResponse().getOpened()));
-		wind_nibbd$res_grid.getRows().appendChild(rr);
-		
-		wind_nibbd$res_grid.setVisible(true);
+
+		wind_nibbd$res_grid.getRows().getChildren().clear();
+		if (innResp!=null) {
+			wind_nibbd$res_grid.setVisible(true);
+			
+			Row rr = new Row();
+			rr.appendChild(new Label("Code:"));
+			rr.appendChild(new Label(innResp.getResult().getCode()));
+			wind_nibbd$res_grid.getRows().appendChild(rr);
+
+			rr = new Row();
+			rr.appendChild(new Label("Message"));
+			rr.appendChild(new Label(innResp.getResult().getMessage()));
+			wind_nibbd$res_grid.getRows().appendChild(rr);
+
+
+			if (innResp.getResult().getCode().equals("02000")) {
+				rr = new Row();
+				rr.appendChild(new Label("Client:"));
+				rr.appendChild(new Label(innResp.getResponse().getClient()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
+
+				rr = new Row();
+				rr.appendChild(new Label("Name"));
+				rr.appendChild(new Label(innResp.getResponse().getName()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
+
+				rr = new Row();
+				rr.appendChild(new Label("Opened"));
+				rr.appendChild(new Label(innResp.getResponse().getOpened()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
+				
+			}
+
+		} else {
+			wind_nibbd$res_grid.setVisible(false);
+			alert ("Ошибка при запросе");	
+		}
 		
 		//ResInn resInn = null;
 		//List<ResInn> resList = new ArrayList<ResInn>();

@@ -115,9 +115,9 @@ public class UtilityService {
 		        " \"inn\": \"" + p_inn+ "\"" +
 		        "};";
 		
-		//String content = sendData(url, p_data);
+		String content = sendData(url, p_data);
 
-		String contentTemp="{"+
+		/*String contentTemp="{"+
 "\"result\":{"+
 "\"code\":\"02000\","+
 "\"message\":\"Успешно\""+
@@ -136,20 +136,20 @@ public class UtilityService {
 "\"opened\":\"10.07.2020\","+
 "\"closed\":\"\""+
 "}"+
-"}";
+"}";*/
 		
-		//if (!content.equals(""))
-		//	try {
-		//		myObj = objectMapper.readValue(content, SubjectByInnResponse.class);
-		//	} catch (Exception e) {
-		//		ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content: " + content);
-	    //	    ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue error: " + e.getMessage());	    	  
-	    //	    throw new Exception("SubjectByInnResponse objectMapper.readValue error: "+ e.getMessage());
-	    //   }
-	    //else
-	    //	ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content is \"\" or null." );
+		if (!content.equals(""))
+			try {
+				myObj = objectMapper.readValue(content, SubjectByInnResponse.class);
+			} catch (Exception e) {
+				ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content: " + content);
+	    	    ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue error: " + e.getMessage());	    	  
+	    	    throw new Exception("SubjectByInnResponse objectMapper.readValue error: "+ e.getMessage());
+	       }
+	    else
+	    	ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content is \"\" or null." );
 		
-		myObj = objectMapper.readValue(contentTemp, SubjectByInnResponse.class);
+		//myObj = objectMapper.readValue(contentTemp, SubjectByInnResponse.class);
 
 		return myObj;
 	}
