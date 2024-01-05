@@ -59,6 +59,7 @@ import com.is.clients.controllers.renderers.SapSearchRenderer;
 import com.is.clients.ebp.EbpMappers;
 import com.is.clients.ebp.EbpService;
 import com.is.clients.models.ClientJ;
+import com.is.clients.models.NibbdQuery;
 import com.is.clients.models.ResInn;
 import com.is.clients.sap.SapHandler;
 import com.is.clients.services.ClientDictionaries;
@@ -134,6 +135,7 @@ public class ClientJViewCtrl extends AbstractClientController {
         binder.bindBean("newcl", this.newcl);
         binder.bindBean("filter", filter);
         binder.bindBean("currentListItem", currentListItem);
+        binder.bindBean("nibbdquery", this.nibbdQuery);
         binder.loadAll();
 
         String[] parameter = (String[]) param.get("ht");
@@ -790,6 +792,10 @@ public class ClientJViewCtrl extends AbstractClientController {
 //	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ИНН'
 	public void onClick$btn_subInn() {
 		wind_nibbd.setVisible(true);
+		if (nibbdQuery==null) 
+			nibbdQuery=new NibbdQuery();
+		nibbdQuery.setInn(current.getJ_number_tax_registration());
+		
 		wind_nibbd$pinRow.setVisible(false);
 		wind_nibbd$innRow.setVisible(true);
 	}
@@ -798,6 +804,10 @@ public class ClientJViewCtrl extends AbstractClientController {
 	public void onClick$btn_subPinfl() {
 		if(current.getCode_type().equals("11")) {
 			wind_nibbd.setVisible(true);
+			if (nibbdQuery==null) 
+				nibbdQuery=new NibbdQuery();
+			nibbdQuery.setPinfl(current.getP_pinfl());
+			
 			wind_nibbd$pinRow.setVisible(true);
 			wind_nibbd$innRow.setVisible(false);
 		} else {

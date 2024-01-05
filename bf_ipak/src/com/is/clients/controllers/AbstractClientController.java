@@ -73,6 +73,7 @@ import com.is.client_personmap.model.Person;
 import com.is.client_sap.Mappers;
 import com.is.clients.models.ClientJ;
 import com.is.clients.models.ClientJFilter;
+import com.is.clients.models.NibbdQuery;
 import com.is.clients.models.S_spr_oked;
 import com.is.clients.models.Soato;
 import com.is.clients.services.ClientDictionaries;
@@ -276,6 +277,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	@Getter
 	@Setter
 	public ClientJFilter filter = new ClientJFilter();
+	public NibbdQuery nibbdQuery;
 	protected Dao<ClientJ> clientDao;
 	protected DictionaryKeeper dictionaryKeeper;
 	protected ClientJService clientService;

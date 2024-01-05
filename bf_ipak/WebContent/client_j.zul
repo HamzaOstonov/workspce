@@ -3867,8 +3867,8 @@
             		<row><label value="Номер документа основания" /><textbox id="id_doc" width="30%" /></row>
             		<row><label value="Дата документа основания" /><datebox id="date_doc" width="30%" /></row>
             		<row><label value="Лицевой счет" /><textbox id="acc" width="30%" /></row>
-            		<row id="innRow"><label value="ИНН" /><textbox id="inn" width="30%" value="@{clientmain$composer.current.j_number_tax_registration}" /></row>
-            		<row id="pinRow"><label value="ПИНФЛ" /><textbox id="pinfl" width="30%" value="@{clientmain$composer.current.p_pinfl}" /></row>
+            		<row id="innRow"><label value="ИНН" /><textbox id="inn" width="30%" value="@{clientmain$composer.nibbdquery.inn}" /></row>
+            		<row id="pinRow"><label value="ПИНФЛ" /><textbox id="pinfl" width="30%" value="@{clientmain$composer.nibbdquery.pinfl}" /></row>
 
             	</rows>
             </grid>
