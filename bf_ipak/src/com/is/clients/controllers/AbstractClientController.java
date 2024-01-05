@@ -73,7 +73,7 @@ import com.is.client_personmap.model.Person;
 import com.is.client_sap.Mappers;
 import com.is.clients.models.ClientJ;
 import com.is.clients.models.ClientJFilter;
-import com.is.clients.models.NibbdQuery;
+import com.is.clients.models.NibbdParam;
 import com.is.clients.models.S_spr_oked;
 import com.is.clients.models.Soato;
 import com.is.clients.services.ClientDictionaries;
@@ -108,7 +108,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 			clientmain, persons_wnd, specclt_wnd, clt_dlg_wnd, director_search_wnd, appsWnd;
 	protected Div grd, frm, filterdiv, sap, addgrd, account_parent, persons_div, apersons_div, specclt_div, appsDiv,
 			chooseSearch, clt_dlg_wnd$div_radio_grp;
-	protected Grid fields_diff_wnd$diff_grid, gr_fjView, gr_grpfltmain;
+	protected Grid fields_diff_wnd$diff_grid, gr_fjView, gr_grpfltmain, wind_nibbd$res_grid;
 	protected Rows fields_diff_wnd$diff_rows;
 	protected Toolbar actions_bar;
 	protected Radiogroup clt_dlg_wnd$paths;
@@ -277,7 +277,9 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	@Getter
 	@Setter
 	public ClientJFilter filter = new ClientJFilter();
-	public NibbdQuery nibbdQuery;
+	@Getter
+	@Setter
+	public NibbdParam nibbdparam = new NibbdParam();
 	protected Dao<ClientJ> clientDao;
 	protected DictionaryKeeper dictionaryKeeper;
 	protected ClientJService clientService;

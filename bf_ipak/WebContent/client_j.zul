@@ -3784,7 +3784,8 @@
 
 		<window id="nibbd_modal" mode="modal" closable="true"
 			width="80%" onClose="self.visible = false; event.stopPropagation();"
-			title="НИББД" position="center,center" visible="false" />
+			title="НИББД" position="center,center" visible="false">
+		</window>
 
 		<window id="dp_wnd" mode="modal" closable="true"
 			contentStyle="overflow: auto" height="700px" width="100%"
@@ -3838,7 +3839,7 @@
 
 			</div>
 		</window>
-		<window id="wind_nibbd" width="1000px" height="300px" title="Данные по НИББД" border="normal" mode="overlapped"
+		<window id="wind_nibbd" width="1000px" height="700px" title="Данные по НИББД" border="normal" mode="overlapped"
         	position="center,center" visible="false" closable="true" maximizable="true"
         	onClose="self.visible = false; event.stopPropagation();">
 
@@ -3848,27 +3849,21 @@
 					<column width="83%" />
 				</columns>
 				<rows>
-				    <row>
-				    <hbox>
-				    <label value="Код счета клиента" />
-				    </hbox>
-            		<hbox align="center"><textbox id="account" /><space bar="false" spacing="20px"/>
-            		<label value="Валюта" /><space bar="false" spacing="10px"/><textbox id="currency" /><space bar="false" spacing="20px"/>
-            		<label value="Порядковый номер счета" /><space bar="false" spacing="10px"/><textbox id="id_order" />
-            		</hbox>
+				    <row id="coaRow"><label value="Код счета клиента" /><textbox id="coa" /> </row>
+            		<row id="currencyRow"><label value="Валюта" /><textbox id="currency" /> </row>
+            		<row id="idOrderRow"><label value="Порядковый номер счета" /><textbox id="id_order" /> </row>
+            		<row id="typeCloseRow">
+            		  <label value="Вид закрытия" />
+            		  <hbox align="left">
+            		    <textbox id="type_close_id" width="80%" constraint="no empty: " style="color: #FF0000"/>
+            		    <rcombobox id="type_close_name" width="250%" constraint="no empty: " style="color: #FF0000"/>
+            		  </hbox>
             		</row>
-            		
-            		<row>
-            		<label value="Вид закрытия" />
-            		<hbox align="left"><textbox id="type_close_id" width="80%" constraint="no empty: " style="color: #FF0000"/>
-            		<rcombobox id="type_close_name" width="250%" constraint="no empty: " style="color: #FF0000"/>
-            		</hbox>
-            		</row>
-            		<row><label value="Номер документа основания" /><textbox id="id_doc" width="30%" /></row>
-            		<row><label value="Дата документа основания" /><datebox id="date_doc" width="30%" /></row>
-            		<row><label value="Лицевой счет" /><textbox id="acc" width="30%" /></row>
-            		<row id="innRow"><label value="ИНН" /><textbox id="inn" width="30%" value="@{clientmain$composer.nibbdquery.inn}" /></row>
-            		<row id="pinRow"><label value="ПИНФЛ" /><textbox id="pinfl" width="30%" value="@{clientmain$composer.nibbdquery.pinfl}" /></row>
+            		<row id="idDocRow"><label value="Номер документа основания" /><textbox id="id_doc" width="30%" /></row>
+            		<row id="dateDocRow"><label value="Дата документа основания" /><datebox id="date_doc" width="30%" /></row>
+            		<row id="accountRow"><label value="Лицевой счет" /><textbox id="acc" width="30%" /></row>
+            		<row id="innRow"><label value="ИНН" /><textbox id="inn" width="30%" value="@{clientmain$composer.nibbdparam.inn}" /></row>
+            		<row id="pinRow"><label value="ПИНФЛ" /><textbox id="pinfl" width="30%" value="@{clientmain$composer.nibbdparam.pinfl}" /></row>
 
             	</rows>
             </grid>
@@ -3879,6 +3874,16 @@
         		<toolbarbutton id="btn_close" label="Отмена"
         			image="/images/delete.png" autodisable="self" />
         	</toolbar>
+            <grid id="res_grid" ctrlKeys="^e#up#down" visible="false">
+            	<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+            	</rows>
+            </grid>
+        	
+        	
         </window>
         
 	</window>

@@ -59,11 +59,13 @@ import com.is.clients.controllers.renderers.SapSearchRenderer;
 import com.is.clients.ebp.EbpMappers;
 import com.is.clients.ebp.EbpService;
 import com.is.clients.models.ClientJ;
-import com.is.clients.models.NibbdQuery;
+import com.is.clients.models.NibbdParam;
 import com.is.clients.models.ResInn;
+import com.is.clients.models.SubjectByInnResponse;
 import com.is.clients.sap.SapHandler;
 import com.is.clients.services.ClientDictionaries;
 import com.is.clients.services.ServiceFactory;
+import com.is.clients.services.UtilityService;
 import com.is.clients.utils.ClientUtil;
 import com.is.clients.validation.CheckClient;
 import com.is.customer_.action.ActionImages;
@@ -71,6 +73,8 @@ import com.is.customer_.attachments.Attachment;
 import com.is.customer_.core.utils.CustomerUtils;
 import com.is.customer_.entrepreneur.IndividualEnterpreneur;
 import com.is.customer_.sap.EmergencyMode;
+import com.is.customer_.service.TheService;
+import com.is.customer_.service.model.FizAddressResponse;
 import com.is.nibbd.NibbdController;
 import com.is.nibbd.models.Nibbd;
 import com.is.nibbd.util.NibbdQueries;
@@ -115,7 +119,7 @@ public class ClientJViewCtrl extends AbstractClientController {
     private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
     private RefCBox type_close_name;
     private Datebox date_doc;
-    private Row wind_nibbd$innRow, wind_nibbd$pinRow;
+    private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$currencyRow, wind_nibbd$idOrderRow, wind_nibbd$typeCloseRow, wind_nibbd$idDocRow, wind_nibbd$dateDocRow, wind_nibbd$accountRow;
 
     private ServiceFactory serviceFactory;
 
@@ -135,7 +139,7 @@ public class ClientJViewCtrl extends AbstractClientController {
         binder.bindBean("newcl", this.newcl);
         binder.bindBean("filter", filter);
         binder.bindBean("currentListItem", currentListItem);
-        binder.bindBean("nibbdquery", this.nibbdQuery);
+        binder.bindBean("nibbdparam", this.nibbdparam);
         binder.loadAll();
 
         String[] parameter = (String[]) param.get("ht");
@@ -736,80 +740,111 @@ public class ClientJViewCtrl extends AbstractClientController {
 	
 //	--  Кнопка - 'Запросить НИББД'
 	@SuppressWarnings("unused")
-	public void onClick$btn_send$wind_nibbd() {
+	public void onClick$btn_send$wind_nibbd() throws Exception  {
 		
-//		ClientJ clientJ = new ClientJ();
-		String clientJ = null;
-		ResInn resInn = null;
-		List<ResInn> resList = new ArrayList<ResInn>();
-		String strInn = "";
-
-		try {
-			
-			if (current.getCode_type().equals("11")) {
-				clientJ = current.getP_pinfl();
-			} else {
-				clientJ = current.getJ_number_tax_registration();
-			}
-			resInn = ClientJService.sendInn(clientJ, un, pw);
-			resList.add(resInn);
-			strInn = "" +resList;
-			if (resInn.getCode().equals("02000")) {
-				alert(strInn);
-			} else if (resInn == null) {
-				alert("Нет соединение с адресом: " + ClientJService.getUrl());
-			} else {
-				alert("Код: " + resInn.getCode() + " Cообщение: " + resInn.getMessage());
-				ISLogger.getLogger().error("ResInn objectMapper.readValue. content: " + resInn.getCode());
-				ISLogger.getLogger().error("ResInn objectMapper.readValue error: " + resInn.getMessage());
-			}
-			
-//			if(account.getValue() == null){
-//			    alert("Пустой ввод не разрешен в поле '''Код счета клиента''' ");
-//			} else if(currency.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Валюта''' ");
-//			} else if(id_order.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Порядковый номер счета''' ");
-//			} else if(type_close_id.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Вид закрытия''' ");
-//			} else if(type_close_name.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Вид закрытия''' ");
-//			} else if(id_doc.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Номер документа основания''' ");
-//			} else if(date_doc.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Дата документа основания''' ");
-//			} else if(acc.getValue() == null) {
-//				alert("Пустой ввод не разрешен в поле '''Лицевой счет''' ");
-//			}
-		} catch (Exception e) {
-			alert("Нет соединение с адресом: " + ClientJService.getUrl()+strInn);
-			e.printStackTrace();
-			ISLogger.getLogger().error(e.getMessage());
+		String inn_pinfl = null;
+		inn_pinfl = nibbdparam.getInn();
+		if (current!=null && current.getCode_type()!=null){ 
+			if (current.getCode_type().equals("11")) 
+				inn_pinfl = nibbdparam.getPinfl();
 		}
+
+		SubjectByInnResponse innResp = UtilityService.nibbdSubjectByInn ("", inn_pinfl);
+		Row rr = new Row();
+		rr.appendChild(new Label("Client:"));
+		rr.appendChild(new Label(innResp.getResponse().getClient()));
+		wind_nibbd$res_grid.getRows().appendChild(rr);
+		
+		rr = new Row();
+		rr.appendChild(new Label("Name"));
+		rr.appendChild(new Label(innResp.getResponse().getName()));
+		wind_nibbd$res_grid.getRows().appendChild(rr);
+		
+		rr = new Row();
+		rr.appendChild(new Label("Opened"));
+		rr.appendChild(new Label(innResp.getResponse().getOpened()));
+		wind_nibbd$res_grid.getRows().appendChild(rr);
+		
+		wind_nibbd$res_grid.setVisible(true);
+		
+		//ResInn resInn = null;
+		//List<ResInn> resList = new ArrayList<ResInn>();
+		//String strInn = "";
+
+		//try {
+		//	
+		//	resInn = ClientJService.sendInn(clientJ, un, pw);
+		//	resList.add(resInn);
+		//	strInn = "" +resList;
+		//	if (resInn.getCode().equals("02000")) {
+		//		alert(strInn);
+		//	} else if (resInn == null) {
+		//		alert("Нет соединение с адресом: " + ClientJService.getUrl());
+		//	} else {
+		//		alert("Код: " + resInn.getCode() + " Cообщение: " + resInn.getMessage());
+		//		ISLogger.getLogger().error("ResInn objectMapper.readValue. content: " + resInn.getCode());
+		//		ISLogger.getLogger().error("ResInn objectMapper.readValue error: " + resInn.getMessage());
+		//	}
+			
+		//			if(account.getValue() == null){
+		//			    alert("Пустой ввод не разрешен в поле '''Код счета клиента''' ");
+		//			} else if(currency.getValue() == null) {
+		//				alert("Пустой ввод не разрешен в поле '''Валюта''' ");
+		//			} else if(id_order.getValue() == null) {
+		//				alert("Пустой ввод не разрешен в поле '''Порядковый номер счета''' ");
+		//			} else if(type_close_id.getValue() == null) {
+		//				alert("Пустой ввод не разрешен в поле '''Вид закрытия''' ");
+		//			} else if(type_close_name.getValue() == null) {
+		//				alert("Пустой ввод не разрешен в поле '''Вид закрытия''' ");
+		//			} else if(id_doc.getValue() == null) {
+		//				alert("Пустой ввод не разрешен в поле '''Номер документа основания''' ");
+		//			} else if(date_doc.getValue() == null) {
+		//				alert("Пустой ввод не разрешен в поле '''Дата документа основания''' ");
+		//			} else if(acc.getValue() == null) {
+		//				alert("Пустой ввод не разрешен в поле '''Лицевой счет''' ");
+		//			}
+		//} catch (Exception e) {
+		//	alert("Нет соединение с адресом: " + ClientJService.getUrl()+strInn);
+		//	e.printStackTrace();
+		//	ISLogger.getLogger().error(e.getMessage());
+		//}
 
 	}
 	
-//	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ИНН'
-	public void onClick$btn_subInn() {
-		wind_nibbd.setVisible(true);
-		if (nibbdQuery==null) 
-			nibbdQuery=new NibbdQuery();
-		nibbdQuery.setInn(current.getJ_number_tax_registration());
+	public void hideRows() {
 		
 		wind_nibbd$pinRow.setVisible(false);
+		wind_nibbd$innRow.setVisible(false); 
+		wind_nibbd$coaRow.setVisible(false);
+		wind_nibbd$currencyRow.setVisible(false);
+		wind_nibbd$idOrderRow.setVisible(false);
+		wind_nibbd$typeCloseRow.setVisible(false);
+		wind_nibbd$idDocRow.setVisible(false); 
+		wind_nibbd$dateDocRow.setVisible(false);
+		wind_nibbd$accountRow.setVisible(false);
+		
+	}
+	
+	//	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ИНН'
+	public void onClick$btn_subInn() {
+		hideRows();
+		wind_nibbd.setVisible(true);
+		//nibbdQuery=new NibbdQuery();
+		nibbdparam.setInn(current.getJ_number_tax_registration());
 		wind_nibbd$innRow.setVisible(true);
+		binder.loadComponent(wind_nibbd);
 	}
 	
 //	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ПИНФЛ'
 	public void onClick$btn_subPinfl() {
+		hideRows();
+
 		if(current.getCode_type().equals("11")) {
 			wind_nibbd.setVisible(true);
-			if (nibbdQuery==null) 
-				nibbdQuery=new NibbdQuery();
-			nibbdQuery.setPinfl(current.getP_pinfl());
-			
+			//nibbdparam=new NibbdParam();
+			nibbdparam.setPinfl(current.getP_pinfl());
 			wind_nibbd$pinRow.setVisible(true);
-			wind_nibbd$innRow.setVisible(false);
+			binder.loadComponent(wind_nibbd);
 		} else {
 			wind_nibbd.setVisible(false);
 			alert("Этот пункт для клиентов ЯТТ");

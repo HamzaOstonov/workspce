@@ -2,7 +2,7 @@ package com.is.clients.models;
 
 import java.util.Date;
 
-public class NibbdQuery {
+public class NibbdParam {
 
 	private String inn;
 	private String pinfl;
@@ -15,6 +15,9 @@ public class NibbdQuery {
 	private String account;
 	
 	
+	 public NibbdParam() {
+	    }
+	 
 	public String getInn() {
 		return inn;
 	}

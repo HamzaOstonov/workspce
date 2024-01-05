@@ -102,7 +102,7 @@ public class UtilityService {
 		return count;
 	}
 	
-	public static SubjectByInnResponse nibbdSubjectByInn(String branch, String p_data) throws Exception {
+	public static SubjectByInnResponse nibbdSubjectByInn(String branch, String p_inn) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		SubjectByInnResponse myObj=null;
 		Res res = new Res();
@@ -111,18 +111,45 @@ public class UtilityService {
 
 		url = DictionaryKeeper.getNibbdJurBankUrl();
 		
-		String content = sendData(url, p_data);
+		String p_data="{ "+
+		        " \"inn\": \"" + p_inn+ "\"" +
+		        "};";
+		
+		//String content = sendData(url, p_data);
 
-		if (!content.equals(""))
-			try {
-				myObj = objectMapper.readValue(content, SubjectByInnResponse.class);
-			} catch (Exception e) {
-				ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content: " + content);
-	    	    ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue error: " + e.getMessage());	    	  
-	    	    throw new Exception("SubjectByInnResponse objectMapper.readValue error: "+ e.getMessage());
-	        }
-	    else
-	    	ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content is \"\" or null." );
+		String contentTemp="{"+
+"\"result\":{"+
+"\"code\":\"02000\","+
+"\"message\":\"Успешно\""+
+"},"+
+"\"header\":{"+
+"\"query_id\":\"1826X3L250O0M16055NU\","+
+"\"inquire\":\"07.09.2019 16:05:26\","+
+"\"respond\":\"07.09.2019 16:05:27\""+
+"},"+
+"\"response\":{"+
+"\"client\":\"00770170\","+
+"\"client_type\":\"11\","+
+"\"client_state\":\"1\","+
+"\"account_state\":\"1\","+
+"\"name\":\"ООО «Саидов и сыновья»\","+
+"\"opened\":\"10.07.2020\","+
+"\"closed\":\"\""+
+"}"+
+"}";
+		
+		//if (!content.equals(""))
+		//	try {
+		//		myObj = objectMapper.readValue(content, SubjectByInnResponse.class);
+		//	} catch (Exception e) {
+		//		ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content: " + content);
+	    //	    ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue error: " + e.getMessage());	    	  
+	    //	    throw new Exception("SubjectByInnResponse objectMapper.readValue error: "+ e.getMessage());
+	    //   }
+	    //else
+	    //	ISLogger.getLogger().error(	"SubjectByInnResponse objectMapper.readValue. content is \"\" or null." );
+		
+		myObj = objectMapper.readValue(contentTemp, SubjectByInnResponse.class);
 
 		return myObj;
 	}
@@ -140,10 +167,10 @@ public class UtilityService {
 			connection.setRequestMethod("POST");
 			connection.setRequestProperty("Content-Type","application/json;charset=UTF-8");
 
-			String auth = "piuser" + ":" + "user_for_pi!1";
-			byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(/*StandardCharsets.UTF_8*/"UTF-8"));
-			String authHeaderValue = "Basic " + new String(encodedAuth);						
-			connection.setRequestProperty("Authorization", authHeaderValue);
+			//String auth = "piuser" + ":" + "user_for_pi!1";
+			//byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(/*StandardCharsets.UTF_8*/"UTF-8"));
+			//String authHeaderValue = "Basic " + new String(encodedAuth);						
+			//connection.setRequestProperty("Authorization", authHeaderValue);
 			
 			connection.setDoOutput(true);
 			DataOutputStream wr = new DataOutputStream(	connection.getOutputStream());
