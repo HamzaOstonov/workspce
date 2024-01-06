@@ -58,7 +58,9 @@ import com.is.clients.controllers.renderers.HistoryRenderer;
 import com.is.clients.controllers.renderers.SapSearchRenderer;
 import com.is.clients.ebp.EbpMappers;
 import com.is.clients.ebp.EbpService;
+import com.is.clients.models.AccountsResponse;
 import com.is.clients.models.ClientJ;
+import com.is.clients.models.LockedAccountsResponse;
 import com.is.clients.models.NibbdParam;
 import com.is.clients.models.ResInn;
 import com.is.clients.models.SubjectByInnResponse;
@@ -119,7 +121,8 @@ public class ClientJViewCtrl extends AbstractClientController {
     private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
     private RefCBox type_close_name;
     private Datebox date_doc;
-    private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$currencyRow, wind_nibbd$idOrderRow, wind_nibbd$typeCloseRow, wind_nibbd$idDocRow, wind_nibbd$dateDocRow, wind_nibbd$accountRow;
+    private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$clientRow, wind_nibbd$currencyRow, wind_nibbd$idOrderRow, wind_nibbd$typeCloseRow, wind_nibbd$idDocRow, wind_nibbd$dateDocRow, wind_nibbd$accountRow;
+    private Toolbarbutton wind_nibbd$btn_send;
 
     private ServiceFactory serviceFactory;
 
@@ -742,51 +745,372 @@ public class ClientJViewCtrl extends AbstractClientController {
 	@SuppressWarnings("unused")
 	public void onClick$btn_send$wind_nibbd() throws Exception  {
 		
-		String inn_pinfl = null;
-		inn_pinfl = nibbdparam.getInn();
-		if (current!=null && current.getCode_type()!=null){ 
-			if (current.getCode_type().equals("11")) 
-				inn_pinfl = nibbdparam.getPinfl();
-		}
-
-		SubjectByInnResponse innResp = UtilityService.nibbdSubjectByInn ("", inn_pinfl);
-
 		wind_nibbd$res_grid.getRows().getChildren().clear();
-		if (innResp!=null) {
-			wind_nibbd$res_grid.setVisible(true);
+		String queryType = (String)wind_nibbd$btn_send.getAttribute("queryType");
+		if (queryType.equals("inn") || queryType.equals("pin") ) {
+		
+			String inn_pinfl = null;
+			SubjectByInnResponse resp=null; 
 			
-			Row rr = new Row();
-			rr.appendChild(new Label("Code:"));
-			rr.appendChild(new Label(innResp.getResult().getCode()));
-			wind_nibbd$res_grid.getRows().appendChild(rr);
-
-			rr = new Row();
-			rr.appendChild(new Label("Message"));
-			rr.appendChild(new Label(innResp.getResult().getMessage()));
-			wind_nibbd$res_grid.getRows().appendChild(rr);
-
-
-			if (innResp.getResult().getCode().equals("02000")) {
-				rr = new Row();
-				rr.appendChild(new Label("Client:"));
-				rr.appendChild(new Label(innResp.getResponse().getClient()));
-				wind_nibbd$res_grid.getRows().appendChild(rr);
-
-				rr = new Row();
-				rr.appendChild(new Label("Name"));
-				rr.appendChild(new Label(innResp.getResponse().getName()));
-				wind_nibbd$res_grid.getRows().appendChild(rr);
-
-				rr = new Row();
-				rr.appendChild(new Label("Opened"));
-				rr.appendChild(new Label(innResp.getResponse().getOpened()));
-				wind_nibbd$res_grid.getRows().appendChild(rr);
+			if (queryType.equals("inn")) {
+				inn_pinfl = nibbdparam.getInn();
+				resp = UtilityService.nibbdSubjectByInn ("", inn_pinfl);
 				
+			} else if (queryType.equals("pin")) {
+				inn_pinfl = nibbdparam.getPinfl();
+				resp = UtilityService.nibbdSubjectByPinfl ("", inn_pinfl);
 			}
+			
+			
+			if (resp!=null) {
+				wind_nibbd$res_grid.setVisible(true);
+				
+				Row rr = new Row();
+				rr.appendChild(new Label("Code:"));
+				rr.appendChild(new Label(resp.getResult().getCode()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
 
-		} else {
-			wind_nibbd$res_grid.setVisible(false);
-			alert ("Ошибка при запросе");	
+				rr = new Row();
+				rr.appendChild(new Label("Message"));
+				rr.appendChild(new Label(resp.getResult().getMessage()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
+
+
+				if (resp.getResult().getCode().equals("02000")) {
+					rr = new Row();
+					rr.appendChild(new Label("Client:"));
+					rr.appendChild(new Label(resp.getResponse().getClient()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+
+					rr = new Row();
+					rr.appendChild(new Label("Name"));
+					rr.appendChild(new Label(resp.getResponse().getName()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+
+					rr = new Row();
+					rr.appendChild(new Label("Opened"));
+					rr.appendChild(new Label(resp.getResponse().getOpened()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+				}
+
+			} else {
+				wind_nibbd$res_grid.setVisible(false);
+				alert ("Ошибка при запросе");	
+			}
+		} else if (queryType.equals("accounts") ) { 
+			AccountsResponse resp=	UtilityService.nibbdAccounts ("", nibbdparam.getClient(), nibbdparam.getCoa());
+
+			if (resp!=null) {
+				wind_nibbd$res_grid.setVisible(true);
+				
+				Row rr = new Row();
+				rr.appendChild(new Label("Code:"));
+				rr.appendChild(new Label(resp.getResult().getCode()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
+
+				rr = new Row();
+				rr.appendChild(new Label("Message"));
+				rr.appendChild(new Label(resp.getResult().getMessage()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
+
+
+				if (resp.getResult().getCode().equals("02000")) {
+					rr = new Row();
+					rr.appendChild(new Label("Client:"));
+					rr.appendChild(new Label(resp.getResponse().getClient()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+
+					rr = new Row();
+					rr.appendChild(new Label("Main bank"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getBank()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+
+					rr = new Row();
+					rr.appendChild(new Label("Main branch"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getBranch()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+				
+					rr = new Row();
+					rr.appendChild(new Label("Main office"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getOffice()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+					rr = new Row();
+					rr.appendChild(new Label("Main account"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getAccount()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+					rr = new Row();
+					rr.appendChild(new Label("Main account state"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getAccount_state()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+					rr = new Row();
+					rr.appendChild(new Label("Main opened"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getOpened()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+
+					if (resp.getResponse().getMain().getLock_info().length!=0) {
+						rr = new Row();
+						rr.appendChild(new Label("Lock_info........:"));
+						rr.appendChild(new Label(""));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+						
+						for (int i = 0; i < resp.getResponse().getMain().getLock_info().length; i++) {
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Type"));
+							rr.appendChild(new Label(resp.getResponse().getMain().getLock_info()[i].getType()));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+							
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Doc_n"));
+							rr.appendChild(new Label(resp.getResponse().getMain().getLock_info()[i].getDoc_n()));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+							
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Doc_d"));
+							rr.appendChild(new Label(resp.getResponse().getMain().getLock_info()[i].getDoc_d()));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+							
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Locked"));
+							rr.appendChild(new Label(resp.getResponse().getMain().getLock_info()[i].getLocked()));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+						}
+					} 
+					
+					rr = new Row();
+					rr.appendChild(new Label("Accounts........:"));
+					rr.appendChild(new Label(""));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+					for (int i = 0; i < resp.getResponse().getAccounts().length; i++) {
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Bank"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getBank()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+						
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Branch"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getBranch()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Office"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getOffice()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Account"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getAccount()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Account_state"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getAccount_state()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Opened"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getOpened()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						
+						if (resp.getResponse().getAccounts()[i].getLock_info().length!=0) {
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Lock_info........:"));
+							rr.appendChild(new Label(""));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+							
+							for (int k = 0; k < resp.getResponse().getAccounts()[i].getLock_info().length; k++) {
+								rr = new Row();
+								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Type"));
+								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getType()));
+								wind_nibbd$res_grid.getRows().appendChild(rr);
+								
+								rr = new Row();
+								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Doc_n"));
+								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getDoc_n()));
+								wind_nibbd$res_grid.getRows().appendChild(rr);
+								
+								rr = new Row();
+								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Doc_d"));
+								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getDoc_d()));
+								wind_nibbd$res_grid.getRows().appendChild(rr);
+								
+								rr = new Row();
+								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Locked"));
+								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getLocked()));
+								wind_nibbd$res_grid.getRows().appendChild(rr);
+							}
+
+						}
+						
+    				}
+				}
+
+			} else {
+				wind_nibbd$res_grid.setVisible(false);
+				alert ("Ошибка при запросе");	
+			}
+		} else if (queryType.equals("lockedaccounts") ) { 
+			LockedAccountsResponse resp=	UtilityService.nibbdLockedAccounts ("", nibbdparam.getClient(), nibbdparam.getAccount());
+
+			if (resp!=null) {
+				wind_nibbd$res_grid.setVisible(true);
+				
+				Row rr = new Row();
+				rr.appendChild(new Label("Code:"));
+				rr.appendChild(new Label(resp.getResult().getCode()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
+
+				rr = new Row();
+				rr.appendChild(new Label("Message"));
+				rr.appendChild(new Label(resp.getResult().getMessage()));
+				wind_nibbd$res_grid.getRows().appendChild(rr);
+
+
+				if (resp.getResult().getCode().equals("02000")) {
+					rr = new Row();
+					rr.appendChild(new Label("Client:"));
+					rr.appendChild(new Label(resp.getResponse().getClient()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+
+					rr = new Row();
+					rr.appendChild(new Label("Main bank"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getBank()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+
+					rr = new Row();
+					rr.appendChild(new Label("Main branch"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getBranch()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+				
+					rr = new Row();
+					rr.appendChild(new Label("Main office"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getOffice()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+					rr = new Row();
+					rr.appendChild(new Label("Main account"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getAccount()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+					rr = new Row();
+					rr.appendChild(new Label("Main account state"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getAccount_state()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+					rr = new Row();
+					rr.appendChild(new Label("Main opened"));
+					rr.appendChild(new Label(resp.getResponse().getMain().getOpened()));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+
+					if (resp.getResponse().getMain().getLock_info().length!=0) {
+						rr = new Row();
+						rr.appendChild(new Label("Lock_info........:"));
+						rr.appendChild(new Label(""));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+						
+						for (int i = 0; i < resp.getResponse().getMain().getLock_info().length; i++) {
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Type"));
+							rr.appendChild(new Label(resp.getResponse().getMain().getLock_info()[i].getType()));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+							
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Doc_n"));
+							rr.appendChild(new Label(resp.getResponse().getMain().getLock_info()[i].getDoc_n()));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+							
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Doc_d"));
+							rr.appendChild(new Label(resp.getResponse().getMain().getLock_info()[i].getDoc_d()));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+							
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Locked"));
+							rr.appendChild(new Label(resp.getResponse().getMain().getLock_info()[i].getLocked()));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+						}
+					} 
+					
+					rr = new Row();
+					rr.appendChild(new Label("Accounts........:"));
+					rr.appendChild(new Label(""));
+					wind_nibbd$res_grid.getRows().appendChild(rr);
+					
+					for (int i = 0; i < resp.getResponse().getAccounts().length; i++) {
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Bank"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getBank()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+						
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Branch"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getBranch()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Office"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getOffice()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Account"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getAccount()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Account_state"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getAccount_state()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						rr = new Row();
+						rr.appendChild(new Label(i+1+". "+"Opened"));
+						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getOpened()));
+						wind_nibbd$res_grid.getRows().appendChild(rr);
+
+						
+						if (resp.getResponse().getAccounts()[i].getLock_info().length!=0) {
+							rr = new Row();
+							rr.appendChild(new Label(i+1+". "+"Lock_info........:"));
+							rr.appendChild(new Label(""));
+							wind_nibbd$res_grid.getRows().appendChild(rr);
+							
+							for (int k = 0; k < resp.getResponse().getAccounts()[i].getLock_info().length; k++) {
+								rr = new Row();
+								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Type"));
+								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getType()));
+								wind_nibbd$res_grid.getRows().appendChild(rr);
+								
+								rr = new Row();
+								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Doc_n"));
+								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getDoc_n()));
+								wind_nibbd$res_grid.getRows().appendChild(rr);
+								
+								rr = new Row();
+								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Doc_d"));
+								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getDoc_d()));
+								wind_nibbd$res_grid.getRows().appendChild(rr);
+								
+								rr = new Row();
+								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Locked"));
+								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getLocked()));
+								wind_nibbd$res_grid.getRows().appendChild(rr);
+							}
+
+						}
+						
+    				}
+				}
+
+			} else {
+				wind_nibbd$res_grid.setVisible(false);
+				alert ("Ошибка при запросе");	
+			}
+			
 		}
 		
 		//ResInn resInn = null;
@@ -837,6 +1161,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 		
 		wind_nibbd$pinRow.setVisible(false);
 		wind_nibbd$innRow.setVisible(false); 
+		wind_nibbd$clientRow.setVisible(false);
 		wind_nibbd$coaRow.setVisible(false);
 		wind_nibbd$currencyRow.setVisible(false);
 		wind_nibbd$idOrderRow.setVisible(false);
@@ -854,6 +1179,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 		//nibbdQuery=new NibbdQuery();
 		nibbdparam.setInn(current.getJ_number_tax_registration());
 		wind_nibbd$innRow.setVisible(true);
+		wind_nibbd$btn_send.setAttribute("queryType", "inn");
 		binder.loadComponent(wind_nibbd);
 	}
 	
@@ -861,18 +1187,42 @@ public class ClientJViewCtrl extends AbstractClientController {
 	public void onClick$btn_subPinfl() {
 		hideRows();
 
-		if(current.getCode_type().equals("11")) {
+		//if(current.getCode_type().equals("11")) {
 			wind_nibbd.setVisible(true);
 			//nibbdparam=new NibbdParam();
 			nibbdparam.setPinfl(current.getP_pinfl());
 			wind_nibbd$pinRow.setVisible(true);
+			wind_nibbd$btn_send.setAttribute("queryType", "pin");
 			binder.loadComponent(wind_nibbd);
-		} else {
-			wind_nibbd.setVisible(false);
-			alert("Этот пункт для клиентов ЯТТ");
-		}
+		//} else {
+		//	wind_nibbd.setVisible(false);
+		//	alert("Этот пункт для клиентов ЯТТ");
+		//}
 	}
 
+	//getAccounts
+	public void onClick$btn_idenReg() {
+		hideRows();
+		wind_nibbd.setVisible(true);
+		nibbdparam.setClient(current.getId_client());
+		wind_nibbd$clientRow.setVisible(true);
+		wind_nibbd$coaRow.setVisible(true);
+		wind_nibbd$btn_send.setAttribute("queryType", "accounts");
+		binder.loadComponent(wind_nibbd);
+	}
+	
+	
+	//getLockAccounts
+	public void onClick$btn_idenBloc() {
+			hideRows();
+			wind_nibbd.setVisible(true);
+			nibbdparam.setClient(current.getId_client());
+			wind_nibbd$clientRow.setVisible(true);
+			wind_nibbd$accountRow.setVisible(true);
+			wind_nibbd$btn_send.setAttribute("queryType", "lockedaccounts");
+			binder.loadComponent(wind_nibbd);
+	}
+	
     public void onClick$btn_fetch_ebp() {
         if (CheckNull.isEmpty(newcl.getCode_type())) {
             alert("Введите тип клиента");

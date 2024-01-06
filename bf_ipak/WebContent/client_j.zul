@@ -33,8 +33,8 @@
 			<menupopup id="mp">
 				<menuitem id="btn_subInn" label="Идентификация субъекта(ЮЛ) по ИНН" />
 				<menuitem id="btn_subPinfl" label="Идентификация субъекта(ЮЛ) по ПИНФЛ" />
-				<menuitem id="btn_idenReg" label="Идентификация зарегистрированных счетов субъекта" onClick="alert(self.label)" />
-				<menuitem id="btn_idenBloc" label="Идентификация заблокированных счетов субъекта" onClick="alert(self.label)" />
+				<menuitem id="btn_idenReg" label="Идентификация зарегистрированных счетов субъекта"/>
+				<menuitem id="btn_idenBloc" label="Идентификация заблокированных счетов субъекта" />
                 <menuitem id="btn_idenBloc2" label="Идентификация заблокированных счетов субъекта(2)" onClick="alert(self.label)" />
 			</menupopup>
 
@@ -3841,6 +3841,7 @@
 		</window>
 		<window id="wind_nibbd" width="1000px" height="700px" title="Данные по НИББД" border="normal" mode="overlapped"
         	position="center,center" visible="false" closable="true" maximizable="true"
+        	contentStyle="overflow: auto"
         	onClose="self.visible = false; event.stopPropagation();">
 
             <grid id="windgrd" ctrlKeys="^e#up#down" visible="true">
@@ -3849,9 +3850,10 @@
 					<column width="83%" />
 				</columns>
 				<rows>
-				    <row id="coaRow"><label value="Код счета клиента" /><textbox id="coa" /> </row>
-            		<row id="currencyRow"><label value="Валюта" /><textbox id="currency" /> </row>
-            		<row id="idOrderRow"><label value="Порядковый номер счета" /><textbox id="id_order" /> </row>
+				    <row id="clientRow"><label value="Код клиента" /><textbox value="@{clientmain$composer.nibbdparam.client}" /> </row>
+				    <row id="coaRow"><label value="Код счета клиента" /><textbox value="@{clientmain$composer.nibbdparam.coa}" /> </row>
+            		<row id="currencyRow"><label value="Валюта" /><textbox id="currency" value="@{clientmain$composer.nibbdparam.currency}"  /> </row>
+            		<row id="idOrderRow"><label value="Порядковый номер счета" /><textbox id="id_order" value="@{clientmain$composer.nibbdparam.id_order}" /> </row>
             		<row id="typeCloseRow">
             		  <label value="Вид закрытия" />
             		  <hbox align="left">

@@ -1,7 +1,7 @@
 package com.is.clients.models;
 
 public class Response {
-	private String client;
+	 private String client;
 	 private String client_type;
 	 private String client_state;
 	 private String account_state;

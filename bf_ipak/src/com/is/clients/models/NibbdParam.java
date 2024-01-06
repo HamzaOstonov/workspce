@@ -13,6 +13,7 @@ public class NibbdParam {
 	private String closed_doc_n;
 	private Date closed_doc_d;
 	private String account;
+	private String client;
 	
 	
 	 public NibbdParam() {
@@ -71,6 +72,14 @@ public class NibbdParam {
 	}
 	public void setAccount(String account) {
 		this.account = account;
+	}
+
+	public String getClient() {
+		return client;
+	}
+
+	public void setClient(String client) {
+		this.client = client;
 	}
 	
 	
