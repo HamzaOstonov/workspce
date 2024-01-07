@@ -955,7 +955,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 				alert ("Ошибка при запросе");	
 			}
 		} else if (queryType.equals("lockedaccounts") ) { 
-			LockedAccountsResponse resp=	UtilityService.nibbdLockedAccounts ("", nibbdparam.getClient(), nibbdparam.getAccount());
+			LockedAccountsResponse resp = UtilityService.nibbdLockedAccounts ("", nibbdparam.getClient(), nibbdparam.getAccount());
 
 			if (resp!=null) {
 				wind_nibbd$res_grid.setVisible(true);
@@ -988,25 +988,10 @@ public class ClientJViewCtrl extends AbstractClientController {
 					wind_nibbd$res_grid.getRows().appendChild(rr);
 				
 					rr = new Row();
-					rr.appendChild(new Label("Main office"));
-					rr.appendChild(new Label(resp.getResponse().getMain().getOffice()));
-					wind_nibbd$res_grid.getRows().appendChild(rr);
-					
-					rr = new Row();
 					rr.appendChild(new Label("Main account"));
 					rr.appendChild(new Label(resp.getResponse().getMain().getAccount()));
 					wind_nibbd$res_grid.getRows().appendChild(rr);
 					
-					rr = new Row();
-					rr.appendChild(new Label("Main account state"));
-					rr.appendChild(new Label(resp.getResponse().getMain().getAccount_state()));
-					wind_nibbd$res_grid.getRows().appendChild(rr);
-					
-					rr = new Row();
-					rr.appendChild(new Label("Main opened"));
-					rr.appendChild(new Label(resp.getResponse().getMain().getOpened()));
-					wind_nibbd$res_grid.getRows().appendChild(rr);
-
 					if (resp.getResponse().getMain().getLock_info().length!=0) {
 						rr = new Row();
 						rr.appendChild(new Label("Lock_info........:"));
@@ -1053,56 +1038,10 @@ public class ClientJViewCtrl extends AbstractClientController {
 						wind_nibbd$res_grid.getRows().appendChild(rr);
 
 						rr = new Row();
-						rr.appendChild(new Label(i+1+". "+"Office"));
-						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getOffice()));
-						wind_nibbd$res_grid.getRows().appendChild(rr);
-
-						rr = new Row();
 						rr.appendChild(new Label(i+1+". "+"Account"));
 						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getAccount()));
 						wind_nibbd$res_grid.getRows().appendChild(rr);
 
-						rr = new Row();
-						rr.appendChild(new Label(i+1+". "+"Account_state"));
-						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getAccount_state()));
-						wind_nibbd$res_grid.getRows().appendChild(rr);
-
-						rr = new Row();
-						rr.appendChild(new Label(i+1+". "+"Opened"));
-						rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getOpened()));
-						wind_nibbd$res_grid.getRows().appendChild(rr);
-
-						
-						if (resp.getResponse().getAccounts()[i].getLock_info().length!=0) {
-							rr = new Row();
-							rr.appendChild(new Label(i+1+". "+"Lock_info........:"));
-							rr.appendChild(new Label(""));
-							wind_nibbd$res_grid.getRows().appendChild(rr);
-							
-							for (int k = 0; k < resp.getResponse().getAccounts()[i].getLock_info().length; k++) {
-								rr = new Row();
-								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Type"));
-								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getType()));
-								wind_nibbd$res_grid.getRows().appendChild(rr);
-								
-								rr = new Row();
-								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Doc_n"));
-								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getDoc_n()));
-								wind_nibbd$res_grid.getRows().appendChild(rr);
-								
-								rr = new Row();
-								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Doc_d"));
-								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getDoc_d()));
-								wind_nibbd$res_grid.getRows().appendChild(rr);
-								
-								rr = new Row();
-								rr.appendChild(new Label(i+1+". "+(k+1)+". "+"Locked"));
-								rr.appendChild(new Label(resp.getResponse().getAccounts()[i].getLock_info()[k].getLocked()));
-								wind_nibbd$res_grid.getRows().appendChild(rr);
-							}
-
-						}
-						
     				}
 				}
 
@@ -1169,7 +1108,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 		wind_nibbd$idDocRow.setVisible(false); 
 		wind_nibbd$dateDocRow.setVisible(false);
 		wind_nibbd$accountRow.setVisible(false);
-		
+		wind_nibbd$res_grid.getRows().getChildren().clear();		
 	}
 	
 	//	--  Меню кнопка - 'Идентификация субъекта(ЮЛ) по ИНН'

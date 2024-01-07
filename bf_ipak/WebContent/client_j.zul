@@ -35,7 +35,6 @@
 				<menuitem id="btn_subPinfl" label="Идентификация субъекта(ЮЛ) по ПИНФЛ" />
 				<menuitem id="btn_idenReg" label="Идентификация зарегистрированных счетов субъекта"/>
 				<menuitem id="btn_idenBloc" label="Идентификация заблокированных счетов субъекта" />
-                <menuitem id="btn_idenBloc2" label="Идентификация заблокированных счетов субъекта(2)" onClick="alert(self.label)" />
 			</menupopup>
 
 		</toolbar>
@@ -3863,7 +3862,7 @@
             		</row>
             		<row id="idDocRow"><label value="Номер документа основания" /><textbox id="id_doc" width="30%" /></row>
             		<row id="dateDocRow"><label value="Дата документа основания" /><datebox id="date_doc" width="30%" /></row>
-            		<row id="accountRow"><label value="Лицевой счет" /><textbox id="acc" width="30%" /></row>
+            		<row id="accountRow"><label value="Лицевой счет" /><textbox id="acc" width="30%" value="@{clientmain$composer.nibbdparam.account}" /></row>
             		<row id="innRow"><label value="ИНН" /><textbox id="inn" width="30%" value="@{clientmain$composer.nibbdparam.inn}" /></row>
             		<row id="pinRow"><label value="ПИНФЛ" /><textbox id="pinfl" width="30%" value="@{clientmain$composer.nibbdparam.pinfl}" /></row>
 
