@@ -8,8 +8,8 @@ public class NibbdParam {
 	private String pinfl;
 	private String coa;
 	private String currency;
-	private String nOrder;
-	private String closeType;
+	private String n_order;
+	private String close_type;
 	private String closed_doc_n;
 	private Date closed_doc_d;
 	private String account;
@@ -43,17 +43,17 @@ public class NibbdParam {
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
-	public String getnOrder() {
-		return nOrder;
+	public String getN_order() {
+		return n_order;
 	}
-	public void setnOrder(String nOrder) {
-		this.nOrder = nOrder;
+	public void setN_order(String nOrder) {
+		this.n_order = nOrder;
 	}
-	public String getCloseType() {
-		return closeType;
+	public String getClose_type() {
+		return close_type;
 	}
-	public void setCloseType(String closeType) {
-		this.closeType = closeType;
+	public void setClose_type(String closeType) {
+		this.close_type = closeType;
 	}
 	public String getClosed_doc_n() {
 		return closed_doc_n;

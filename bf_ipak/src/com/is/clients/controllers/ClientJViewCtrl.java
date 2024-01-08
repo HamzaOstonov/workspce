@@ -121,7 +121,7 @@ public class ClientJViewCtrl extends AbstractClientController {
     private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
     private RefCBox type_close_name;
     private Datebox date_doc;
-    private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$clientRow, wind_nibbd$currencyRow, wind_nibbd$idOrderRow, wind_nibbd$typeCloseRow, wind_nibbd$idDocRow, wind_nibbd$dateDocRow, wind_nibbd$accountRow;
+    private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$clientRow, wind_nibbd$currencyRow, wind_nibbd$nOrderRow, wind_nibbd$closeTypeRow, wind_nibbd$closedDoc_nRow, wind_nibbd$closedDoc_dRow, wind_nibbd$accountRow;
     private Toolbarbutton wind_nibbd$btn_send;
 
     private ServiceFactory serviceFactory;
@@ -1050,6 +1050,13 @@ public class ClientJViewCtrl extends AbstractClientController {
 				alert ("Ошибка при запросе");	
 			}
 			
+		} else {
+			//Actions
+			int action = (Integer)wind_nibbd$btn_send.getAttribute("actionId");
+			//proverkalar kerak shuerga manimcha
+			
+            myExecuteAction(action);
+            
 		}
 		
 		//ResInn resInn = null;
@@ -1103,10 +1110,10 @@ public class ClientJViewCtrl extends AbstractClientController {
 		wind_nibbd$clientRow.setVisible(false);
 		wind_nibbd$coaRow.setVisible(false);
 		wind_nibbd$currencyRow.setVisible(false);
-		wind_nibbd$idOrderRow.setVisible(false);
-		wind_nibbd$typeCloseRow.setVisible(false);
-		wind_nibbd$idDocRow.setVisible(false); 
-		wind_nibbd$dateDocRow.setVisible(false);
+		wind_nibbd$nOrderRow.setVisible(false);
+		wind_nibbd$closeTypeRow.setVisible(false);
+		wind_nibbd$closedDoc_nRow.setVisible(false); 
+		wind_nibbd$closedDoc_dRow.setVisible(false);
 		wind_nibbd$accountRow.setVisible(false);
 		wind_nibbd$res_grid.getRows().getChildren().clear();		
 	}
@@ -1331,6 +1338,39 @@ public class ClientJViewCtrl extends AbstractClientController {
             alert("Выберите клиента");
             return;
         }
+        if (current.getSign_registr()==1 && (action==2 || action==3 || action==32 ) ) {
+        	//nibbd onlayn
+        	
+        	//deystivitelno deb savol bermasdan utishni istadik
+            executeAction(action);
+            
+//    		hideRows();
+//    		wind_nibbd.setVisible(true);
+//    		if (action==2 && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
+//    			//setNonResidentAccount
+//    			wind_nibbd$coaRow.setVisible(true);
+//    			wind_nibbd$currencyRow.setVisible(true);
+//    			wind_nibbd$nOrderRow.setVisible(true);
+//    			wind_nibbd$btn_send.setAttribute("queryType", "setNonResidentAccount");
+//    		} else if (action==2) {
+//    			//{setJuridicalAccount, setIndividualAccount, setBudgetAccount}
+//    			wind_nibbd$coaRow.setVisible(true);
+//    			wind_nibbd$btn_send.setAttribute("queryType", "setJuridicalAccount");
+//    		} else if (action==32) {
+//    			//changeTypeSubject-Регистрация изменения реквизита «Тип клиента» субъекта в НИББД
+//    			wind_nibbd$coaRow.setVisible(true);
+//    			wind_nibbd$btn_send.setAttribute("queryType", "changeTypeSubject");
+//    		} else if (action==3) {
+//    			//{closeSubject-Регистрация прекращения деятельности субъекта}
+//    			wind_nibbd$closeTypeRow.setVisible(true);
+//    			wind_nibbd$closedDoc_nRow.setVisible(true);
+//    			wind_nibbd$closedDoc_dRow.setVisible(true);
+//    			wind_nibbd$btn_send.setAttribute("queryType", "closeSubject");
+//    		}
+//    		wind_nibbd$btn_send.setAttribute("actionId", action);
+//    		binder.loadComponent(wind_nibbd);
+
+        } else 
         try {
             Messagebox.show("вы действительно хотите выполнить действие:" + actionsMap.get(action) + "?", "",
                     Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION, new EventListener() {
@@ -1386,8 +1426,68 @@ public class ClientJViewCtrl extends AbstractClientController {
 
         }
         Res doAction = null;
-        boolean runNibbd = (current.getSign_registr() == 1) && (action == 2 || action == 4);
+        boolean runNibbd = (current.getSign_registr() == 1) && (action == 2 || action == 3 || action==32 );
+        if (runNibbd) {
+
+        	hideRows();
+    		wind_nibbd.setVisible(true);
+    		if (action==2 && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
+    			//setNonResidentAccount
+    			wind_nibbd$coaRow.setVisible(true);
+    			wind_nibbd$currencyRow.setVisible(true);
+    			wind_nibbd$nOrderRow.setVisible(true);
+    			wind_nibbd$btn_send.setAttribute("queryType", "setNonResidentAccount");
+    		} else if (action==2) {
+    			//{setJuridicalAccount, setIndividualAccount, setBudgetAccount}
+    			wind_nibbd$coaRow.setVisible(true);
+    			wind_nibbd$btn_send.setAttribute("queryType", "setJuridicalAccount");
+    		} else if (action==32) {
+    			//changeTypeSubject-Регистрация изменения реквизита «Тип клиента» субъекта в НИББД
+    			wind_nibbd$coaRow.setVisible(true);
+    			wind_nibbd$btn_send.setAttribute("queryType", "changeTypeSubject");
+    		} else if (action==3) {
+    			//{closeSubject-Регистрация прекращения деятельности субъекта}
+    			wind_nibbd$closeTypeRow.setVisible(true);
+    			wind_nibbd$closedDoc_nRow.setVisible(true);
+    			wind_nibbd$closedDoc_dRow.setVisible(true);
+    			wind_nibbd$btn_send.setAttribute("queryType", "closeSubject");
+    		}
+    		wind_nibbd$btn_send.setAttribute("actionId", action);
+    		binder.loadComponent(wind_nibbd);
+    		
+        } else {
+            current.setEmp_id(""+userId);
+            doAction = clientService.doAction(current, action);
+            if (doAction != null && (doAction.getCode() != 0)) {
+                alert(doAction.getCode() + " " + doAction.getName());
+                return;
+            }
+            // filter = new ClientJFilter();
+            filter.clearFilterFields();// новый метод от 21,11,2017
+            filter.setJ_number_tax_registration(current.getJ_number_tax_registration());
+            if (current.getJ_number_tax_registration() == null) {
+            	filter.setP_pinfl(current.getP_pinfl());
+            	//filter.setCode_type(current.getCode_type());
+            } else {
+            	if (current.getJ_number_tax_registration()=="000000000" || current.getJ_number_tax_registration().equals("000000000"))
+            	{
+            		filter.setP_pinfl(current.getP_pinfl());
+            	}
+            }
+            
+            refreshModel(0, true);
+            onDoubleClick$dataGrid$grd();
+        	
+        }
+        
+    }
+
+    
+    private void myExecuteAction(int action) {
+        
+        Res doAction = null;
         current.setEmp_id(""+userId);
+        //bu erda ham ehtimol myDoaction kerakdir
         doAction = clientService.doAction(current, action);
         if (doAction != null && (doAction.getCode() != 0)) {
             alert(doAction.getCode() + " " + doAction.getName());
@@ -1405,14 +1505,10 @@ public class ClientJViewCtrl extends AbstractClientController {
         		filter.setP_pinfl(current.getP_pinfl());
         	}
         }
-        
         refreshModel(0, true);
         onDoubleClick$dataGrid$grd();
-        if (runNibbd) {
-            initNibbd(action == 2 ? NibbdQueries.CLIENT_OPEN : NibbdQueries.CLIENT_CHANGE);
-        }
     }
-
+    
     private void initAccounts() {
         if (account_wnd == null) {
             // account_wnd = (Window)

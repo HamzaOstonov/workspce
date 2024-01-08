@@ -3852,16 +3852,16 @@
 				    <row id="clientRow"><label value="Код клиента" /><textbox value="@{clientmain$composer.nibbdparam.client}" /> </row>
 				    <row id="coaRow"><label value="Код счета клиента" /><textbox value="@{clientmain$composer.nibbdparam.coa}" /> </row>
             		<row id="currencyRow"><label value="Валюта" /><textbox id="currency" value="@{clientmain$composer.nibbdparam.currency}"  /> </row>
-            		<row id="idOrderRow"><label value="Порядковый номер счета" /><textbox id="id_order" value="@{clientmain$composer.nibbdparam.id_order}" /> </row>
-            		<row id="typeCloseRow">
+            		<row id="nOrderRow"><label value="Порядковый номер счета" /><textbox id="norder" value="@{clientmain$composer.nibbdparam.n_order}" /> </row>
+            		<row id="closeTypeRow">
             		  <label value="Вид закрытия" />
             		  <hbox align="left">
             		    <textbox id="type_close_id" width="80%" constraint="no empty: " style="color: #FF0000"/>
             		    <rcombobox id="type_close_name" width="250%" constraint="no empty: " style="color: #FF0000"/>
             		  </hbox>
             		</row>
-            		<row id="idDocRow"><label value="Номер документа основания" /><textbox id="id_doc" width="30%" /></row>
-            		<row id="dateDocRow"><label value="Дата документа основания" /><datebox id="date_doc" width="30%" /></row>
+            		<row id="closedDoc_nRow"><label value="Номер документа основания" /><textbox id="closed_doc_n" width="30%" /></row>
+            		<row id="closedDoc_dRow"><label value="Дата документа основания" /><datebox id="closed_doc_d" width="30%" /></row>
             		<row id="accountRow"><label value="Лицевой счет" /><textbox id="acc" width="30%" value="@{clientmain$composer.nibbdparam.account}" /></row>
             		<row id="innRow"><label value="ИНН" /><textbox id="inn" width="30%" value="@{clientmain$composer.nibbdparam.inn}" /></row>
             		<row id="pinRow"><label value="ПИНФЛ" /><textbox id="pinfl" width="30%" value="@{clientmain$composer.nibbdparam.pinfl}" /></row>
