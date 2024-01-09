@@ -1055,7 +1055,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 			int action = (Integer)wind_nibbd$btn_send.getAttribute("actionId");
 			//proverkalar kerak shuerga manimcha
 			
-            myExecuteAction(action);
+            executeActionNibbd(action);
             
 		}
 		
@@ -1483,7 +1483,7 @@ public class ClientJViewCtrl extends AbstractClientController {
     }
 
     
-    private void myExecuteAction(int action) {
+    private void executeActionNibbd(int action) {
         
         Res doAction = null;
         current.setEmp_id(""+userId);

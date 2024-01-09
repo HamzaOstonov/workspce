@@ -277,7 +277,7 @@ public class ClientJService {
                 
             }
             
-            // У ИП не передается физическая часть в client_j Смотреть класс PendingResponseHandler
+            // РЈ РРџ РЅРµ РїРµСЂРµРґР°РµС‚СЃСЏ С„РёР·РёС‡РµСЃРєР°СЏ С‡Р°СЃС‚СЊ РІ client_j РЎРјРѕС‚СЂРµС‚СЊ РєР»Р°СЃСЃ PendingResponseHandler
             if ((actionid == 51 || actionid == ClientUtil.ACTION_CONFIRM_CLOSED) && isIP) {
 
                 cs.setString(1, "CLIENT_P_NAME");
