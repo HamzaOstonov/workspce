@@ -1431,7 +1431,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 
         	hideRows();
     		wind_nibbd.setVisible(true);
-    		if (action==2 && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
+    		if (action==2 && current.getJ_sign_dep_acc().equals("Y") && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
     			//setNonResidentAccount
     			wind_nibbd$coaRow.setVisible(true);
     			wind_nibbd$currencyRow.setVisible(true);
@@ -1488,6 +1488,29 @@ public class ClientJViewCtrl extends AbstractClientController {
         Res doAction = null;
         current.setEmp_id(""+userId);
         //bu erda ham ehtimol myDoaction kerakdir
+        //currentga shuerda nibb uchun kerakli polyalarni beramiz
+        if (action == 2 && current.getSign_registr()==1 && current.getJ_sign_dep_acc().equals("Y") && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
+        	//utverdit, zapros v nibbd
+        	//setNonResidentAccount
+            //cdsClient.FieldByName('p_capacity_status_place').Value:=edtNibbdCoa.text;
+            //cdsClient.FieldByName('P_NUM_CERTIF_CAPACITY').Value:=edtNibbdCurrency.text;
+            //cdsClient.FieldByName('P_EMAIL_ADDRESS').Value:=edtNibbdNorder.text;
+        	current.setP_capacity_status_place(nibbdparam.getCoa());
+        	current.setP_num_certif_capacity(nibbdparam.getCurrency());
+        	current.setP_email_address(nibbdparam.getN_order());
+        } else if (action==2) {
+        	//setJuridicalAccount, setIndividualAccount, setBudgetAccount
+        	current.setP_capacity_status_place(nibbdparam.getCoa());
+        } else if (action==32) {
+        	//{changeTypeSubject-Регистрация изменения реквизита «Тип клиента» субъекта в НИББД}
+        	current.setP_capacity_status_place(nibbdparam.getCoa());
+        } else if (action==3) {
+        	//{closeSubject-Регистрация прекращения деятельности субъекта}
+        	current.setP_capacity_status_place(nibbdparam.getClose_type());
+        	current.setP_num_certif_capacity(nibbdparam.getClosed_doc_n());
+        	current.setP_capacity_status_date(nibbdparam.getClosed_doc_d());
+        	
+        }        
         doAction = clientService.doAction(current, action);
         if (doAction != null && (doAction.getCode() != 0)) {
             alert(doAction.getCode() + " " + doAction.getName());

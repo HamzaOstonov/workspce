@@ -223,7 +223,6 @@ public class ClientJService {
                 cs.setString(2, clientj.getDirector().getPhone_mobile());
                 cs.execute();
                 	
-                	
                 cs.setString(1, "J_ACCOUNTANT_FAMILY");
                 cs.setString(2, clientj.getAccountant().getFamily_local());
                 cs.execute();
