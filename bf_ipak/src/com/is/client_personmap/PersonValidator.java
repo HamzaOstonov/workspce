@@ -48,76 +48,76 @@ public class PersonValidator extends Validator<Person> {
 		this.person = person;
 		Period period = null;
 		/*if (CheckNull.isEmpty(person.getName())){
-			message = "Введите наименование";
+			message = "Р’РІРµРґРёС‚Рµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ";
 			return false;
 		}*/
 		if (CheckNull.isEmpty(person.getFamily_local())) {
-			message = "Введите фамилию(локал)";
+			message = "Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ(Р»РѕРєР°Р»)";
 			return false;
 		}
 		if (CheckNull.isEmpty(person.getFirst_name_local())) {
-			message = "Введите имя(локал)";
+			message = "Р’РІРµРґРёС‚Рµ РёРјСЏ(Р»РѕРєР°Р»)";
 			return false;
 		}
 		if (CheckNull.isEmpty(person.getPatronymic_local())) {
-			message = "Введите отчество(локал)";
+			message = "Р’РІРµРґРёС‚Рµ РѕС‚С‡РµСЃС‚РІРѕ(Р»РѕРєР°Р»)";
 			return false;
 		}
 		if (CheckNull.isEmpty(person.getFamily())) {
-			message = "Введите фамилию(межд)";
+			message = "Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ(РјРµР¶Рґ)";
 			return false;
 		}
 
 		if (CheckNull.isEmpty(person.getFirst_name())) {
-			message = "Введите имя(межд)";
+			message = "Р’РІРµРґРёС‚Рµ РёРјСЏ(РјРµР¶Рґ)";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getCode_resident())) {
-			message = "Введите резидентность";
+			message = "Р’РІРµРґРёС‚Рµ СЂРµР·РёРґРµРЅС‚РЅРѕСЃС‚СЊ";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getType_document())) {
-			message = "Введите тип документа";
+			message = "Р’РІРµРґРёС‚Рµ С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getPassport_serial())) {
-			message = "Введите серию паспорта";
+			message = "Р’РІРµРґРёС‚Рµ СЃРµСЂРёСЋ РїР°СЃРїРѕСЂС‚Р°";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getPassport_number())) {
-			message = "Введите номер паспорта";
+			message = "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р°";
 			return false;
 		}
 		if (fullCheck && !isName(person.getFamily())) {
-			message = "Фамилия(межд) - только латинские буквы";
+			message = "Р¤Р°РјРёР»РёСЏ(РјРµР¶Рґ) - С‚РѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹";
 			return false;
 		}
 		if (fullCheck && !isName(person.getFirst_name())) {
-			message = "Имя(межд) - только латинские буквы";
+			message = "РРјСЏ(РјРµР¶Рґ) - С‚РѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹";
 			return false;
 		}
 		if (fullCheck && !isName(person.getPatronymic())) {
-			message = "Отчество(межд) - только латинские буквы";
+			message = "РћС‚С‡РµСЃС‚РІРѕ(РјРµР¶Рґ) - С‚РѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getPost_address())) {
-			message = "Введите адрес";
+			message = "Р’РІРµРґРёС‚Рµ Р°РґСЂРµСЃ";
 			return false;
 		}
 		if (fullCheck && !isPNumberCorrect(person.getPassport_number())) {
-			message = "Некорректно введен номер паспорта";
+			message = "РќРµРєРѕСЂСЂРµРєС‚РЅРѕ РІРІРµРґРµРЅ РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р°";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getCode_citizenship())) {
-			message = "Введите гражданство";
+			message = "Р’РІРµРґРёС‚Рµ РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getPassport_place_registration())) {
-			message = "Введите место выдачи ДУЛ";
+			message = "Р’РІРµРґРёС‚Рµ РјРµСЃС‚Рѕ РІС‹РґР°С‡Рё Р”РЈР›";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getBirth_place())) {
-			message = "Введите место рождения";
+			message = "Р’РІРµРґРёС‚Рµ РјРµСЃС‚Рѕ СЂРѕР¶РґРµРЅРёСЏ";
 			return false;
 		}
 		if (fullCheck && ((person.getType_document().equals("1") || person.getType_document().equals("6"))
@@ -126,62 +126,62 @@ public class PersonValidator extends Validator<Person> {
 			// != 2 serial = " + person.getPassport_serial() + ",
 			// person.getPassport_serial().length = " +
 			// person.getPassport_serial().length());
-			message = "Серия паспорта должна состоять из 2 символа";
+			message = "РЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅР° СЃРѕСЃС‚РѕСЏС‚СЊ РёР· 2 СЃРёРјРІРѕР»Р°";
 			return false;
 		}
 		if (fullCheck && ((person.getType_document().equals("6") || person.getType_document().equals("1"))
 				&& !isLatin(person.getPassport_serial()))) {
-			message = "Серия паспорта должна состоять из латинских букв";
+			message = "РЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅР° СЃРѕСЃС‚РѕСЏС‚СЊ РёР· Р»Р°С‚РёРЅСЃРєРёС… Р±СѓРєРІ";
 			return false;
 		}
 		if (fullCheck && (person.getCode_citizenship().equals("860") || person.getCode_resident().equalsIgnoreCase("1"))) {
 			if (!CheckNull.isEmpty(person.getNumber_tax_registration())
 					&& !isTaxNumberCorrect(person.getNumber_tax_registration())) {
-				message = "ИНН должен состоять из 9 цифр, если гражданин Узбекистана, иначе до 20 символов";
+				message = "РРќРќ РґРѕР»Р¶РµРЅ СЃРѕСЃС‚РѕСЏС‚СЊ РёР· 9 С†РёС„СЂ, РµСЃР»Рё РіСЂР°Р¶РґР°РЅРёРЅ РЈР·Р±РµРєРёСЃС‚Р°РЅР°, РёРЅР°С‡Рµ РґРѕ 20 СЃРёРјРІРѕР»РѕРІ";
 				return false;
 			}
 			if (!CheckNull.isEmpty(person.getNumber_tax_registration())
 					&& !checkTaxNumberDigits(person.getNumber_tax_registration())) {
-				message = "У физического лица ИНН должен начинаться с цифр 4,5,6";
+				message = "РЈ С„РёР·РёС‡РµСЃРєРѕРіРѕ Р»РёС†Р° РРќРќ РґРѕР»Р¶РµРЅ РЅР°С‡РёРЅР°С‚СЊСЃСЏ СЃ С†РёС„СЂ 4,5,6";
 				return false;
 			}
 			if (!CheckNull.isEmpty(person.getNumber_tax_registration())
 					&& !checkTaxNumberConsecutive(person.getNumber_tax_registration())) {
-				message = "ИНН должен содержать не более 8 одинаковых цифр";
+				message = "РРќРќ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ Р±РѕР»РµРµ 8 РѕРґРёРЅР°РєРѕРІС‹С… С†РёС„СЂ";
 				return false;
 			}
 		}
-		// Проверка на соответствие полей типу документа
+		// РџСЂРѕРІРµСЂРєР° РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РїРѕР»РµР№ С‚РёРїСѓ РґРѕРєСѓРјРµРЅС‚Р°
 		if (fullCheck && !isForeignCitizenResident()) {
-			message = "Инностраный гражданин не может быть резидентом";
+			message = "РРЅРЅРѕСЃС‚СЂР°РЅС‹Р№ РіСЂР°Р¶РґР°РЅРёРЅ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂРµР·РёРґРµРЅС‚РѕРј";
 			return false;
 		}
 		if (fullCheck && !isForeignCitizenOfUzbekistan()) {
-			message = "Иностранный гражданин не может быть гражданином  Узбекистана";
+			message = "РРЅРѕСЃС‚СЂР°РЅРЅС‹Р№ РіСЂР°Р¶РґР°РЅРёРЅ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РіСЂР°Р¶РґР°РЅРёРЅРѕРј  РЈР·Р±РµРєРёСЃС‚Р°РЅР°";
 			return false;
 		}
 		if (fullCheck && !isResidentTypeDocCorrect()) {
-			message = "У нерезидентного физического лица неправильный тип документа";
+			message = "РЈ РЅРµСЂРµР·РёРґРµРЅС‚РЅРѕРіРѕ С„РёР·РёС‡РµСЃРєРѕРіРѕ Р»РёС†Р° РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°";
 			return false;
 		}
 		if (fullCheck && !isResidencyCorrect()) {
-			message = "Несоотвествие между полями тип документа и гражданство/резидентность";
+			message = "РќРµСЃРѕРѕС‚РІРµСЃС‚РІРёРµ РјРµР¶РґСѓ РїРѕР»СЏРјРё С‚РёРї РґРѕРєСѓРјРµРЅС‚Р° Рё РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ/СЂРµР·РёРґРµРЅС‚РЅРѕСЃС‚СЊ";
 			return false;
 		}
 		if (fullCheck && person.getType_document().equals("5") && person.getCode_citizenship().equals("860")) {
-			message = "Несоотвествие между типом документа вид на жительство и гражданством";
+			message = "РќРµСЃРѕРѕС‚РІРµСЃС‚РІРёРµ РјРµР¶РґСѓ С‚РёРїРѕРј РґРѕРєСѓРјРµРЅС‚Р° РІРёРґ РЅР° Р¶РёС‚РµР»СЊСЃС‚РІРѕ Рё РіСЂР°Р¶РґР°РЅСЃС‚РІРѕРј";
 			return false;
 		}
 		if (fullCheck && person.getType_document().equals("5") && person.getCode_resident().equals("2")) {
-			message = "Несоотвествие между типом документа вид на жительство и резидентность";
+			message = "РќРµСЃРѕРѕС‚РІРµСЃС‚РІРёРµ РјРµР¶РґСѓ С‚РёРїРѕРј РґРѕРєСѓРјРµРЅС‚Р° РІРёРґ РЅР° Р¶РёС‚РµР»СЊСЃС‚РІРѕ Рё СЂРµР·РёРґРµРЅС‚РЅРѕСЃС‚СЊ";
 			return false;
 		}
 		if (fullCheck && CheckNull.isEmpty(person.getPassport_date_registration())) {
-			message = "Введите дату выдачи документа";
+			message = "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РІС‹РґР°С‡Рё РґРѕРєСѓРјРµРЅС‚Р°";
 			return false;
 		}
 		if (fullCheck && person.getType_document().equalsIgnoreCase("6") && CheckNull.isEmpty(person.getPassport_date_expiration())) {
-			message = "Введите дату действия документа";
+			message = "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РґРµР№СЃС‚РІРёСЏ РґРѕРєСѓРјРµРЅС‚Р°";
 			return false;
 		}
 
@@ -194,59 +194,59 @@ public class PersonValidator extends Validator<Person> {
 
 			if (passDatesNotNull && new DateTime(person.getPassport_date_registration())
 					.isBefore(new DateTime(1992, 01, 01, 0, 0, 0, 0))) {
-				message = "Дата выдачи паспорта не должна быть раньше 01.01.1992 года";
+				message = "Р”Р°С‚Р° РІС‹РґР°С‡Рё РїР°СЃРїРѕСЂС‚Р° РЅРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ СЂР°РЅСЊС€Рµ 01.01.1992 РіРѕРґР°";
 				return false;
 			}
 
 			if (person.getType_document() != null && person.getType_document().equals("6") && period.getYears() != 10
 					&& period.getMonths() == 0 && period.getWeeks() == 0 && period.getDays() == 0) {
-				message = "Разность датой действия и датой получения документа должна быть 10 лет (Биометрический паспорт)";
+				message = "Р Р°Р·РЅРѕСЃС‚СЊ РґР°С‚РѕР№ РґРµР№СЃС‚РІРёСЏ Рё РґР°С‚РѕР№ РїРѕР»СѓС‡РµРЅРёСЏ РґРѕРєСѓРјРµРЅС‚Р° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ 10 Р»РµС‚ (Р‘РёРѕРјРµС‚СЂРёС‡РµСЃРєРёР№ РїР°СЃРїРѕСЂС‚)";
 				return false;
 			}
 			/*
 			 * if(fullCheck && person.getPassport_date_expiration() == null) {
-			 * message = "Введите дату действия паспорта"; return false; }
+			 * message = "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РґРµР№СЃС‚РІРёСЏ РїР°СЃРїРѕСЂС‚Р°"; return false; }
 			 */
 			if (person.getPassport_date_registration() != null
 					&& new DateTime(person.getPassport_date_registration()).isAfter(getOperDay())) {
-				message = "Дата регистрации документа не может быть больше банковской даты";
+				message = "Р”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё РґРѕРєСѓРјРµРЅС‚Р° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ Р±Р°РЅРєРѕРІСЃРєРѕР№ РґР°С‚С‹";
 				return false;
 			}
 			if (person.getPassport_date_expiration() != null
 					&& new DateTime(person.getPassport_date_expiration()).isBefore(getOperDay())) {
-				message = "Дата действия паспорта не должно быть меньше даты операционного дня";
+				message = "Р”Р°С‚Р° РґРµР№СЃС‚РІРёСЏ РїР°СЃРїРѕСЂС‚Р° РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ РґР°С‚С‹ РѕРїРµСЂР°С†РёРѕРЅРЅРѕРіРѕ РґРЅСЏ";
 				return false;
 			}
 		}
 		if (fullCheck && person.getBirthday() == null) {
-			message = "Введите дату рождения";
+			message = "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ СЂРѕР¶РґРµРЅРёСЏ";
 			return false;
 		}
 		if (fullCheck) {
 			boolean birthDayNotNull = person.getBirthday() != null;
 			if (birthDayNotNull
 					&& new DateTime(person.getBirthday().getTime()).isBefore(new DateTime(1910, 01, 01, 0, 0, 0, 0))) {
-				message = "Дата рождения не должна быть раньше 01.01.1910 года";
+				message = "Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ РЅРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ СЂР°РЅСЊС€Рµ 01.01.1910 РіРѕРґР°";
 				return false;
 			}
 			if (birthDayNotNull && new DateTime(person.getBirthday().getTime()).isAfter(getOperDay())) {
-				message = "Дата рождения не может быть больше банковской даты";
+				message = "Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ Р±Р°РЅРєРѕРІСЃРєРѕР№ РґР°С‚С‹";
 				return false;
 			}
 
 			if (person.getCode_country() != null && !person.getCode_country().equals("860")) {
 				if (!CheckNull.isEmpty(person.getCode_adr_region()) || !CheckNull.isEmpty(person.getCode_adr_distr())) {
-					message = "Несоотвествие между страной адреса и районом и регионом";
+					message = "РќРµСЃРѕРѕС‚РІРµСЃС‚РІРёРµ РјРµР¶РґСѓ СЃС‚СЂР°РЅРѕР№ Р°РґСЂРµСЃР° Рё СЂР°Р№РѕРЅРѕРј Рё СЂРµРіРёРѕРЅРѕРј";
 					return false;
 				}
 			}
 			if (person.getCode_country() != null && person.getCode_country().equals("860")) {
 				if (CheckNull.isEmpty(person.getCode_adr_region())) {
-					message = "Введите код региона местожительство";
+					message = "Р’РІРµРґРёС‚Рµ РєРѕРґ СЂРµРіРёРѕРЅР° РјРµСЃС‚РѕР¶РёС‚РµР»СЊСЃС‚РІРѕ";
 					return false;
 				}
 				if (CheckNull.isEmpty(person.getCode_adr_distr())) {
-					message = "Введите код района местожительства";
+					message = "Р’РІРµРґРёС‚Рµ РєРѕРґ СЂР°Р№РѕРЅР° РјРµСЃС‚РѕР¶РёС‚РµР»СЊСЃС‚РІР°";
 					return false;
 				}
 			}
@@ -270,7 +270,7 @@ public class PersonValidator extends Validator<Person> {
 				&& (text.startsWith("4") || text.startsWith("5") || text.startsWith("6"));
 	}
 
-	// Проверка на 8 одинаковых последовательных чисел
+	// РџСЂРѕРІРµСЂРєР° РЅР° 8 РѕРґРёРЅР°РєРѕРІС‹С… РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹С… С‡РёСЃРµР»
 	private Boolean checkTaxNumberConsecutive(String text) {
 		if (text != null && !text.isEmpty()) {
 			char c = 0;

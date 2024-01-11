@@ -1431,7 +1431,7 @@ public class ClientJViewCtrl extends AbstractClientController {
 
         	hideRows();
     		wind_nibbd.setVisible(true);
-    		if (action==2 && current.getJ_sign_dep_acc().equals("Y") && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
+    		if (action==2 && current.getJ_sign_dep_acc()!=null && current.getJ_sign_dep_acc().equals("Y") && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
     			//setNonResidentAccount
     			wind_nibbd$coaRow.setVisible(true);
     			wind_nibbd$currencyRow.setVisible(true);
@@ -1489,7 +1489,7 @@ public class ClientJViewCtrl extends AbstractClientController {
         current.setEmp_id(""+userId);
         //bu erda ham ehtimol myDoaction kerakdir
         //currentga shuerda nibb uchun kerakli polyalarni beramiz
-        if (action == 2 && current.getSign_registr()==1 && current.getJ_sign_dep_acc().equals("Y") && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
+        if (action == 2 && current.getSign_registr()==1 && current.getJ_sign_dep_acc()!=null && current.getJ_sign_dep_acc().equals("Y") && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
         	//utverdit, zapros v nibbd
         	//setNonResidentAccount
             //cdsClient.FieldByName('p_capacity_status_place').Value:=edtNibbdCoa.text;
