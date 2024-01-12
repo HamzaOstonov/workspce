@@ -1401,24 +1401,40 @@ public class ClientJViewCtrl extends AbstractClientController {
             current.setJ_sign_trade(j_sign_trade.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
             current.setJ_small_business(j_small_business.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
             
-            hasCode_typeChanges
-            
             if (action == 5 && !current.hasObjectiveChanges(copyOfCurrent)) {
-                alert("Нет измененных данных для изменения объективных данных");
+                alert("Нет измененных данных для изменения объективных данных.");
+                return;
+            } else if (action == 5 && current.hasCode_typeChanges(copyOfCurrent.getCode_type())) {
+                alert("Изменения объективные данные ЮЛ невозможно. Затронуты объективные данные клиента(поле: Тип клиента).");
+                current.rollBackObjectiveChanges(copyOfCurrent);
+                current.setName(copyOfCurrent.getName());
+                binder.loadAll();
+                return;
+            }
+            if (action == 32 && !current.hasCode_typeChanges(copyOfCurrent.getCode_type())) {
+                alert("Нет измененных данных для изменения \"Тип клиента\"");
+                return;
+            } else if (action == 32 && current.hasObjectiveChanges(copyOfCurrent)) {
+                alert("Изменение реквизита «Тип клиента» невозможно. Затронуты объективные данные");
+                current.rollBackObjectiveChanges(copyOfCurrent);
+                current.setName(copyOfCurrent.getName());
+                binder.loadAll();
                 return;
             }
             if (action == 19 && current.hasObjectiveChanges(copyOfCurrent)) {
-                alert("Затронуты объективные данные");
+                alert("Корректировка невозможно. Затронуты объективные данные.");
                 current.rollBackObjectiveChanges(copyOfCurrent);
                 current.setName(copyOfCurrent.getName());
                 binder.loadAll();
                 return;
-            }
-            if (action == 32 && current.hasObjectiveChanges(copyOfCurrent)) {
-                alert("Затронуты объективные данные");
+            } else if (action == 19 && current.hasCode_typeChanges(copyOfCurrent.getCode_type())) {
+                alert("Корректировка невозможно. Затронуты объективные данные(поле: Тип клиента).");
                 current.rollBackObjectiveChanges(copyOfCurrent);
                 current.setName(copyOfCurrent.getName());
                 binder.loadAll();
+                return;
+            } else if (action == 19 && !current.hasAnyChanges(copyOfCurrent)) {
+                alert("Нет измененных данных для корректировки.");
                 return;
             }
             if ((action == ClientUtil.ACTION_CHANGE || action == ClientUtil.ACTION_CONFIRM_CLOSED)
@@ -1622,7 +1638,7 @@ public class ClientJViewCtrl extends AbstractClientController {
         actions_bar.getChildren().clear();
         for (Map.Entry<Integer, String> entry : availableActionsMap.entrySet()) {
             //logger.info("Current State -> " + entry.getValue() + " =" + entry.getKey());
-            if (entry.getKey() == 1 || entry.getKey() > 26) {
+            if (entry.getKey() == 1 || entry.getKey() == 4 || ( entry.getKey() > 26  && entry.getKey()<=30  )) {
                 continue;
             }
             button = new Toolbarbutton(entry.getValue());

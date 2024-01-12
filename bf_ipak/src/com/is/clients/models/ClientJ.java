@@ -944,12 +944,37 @@ public class ClientJ implements Serializable, Cloneable {
         });
     }
 
+    public boolean hasAnyChanges(ClientJ old) {
+        Field[] fields = ClientJ.class.getDeclaredFields();
+
+        for (Field f : fields) {
+
+            try {
+                if (ClientFields.valueOf(f.getName().toUpperCase()) == null ) {
+                    throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+            try {
+                if (Util.hasChanges(f.get(this), f.get(old))) {
+                    return true;
+                }
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
     public boolean hasObjectiveChanges(ClientJ old) {
         Field[] fields = ClientJ.class.getDeclaredFields();
 
         for (Field f : fields) {
             try {
-                if (ClientFields.valueOf(f.getName().toUpperCase()) == null || 
+                if (ClientFields.valueOf(f.getName().toUpperCase()) == null || f.getName().toUpperCase().equals("CODE_TYPE") ||  
                         !ClientFields.valueOf(f.getName().toUpperCase()).isObjectiveField()) {
                     //continue;
                 //}
@@ -971,8 +996,7 @@ public class ClientJ implements Serializable, Cloneable {
         }
         return false;
     }
-    
-    //todo
+
     public boolean hasCode_typeChanges(String old_code_type) {
             try {
                 if (Util.hasChanges(code_type, old_code_type)) {
@@ -983,7 +1007,7 @@ public class ClientJ implements Serializable, Cloneable {
             } 
             return false;        
     }
-    
+
     public boolean equalsWithoutInn(ClientJ other) {
         if (other == null) {
             return false;
@@ -1009,7 +1033,7 @@ public class ClientJ implements Serializable, Cloneable {
     }
 
     public String concatenateShortName(){
-        // ���� ������� ��� � �������� ������ ���������� �� ��������� -> ������ �� �� nibbd
+        // Если фамилия имя и отчество пустые отправлять по умолчанию -> значит он из nibbd
         if (concatenateNames() != null && concatenateNames().trim().isEmpty()){
             return this.j_short_name;
         }
@@ -1028,7 +1052,7 @@ public class ClientJ implements Serializable, Cloneable {
     }
 
     public String concatenateFullName(){
-        // ���� ������� ��� � �������� ������ ���������� �� ��������� -> ������ �� �� nibbd
+        // Если фамилия имя и отчество пустые отправлять по умолчанию -> значит он из nibbd
         if (concatenateNames() != null && concatenateNames().trim().isEmpty()){
             return this.name;
         }
