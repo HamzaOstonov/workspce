@@ -9,7 +9,7 @@ public enum ClientFields {
     NAME(true, true),
     CODE_COUNTRY(true, true),
     CODE_COUNTRY1(true, true),
-    CODE_TYPE(true, true),
+    CODE_TYPE(false, true), // CODE_TYPE(true, true) CODET_TYPE NI  FALSE QILDIM 2024.01.12 DA
     CODE_RESIDENT(true, true),
     CODE_RESIDENT1(true, true),
     CODE_SUBJECT(true, false),

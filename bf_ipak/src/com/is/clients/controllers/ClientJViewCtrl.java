@@ -1400,6 +1400,9 @@ public class ClientJViewCtrl extends AbstractClientController {
         if (action == 5 || action == 19 || action == 32 || action == ClientUtil.ACTION_CONFIRM_CLOSED) {
             current.setJ_sign_trade(j_sign_trade.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
             current.setJ_small_business(j_small_business.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
+            
+            hasCode_typeChanges
+            
             if (action == 5 && !current.hasObjectiveChanges(copyOfCurrent)) {
                 alert("Нет измененных данных для изменения объективных данных");
                 return;
