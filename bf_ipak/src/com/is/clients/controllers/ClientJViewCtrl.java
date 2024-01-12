@@ -1393,14 +1393,25 @@ public class ClientJViewCtrl extends AbstractClientController {
     }
 
     private void executeAction(int action) {
-        if (action == 4 || action == 19 || action == ClientUtil.ACTION_CONFIRM_CLOSED) {
+    	//buni keyin trans_acion dan delete qilaman va bu pastdagi 2 qatorni ham uchirib tashayman
+    	if (action == 4) 
+    		return;
+    	
+        if (action == 5 || action == 19 || action == 32 || action == ClientUtil.ACTION_CONFIRM_CLOSED) {
             current.setJ_sign_trade(j_sign_trade.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
             current.setJ_small_business(j_small_business.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
-            if (action == 4 && !current.hasObjectiveChanges(copyOfCurrent)) {
+            if (action == 5 && !current.hasObjectiveChanges(copyOfCurrent)) {
                 alert("Нет измененных данных для изменения объективных данных");
                 return;
             }
             if (action == 19 && current.hasObjectiveChanges(copyOfCurrent)) {
+                alert("Затронуты объективные данные");
+                current.rollBackObjectiveChanges(copyOfCurrent);
+                current.setName(copyOfCurrent.getName());
+                binder.loadAll();
+                return;
+            }
+            if (action == 32 && current.hasObjectiveChanges(copyOfCurrent)) {
                 alert("Затронуты объективные данные");
                 current.rollBackObjectiveChanges(copyOfCurrent);
                 current.setName(copyOfCurrent.getName());
