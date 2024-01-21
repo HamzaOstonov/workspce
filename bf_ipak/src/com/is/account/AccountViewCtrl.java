@@ -267,7 +267,7 @@ public class AccountViewCtrl extends GenericForwardComposer {
 			selectedAccount = null;
 		} else {
 			setCurrent(accountDao.getItemByStringId(branch1, currentListItem.getId()));
-			// Возвращаемся к списку счетов
+			// Р’РѕР·РІСЂР°С‰Р°РµРјСЃСЏ Рє СЃРїРёСЃРєСѓ СЃС‡РµС‚РѕРІ
 			if (current == null) {
 				init(this.currentClient);
 				return;
@@ -358,8 +358,8 @@ public class AccountViewCtrl extends GenericForwardComposer {
 
 	private Textbox aclient_name;
 	
-	//	--  Љнопка "Ќ€ЃЃ„ ‘чета"
-	public void onClick$btn_approve() {
+	//	--  РєРЅРѕРїРєР° РїРѕРєР°Р·Р°С‚СЊ РЅРёР±Р±Рґ 
+	public void onClick$btn_nibbd() {
 		if(current.getId() != null) {
 			wind_nibbd.setVisible(true);
 		} else {
@@ -445,7 +445,7 @@ public class AccountViewCtrl extends GenericForwardComposer {
 		if (CheckNull.isEmpty(aacc_bal.getValue()) || CheckNull.isEmpty(aclient.getValue())
 				|| CheckNull.isEmpty(acurrency.getValue()) || CheckNull.isEmpty(aid_order.getValue())
 				|| CheckNull.isEmpty(aname.getValue())) {
-			alert("Заполните все поля");
+			alert("Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ");
 			return;
 		}
 
@@ -609,7 +609,7 @@ public class AccountViewCtrl extends GenericForwardComposer {
 
 	private void executeAction(final int actionId) {
 		try {
-			Messagebox.show("вы действительно хотите выполнить действие:" + actionsMap.get(actionId) + "?", "",
+			Messagebox.show("РІС‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РІС‹РїРѕР»РЅРёС‚СЊ РґРµР№СЃС‚РІРёРµ:" + actionsMap.get(actionId) + "?", "",
 					Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION, new EventListener() {
 
 						@Override
