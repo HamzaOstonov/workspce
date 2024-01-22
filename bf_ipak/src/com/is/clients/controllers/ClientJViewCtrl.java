@@ -119,7 +119,7 @@ public class ClientJViewCtrl extends AbstractClientController {
     private Window dp_wnd, wind_nibbd;
     private Include dp_wnd$incl_cp;
     private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
-    private RefCBox type_close_name;
+    private RefCBox wind_nibbd$type_close_name;
     private Datebox date_doc;
     private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$clientRow, wind_nibbd$currencyRow, wind_nibbd$nOrderRow, wind_nibbd$closeTypeRow, wind_nibbd$closedDoc_nRow, wind_nibbd$closedDoc_dRow, wind_nibbd$accountRow;
     private Toolbarbutton wind_nibbd$btn_send;
@@ -729,19 +729,8 @@ public class ClientJViewCtrl extends AbstractClientController {
         initNibbd(null);
     }
     
-//	--  Кнопка "Утвердить"
-	public void onClick$btn_approve() {
-		type_close_name.setModel(new ListModelList(ClientJService.getCloseType(alias)));
-		
-		if(current.getName() != null) {
-			wind_nibbd.setVisible(true);
-		} else {
-			wind_nibbd.setVisible(false);
-		}
-		
-	}
 	
-//	--  Кнопка - 'Запросить НИББД'
+    //	--  Кнопка - 'Запросить НИББД'
 	@SuppressWarnings("unused")
 	public void onClick$btn_send$wind_nibbd() throws Exception  {
 		
@@ -1478,6 +1467,7 @@ public class ClientJViewCtrl extends AbstractClientController {
     		} else if (action==3) {
     			//{closeSubject-Регистрация прекращения деятельности субъекта}
     			wind_nibbd$closeTypeRow.setVisible(true);
+    			wind_nibbd$type_close_name.setModel(new ListModelList(dictionaryKeeper.getCloseTypeList()));
     			wind_nibbd$closedDoc_nRow.setVisible(true);
     			wind_nibbd$closedDoc_dRow.setVisible(true);
     			wind_nibbd$btn_send.setAttribute("queryType", "closeSubject");

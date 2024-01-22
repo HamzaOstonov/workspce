@@ -94,6 +94,7 @@ public class DictionaryKeeper {
 	private static HashMap<String, List<RefData>> subbranchs_map;
 
 	private static String nibbdBankUrl;
+	private static List<RefData> closeTypeList;
 	
 	private static Logger logger = Logger.getLogger(DictionaryKeeper.class);
 
@@ -290,6 +291,13 @@ public class DictionaryKeeper {
 		}  
 		return nibbdBankUrl;
 	}
-	
+
+	public List<RefData> getCloseTypeList() {
+		if (closeTypeList==null || closeTypeList.size()==0 ) {
+			closeTypeList = ClientDictionaries.getCloseTypes(this.alias);
+		}
+		return closeTypeList;
+	}
+
 
 }

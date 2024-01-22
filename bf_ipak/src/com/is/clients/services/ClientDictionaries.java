@@ -51,7 +51,11 @@ public class ClientDictionaries {
                 ? DbUtils.getRefData(c, SqlScripts.ACTIVITY_TYPE.getSql())
                 : RefDataService.getRefData(SqlScripts.ACTIVITY_TYPE.getSql(), alias);
     }
-    
+
+    public static List<RefData> getCloseTypes(String alias) {
+           return RefDataService.getRefData(SqlScripts.CLOSE_TYPES.getSql(), alias);
+    }
+
     public static List<RefData> getSignRegistrs(Connection c, String alias) {
         return c != null
                 ? DbUtils.getRefData(c, SqlScripts.SIGN_REGISTR_J.getSql())
@@ -173,8 +177,8 @@ public class ClientDictionaries {
     
     public static List<RefData> getSignRoles(Connection c) {
         List<RefData> list = new ArrayList<RefData>();
-        list.add(new RefData("1", "1 подпись"));
-        list.add(new RefData("2", "2 подпись"));
+        list.add(new RefData("1", "1 РїРѕРґРїРёСЃСЊ"));
+        list.add(new RefData("2", "2 РїРѕРґРїРёСЃСЊ"));
         return list;
     }
 
@@ -430,10 +434,10 @@ WHERE (deal_id,action_id) in (select deal_id,id from ACTION_CLIENT where manual=
 
     public static List<RefData> getSapTypes() {
         List<RefData> list = new ArrayList<RefData>();
-        list.add(new RefData("51", "ИНН"));
-        list.add(new RefData("52", "Номер свидетельства о регистрации"));
-        list.add(new RefData("53", "Код НИБДД (уникалка)"));
-//		list.add(new RefData("54","ИНН ИП)"));
+        list.add(new RefData("51", "РРќРќ"));
+        list.add(new RefData("52", "РќРѕРјРµСЂ СЃРІРёРґРµС‚РµР»СЊСЃС‚РІР° Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё"));
+        list.add(new RefData("53", "РљРѕРґ РќРР‘Р”Р” (СѓРЅРёРєР°Р»РєР°)"));
+//		list.add(new RefData("54","РРќРќ РРџ)"));
         return list;
     }
 

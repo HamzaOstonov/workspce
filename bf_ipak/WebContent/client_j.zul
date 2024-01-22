@@ -26,8 +26,6 @@
 				image="/images/forward.png" visible="false"/>
 
 			<toolbarbutton id="btn_nibbd" label="НИББД" />
-			<toolbarbutton id="btn_approve" label="Утвердить" 
-			    image="/images/add.png" />
 
 			<toolbarbutton label="Идентификация субъекта" popup="mp, type=toggle" />
 			<menupopup id="mp">

@@ -22,7 +22,7 @@ public enum SqlScripts {
 	
 	PASSPORT_TYPE(		"select code_cert data, decode((select value from ss_const where id=1002 and rownum=1), 'Y',code_cert||'-', null)||name_cert label from s_certificate where act <> 'Z' order by code_cert"),
 	
-	PASSPORT_IS_NEW(	"select 'O' data, 'не биометрический' label from dual union all select 'N' data, 'биометрический' label from dual "),
+	PASSPORT_IS_NEW(	"select 'O' data, 'РЅРµ Р±РёРѕРјРµС‚СЂРёС‡РµСЃРєРёР№' label from dual union all select 'N' data, 'Р±РёРѕРјРµС‚СЂРёС‡РµСЃРєРёР№' label from dual "),
 	
 	NATION(				"select nat_id data, decode((select value from ss_const where id=1002 and rownum=1), 'Y',nat_id||'-', null)||nat_name label from s_nation where act <> 'Z' order by nat_id"),
 	
@@ -78,6 +78,8 @@ public enum SqlScripts {
 	
 	ACTIVITY_TYPE(		"select trim(to_char(id, '000')) data, decode((select value from ss_const where id=1002 and rownum=1), 'Y',id||'-', null)||name label from ss_client_type_activity"),
 	
+	CLOSE_TYPES(		"select close_type_id data, close_type_name label from ss_spr_204 order by 1"),
+	
 	ACC_BAL(			"select code_b data, name_s label from s_account " +
     	    				"where not code_b like '_0000' and not code_b like '___00' " +
 	    					"and destin = 3 and act <> 'Z' order by code_b"),
@@ -106,7 +108,7 @@ public enum SqlScripts {
 						    "a.branch = ? and a.id = ? " +
 						    "and a.sign_registr = b.deal_id and a.action_id = b.id and a.emp_id = c.id"),
 						    
-	SIGN_REGISTR_J(	"select '1' data, 'Юридический' label from dual union all select '3' data, 'Юридический, имеющий основной счет в другом банке' label from dual"),
+	SIGN_REGISTR_J(	"select '1' data, 'Р®СЂРёРґРёС‡РµСЃРєРёР№' label from dual union all select '3' data, 'Р®СЂРёРґРёС‡РµСЃРєРёР№, РёРјРµСЋС‰РёР№ РѕСЃРЅРѕРІРЅРѕР№ СЃС‡РµС‚ РІ РґСЂСѓРіРѕРј Р±Р°РЅРєРµ' label from dual"),
     
     INFO_INIT("{ call info.init()}"),
     
