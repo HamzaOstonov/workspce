@@ -694,6 +694,7 @@
 	
 	<window id="wind_nibbd" width="1000px" height="320px" title="Параметры НИББД" border="normal" mode="overlapped"
         	position="center,center" visible="false" closable="true" maximizable="true"
+        	contentStyle="overflow: auto"
         	onClose="self.visible = false; event.stopPropagation();">
 
             <grid id="windgrd" ctrlKeys="^e#up#down" visible="true">
@@ -702,33 +703,41 @@
 					<column width="80%" />
 				</columns>
 				<rows>
-				    <row><label value="Код банка куда переводится счет" /><textbox id="branch" width="30%" /></row>
+				    <row id="codeBankRow"><label value="Код банка куда переводится счет" /><textbox id="codeBank" width="30%" /></row>
 				    
-            		<row>
-            		<label value="Причина закрытия счета" />
-            		<hbox align="left">
-            		<textbox id="close_acc" width="10%"/><rcombobox id="name_close_acc" width="50%"/>
-            		</hbox>
+            		<row id="closeTypeRow">
+            		  <label value="Причина закрытия счета" />
+            		  <hbox align="left">
+            		    <textbox id="close_type" width="10%"/>
+            		    <rcombobox id="close_type_name" width="50%"/>
+            		  </hbox>
             		</row>
             		
-            		<row>
-            		<label value="Вид блокировки" />
-            		<hbox align="left"><textbox id="type_close_id" width="10%"/><rcombobox id="type_close_name" width="50%" />
-            		</hbox>
+            		<row id="lockTypeRow">
+            		  <label value="Вид блокировки" />
+            		  <hbox align="left">
+            		    <textbox id="lock_type" width="10%"/>
+            		    <rcombobox id="lock_type_name" width="50%" />
+            		  </hbox>
             		</row>
             		
-            		<row>
-            		<label value="Источник блокировки" />
-            		<hbox align="left"><textbox id="source_close_id" width="10%"/><rcombobox id="source_close_name" width="50%"/>
-            		</hbox>
+            		<row id="lockSourceRow">
+            		  <label value="Источник блокировки" />
+            		  <hbox align="left">
+            		    <textbox id="lock_source" width="10%"/>
+            		    <rcombobox id="lock_source_name" width="50%"/>
+            		  </hbox>
             		</row>
             		
-            		<row><label value="Номер документа основания блокировки" /><textbox id="id_doc" width="30%" /></row>
-            		<row><label value="Дата документа основания блокировки" /><datebox id="date_doc" width="30%" /></row>
-            		<row><label value="Уникальный регистрационный номер блокировки в НИББД" /><textbox id="id_nibbd" width="30%" /></row>
-            		<row><label value="Номер документа основания разблокировки" /><textbox id="id_doc_a" width="30%" /></row>
-            		<row><label value="Дата документа основания разблокировки" /><datebox id="date_doc_a" width="30%" /></row>
-            		<row><label value="Уникальный регистрационный номер блокировки в НИББД" /><rcombobox id="rid_nibbd" width="50%" /></row>
+            		<row id="lockDocNRow"><label value="Номер документа основания блокировки" /><textbox id="id_doc" width="30%" /></row>
+            		<row id="lockDocDRow"><label value="Дата документа основания блокировки" /><datebox id="date_doc" width="30%" /></row>
+            		<row id="unLockLockId0Row" visible="false"><label value="Уникальный регистрационный номер блокировки в НИББД" /><textbox id="id_nibbd" width="30%" /></row>
+            		<row id="unLockDocNRow"><label value="Номер документа основания разблокировки" /><textbox id="id_doc_a" width="30%" /></row>
+            		<row id="unLockDocDRow"><label value="Дата документа основания разблокировки" /><datebox id="date_doc_a" width="30%" /></row>
+            		<row id="unLockLockIdRow">
+            		  <label value="Уникальный регистрационный номер блокировки в НИББД" />
+            		  <rcombobox id="rid_nibbd" width="50%" />
+            		</row>
 
             	</rows>
             </grid>
