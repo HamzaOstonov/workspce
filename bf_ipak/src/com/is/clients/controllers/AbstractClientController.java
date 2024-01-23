@@ -105,7 +105,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 	}
 
 	protected Window sap_bapiret, sector_wnd, nibbd_modal, nibbd_wnd, account_wnd, fields_diff_wnd, searchWnd,
-			clientmain, persons_wnd, specclt_wnd, clt_dlg_wnd, director_search_wnd, appsWnd;
+			clientmain, persons_wnd, specclt_wnd, clt_dlg_wnd, director_search_wnd, appsWnd, wind_nibbd;
 	protected Div grd, frm, filterdiv, sap, addgrd, account_parent, persons_div, apersons_div, specclt_div, appsDiv,
 			chooseSearch, clt_dlg_wnd$div_radio_grp;
 	protected Grid fields_diff_wnd$diff_grid, gr_fjView, gr_grpfltmain, wind_nibbd$res_grid;
@@ -127,8 +127,9 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 			aactivity_type_row, row_OKED, row_non_resident, row_non_resident_new, row_OKED_new, rowIpViewPatentExp,
 			rowIpViewPatentExpNew;
 	protected Row onlyForJ1, onlyForJ2, onlyForJ3, onlyForJ4, ipFio_cyr, ipFio, name_row, aname_row;
+	protected Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$clientRow, wind_nibbd$currencyRow, wind_nibbd$nOrderRow, wind_nibbd$closeTypeRow, wind_nibbd$closedDoc_nRow, wind_nibbd$closedDoc_dRow, wind_nibbd$accountRow;
 	protected Toolbarbutton btn_last, btn_next, btn_prev, btn_first, btn_save, btn_clear, btn_back, btn_get_ip,
-			btn_sendFile, btn_new, btn_createOrg, btn_word, btn_nibbd;
+			btn_sendFile, btn_new, btn_createOrg, btn_word, btn_nibbd, wind_nibbd$btn_send;
 	protected Toolbar tb, top_tb;
 
 	private Caption adir_caption, aacc_caption;
@@ -148,14 +149,15 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 			aaccountant_type_document_text, aaccountant_pass_place_region_text, aaccountant_pass_place_distr_text,
 			aaccountant_code_citizenship_text, aaccountant_code_country_text, aaccountant_code_adr_region_text,
 			aaccountant_code_adr_distr_text, aaccountant_code_tax_org_text;
-	protected Datebox p_birthday, p_passport_date_registration, p_passport_date_expiration;
+	protected Datebox p_birthday, p_passport_date_registration, p_passport_date_expiration, date_doc;
 	protected RefCBox p_pass_place_region, p_pass_place_district, p_code_nation, ai_opf, ai_form, ai_sector,
-			ai_organ_direct;
+			ai_organ_direct, wind_nibbd$type_close_name;
 	protected Textbox p_birth_place, p_post_address_street, p_post_address_quarter, p_post_address_house,
 			p_post_address_flat, p_post_address, p_number_tax_registration, p_code_adr_distr_text, p_tax_orgValue,
 			p_code_adr_region_text, p_citizenshipValue, p_pass_distrValue, p_pass_regionValue, p_code_citizenship_text,
 			p_type_document_text, p_pass_place_region_text, p_pass_place_distr_text, p_code_tax_orgValue,
-			p_type_docValue;
+			p_type_docValue,
+			wind_nibbd$account, wind_nibbd$currency, wind_nibbd$id_order, wind_nibbd$type_close_id, wind_nibbd$id_doc, wind_nibbd$acc, wind_nibbd$inn, wind_nibbd$pinfl;
 
 	protected Textbox j_short_name, j_place_regist_name, name, j_number_registration_doc, j_number_tax_registration,
 			j_code_head_organization, j_account, j_post_address, j_phone, j_fax, j_email, j_soato, j_okpo,
@@ -3323,6 +3325,18 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 		newcl.getAccountant().setCode_tax_org(aaccountant_code_tax_org.getValue());
 	}
 
+	public void onChange$type_close_id$wind_nibbd() {
+		wind_nibbd$type_close_name.setSelecteditem(wind_nibbd$type_close_id.getValue());
+		nibbdparam.setClose_type(wind_nibbd$type_close_id.getValue());
+	}
+	
+	public void onChange$type_close_name$wind_nibbd() {
+		wind_nibbd$type_close_id.setValue(wind_nibbd$type_close_name.getValue());
+		nibbdparam.setClose_type(wind_nibbd$type_close_name.getValue());
+	}
+
+
+	
 	public void onClick$btn_word() {
 		AMedia repmd = null;
 		Connection c = null;

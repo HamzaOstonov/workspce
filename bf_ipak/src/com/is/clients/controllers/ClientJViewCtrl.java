@@ -116,13 +116,13 @@ public class ClientJViewCtrl extends AbstractClientController {
         }
     }
 
-    private Window dp_wnd, wind_nibbd;
+    private Window dp_wnd;
     private Include dp_wnd$incl_cp;
-    private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
-    private RefCBox wind_nibbd$type_close_name;
-    private Datebox date_doc;
-    private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$clientRow, wind_nibbd$currencyRow, wind_nibbd$nOrderRow, wind_nibbd$closeTypeRow, wind_nibbd$closedDoc_nRow, wind_nibbd$closedDoc_dRow, wind_nibbd$accountRow;
-    private Toolbarbutton wind_nibbd$btn_send;
+    //private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
+    //private RefCBox wind_nibbd$type_close_name;
+    //private Datebox date_doc;
+    //private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$clientRow, wind_nibbd$currencyRow, wind_nibbd$nOrderRow, wind_nibbd$closeTypeRow, wind_nibbd$closedDoc_nRow, wind_nibbd$closedDoc_dRow, wind_nibbd$accountRow;
+    //private Toolbarbutton wind_nibbd$btn_send;
 
     private ServiceFactory serviceFactory;
 
