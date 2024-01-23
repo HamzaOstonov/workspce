@@ -1549,6 +1549,7 @@ public class ClientJViewCtrl extends AbstractClientController {
         	}
         }
         refreshModel(0, true);
+        wind_nibbd.setVisible(false);
         onDoubleClick$dataGrid$grd();
     }
     

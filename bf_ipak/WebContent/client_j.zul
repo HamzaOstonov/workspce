@@ -3855,7 +3855,7 @@
             		  <label value="Вид закрытия" />
             		  <hbox align="left" width="100%">
             		    <textbox id="type_close_id" hflex="1" value="@{clientmain$composer.nibbdparam.close_type}" />
-            		    <rcombobox id="type_close_name" hflex="4" selecteditem="@{clientmain$composer.nibbdparam.close_type}" />
+            		    <rcombobox id="type_close_name" hflex="6" selecteditem="@{clientmain$composer.nibbdparam.close_type}" />
             		  </hbox>
             		</row>
             		<row id="closedDoc_nRow"><label value="Номер документа основания" /><textbox id="closed_doc_n" value="@{clientmain$composer.nibbdparam.closed_doc_n}" /></row>
