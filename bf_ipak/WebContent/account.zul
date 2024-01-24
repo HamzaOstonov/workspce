@@ -708,8 +708,8 @@
             		<row id="closeTypeRow">
             		  <label value="Причина закрытия счета" />
             		  <hbox align="left" width="100%">
-            		    <textbox id="close_type" hflex="1"/>
-            		    <rcombobox id="close_type_name" hflex="4" />
+            		    <textbox id="close_type" hflex="1" value="@{accountmain$composer.nibbdparam.close_type}"/>
+            		    <rcombobox id="close_type_name" hflex="6" selecteditem="@{accountmain$composer.nibbdparam.close_type}" />
             		  </hbox>
             		</row>
             		

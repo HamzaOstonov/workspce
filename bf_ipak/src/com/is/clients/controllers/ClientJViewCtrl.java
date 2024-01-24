@@ -118,11 +118,6 @@ public class ClientJViewCtrl extends AbstractClientController {
 
     private Window dp_wnd;
     private Include dp_wnd$incl_cp;
-    //private Textbox account, currency, id_order, type_close_id, id_doc, acc, inn, pinfl;
-    //private RefCBox wind_nibbd$type_close_name;
-    //private Datebox date_doc;
-    //private Row wind_nibbd$innRow, wind_nibbd$pinRow, wind_nibbd$coaRow, wind_nibbd$clientRow, wind_nibbd$currencyRow, wind_nibbd$nOrderRow, wind_nibbd$closeTypeRow, wind_nibbd$closedDoc_nRow, wind_nibbd$closedDoc_dRow, wind_nibbd$accountRow;
-    //private Toolbarbutton wind_nibbd$btn_send;
 
     private ServiceFactory serviceFactory;
 
@@ -1332,32 +1327,6 @@ public class ClientJViewCtrl extends AbstractClientController {
         	
         	//deystivitelno deb savol bermasdan utishni istadik
             executeAction(action);
-            
-//    		hideRows();
-//    		wind_nibbd.setVisible(true);
-//    		if (action==2 && current.getCode_resident().equals("2") && current.getCode_type().equals("05")) {
-//    			//setNonResidentAccount
-//    			wind_nibbd$coaRow.setVisible(true);
-//    			wind_nibbd$currencyRow.setVisible(true);
-//    			wind_nibbd$nOrderRow.setVisible(true);
-//    			wind_nibbd$btn_send.setAttribute("queryType", "setNonResidentAccount");
-//    		} else if (action==2) {
-//    			//{setJuridicalAccount, setIndividualAccount, setBudgetAccount}
-//    			wind_nibbd$coaRow.setVisible(true);
-//    			wind_nibbd$btn_send.setAttribute("queryType", "setJuridicalAccount");
-//    		} else if (action==32) {
-//    			//changeTypeSubject-Регистрация изменения реквизита «Тип клиента» субъекта в НИББД
-//    			wind_nibbd$coaRow.setVisible(true);
-//    			wind_nibbd$btn_send.setAttribute("queryType", "changeTypeSubject");
-//    		} else if (action==3) {
-//    			//{closeSubject-Регистрация прекращения деятельности субъекта}
-//    			wind_nibbd$closeTypeRow.setVisible(true);
-//    			wind_nibbd$closedDoc_nRow.setVisible(true);
-//    			wind_nibbd$closedDoc_dRow.setVisible(true);
-//    			wind_nibbd$btn_send.setAttribute("queryType", "closeSubject");
-//    		}
-//    		wind_nibbd$btn_send.setAttribute("actionId", action);
-//    		binder.loadComponent(wind_nibbd);
 
         } else 
         try {
@@ -1442,7 +1411,6 @@ public class ClientJViewCtrl extends AbstractClientController {
                 alert(err_msg);
                 return;
             }
-
         }
         Res doAction = null;
         boolean runNibbd = (current.getSign_registr() == 1) && (action == 2 || action == 3 || action==32 );

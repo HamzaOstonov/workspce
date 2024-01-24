@@ -25,6 +25,7 @@ import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Row;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Toolbar;
@@ -45,6 +46,7 @@ import com.is.base.utils.Util;
 import com.is.base.utils.ZkUtils;
 import com.is.clients.controllers.renderers.HistoryRenderer;
 import com.is.clients.models.ClientJ;
+import com.is.clients.models.NibbdParam;
 import com.is.nibbd.NibbdController;
 import com.is.nibbd.util.NibbdQueries;
 import com.is.utils.CheckNull;
@@ -64,14 +66,15 @@ public class AccountViewCtrl extends GenericForwardComposer {
 	private Div grd;
 	private Listbox dataGrid, history;
 	private Toolbar action_bar;
-	private Toolbarbutton btn_last, btn_next, btn_prev, btn_first, btn_back, btn_add;
+	private Toolbarbutton btn_last, btn_next, btn_prev, btn_first, btn_back, btn_add, wind_nibbd$btn_send;
 	private Textbox id_order, name, acc_group_idText;
 	private RefCBox state, acc_bal, currency, sgn, bal, acc_group_id;
 	private RefCBox fstate, facc_bal, fcurrency, fsgn, fbal, facc_group_id;
 	private Textbox aclient, aacc_group_idText, aid_order, aname;
-	private RefCBox astate, aacc_bal, acurrency, asgn, abal, aacc_group_id;
-	private Textbox currencyValue, fcurrencyValue, acurrencyValue;
+	private RefCBox astate, aacc_bal, acurrency, asgn, abal, aacc_group_id, wind_nibbd$close_type_name;
+	private Textbox currencyValue, fcurrencyValue, acurrencyValue, wind_nibbd$close_type;
 	private Textbox facc_bal_text, fclient, fclient_name;
+	private Row wind_nibbd$codeBankRow,	wind_nibbd$closeTypeRow,	wind_nibbd$lockTypeRow,	wind_nibbd$lockSourceRow,	wind_nibbd$lockDocNRow,	wind_nibbd$lockDocDRow,	wind_nibbd$unLockLockId0Row,	wind_nibbd$unLockDocNRow,	wind_nibbd$unLockDocDRow, 	wind_nibbd$unLockLockIdRow;
 	private AnnotateDataBinder binder;
 	SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 	SimpleDateFormat dfWithTime = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
@@ -103,7 +106,8 @@ public class AccountViewCtrl extends GenericForwardComposer {
 	private Account newAcc = new Account();
 	private ClientJ currentClient;
 	private String selectedAccount;
-
+	public NibbdParam nibbdparam = new NibbdParam();
+	
 	public AccountViewCtrl() {
 		super('$', false, false);
 	}
@@ -120,6 +124,7 @@ public class AccountViewCtrl extends GenericForwardComposer {
 		binder.bindBean("currentListItem", this.currentListItem);
 		binder.bindBean("filter", this.filter);
 		binder.bindBean("newAcc", this.newAcc);
+		binder.bindBean("nibbdparam", this.nibbdparam);
 		binder.loadAll();
 		String[] parameter = (String[]) param.get("ht");
 
@@ -512,23 +517,35 @@ public class AccountViewCtrl extends GenericForwardComposer {
 		// accBalSets();
 		// newIdOrder();
 	}
+	
+	
 
-	   public void onChange$fsgn() {
-		      this.filter.setSgn(this.fsgn.getValue());
-		   }
+	public void onChange$fsgn() {
+	      this.filter.setSgn(this.fsgn.getValue());
+    }
 
-		   public void onChange$fbal() {
+
+	public void onChange$fbal() {
 		      this.filter.setBal(this.fbal.getValue());
-		   }
+	}
 
-		   public void onChange$fclient() {
-		      if (!CheckNull.isEmpty(this.fclient.getValue()) && this.fclient.getValue().trim().length() == 8) {
-		         this.fclient_name.setValue(this.accountService.getClientname(this.fclient.getValue(), this.branch1));
-		      } else {
-		         this.fclient_name.setValue((String)null);
-		      }
-
-		   }
+	public void onChange$fclient() {
+	      if (!CheckNull.isEmpty(this.fclient.getValue()) && this.fclient.getValue().trim().length() == 8) {
+	         this.fclient_name.setValue(this.accountService.getClientname(this.fclient.getValue(), this.branch1));
+	      } else {
+	         this.fclient_name.setValue((String)null);
+	      }
+    }
+		   
+	public void onChange$close_type$wind_nibbd() {
+				wind_nibbd$close_type_name.setSelecteditem(wind_nibbd$close_type.getValue());
+				nibbdparam.setClose_type(wind_nibbd$close_type.getValue());
+			}
+			
+	public void onChange$close_type_name$wind_nibbd() {
+				wind_nibbd$close_type.setValue(wind_nibbd$close_type_name.getValue());
+				nibbdparam.setClose_type(wind_nibbd$close_type_name.getValue());
+			}		   
 
 	private Textbox acc_bal_text, aacc_bal_text;
 
@@ -607,7 +624,48 @@ public class AccountViewCtrl extends GenericForwardComposer {
 		grd.setVisible(false);
 	}
 
+	public void hideRows() {
+		wind_nibbd$codeBankRow.setVisible(false);
+		wind_nibbd$closeTypeRow.setVisible(false);
+		wind_nibbd$lockTypeRow.setVisible(false);
+		wind_nibbd$lockSourceRow.setVisible(false);
+		wind_nibbd$lockDocNRow.setVisible(false);
+		wind_nibbd$lockDocDRow.setVisible(false);
+		wind_nibbd$unLockLockId0Row.setVisible(false);
+		wind_nibbd$unLockDocNRow.setVisible(false);
+		wind_nibbd$unLockDocDRow.setVisible(false);
+		wind_nibbd$unLockLockIdRow.setVisible(false);
+	}
+	
 	private void executeAction(final int actionId) {
+		 if (current.getSign_registr()==1 && (actionId==3 || actionId==4 || actionId==5 || actionId==11 ) ) {
+			 
+	         //nibbd onlayn
+	         //deystivitelno deb savol bermasdan utishni istadik
+			 //nibbd oynani ochamiz
+			 hideRows();
+	    		wind_nibbd.setVisible(true);
+	    		if (actionId==11 ) {
+	    			//moveMainAccount
+	    			wind_nibbd$codeBankRow.setVisible(true);
+	    			wind_nibbd$btn_send.setAttribute("queryType", "moveMainAccount");
+	    		} else if (actionId==3) {
+	    			//closeMainAccount
+	    			wind_nibbd$closeTypeRow.setVisible(true);
+	    			wind_nibbd$close_type_name.setModel(new ListModelList(accountDictionaries.getCloseTypeList()));
+	    			wind_nibbd$btn_send.setAttribute("queryType", "closeMainAccount");
+	    		}
+	    		//else if (action==32) {
+	    			//changeTypeSubject-Регистрация изменения реквизита «Тип клиента» субъекта в НИББД
+	    		//	wind_nibbd$coaRow.setVisible(true);
+	    		//	wind_nibbd$btn_send.setAttribute("queryType", "changeTypeSubject");
+	    		//}
+	    		wind_nibbd$btn_send.setAttribute("actionId", actionId);
+	    		binder.loadComponent(wind_nibbd);
+
+
+	        } else 
+		
 		try {
 			Messagebox.show("вы действительно хотите выполнить действие:" + actionsMap.get(actionId) + "?", "",
 					Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION, new EventListener() {
@@ -633,7 +691,6 @@ public class AccountViewCtrl extends GenericForwardComposer {
 									} else if (actionId == 11) {
 										initNibbd(NibbdQueries.ACCOUNT_MOVE, actionId);
 									}
-
 								}
 								selectedAccount = current.getId();
 								refreshModel();
@@ -647,6 +704,71 @@ public class AccountViewCtrl extends GenericForwardComposer {
 
 	}
 
+	  //	--  Кнопка - 'Запросить НИББД'
+		@SuppressWarnings("unused")
+		public void onClick$btn_send$wind_nibbd() throws Exception  {
+			
+			//wind_nibbd$res_grid.getRows().getChildren().clear();
+			//String queryType = (String)wind_nibbd$btn_send.getAttribute("queryType");
+			//if (queryType.equals("inn") || queryType.equals("pin") ) {
+			//	
+			//}
+			int action = (Integer)wind_nibbd$btn_send.getAttribute("actionId");
+			//proverkalar kerak shuerga manimcha
+			
+            executeActionNibbd(action);
+
+		}
+		
+		private void executeActionNibbd(int actionId) {
+	        
+	        
+	        
+	        //bu erda ham ehtimol myDoaction kerakdir
+	        //currentga shuerda nibb uchun kerakli polyalarni beramiz
+	        if (actionId == 3 && current.getSign_registr()==1 ) {
+	        	//zakrit
+	        	current.setNibbd_codebank(nibbdparam.getClose_type());
+	        }// else if (action==2) {
+	        	//setJuridicalAccount, setIndividualAccount, setBudgetAccount
+	        //	current.setP_capacity_status_place(nibbdparam.getCoa());
+	        //} else if (action==32) {
+	        //	//{changeTypeSubject-Регистрация изменения реквизита «Тип клиента» субъекта в НИББД}
+	        //	current.setP_capacity_status_place(nibbdparam.getCoa());
+	        //} else if (action==3) {
+	        //	//{closeSubject-Регистрация прекращения деятельности субъекта}
+	        	//current.setP_capacity_status_place(nibbdparam.getClose_type());
+	        	//current.setP_num_certif_capacity(nibbdparam.getClosed_doc_n());
+	        	//current.setP_capacity_status_date(nibbdparam.getClosed_doc_d());
+	        	
+	        //}        
+
+
+	        Res res = accountService.doAction(current, actionId);
+			if (res.getCode() != 0) {
+				alert(res.getName());
+				return;
+			}
+
+			//if (current.getSign_registr() == 1) {
+			//	if (Util.inInts(actionId, 2, 20, 24)) {
+			//		initNibbd(NibbdQueries.ACCOUNT_OPEN, actionId);
+			//	} else if (actionId == 3) {
+			//		initNibbd(NibbdQueries.ACCOUNT_CLOSE, actionId);
+			//	} else if (actionId == 4) {
+			//		initNibbd(NibbdQueries.ACCOUNT_BLOCK, actionId);
+			//	} else if (actionId == 5) {
+			//		initNibbd(NibbdQueries.ACCOUNT_UNBLOCK, actionId);
+			//	} else if (actionId == 11) {
+			//		initNibbd(NibbdQueries.ACCOUNT_MOVE, actionId);
+			//	}
+			//}
+			
+			selectedAccount = current.getId();
+			refreshModel();
+			onDoubleClick$dataGrid$grd();
+	    }
+		
 	private void initNibbd(NibbdQueries query, int action) {
 		if (nibbd_wnd == null) {
 			nibbd_wnd = (Window) Executions.createComponents("nibbd.zul", nibbd_modal, null);

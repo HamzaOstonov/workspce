@@ -33,6 +33,7 @@ public class AccountDictionaries {
 	@Getter private List<RefData> sgnList;
 	@Getter private List<RefData> balList;
 	@Getter private List<RefData> accBalList;
+	private static List<RefData> closeTypeList;
 	
 	private AccountDictionaries(String alias) {
 		this.alias = alias;
@@ -96,15 +97,31 @@ public class AccountDictionaries {
 	}
 	public List<RefData> makeSgnList(){
 		List<RefData> list = new ArrayList<RefData>();
-		list.add(new RefData("P","пассивный"));
-		list.add(new RefData("A","активный"));
-		list.add(new RefData("N","активно-пассивный"));
+		list.add(new RefData("P","РїР°СЃСЃРёРІРЅС‹Р№"));
+		list.add(new RefData("A","Р°РєС‚РёРІРЅС‹Р№"));
+		list.add(new RefData("N","Р°РєС‚РёРІРЅРѕ-РїР°СЃСЃРёРІРЅС‹Р№"));
 		return list;
 	}
 	public List<RefData> makeBalList(){
 		List<RefData> list = new ArrayList<RefData>();
-		list.add(new RefData("B","балансовый"));
-		list.add(new RefData("O","внебалансовый"));
+		list.add(new RefData("B","Р±Р°Р»Р°РЅСЃРѕРІС‹Р№"));
+		list.add(new RefData("O","РІРЅРµР±Р°Р»Р°РЅСЃРѕРІС‹Р№"));
 		return list;
 	}
+	
+	public List<RefData> getCloseTypeList(){
+		if (closeTypeList==null) {
+			Connection c = null; 
+			try {
+				c = ConnectionPool.getConnection(alias);
+				closeTypeList = DbUtils.getRefData(c, SqlScripts.ACC_CLOSE_TYPES.getSql());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionPool.close(c);
+			}
+		}
+		return closeTypeList;
+	}
+
 }

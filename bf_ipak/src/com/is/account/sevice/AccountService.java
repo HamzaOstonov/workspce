@@ -132,6 +132,11 @@ public class AccountService {
             cs.setString(1, "ACC_GROUP_ID");
             cs.setString(2, account.getAcc_group_id());
             cs.execute();
+            cs.setString(1, "NIBBD_CODEBANK");
+            cs.setString(2, account.getNibbd_codebank());
+            cs.execute();
+            
+            
 
             acs.setInt(1, 2);
             acs.setInt(2, account.getSign_registr());//2

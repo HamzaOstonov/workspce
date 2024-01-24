@@ -34,6 +34,7 @@ public class Account {
     @Getter @Setter private int state;
     @Getter @Setter private String state_desc;
     @Getter @Setter private String client_name;
+    @Getter @Setter private String nibbd_codebank;
 
     public Account() {
     	super();

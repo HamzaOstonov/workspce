@@ -80,6 +80,8 @@ public enum SqlScripts {
 	
 	CLOSE_TYPES(		"select close_type_id data, close_type_name label from ss_spr_204 order by 1"),
 	
+	ACC_CLOSE_TYPES(		"select close_type_acc data, close_type_name label from ss_spr_205 order by 1"),
+	
 	ACC_BAL(			"select code_b data, name_s label from s_account " +
     	    				"where not code_b like '_0000' and not code_b like '___00' " +
 	    					"and destin = 3 and act <> 'Z' order by code_b"),

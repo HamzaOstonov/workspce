@@ -151,6 +151,9 @@ public enum ClientFields {
     POST_ADDRESS_COUNTRY(false, false),
     SIGN_DATE_OPEN(false, false),
     SIGN_DATE_CLOSE(false, false),
+    CHECKEDINATACCAMA(false, false),
+    EMP_ID(false, false),
+    SUBBRANCH(false, false),
     I014(false,false);
 
     private boolean isObjectiveField;
