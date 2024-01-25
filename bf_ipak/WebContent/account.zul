@@ -716,25 +716,31 @@
             		<row id="lockTypeRow">
             		  <label value="Вид блокировки" />
             		  <hbox align="left" width="100%">
-            		    <textbox id="lock_type" hflex="1"/>
-            		    <rcombobox id="lock_type_name" hflex="4" />
+            		    <textbox id="lock_type" hflex="1" value="@{accountmain$composer.nibbdparam.lock_type}" />
+            		    <rcombobox id="lock_type_name" hflex="6" selecteditem="@{accountmain$composer.nibbdparam.lock_type}"/>
             		  </hbox>
             		</row>
             		
             		<row id="lockSourceRow">
             		  <label value="Источник блокировки" />
             		  <hbox align="left" width="100%">
-            		    <textbox id="lock_source" hflex="1"/>
-            		    <rcombobox id="lock_source_name" hflex="4"/>
+            		    <textbox id="lock_source" hflex="1" value="@{accountmain$composer.nibbdparam.lock_source}"/>
+            		    <rcombobox id="lock_source_name" hflex="6" selecteditem="@{accountmain$composer.nibbdparam.lock_source}"/>
             		  </hbox>
             		</row>
             		
-            		<row id="lockDocNRow"><label value="Номер документа основания блокировки" /><textbox id="id_doc" /></row>
-            		<row id="lockDocDRow"><label value="Дата документа основания блокировки" /><datebox id="date_doc" /></row>
-            		<row id="unLockLockId0Row" visible="false"><label value="Уникальный регистрационный номер блокировки в НИББД" /><textbox id="id_nibbd" /></row>
+            		<row id="lockDocNRow"><label value="Номер документа основания блокировки" /><textbox id="id_doc" value="@{accountmain$composer.nibbdparam.lock_doc_n}" /></row>
+            		<row id="lockDocDRow"><label value="Дата документа основания блокировки" /><datebox id="date_doc" value="@{accountmain$composer.nibbdparam.lock_doc_d}" /></row>
+            		<row id="unLockLockId0Row">
+            		  <label value="Уникальный регистрационный номер блокировки в НИББД" />
+            		  <hbox align="left" width="100%">
+            		    <textbox id="locked_regnum" hflex="1" value="@{accountmain$composer.nibbdparam.locked_regnum}" />
+            		    <rcombobox id="locked_regnum_name" hflex="6" selecteditem="@{accountmain$composer.nibbdparam.locked_regnum}"/>
+            		  </hbox>
+            		</row>
             		<row id="unLockDocNRow"><label value="Номер документа основания разблокировки" /><textbox id="id_doc_a" /></row>
             		<row id="unLockDocDRow"><label value="Дата документа основания разблокировки" /><datebox id="date_doc_a"/></row>
-            		<row id="unLockLockIdRow">
+            		<row id="unLockLockIdRow" visible="false">
             		  <label value="Уникальный регистрационный номер блокировки в НИББД" />
             		  <rcombobox id="rid_nibbd" />
             		</row>

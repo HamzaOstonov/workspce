@@ -80,6 +80,10 @@ public enum SqlScripts {
 	
 	CLOSE_TYPES(		"select close_type_id data, close_type_name label from ss_spr_204 order by 1"),
 	
+	LOCK_TYPES(		"select lock_type_id data, lock_type_name label from ss_spr_203 order by 1"),
+	
+	LOCK_SOURCES(		"select lock_source_id data, lock_source_name label from ss_spr_207 order by 1"),
+	
 	ACC_CLOSE_TYPES(		"select close_type_acc data, close_type_name label from ss_spr_205 order by 1"),
 	
 	ACC_BAL(			"select code_b data, name_s label from s_account " +

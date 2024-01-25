@@ -14,6 +14,11 @@ public class NibbdParam {
 	private Date closed_doc_d;
 	private String account;
 	private String client;
+	private String lock_type;
+	private String lock_source;
+	private String lock_doc_n;
+	private Date lock_doc_d;
+	private String locked_regnum;
 	
 	
 	 public NibbdParam() {
@@ -80,6 +85,46 @@ public class NibbdParam {
 
 	public void setClient(String client) {
 		this.client = client;
+	}
+
+	public String getLock_type() {
+		return lock_type;
+	}
+
+	public void setLock_type(String lock_type) {
+		this.lock_type = lock_type;
+	}
+
+	public String getLock_source() {
+		return lock_source;
+	}
+
+	public void setLock_source(String lock_source) {
+		this.lock_source = lock_source;
+	}
+
+	public String getLock_doc_n() {
+		return lock_doc_n;
+	}
+
+	public void setLock_doc_n(String lock_doc_n) {
+		this.lock_doc_n = lock_doc_n;
+	}
+
+	public Date getLock_doc_d() {
+		return lock_doc_d;
+	}
+
+	public void setLock_doc_d(Date lock_doc_d) {
+		this.lock_doc_d = lock_doc_d;
+	}
+
+	public String getLocked_regnum() {
+		return locked_regnum;
+	}
+
+	public void setLocked_regnum(String locked_regnum) {
+		this.locked_regnum = locked_regnum;
 	}
 	
 	

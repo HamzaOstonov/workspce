@@ -34,6 +34,8 @@ public class AccountDictionaries {
 	@Getter private List<RefData> balList;
 	@Getter private List<RefData> accBalList;
 	private static List<RefData> closeTypeList;
+	private static List<RefData> lockTypeList;
+	private static List<RefData> lockSourceList;
 	
 	private AccountDictionaries(String alias) {
 		this.alias = alias;
@@ -123,5 +125,36 @@ public class AccountDictionaries {
 		}
 		return closeTypeList;
 	}
+	
+	public List<RefData> getLockTypeList(){
+		if (lockTypeList==null) {
+			Connection c = null; 
+			try {
+				c = ConnectionPool.getConnection(alias);
+				closeTypeList = DbUtils.getRefData(c, SqlScripts.LOCK_TYPES.getSql());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionPool.close(c);
+			}
+		}
+		return closeTypeList;
+	}
+	
+	public List<RefData> getLockSourceList(){
+		if (lockSourceList==null) {
+			Connection c = null; 
+			try {
+				c = ConnectionPool.getConnection(alias);
+				closeTypeList = DbUtils.getRefData(c, SqlScripts.LOCK_SOURCES.getSql());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionPool.close(c);
+			}
+		}
+		return closeTypeList;
+	}
+	
 
 }
