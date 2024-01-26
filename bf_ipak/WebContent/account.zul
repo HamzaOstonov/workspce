@@ -742,8 +742,8 @@
             		  <label value="Уникальный регистрационный номер блокировки в НИББД(из НИББД)" />
            		      <rcombobox id="locked_regnum_nibbd" hflex="1" selecteditem="@{accountmain$composer.nibbdparam.locked_regnum_nibbd}"/>
             		</row>
-            		<row id="unLockDocNRow"><label value="Номер документа основания разблокировки" /><textbox id="id_doc_a" /></row>
-            		<row id="unLockDocDRow"><label value="Дата документа основания разблокировки" /><datebox id="date_doc_a"/></row>
+            		<row id="unLockDocNRow"><label value="Номер документа основания разблокировки" /><textbox id="id_doc_a" value="@{accountmain$composer.nibbdparam.unlock_doc_n}" /></row>
+            		<row id="unLockDocDRow"><label value="Дата документа основания разблокировки" /><datebox id="date_doc_a" value="@{accountmain$composer.nibbdparam.unlock_doc_d}" /></row>
 
             	</rows>
             </grid>

@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class NibbdParam {
 
-	private String inn;
-	private String pinfl;
-	private String coa;
-	private String currency;
-	private String n_order;
+	//private String inn;
+	//private String pinfl;
+	//private String coa;
+	//private String currency;
+	//private String n_order;
 	private String close_type;
 	private String closed_doc_n;
 	private Date closed_doc_d;
@@ -20,12 +20,13 @@ public class NibbdParam {
 	private Date lock_doc_d;
 	private String locked_regnum;
 	private String locked_regnum_nibbd;	
-	
+	private String unlock_doc_n;
+	private Date unlock_doc_d;	
 	
 	 public NibbdParam() {
 	    }
 	 
-	public String getInn() {
+	/*public String getInn() {
 		return inn;
 	}
 	public void setInn(String inn) {
@@ -54,7 +55,7 @@ public class NibbdParam {
 	}
 	public void setN_order(String nOrder) {
 		this.n_order = nOrder;
-	}
+	}*/
 	public String getClose_type() {
 		return close_type;
 	}
@@ -134,6 +135,22 @@ public class NibbdParam {
 
 	public void setLocked_regnum_nibbd(String locked_regnum_nibbd) {
 		this.locked_regnum_nibbd = locked_regnum_nibbd;
+	}
+
+	public String getUnlock_doc_n() {
+		return unlock_doc_n;
+	}
+
+	public void setUnlock_doc_n(String unlock_doc_n) {
+		this.unlock_doc_n = unlock_doc_n;
+	}
+
+	public Date getUnlock_doc_d() {
+		return unlock_doc_d;
+	}
+
+	public void setUnlock_doc_d(Date unlock_doc_d) {
+		this.unlock_doc_d = unlock_doc_d;
 	}
 	
 	

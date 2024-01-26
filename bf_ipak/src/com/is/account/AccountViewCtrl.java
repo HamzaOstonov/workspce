@@ -72,7 +72,7 @@ public class AccountViewCtrl extends GenericForwardComposer {
 	private RefCBox fstate, facc_bal, fcurrency, fsgn, fbal, facc_group_id;
 	private Textbox aclient, aacc_group_idText, aid_order, aname;
 	private RefCBox astate, aacc_bal, acurrency, asgn, abal, aacc_group_id, wind_nibbd$close_type_name, wind_nibbd$lock_type_name, wind_nibbd$lock_source_name, wind_nibbd$locked_regnum_name, wind_nibbd$locked_regnum_nibbd;
-	private Textbox currencyValue, fcurrencyValue, acurrencyValue, wind_nibbd$close_type, wind_nibbd$lock_type, wind_nibbd$lock_source;
+	private Textbox currencyValue, fcurrencyValue, acurrencyValue, wind_nibbd$close_type, wind_nibbd$lock_type, wind_nibbd$lock_source, wind_nibbd$locked_regnum; 
 	private Textbox facc_bal_text, fclient, fclient_name;
 	private Row wind_nibbd$codeBankRow, wind_nibbd$closeTypeRow, wind_nibbd$lockTypeRow, wind_nibbd$lockSourceRow,
 			wind_nibbd$lockDocNRow, wind_nibbd$lockDocDRow, wind_nibbd$unLockLockId0Row, wind_nibbd$unLockDocNRow,
@@ -566,6 +566,15 @@ public class AccountViewCtrl extends GenericForwardComposer {
 		nibbdparam.setLock_source(wind_nibbd$lock_source_name.getValue());
 	}
 
+	public void onChange$locked_regnum$wind_nibbd() {
+		wind_nibbd$locked_regnum_name.setSelecteditem(wind_nibbd$locked_regnum.getValue());
+		nibbdparam.setLocked_regnum(wind_nibbd$locked_regnum.getValue());
+	}
+
+	public void onChange$locked_regnum_name$wind_nibbd() {
+		wind_nibbd$locked_regnum.setValue(wind_nibbd$locked_regnum_name.getValue());
+		nibbdparam.setLocked_regnum(wind_nibbd$locked_regnum_name.getValue());
+	}
 	
 	private Textbox acc_bal_text, aacc_bal_text;
 
@@ -677,7 +686,6 @@ public class AccountViewCtrl extends GenericForwardComposer {
 				wind_nibbd$closeTypeRow.setVisible(true);
 				wind_nibbd$close_type_name.setModel(new ListModelList(accountDictionaries.getCloseTypeList()));
 				wind_nibbd$btn_send.setAttribute("queryType", "closeMainAccount");
-
 			} else if (actionId == 4) {
 				// lockaccount
 				wind_nibbd$lockTypeRow.setVisible(true);
@@ -692,13 +700,9 @@ public class AccountViewCtrl extends GenericForwardComposer {
 				//unlockaccount
 				wind_nibbd$unLockLockId0Row.setVisible(true);
 				wind_nibbd$locked_regnum_name.setModel(new ListModelList(accountService.getLockedRegnumList(current.getBranch(), current.getId())));
-				
-				
 				wind_nibbd$unLockLockIdRow.setVisible(true);
 				wind_nibbd$unLockDocNRow.setVisible(true);
 				wind_nibbd$unLockDocDRow.setVisible(true);
-				wind_nibbd$unLockLockIdRow.setVisible(true);
-				//todo;
 			}
 
 			// changeTypeSubject-Регистрация изменения реквизита «Тип клиента»
@@ -782,11 +786,14 @@ public class AccountViewCtrl extends GenericForwardComposer {
 		if (actionId == 3 && current.getSign_registr() == 1) {
 			// zakrit
 			current.setNibbd_codebank(nibbdparam.getClose_type());
-		}  else if (actionId==4) {
+		} else if (actionId==4) {
 			// lock
 			// cdsAcc.FieldByName('nibbd_codebank').Value:=lpad(edtNibbdLockType.text,2,' ')+lpad(edtNibbdLockSource.Text,2,' ')+lpad(edtNibbdLockDocN.Text,20,' ')+edtNibbdLockDocD.Text
 			current.setNibbd_codebank(String.format("%1$2s", nibbdparam.getLock_type()) + String.format("%1$2s", nibbdparam.getLock_source()) + String.format("%1$20s", nibbdparam.getLock_doc_n()) + df.format(nibbdparam.getLock_doc_d()));
-			
+		} else if (actionId==5) { 
+			// unlock
+	        // cdsAcc.FieldByName('nibbd_codebank').Value:=lpad(TCodeName(cbNibbdUnLockLockId.Items.Objects[cbNibbdUnLockLockId.ItemIndex]).Code,14,' ')+lpad(edtNibbdUnLockDocN.Text,20,' ')+edtNibbdUnLockDocD.Text;
+			current.setNibbd_codebank(String.format("%1$14s", nibbdparam.getLocked_regnum()) + String.format("%1$20s", nibbdparam.getUnlock_doc_n()) + df.format(nibbdparam.getUnlock_doc_d()));
 		}
 			// setJuridicalAccount, setIndividualAccount, setBudgetAccount
 			// current.setP_capacity_status_place(nibbdparam.getCoa());
