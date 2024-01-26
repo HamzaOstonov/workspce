@@ -82,6 +82,9 @@ public enum SqlScripts {
 	
 	LOCK_TYPES(		"select lock_type_id data, lock_type_name label from ss_spr_203 order by 1"),
 	
+	LOCKED_REGNUMS(		"select lock_id data, lock_id||', '||lock_type||', '|| lock_source|| ', '||  lock_doc_n||', '|| to_char(lock_doc_d,'dd.mm.yyyy')|| ', ' || to_char(locked,'dd.mm.yyyy') label from lock_account "+
+        "where branch=? and account=?"),
+	
 	LOCK_SOURCES(		"select lock_source_id data, lock_source_name label from ss_spr_207 order by 1"),
 	
 	ACC_CLOSE_TYPES(		"select close_type_acc data, close_type_name label from ss_spr_205 order by 1"),

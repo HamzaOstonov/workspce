@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import com.is.base.History;
 import com.is.base.SqlScripts;
 import com.is.base.utils.DbUtils;
 import com.is.utils.CheckNull;
+import com.is.utils.RefData;
 import com.is.utils.Res;
 
 public class AccountService {
@@ -249,4 +251,36 @@ public class AccountService {
         }
         return name;
     }
+    
+    public List<RefData> getLockedRegnumList(String branch_id, String acc_id) {
+
+        List<RefData> list = new LinkedList<RefData>();
+		Connection c = null; 
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            c = ConnectionPool.getConnection(alias);
+            ps = c.prepareStatement(SqlScripts.LOCKED_REGNUMS.getSql());
+            ps.setString(1, branch_id);
+            ps.setString(2, acc_id);
+            rs = ps.executeQuery();
+			while (rs.next())
+				list.add(
+						new RefData(rs.getString("data"),
+								rs.getString("label")));
+
+        } catch (SQLException e) {
+            logger.error(e.getStackTrace());
+            e.printStackTrace();
+        } finally {
+            DbUtils.closeResultSet(rs);
+            DbUtils.closeStmt(ps);
+            ConnectionPool.close(c);
+        }    	
+		return list;
+        
+    }
+
 }
+

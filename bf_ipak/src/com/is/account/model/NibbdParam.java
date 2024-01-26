@@ -19,6 +19,7 @@ public class NibbdParam {
 	private String lock_doc_n;
 	private Date lock_doc_d;
 	private String locked_regnum;
+	private String locked_regnum_nibbd;	
 	
 	
 	 public NibbdParam() {
@@ -125,6 +126,14 @@ public class NibbdParam {
 
 	public void setLocked_regnum(String locked_regnum) {
 		this.locked_regnum = locked_regnum;
+	}
+
+	public String getLocked_regnum_nibbd() {
+		return locked_regnum_nibbd;
+	}
+
+	public void setLocked_regnum_nibbd(String locked_regnum_nibbd) {
+		this.locked_regnum_nibbd = locked_regnum_nibbd;
 	}
 	
 	

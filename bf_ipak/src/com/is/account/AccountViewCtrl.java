@@ -71,7 +71,7 @@ public class AccountViewCtrl extends GenericForwardComposer {
 	private RefCBox state, acc_bal, currency, sgn, bal, acc_group_id;
 	private RefCBox fstate, facc_bal, fcurrency, fsgn, fbal, facc_group_id;
 	private Textbox aclient, aacc_group_idText, aid_order, aname;
-	private RefCBox astate, aacc_bal, acurrency, asgn, abal, aacc_group_id, wind_nibbd$close_type_name, wind_nibbd$lock_type_name, wind_nibbd$lock_source_name;
+	private RefCBox astate, aacc_bal, acurrency, asgn, abal, aacc_group_id, wind_nibbd$close_type_name, wind_nibbd$lock_type_name, wind_nibbd$lock_source_name, wind_nibbd$locked_regnum_name, wind_nibbd$locked_regnum_nibbd;
 	private Textbox currencyValue, fcurrencyValue, acurrencyValue, wind_nibbd$close_type, wind_nibbd$lock_type, wind_nibbd$lock_source;
 	private Textbox facc_bal_text, fclient, fclient_name;
 	private Row wind_nibbd$codeBankRow, wind_nibbd$closeTypeRow, wind_nibbd$lockTypeRow, wind_nibbd$lockSourceRow,
@@ -691,10 +691,14 @@ public class AccountViewCtrl extends GenericForwardComposer {
 			} else if (actionId == 5) {
 				//unlockaccount
 				wind_nibbd$unLockLockId0Row.setVisible(true);
+				wind_nibbd$locked_regnum_name.setModel(new ListModelList(accountService.getLockedRegnumList(current.getBranch(), current.getId())));
+				
+				
+				wind_nibbd$unLockLockIdRow.setVisible(true);
 				wind_nibbd$unLockDocNRow.setVisible(true);
 				wind_nibbd$unLockDocDRow.setVisible(true);
 				wind_nibbd$unLockLockIdRow.setVisible(true);
-				todo;
+				//todo;
 			}
 
 			// changeTypeSubject-Регистрация изменения реквизита «Тип клиента»
