@@ -181,16 +181,17 @@ public class ClientJViewCtrl extends AbstractClientController {
             }
         }
         // кнопка НИББД
-        Connection c = null;
-        try {
-            c = ConnectionPool.getConnection(alias);
-            if (!ClientUtil.isModuleAllowed(c, "TNibbdForm", un))
-                btn_nibbd.setVisible(false);
-        } catch (SQLException e) {
-            logger.error(e.getStackTrace());
-        } finally {
-            ConnectionPool.close(c);
-        }
+        //Connection c = null;
+        //try {
+        //    c = ConnectionPool.getConnection(alias);
+        //    if (!ClientUtil.isModuleAllowed(c, "TNibbdForm", un))
+        //        btn_nibbd.setVisible(false);
+        //} catch (SQLException e) {
+        //    logger.error(e.getStackTrace());
+        //} finally {
+        //    ConnectionPool.close(c);
+        //}
+        btn_nibbd.setVisible(false);
         //
         ClientJ cltemp = new ClientJ();
         cltemp.setSign_registr(1);
@@ -227,6 +228,13 @@ public class ClientJViewCtrl extends AbstractClientController {
     private void drawRadioButtons() {
         Radio radio = null;
         for (int i = 0; i < CltPaths.values().length; i++) {
+        	
+        	//2024.01.29
+        	//LEGAL_ENTITY_NIBBD("Юридический, имеющий основной счет в другом банке") ishlamasin
+        	if (i==1) {
+        		 break;
+        	}
+        	
             CltPaths path = CltPaths.values()[i];
             Div d = new Div();
             d.setStyle("padding-top: 5px;padding-bottom: 5px;");
