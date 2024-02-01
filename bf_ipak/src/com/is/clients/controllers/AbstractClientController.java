@@ -148,7 +148,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 			adirector_code_adr_region_text, adirector_code_adr_distr_text, adirector_code_tax_org_text,
 			aaccountant_type_document_text, aaccountant_pass_place_region_text, aaccountant_pass_place_distr_text,
 			aaccountant_code_citizenship_text, aaccountant_code_country_text, aaccountant_code_adr_region_text,
-			aaccountant_code_adr_distr_text, aaccountant_code_tax_org_text;
+			aaccountant_code_adr_distr_text, aaccountant_code_tax_org_text, id_client;
 	protected Datebox p_birthday, p_passport_date_registration, p_passport_date_expiration, date_doc;
 	protected RefCBox p_pass_place_region, p_pass_place_district, p_code_nation, ai_opf, ai_form, ai_sector,
 			ai_organ_direct, wind_nibbd$type_close_name;
@@ -563,6 +563,7 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 
 	protected void initNewClient() {
 		ZkUtils.clearForm(addgrd);
+		id_client.setReadonly(true);
 		btn_save.setLabel(Labels.getLabel("save"));
 		btn_save.setAttribute("action", "open");
 		btn_save.setImage("/images/save.png");
@@ -574,6 +575,32 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 		newcl.setCode_country(ClientUtil.COUNTRY_UZ);
 		newcl.setJ_code_bank(ses_branch);
 		newcl.setAddressCountry(ClientUtil.COUNTRY_UZ);
+		aj_sign_trade
+				.setChecked(newcl.getJ_sign_trade() != null && newcl.getJ_sign_trade().equals(ClientUtil.CHECKBOX_Y));
+		aj_small_business.setChecked(
+				newcl.getJ_small_business() != null && newcl.getJ_small_business().equals(ClientUtil.CHECKBOX_Y));
+		binder.loadAll();
+		showFormForNewClient();
+		showCodesForNewcl();
+		tb.setVisible(false);
+		btn_clear.setVisible(false);
+	}
+
+	protected void initNewClient_secondary() {
+		ZkUtils.clearForm(addgrd);
+		id_client.setReadonly(false);
+		btn_save.setLabel(Labels.getLabel("save"));
+		btn_save.setAttribute("action", "open");
+		btn_save.setAttribute("action1", "secondary");
+		btn_save.setImage("/images/save.png");
+		addgrd.setAttribute("mode", "new");
+
+		newcl.setCode_resident(ClientUtil.CODE_RESIDENT);
+		newcl.setSign_registr(ClientUtil.SIGN_REGISTR_PRIMARY_NOT);
+		newcl.setBranch(ses_branch);
+		newcl.setCode_country(ClientUtil.COUNTRY_UZ);
+		//newcl.setJ_code_bank(ses_branch);
+		//newcl.setAddressCountry(ClientUtil.COUNTRY_UZ);
 		aj_sign_trade
 				.setChecked(newcl.getJ_sign_trade() != null && newcl.getJ_sign_trade().equals(ClientUtil.CHECKBOX_Y));
 		aj_small_business.setChecked(

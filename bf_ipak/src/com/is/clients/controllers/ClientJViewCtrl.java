@@ -231,9 +231,9 @@ public class ClientJViewCtrl extends AbstractClientController {
         	
         	//2024.01.29
         	//LEGAL_ENTITY_NIBBD("Юридический, имеющий основной счет в другом банке") ishlamasin
-        	if (i==1) {
-        		 break;
-        	}
+        	//if (i==1) {
+        	//	 break;
+        	//}
         	
             CltPaths path = CltPaths.values()[i];
             Div d = new Div();
@@ -463,7 +463,8 @@ public class ClientJViewCtrl extends AbstractClientController {
                 if (foundInSAP)
                     openClient(50);
                 else
-                    initNibbd(NibbdQueries.IDENTIFICATION);
+                    //initNibbd(NibbdQueries.IDENTIFICATION);
+                	initNewClient_secondary();
                 break;
             default:
                 break;
