@@ -33,11 +33,11 @@ public abstract class AbstractLocalCustomerService {
         if (action != 9999) {
             doAction.setInt(1, 1);
             doAction.setInt(2, 2);
-            doAction.setInt(3, action); // Если 1, то создаем нового клиента
+            doAction.setInt(3, action); // Р•СЃР»Рё 1, С‚Рѕ СЃРѕР·РґР°РµРј РЅРѕРІРѕРіРѕ РєР»РёРµРЅС‚Р°
         }
         else
         {
-            // если вызывается с пакетного открытия 208 2 2
+            // РµСЃР»Рё РІС‹Р·С‹РІР°РµС‚СЃСЏ СЃ РїР°РєРµС‚РЅРѕРіРѕ РѕС‚РєСЂС‹С‚РёСЏ 208 2 2
             setParam.setString(1,"P_ACC_BAL");
             setParam.setString(2,customer.getAccount().getAcc_bal());
             setParam.execute();
@@ -268,7 +268,7 @@ public abstract class AbstractLocalCustomerService {
     }
 
     protected String executeActionOtherBranch(Connection c, Customer customer, int action) throws SQLException {
-    	
+     	
         CallableStatement setParam = c.prepareCall("{ call Param.SetParam(?,?) }");
         CallableStatement doAction = c.prepareCall("{ call kernel.doAction(?,?,?) }");
 
@@ -283,11 +283,11 @@ public abstract class AbstractLocalCustomerService {
         if (action != 9999) {
             doAction.setInt(1, 1);
             doAction.setInt(2, 2);
-            doAction.setInt(3, action); // Если 1, то создаем нового клиента
+            doAction.setInt(3, action); // Р•СЃР»Рё 1, С‚Рѕ СЃРѕР·РґР°РµРј РЅРѕРІРѕРіРѕ РєР»РёРµРЅС‚Р°
         }/*
         else
         {
-            // если вызывается с пакетного открытия 208 2 2
+            // РµСЃР»Рё РІС‹Р·С‹РІР°РµС‚СЃСЏ СЃ РїР°РєРµС‚РЅРѕРіРѕ РѕС‚РєСЂС‹С‚РёСЏ 208 2 2
             setParam.setString(1,"P_ACC_BAL");
             setParam.setString(2,customer.getAccount().getAcc_bal());
             setParam.execute();
