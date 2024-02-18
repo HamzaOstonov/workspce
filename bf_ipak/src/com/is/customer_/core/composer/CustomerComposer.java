@@ -715,7 +715,9 @@ public class CustomerComposer extends AbstractCustomerComposer {
  				  }
   		       }
   		       
-  		       customer.setP_passport_place_registration(doc.getDocgiveplace());
+  		       //customer.setP_passport_place_registration(doc.getDocgiveplace());
+  		       customer.setP_passport_place_registration(doc.getDocgiveplace()!=null? doc.getDocgiveplace().toUpperCase(): null);
+  		       
                customer.setP_passport_date_registration(df.parse(doc.getDatebegin()));
                customer.setP_passport_date_expiration(df.parse(doc.getDateend()));
                
@@ -746,7 +748,9 @@ public class CustomerComposer extends AbstractCustomerComposer {
             	customer.setCode_country(far.getDataObject().getPermanentRegistration().getCountry().getId());
             	customer.setP_code_adr_region(far.getDataObject().getPermanentRegistration().getRegion().getId()) ;
             	customer.setP_code_adr_distr(far.getDataObject().getPermanentRegistration().getDistrict().getId()) ;
-            	customer.setP_post_address(far.getDataObject().getPermanentRegistration().getAddress());
+            	//customer.setP_post_address(far.getDataObject().getPermanentRegistration().getAddress());
+            	customer.setP_post_address(far.getDataObject().getPermanentRegistration().getAddress()!=null? CustomerUtils.toTranslitNew(far.getDataObject().getPermanentRegistration().getAddress().toUpperCase()) : "");
+            	
             	initModelsForListbox();        	
             	binder.loadAll();
         	} else if (far.getAnswereId()==0){

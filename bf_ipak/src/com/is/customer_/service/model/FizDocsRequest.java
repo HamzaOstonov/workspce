@@ -28,7 +28,8 @@ public class FizDocsRequest {
 	public FizDocsRequest() {
 		//super();
 		this.is_consent = "Y";
-		this.langId = 1;
+		//this.langId = 1;
+		this.langId = 3;
 		this.is_photo = "Y";
 		this.Sender = "P";
 	}
