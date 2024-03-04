@@ -12,7 +12,7 @@ import com.is.baseSearch.AbstractSearchResult;
 public class BaseLocalSearch extends AbstractBaseSearchImplementation {
 
 	// Constants
-	private static final String HEADER = "Расширенный Поиск";
+	private static final String HEADER = "Р Р°СЃС€РёСЂРµРЅРЅС‹Р№ РџРѕРёСЃРє";
 	//private static final String SRC = "businesspartner.zul?action=searchBusinessPartner";
 	private static final String SRC = "searchLocal.zul";
 	// Components

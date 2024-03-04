@@ -182,21 +182,21 @@ public class LocalSearchComposer extends GenericForwardComposer {
 		if (main.isVisible()) {
 			if (interactor.getCustomer().getSign_date_open() == 2) {
 				if (interactor.getCustomer().getDate_open() == null) {
-					Messagebox.show("Введите начальная дата утверждения");
+					Messagebox.show("Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅР°СЏ РґР°С‚Р° СѓС‚РІРµСЂР¶РґРµРЅРёСЏ");
 					return;
 				}
 				if (interactor.getCustomer().getDate_open1() == null) {
-					Messagebox.show("Введите конечьная дата утверждения");
+					Messagebox.show("Р’РІРµРґРёС‚Рµ РєРѕРЅРµС‡СЊРЅР°СЏ РґР°С‚Р° СѓС‚РІРµСЂР¶РґРµРЅРёСЏ");
 					return;
 				}
 			}
 			if (interactor.getCustomer().getSign_date_close() == 2) {
 				if (interactor.getCustomer().getDate_close() == null) {
-					Messagebox.show("Введите начальная дата закрытия");
+					Messagebox.show("Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅР°СЏ РґР°С‚Р° Р·Р°РєСЂС‹С‚РёСЏ");
 					return;
 				}
 				if (interactor.getCustomer().getDate_close1() == null) {
-					Messagebox.show("Введите конечьная дата закрытия");
+					Messagebox.show("Р’РІРµРґРёС‚Рµ РєРѕРЅРµС‡СЊРЅР°СЏ РґР°С‚Р° Р·Р°РєСЂС‹С‚РёСЏ");
 					return;
 				}
 			}
@@ -204,7 +204,7 @@ public class LocalSearchComposer extends GenericForwardComposer {
 			//refreshModel(_startPageNumber); //commented 2017.12.12
 			refreshModel(0);
 			if (model.getSize() == 0)
-				Messagebox.show("Деловой партнер не найден");
+				Messagebox.show("Р”РµР»РѕРІРѕР№ РїР°СЂС‚РЅРµСЂ РЅРµ РЅР°Р№РґРµРЅ");
 			else
 			{
 				//searchInclude.setVisible(false);

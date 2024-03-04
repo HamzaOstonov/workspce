@@ -122,7 +122,7 @@ public class LocalSearchItemListener implements EventListener {
 
 
     private void formatWindowTitle(Customer customer){
-        ((Window) facade.getProducedComponent()).setTitle(String.format("%s дата рождения %s",
+        ((Window) facade.getProducedComponent()).setTitle(String.format("%s РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ %s",
                 customer.getName() == null ? customer.getFullName() : customer.getName(),
                 CustomerUtils.dateToString(customer.getP_birthday())));
         ((Window) facade.getProducedComponent()).setStyle("font-weight:bold");
