@@ -257,7 +257,7 @@ public class BeneficiaryFounderComposer extends AbstractFounderController<Person
                 customer.setP_passport_number(current.getPerson().getPassport_number());
                 final List<Customer> list = SapFactory.instance().getCustomerService().searchBusinessPartners(customer);
                 if (list != null && list.size() > 1) {
-                    Messagebox.show("Нашлись совпадения по документу. Просмотреть?", null, Messagebox.OK | Messagebox.CANCEL, Messagebox.NONE,
+                    Messagebox.show("РќР°С€Р»РёСЃСЊ СЃРѕРІРїР°РґРµРЅРёСЏ РїРѕ РґРѕРєСѓРјРµРЅС‚Сѓ. РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ?", null, Messagebox.OK | Messagebox.CANCEL, Messagebox.NONE,
                             new EventListener() {
 
                                 @Override
@@ -297,7 +297,7 @@ public class BeneficiaryFounderComposer extends AbstractFounderController<Person
     @Override
     protected void executeFounderAction(final int action) {
         try {
-            // Обязательно!!!
+            // РћР±СЏР·Р°С‚РµР»СЊРЅРѕ!!!
             String fullName = current.getPerson().concatenateFullName();
             current.getPerson().setName(fullName);
             current.getPerson().setBranch(ses_branch);//2023.04.12
@@ -325,7 +325,7 @@ public class BeneficiaryFounderComposer extends AbstractFounderController<Person
                 alert(res.getName());
                 return;
             }
-            alert("Успешно!");
+            alert("РЈСЃРїРµС€РЅРѕ!");
             if (Util.inInts(action, PersonMapService.ACTION_CONFIRM, PersonMapService.ACTION_CREATE, PersonMapService.ACTION_CONFIRM_HOP)) {
                 current.setPerson(founderDao.getItemByStringId(null, res.getName()));
                 current.setPerson_id(current.getPerson().getId());
@@ -344,7 +344,7 @@ public class BeneficiaryFounderComposer extends AbstractFounderController<Person
                 final Customer customer = SAPServiceFactory.getInstance()
                         .getBusinessPartnerService()
                         .get(null, null, e.getDuplicationCustomer().getIdSap());
-                Messagebox.show("Вы действительно хотите связать текущего клиента с золотой записью",
+                Messagebox.show("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃРІСЏР·Р°С‚СЊ С‚РµРєСѓС‰РµРіРѕ РєР»РёРµРЅС‚Р° СЃ Р·РѕР»РѕС‚РѕР№ Р·Р°РїРёСЃСЊСЋ",
                         String.format("%s %s", customer.getFullName(),
                                 CustomerUtils.dateToString(customer.getP_birthday())),
                         Messagebox.OK | Messagebox.CANCEL, Messagebox.NONE,
@@ -518,13 +518,13 @@ public class BeneficiaryFounderComposer extends AbstractFounderController<Person
         }
     }
 
-    // Район
+    // Р Р°Р№РѕРЅ
     public void onChange$pass_place_distr() {
         pass_place_distr_text.setValue(pass_place_distr.getValue());
         passport_place_registration
-                .setText(pass_place_region.getText() + " " + pass_place_distr.getText() + " " + "ИИБ");
+                .setText(pass_place_region.getText() + " " + pass_place_distr.getText() + " " + "РРР‘");
         current.getPerson().setPassport_place_registration(
-                pass_place_region.getText() + " " + pass_place_distr.getText() + " " + "ИИБ");
+                pass_place_region.getText() + " " + pass_place_distr.getText() + " " + "РРР‘");
         current.getPerson().setPass_place_district(pass_place_distr.getValue());
     }
 
@@ -532,16 +532,16 @@ public class BeneficiaryFounderComposer extends AbstractFounderController<Person
         String distrCode = pass_place_distr_text.getValue();
         pass_place_distr.setSelecteditem(distrCode);
         if (!CheckNull.isEmpty(pass_place_distr.getValue())) {
-            passport_place_registration.setText(pass_place_region.getText() + " " + pass_place_distr.getText() + " " + "ИИБ");
+            passport_place_registration.setText(pass_place_region.getText() + " " + pass_place_distr.getText() + " " + "РРР‘");
             current.getPerson().setPassport_place_registration(
-                    pass_place_region.getText() + " " + pass_place_distr.getText() + " " + "ИИБ");
+                    pass_place_region.getText() + " " + pass_place_distr.getText() + " " + "РРР‘");
             current.getPerson().setPass_place_district(pass_place_distr.getValue());
         }
     }
 
-    // Местожительство
+    // РњРµСЃС‚РѕР¶РёС‚РµР»СЊСЃС‚РІРѕ
 
-    // Адрес
+    // РђРґСЂРµСЃ
     public void onChange$code_adr_region() {
         code_adr_distr
                 .setModel(new ListModelList(ClientDictionaries.getDistrByRegion(null, code_adr_region.getValue(), alias)));
@@ -764,9 +764,9 @@ public class BeneficiaryFounderComposer extends AbstractFounderController<Person
 					ISLogger.getLogger().error(CheckNull.getPstr(e));
 				}
 				
-        	} else alert("Серия или номер паспорта не заполнены");
+        	} else alert("РЎРµСЂРёСЏ РёР»Рё РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р° РЅРµ Р·Р°РїРѕР»РЅРµРЅС‹");
 		} catch (WrongValueException e) {
-			alert("Серия или номер паспорта не заполнены");
+			alert("РЎРµСЂРёСЏ РёР»Рё РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р° РЅРµ Р·Р°РїРѕР»РЅРµРЅС‹");
 			e.printStackTrace();
 		}
     }

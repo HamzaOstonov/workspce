@@ -41,7 +41,7 @@ public class PersonMapDao implements Dao<PersonMap> {
 
     private PersonMapDao(String alias, DaoFactory daoFactory) {
         this.alias = alias;
-        // Конткных лиц создает Андрей, модуль customer_, поэтому здесь
+        // РљРѕРЅС‚РєРЅС‹С… Р»РёС† СЃРѕР·РґР°РµС‚ РђРЅРґСЂРµР№, РјРѕРґСѓР»СЊ customer_, РїРѕСЌС‚РѕРјСѓ Р·РґРµСЃСЊ
         personDao = daoFactory.getPersonDao();
         legalEntityDao = daoFactory.getLegalEntityDao();
         capitalDao = daoFactory.getCapitalDao();
@@ -206,7 +206,7 @@ public class PersonMapDao implements Dao<PersonMap> {
             c = ConnectionPool.getConnection(alias);
 
 			/*
-			 * создание лица в таблице
+			 * СЃРѕР·РґР°РЅРёРµ Р»РёС†Р° РІ С‚Р°Р±Р»РёС†Рµ
 			 * 
 			 * */
             if (map.getPerson_id() == null) {
@@ -219,7 +219,7 @@ public class PersonMapDao implements Dao<PersonMap> {
                 }
             }
 			/*
-			 * создание связки в таблице client_addinfo_person_map
+			 * СЃРѕР·РґР°РЅРёРµ СЃРІСЏР·РєРё РІ С‚Р°Р±Р»РёС†Рµ client_addinfo_person_map
 			 * 
 			 * */
             ps = c.prepareStatement("SELECT seq_client_addinfo_person_map.NEXTVAL id FROM DUAL");
@@ -240,7 +240,7 @@ public class PersonMapDao implements Dao<PersonMap> {
             ps.setString(7, map.name());
             ps.executeUpdate();
 			/*
-			 * создание дыанных о капитале
+			 * СЃРѕР·РґР°РЅРёРµ РґС‹Р°РЅРЅС‹С… Рѕ РєР°РїРёС‚Р°Р»Рµ
 			 * 
 			 * */
             if (map.getPerson_kind().equals(PersonMapUtil.PERSONKIND_FOUNDER)) {
@@ -249,7 +249,7 @@ public class PersonMapDao implements Dao<PersonMap> {
             }
 			/*
 			 * 
-			 * создание отношения  ДП в SAP
+			 * СЃРѕР·РґР°РЅРёРµ РѕС‚РЅРѕС€РµРЅРёСЏ  Р”Рџ РІ SAP
 			 * */
 //			String idsap = SapFactory.instance().getRelationService().getIPcode(map.getClient_id(), map.getBranch());
 //			boolean hasIpRelation = idsap != null;
@@ -326,13 +326,13 @@ public class PersonMapDao implements Dao<PersonMap> {
         ResultSet rs = null;
         try {
 			/*
-			 * создание лица в таблице
+			 * СЃРѕР·РґР°РЅРёРµ Р»РёС†Р° РІ С‚Р°Р±Р»РёС†Рµ
 			 * 
 			 * */
             map.getPerson().setBranch(map.getBranch());
             map.setPerson_id(personDao.create(c, map.getPerson()).getId());
 			/*
-			 * создание связки в таблице client_addinfo_person_map
+			 * СЃРѕР·РґР°РЅРёРµ СЃРІСЏР·РєРё РІ С‚Р°Р±Р»РёС†Рµ client_addinfo_person_map
 			 * 
 			 * */
             ps = c.prepareStatement("SELECT seq_client_addinfo_person_map.NEXTVAL id FROM DUAL");

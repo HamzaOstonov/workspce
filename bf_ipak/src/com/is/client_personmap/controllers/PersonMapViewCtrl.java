@@ -462,7 +462,7 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
     public void suggestCreatingMessageBox() {
         resultListbox.setModel(new ListModelList());
         try {
-            Messagebox.show("Деловых партнеров не найдено. Открыть нового ДП", "", Messagebox.OK | Messagebox.CANCEL,
+            Messagebox.show("Р”РµР»РѕРІС‹С… РїР°СЂС‚РЅРµСЂРѕРІ РЅРµ РЅР°Р№РґРµРЅРѕ. РћС‚РєСЂС‹С‚СЊ РЅРѕРІРѕРіРѕ Р”Рџ", "", Messagebox.OK | Messagebox.CANCEL,
                     Messagebox.QUESTION, new EventListener() {
 
                         @Override
@@ -514,7 +514,7 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
 
     public void suggestLegalEntityMessagebox() {
         try {
-            Messagebox.show("Деловых партнеров не найдено. Открыть нового ДП?", "", Messagebox.OK | Messagebox.CANCEL,
+            Messagebox.show("Р”РµР»РѕРІС‹С… РїР°СЂС‚РЅРµСЂРѕРІ РЅРµ РЅР°Р№РґРµРЅРѕ. РћС‚РєСЂС‹С‚СЊ РЅРѕРІРѕРіРѕ Р”Рџ?", "", Messagebox.OK | Messagebox.CANCEL,
                     Messagebox.QUESTION, new EventListener() {
 
                         @Override

@@ -1,6 +1,7 @@
 package com.is.customer_.contact;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -110,7 +111,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
 				}
 			});*/
 
-        // Вызывается из CustomerComposer
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ CustomerComposer
         composer.setEventListener(new EventListener() {
             @Override
             public void onEvent(Event event) throws Exception {
@@ -143,7 +144,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                 continue;
 
             Menuitem menuitem = new Menuitem();
-            menuitem.setLabel(String.format("%s Отношение", action.getName()));
+            menuitem.setLabel(String.format("%s пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", action.getName()));
             menuitem.setAttribute("action", action.getAction_id());
             menuitem.setAttribute("deal_id", action.getDeal_id());
             menuitem.setParent(rel_actions);
@@ -156,7 +157,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                         ContactPersonComposer.this.relationship.setPosition(contact_types.getValue());
                         if (ContactPersonComposer.this.relationship.getPosition() == null
                                 || ContactPersonComposer.this.relationship.getPosition().isEmpty())
-                            throw new RuntimeException("Выберите должность");
+                            throw new RuntimeException("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
                         logger.info("Action -> " + action);
                         logger.info("Relationship -> " + relationship);
@@ -178,7 +179,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                                     copyOfRelationship, dealId, action);
                         }*/
 
-                        Messagebox.show("Успешно");
+                        Messagebox.show("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                         drawRelationshipActions(ContactPersonComposer.this.relationship);
                     } catch (Exception e) {
                         //logger.error(CheckNull.getPstr(e));
@@ -237,8 +238,48 @@ public class ContactPersonComposer extends GenericForwardComposer {
 				"** not err customer.getIntState()=" + customer.getIntState());
 		*/
         
-        List<Action> list = ActionUtils.getContactActions(customer.getIntState(), sessionAttributes.getUsername(),
+   
+        
+        //List<Action> list = ActionUtils.getContactActions(customer.getIntState(), sessionAttributes.getUsername(),
+        //        sessionAttributes.getPassword(), sessionAttributes.getSchema());
+        List<Action> list = new ArrayList<Action>(); ;
+        try {
+          list = ActionUtils.getContactActions(customer.getIntState(), sessionAttributes.getUsername(),
                 sessionAttributes.getPassword(), sessionAttributes.getSchema());
+        } catch(Exception e11) {
+        	
+        	String str1 = "";
+    		ObjectMapper objectMapper = new ObjectMapper();
+
+    		try {
+    			str1 = objectMapper.writerWithDefaultPrettyPrinter()
+    					.writeValueAsString(customer);
+    		} catch (Exception e22) {
+    			str1 = "str1=error customer1 ";
+    		} finally {
+    		}
+    		ISLogger.getLogger().error(
+    				"** not err customer1  ************** " + str1);
+    		
+    		
+    		try {
+    			str1 = objectMapper.writerWithDefaultPrettyPrinter()
+    					.writeValueAsString(sessionAttributes);
+    		} catch (Exception e22) {
+    			str1 = "str1=error sessionAttributes ";
+    		} finally {
+    		}
+    		ISLogger.getLogger().error(
+    				"** not err sessionAttributes  ************** " + str1);
+    		
+    		ISLogger.getLogger().error(
+    				"** not err customer.getState()=" + customer.getState()+".");
+    		
+    		ISLogger.getLogger().error(
+    				"** not err customer.getIntState()=" + customer.getIntState()+".");
+    		
+        	alert("РћС€РёР±РєР° РїСЂРё РїРѕР»СѓС‡РµРЅРёРё СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… РґРµР№СЃС‚РІРёР№. ("+customer.getState()+":"+customer.getIntState() +"). "+e11.getMessage()+". "+e11.getCause() );
+        } 
         for (Action action_ : list) {
             if (action_.getAction_id() == 2)
                 continue;
@@ -261,7 +302,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                                 Customer toCompare = actionService.getCustomer(currentCustomer.getBranch(),
                                         currentCustomer.getId());
                                 if (!DiffUtils.hasChanges(toCompare, currentCustomer)) {
-                                    throw new RuntimeException("Нет измененных данных");
+                                    throw new RuntimeException("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
                                 }
                             }
                             currentCustomer.setParent_id_client_j(context.getContactJId()); //2022.11.16
@@ -271,7 +312,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                             Customer customer = actionService.doAction(dealId, composer.getCustomer(), action);
                             composer.refreshCustomer(customer);
 
-                            Messagebox.show("Успешно");
+                            Messagebox.show("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                             drawActions(customer);
 
                             /*if (action == 3 && customer.getState().equalsIgnoreCase("3")) {
@@ -441,7 +482,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
     public void onClick$btnSynchronize() throws Exception {
         Customer customer = actionService.synchronize(composer.getCustomer());
         composer.refreshCustomer(customer);
-        Messagebox.show("Cинхронизирован");
+        Messagebox.show("CпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
     }
 
     public void onClick$btnRefresh() {

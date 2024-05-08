@@ -43,7 +43,7 @@ public class PersonMapRenderer implements ListitemRenderer {
 		
 		row.appendChild(new Listcell(states.get(pm.getState())));
 		if(pm.isOld() && !pm.getPerson_kind().equals(PersonMapUtil.PERSONKIND_FOUNDER)) {
-			Label label = new Label("Недействительное контактное лицо");
+			Label label = new Label("РќРµРґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРµ РєРѕРЅС‚Р°РєС‚РЅРѕРµ Р»РёС†Рѕ");
 			Listcell buttonCell = new Listcell();
 			buttonCell.appendChild(label);
 			row.appendChild(buttonCell);
@@ -52,7 +52,7 @@ public class PersonMapRenderer implements ListitemRenderer {
 	}
 
     private String getPersonType(String person_type) {
-        return person_type.equalsIgnoreCase("P") ? "Физический" : "Юридический";
+        return person_type.equalsIgnoreCase("P") ? "Р¤РёР·РёС‡РµСЃРєРёР№" : "Р®СЂРёРґРёС‡РµСЃРєРёР№";
     }
 
 }

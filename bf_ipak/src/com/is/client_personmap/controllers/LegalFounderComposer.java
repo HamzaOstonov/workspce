@@ -87,14 +87,14 @@ public class LegalFounderComposer extends AbstractFounderController<LegalEntity>
     private void initNibbdMode() {
         String[] prams = (String[]) param.get("id");
         if (prams == null || prams.length == 0) {
-            alert("Лицо не найдено!");
+            alert("Р›РёС†Рѕ РЅРµ РЅР°Р№РґРµРЅРѕ!");
             return;
         }
         setCurrent(PersonMap.legalFounderInstance(ses_branch));
         getCurrent().setLegalEntity(founderDao.getItemByStringId(null, prams[0]));
         renderComboboxes();
         action_bar.getChildren().clear();
-        Toolbarbutton button = new Toolbarbutton("Отправить в SAP");
+        Toolbarbutton button = new Toolbarbutton("РћС‚РїСЂР°РІРёС‚СЊ РІ SAP");
         button.addEventListener(Events.ON_CLICK, new EventListener() {
 
             @Override
@@ -247,7 +247,7 @@ public class LegalFounderComposer extends AbstractFounderController<LegalEntity>
             if (small_business!=null)
                 current.getLegalEntity().setSmall_business(small_business.isChecked() ? ClientUtil.CHECKBOX_Y : ClientUtil.CHECKBOX_N);
             
-            // Если создается поставить id null
+            // Р•СЃР»Рё СЃРѕР·РґР°РµС‚СЃСЏ РїРѕСЃС‚Р°РІРёС‚СЊ id null
             if (action == PersonMapService.ACTION_CREATE ||
                     action == PersonMapService.ACTION_CONFIRM_HOP) {
                 current.getLegalEntity().setId(null);
@@ -259,7 +259,7 @@ public class LegalFounderComposer extends AbstractFounderController<LegalEntity>
                 alert(res.getName());
                 return;
             }
-            alert("Успешно!");
+            alert("РЈСЃРїРµС€РЅРѕ!");
             if (Util.inInts(action, PersonMapService.ACTION_CONFIRM, PersonMapService.ACTION_CREATE, PersonMapService.ACTION_CONFIRM_HOP)) {
                 current.setLegalEntity(founderDao.getItemByStringId(null, res.getName()));
                 current.setPerson_id(current.getLegalEntity().getId());

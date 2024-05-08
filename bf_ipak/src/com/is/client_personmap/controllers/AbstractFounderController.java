@@ -205,7 +205,7 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
             });
             action_bar.appendChild(button);
         }
-        button = new Toolbarbutton("Сравнить с данными SAP и EBP");
+        button = new Toolbarbutton("РЎСЂР°РІРЅРёС‚СЊ СЃ РґР°РЅРЅС‹РјРё SAP Рё EBP");
         button.addEventListener(Events.ON_CLICK, new EventListener() {
 
             @Override
@@ -221,7 +221,7 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
         Map<Integer, String> actions = personMapService.getAvailableActionsForRelation(current.getState());
         Toolbarbutton button = null;
         for (Map.Entry<Integer, String> action : actions.entrySet()) {
-            button = new Toolbarbutton(action.getValue() + " отношение");
+            button = new Toolbarbutton(action.getValue() + " РѕС‚РЅРѕС€РµРЅРёРµ");
             button.setAttribute("relAction", action.getKey());
             button.addEventListener(Events.ON_CLICK, new EventListener() {
 
@@ -233,7 +233,7 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
             rel_action_bar.appendChild(button);
         }
         if (current.isFromSap()) {
-            button = new Toolbarbutton("Аннулировать отношение");
+            button = new Toolbarbutton("РђРЅРЅСѓР»РёСЂРѕРІР°С‚СЊ РѕС‚РЅРѕС€РµРЅРёРµ");
             button.addEventListener(Events.ON_CLICK, new EventListener() {
 
                 @Override
@@ -245,7 +245,7 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
                         alert(res.getName());
                         return;
                     }
-                    alert("Успешно!");
+                    alert("РЈСЃРїРµС€РЅРѕ!");
                     action_bar.getChildren().clear();
                     rel_action_bar.getChildren().clear();
                     renderComboboxes();
@@ -253,9 +253,9 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
             });
             rel_action_bar.appendChild(button);
         }
-        // Утвержден
+        // РЈС‚РІРµСЂР¶РґРµРЅ
         if (current.getState() == 3) {
-            button = new Toolbarbutton("Сравнить отношения");
+            button = new Toolbarbutton("РЎСЂР°РІРЅРёС‚СЊ РѕС‚РЅРѕС€РµРЅРёСЏ");
             button.addEventListener(Events.ON_CLICK, new EventListener() {
                 @Override
                 public void onEvent(Event event) throws Exception {
@@ -264,10 +264,10 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
             });
             rel_action_bar.appendChild(button);
         }
-        // Введен, Утвержден
+        // Р’РІРµРґРµРЅ, РЈС‚РІРµСЂР¶РґРµРЅ
         if ( current.getPerson_type().equals("P") && current.getPerson_kind().equals("3") && (current.getState() == 1 || current.getState() == 3)) {
             if (CustomerUtils.isAtaccamaOn()) {
-        	  button = new Toolbarbutton("Дублировать учредителя как бенефициарный собственник");
+        	  button = new Toolbarbutton("Р”СѓР±Р»РёСЂРѕРІР°С‚СЊ СѓС‡СЂРµРґРёС‚РµР»СЏ РєР°Рє Р±РµРЅРµС„РёС†РёР°СЂРЅС‹Р№ СЃРѕР±СЃС‚РІРµРЅРЅРёРє");
               button.addEventListener(Events.ON_CLICK, new EventListener() {
                   @Override
                   public void onEvent(Event event) throws Exception {
@@ -281,19 +281,19 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
     }
 
     protected void executeRelationAction(int action) {
-        // Если процент долевоого участия больше 10
+        // Р•СЃР»Рё РїСЂРѕС†РµРЅС‚ РґРѕР»РµРІРѕРѕРіРѕ СѓС‡Р°СЃС‚РёСЏ Р±РѕР»СЊС€Рµ 10
         int compared = current.getCapital().getPart_of_capital().compareTo(BigDecimal.TEN);
         boolean greaterThan10 = compared > 0;
         current.getCapital().setIs_director(greaterThan10 ? "X" : "");
         current.getCapital().setCurrency(currency.getValue());
 
         if (CheckNull.isEmpty(current.getCapital().getCurrency())) {
-            alert("Ошибка ввода: введите валюту");
+            alert("РћС€РёР±РєР° РІРІРѕРґР°: РІРІРµРґРёС‚Рµ РІР°Р»СЋС‚Сѓ");
             return;
         }
 
         if (current.getCapital().getPart_of_capital() == null) {
-            alert("Ошибка ввода: введите процент ");
+            alert("РћС€РёР±РєР° РІРІРѕРґР°: РІРІРµРґРёС‚Рµ РїСЂРѕС†РµРЅС‚ ");
             return;
         }
         BigDecimal percentageRemainder = PersonMapUtil.getFounderPercentageRemainder(clientId, ses_branch, personMapDao);
@@ -302,7 +302,7 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
 
         highOrder = getUpperBound(partOld, percentageRemainder);
         if (current.getCapital().getPart_of_capital().compareTo(highOrder) > 0) {
-            alert("Процент долевого участия в капитале не должен превышать " + percentageRemainder);
+            alert("РџСЂРѕС†РµРЅС‚ РґРѕР»РµРІРѕРіРѕ СѓС‡Р°СЃС‚РёСЏ РІ РєР°РїРёС‚Р°Р»Рµ РЅРµ РґРѕР»Р¶РµРЅ РїСЂРµРІС‹С€Р°С‚СЊ " + percentageRemainder);
             return;
         }
         if (current.getPerson_kind()==null)
@@ -336,7 +336,7 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
         if (current.getPerson_kind().equals("3") && ( is_beneficiary!=null && is_beneficiary.isChecked() ) && action==1) { //sozdanie otnoshenie 
             try {
             	
-                //agar является бенефициар га галочка куйилган булса
+                //agar СЏРІР»СЏРµС‚СЃСЏ Р±РµРЅРµС„РёС†РёР°СЂ РіР° РіР°Р»РѕС‡РєР° РєСѓР№РёР»РіР°РЅ Р±СѓР»СЃР°
                 //shuerga bitta person yasayman
                 //person ni action qilib bazaga uzataman
                 //va personmap yasayman
@@ -381,11 +381,11 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
                 is_beneficiary.setVisible(false);
             } catch (Exception e) {
              
-               logger.error("является бенефициар га галочка куйилган булса " + e.getMessage());
+               logger.error("СЏРІР»СЏРµС‚СЃСЏ Р±РµРЅРµС„РёС†РёР°СЂ РіР° РіР°Р»РѕС‡РєР° РєСѓР№РёР»РіР°РЅ Р±СѓР»СЃР° " + e.getMessage());
                alert(e.getMessage());
             }
         } //end benefisiar
-        alert("Успешно!");
+        alert("РЈСЃРїРµС€РЅРѕ!");
         setRelationActionBar();
 
         //logger.error("After Relation Action");
@@ -439,10 +439,10 @@ public abstract class AbstractFounderController<T> extends GenericForwardCompose
                 alert(res.getName());
                 return;
             }
-            alert("Успешно");
+            alert("РЈСЃРїРµС€РЅРѕ");
     
     	} catch (Exception e) {
-    		logger.error("дублирование учредителя как бенефициар " + e.getMessage());
+    		logger.error("РґСѓР±Р»РёСЂРѕРІР°РЅРёРµ СѓС‡СЂРµРґРёС‚РµР»СЏ РєР°Рє Р±РµРЅРµС„РёС†РёР°СЂ " + e.getMessage());
     		alert(e.getMessage());
     	}
 

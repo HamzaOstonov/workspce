@@ -88,7 +88,7 @@ public class FounderMapDao implements Dao<FounderMap> {
 		throw new UnsupportedOperationException();
 	}
 	/**
-	 * возвращает FOUNDERS_MAP по id из таблицы client_addinfo_person_map
+	 * РІРѕР·РІСЂР°С‰Р°РµС‚ FOUNDERS_MAP РїРѕ id РёР· С‚Р°Р±Р»РёС†С‹ client_addinfo_person_map
 	 * @param idPersonMap
 	 * @return FounderMap
 	 * */
