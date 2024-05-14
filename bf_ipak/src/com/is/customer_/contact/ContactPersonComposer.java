@@ -111,7 +111,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
 				}
 			});*/
 
-        // ���������� �� CustomerComposer
+        // Вызывается из CustomerComposer
         composer.setEventListener(new EventListener() {
             @Override
             public void onEvent(Event event) throws Exception {
@@ -144,7 +144,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                 continue;
 
             Menuitem menuitem = new Menuitem();
-            menuitem.setLabel(String.format("%s ���������", action.getName()));
+            menuitem.setLabel(String.format("%s Отношение", action.getName()));
             menuitem.setAttribute("action", action.getAction_id());
             menuitem.setAttribute("deal_id", action.getDeal_id());
             menuitem.setParent(rel_actions);
@@ -157,7 +157,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                         ContactPersonComposer.this.relationship.setPosition(contact_types.getValue());
                         if (ContactPersonComposer.this.relationship.getPosition() == null
                                 || ContactPersonComposer.this.relationship.getPosition().isEmpty())
-                            throw new RuntimeException("�������� ���������");
+                            throw new RuntimeException("Выберите должность");
 
                         logger.info("Action -> " + action);
                         logger.info("Relationship -> " + relationship);
@@ -179,7 +179,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                                     copyOfRelationship, dealId, action);
                         }*/
 
-                        Messagebox.show("�������");
+                        Messagebox.show("Успешно");
                         drawRelationshipActions(ContactPersonComposer.this.relationship);
                     } catch (Exception e) {
                         //logger.error(CheckNull.getPstr(e));
@@ -302,7 +302,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                                 Customer toCompare = actionService.getCustomer(currentCustomer.getBranch(),
                                         currentCustomer.getId());
                                 if (!DiffUtils.hasChanges(toCompare, currentCustomer)) {
-                                    throw new RuntimeException("��� ���������� ������");
+                                    throw new RuntimeException("Нет измененных данных");
                                 }
                             }
                             currentCustomer.setParent_id_client_j(context.getContactJId()); //2022.11.16
@@ -312,7 +312,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
                             Customer customer = actionService.doAction(dealId, composer.getCustomer(), action);
                             composer.refreshCustomer(customer);
 
-                            Messagebox.show("�������");
+                            Messagebox.show("Успешно");
                             drawActions(customer);
 
                             /*if (action == 3 && customer.getState().equalsIgnoreCase("3")) {
@@ -482,7 +482,7 @@ public class ContactPersonComposer extends GenericForwardComposer {
     public void onClick$btnSynchronize() throws Exception {
         Customer customer = actionService.synchronize(composer.getCustomer());
         composer.refreshCustomer(customer);
-        Messagebox.show("C��������������");
+        Messagebox.show("Cинхронизирован");
     }
 
     public void onClick$btnRefresh() {
