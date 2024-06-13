@@ -172,32 +172,32 @@ public class AddinfoViewController extends GenericForwardComposer {
         if (parameter!=null){
         	client_branch = parameter[0];
         } else {
-        	alert("Отсутствует параметр 'Филиал клиента'!"); return;
+        	alert("РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїР°СЂР°РјРµС‚СЂ 'Р¤РёР»РёР°Р» РєР»РёРµРЅС‚Р°'!"); return;
         }
 
         parameter = (String[]) param.get("client_id");
         if (parameter!=null){
         	client_id = parameter[0];
         } else {
-        	alert("Отсутствует параметр 'Ид клиента'!"); return;
+        	alert("РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїР°СЂР°РјРµС‚СЂ 'РРґ РєР»РёРµРЅС‚Р°'!"); return;
         }
 
         parameter = (String[]) param.get("code_subject");
         if (parameter!=null){
         	client_code_subject = parameter[0];
         } else {
-        	alert("Отсутствует параметр 'Тип клиента'!"); return;
+        	alert("РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїР°СЂР°РјРµС‚СЂ 'РўРёРї РєР»РёРµРЅС‚Р°'!"); return;
         }
 
         parameter = (String[]) param.get("alias");
         if (parameter!=null){
         	client_alias = parameter[0];
         } else {
-        	alert("Отсутствует параметр 'Схема филиала клиента'!"); return;
+        	alert("РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїР°СЂР°РјРµС‚СЂ 'РЎС…РµРјР° С„РёР»РёР°Р»Р° РєР»РёРµРЅС‚Р°'!"); return;
         }
         current = ParameterService.getClientmap(client_branch, client_id, client_code_subject);///*, client_code_subject*/, client_alias);
         if (CheckNull.isEmpty(current.getId())) {
-        	alert("По заданным параметрам клиент не найден (Филиал: "+client_branch+"; Ид: "+client_id/*+"; Тип: "+client_code_subject*/+"; Схема:"+client_alias+")!"); return;
+        	alert("РџРѕ Р·Р°РґР°РЅРЅС‹Рј РїР°СЂР°РјРµС‚СЂР°Рј РєР»РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ (Р¤РёР»РёР°Р»: "+client_branch+"; РРґ: "+client_id/*+"; РўРёРї: "+client_code_subject*/+"; РЎС…РµРјР°:"+client_alias+")!"); return;
         }
 
 		un = (String) session.getAttribute("un");
@@ -390,7 +390,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 		refreshModel();
     }
 
-    // При первой отрисовке идет синхронизация лицензий
+    // РџСЂРё РїРµСЂРІРѕР№ РѕС‚СЂРёСЃРѕРІРєРµ РёРґРµС‚ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ Р»РёС†РµРЅР·РёР№
     private boolean isFirstTime = true;
 
     private void refreshModel() {
@@ -404,8 +404,8 @@ public class AddinfoViewController extends GenericForwardComposer {
 		}
 		currentaddinfoparameters = ParameterService.getClientAddinfoParameters(current, un, pw);
 		if (CheckNull.isEmpty(currentaddinfoparameters.getClient_type())) {
-        	alert("По заданным параметрам данные клиента не синхронизированы "
-        			+ "(Филиал: "+client_branch+"; Ид: "+client_id+"; Схема:"+client_alias+")!");
+        	alert("РџРѕ Р·Р°РґР°РЅРЅС‹Рј РїР°СЂР°РјРµС‚СЂР°Рј РґР°РЅРЅС‹Рµ РєР»РёРµРЅС‚Р° РЅРµ СЃРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°РЅС‹ "
+        			+ "(Р¤РёР»РёР°Р»: "+client_branch+"; РРґ: "+client_id+"; РЎС…РµРјР°:"+client_alias+")!");
         	return;
         }
 
@@ -413,7 +413,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 		btn_refresh.setDisabled(false);
 		if (currentaddinfoparameters.getState() == 0
 				|| currentaddinfoparameters.getState() == 1) 
-		{//Введен, Неопределен
+		{//Р’РІРµРґРµРЅ, РќРµРѕРїСЂРµРґРµР»РµРЅ
 			//btn_save_top.setVisible(true);
 			btn_save_top.setDisabled(false);
 			//btn_save_bottom.setVisible(true);
@@ -423,10 +423,10 @@ public class AddinfoViewController extends GenericForwardComposer {
 			//btn_approve.setVisible(false);
 			btn_noapprove.setDisabled(true);
 			btn_delete.setDisabled(false);
-			lblstate.setValue("Состояние: "+(currentaddinfoparameters.getState() == 0?"Неопределена"
-                    :"Введена"));
+			lblstate.setValue("РЎРѕСЃС‚РѕСЏРЅРёРµ: "+(currentaddinfoparameters.getState() == 0?"РќРµРѕРїСЂРµРґРµР»РµРЅР°"
+                    :"Р’РІРµРґРµРЅР°"));
 			
-		} else if (currentaddinfoparameters.getState() == 2) {//Утвержден
+		} else if (currentaddinfoparameters.getState() == 2) {//РЈС‚РІРµСЂР¶РґРµРЅ
 			//btn_save_top.setVisible(false);
 			btn_save_top.setDisabled(true);
 			//btn_save_bottom.setVisible(false);
@@ -436,7 +436,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 			//btn_approve.setVisible(true);
 			btn_noapprove.setDisabled(false);
 			btn_delete.setDisabled(true);
-			lblstate.setValue("Состояние: Утверждена");
+			lblstate.setValue("РЎРѕСЃС‚РѕСЏРЅРёРµ: РЈС‚РІРµСЂР¶РґРµРЅР°");
 			
 		}
 		else if (currentaddinfoparameters.getState() == 3){
@@ -448,9 +448,9 @@ public class AddinfoViewController extends GenericForwardComposer {
 
             btn_restore.setDisabled(true);
 
-            lblstate.setValue("Состояние: Закрыта");
+            lblstate.setValue("РЎРѕСЃС‚РѕСЏРЅРёРµ: Р—Р°РєСЂС‹С‚Р°");
         }
-		else {//Закрыт
+		else {//Р—Р°РєСЂС‹С‚
 			btn_save_top.setDisabled(true);
 			btn_save_bottom.setDisabled(true);
 			btn_approve.setDisabled(true);
@@ -459,7 +459,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 
 			btn_restore.setDisabled(false);
 
-			lblstate.setValue("Состояние: Удалена");
+			lblstate.setValue("РЎРѕСЃС‚РѕСЏРЅРёРµ: РЈРґР°Р»РµРЅР°");
 		}
         createAddInfo();
     }
@@ -470,48 +470,48 @@ public class AddinfoViewController extends GenericForwardComposer {
     
     public void onClick$btn_approve() {
     	if (saveAddInfo(1)) {
-    		currentaddinfoparameters.setState(2L);//Утвержден
+    		currentaddinfoparameters.setState(2L);//РЈС‚РІРµСЂР¶РґРµРЅ
     		Res res = ParameterService.setApprove(currentaddinfoparameters, usr.getId(), 2);
     		if (res.getCode() == 0) {
     			refreshModel();
-    			alert("Данные по доп. реквезитам утверждены!");
+    			alert("Р”Р°РЅРЅС‹Рµ РїРѕ РґРѕРї. СЂРµРєРІРµР·РёС‚Р°Рј СѓС‚РІРµСЂР¶РґРµРЅС‹!");
     		} else {
-    			alert("При утверждении возникла ошибка: "+res.getName());
+    			alert("РџСЂРё СѓС‚РІРµСЂР¶РґРµРЅРёРё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°: "+res.getName());
     		}
     	}
     }
     
     public void onClick$btn_noapprove() {
-    	currentaddinfoparameters.setState(1L);//Введен
+    	currentaddinfoparameters.setState(1L);//Р’РІРµРґРµРЅ
 		Res res = ParameterService.setApprove(currentaddinfoparameters, usr.getId(), 3);
 		if (res.getCode() == 0) {
 			refreshModel();
-			alert("Данные по доп. реквизитам сняты с утверждения!");
+			alert("Р”Р°РЅРЅС‹Рµ РїРѕ РґРѕРї. СЂРµРєРІРёР·РёС‚Р°Рј СЃРЅСЏС‚С‹ СЃ СѓС‚РІРµСЂР¶РґРµРЅРёСЏ!");
 		} else {
-			alert("При снятии с утверждения возникла ошибка: "+res.getName());
+			alert("РџСЂРё СЃРЅСЏС‚РёРё СЃ СѓС‚РІРµСЂР¶РґРµРЅРёСЏ РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°: "+res.getName());
 		}
     }
     
     public void onClick$btn_delete() {
-    	currentaddinfoparameters.setState(4L);//Удален
+    	currentaddinfoparameters.setState(4L);//РЈРґР°Р»РµРЅ
 		Res res = ParameterService.delete(currentaddinfoparameters, usr.getId(), 4);
 		if (res.getCode() == 0) {
 			refreshModel();
-			alert("Данные по доп. реквезитам переведены в состояние 'Удален'!");
+			alert("Р”Р°РЅРЅС‹Рµ РїРѕ РґРѕРї. СЂРµРєРІРµР·РёС‚Р°Рј РїРµСЂРµРІРµРґРµРЅС‹ РІ СЃРѕСЃС‚РѕСЏРЅРёРµ 'РЈРґР°Р»РµРЅ'!");
 		} else {
-			alert("При удалении возникла ошибка: "+res.getName());
+			alert("РџСЂРё СѓРґР°Р»РµРЅРёРё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°: "+res.getName());
 		}
     }
 
     public void onClick$btn_restore(){
-        currentaddinfoparameters.setState(1L);//Введен
+        currentaddinfoparameters.setState(1L);//Р’РІРµРґРµРЅ
         Res res = ParameterService.restore(currentaddinfoparameters, usr.getId(), 21);
         if (res.getCode() == 0) {
             refreshModel();
-            alert("Данные по доп. реквезитам переведены в состояние 'Введен'!");
+            alert("Р”Р°РЅРЅС‹Рµ РїРѕ РґРѕРї. СЂРµРєРІРµР·РёС‚Р°Рј РїРµСЂРµРІРµРґРµРЅС‹ РІ СЃРѕСЃС‚РѕСЏРЅРёРµ 'Р’РІРµРґРµРЅ'!");
             btn_restore.setDisabled(true);
         } else {
-            alert("При востановлении возникла ошибка: "+res.getName());
+            alert("РџСЂРё РІРѕСЃС‚Р°РЅРѕРІР»РµРЅРёРё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°: "+res.getName());
         }
     }
 
@@ -521,7 +521,7 @@ public class AddinfoViewController extends GenericForwardComposer {
     
     public void onClick$btn_save_bottom() {
     	if (saveAddInfo(0)) {
-    		alert("Сохранение прошло успешно");
+    		alert("РЎРѕС…СЂР°РЅРµРЅРёРµ РїСЂРѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ");
     	}
     }
     
@@ -694,7 +694,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 								vb = new Div();
 								vb.setWidth("100%");
 								
-								lbl = new Label("* Обязательный параметр");
+								lbl = new Label("* РћР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ");
 								lbl.setId("lbl_"+params.get(i).getParam_id());
 								lbl.setStyle("font-size: 12px; color: grey;");
 								if (params.get(i).getParam_mandatory() == 1) {
@@ -726,7 +726,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 								Div d = new Div();
 								d.setWidth("100%");
 								if (params.get(i).getParam_mandatory() == 1) {
-									lbl = new Label("* Обязательный параметр");
+									lbl = new Label("* РћР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ");
 									lbl.setStyle("font-size: 12px; color: grey;");
 									d.appendChild(lbl);
 								}
@@ -950,7 +950,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 							dtb = (Datebox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 							p = (Parameter) dtb.getAttribute("parameter");
 							if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(dtb.getValue())) {
-								alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+								alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 								return false;
 							}
 							params.get(i).setParam_value(CheckNull.isEmpty(dtb.getValue())?null:df.format(dtb.getValue()));
@@ -958,7 +958,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 							c = (RefCBox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 							p = (Parameter) c.getAttribute("parameter");
 							if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(c.getValue())) {
-								alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+								alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 								return false;
 							}
 							params.get(i).setParam_value(CheckNull.isEmpty(c.getValue())?null:c.getValue());
@@ -970,7 +970,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 							n = (Textbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 							p = (Parameter) n.getAttribute("parameter");
 							if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(n.getValue())) {
-								alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+								alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 								return false;
 							}
 							params.get(i).setParam_value(CheckNull.isEmpty(n.getValue())?null:n.getValue());
@@ -978,7 +978,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 							n = (Textbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 							p = (Parameter) n.getAttribute("parameter");
 							if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(n.getValue())) {
-								alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+								alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 								return false;
 							}
 							params.get(i).setParam_value(CheckNull.isEmpty(n.getValue())?null:n.getValue());
@@ -986,7 +986,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 							t = (Textbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 							p = (Parameter) t.getAttribute("parameter");
 							if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(t.getValue())) {
-								alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+								alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 								return false;
 							}
 							params.get(i).setParam_value(CheckNull.isEmpty(t.getValue())?null:t.getValue());
@@ -994,20 +994,20 @@ public class AddinfoViewController extends GenericForwardComposer {
 						} else if (params.get(i).getParam_type().equals("PERSONGRID")){
 							Listbox listbox = (Listbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 							if (params.get(i).getParam_mandatory() == 1 && listbox.getModel().getSize()>0) {
-								alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+								alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 								return false;
 							}
 						} else if (params.get(i).getParam_type().equals("LIST")){
 							Listbox listbox = (Listbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 							if (params.get(i).getParam_mandatory() == 1 && listbox.getModel().getSize()>0) {
-								alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+								alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 								return false;
 							}
 						} else {//STRING
 							t = (Textbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 							p = (Parameter) t.getAttribute("parameter");
 							if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(t.getValue())) {
-								alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+								alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 								return false;
 							}
 							params.get(i).setParam_value(CheckNull.isEmpty(t.getValue())?null:t.getValue());
@@ -1026,7 +1026,7 @@ public class AddinfoViewController extends GenericForwardComposer {
     		refreshModel();
     	} catch (Exception e) {
 			e.printStackTrace();
-			alert("При сохранении произошла ошибка: "+e.getMessage());
+			alert("РџСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: "+e.getMessage());
 			res = false;
 		}
 		return res;
@@ -1367,7 +1367,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 		b.setAttribute("group", parametergroup);
 		b.setWidth("50px");
 		b.setImage("/images/edit.png");
-		b.setTooltip("Редактирование списка");
+		b.setTooltip("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ СЃРїРёСЃРєР°");
 		b.addEventListener("onClick", new EventListener() {
 			public void onEvent(org.zkoss.zk.ui.event.Event event) throws Exception {
 				Button b = (Button) event.getTarget();
@@ -1553,12 +1553,12 @@ public class AddinfoViewController extends GenericForwardComposer {
 				Parameter p = (Parameter)event.getTarget().getAttribute("parameter");
 	        	ParameterGroup pg = (ParameterGroup)event.getTarget().getAttribute("group");
 	        	if (l == null) {
-	        		alert("Список p_"+p.getParam_id()+" не найден!");
+	        		alert("РЎРїРёСЃРѕРє p_"+p.getParam_id()+" РЅРµ РЅР°Р№РґРµРЅ!");
 	        		return;
 	        	}
 	        	Listitem item = l.getSelectedItem();
 	        	if (item == null) {
-	        		alert("Не выбран объект для редактирования!");
+	        		alert("РќРµ РІС‹Р±СЂР°РЅ РѕР±СЉРµРєС‚ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ!");
 	        		return;
 	        	}
 	        	ParameterList pl = (ParameterList)item.getValue();
@@ -1600,7 +1600,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 		Toolbarbutton tbbtn = new Toolbarbutton();
 		tbbtn.setId("b_add_"+p.getParam_id());
 		tbbtn.setImage("images/+.png");
-		tbbtn.setTooltiptext("Добавить");
+		tbbtn.setTooltiptext("Р”РѕР±Р°РІРёС‚СЊ");
 		tbbtn.setAttribute("parameter", p);
 		tbbtn.setAttribute("group", parametergroup);
 		tbbtn.addEventListener(Events.ON_CLICK, new EventListener() {
@@ -1609,7 +1609,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 	        	ParameterGroup pg = (ParameterGroup)event.getTarget().getAttribute("group");
 	        	Listbox l = (Listbox)addinfo.getFellow("p_"+p.getParam_id());
 	        	if (l == null) {
-	        		alert("Список p_"+p.getParam_id()+" не найден!");
+	        		alert("РЎРїРёСЃРѕРє p_"+p.getParam_id()+" РЅРµ РЅР°Р№РґРµРЅ!");
 	        		return;
 	        	}
 	        	list_id = list_id - 1L;
@@ -1648,7 +1648,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 		tbbtn = new Toolbarbutton();
 		tbbtn.setId("b_remove_"+p.getParam_id());
 		tbbtn.setImage("images/-.png");
-		tbbtn.setTooltiptext("Удалить");
+		tbbtn.setTooltiptext("РЈРґР°Р»РёС‚СЊ");
 		tbbtn.setAttribute("parameter", p);
 		tbbtn.setAttribute("group", parametergroup);
 		tbbtn.addEventListener(Events.ON_CLICK, new EventListener() {
@@ -1657,12 +1657,12 @@ public class AddinfoViewController extends GenericForwardComposer {
 	        	ParameterGroup pg = (ParameterGroup)event.getTarget().getAttribute("group");
 	        	Listbox l = (Listbox)addinfo.getFellow("p_"+p.getParam_id());
 	        	if (l == null) {
-	        		alert("Список p_"+p.getParam_id()+" не найден!");
+	        		alert("РЎРїРёСЃРѕРє p_"+p.getParam_id()+" РЅРµ РЅР°Р№РґРµРЅ!");
 	        		return;
 	        	}
 	        	Listitem item = l.getSelectedItem();
 	        	if (item == null) {
-	        		alert("Не выбран объект для удаления!");
+	        		alert("РќРµ РІС‹Р±СЂР°РЅ РѕР±СЉРµРєС‚ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ!");
 	        		return;
 	        	}
 	        	ParameterList pl = (ParameterList)item.getValue();
@@ -1670,13 +1670,13 @@ public class AddinfoViewController extends GenericForwardComposer {
 	        	if (pl.getList_id() <= 0) {
 	        		listparams.remove(pl);
 	        		l.setModel(new BindingListModelList(listparams, true));
-	        		alert("Запись удалена.");
+	        		alert("Р—Р°РїРёСЃСЊ СѓРґР°Р»РµРЅР°.");
 	        	} else {
 	        		for (int j = 0; j < listparams.size(); j++) {
 						if (listparams.get(j).getList_id() == pl.getList_id()) {
 							listparams.get(j).setState(0);
 							l.setModel(new BindingListModelList(listparams, true));
-							alert("Запись удалена.");
+							alert("Р—Р°РїРёСЃСЊ СѓРґР°Р»РµРЅР°.");
 							return;
 						}
 					}
@@ -1690,7 +1690,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 		tbbtn = new Toolbarbutton();
 		tbbtn.setId("b_edit_"+p.getParam_id());
 		tbbtn.setImage("images/edit.png");
-		tbbtn.setTooltiptext("Редактировать");
+		tbbtn.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ");
 		tbbtn.setAttribute("parameter", p);
 		tbbtn.setAttribute("group", parametergroup);
 		tbbtn.addEventListener(Events.ON_CLICK, new EventListener() {
@@ -1699,12 +1699,12 @@ public class AddinfoViewController extends GenericForwardComposer {
 	        	ParameterGroup pg = (ParameterGroup)event.getTarget().getAttribute("group");
 	        	Listbox l = (Listbox)addinfo.getFellow("p_"+p.getParam_id());
 	        	if (l == null) {
-	        		alert("Список p_"+p.getParam_id()+" не найден!");
+	        		alert("РЎРїРёСЃРѕРє p_"+p.getParam_id()+" РЅРµ РЅР°Р№РґРµРЅ!");
 	        		return;
 	        	}
 	        	Listitem item = l.getSelectedItem();
 	        	if (item == null) {
-	        		alert("Не выбран объект для редактирования!");
+	        		alert("РќРµ РІС‹Р±СЂР°РЅ РѕР±СЉРµРєС‚ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ!");
 	        		return;
 	        	}
 	        	ParameterList pl = (ParameterList)item.getValue();
@@ -1775,7 +1775,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 				vb = new Div();
 				vb.setWidth("100%");
 				
-				lbl = new Label("* Обязательный параметр");
+				lbl = new Label("* РћР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ");
 				lbl.setId("lbl_"+pl.getParameters().get(i).getParam_list_teg());
 				lbl.setStyle("font-size: 12px; color: grey;");
 				if (pl.getParameters().get(i).getParam_mandatory() == 1) {
@@ -2031,7 +2031,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 		b.setAttribute("group", parametergroup);
 		b.setWidth("50px");
 		b.setImage("/images/edit.png");
-		b.setTooltip("Редактирование списка");
+		b.setTooltip("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ СЃРїРёСЃРєР°");
 		b.addEventListener("onClick", new EventListener() {
 			public void onEvent(org.zkoss.zk.ui.event.Event event) throws Exception {
 				Button b = (Button) event.getTarget();
@@ -2114,7 +2114,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 					dtb = (Datebox) listwnd.getFellow("p_"+pl.getParameters().get(i).getParam_list_teg());
 					p = (ParameterListArray) dtb.getAttribute("parameter");
 					if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(dtb.getValue())) {
-						alert("Не заполнен обязательный параметр: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
+						alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
 						return;
 					}
 					pl.getParameters().get(i).setParam_value(CheckNull.isEmpty(dtb.getValue())?null:df.format(dtb.getValue()));
@@ -2122,7 +2122,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 					c = (RefCBox) listwnd.getFellow("p_"+pl.getParameters().get(i).getParam_list_teg());
 					p = (ParameterListArray) c.getAttribute("parameter");
 					if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(c.getValue())) {
-						alert("Не заполнен обязательный параметр: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
+						alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
 						return;
 					}
 					pl.getParameters().get(i).setParam_value(CheckNull.isEmpty(c.getValue())?null:c.getValue());
@@ -2134,7 +2134,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 					n = (Textbox) listwnd.getFellow("p_"+pl.getParameters().get(i).getParam_list_teg());
 					p = (ParameterListArray) n.getAttribute("parameter");
 					if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(n.getValue())) {
-						alert("Не заполнен обязательный параметр: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
+						alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
 						return;
 					}
 					pl.getParameters().get(i).setParam_value(CheckNull.isEmpty(n.getValue())?null:n.getValue());
@@ -2142,7 +2142,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 					n = (Textbox) listwnd.getFellow("p_"+pl.getParameters().get(i).getParam_list_teg());
 					p = (ParameterListArray) n.getAttribute("parameter");
 					if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(n.getValue())) {
-						alert("Не заполнен обязательный параметр: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
+						alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
 						return;
 					}
 					pl.getParameters().get(i).setParam_value(CheckNull.isEmpty(n.getValue())?null:n.getValue());
@@ -2150,7 +2150,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 					t = (Textbox) listwnd.getFellow("p_"+pl.getParameters().get(i).getParam_list_teg());
 					p = (ParameterListArray) t.getAttribute("parameter");
 					if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(t.getValue())) {
-						alert("Не заполнен обязательный параметр: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
+						alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
 						return;
 					}
 					pl.getParameters().get(i).setParam_value(CheckNull.isEmpty(t.getValue())?null:t.getValue());
@@ -2158,14 +2158,14 @@ public class AddinfoViewController extends GenericForwardComposer {
 				} else if (pl.getParameters().get(i).getParam_type().equals("PERSONGRID")){
 					Listbox listbox = (Listbox) listwnd.getFellow("p_"+pl.getParameters().get(i).getParam_list_teg());
 					if (pl.getParameters().get(i).getParam_mandatory() == 1 && listbox.getModel().getSize()>0) {
-						alert("Не заполнен обязательный параметр: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
+						alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
 						return;
 					}
 				} else {//STRING
 					t = (Textbox) listwnd.getFellow("p_"+pl.getParameters().get(i).getParam_list_teg());
 					p = (ParameterListArray) t.getAttribute("parameter");
 					if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(t.getValue())) {
-						alert("Не заполнен обязательный параметр: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
+						alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(pl.getParameters().get(i).getParam_list_teg())));
 						return;
 					}
 					pl.getParameters().get(i).setParam_value(CheckNull.isEmpty(t.getValue())?null:t.getValue());
@@ -2184,7 +2184,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 		}
 		Listbox l = (Listbox)addinfo.getFellow("p_"+p.getParam_id());
     	if (l == null) {
-    		alert("Список p_"+p.getParam_id()+" не найден!");
+    		alert("РЎРїРёСЃРѕРє p_"+p.getParam_id()+" РЅРµ РЅР°Р№РґРµРЅ!");
     		return;
     	}
     	l.setModel(new BindingListModelList(listparams, true));
@@ -2214,7 +2214,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 						dtb = (Datebox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 						p = (Parameter) dtb.getAttribute("parameter");
 						if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(dtb.getValue())) {
-							alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+							alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 							return false;
 						}
 						params.get(i).setParam_value(CheckNull.isEmpty(dtb.getValue())?null:df.format(dtb.getValue()));
@@ -2222,7 +2222,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 						c = (RefCBox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 						p = (Parameter) c.getAttribute("parameter");
 						if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(c.getValue())) {
-							alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+							alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 							return false;
 						}
 						params.get(i).setParam_value(CheckNull.isEmpty(c.getValue())?null:c.getValue());
@@ -2234,7 +2234,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 						n = (Textbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 						p = (Parameter) n.getAttribute("parameter");
 						if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(n.getValue())) {
-							alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+							alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 							return false;
 						}
 						params.get(i).setParam_value(CheckNull.isEmpty(n.getValue())?null:n.getValue());
@@ -2242,7 +2242,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 						n = (Textbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 						p = (Parameter) n.getAttribute("parameter");
 						if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(n.getValue())) {
-							alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+							alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 							return false;
 						}
 						params.get(i).setParam_value(CheckNull.isEmpty(n.getValue())?null:n.getValue());
@@ -2250,7 +2250,7 @@ public class AddinfoViewController extends GenericForwardComposer {
 						t = (Textbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 						p = (Parameter) t.getAttribute("parameter");
 						if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(t.getValue())) {
-							alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+							alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 							return false;
 						}
 						params.get(i).setParam_value(CheckNull.isEmpty(t.getValue())?null:t.getValue());
@@ -2258,14 +2258,14 @@ public class AddinfoViewController extends GenericForwardComposer {
 					} else if (params.get(i).getParam_type().equals("PERSONGRID")){
 						Listbox listbox = (Listbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 						if (params.get(i).getParam_mandatory() == 1 && listbox.getModel().getSize()>0) {
-							alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+							alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 							return false;
 						}
 					} else {//STRING
 						t = (Textbox) addinfo.getFellow("p_"+params.get(i).getParam_id());
 						p = (Parameter) t.getAttribute("parameter");
 						if (p.getParam_mandatory() == 1 && CheckNull.isEmpty(t.getValue())) {
-							alert("Не заполнен обязательный параметр: "+(tegNames.get(params.get(i).getParam_id())));
+							alert("РќРµ Р·Р°РїРѕР»РЅРµРЅ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ: "+(tegNames.get(params.get(i).getParam_id())));
 							return false;
 						}
 						params.get(i).setParam_value(CheckNull.isEmpty(t.getValue())?null:t.getValue());

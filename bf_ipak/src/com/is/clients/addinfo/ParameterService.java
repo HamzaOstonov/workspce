@@ -79,12 +79,12 @@ public class ParameterService {
 					res = new Res(0, "Ok");
 				} else {
 					res = new Res(1,
-							"Утверждение невозможно, количество записей не соответствует действительному cl_add = "
+							"РЈС‚РІРµСЂР¶РґРµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ cl_add = "
 									+ r);
 				}
 			} else {
 				res = new Res(1,
-						"Утверждение невозможно, количество записей не соответствует действительному p = " + r);
+						"РЈС‚РІРµСЂР¶РґРµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ p = " + r);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -152,10 +152,10 @@ public class ParameterService {
 					res = new Res(0, "Ok");
 				} else {
 					res = new Res(1,
-							"Удаление невозможно, количество записей не соответствует действительному cl_add = " + r);
+							"РЈРґР°Р»РµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ cl_add = " + r);
 				}
 			} else {
-				res = new Res(1, "Удаление невозможно, количество записей не соответствует действительному p = " + r);
+				res = new Res(1, "РЈРґР°Р»РµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ p = " + r);
 			}
 		} catch (SQLException e) {
 			log.error(CheckNull.getPstr(e));
@@ -219,12 +219,12 @@ public class ParameterService {
 					res = new Res(0, "Ok");
 				} else {
 					res = new Res(1,
-							"Востановление невозможно, количество записей не соответствует действительному cl_add = "
+							"Р’РѕСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ cl_add = "
 									+ r);
 				}
 			} else {
 				res = new Res(1,
-						"Востановление невозможно, количество записей не соответствует действительному p = " + r);
+						"Р’РѕСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ p = " + r);
 			}
 		} catch (SQLException e) {
 			log.error(CheckNull.getPstr(e));
@@ -305,7 +305,7 @@ public class ParameterService {
 	}
 
 	public static Res saveParameters(Connection c, String branch, String client_id, String alias, String code_subject) {
-		log.warn("Параметры синхронизации: " + branch + " " + client_id + " " + alias);
+		log.warn("РџР°СЂР°РјРµС‚СЂС‹ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё: " + branch + " " + client_id + " " + alias);
 		Res res = new Res();
 		CallableStatement cs = null;
 		try {
@@ -451,13 +451,13 @@ public class ParameterService {
 	}
 
 	public static String setParamsInSQL_Param(List<Parameter> params, String select) {
-		int k = 0; // позиция "PARAM.GETPARAM('"
-		int m = 0; // позиция символа ',' или ')' или ' '
-		int m1 = 0; // позиция символа ',' или ')' или ' '
-		int l = 0; // длина строки селекта
-		String cur_param = ""; // наименование заменяемого параметра
-		String cur_param_val = ""; // значение заменяемого параметра
-		String str = select; // селект с параметрами
+		int k = 0; // РїРѕР·РёС†РёСЏ "PARAM.GETPARAM('"
+		int m = 0; // РїРѕР·РёС†РёСЏ СЃРёРјРІРѕР»Р° ',' РёР»Рё ')' РёР»Рё ' '
+		int m1 = 0; // РїРѕР·РёС†РёСЏ СЃРёРјРІРѕР»Р° ',' РёР»Рё ')' РёР»Рё ' '
+		int l = 0; // РґР»РёРЅР° СЃС‚СЂРѕРєРё СЃРµР»РµРєС‚Р°
+		String cur_param = ""; // РЅР°РёРјРµРЅРѕРІР°РЅРёРµ Р·Р°РјРµРЅСЏРµРјРѕРіРѕ РїР°СЂР°РјРµС‚СЂР°
+		String cur_param_val = ""; // Р·РЅР°С‡РµРЅРёРµ Р·Р°РјРµРЅСЏРµРјРѕРіРѕ РїР°СЂР°РјРµС‚СЂР°
+		String str = select; // СЃРµР»РµРєС‚ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 		try {
 			l = str.length();
 			while (k < l + 1) {
@@ -465,7 +465,7 @@ public class ParameterService {
 				if (k == -1) {
 					k = l + 1;
 				} else {
-					// Поиск окончания наименования параметра
+					// РџРѕРёСЃРє РѕРєРѕРЅС‡Р°РЅРёСЏ РЅР°РёРјРµРЅРѕРІР°РЅРёСЏ РїР°СЂР°РјРµС‚СЂР°
 					m = str.indexOf("')", k);
 					/*
 					 * m1 = str.indexOf(",",k); if ((m > m1 && m1 != -1) || m ==
@@ -500,13 +500,13 @@ public class ParameterService {
 	}
 
 	public static String setParamsInSQL_Sharp(List<Parameter> params, String select) {
-		int k = 0; // позиция символа '#'
-		int m = 0; // позиция символа ',' или ')' или ' '
-		int m1 = 0; // позиция символа ',' или ')' или ' '
-		int l = 0; // длина строки селекта
-		String cur_param = ""; // наименование заменяемого параметра
-		String cur_param_val = ""; // значение заменяемого параметра
-		String str = select; // селект с параметрами
+		int k = 0; // РїРѕР·РёС†РёСЏ СЃРёРјРІРѕР»Р° '#'
+		int m = 0; // РїРѕР·РёС†РёСЏ СЃРёРјРІРѕР»Р° ',' РёР»Рё ')' РёР»Рё ' '
+		int m1 = 0; // РїРѕР·РёС†РёСЏ СЃРёРјРІРѕР»Р° ',' РёР»Рё ')' РёР»Рё ' '
+		int l = 0; // РґР»РёРЅР° СЃС‚СЂРѕРєРё СЃРµР»РµРєС‚Р°
+		String cur_param = ""; // РЅР°РёРјРµРЅРѕРІР°РЅРёРµ Р·Р°РјРµРЅСЏРµРјРѕРіРѕ РїР°СЂР°РјРµС‚СЂР°
+		String cur_param_val = ""; // Р·РЅР°С‡РµРЅРёРµ Р·Р°РјРµРЅСЏРµРјРѕРіРѕ РїР°СЂР°РјРµС‚СЂР°
+		String str = select; // СЃРµР»РµРєС‚ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 		try {
 			l = str.length();
 			while (k < l + 1) {
@@ -514,7 +514,7 @@ public class ParameterService {
 				if (k == -1) {
 					k = l + 1;
 				} else {
-					// Поиск окончания наименования параметра
+					// РџРѕРёСЃРє РѕРєРѕРЅС‡Р°РЅРёСЏ РЅР°РёРјРµРЅРѕРІР°РЅРёСЏ РїР°СЂР°РјРµС‚СЂР°
 					m = str.indexOf(" ", k);
 					m1 = str.indexOf(",", k);
 					if ((m > m1 && m1 != -1) || m == -1) {
@@ -955,24 +955,24 @@ public class ParameterService {
 					// + parameterlist.getList_id());
 					Res resPL = saveAddinfoParameterList(c, parameterlist);
 					if (resPL.getCode() != 0) {
-						throw new Exception("Ошибка при сохранении лицензий: " + resPL.getName());
+						throw new Exception("РћС€РёР±РєР° РїСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё Р»РёС†РµРЅР·РёР№: " + resPL.getName());
 					}
 				}
 			}
 
-			log.warn("Параметры синхронизации: " + client.getBranch() + " " + client.getId_client() + " "
+			log.warn("РџР°СЂР°РјРµС‚СЂС‹ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё: " + client.getBranch() + " " + client.getId_client() + " "
 					+ client.getAlias());
 			Res ress = saveParameters(c, client.getBranch(), client.getId_client(), client.getAlias(),
 					client.getCode_subject());
 			if (ress.getCode() != 0) {
-				throw new Exception("Ошибка при синхронизации: " + client.getBranch() + " " + client.getId_client()
+				throw new Exception("РћС€РёР±РєР° РїСЂРё СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё: " + client.getBranch() + " " + client.getId_client()
 						+ " " + client.getAlias() + " " + ress.getName());
 			}
 			if (correctinclient == 1) {
 				if (!EmergencyMode.isTrue) {
 					HashMap<String, Object> uvkMap = getAddinfoForClient(c, client.getBranch(), client.getId_client(),
 							client.getCode_subject(), client.getCode_type(), client.getAlias());
-					log.warn("Параметры корректировки: " + "uvkMap.size() = " + uvkMap.size() + " "
+					log.warn("РџР°СЂР°РјРµС‚СЂС‹ РєРѕСЂСЂРµРєС‚РёСЂРѕРІРєРё: " + "uvkMap.size() = " + uvkMap.size() + " "
 							+ "uvkMap.alias() = " + uvkMap.get("alias") + " " + uvkMap.get("branch") + " "
 							+ uvkMap.get("id_client") + " " + uvkMap.get("code_subject") + " " + uvkMap.get("uvk_level")
 							+ " " + uvkMap.get("uvk_level_reason") + " " + uvkMap.get("uvk_date_from") + " "
@@ -1030,7 +1030,7 @@ public class ParameterService {
 				// c.commit();
 				res = new Res(0, "Ok");
 			} else {
-				res = new Res(1, "Сохранение невозможно, количество записей не соответствует действительному " + r);
+				res = new Res(1, "РЎРѕС…СЂР°РЅРµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ " + r);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1066,7 +1066,7 @@ public class ParameterService {
 				// c.commit();
 				res = new Res(0, "Ok");
 			} else {
-				res = new Res(1, "Сохранение невозможно, количество записей не соответствует действительному " + r);
+				res = new Res(1, "РЎРѕС…СЂР°РЅРµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ " + r);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1115,7 +1115,7 @@ public class ParameterService {
 					ps.setLong(8, parameterlist.getState());
 					int cnt = ps.executeUpdate();
 					if (cnt != 1) {
-						throw new Exception("Количество строк не соответствует действительному! ins = " + cnt);
+						throw new Exception("РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ! ins = " + cnt);
 					}
 				}
 			} else {
@@ -1157,10 +1157,10 @@ public class ParameterService {
 						ps.setLong(8, parameterlist.getState());
 						int cnt1 = ps.executeUpdate();
 						if (cnt1 != 1) {
-							throw new Exception("Количество строк не соответствует действительному! ins = " + cnt);
+							throw new Exception("РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ! ins = " + cnt);
 						}
 					} else if (cnt != 1) {
-						throw new Exception("Количество строк не соответствует действительному! upd = " + cnt);
+						throw new Exception("РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕРјСѓ! upd = " + cnt);
 					}
 				}
 			}
@@ -1815,7 +1815,7 @@ public class ParameterService {
 
 	public static List<RefData> getPasportTypes(String alias) {
 		return RefDataService.getRefData(
-				"select 'O' data, 'не биометрический' label from dual union all select 'N' data, 'биометрический' label from dual ",
+				"select 'O' data, 'РЅРµ Р±РёРѕРјРµС‚СЂРёС‡РµСЃРєРёР№' label from dual union all select 'N' data, 'Р±РёРѕРјРµС‚СЂРёС‡РµСЃРєРёР№' label from dual ",
 				alias);
 	}
 
