@@ -1,0 +1,61 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+<window border="normal" height="100%"
+apply="com.is.log.LogViewCtrl">
+
+<hbox>
+			<div>
+				<separator spacing="28px" />
+				<grid id="tfgrd" width="300px">
+					<columns>
+						<column width="40%" />
+						<column width="60%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Пользователь" />
+							<textbox id="username"/>
+						</row>
+						<row>
+							<label value="Текст" />
+							<textbox id="search" />
+						</row>
+						<row>
+							<label value="Филиал" />
+							<rcombobox id="branch" width="150px" />
+						</row>
+						<row>
+							<label value="С даты" />
+							<datebox id="from_dt"/>
+						</row>
+						<row>
+							<label value="По дату" />
+							<datebox id="to_dt"/>
+						</row>
+					</rows>
+				</grid>
+
+				<toolbar>
+					<toolbarbutton id="tbtn_search"
+						label="Поиск" image="/images/save.png" />
+				</toolbar>
+				
+				
+			</div>
+			<div id="grd">
+                <paging id="paging1" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" height="100%" width="100%" >
+                        <listhead sizable="true">
+                        		<listheader label="Филиал" width="100px" sort="auto(branch)"/>
+                                <listheader label="Дата" width="100px" sort="auto(branch)"/>
+                                <listheader label="Пользователь" width="190px" sort="auto(card_acc)"/>
+                                <listheader label="IP" width="190px" sort="auto(card_acc)"/>
+                                <listheader label="Текст" width="100%" sort="auto(card_acc)"/>
+                        </listhead>
+                </listbox>
+             </div>
+	</hbox>
+
+</window>
+</zk>

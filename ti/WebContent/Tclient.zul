@@ -1,0 +1,494 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="tclientmain" width="100%" height="100%" border="normal"
+	apply="com.is.tieto.TclientViewCtrl">
+
+	<hbox>
+
+		<div>
+			<grid id="fgrd" width="300px">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+
+					<row visible="false">
+						<label visible="false"
+							value="${labels.tclient.client}" />
+						<textbox id="fclient" mold="rounded"
+							value="@{tclientmain$composer.filter.client}" />
+					</row>
+					<row visible="false">
+						<label visible="false"
+							value="${labels.tclient.bank_c}" />
+						<textbox id="fbank_c" mold="rounded"
+							value="@{tclientmain$composer.filter.bank_c}" />
+					</row>
+					<row visible="false">
+						<label visible="false"
+							value="${labels.tclient.client_b}" />
+						<textbox id="fclient_b" mold="rounded"
+							value="@{tclientmain$composer.filter.client_b}" />
+					</row>
+					<row visible="false">
+						<label visible="false"
+							value="${labels.tclient.cl_type}" />
+						<textbox id="fcl_type" mold="rounded"
+							value="@{tclientmain$composer.filter.cl_type}" />
+					</row>
+					<row visible="false">
+						<label visible="false"
+							value="${labels.tclient.cln_cat}" />
+						<textbox id="fcln_cat" mold="rounded"
+							value="@{tclientmain$composer.filter.cln_cat}" />
+					</row>
+					<row visible="false">
+						<label visible="false"
+							value="${labels.tclient.rec_date}" />
+						<datebox id="frec_date" mold="rounded"
+							value="@{tclientmain$composer.filter.rec_date}" />
+					</row>
+					<row>
+						<label value="${labels.tclient.search_name}" />
+						<textbox id="fsearch_name" mold="rounded"
+							value="@{tclientmain$composer.filter.search_name}" />
+					</row>
+					<row>
+						<label value="${labels.tclient.surname}" />
+						<textbox id="fsurname" mold="rounded"
+							value="@{tclientmain$composer.filter.surname}" />
+					</row>
+					<row>
+						<label value="${labels.tclient.f_names}" />
+						<textbox id="ff_names" mold="rounded"
+							value="@{tclientmain$composer.filter.f_names}" />
+					</row>
+
+					<row visible="false">
+						<label visible="false"
+							value="${labels.tclient.serial_no}" />
+						<textbox id="fserial_no" mold="rounded"
+							value="@{tclientmain$composer.filter.serial_no}" />
+					</row>
+
+					<row>
+						<label value="${labels.tclient.b_date}" />
+						<datebox id="fb_date" mold="rounded"
+							value="@{tclientmain$composer.filter.b_date}" />
+					</row>
+					<row>
+						<label value="${labels.accinfo.card}" />
+						<textbox id="fcard" mold="rounded"
+							value="@{tclientmain$composer.filter.card}" />
+					</row>
+
+
+					<!--  
+						<row><label value="${labels.tclient.title}" /><textbox id="ftitle"  mold="rounded"  value="@{tclientmain$composer.filter.title}" /></row>
+						<row><label value="${labels.tclient.m_name}" /><textbox id="fm_name"  mold="rounded"  value="@{tclientmain$composer.filter.m_name}" /></row>
+						<row><label value="${labels.tclient.r_street}" /><textbox id="fr_street"  mold="rounded"  value="@{tclientmain$composer.filter.r_street}" /></row>
+						<row><label value="${labels.tclient.r_city}" /><textbox id="fr_city"  mold="rounded"  value="@{tclientmain$composer.filter.r_city}" /></row>
+						<row><label value="${labels.tclient.r_cntry}" /><textbox id="fr_cntry"  mold="rounded"  value="@{tclientmain$composer.filter.r_cntry}" /></row>
+						<row><label value="${labels.tclient.usrid}" /><textbox id="fusrid"  mold="rounded"  value="@{tclientmain$composer.filter.usrid}" /></row>
+						<row><label value="${labels.tclient.ctime}" /><textbox id="fctime"  mold="rounded"  value="@{tclientmain$composer.filter.ctime}" /></row>
+						<row><label value="${labels.tclient.status}" /><textbox id="fstatus"  mold="rounded"  value="@{tclientmain$composer.filter.status}" /></row>
+						<row><label value="${labels.tclient.sex}" /><textbox id="fsex"  mold="rounded"  value="@{tclientmain$composer.filter.sex}" /></row>
+						<row><label value="${labels.tclient.doc_since}" /><textbox id="fdoc_since"  mold="rounded"  value="@{tclientmain$composer.filter.doc_since}" /></row>
+						<row><label value="${labels.tclient.issued_by}" /><textbox id="fissued_by"  mold="rounded"  value="@{tclientmain$composer.filter.issued_by}" /></row>
+						<row><label value="${labels.tclient.status_change_date}" /><textbox id="fstatus_change_date"  mold="rounded"  value="@{tclientmain$composer.filter.status_change_date}" /></row>
+						
+					-->
+				</rows>
+			</grid>
+
+			<toolbar>
+				<toolbarbutton id="btn_save" label="${labels.search}"
+					image="/images/search.png" />
+
+				<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+					image="/images/stop.png" />
+
+				<toolbarbutton id="btn_open" visible="false"
+					label="${labels.add}" image="/images/+.png" />
+			</toolbar>
+
+		</div>
+
+
+		<vbox id="grd" width="100%">
+
+
+
+			<paging id="tclientPaging" width="100%" />
+			<listbox style="border:none" id="dataGrid" multiple="true"
+				rows="4" width="100%"
+				selectedItem="@{tclientmain$composer.current}">
+				<listhead sizable="true">
+					<listheader label="${labels.tclient.client_b}"
+						width="100px" />
+					<listheader label="${labels.tclient.f_names}"
+						width="200px" />
+					<listheader label="${labels.tclient.surname}"
+						width="200px" />
+					<listheader label="${labels.tclient.b_date}"
+						width="120px" />
+
+					<!--  
+						<listheader label="${labels.tclient.client}" width="200px" />
+						<listheader label="${labels.tclient.bank_c}" width="200px" />
+						<listheader label="${labels.tclient.cl_type}" width="200px" />
+						<listheader label="${labels.tclient.cln_cat}" width="200px" />
+						<listheader label="${labels.tclient.rec_date}" width="200px" />
+						<listheader label="${labels.tclient.title}" width="200px" />
+						<listheader label="${labels.tclient.m_name}" width="200px" />
+						<listheader label="${labels.tclient.r_street}" width="200px" />
+						<listheader label="${labels.tclient.r_city}" width="200px" />
+						<listheader label="${labels.tclient.r_cntry}" width="200px" />
+						<listheader label="${labels.tclient.usrid}" width="200px" />
+						<listheader label="${labels.tclient.ctime}" width="200px" />
+						<listheader label="${labels.tclient.status}" width="200px" />
+						<listheader label="${labels.tclient.search_name}" width="200px" />
+						<listheader label="${labels.tclient.sex}" width="200px" />
+						<listheader label="${labels.tclient.serial_no}" width="200px" />
+						<listheader label="${labels.tclient.doc_since}" width="200px" />
+						<listheader label="${labels.tclient.issued_by}" width="200px" />
+						<listheader label="${labels.tclient.status_change_date}" width="200px" />
+					-->
+				</listhead>
+
+			</listbox>
+
+			<groupbox mold="3d">
+				<caption label="Детали" />
+				<hbox>
+
+					<grid id="lfrmgrd" width="320px">
+						<columns>
+							<column width="20%" />
+							<column width="80%" />
+						</columns>
+						<rows>
+							<!--  
+								<row><label value="${labels.tclient.client}" /><textbox id="client"  mold="rounded"  value="@{tclientmain$composer.current.client}" /></row>
+								<row><label value="${labels.tclient.bank_c}" /><textbox id="bank_c"  mold="rounded"  value="@{tclientmain$composer.current.bank_c}" /></row>
+								<row><label value="${labels.tclient.cl_type}" /><textbox id="cl_type"  mold="rounded"  value="@{tclientmain$composer.current.cl_type}" /></row>
+								<row><label value="${labels.tclient.cln_cat}" /><textbox id="cln_cat"  mold="rounded"  value="@{tclientmain$composer.current.cln_cat}" /></row>
+								
+							-->
+
+							<row>
+								<label
+									value="${labels.tclient.client_b}" />
+								<textbox id="client_b" mold="rounded"
+									value="@{tclientmain$composer.current.client_b}" />
+							</row>
+							<row>
+								<label
+									value="${labels.tclient.rec_date}" />
+								<datebox id="rec_date" mold="rounded"
+									value="@{tclientmain$composer.current.rec_date}" />
+							</row>
+							<row>
+								<label
+									value="${labels.tclient.f_names}" />
+								<textbox id="f_names" mold="rounded"
+									value="@{tclientmain$composer.current.f_names}" />
+							</row>
+							<row>
+								<label
+									value="${labels.tclient.surname}" />
+								<textbox id="surname" mold="rounded"
+									value="@{tclientmain$composer.current.surname}" />
+							</row>
+
+						</rows>
+					</grid>
+
+					<grid id="mfrmgrd" width="320px">
+						<columns>
+							<column width="20%" />
+							<column width="80%" />
+						</columns>
+						<rows>
+							<!--  
+								<row><label value="${labels.tclient.title}" /><textbox id="title"  mold="rounded"  value="@{tclientmain$composer.current.title}" /></row>
+								<row><label value="${labels.tclient.m_name}" /><textbox id="m_name"  mold="rounded"  value="@{tclientmain$composer.current.m_name}" /></row>
+								<row><label value="${labels.tclient.ctime}" /><datebox id="ctime"  mold="rounded"  value="@{tclientmain$composer.current.ctime}" /></row>
+							-->
+
+							<row>
+								<label value="${labels.tclient.b_date}" />
+								<datebox id="b_date" mold="rounded"
+									value="@{tclientmain$composer.current.b_date}" />
+							</row>
+							<row>
+								<label
+									value="${labels.tclient.r_street}" />
+								<textbox id="r_street" mold="rounded"
+									value="@{tclientmain$composer.current.r_street}" />
+							</row>
+							<row>
+								<label value="${labels.tclient.r_city}" />
+								<textbox id="r_city" mold="rounded"
+									value="@{tclientmain$composer.current.r_city}" />
+							</row>
+							<row>
+								<label
+									value="${labels.tclient.r_cntry}" />
+								<textbox id="r_cntry" mold="rounded"
+									value="@{tclientmain$composer.current.r_cntry}" />
+							</row>
+
+						</rows>
+					</grid>
+
+
+					<grid id="rfrmgrd" width="320px">
+						<columns>
+							<column width="20%" />
+							<column width="80%" />
+						</columns>
+						<rows>
+							<!--  
+								<row><label value="${labels.tclient.usrid}" /><textbox id="usrid"  mold="rounded"  value="@{tclientmain$composer.current.usrid}" /></row>
+								<row><label value="${labels.tclient.status_change_date}" /><datebox id="status_change_date"  mold="rounded"  value="@{tclientmain$composer.current.status_change_date}" /></row>
+								<row><label value="${labels.tclient.status}" /><textbox id="status"  mold="rounded"  value="@{tclientmain$composer.current.status}" /></row>
+								<row><label value="${labels.tclient.sex}" /><textbox id="sex"  mold="rounded"  value="@{tclientmain$composer.current.sex}" /></row>
+								
+							-->
+							<row>
+								<label
+									value="${labels.tclient.search_name}" />
+								<textbox id="search_name" mold="rounded"
+									value="@{tclientmain$composer.current.search_name}" />
+							</row>
+							<row>
+								<label
+									value="${labels.tclient.serial_no}" />
+								<textbox id="serial_no" mold="rounded"
+									value="@{tclientmain$composer.current.serial_no}" />
+							</row>
+							<row>
+								<label
+									value="${labels.tclient.doc_since}" />
+								<datebox id="doc_since" mold="rounded"
+									value="@{tclientmain$composer.current.doc_since}" />
+							</row>
+							<row>
+								<label
+									value="${labels.tclient.issued_by}" />
+								<textbox id="issued_by" mold="rounded"
+									value="@{tclientmain$composer.current.issued_by}" />
+							</row>
+						</rows>
+					</grid>
+				</hbox>
+
+			</groupbox>
+
+			<listbox id="accGrid" rows="8" width="100%"
+				selectedItem="@{tclientmain$composer.accinfo}">
+				<listhead sizable="true">
+
+					<listheader label="${labels.accinfo.card}"
+						width="220px" sort="auto(card)" />
+					<listheader label="${labels.accinfo.ab_expirity}"
+						width="80px" sort="auto(ab_expirity)" />
+					<listheader label="${labels.accinfo.card_acct}"
+						width="120px" sort="auto(card_acct)" />
+					<listheader label="${labels.accinfo.tranz_acct}"
+						width="250px" sort="auto(tranz_acct)" />
+					<listheader label="${labels.accinfo.status1}"
+						width="70px" sort="auto(status1)" />
+					<!--
+						<listheader label="${labels.accinfo.status2}" width="70px" />
+						<listheader label="${labels.accinfo.account_no}" width="80px" />
+						<listheader label="${labels.accinfo.client}" width="80px" />
+						<listheader label="${labels.accinfo.card_acct}" width="200px" />
+						<listheader label="${labels.accinfo.f_names}" width="200px" />
+						<listheader label="${labels.accinfo.surname}" width="200px" />
+						
+						
+						<listheader label="${labels.accinfo.bank_c}" width="200px" />
+						<listheader label="${labels.accinfo.groupc}" width="200px" />
+						<listheader label="${labels.accinfo.ctime}" width="200px" />
+						<listheader label="${labels.accinfo.ac_status}" width="200px" />
+						<listheader label="${labels.accinfo.cl_status}" width="200px" />
+						<listheader label="${labels.accinfo.acc_prty}" width="200px" />
+						<listheader label="${labels.accinfo.c_accnt_type}" width="200px" />
+						<listheader label="${labels.accinfo.ccy}" width="200px" />
+						
+						<listheader label="${labels.accinfo.city}" width="200px" />
+						<listheader label="${labels.accinfo.street}" width="200px" />
+					-->
+				</listhead>
+
+			</listbox>
+
+
+
+		</vbox>
+	</hbox>
+	<window id="paywnd" width="550px" mode="overlapped"
+		title="${labels.accinfo.cardwnd}" position="center,center"
+		visible="false">
+
+		<toolbar>
+			<toolbarbutton id="btn_cancel" label="Закрыть"
+				image="/images/stop.png" />
+			<!-- <toolbarbutton id="btn_cancel2" label="Печать" image="/images/stop.png" /> -->
+		</toolbar>
+
+		<listbox id="payGrid" rows="4" width="100%">
+			<listhead sizable="true">
+				<listheader label="${labels.trpay.branch}" width="70px" />
+				<listheader label="${labels.trpay.card_acc}"
+					width="200px" />
+				<listheader label="${labels.trpay.date_created}"
+					width="100px" sort="auto(date_created)" />
+				<listheader label="${labels.trpay.amount}" width="100px"
+					sort="auto(amount)" />
+				<!--  
+					<listheader label="${labels.trpay.cur_acc}" width="200px" />
+					
+					<listheader label="${labels.trpay.cl_name}" width="200px" />
+					<listheader label="${labels.trpay.state}" width="40px" />
+					
+					
+					<listheader label="${labels.trpay.id}" width="200px" />
+					<listheader label="${labels.trpay.operation_id}" width="200px" />
+					<listheader label="${labels.trpay.parent_group_id}" width="200px" />
+					
+					<listheader label="${labels.trpay.account_no}" width="200px" />
+				-->
+			</listhead>
+
+		</listbox>
+
+		<grid width="100%">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label />
+					<hbox>
+						<toolbarbutton id="lock"
+							image="/images/locked.png" />
+						<toolbarbutton id="application"
+							image="/images/file.png" label="Заявление" />
+					</hbox>
+				</row>
+				<row>
+					<label value="${labels.tclient.search_name}" />
+					<textbox id="search_name" readonly="true"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Адрес" />
+					<textbox id="address" readonly="true" width="100%" />
+				</row>
+				<row>
+					<label id="add_currency_type"
+						value="${labels.doc.summa}" />
+					<decimalbox format="###.##" id="amnt" mold="rounded"
+						constraint="no empty" />
+				</row>
+				<row>
+					<label value="${labels.trpay.cur_acc}" />
+					<textbox id="curacc" readonly="true" width="200px" />
+					<hbox visible="false">
+						<rcombobox id="scurracc" mold="rounded" />
+						<toolbarbutton id="btn_addacc" visible="false"
+							label="${labels.add}" image="/images/+.png" />
+					</hbox>
+				</row>
+				<row visible="false">
+					<label value="${labels.trpay.cur_acc}" />
+					<rcombobox id="curracc_uzs" mold="rounded" readonly="true" width="100%" visible="false" />
+					<textbox id="curr_acc_uzs" readonly="true" width="200px" />
+				</row>
+				
+				<row>
+					<label value="Номер приходного ордера" />
+					<textbox id="inc_ord_num" constraint="no empty"
+						mold="rounded" />
+				</row>
+			</rows>
+		</grid>
+
+		<toolbar visible="false">
+			<toolbarbutton id="btn_block"
+				label="${labels.accinfo.btnblock}" image="/images/save.png" />
+			<toolbarbutton id="btn_unblock"
+				label="${labels.accinfo.btnunblock}" image="/images/save.png" />
+			<toolbarbutton id="btn_print" visible="false"
+				label="${labels.print}" image="/images/printer.png" />
+			<toolbarbutton id="btn_printp" visible="false"
+				label="${labels.print} PDF" image="/images/printer.png" />
+
+		</toolbar>
+
+
+		<toolbar id="pay_tlb">
+			<!--  <toolbarbutton id="btn_pay"
+				label="${labels.accinfo.btnpay}" image="/images/save.png" />
+				<toolbarbutton id="btn_pay_branch"
+				label="пополнить в филиале" image="/images/save.png" /> -->
+
+
+		</toolbar>
+
+
+	</window>
+	<window id="blockwnd" width="250px" mode="overlapped"
+		title="${labels.accinfo.cardwnd}" position="center,center"
+		visible="false">
+
+		<rcombobox id="sstopcauses" mold="rounded" width="245px" />
+		<textbox id="txtstopcauses" width="245px" constraint="no empty"
+			rows="4" />
+
+		<toolbar>
+			<toolbarbutton id="btn_block"
+				label="${labels.accinfo.btnblock}" image="/images/save.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+
+
+	</window>
+	<window id="printwnd" mode="overlapped" title="${labels.print}"
+		position="center,center" visible="false" maximizable="true"
+		width="950px" height="550px" closable="true"
+		onClose="self.visible = false; event.stopPropagation();">
+		<script src="scripts/iprint.js" />
+
+
+		<iframe id="rpframe" width="100%" height="100%" />
+		<!-- <iframe id="rpframe" width="950px"  height="550px"/>-->
+		<toolbar>
+			<toolbarbutton id="btn_cancel" label="Закрыть"
+				image="/images/delete.png" />
+		</toolbar>
+	</window>
+
+	<window id="addwnd" width="250px" mode="overlapped"
+		title="${labels.accinfo.cardwnd}" position="center,center"
+		visible="false">
+
+		<rcombobox id="sproduct" mold="rounded" width="245px" />
+		<textbox id="txtstopcauses" width="245px" rows="4" />
+
+		<toolbar>
+			<toolbarbutton id="btn_add" label="${labels.add}"
+				image="/images/+.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+
+
+	</window>
+
+</window>

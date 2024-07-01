@@ -1,0 +1,236 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="comserviceslistmain" width="100%"  height="100%" border="normal" apply="com.is.comserviceslist.ComServicesListViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="comserviceslistPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{comserviceslistmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.comserviceslist.id}" width="50px" />
+                                <listheader label="${labels.comserviceslist.customerj_id}" width="400px" />
+                                <listheader label="${labels.comserviceslist.state}" width="100px" />
+                                <listheader label="${labels.comserviceslist.name}" width="400px" />
+                                <!--  
+                                <listheader label="${labels.comserviceslist.p_name_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.p_number_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.from_date_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.to_date_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.from_value_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.to_value_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.difference_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.penalty_amount_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.operation_id}" width="200px" />
+                                <listheader label="${labels.comserviceslist.deal_id}" width="200px" />
+                                <listheader label="${labels.comserviceslist.parent_id}" width="200px" />
+                                <listheader label="${labels.comserviceslist.parent_group_id}" width="200px" />
+                                <listheader label="${labels.comserviceslist.client_address_mask}" width="200px" />
+                                <listheader label="${labels.comserviceslist.pay_cat_id}" width="200px" />
+                                -->
+                        </listhead>
+
+                </listbox>
+
+
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.comserviceslist.id}" /><label id="id" value="@{comserviceslistmain$composer.current.id}"/></row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.customerj_id}" />
+                                  		<rcombobox id="customerj_id"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.customerj_id}" width="400px"/>
+                                  </row>
+                                  <row><label value="${labels.comserviceslist.state}" /><textbox id="state"  mold="rounded"  value="@{comserviceslistmain$composer.current.state}" /></row>
+                                  <row><label value="${labels.comserviceslist.name}" /><textbox id="name"  mold="rounded"  value="@{comserviceslistmain$composer.current.name}" width="400px"/></row>
+                                  
+                                  <row>
+                                  		<label value="${labels.comserviceslist.p_name_mask}" />
+                                  		<rcombobox id="p_name_mask"  mold="rounded" selecteditem="@{comserviceslistmain$composer.current.p_name_mask}" width="200px"/>
+                                  </row>                                  
+                                  <row>
+                                  		<label value="${labels.comserviceslist.p_number_mask}" />
+                                  		<rcombobox id="p_number_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.p_number_mask}" width="200px"/>
+                                  </row>                                  
+                                  <row>
+                                  		<label value="${labels.comserviceslist.from_date_mask}" />
+                                  		<rcombobox id="from_date_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.from_date_mask}" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.to_date_mask}" />
+                                  		<rcombobox id="to_date_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.to_date_mask}" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.from_value_mask}" />
+                                  		<rcombobox id="from_value_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.from_value_mask}" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.to_value_mask}" />
+                                  		<rcombobox id="to_value_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.to_value_mask}" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.difference_mask}" />
+                                  		<rcombobox id="difference_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.difference_mask}" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="Район/регион" />
+                                  		<rcombobox id="district_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.district_mask}" width="200px" />
+                                  </row>
+                                  <row visible="false">
+                                  		<label value="${labels.comserviceslist.penalty_amount_mask}" />
+                                  		<rcombobox id="penalty_amount_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.penalty_amount_mask}" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.operation_id}" />
+                                  		<rcombobox id="operation_id"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.operation_id}" width="400px" />
+                                  </row>
+                                  <!--  
+                                  <row><label value="${labels.comserviceslist.deal_id}" /><textbox id="deal_id"  mold="rounded"  value="@{comserviceslistmain$composer.current.deal_id}" /></row>
+                                  <row><label value="${labels.comserviceslist.parent_id}" /><textbox id="parent_id"  mold="rounded"  value="@{comserviceslistmain$composer.current.parent_id}" /></row>
+                                  <row><label value="${labels.comserviceslist.parent_group_id}" /><textbox id="parent_group_id"  mold="rounded"  value="@{comserviceslistmain$composer.current.parent_group_id}" /></row>
+                                  -->
+                                  <row>
+                                  		<label value="${labels.comserviceslist.client_address_mask}" />
+                                  		<rcombobox id="client_address_mask"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.client_address_mask}" width="200px"/>
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.pay_cat_id}" />
+                                  		<rcombobox id="pay_cat_id"  mold="rounded"  selecteditem="@{comserviceslistmain$composer.current.pay_cat_id}" width="400px"/>
+                                  </row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row>
+                                  		<label value="${labels.comserviceslist.customerj_id}" />
+                                  		<rcombobox id="acustomerj_id"  mold="rounded" width="400px"/>
+                                  </row>
+                                  <row><label value="${labels.comserviceslist.state}" /><textbox id="astate"  mold="rounded"/></row>
+                                  <row><label value="${labels.comserviceslist.name}" /><textbox id="aname"  mold="rounded" width="400px"/></row>
+                                  
+                                  <row>
+                                  		<label value="${labels.comserviceslist.p_name_mask}" />
+                                  		<rcombobox id="ap_name_mask"  mold="rounded" width="200px"/>
+                                  </row>                                  
+                                  <row>
+                                  		<label value="${labels.comserviceslist.p_number_mask}" />
+                                  		<rcombobox id="ap_number_mask"  mold="rounded" width="200px"/>
+                                  </row>                                  
+                                  <row>
+                                  		<label value="${labels.comserviceslist.from_date_mask}" />
+                                  		<rcombobox id="afrom_date_mask"  mold="rounded" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.to_date_mask}" />
+                                  		<rcombobox id="ato_date_mask"  mold="rounded" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.from_value_mask}" />
+                                  		<rcombobox id="afrom_value_mask"  mold="rounded" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.to_value_mask}" />
+                                  		<rcombobox id="ato_value_mask"  mold="rounded" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.difference_mask}" />
+                                  		<rcombobox id="adifference_mask"  mold="rounded" width="200px" />
+                                  </row>
+                                  
+                                  <row>
+                                  		<label value="район/регион" />
+                                  		<rcombobox id="adistrict_mask"  mold="rounded" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.penalty_amount_mask}" />
+                                  		<rcombobox id="apenalty_amount_mask"  mold="rounded" width="200px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.operation_id}" />
+                                  		<rcombobox id="aoperation_id"  mold="rounded" width="400px" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.client_address_mask}" />
+                                  		<rcombobox id="aclient_address_mask"  mold="rounded" width="200px"/>
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comserviceslist.pay_cat_id}" />
+                                  		<rcombobox id="apay_cat_id"  mold="rounded" width="400px"/>
+                                  </row>
+                                  <!--  
+                                  <row><label value="${labels.comserviceslist.deal_id}" /><textbox id="adeal_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comserviceslist.parent_id}" /><textbox id="aparent_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comserviceslist.parent_group_id}" /><textbox id="aparent_group_id"  mold="rounded"  /></row>
+                                  -->
+                                  
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                                                    
+                                  <row><label value="${labels.comserviceslist.customerj_id}" /><textbox id="fcustomerj_id"  mold="rounded"  value="@{comserviceslistmain$composer.filter.customerj_id}" /></row>
+                                  <row><label value="${labels.comserviceslist.state}" /><textbox id="fstate"  mold="rounded"  value="@{comserviceslistmain$composer.filter.state}" /></row>
+                                  <row><label value="${labels.comserviceslist.name}" /><textbox id="fname"  mold="rounded"  value="@{comserviceslistmain$composer.filter.name}" /></row>
+                                  <row><label value="${labels.comserviceslist.p_name_mask}" /><textbox id="fp_name_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.p_name_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.p_number_mask}" /><textbox id="fp_number_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.p_number_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.from_date_mask}" /><textbox id="ffrom_date_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.from_date_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.to_date_mask}" /><textbox id="fto_date_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.to_date_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.from_value_mask}" /><textbox id="ffrom_value_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.from_value_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.to_value_mask}" /><textbox id="fto_value_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.to_value_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.difference_mask}" /><textbox id="fdifference_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.difference_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.penalty_amount_mask}" /><textbox id="fpenalty_amount_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.penalty_amount_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.operation_id}" /><textbox id="foperation_id"  mold="rounded"  value="@{comserviceslistmain$composer.filter.operation_id}" /></row>
+                                  <!--  
+                                  <row><label value="${labels.comserviceslist.deal_id}" /><textbox id="fdeal_id"  mold="rounded"  value="@{comserviceslistmain$composer.filter.deal_id}" /></row>
+                                  <row><label value="${labels.comserviceslist.parent_id}" /><textbox id="fparent_id"  mold="rounded"  value="@{comserviceslistmain$composer.filter.parent_id}" /></row>
+                                  <row><label value="${labels.comserviceslist.parent_group_id}" /><textbox id="fparent_group_id"  mold="rounded"  value="@{comserviceslistmain$composer.filter.parent_group_id}" /></row>
+                                  -->
+                                  <row><label value="${labels.comserviceslist.client_address_mask}" /><textbox id="fclient_address_mask"  mold="rounded"  value="@{comserviceslistmain$composer.filter.client_address_mask}" /></row>
+                                  <row><label value="${labels.comserviceslist.pay_cat_id}" /><textbox id="fpay_cat_id"  mold="rounded"  value="@{comserviceslistmain$composer.filter.pay_cat_id}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

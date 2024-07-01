@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/ti" docbase="webapps/ti/">
+  
+<!-- IY CONNECTION
+
+<Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@10.11.0.174:1521:smart"
+              username="tietofront" password="a12345#" maxActive="200" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=iy00444"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+ -->
+ 
+ <!-- OFFICE CONNECTION -->
+ 
+ <Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.209:1521:ipakyuli"
+              username="iy00444" password="iy00444" maxActive="18" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=iy00444"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="600"/> 
+              
+<Resource name="jdbc/tieto"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@128.10.10.117:1521:db"
+              username="tieto" password="tieto" maxActive="18" maxIdle="4" minIdle="1"
+              defaultAutoCommit="false" 
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/> 
+
+ <!-- LOCAL CONNECTION -->
+<!--   <Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@akmal-k:1521:db"
+              username="bank1066" password="bank1066" maxActive="18" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank1066"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"
+              validationQuery="select 1 from dual" 
+			  testWhileIdle="true"
+              />   -->
+              
+<!-- IPAK CONNECTION -->
+         <!--  <Resource name="jdbc/myoracle"
+              auth="Container"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@10.11.0.174:1521:smart"
+              username="tietofront" password="a12345#" maxActive="200" maxIdle="4" minIdle="1"
+              initSQL="ALTER SESSION SET CURRENT_SCHEMA=iy00444"
+              defaultAutoCommit="false" alternateUsernameAllowed="true"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>
+              
+              <Resource name="jdbc/tieto"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@10.11.0.73:1521:mole1"
+              username="iss_ws" password="visacup77#" maxActive="200" maxIdle="4" minIdle="1"
+              defaultAutoCommit="false"
+              maxWait="-1" removeAbandoned="true" removeAbandonedTimeout="60"/>  -->
+
+</Context>

@@ -1,0 +1,219 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="docmain" width="100%"  height="100%" border="normal" apply="com.is.doc.DocViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="docPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{docmain$composer.current}">
+                        <listhead sizable="true">
+                                <!--  
+                                <listheader label="${labels.doc.id}" width="200px" />
+                               -->
+                                <listheader label="${labels.doc.branch}" width="50px" />
+                                <listheader label="${labels.doc.doc_num}" width="90px" />
+                                <listheader label="${labels.doc.d_date}" width="80px" />
+                                <listheader label="${labels.doc.bank_cl}" width="50px" />
+                                <listheader label="${labels.doc.acc_cl}" width="180px" />
+                                <!--  
+                                <listheader label="${labels.doc.name_cl}" width="200px" />
+                                -->
+                                <listheader label="${labels.doc.bank_co}" width="50px" />
+                                <listheader label="${labels.doc.acc_co}" width="180px" />
+                                <!-- 
+                                <listheader label="${labels.doc.name_co}" width="200px" />
+                                <listheader label="${labels.doc.purpose}" width="200px" />
+                                -->
+                                <listheader label="${labels.doc.summa}" width="200px" />
+                                <!--
+                                <listheader label="${labels.doc.currency}" width="200px" />
+                                <listheader label="${labels.doc.type_doc}" width="200px" />
+                                  
+                                <listheader label="${labels.doc.s_deal_id}" width="200px" />
+                                <listheader label="${labels.doc.v_date}" width="200px" />
+                                <listheader label="${labels.doc.pdc}" width="200px" />
+                                <listheader label="${labels.doc.cash_code}" width="200px" />
+                                <listheader label="${labels.doc.state}" width="200px" />
+                                <listheader label="${labels.doc.parent_group_id}" width="200px" />
+                                <listheader label="${labels.doc.parent_id}" width="200px" />
+                                <listheader label="${labels.doc.child_id}" width="200px" />
+                                <listheader label="${labels.doc.kod_err}" width="200px" />
+                                <listheader label="${labels.doc.file_name}" width="200px" />
+                                <listheader label="${labels.doc.err_general}" width="200px" />
+                                <listheader label="${labels.doc.emp_id}" width="200px" />
+                                <listheader label="${labels.doc.id_transh}" width="200px" />
+                                <listheader label="${labels.doc.id_transh_purp}" width="200px" />
+                                <listheader label="${labels.doc.val_date}" width="200px" />
+                                -->
+                        </listhead>
+
+                </listbox>
+
+
+        </div>
+        <div id="frm" visible="false">
+                  
+                  <hbox id="frmgrd" visible="true" >
+                  
+                  <grid id="frmgrdl" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.doc.id}" /><textbox id="id"  mold="rounded"  value="@{docmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.doc.branch}" /><textbox id="branch"  mold="rounded"  value="@{docmain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.doc.doc_num}" /><textbox id="doc_num"  mold="rounded"  value="@{docmain$composer.current.doc_num}" /></row>
+                                  <row><label value="${labels.doc.d_date}" /><textbox id="d_date"  mold="rounded"  value="@{docmain$composer.current.d_date}" /></row>
+                                  <row><label value="${labels.doc.currency}" /><textbox id="currency"  mold="rounded"  value="@{docmain$composer.current.currency}" /></row>
+                                  <row><label value="${labels.doc.type_doc}" /><textbox id="type_doc"  mold="rounded"  value="@{docmain$composer.current.type_doc}" /></row>
+
+                                  <row><label value="${labels.doc.bank_cl}" /><textbox id="bank_cl"  mold="rounded"  value="@{docmain$composer.current.bank_cl}" /></row>
+                                  <row><label value="${labels.doc.acc_cl}" /><textbox id="acc_cl"  mold="rounded"  value="@{docmain$composer.current.acc_cl}" width="60%"/></row>
+                                  <row><label value="${labels.doc.name_cl}" /><textbox id="name_cl"  mold="rounded"  value="@{docmain$composer.current.name_cl}" width="100%"/></row>
+                                  <row><label value="${labels.doc.bank_co}" /><textbox id="bank_co"  mold="rounded"  value="@{docmain$composer.current.bank_co}" /></row>
+                          </rows>
+                  </grid>
+
+                  <grid id="frmgrdr" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.doc.acc_co}" /><textbox id="acc_co"  mold="rounded"  value="@{docmain$composer.current.acc_co}" width="30%"/></row>
+                                  <row><label value="${labels.doc.name_co}" /><textbox id="name_co"  mold="rounded"  value="@{docmain$composer.current.name_co}" width="100%"/></row>
+                                  <row><label value="${labels.doc.purpose}" /><textbox id="purpose"  mold="rounded"  value="@{docmain$composer.current.purpose}" width="100%"/></row>
+                                  <row><label value="${labels.doc.summa}" /><textbox id="summa"  mold="rounded"  value="@{docmain$composer.current.summa}" /></row>
+                                  <row><label value="${labels.doc.s_deal_id}" /><textbox id="s_deal_id"  mold="rounded"  value="@{docmain$composer.current.s_deal_id}" /></row>
+                                  <row><label value="${labels.doc.v_date}" /><textbox id="v_date"  mold="rounded"  value="@{docmain$composer.current.v_date}" /></row>
+                                  <row><label value="${labels.doc.pdc}" /><textbox id="pdc"  mold="rounded"  value="@{docmain$composer.current.pdc}" /></row>
+                                  <row><label value="${labels.doc.cash_code}" /><textbox id="cash_code"  mold="rounded"  value="@{docmain$composer.current.cash_code}" /></row>
+                                  <row><label value="${labels.doc.state}" /><textbox id="state"  mold="rounded"  value="@{docmain$composer.current.state}" /></row>
+
+
+
+                                  <!--  
+                                  <row><label value="${labels.doc.parent_group_id}" /><textbox id="parent_group_id"  mold="rounded"  value="@{docmain$composer.current.parent_group_id}" /></row>
+                                  <row><label value="${labels.doc.parent_id}" /><textbox id="parent_id"  mold="rounded"  value="@{docmain$composer.current.parent_id}" /></row>
+                                  <row><label value="${labels.doc.child_id}" /><textbox id="child_id"  mold="rounded"  value="@{docmain$composer.current.child_id}" /></row>
+                                  <row><label value="${labels.doc.kod_err}" /><textbox id="kod_err"  mold="rounded"  value="@{docmain$composer.current.kod_err}" /></row>
+                                  <row><label value="${labels.doc.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{docmain$composer.current.file_name}" /></row>
+                                  <row><label value="${labels.doc.err_general}" /><textbox id="err_general"  mold="rounded"  value="@{docmain$composer.current.err_general}" /></row>
+                                  <row><label value="${labels.doc.emp_id}" /><textbox id="emp_id"  mold="rounded"  value="@{docmain$composer.current.emp_id}" /></row>
+                                  <row><label value="${labels.doc.id_transh}" /><textbox id="id_transh"  mold="rounded"  value="@{docmain$composer.current.id_transh}" /></row>
+                                  <row><label value="${labels.doc.id_transh_purp}" /><textbox id="id_transh_purp"  mold="rounded"  value="@{docmain$composer.current.id_transh_purp}" /></row>
+                                  <row><label value="${labels.doc.val_date}" /><textbox id="val_date"  mold="rounded"  value="@{docmain$composer.current.val_date}" /></row>
+                                  -->
+                          </rows>
+                  </grid>
+
+
+                  </hbox>
+                  
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.doc.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.doc_num}" /><textbox id="adoc_num"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.d_date}" /><textbox id="ad_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.bank_cl}" /><textbox id="abank_cl"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.acc_cl}" /><textbox id="aacc_cl"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.name_cl}" /><textbox id="aname_cl"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.bank_co}" /><textbox id="abank_co"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.acc_co}" /><textbox id="aacc_co"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.name_co}" /><textbox id="aname_co"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.purpose}" /><textbox id="apurpose"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.summa}" /><textbox id="asumma"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.currency}" /><textbox id="acurrency"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.type_doc}" /><textbox id="atype_doc"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.s_deal_id}" /><textbox id="as_deal_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.v_date}" /><textbox id="av_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.pdc}" /><textbox id="apdc"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.cash_code}" /><textbox id="acash_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.parent_group_id}" /><textbox id="aparent_group_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.parent_id}" /><textbox id="aparent_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.child_id}" /><textbox id="achild_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.kod_err}" /><textbox id="akod_err"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.file_name}" /><textbox id="afile_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.err_general}" /><textbox id="aerr_general"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.emp_id}" /><textbox id="aemp_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.id_transh}" /><textbox id="aid_transh"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.id_transh_purp}" /><textbox id="aid_transh_purp"  mold="rounded"  /></row>
+                                  <row><label value="${labels.doc.val_date}" /><textbox id="aval_date"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.doc.id}" /><textbox id="fid"  mold="rounded"  value="@{docmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.doc.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{docmain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.doc.doc_num}" /><textbox id="fdoc_num"  mold="rounded"  value="@{docmain$composer.filter.doc_num}" /></row>
+                                  <row><label value="${labels.doc.d_date}" /><textbox id="fd_date"  mold="rounded"  value="@{docmain$composer.filter.d_date}" /></row>
+                                  <row><label value="${labels.doc.bank_cl}" /><textbox id="fbank_cl"  mold="rounded"  value="@{docmain$composer.filter.bank_cl}" /></row>
+                                  <row><label value="${labels.doc.acc_cl}" /><textbox id="facc_cl"  mold="rounded"  value="@{docmain$composer.filter.acc_cl}" /></row>
+                                  <row><label value="${labels.doc.name_cl}" /><textbox id="fname_cl"  mold="rounded"  value="@{docmain$composer.filter.name_cl}" /></row>
+                                  <row><label value="${labels.doc.bank_co}" /><textbox id="fbank_co"  mold="rounded"  value="@{docmain$composer.filter.bank_co}" /></row>
+                                  <row><label value="${labels.doc.acc_co}" /><textbox id="facc_co"  mold="rounded"  value="@{docmain$composer.filter.acc_co}" /></row>
+                                  <row><label value="${labels.doc.name_co}" /><textbox id="fname_co"  mold="rounded"  value="@{docmain$composer.filter.name_co}" /></row>
+                                  <row><label value="${labels.doc.purpose}" /><textbox id="fpurpose"  mold="rounded"  value="@{docmain$composer.filter.purpose}" /></row>
+                                  <row><label value="${labels.doc.summa}" /><textbox id="fsumma"  mold="rounded"  value="@{docmain$composer.filter.summa}" /></row>
+                                  <row><label value="${labels.doc.currency}" /><textbox id="fcurrency"  mold="rounded"  value="@{docmain$composer.filter.currency}" /></row>
+                                  <row><label value="${labels.doc.type_doc}" /><textbox id="ftype_doc"  mold="rounded"  value="@{docmain$composer.filter.type_doc}" /></row>
+                                  <row><label value="${labels.doc.s_deal_id}" /><textbox id="fs_deal_id"  mold="rounded"  value="@{docmain$composer.filter.s_deal_id}" /></row>
+                                  <row><label value="${labels.doc.v_date}" /><textbox id="fv_date"  mold="rounded"  value="@{docmain$composer.filter.v_date}" /></row>
+                                  <row><label value="${labels.doc.pdc}" /><textbox id="fpdc"  mold="rounded"  value="@{docmain$composer.filter.pdc}" /></row>
+                                  <row><label value="${labels.doc.cash_code}" /><textbox id="fcash_code"  mold="rounded"  value="@{docmain$composer.filter.cash_code}" /></row>
+                                  <row><label value="${labels.doc.state}" /><textbox id="fstate"  mold="rounded"  value="@{docmain$composer.filter.state}" /></row>
+                                  <row><label value="${labels.doc.parent_group_id}" /><textbox id="fparent_group_id"  mold="rounded"  value="@{docmain$composer.filter.parent_group_id}" /></row>
+                                  <row><label value="${labels.doc.parent_id}" /><textbox id="fparent_id"  mold="rounded"  value="@{docmain$composer.filter.parent_id}" /></row>
+                                  <row><label value="${labels.doc.child_id}" /><textbox id="fchild_id"  mold="rounded"  value="@{docmain$composer.filter.child_id}" /></row>
+                                  <row><label value="${labels.doc.kod_err}" /><textbox id="fkod_err"  mold="rounded"  value="@{docmain$composer.filter.kod_err}" /></row>
+                                  <row><label value="${labels.doc.file_name}" /><textbox id="ffile_name"  mold="rounded"  value="@{docmain$composer.filter.file_name}" /></row>
+                                  <row><label value="${labels.doc.err_general}" /><textbox id="ferr_general"  mold="rounded"  value="@{docmain$composer.filter.err_general}" /></row>
+                                  <row><label value="${labels.doc.emp_id}" /><textbox id="femp_id"  mold="rounded"  value="@{docmain$composer.filter.emp_id}" /></row>
+                                  <row><label value="${labels.doc.id_transh}" /><textbox id="fid_transh"  mold="rounded"  value="@{docmain$composer.filter.id_transh}" /></row>
+                                  <row><label value="${labels.doc.id_transh_purp}" /><textbox id="fid_transh_purp"  mold="rounded"  value="@{docmain$composer.filter.id_transh_purp}" /></row>
+                                  <row><label value="${labels.doc.val_date}" /><textbox id="fval_date"  mold="rounded"  value="@{docmain$composer.filter.val_date}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

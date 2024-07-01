@@ -1,0 +1,159 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="comcustomermain" width="100%"  height="100%" border="normal" apply="com.is.comcustomer.ComCustomerViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="comcustomerPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{comcustomermain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.comcustomer.id}" width="50px" />
+                                <listheader label="${labels.comcustomer.branch}" width="100px" />
+                                <listheader label="${labels.comcustomer.account}" width="200px" />
+                                <listheader label="${labels.comcustomer.name}" width="400px" />
+                               <!--   
+                                <listheader label="${labels.comcustomer.inn}" width="200px" />
+                                <listheader label="${labels.comcustomer.region}" width="200px" />
+                                <listheader label="${labels.comcustomer.distr}" width="200px" />
+                                <listheader label="${labels.comcustomer.agreement_number}" width="200px" />
+                                <listheader label="${labels.comcustomer.agreement_date}" width="200px" />
+                                <listheader label="${labels.comcustomer.purpose_template}" width="200px" />
+                                <listheader label="${labels.comcustomer.budget_inn}" width="200px" />
+                                <listheader label="${labels.comcustomer.budget_account}" width="200px" />
+                                <listheader label="${labels.comcustomer.is_budget_org}" width="200px" />
+                                <listheader label="${labels.comcustomer.purpose_code}" width="200px" />
+                                <listheader label="${labels.comcustomer.category_id}" width="200px" />
+                                -->
+                        </listhead>
+
+                </listbox>
+
+
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row visible="false"><label value="${labels.comcustomer.id}" /><textbox id="id"  mold="rounded"  value="@{comcustomermain$composer.current.id}" /></row>
+                                  <row><label value="${labels.comcustomer.branch}" />
+                                  	<hbox>
+                                  		<textbox mold="rounded"  value="@{comcustomermain$composer.current.branch}" />
+                                  		<rcombobox id="branch" mold="rounded"  selecteditem="@{comcustomermain$composer.current.branch}" width="400px"/>
+                                  	</hbox>
+                                  </row>
+                                  <row><label value="${labels.comcustomer.account}" /><textbox id="account"  mold="rounded"  value="@{comcustomermain$composer.current.account}"   width="300px"/></row>
+                                  <row><label value="${labels.comcustomer.name}" /><textbox id="name"  mold="rounded"  value="@{comcustomermain$composer.current.name}" width="400px"/></row>
+                                  <row><label value="${labels.comcustomer.inn}" /><textbox id="inn"  mold="rounded"  value="@{comcustomermain$composer.current.inn}" /></row>
+                                  <row>
+                                  		<label value="${labels.comcustomer.region}" />
+                                  		<rcombobox id="region"  mold="rounded"  selecteditem="@{comcustomermain$composer.current.region}" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comcustomer.distr}" />
+                                  		<rcombobox id="distr"  mold="rounded"  selecteditem="@{comcustomermain$composer.current.distr}" />
+                                  </row>
+                                  <row><label value="${labels.comcustomer.agreement_number}" /><textbox id="agreement_number"  mold="rounded"  value="@{comcustomermain$composer.current.agreement_number}" /></row>
+                                  <row><label value="${labels.comcustomer.agreement_date}" /><datebox id="agreement_date"  mold="rounded"  value="@{comcustomermain$composer.current.agreement_date}" /></row>
+                                  <row><label value="${labels.comcustomer.purpose_template}" /><textbox id="purpose_template"  mold="rounded"  value="@{comcustomermain$composer.current.purpose_template}" width="400px"/></row>
+                                  <row><label value="${labels.comcustomer.budget_inn}" /><textbox id="budget_inn"  mold="rounded"  value="@{comcustomermain$composer.current.budget_inn}" /></row>
+                                  <row><label value="${labels.comcustomer.budget_account}" /><textbox id="budget_account"  mold="rounded"  value="@{comcustomermain$composer.current.budget_account}" /></row>
+                                  <row><label value="${labels.comcustomer.is_budget_org}" /><textbox id="is_budget_org"  mold="rounded"  value="@{comcustomermain$composer.current.is_budget_org}" /></row>
+                                  <row><label value="${labels.comcustomer.purpose_code}" /><textbox id="purpose_code"  mold="rounded"  value="@{comcustomermain$composer.current.purpose_code}" /></row>
+                                  <row><label value="${labels.comcustomer.category_id}" /><textbox id="category_id"  mold="rounded"  value="@{comcustomermain$composer.current.category_id}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row visible="false"><label value="${labels.comcustomer.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row>
+                                  		<label value="${labels.comcustomer.branch}" />
+                                  	<hbox>
+                                  		<textbox  mold="rounded" value="@{comcustomermain$composer.current.branch}" />
+                                  		<rcombobox id="abranch" mold="rounded"  selecteditem="@{comcustomermain$composer.current.branch}"  width="400px"/>
+                                  	</hbox>
+                                  </row>
+                                  <row><label value="${labels.comcustomer.account}" /><textbox id="aaccount"  mold="rounded"    width="300px"/></row>
+                                  <row><label value="${labels.comcustomer.name}" /><textbox id="aname"  mold="rounded"  width="400px"/></row>
+                                  <row><label value="${labels.comcustomer.inn}" /><textbox id="ainn"  mold="rounded"  /></row>
+                                  <row>
+                                  		<label value="${labels.comcustomer.region}" />
+                                  		<rcombobox id="aregion"  mold="rounded" />
+                                  </row>
+                                  <row>
+                                  		<label value="${labels.comcustomer.distr}" />
+                                  		<rcombobox id="adistr"  mold="rounded" />
+                                  </row>
+                                  <row><label value="${labels.comcustomer.agreement_number}" /><textbox id="aagreement_number"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comcustomer.agreement_date}" /><datebox id="aagreement_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comcustomer.purpose_template}" /><textbox id="apurpose_template"  mold="rounded" width="400px" /></row>
+                                  <row><label value="${labels.comcustomer.budget_inn}" /><textbox id="abudget_inn"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comcustomer.budget_account}" /><textbox id="abudget_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comcustomer.is_budget_org}" /><textbox id="ais_budget_org"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comcustomer.purpose_code}" /><textbox id="apurpose_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comcustomer.category_id}" /><textbox id="acategory_id"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row visible="false"><label value="${labels.comcustomer.id}" /><textbox id="fid"  mold="rounded"  value="@{comcustomermain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.comcustomer.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{comcustomermain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.comcustomer.account}" /><textbox id="faccount"  mold="rounded"  value="@{comcustomermain$composer.filter.account}" /></row>
+                                  <row><label value="${labels.comcustomer.name}" /><textbox id="fname"  mold="rounded"  value="@{comcustomermain$composer.filter.name}" /></row>
+                                  <row><label value="${labels.comcustomer.inn}" /><textbox id="finn"  mold="rounded"  value="@{comcustomermain$composer.filter.inn}" /></row>
+                                  <row><label value="${labels.comcustomer.region}" /><textbox id="fregion"  mold="rounded"  value="@{comcustomermain$composer.filter.region}" /></row>
+                                  <row><label value="${labels.comcustomer.distr}" /><textbox id="fdistr"  mold="rounded"  value="@{comcustomermain$composer.filter.distr}" /></row>
+                                  <row><label value="${labels.comcustomer.agreement_number}" /><textbox id="fagreement_number"  mold="rounded"  value="@{comcustomermain$composer.filter.agreement_number}" /></row>
+                                  <row><label value="${labels.comcustomer.agreement_date}" /><datebox id="fagreement_date"  mold="rounded"  value="@{comcustomermain$composer.filter.agreement_date}" /></row>
+                                  <row><label value="${labels.comcustomer.purpose_template}" /><textbox id="fpurpose_template"  mold="rounded"  value="@{comcustomermain$composer.filter.purpose_template}" /></row>
+                                  <row><label value="${labels.comcustomer.budget_inn}" /><textbox id="fbudget_inn"  mold="rounded"  value="@{comcustomermain$composer.filter.budget_inn}" /></row>
+                                  <row><label value="${labels.comcustomer.budget_account}" /><textbox id="fbudget_account"  mold="rounded"  value="@{comcustomermain$composer.filter.budget_account}" /></row>
+                                  <row><label value="${labels.comcustomer.is_budget_org}" /><textbox id="fis_budget_org"  mold="rounded"  value="@{comcustomermain$composer.filter.is_budget_org}" /></row>
+                                  <row><label value="${labels.comcustomer.purpose_code}" /><textbox id="fpurpose_code"  mold="rounded"  value="@{comcustomermain$composer.filter.purpose_code}" /></row>
+                                  <row><label value="${labels.comcustomer.category_id}" /><textbox id="fcategory_id"  mold="rounded"  value="@{comcustomermain$composer.filter.category_id}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>
