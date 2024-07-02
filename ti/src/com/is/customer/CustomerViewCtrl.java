@@ -440,41 +440,41 @@ try{
 			boolean fl_err = false;
 			String err = "";
 			
-			if ((!((ap_passport_number.getValue()).matches("[a-zA-Z0-9]+")))||(ap_passport_number.getValue().length()>9)){fl_err = true; err += "\nНомер паспорта";}
-			if ((!((ap_passport_serial.getValue()).matches("[a-zA-Z0-9]+")))||(ap_passport_serial.getValue().length()>9)){fl_err = true; err += "\nСерия паспорта";}
-			if ((!((ap_passport_place_registration.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]+")))||(ap_passport_place_registration.getValue().length()>200)){fl_err = true; err += "\nМесто регистрации паспорта";}
-			if ((!((ap_family.getValue()).matches("[a-zA-Z0-9]+")))||(ap_family.getValue().length()>34)){fl_err = true; err += "\nФамилия";}
-			if ((!((ap_first_name.getValue()).matches("[a-zA-Z0-9]+")))||(ap_first_name.getValue().length()>20)){fl_err = true; err += "\nИмя";}
-			if ((!((ap_patronymic.getValue()).matches("[a-zA-Z0-9]*")))||(ap_patronymic.getValue().length()>20)){fl_err = true; err += "\nОтчество";}
-			if ((CheckNull.isEmpty(ap_type_document.getValue()))){fl_err = true; err += "\nТип документа";}
-			if ((!((ap_number_tax_registration.getValue()).matches("[0-9]*")))||(ap_number_tax_registration.getValue().length()>9)){fl_err = true; err += "\nИНН";}
-			if ((CheckNull.isEmpty(ap_code_citizenship.getValue()))){fl_err = true; err += "\nГражданство";}
-			if ((CheckNull.isEmpty(acode_country.getValue()))){fl_err = true; err += "\nСтрана";}
-			if ((CheckNull.isEmpty(acode_resident.getValue()))){fl_err = true; err += "\nРезидент";}
-			if ((CheckNull.isEmpty(ap_passport_date_registration.getValue()))){fl_err = true; err += "\nДата регистрации паспорта";}
-			if ((CheckNull.isEmpty(ap_birthday.getValue()))){fl_err = true; err += "\nДата рождения";}
-			if ((!((ap_post_address.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]+")))||(ap_post_address.getValue().length()>95)){fl_err = true; err += "\nПочтовый адрес";}
-			if ((!((ap_birth_place.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]*")))||(ap_birth_place.getValue().length()>200)){fl_err = true; err += "\nМесто рождения";}
+			if ((!((ap_passport_number.getValue()).matches("[a-zA-Z0-9]+")))||(ap_passport_number.getValue().length()>9)){fl_err = true; err += "\nРќРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р°";}
+			if ((!((ap_passport_serial.getValue()).matches("[a-zA-Z0-9]+")))||(ap_passport_serial.getValue().length()>9)){fl_err = true; err += "\nРЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р°";}
+			if ((!((ap_passport_place_registration.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]+")))||(ap_passport_place_registration.getValue().length()>200)){fl_err = true; err += "\nРњРµСЃС‚Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё РїР°СЃРїРѕСЂС‚Р°";}
+			if ((!((ap_family.getValue()).matches("[a-zA-Z0-9]+")))||(ap_family.getValue().length()>34)){fl_err = true; err += "\nР¤Р°РјРёР»РёСЏ";}
+			if ((!((ap_first_name.getValue()).matches("[a-zA-Z0-9]+")))||(ap_first_name.getValue().length()>20)){fl_err = true; err += "\nРРјСЏ";}
+			if ((!((ap_patronymic.getValue()).matches("[a-zA-Z0-9]*")))||(ap_patronymic.getValue().length()>20)){fl_err = true; err += "\nРћС‚С‡РµСЃС‚РІРѕ";}
+			if ((CheckNull.isEmpty(ap_type_document.getValue()))){fl_err = true; err += "\nРўРёРї РґРѕРєСѓРјРµРЅС‚Р°";}
+			if ((!((ap_number_tax_registration.getValue()).matches("[0-9]*")))||(ap_number_tax_registration.getValue().length()>9)){fl_err = true; err += "\nРРќРќ";}
+			if ((CheckNull.isEmpty(ap_code_citizenship.getValue()))){fl_err = true; err += "\nР“СЂР°Р¶РґР°РЅСЃС‚РІРѕ";}
+			if ((CheckNull.isEmpty(acode_country.getValue()))){fl_err = true; err += "\nРЎС‚СЂР°РЅР°";}
+			if ((CheckNull.isEmpty(acode_resident.getValue()))){fl_err = true; err += "\nР РµР·РёРґРµРЅС‚";}
+			if ((CheckNull.isEmpty(ap_passport_date_registration.getValue()))){fl_err = true; err += "\nР”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё РїР°СЃРїРѕСЂС‚Р°";}
+			if ((CheckNull.isEmpty(ap_birthday.getValue()))){fl_err = true; err += "\nР”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ";}
+			if ((!((ap_post_address.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]+")))||(ap_post_address.getValue().length()>95)){fl_err = true; err += "\nРџРѕС‡С‚РѕРІС‹Р№ Р°РґСЂРµСЃ";}
+			if ((!((ap_birth_place.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]*")))||(ap_birth_place.getValue().length()>200)){fl_err = true; err += "\nРњРµСЃС‚Рѕ СЂРѕР¶РґРµРЅРёСЏ";}
 			
 			/*
-			if ((((ap_passport_number.getValue()).matches("[а-яА-Я]+")))||(ap_passport_number.getValue().length()>9)){fl_err = true; err += "\nНомер паспорта";}
-			if ((((ap_passport_serial.getValue()).matches("[а-яА-Я]+")))||(ap_passport_serial.getValue().length()>9)){fl_err = true; err += "\nСерия паспорта";}
-			if ((((ap_passport_place_registration.getValue()).matches("[а-яА-Я]+")))||(ap_passport_place_registration.getValue().length()>200)){fl_err = true; err += "\nМесто регистрации паспорта";}
-			if ((((ap_family.getValue()).matches("[а-яА-Я]+")))||(ap_family.getValue().length()>34)){fl_err = true; err += "\nФамилия";}
-			if ((((ap_first_name.getValue()).matches("[а-яА-Я]+")))||(ap_first_name.getValue().length()>20)){fl_err = true; err += "\nИмя";}
-			if ((((ap_patronymic.getValue()).matches("[а-яА-Я]*")))||(ap_patronymic.getValue().length()>20)){fl_err = true; err += "\nОтчество";}
-			if ((CheckNull.isEmpty(ap_type_document.getValue()))){fl_err = true; err += "\nТип документа";}
-			if ((((ap_number_tax_registration.getValue()).matches("[0-9]*")))||(ap_number_tax_registration.getValue().length()>9)){fl_err = true; err += "\nИНН";}
-			if ((CheckNull.isEmpty(ap_code_citizenship.getValue()))){fl_err = true; err += "\nГражданство";}
-			if ((CheckNull.isEmpty(acode_country.getValue()))){fl_err = true; err += "\nСтрана";}
-			if ((CheckNull.isEmpty(acode_resident.getValue()))){fl_err = true; err += "\nРезидент";}
-			if ((CheckNull.isEmpty(ap_passport_date_registration.getValue()))){fl_err = true; err += "\nДата регистрации паспорта";}
-			if ((CheckNull.isEmpty(ap_birthday.getValue()))){fl_err = true; err += "\nДата рождения";}
-			if ((((ap_post_address.getValue()).matches("[а-яА-Я]+")))||(ap_post_address.getValue().length()>95)){fl_err = true; err += "\nПочтовый адрес";}
-			if ((((ap_birth_place.getValue()).matches("[а-яА-Я]*")))||(ap_birth_place.getValue().length()>200)){fl_err = true; err += "\nМесто рождения";}
+			if ((((ap_passport_number.getValue()).matches("[Р°-СЏРђ-РЇ]+")))||(ap_passport_number.getValue().length()>9)){fl_err = true; err += "\nРќРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р°";}
+			if ((((ap_passport_serial.getValue()).matches("[Р°-СЏРђ-РЇ]+")))||(ap_passport_serial.getValue().length()>9)){fl_err = true; err += "\nРЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р°";}
+			if ((((ap_passport_place_registration.getValue()).matches("[Р°-СЏРђ-РЇ]+")))||(ap_passport_place_registration.getValue().length()>200)){fl_err = true; err += "\nРњРµСЃС‚Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё РїР°СЃРїРѕСЂС‚Р°";}
+			if ((((ap_family.getValue()).matches("[Р°-СЏРђ-РЇ]+")))||(ap_family.getValue().length()>34)){fl_err = true; err += "\nР¤Р°РјРёР»РёСЏ";}
+			if ((((ap_first_name.getValue()).matches("[Р°-СЏРђ-РЇ]+")))||(ap_first_name.getValue().length()>20)){fl_err = true; err += "\nРРјСЏ";}
+			if ((((ap_patronymic.getValue()).matches("[Р°-СЏРђ-РЇ]*")))||(ap_patronymic.getValue().length()>20)){fl_err = true; err += "\nРћС‚С‡РµСЃС‚РІРѕ";}
+			if ((CheckNull.isEmpty(ap_type_document.getValue()))){fl_err = true; err += "\nРўРёРї РґРѕРєСѓРјРµРЅС‚Р°";}
+			if ((((ap_number_tax_registration.getValue()).matches("[0-9]*")))||(ap_number_tax_registration.getValue().length()>9)){fl_err = true; err += "\nРРќРќ";}
+			if ((CheckNull.isEmpty(ap_code_citizenship.getValue()))){fl_err = true; err += "\nР“СЂР°Р¶РґР°РЅСЃС‚РІРѕ";}
+			if ((CheckNull.isEmpty(acode_country.getValue()))){fl_err = true; err += "\nРЎС‚СЂР°РЅР°";}
+			if ((CheckNull.isEmpty(acode_resident.getValue()))){fl_err = true; err += "\nР РµР·РёРґРµРЅС‚";}
+			if ((CheckNull.isEmpty(ap_passport_date_registration.getValue()))){fl_err = true; err += "\nР”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё РїР°СЃРїРѕСЂС‚Р°";}
+			if ((CheckNull.isEmpty(ap_birthday.getValue()))){fl_err = true; err += "\nР”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ";}
+			if ((((ap_post_address.getValue()).matches("[Р°-СЏРђ-РЇ]+")))||(ap_post_address.getValue().length()>95)){fl_err = true; err += "\nРџРѕС‡С‚РѕРІС‹Р№ Р°РґСЂРµСЃ";}
+			if ((((ap_birth_place.getValue()).matches("[Р°-СЏРђ-РЇ]*")))||(ap_birth_place.getValue().length()>200)){fl_err = true; err += "\nРњРµСЃС‚Рѕ СЂРѕР¶РґРµРЅРёСЏ";}
 			*/
 			
-			if (fl_err) {alert("Ошибка заполнения формы:\nневерно заполнено поле "+err); return;}
+			if (fl_err) {alert("РћС€РёР±РєР° Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹:\nРЅРµРІРµСЂРЅРѕ Р·Р°РїРѕР»РЅРµРЅРѕ РїРѕР»Рµ "+err); return;}
 			
 			
 			
@@ -539,13 +539,13 @@ try{
 			}else{
 				Customer lg_c = CustomerService.getCustomerById_tbl(res.getName(), (String)session.getAttribute("branch_filter"), alias);
 				String cl_n = lg_c.getName() + lg_c.getP_birthday();
-				UserService.UsrLog(new UserActionsLog(uid, un, curip, 6, 1, "В филиале ["+(String)session.getAttribute("branch_filter")+"] открыт клиент id ["+res.getName()+"] ["+cl_n+"]", branch1));
+				UserService.UsrLog(new UserActionsLog(uid, un, curip, 6, 1, "Р’ С„РёР»РёР°Р»Рµ ["+(String)session.getAttribute("branch_filter")+"] РѕС‚РєСЂС‹С‚ РєР»РёРµРЅС‚ id ["+res.getName()+"] ["+cl_n+"]", branch1));
 			refreshModel(_startPageNumber);
 			onClick$btn_back();
 			}
 		/*}
 		else{
-			alert("Не заполнены необходимые поля");
+			alert("РќРµ Р·Р°РїРѕР»РЅРµРЅС‹ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РїРѕР»СЏ");
 		}*/
 	}
 

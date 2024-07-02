@@ -99,7 +99,7 @@ public class RoleViewCtrl extends GenericForwardComposer {
                         row.setDroppable("true");
                         Listcell lc = new Listcell(pModule.getName());
                         lc.setSrc(pModule.getIcon());
-                       // lc.setTooltiptext("Жопа");
+                       // lc.setTooltiptext("Р–РѕРїР°");
                         row.appendChild(lc);
             }});
         
@@ -191,11 +191,11 @@ public class RoleViewCtrl extends GenericForwardComposer {
 		
 		if (old_role_name.compareTo(tbText.getValue()) != 0)
 		{
-			UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Роль ["+old_role_name+"] переименована в ["+current.getName()+"]" ,branch));
+			UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Р РѕР»СЊ ["+old_role_name+"] РїРµСЂРµРёРјРµРЅРѕРІР°РЅР° РІ ["+current.getName()+"]" ,branch));
 		}
 		if (old_access != Integer.parseInt( caccess.getSelectedItem().getValue().toString()))
 		{
-			UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Для роли ["+current.getName()+"] доступ изменен с ["+old_role_access_name+"] на ["+caccess.getSelectedItem().getLabel()+"]", branch));
+			UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Р”Р»СЏ СЂРѕР»Рё ["+current.getName()+"] РґРѕСЃС‚СѓРї РёР·РјРµРЅРµРЅ СЃ ["+old_role_access_name+"] РЅР° ["+caccess.getSelectedItem().getLabel()+"]", branch));
 		}
 			
 		old_role_name = current.getName();
@@ -218,7 +218,7 @@ public class RoleViewCtrl extends GenericForwardComposer {
 			}
 		});*/
 		UserService.remove(current,alias);
-		UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Удалена роль ["+current.getName()+"]" ,branch));
+		UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "РЈРґР°Р»РµРЅР° СЂРѕР»СЊ ["+current.getName()+"]" ,branch));
 		refresh();
 	}
 	public void onClick$btn_add(){
@@ -233,7 +233,7 @@ public class RoleViewCtrl extends GenericForwardComposer {
 		current.setDataaccess(Integer.parseInt( addwnd$caccess.getValue()));
 		current = UserService.create(current,alias); 
 		
-		UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Добавлена роль ["+current.getName()+"]" ,branch));
+		UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Р”РѕР±Р°РІР»РµРЅР° СЂРѕР»СЊ ["+current.getName()+"]" ,branch));
 		
 		tbText.setValue(current.getName());
 		caccess.setSelecteditem(Integer.toString(current.getDataaccess()));
@@ -273,7 +273,7 @@ public class RoleViewCtrl extends GenericForwardComposer {
                // System.out.println("Left add role "+current.getId()+ " module "+module.getId());
                 UserService.addModule(current.getId(), module.getId(),alias);
                 
-                UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Роли ["+current.getName()+"] добавлен модуль ["+module.getName()+"]", branch));
+                UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Р РѕР»Рё ["+current.getName()+"] РґРѕР±Р°РІР»РµРЅ РјРѕРґСѓР»СЊ ["+module.getName()+"]", branch));
                 
         		right.setModel((new ListModelList(UserService.getModuleInRole(current.getId(),alias))));
         		left.setModel((new ListModelList(UserService.getModuleNotInRole(current.getId(),alias))));
@@ -286,7 +286,7 @@ public class RoleViewCtrl extends GenericForwardComposer {
                // System.out.println("right remove role "+current.getId()+ " module "+module.getId());
                 UserService.removeModule(current.getId(), module.getId(),alias);
                 
-                UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Из роли ["+current.getName()+"] удален модуль ["+module.getName()+"]", branch));
+                UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "РР· СЂРѕР»Рё ["+current.getName()+"] СѓРґР°Р»РµРЅ РјРѕРґСѓР»СЊ ["+module.getName()+"]", branch));
                 
         		right.setModel((new ListModelList(UserService.getModuleInRole(current.getId(),alias))));
         		left.setModel((new ListModelList(UserService.getModuleNotInRole(current.getId(),alias))));
@@ -319,7 +319,7 @@ public class RoleViewCtrl extends GenericForwardComposer {
                 action.setDeal_id(deal_id);
                 UserService.addAction(current.getId(),currmodule.getId(), action,alias);
                 
-                UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Для роли ["+current.getName()+"], модуля ["+currmodule.getName()+"] добавлено действие ["+action.getName()+"] подгруппы ["+deal_id_desc+"]", branch));
+                UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Р”Р»СЏ СЂРѕР»Рё ["+current.getName()+"], РјРѕРґСѓР»СЏ ["+currmodule.getName()+"] РґРѕР±Р°РІР»РµРЅРѕ РґРµР№СЃС‚РІРёРµ ["+action.getName()+"] РїРѕРґРіСЂСѓРїРїС‹ ["+deal_id_desc+"]", branch));
                 
             	actwnd$right.setModel((new ListModelList(UserService.getActionInRole(current.getId(),currmodule.getId(),alias, deal_id))));
             	actwnd$left.setModel((new ListModelList(UserService.getActionNotInRole(current.getId(),currmodule.getId(),alias, deal_id))));
@@ -332,7 +332,7 @@ public class RoleViewCtrl extends GenericForwardComposer {
                 action.setDeal_id(deal_id);
                // System.out.println("right remove role "+current.getId()+ " module "+module.getId());
                 UserService.removeAction(current.getId(),currmodule.getId(), action,alias);
-                UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Из роли ["+current.getName()+"], модуля ["+currmodule.getName()+"] удалено действие ["+action.getName()+"] подгруппы ["+deal_id_desc+"]", branch));
+                UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "РР· СЂРѕР»Рё ["+current.getName()+"], РјРѕРґСѓР»СЏ ["+currmodule.getName()+"] СѓРґР°Р»РµРЅРѕ РґРµР№СЃС‚РІРёРµ ["+action.getName()+"] РїРѕРґРіСЂСѓРїРїС‹ ["+deal_id_desc+"]", branch));
             	actwnd$right.setModel((new ListModelList(UserService.getActionInRole(current.getId(),currmodule.getId(),alias, deal_id))));
             	actwnd$left.setModel((new ListModelList(UserService.getActionNotInRole(current.getId(),currmodule.getId(),alias, deal_id))));
         }
@@ -350,11 +350,11 @@ public class RoleViewCtrl extends GenericForwardComposer {
 
     public void onClick$bt_add_mod()
     {
-    	if (cur_mod == null){alert("Модуль не выбран"); return;}
+    	if (cur_mod == null){alert("РњРѕРґСѓР»СЊ РЅРµ РІС‹Р±СЂР°РЅ"); return;}
     	
     	UserService.addModule(current.getId(), cur_mod.getId(),alias);
         
-        UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Роли ["+current.getName()+"] добавлен модуль ["+cur_mod.getName()+"]", branch));
+        UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Р РѕР»Рё ["+current.getName()+"] РґРѕР±Р°РІР»РµРЅ РјРѕРґСѓР»СЊ ["+cur_mod.getName()+"]", branch));
         
 		right.setModel((new ListModelList(UserService.getModuleInRole(current.getId(),alias))));
 		left.setModel((new ListModelList(UserService.getModuleNotInRole(current.getId(),alias))));
@@ -362,11 +362,11 @@ public class RoleViewCtrl extends GenericForwardComposer {
 
     public void onClick$bt_rem_mod()
     {
-    	if (cur_mod == null){alert("Модуль не выбран"); return;}
+    	if (cur_mod == null){alert("РњРѕРґСѓР»СЊ РЅРµ РІС‹Р±СЂР°РЅ"); return;}
     	
     	UserService.removeModule(current.getId(), cur_mod.getId(),alias);
         
-        UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Из роли ["+current.getName()+"] удален модуль ["+cur_mod.getName()+"]", branch));
+        UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "РР· СЂРѕР»Рё ["+current.getName()+"] СѓРґР°Р»РµРЅ РјРѕРґСѓР»СЊ ["+cur_mod.getName()+"]", branch));
         
 		right.setModel((new ListModelList(UserService.getModuleInRole(current.getId(),alias))));
 		left.setModel((new ListModelList(UserService.getModuleNotInRole(current.getId(),alias))));
@@ -384,12 +384,12 @@ public class RoleViewCtrl extends GenericForwardComposer {
     
     public void onClick$bt_add_act$actwnd()
     {
-    	if (cur_act == null){alert("Действие не выбрано"); return;}
+    	if (cur_act == null){alert("Р”РµР№СЃС‚РІРёРµ РЅРµ РІС‹Р±СЂР°РЅРѕ"); return;}
     	
     	cur_act.setDeal_id(deal_id);
         UserService.addAction(current.getId(),currmodule.getId(), cur_act,alias);
         
-        UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Для роли ["+current.getName()+"], модуля ["+currmodule.getName()+"] добавлено действие ["+cur_act.getName()+"] подгруппы ["+deal_id_desc+"]", branch));
+        UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Р”Р»СЏ СЂРѕР»Рё ["+current.getName()+"], РјРѕРґСѓР»СЏ ["+currmodule.getName()+"] РґРѕР±Р°РІР»РµРЅРѕ РґРµР№СЃС‚РІРёРµ ["+cur_act.getName()+"] РїРѕРґРіСЂСѓРїРїС‹ ["+deal_id_desc+"]", branch));
         
     	actwnd$right.setModel((new ListModelList(UserService.getActionInRole(current.getId(),currmodule.getId(),alias, deal_id))));
     	actwnd$left.setModel((new ListModelList(UserService.getActionNotInRole(current.getId(),currmodule.getId(),alias, deal_id))));
@@ -397,10 +397,10 @@ public class RoleViewCtrl extends GenericForwardComposer {
 
     public void onClick$bt_rem_act$actwnd()
     {
-    	if (cur_act == null){alert("Действие не выбрано"); return;}
+    	if (cur_act == null){alert("Р”РµР№СЃС‚РІРёРµ РЅРµ РІС‹Р±СЂР°РЅРѕ"); return;}
     	cur_act.setDeal_id(deal_id);
     	UserService.removeAction(current.getId(),currmodule.getId(), cur_act,alias);
-        UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "Из роли ["+current.getName()+"], модуля ["+currmodule.getName()+"] удалено действие ["+cur_act.getName()+"] подгруппы ["+deal_id_desc+"]", branch));
+        UserService.UsrLog(new UserActionsLog(uid, uname, curip, 4, 1, "РР· СЂРѕР»Рё ["+current.getName()+"], РјРѕРґСѓР»СЏ ["+currmodule.getName()+"] СѓРґР°Р»РµРЅРѕ РґРµР№СЃС‚РІРёРµ ["+cur_act.getName()+"] РїРѕРґРіСЂСѓРїРїС‹ ["+deal_id_desc+"]", branch));
     	actwnd$right.setModel((new ListModelList(UserService.getActionInRole(current.getId(),currmodule.getId(),alias, deal_id))));
     	actwnd$left.setModel((new ListModelList(UserService.getActionNotInRole(current.getId(),currmodule.getId(),alias, deal_id))));
     }

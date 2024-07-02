@@ -127,9 +127,9 @@ public class ViewController extends GenericForwardComposer {
                 super.doAfterCompose(comp);
                 /*
                if( Executions.getCurrent().isExplorer()){
-            	   System.out.println("Ишак "+Executions.getCurrent().getUserAgent());
+            	   System.out.println("РС€Р°Рє "+Executions.getCurrent().getUserAgent());
                }else{
-            	   System.out.println("Не Ишак "+Executions.getCurrent().getUserAgent()); 
+            	   System.out.println("РќРµ РС€Р°Рє "+Executions.getCurrent().getUserAgent()); 
                }
                String port = ( Executions.getCurrent().getServerPort() == 80 ) ? "" : (":" + Executions.getCurrent().getServerPort());
                System.out.println( Executions.getCurrent().getScheme() + "://" + Executions.getCurrent().getServerName() + port + Executions.getCurrent().getContextPath() +  Executions.getCurrent().getDesktop().getRequestPath());
@@ -250,7 +250,7 @@ public class ViewController extends GenericForwardComposer {
                             }
                         }    
                         
-                        UserService.UsrLog(new UserActionsLog(currusr.getId(),win$tb_username.getText(),ipAddress,1, 1, "Удачный вход в систему", currusr.getBranch()));
+                        UserService.UsrLog(new UserActionsLog(currusr.getId(),win$tb_username.getText(),ipAddress,1, 1, "РЈРґР°С‡РЅС‹Р№ РІС…РѕРґ РІ СЃРёСЃС‚РµРјСѓ", currusr.getBranch()));
                        // UserService.UsrLog(new UserActionsLog(uid,win$tb_username.getText(),hr.getRemoteAddr(),1));
                         //currusr = UserService.getUser(uid);
                         switchToLoggedInView();
@@ -286,9 +286,9 @@ public class ViewController extends GenericForwardComposer {
                             login_info.setValue(currusr.getFull_name()+" ("+currusr.getBranch()+": "+com.is.utils.RefDataService.getMfo_name(currusr.getBranch(), currusr.getAlias()).get(0).getLabel()+")");
 
                 } else {
-                	UserService.UsrLog(new UserActionsLog(-1,win$tb_username.getText(),hr.getRemoteAddr(),2, 1, "Неверное имя пользователя или пароль"));
-                        alert("Неверное имя или пароль!");
-                        // new TcException("Неверное имя или пароль");
+                	UserService.UsrLog(new UserActionsLog(-1,win$tb_username.getText(),hr.getRemoteAddr(),2, 1, "РќРµРІРµСЂРЅРѕРµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР»Рё РїР°СЂРѕР»СЊ"));
+                        alert("РќРµРІРµСЂРЅРѕРµ РёРјСЏ РёР»Рё РїР°СЂРѕР»СЊ!");
+                        // new TcException("РќРµРІРµСЂРЅРѕРµ РёРјСЏ РёР»Рё РїР°СЂРѕР»СЊ");
 
                 }
       }else{
@@ -382,7 +382,7 @@ public class ViewController extends GenericForwardComposer {
     			m.appendChild(mp);
     			menubar.appendChild(m);
     			
-    			m = new Menu("Модули");
+    			m = new Menu("РњРѕРґСѓР»Рё");
     			mmdl = new Menupopup();
     			mmdl.setId("mmdl");
     			m.appendChild(mmdl);
@@ -576,7 +576,7 @@ public class ViewController extends GenericForwardComposer {
 			m.appendChild(mp);
 			menubar.appendChild(m);
 			
-			m = new Menu("Модули");
+			m = new Menu("РњРѕРґСѓР»Рё");
 			mmdl = new Menupopup();
 			mmdl.setId("mmdl");
 			m.appendChild(mmdl);

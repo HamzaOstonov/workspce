@@ -29,17 +29,17 @@ import static com.programmisty.numerals.Util.*;
  */
 public class Russian extends AbstractNumeral {
 
-    private static final String EDINICHI[] = {"íîëü", "îäèí", "äâà", "òðè", "÷åòûðå",
-        "ïÿòü", "øåñòü", "ñåìü", "âîñåìü", "äåâÿòü"};
-    private static final String DESYAT[] = {"äåñÿòü", "îäèííàäöàòü", "äâåíàäöàòü", "òðèíàäöàòü", "÷åòûðíàäöàòü",
-        "ïÿòíàäöàòü", "øåñòíàäöàòü", "ñåìíàäöàòü", "âîñåìüíàäöàòü", "äåâÿòíàäöàòü"};
-    private static final String DESYATKI[] = {"", "äåñÿòü", "äâàäöàòü", "òðèäöàòü", "ñîðîê", "ïÿòüäåñÿò", "øåñòüäåñÿò",
-        "ñåìüäåñÿò", "âîñåìüäåñÿò", "äåâÿíîñòî"};
-    private static final String SOTNI[] = {"", "ñòî", "äâåñòè", "òðèñòà", "÷åòûðåñòà", "ïÿòüñîò", "øåñòüñîò",
-        "ñåìüñîò", "âîñåìüñîò", "äåâÿòüñîò"};
-    private static final String LIONS[] = {"", "òûñÿ÷à", "ìèëëèîí",
-        "ìèëëèàðä", "òðèëëèîí", "êâàäðèëëèîí", "êâèíòèëëèîí", "ñåêñòèëëèîí", "ñåïòèëëèîí",
-        "îêòèëëèîí", "íîíèëëèîí", "äåöèëëèîí"
+    private static final String EDINICHI[] = {"Ð½Ð¾Ð»ÑŒ", "Ð¾Ð´Ð¸Ð½", "Ð´Ð²Ð°", "Ñ‚Ñ€Ð¸", "Ñ‡ÐµÑ‚Ñ‹Ñ€Ðµ",
+        "Ð¿ÑÑ‚ÑŒ", "ÑˆÐµÑÑ‚ÑŒ", "ÑÐµÐ¼ÑŒ", "Ð²Ð¾ÑÐµÐ¼ÑŒ", "Ð´ÐµÐ²ÑÑ‚ÑŒ"};
+    private static final String DESYAT[] = {"Ð´ÐµÑÑÑ‚ÑŒ", "Ð¾Ð´Ð¸Ð½Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ", "Ð´Ð²ÐµÐ½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ", "Ñ‚Ñ€Ð¸Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ", "Ñ‡ÐµÑ‚Ñ‹Ñ€Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ",
+        "Ð¿ÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ", "ÑˆÐµÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ", "ÑÐµÐ¼Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ", "Ð²Ð¾ÑÐµÐ¼ÑŒÐ½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ", "Ð´ÐµÐ²ÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ"};
+    private static final String DESYATKI[] = {"", "Ð´ÐµÑÑÑ‚ÑŒ", "Ð´Ð²Ð°Ð´Ñ†Ð°Ñ‚ÑŒ", "Ñ‚Ñ€Ð¸Ð´Ñ†Ð°Ñ‚ÑŒ", "ÑÐ¾Ñ€Ð¾Ðº", "Ð¿ÑÑ‚ÑŒÐ´ÐµÑÑÑ‚", "ÑˆÐµÑÑ‚ÑŒÐ´ÐµÑÑÑ‚",
+        "ÑÐµÐ¼ÑŒÐ´ÐµÑÑÑ‚", "Ð²Ð¾ÑÐµÐ¼ÑŒÐ´ÐµÑÑÑ‚", "Ð´ÐµÐ²ÑÐ½Ð¾ÑÑ‚Ð¾"};
+    private static final String SOTNI[] = {"", "ÑÑ‚Ð¾", "Ð´Ð²ÐµÑÑ‚Ð¸", "Ñ‚Ñ€Ð¸ÑÑ‚Ð°", "Ñ‡ÐµÑ‚Ñ‹Ñ€ÐµÑÑ‚Ð°", "Ð¿ÑÑ‚ÑŒÑÐ¾Ñ‚", "ÑˆÐµÑÑ‚ÑŒÑÐ¾Ñ‚",
+        "ÑÐµÐ¼ÑŒÑÐ¾Ñ‚", "Ð²Ð¾ÑÐµÐ¼ÑŒÑÐ¾Ñ‚", "Ð´ÐµÐ²ÑÑ‚ÑŒÑÐ¾Ñ‚"};
+    private static final String LIONS[] = {"", "Ñ‚Ñ‹ÑÑÑ‡Ð°", "Ð¼Ð¸Ð»Ð»Ð¸Ð¾Ð½",
+        "Ð¼Ð¸Ð»Ð»Ð¸Ð°Ñ€Ð´", "Ñ‚Ñ€Ð¸Ð»Ð»Ð¸Ð¾Ð½", "ÐºÐ²Ð°Ð´Ñ€Ð¸Ð»Ð»Ð¸Ð¾Ð½", "ÐºÐ²Ð¸Ð½Ñ‚Ð¸Ð»Ð»Ð¸Ð¾Ð½", "ÑÐµÐºÑÑ‚Ð¸Ð»Ð»Ð¸Ð¾Ð½", "ÑÐµÐ¿Ñ‚Ð¸Ð»Ð»Ð¸Ð¾Ð½",
+        "Ð¾ÐºÑ‚Ð¸Ð»Ð»Ð¸Ð¾Ð½", "Ð½Ð¾Ð½Ð¸Ð»Ð»Ð¸Ð¾Ð½", "Ð´ÐµÑ†Ð¸Ð»Ð»Ð¸Ð¾Ð½"
     };
 
     @Override
@@ -56,7 +56,7 @@ public class Russian extends AbstractNumeral {
         }
         StringBuilder sb = new StringBuilder();
         if (text.startsWith("-")) {
-            sb.append("ìèíóñ ");
+            sb.append("Ð¼Ð¸Ð½ÑƒÑ ");
             text = text.substring(1);
         }
 
@@ -67,20 +67,20 @@ public class Russian extends AbstractNumeral {
             // 1 = 1000, 2 = 1 000 000
             int k = n.length - i - 1;
 
-            int h = n[i][0]; // ñîòíè
-            int t = n[i][1]; // äåñÿòêè
-            int u = n[i][2]; // åäèíèöû
+            int h = n[i][0]; // ÑÐ¾Ñ‚Ð½Ð¸
+            int t = n[i][1]; // Ð´ÐµÑÑÑ‚ÐºÐ¸
+            int u = n[i][2]; // ÐµÐ´Ð¸Ð½Ð¸Ñ†Ñ‹
             if (h == 0 && t == 0 && u == 0) {
-                // ýòèõ âîáùå 
+                // ÑÑ‚Ð¸Ñ… Ð²Ð¾Ð±Ñ‰Ðµ 
                 continue;
             }
-            // åñòü ñîòåííûå...
+            // ÐµÑÑ‚ÑŒ ÑÐ¾Ñ‚ÐµÐ½Ð½Ñ‹Ðµ...
             if (h > 0) {
                 String sotni = SOTNI[h];
                 sb.append(sotni);
                 sb.append(" ");
             }
-            // äåñÿòîê íåò
+            // Ð´ÐµÑÑÑ‚Ð¾Ðº Ð½ÐµÑ‚
             if (t == 0) {
                 // 
                 if (u > 0) {
@@ -88,10 +88,10 @@ public class Russian extends AbstractNumeral {
                     if (k == 1) {
                         switch (u) {
                             case 1:
-                                txt = "îäíà";
+                                txt = "Ð¾Ð´Ð½Ð°";
                                 break;
                             case 2:
-                                txt = "äâå";
+                                txt = "Ð´Ð²Ðµ";
                                 break;
                         }
                     }
@@ -103,7 +103,7 @@ public class Russian extends AbstractNumeral {
                 sb.append(DESYAT[u]);
                 sb.append(" ");
             } else if (t > 1) {
-                // 21 - äâàäöàòü îäèí è áîëüøå
+                // 21 - Ð´Ð²Ð°Ð´Ñ†Ð°Ñ‚ÑŒ Ð¾Ð´Ð¸Ð½ Ð¸ Ð±Ð¾Ð»ÑŒÑˆÐµ
                 sb.append(DESYATKI[t]);
                 if (u > 0) {
                     sb.append(" ");
@@ -111,10 +111,10 @@ public class Russian extends AbstractNumeral {
                     if (k == 1) {
                         switch (u) {
                             case 1:
-                                ed = "îäíà";
+                                ed = "Ð¾Ð´Ð½Ð°";
                                 break;
                             case 2:
-                                ed = "äâå";
+                                ed = "Ð´Ð²Ðµ";
                                 break;
                             default:
                         }
@@ -123,7 +123,7 @@ public class Russian extends AbstractNumeral {
                 }
                 sb.append(" ");
             }
-            // îäíà äâå òðè ÷åòûðå ïÿòü øåñòü ñåìü âîñåìü äåâÿòü äåñÿòü
+            // Ð¾Ð´Ð½Ð° Ð´Ð²Ðµ Ñ‚Ñ€Ð¸ Ñ‡ÐµÑ‚Ñ‹Ñ€Ðµ Ð¿ÑÑ‚ÑŒ ÑˆÐµÑÑ‚ÑŒ ÑÐµÐ¼ÑŒ Ð²Ð¾ÑÐµÐ¼ÑŒ Ð´ÐµÐ²ÑÑ‚ÑŒ Ð´ÐµÑÑÑ‚ÑŒ
             if (k > 0 && (h + t + u > 0)) {
                 if (k == 1) {
                     sb.append(tisyachi(h, t, u));
@@ -159,31 +159,31 @@ public class Russian extends AbstractNumeral {
                 case 2:
                 case 3:
                 case 4:
-                    sb.append("à");
+                    sb.append("Ð°");
                     break;
 
                 default:
-                    sb.append("îâ");
+                    sb.append("Ð¾Ð²");
                     break;
             }
         } else {
-            sb.append("îâ");
+            sb.append("Ð¾Ð²");
         }
         return sb.toString();
     }
 
     static String tisyachi(int h, int t, int u) {
-        String result = "òûñÿ÷";
-        // îò 0 äî 9 èëè h*100
+        String result = "Ñ‚Ñ‹ÑÑÑ‡";
+        // Ð¾Ñ‚ 0 Ð´Ð¾ 9 Ð¸Ð»Ð¸ h*100
         if (t == 0 || t > 1) {
             switch (u) {
                 case 1:
-                    result = "òûñÿ÷à";
+                    result = "Ñ‚Ñ‹ÑÑÑ‡Ð°";
                     break;
                 case 2:
                 case 3:
                 case 4:
-                    result = "òûñÿ÷è";
+                    result = "Ñ‚Ñ‹ÑÑÑ‡Ð¸";
                     break;
             }
         }
@@ -191,7 +191,7 @@ public class Russian extends AbstractNumeral {
     }
 
     /**
-     * Ñóììà ïðîïèñüþ: Ñåìüñîò ñåìüäåñÿò ñåìü ðóáëåé 77 êîïååê
+     * Ð¡ÑƒÐ¼Ð¼Ð° Ð¿Ñ€Ð¾Ð¿Ð¸ÑÑŒÑŽ: Ð¡ÐµÐ¼ÑŒÑÐ¾Ñ‚ ÑÐµÐ¼ÑŒÐ´ÐµÑÑÑ‚ ÑÐµÐ¼ÑŒ Ñ€ÑƒÐ±Ð»ÐµÐ¹ 77 ÐºÐ¾Ð¿ÐµÐµÐº
      * @param bi
      * @return
      */
@@ -235,22 +235,22 @@ public class Russian extends AbstractNumeral {
     }
 
     private static String kopeyki(int k) {
-        String result = "êîïååê";
+        String result = "ÐºÐ¾Ð¿ÐµÐµÐº";
         if (k > 10 && k < 20) {
-            result = "êîïååê";
+            result = "ÐºÐ¾Ð¿ÐµÐµÐº";
         } else {
             int last = k % 10;
             switch (last) {
                 case 1:
-                    result = "êîïåéêà";
+                    result = "ÐºÐ¾Ð¿ÐµÐ¹ÐºÐ°";
                     break;
                 case 2:
                 case 3:
                 case 4:
-                    result = "êîïåéêè";
+                    result = "ÐºÐ¾Ð¿ÐµÐ¹ÐºÐ¸";
                     break;
                 default:
-                    result = "êîïååê";
+                    result = "ÐºÐ¾Ð¿ÐµÐµÐº";
             }
         }
         return result;
@@ -258,23 +258,23 @@ public class Russian extends AbstractNumeral {
 
     private static String rubley(BigDecimal amount) {
         BigInteger r = amount.setScale(0, RoundingMode.DOWN).toBigInteger();
-        String result = "ðóáëåé";
+        String result = "Ñ€ÑƒÐ±Ð»ÐµÐ¹";
         r = r.remainder(BigInteger.valueOf(100));
         if (r.compareTo(BigInteger.TEN) > 0 && r.compareTo(BigInteger.valueOf(20)) < 0) {
-            result = "ðóáëåé";
+            result = "Ñ€ÑƒÐ±Ð»ÐµÐ¹";
         } else {
             int last = r.remainder(BigInteger.TEN).intValue();
             switch (last) {
                 case 1:
-                    result = "ðóáëü";
+                    result = "Ñ€ÑƒÐ±Ð»ÑŒ";
                     break;
                 case 2:
                 case 3:
                 case 4:
-                    result = "ðóáëÿ";
+                    result = "Ñ€ÑƒÐ±Ð»Ñ";
                     break;
                 default:
-                    result = "ðóáëåé";
+                    result = "Ñ€ÑƒÐ±Ð»ÐµÐ¹";
             }
         }
         return result;

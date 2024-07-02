@@ -425,7 +425,7 @@ public void onDrop$right$rlwnd(DropEvent e){
             		curip, 
             		3, 
             		1, 
-            		"Добавлена роль "+role.getName()+" пользователю "+current.getUser_name().toUpperCase()+" филиала "+current.getBranch(),
+            		"Р”РѕР±Р°РІР»РµРЅР° СЂРѕР»СЊ "+role.getName()+" РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ "+current.getUser_name().toUpperCase()+" С„РёР»РёР°Р»Р° "+current.getBranch(),
             		branch1));
         	
             rlwnd$right.setModel((new ListModelList(UserService.getUserInRole(current.getId(), current.getBranch(),alias))));
@@ -438,7 +438,7 @@ public void onDrop$left$rlwnd(DropEvent e){
             Role role= (Role) li.getValue();
             UserService.removeRole(current.getId(), role.getId(), current.getBranch(),alias);
 
-            UserService.UsrLog(new UserActionsLog(uid, uname, curip, 3, 1, "Удалена роль "+role.getName()+" пользователя "+current.getUser_name()+" филиала "+current.getBranch() ,branch1));
+            UserService.UsrLog(new UserActionsLog(uid, uname, curip, 3, 1, "РЈРґР°Р»РµРЅР° СЂРѕР»СЊ "+role.getName()+" РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ "+current.getUser_name()+" С„РёР»РёР°Р»Р° "+current.getBranch() ,branch1));
             
         	rlwnd$right.setModel((new ListModelList(UserService.getUserInRole(current.getId(), current.getBranch(),alias))));
         	rlwnd$left.setModel((new ListModelList(UserService.getUserNotInRole(current.getId(), current.getBranch(),alias))));
@@ -478,10 +478,10 @@ public void onSelect$left$rlwnd()
 
 public void onClick$bt_add_role$rlwnd()
 {
-	if (cur_role_id == null){alert("Роль не выбрана"); return;}
+	if (cur_role_id == null){alert("Р РѕР»СЊ РЅРµ РІС‹Р±СЂР°РЅР°"); return;}
 	UserService.addRole(current.getId(), cur_role_id.getId(), current.getBranch(),alias);
     
-    UserService.UsrLog(new UserActionsLog(uid, uname, curip, 3, 1, "Добавлена роль "+cur_role_id.getName()+" пользователю "+current.getUser_name().toUpperCase()+" филиала "+current.getBranch() ,branch1));
+    UserService.UsrLog(new UserActionsLog(uid, uname, curip, 3, 1, "Р”РѕР±Р°РІР»РµРЅР° СЂРѕР»СЊ "+cur_role_id.getName()+" РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ "+current.getUser_name().toUpperCase()+" С„РёР»РёР°Р»Р° "+current.getBranch() ,branch1));
 	
     rlwnd$right.setModel((new ListModelList(UserService.getUserInRole(current.getId(), current.getBranch(),alias))));
 	rlwnd$left.setModel((new ListModelList(UserService.getUserNotInRole(current.getId(), current.getBranch(),alias))));
@@ -493,10 +493,10 @@ public void onClick$bt_add_role$rlwnd()
 
 public void onClick$bt_rem_role$rlwnd()
 {
-	if (cur_role_id == null){alert("Роль не выбрана"); return;}
+	if (cur_role_id == null){alert("Р РѕР»СЊ РЅРµ РІС‹Р±СЂР°РЅР°"); return;}
 	UserService.removeRole(current.getId(), cur_role_id.getId(), current.getBranch(),alias);
 
-    UserService.UsrLog(new UserActionsLog(uid, uname, curip, 3, 1, "Удалена роль "+cur_role_id.getName()+" пользователя "+current.getUser_name()+" филиала "+current.getBranch() ,branch1));
+    UserService.UsrLog(new UserActionsLog(uid, uname, curip, 3, 1, "РЈРґР°Р»РµРЅР° СЂРѕР»СЊ "+cur_role_id.getName()+" РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ "+current.getUser_name()+" С„РёР»РёР°Р»Р° "+current.getBranch() ,branch1));
     
 	rlwnd$right.setModel((new ListModelList(UserService.getUserInRole(current.getId(), current.getBranch(),alias))));
 	rlwnd$left.setModel((new ListModelList(UserService.getUserNotInRole(current.getId(), current.getBranch(),alias))));
@@ -508,7 +508,7 @@ public void onClick$bt_rem_role$rlwnd()
 public void onClick$save_trans()
 {
 	UserService.save_name_transleat(current.getId(), current.getBranch(), trans_name.getValue(), alias);
-	alert("Сохранено");
+	alert("РЎРѕС…СЂР°РЅРµРЅРѕ");
 }
 
 }

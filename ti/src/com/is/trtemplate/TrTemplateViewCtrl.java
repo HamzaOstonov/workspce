@@ -119,7 +119,7 @@ public void doAfterCompose(Component comp) throws Exception {
                 Listcell lc = new Listcell();
                 
                 bt = new Toolbarbutton();
-                bt.setLabel("удалить");
+                bt.setLabel("СѓРґР°Р»РёС‚СЊ");
             	bt.setImage("/images/delete.png");
             	bt.setAttribute("template_id", pTrTemplate.getId());
             	bt.addEventListener(Events.ON_CLICK, new EventListener() {
@@ -471,16 +471,16 @@ public void onClick$save_tieto_sum()
 {
 	if(Double.parseDouble(tieto_sum.getValue()) > 100)
 	{
-		alert ("Нельзя положить на карточку больше денег чем у Вас есть.\n\n" +
-				"Задайте процент меньше и равный 100.");
+		alert ("РќРµР»СЊР·СЏ РїРѕР»РѕР¶РёС‚СЊ РЅР° РєР°СЂС‚РѕС‡РєСѓ Р±РѕР»СЊС€Рµ РґРµРЅРµРі С‡РµРј Сѓ Р’Р°СЃ РµСЃС‚СЊ.\n\n" +
+				"Р—Р°РґР°Р№С‚Рµ РїСЂРѕС†РµРЅС‚ РјРµРЅСЊС€Рµ Рё СЂР°РІРЅС‹Р№ 100.");
 		return;
 	}
 	
 	if(Double.parseDouble(tieto_sum.getValue()) <= 0)
 	{
-		alert ("Нельзя положить на карточку меньше 0 или ничего!\n\n" +
-				"Для этого есть списание.\n\n" +
-				"Задайте процент больше 0.");
+		alert ("РќРµР»СЊР·СЏ РїРѕР»РѕР¶РёС‚СЊ РЅР° РєР°СЂС‚РѕС‡РєСѓ РјРµРЅСЊС€Рµ 0 РёР»Рё РЅРёС‡РµРіРѕ!\n\n" +
+				"Р”Р»СЏ СЌС‚РѕРіРѕ РµСЃС‚СЊ СЃРїРёСЃР°РЅРёРµ.\n\n" +
+				"Р—Р°РґР°Р№С‚Рµ РїСЂРѕС†РµРЅС‚ Р±РѕР»СЊС€Рµ 0.");
 		return;
 	}
 	
@@ -489,7 +489,7 @@ public void onClick$save_tieto_sum()
 			Double.parseDouble(tieto_sum.getValue()),
 			Integer.parseInt(card_rounding_type.getValue())), alias);	
 	
-	alert("Изменения сохранены.");
+	alert("РР·РјРµРЅРµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅС‹.");
 }
 
 }

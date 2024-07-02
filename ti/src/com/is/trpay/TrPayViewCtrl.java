@@ -227,7 +227,7 @@ public class TrPayViewCtrl extends GenericForwardComposer {
 		 * toolbar_filter.appendChild(fbt); }
 		 */
 		fbt = new Toolbarbutton();
-		fbt.setLabel("Очистить фильтр");
+		fbt.setLabel("РћС‡РёСЃС‚РёС‚СЊ С„РёР»СЊС‚СЂ");
 		fbt.setImage("/images/filter(delete).png");
 		fbt.setLeft("100px");
 		fbt.addEventListener(Events.ON_CLICK, new EventListener() {
@@ -298,10 +298,10 @@ public class TrPayViewCtrl extends GenericForwardComposer {
 											.getTarget().getAttribute("actid"),
 									alias)) {
 								try {
-									Messagebox.show("Выполнить действие '"
+									Messagebox.show("Р’С‹РїРѕР»РЅРёС‚СЊ РґРµР№СЃС‚РІРёРµ '"
 											+ (String) event.getTarget()
 													.getAttribute("act_name")
-											+ "'?", "Подтверждение",
+											+ "'?", "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ",
 											Messagebox.YES | Messagebox.NO,
 											Messagebox.QUESTION,
 											new EventListener() {
@@ -360,7 +360,7 @@ public class TrPayViewCtrl extends GenericForwardComposer {
 				}
 
 				bt_doc = new Toolbarbutton();
-				bt_doc.setLabel("мемориальные ордера");
+				bt_doc.setLabel("РјРµРјРѕСЂРёР°Р»СЊРЅС‹Рµ РѕСЂРґРµСЂР°");
 				bt_doc.setImage("images/add-printer.png");
 				bt_doc.setAttribute("pTrPay", pTrPay);
 
@@ -541,10 +541,10 @@ public class TrPayViewCtrl extends GenericForwardComposer {
 
 			String oper_desc = TrPayService.getOperation_desc(
 					cur_cont.operation_id, alias);
-			String log = "Операция [" + oper_desc + "] id [" + trpay1.getId()
-					+ "] действие [" + cur_cont.action_desc + "] подгруппы ["
+			String log = "РћРїРµСЂР°С†РёСЏ [" + oper_desc + "] id [" + trpay1.getId()
+					+ "] РґРµР№СЃС‚РІРёРµ [" + cur_cont.action_desc + "] РїРѕРґРіСЂСѓРїРїС‹ ["
 					+ TrPayService.getDeal_desc(trpay1.getDeal_id(), alias)
-					+ "] No карты [" + trpay1.getPan() + "] счет карты ["
+					+ "] No РєР°СЂС‚С‹ [" + trpay1.getPan() + "] СЃС‡РµС‚ РєР°СЂС‚С‹ ["
 					+ trpay1.getCard_acc() + "]";
 
 			UserService.UsrLog(new UserActionsLog(uid, uname, curip, 5, 1, log,
@@ -789,7 +789,7 @@ public class TrPayViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_print_selected() {
 		if (to_print_mem.size() < 1) {
-			alert("Ничего не выбрано");
+			alert("РќРёС‡РµРіРѕ РЅРµ РІС‹Р±СЂР°РЅРѕ");
 			return;
 		}
 		List<Long> res = new ArrayList();
