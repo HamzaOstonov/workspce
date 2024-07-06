@@ -38,72 +38,72 @@ public class CustomerUtils {
 
     static
     {
-    	charTable['¿'] = "A".toCharArray();   
-    	charTable['¡'] = "B".toCharArray();   
-    	charTable['¬'] = "V".toCharArray();   
-    	charTable['√'] = "G".toCharArray();   
-    	charTable['ƒ'] = "D".toCharArray();   
-    	charTable['≈'] = "E".toCharArray();   
-    	charTable['®'] = "E".toCharArray();   
-    	charTable['∆'] = "J".toCharArray();   
-    	charTable['«'] = "Z".toCharArray();   
-    	charTable['»'] = "I".toCharArray();   
-    	charTable['…'] = "Y".toCharArray();   
-    	charTable[' '] = "K".toCharArray();   
-    	charTable['À'] = "L".toCharArray();   
-    	charTable['Ã'] = "M".toCharArray();   
-    	charTable['Õ'] = "N".toCharArray();   
-    	charTable['Œ'] = "O".toCharArray();   
-    	charTable['œ'] = "P".toCharArray();   
-    	charTable['–'] = "R".toCharArray();   
-    	charTable['—'] = "S".toCharArray();   
-    	charTable['“'] = "T".toCharArray();   
-    	charTable['”'] = "U".toCharArray();   
-    	charTable['‘'] = "F".toCharArray();   
-    	charTable['’'] = "X".toCharArray();   
-    	charTable['÷'] ="TS".toCharArray();   
-    	charTable['◊'] ="CH".toCharArray();   
-    	charTable['ÿ'] ="SH".toCharArray();   
-    	charTable['Ÿ'] ="SH".toCharArray();   
-    	charTable['⁄'] = "'".toCharArray();   
-    	charTable['€'] = "Y".toCharArray();   
-    	charTable['⁄'] = "'".toCharArray();   
-    	charTable['›'] = "E".toCharArray();   
-    	charTable['ﬁ'] ="YU".toCharArray();   
-    	charTable['ﬂ'] ="YA".toCharArray();   
-    	charTable['‡'] = "a".toCharArray();   
-    	charTable['·'] = "b".toCharArray();   
-    	charTable['‚'] = "v".toCharArray();   
-    	charTable['„'] = "g".toCharArray();   
-    	charTable['‰'] = "d".toCharArray();   
-    	charTable['Â'] = "e".toCharArray();   
-    	charTable['∏'] = "e".toCharArray();   
-    	charTable['Ê'] = "j".toCharArray();   
-    	charTable['Á'] = "z".toCharArray();   
-    	charTable['Ë'] = "i".toCharArray();   
-    	charTable['È'] = "y".toCharArray();   
-    	charTable['Í'] = "k".toCharArray();   
-    	charTable['Î'] = "l".toCharArray();   
-    	charTable['Ï'] = "m".toCharArray();   
-    	charTable['Ì'] = "n".toCharArray();   
-    	charTable['Ó'] = "o".toCharArray();   
-    	charTable['Ô'] = "p".toCharArray();   
-    	charTable[''] = "r".toCharArray();   
-    	charTable['Ò'] = "s".toCharArray();   
-    	charTable['Ú'] = "t".toCharArray();   
-    	charTable['Û'] = "u".toCharArray();   
-    	charTable['Ù'] = "f".toCharArray();   
-    	charTable['ı'] = "x".toCharArray();   
-    	charTable['ˆ'] ="ts".toCharArray();   
-    	charTable['˜'] ="ch".toCharArray();   
-    	charTable['¯'] ="sh".toCharArray();   
-    	charTable['˘'] ="sh".toCharArray();   
-    	charTable['˙'] = "'".toCharArray();   
-    	charTable['˚'] = "y".toCharArray();   
-    	charTable['˙'] = "'".toCharArray();   
-    	charTable['˝'] = "e".toCharArray();   
-    	charTable['˛'] ="yu".toCharArray();   
-    	charTable['ˇ'] ="ya".toCharArray();   
+    	charTable['–ê'] = "A".toCharArray();   
+    	charTable['–ë'] = "B".toCharArray();   
+    	charTable['–í'] = "V".toCharArray();   
+    	charTable['–ì'] = "G".toCharArray();   
+    	charTable['–î'] = "D".toCharArray();   
+    	charTable['–ï'] = "E".toCharArray();   
+    	charTable['–Å'] = "E".toCharArray();   
+    	charTable['–ñ'] = "J".toCharArray();   
+    	charTable['–ó'] = "Z".toCharArray();   
+    	charTable['–ò'] = "I".toCharArray();   
+    	charTable['–ô'] = "Y".toCharArray();   
+    	charTable['–ö'] = "K".toCharArray();   
+    	charTable['–õ'] = "L".toCharArray();   
+    	charTable['–ú'] = "M".toCharArray();   
+    	charTable['–ù'] = "N".toCharArray();   
+    	charTable['–û'] = "O".toCharArray();   
+    	charTable['–ü'] = "P".toCharArray();   
+    	charTable['–†'] = "R".toCharArray();   
+    	charTable['–°'] = "S".toCharArray();   
+    	charTable['–¢'] = "T".toCharArray();   
+    	charTable['–£'] = "U".toCharArray();   
+    	charTable['–§'] = "F".toCharArray();   
+    	charTable['–•'] = "X".toCharArray();   
+    	charTable['–¶'] ="TS".toCharArray();   
+    	charTable['–ß'] ="CH".toCharArray();   
+    	charTable['–®'] ="SH".toCharArray();   
+    	charTable['–©'] ="SH".toCharArray();   
+    	charTable['–™'] = "'".toCharArray();   
+    	charTable['–´'] = "Y".toCharArray();   
+    	charTable['–™'] = "'".toCharArray();   
+    	charTable['–≠'] = "E".toCharArray();   
+    	charTable['–Æ'] ="YU".toCharArray();   
+    	charTable['–Ø'] ="YA".toCharArray();   
+    	charTable['–∞'] = "a".toCharArray();   
+    	charTable['–±'] = "b".toCharArray();   
+    	charTable['–≤'] = "v".toCharArray();   
+    	charTable['–≥'] = "g".toCharArray();   
+    	charTable['–¥'] = "d".toCharArray();   
+    	charTable['–µ'] = "e".toCharArray();   
+    	charTable['—ë'] = "e".toCharArray();   
+    	charTable['–∂'] = "j".toCharArray();   
+    	charTable['–∑'] = "z".toCharArray();   
+    	charTable['–∏'] = "i".toCharArray();   
+    	charTable['–π'] = "y".toCharArray();   
+    	charTable['–∫'] = "k".toCharArray();   
+    	charTable['–ª'] = "l".toCharArray();   
+    	charTable['–º'] = "m".toCharArray();   
+    	charTable['–Ω'] = "n".toCharArray();   
+    	charTable['–æ'] = "o".toCharArray();   
+    	charTable['–ø'] = "p".toCharArray();   
+    	charTable['—Ä'] = "r".toCharArray();   
+    	charTable['—Å'] = "s".toCharArray();   
+    	charTable['—Ç'] = "t".toCharArray();   
+    	charTable['—É'] = "u".toCharArray();   
+    	charTable['—Ñ'] = "f".toCharArray();   
+    	charTable['—Ö'] = "x".toCharArray();   
+    	charTable['—Ü'] ="ts".toCharArray();   
+    	charTable['—á'] ="ch".toCharArray();   
+    	charTable['—à'] ="sh".toCharArray();   
+    	charTable['—â'] ="sh".toCharArray();   
+    	charTable['—ä'] = "'".toCharArray();   
+    	charTable['—ã'] = "y".toCharArray();   
+    	charTable['—ä'] = "'".toCharArray();   
+    	charTable['—ç'] = "e".toCharArray();   
+    	charTable['—é'] ="yu".toCharArray();   
+    	charTable['—è'] ="ya".toCharArray();   
 
         //for (int i = 0; i < charTable.length; i++)
         //{
@@ -446,6 +446,15 @@ public class CustomerUtils {
     }
     
     public static void closePStatement(PreparedStatement statement) {
+        try {
+            if (statement != null)
+                statement.close();
+        } catch (SQLException e) {
+            LtLogger.getLogger().error(CheckNull.getPstr(e));
+        }
+    }
+    
+    public static void closeCStatement(CallableStatement statement) {
         try {
             if (statement != null)
                 statement.close();

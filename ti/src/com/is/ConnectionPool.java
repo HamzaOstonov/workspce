@@ -76,6 +76,7 @@ public class ConnectionPool implements Serializable{
 } catch (Exception e) {
        // LtLogger.getLogger().error(CheckNull.getPstr(e)) ;
         LtLogger.getLogger().error(CheckNull.getPstr(e));
+        LtLogger.getLogger().error("Login="+login);
        // e.printStackTrace();
        // throw new RuntimeException("Database Not Available.") ;
 }

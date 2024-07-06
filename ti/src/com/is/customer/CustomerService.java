@@ -52,18 +52,20 @@ public class CustomerService {
 			String alias) {
 		link res = null;
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
 		try {
 			c = ConnectionPool.getConnection(alias);
 			// Statement s = c.createStatement();
 			// ResultSet rs = s.executeQuery("SELECT * FROM v_client");
-			PreparedStatement ps = c
+			ps = c
 					.prepareStatement("select t.id id, t.branch branch, t.bank_customer_id bank_id, t.tieto_customer_id tieto_id, t.head_customer_id head_id, t.cur_acc cur_acc from bf_tieto_customers t where t.tieto_customer_id=? and t.branch=?");
 
 			ps.setString(1, Tieto_id);
 			ps.setString(2, Branch);
 
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				res = new link(rs.getInt("id"), rs.getString("branch"),
 						rs.getString("tieto_id"), rs.getString("head_id"),
@@ -74,6 +76,8 @@ public class CustomerService {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
 			ConnectionPool.close(c);
 		}
 		return res;
@@ -82,16 +86,17 @@ public class CustomerService {
 	public static Res getTieto_branch(String branch, int userId, String alias) {
 		Res res = new Res();
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
 		try {
 			c = ConnectionPool.getConnection(alias);
-			PreparedStatement ps = c
-					.prepareStatement("select BF.GET_TIETO_BRANCH(?,?) res from dual");
+			ps = c.prepareStatement("select BF.GET_TIETO_BRANCH(?,?) res from dual");
 
 			ps.setString(1, branch);
 			ps.setInt(2, userId);
 
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				res.setCode(0);
 				res.setName(rs.getString("res"));
@@ -103,6 +108,9 @@ public class CustomerService {
 			res.setCode(-1);
 			res.setName(e.getMessage());
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
+
 			ConnectionPool.close(c);
 		}
 		return res;
@@ -111,18 +119,20 @@ public class CustomerService {
 	public static link get_link_ho(String Client_id, String Branch, String alias) {
 		link res = null;
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
 		try {
 			c = ConnectionPool.getConnection(alias);
 			// Statement s = c.createStatement();
 			// ResultSet rs = s.executeQuery("SELECT * FROM v_client");
-			PreparedStatement ps = c
+			ps = c
 					.prepareStatement("select t.id id, t.branch branch, t.bank_customer_id bank_id, t.tieto_customer_id tieto_id, t.head_customer_id head_id, t.cur_acc cur_acc from bf_tieto_customers t where t.head_customer_id=? and t.branch=?");
 
 			ps.setString(1, Client_id);
 			ps.setString(2, Branch);
 
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				res = new link(rs.getInt("id"), rs.getString("branch"),
 						rs.getString("tieto_id"), rs.getString("head_id"),
@@ -133,6 +143,9 @@ public class CustomerService {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
+
 			ConnectionPool.close(c);
 		}
 		return res;
@@ -142,18 +155,19 @@ public class CustomerService {
 			String alias) {
 		link res = null;
 		Connection c = null;
-
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 		try {
 			c = ConnectionPool.getConnection(alias);
 			// Statement s = c.createStatement();
 			// ResultSet rs = s.executeQuery("SELECT * FROM v_client");
-			PreparedStatement ps = c
+			ps = c
 					.prepareStatement("select t.id id, t.branch branch, t.bank_customer_id bank_id, t.tieto_customer_id tieto_id, t.head_customer_id head_id, t.cur_acc cur_acc from bf_tieto_customers t where t.bank_customer_id=? and t.branch=?");
 
 			ps.setString(1, Client_id);
 			ps.setString(2, Branch);
 
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				res = new link(rs.getInt("id"), rs.getString("branch"),
 						rs.getString("tieto_id"), rs.getString("head_id"),
@@ -164,6 +178,9 @@ public class CustomerService {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
+
 			ConnectionPool.close(c);
 		}
 		return res;
@@ -172,17 +189,19 @@ public class CustomerService {
 	public static link get_link_tieto(String Tieto_id, String alias) {
 		link res = null;
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
 		try {
 			c = ConnectionPool.getConnection(alias);
 			// Statement s = c.createStatement();
 			// ResultSet rs = s.executeQuery("SELECT * FROM v_client");
-			PreparedStatement ps = c
+			ps = c
 					.prepareStatement("select t.id id, t.branch branch, t.bank_customer_id bank_id, t.tieto_customer_id tieto_id, t.head_customer_id head_id, t.cur_acc cur_acc from bf_tieto_customers t where t.tieto_customer_id=?");
 
 			ps.setString(1, Tieto_id);
 
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				res = new link(rs.getInt("id"), rs.getString("branch"),
 						rs.getString("tieto_id"), rs.getString("head_id"),
@@ -193,6 +212,9 @@ public class CustomerService {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
+
 			ConnectionPool.close(c);
 		}
 		return res;
@@ -200,16 +222,18 @@ public class CustomerService {
 
 	public static String get_alias_ho(String alias) {
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
+
 		String res = "";
 
 		try {
 			c = ConnectionPool.getConnection(alias);
 			// Statement s = c.createStatement();
 			// ResultSet rs = s.executeQuery("SELECT * FROM v_client");
-			PreparedStatement ps = c
-					.prepareStatement("select user_name from ss_dblink_branch t where t.branch = (select bs.VALUE from bf_sets bs where bs.id = 'HO')");
+			ps = c.prepareStatement("select user_name from ss_dblink_branch t where t.branch = (select bs.VALUE from bf_sets bs where bs.id = 'HO')");
 
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			rs.next();
 			res = rs.getString("user_name");
 
@@ -217,6 +241,8 @@ public class CustomerService {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
 			ConnectionPool.close(c);
 		}
 		return res;
@@ -226,15 +252,16 @@ public class CustomerService {
 
 		List<Customer> list = new ArrayList<Customer>();
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
 		try {
 			c = ConnectionPool.getConnection(alias);
 			// Statement s = c.createStatement();
 			// ResultSet rs = s.executeQuery("SELECT * FROM v_client");
-			PreparedStatement ps = c
-					.prepareStatement("SELECT * FROM v_bfcustomer where p_passport_number=?");
+			ps = c.prepareStatement("SELECT * FROM v_bfcustomer where p_passport_number=?");
 			ps.setString(1, pn);
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				list.add(new Customer(rs.getLong("id"), rs.getString("branch"),
 						rs.getString("id_client"), rs.getString("name"), rs
@@ -283,6 +310,9 @@ public class CustomerService {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
 		} finally {
+
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
 			ConnectionPool.close(c);
 		}
 		return list;
@@ -300,6 +330,9 @@ public class CustomerService {
 		CallableStatement cs = null;
 		CallableStatement acs = null;
 		CallableStatement ccs = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
+
 
 		try {
 
@@ -512,10 +545,10 @@ public class CustomerService {
 				// ccs.execute();
 				// String id = ccs.getString(1);
 
-				PreparedStatement ps = c
+				ps = c
 						.prepareStatement("select t.id_client from v_bfcustomer t where t.id = ?");
 				ps.setString(1, id);
-				ResultSet rs = ps.executeQuery();
+				rs = ps.executeQuery();
 
 				rs.next();
 				String cl_id = rs.getString("id_client");
@@ -549,6 +582,14 @@ public class CustomerService {
 			}
 			res = new Res(-1, e.getMessage());
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
+			CustomerUtils.closeCStatement(acs);
+			CustomerUtils.closeCStatement(ccs);
+			CustomerUtils.closeCStatement(cs);
+			CustomerUtils.closeCStatement(getp);
+			CustomerUtils.closeCStatement(inf);
+
 			ConnectionPool.close(c);
 		}
 		return res;
@@ -771,6 +812,10 @@ public class CustomerService {
 			}
 			res = new Res(-1, e.getMessage());
 		} finally {
+			
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
+
 			ConnectionPool.close(c);
 		}
 		return res;

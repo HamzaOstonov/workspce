@@ -6,6 +6,7 @@ import java.sql.*;
 
 import com.is.ConnectionPool;
 import com.is.LtLogger;
+import com.is.customer.CustomerUtils;
 import com.is.utils.CheckNull;
 import com.is.utils.FilterField;
 
@@ -34,10 +35,11 @@ public class UserService {
     public static void fill_transleat_names(String alias) throws Exception
     {
     	Connection c = null;
+    	PreparedStatement ps=null;
     	try
     	{
     		c = ConnectionPool.getConnection(alias);
-    		PreparedStatement ps = c.prepareStatement(
+    		ps = c.prepareStatement(
     				"insert into bf_users_fullname_transleat " +
     				"(user_id, branch, user_name_trans) " +
     				"select u.id, u.branch, null " +
@@ -49,11 +51,13 @@ public class UserService {
     	}
     	catch(Exception e)
     	{
+    		CustomerUtils.closePStatement(ps);
     		if(c!=null)c.rollback();
     		throw e;
     	}
     	finally
     	{
+        	CustomerUtils.closePStatement(ps);
     		if(c!=null)c.close();
     	}
     }
@@ -62,11 +66,13 @@ public class UserService {
 
             List<User> list = new ArrayList<User>();
             Connection c = null;
+            Statement s =null;
+            ResultSet rs = null;
 
             try {
                     c = ConnectionPool.getConnection(branch);
-                    Statement s = c.createStatement();
-                    ResultSet rs = s.executeQuery("SELECT * FROM v_bf_bank_users");
+                    s = c.createStatement();
+                    rs = s.executeQuery("SELECT * FROM v_bf_bank_users");
                     while (rs.next()) {
                             list.add(new User(
                                     rs.getInt("id"),
@@ -82,6 +88,9 @@ public class UserService {
             } catch (SQLException e) {
                     LtLogger.getLogger().error(CheckNull.getPstr(e));
             } finally {
+            	CustomerUtils.closeResultSet(rs);
+            	CustomerUtils.closeStatement(s);
+
                     ConnectionPool.close(c);
             }
             return list;
@@ -137,6 +146,8 @@ public class UserService {
     public static int getCount(UserFilter filter,String branch)  {
 
         Connection c = null;
+        PreparedStatement ps = null;
+        ResultSet rs =null;
         int n = 0;
         List<FilterField> flFields =getFilterFields(filter);
         StringBuffer sql = new StringBuffer();
@@ -149,12 +160,12 @@ public class UserService {
         }
         try {
                 c = ConnectionPool.getConnection(branch);
-                PreparedStatement ps = c.prepareStatement(sql.toString());
+                ps = c.prepareStatement(sql.toString());
 
                     for(int k=0;k<flFields.size();k++){
                     ps.setObject(k+1, flFields.get(k).getColobject());
                     }
-                    ResultSet rs = ps.executeQuery();
+                    rs = ps.executeQuery();
 
                 if (rs.next()) {
                     n = rs.getInt(1);
@@ -163,6 +174,9 @@ public class UserService {
                 LtLogger.getLogger().error(CheckNull.getPstr(e));
 
         } finally {
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+
                 ConnectionPool.close(c);
         }
         return n;
@@ -175,6 +189,8 @@ public class UserService {
 
             List<User> list = new ArrayList<User>();
             Connection c = null;
+            PreparedStatement ps = null;
+            ResultSet rs=null;
             int v_lowerbound = pageIndex + 1;
             int v_upperbound = v_lowerbound + pageSize - 1;
             int params;
@@ -194,7 +210,7 @@ public class UserService {
 
             try {
                     c = ConnectionPool.getConnection(branch);
-                    PreparedStatement ps = c.prepareStatement(sql.toString());
+                    ps = c.prepareStatement(sql.toString());
                     for(params=0;params<flFields.size();params++){
                     ps.setObject(params+1, flFields.get(params).getColobject());
                     }
@@ -202,7 +218,7 @@ public class UserService {
                     ps.setInt(params++,v_upperbound);
                     ps.setInt(params++,v_lowerbound);
 
-                    ResultSet rs = ps.executeQuery();
+                    rs = ps.executeQuery();
                     while (rs.next()) {
                             list.add(new User(
                                     rs.getInt("id"),
@@ -220,6 +236,9 @@ public class UserService {
                     LtLogger.getLogger().error(CheckNull.getPstr(e));
 
             } finally {
+            	CustomerUtils.closeResultSet(rs);
+            	CustomerUtils.closePStatement(ps);
+
                     ConnectionPool.close(c);
             }
             return list;
@@ -229,17 +248,20 @@ public class UserService {
     public static void save_name_transleat(int user_id, String branch, String name, String alias)
     {
     	Connection c = null;
-
+    	ResultSet rs =null;
+    	PreparedStatement ps =null;
         try {
                 c = ConnectionPool.getConnection(alias);
                 
-                PreparedStatement ps = c.prepareStatement("select count(*) res from bf_users_fullname_transleat t where t.user_id = ? and t.branch = ?");
+                ps = c.prepareStatement("select count(*) res from bf_users_fullname_transleat t where t.user_id = ? and t.branch = ?");
                 ps.setInt(1, user_id);
                 ps.setString(2, branch);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 rs.next();
                 if (rs.getInt("res") < 1)
                 {
+                	CustomerUtils.closeResultSet(rs);
+                	CustomerUtils.closePStatement(ps);
 	                ps = c.prepareStatement("insert into bf_users_fullname_transleat "+
 	                	"(user_id, branch, user_name_trans) values (?, ?, ?)");
 	                ps.setInt(1, user_id);
@@ -249,6 +271,8 @@ public class UserService {
                 }
                 else 
                 {
+                	CustomerUtils.closeResultSet(rs);
+                	CustomerUtils.closePStatement(ps);
                 	ps = c.prepareStatement("update bf_users_fullname_transleat "+
                 		"set user_name_trans=? where user_id=? and branch = ?");
 	                ps.setInt(2, user_id);
@@ -261,6 +285,9 @@ public class UserService {
 	            LtLogger.getLogger().error(CheckNull.getPstr(e));
 	            try{c.rollback();}catch(Exception e1){}
 	    } finally {
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+
 	            ConnectionPool.close(c);
 	    }
     }
@@ -269,14 +296,16 @@ public class UserService {
 
             User user = new User();
             Connection c = null;
+        	ResultSet rs =null;
+        	PreparedStatement ps =null;
 
             try {
                     c = ConnectionPool.getConnection(alias);
-                    PreparedStatement ps = c.prepareStatement("SELECT us.*, trans.user_name_trans FROM v_bf_bank_users us, bf_users_fullname_transleat trans " +
+                    ps = c.prepareStatement("SELECT us.*, trans.user_name_trans FROM v_bf_bank_users us, bf_users_fullname_transleat trans " +
     		"where trans.user_id= us.id and trans.branch=us.branch and us.id=? and us.branch=?");
                     ps.setInt(1, userId);
                     ps.setString(2, branch);
-                    ResultSet rs = ps.executeQuery();
+                    rs = ps.executeQuery();
                     if (rs.next()) {
                             user = new User();
                             
@@ -294,6 +323,9 @@ public class UserService {
             } catch (Exception e) {
                     LtLogger.getLogger().error(CheckNull.getPstr(e));
             } finally {
+            	CustomerUtils.closeResultSet(rs);
+            	CustomerUtils.closePStatement(ps);
+
                     ConnectionPool.close(c);
             }
             return user;
@@ -375,29 +407,73 @@ public class UserService {
 	public static Res chPwd(String user, String pwd, String npwd, String oldPwd,String branch) {
 
 		Connection c = null;
+    	ResultSet rs =null;
+    	PreparedStatement ps =null;
+
 		String digest = "";
 		String salt = "";
-		Res res = new Res(99, "Ñèñòåìíàÿ îøèáêà");
+		Res res = new Res(99, "Ð¡Ð¸ÑÑ‚ÐµÐ¼Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°");
 		if(!pwd.equals(npwd)){
 			res.setCode(2);
-			res.setName("Íå ñîâïàäàþò íîâûå ïàðîëè");			
+			res.setName("ÐÐµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚ Ð½Ð¾Ð²Ñ‹Ðµ Ð¿Ð°Ñ€Ð¾Ð»Ð¸");			
 		}
 
 		try {
 			c = ConnectionPool.getConnection( branch);
-			PreparedStatement ps = c
+			ps = c
 					.prepareStatement("SELECT * FROM users WHERE user_name=?");
 			ps.setString(1, user);
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			if (rs.next()) {
 				digest = rs.getString("password");
 				salt = rs.getString("salt");
 			}
 			if (!checkPwd(oldPwd, digest, salt)) {
 				res.setCode(1);
-				res.setName("Íå ñîâïàäàþò ñòàðûé è íîâûé ïàðîëü");
+				res.setName("ÐÐµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚ ÑÑ‚Ð°Ñ€Ñ‹Ð¹ Ð¸ Ð½Ð¾Ð²Ñ‹Ð¹ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ");
 				return res;
 			}
+			CustomerUtils.closeResultSet(rs);
+	    	CustomerUtils.closePStatement(ps);
+	    	
+			Pwd pwd1 = getDigest(pwd);
+			ps = c.prepareStatement("UPDATE users SET  password=?,salt=?  WHERE user_name=?");
+
+			ps.setString(1, pwd1.getDigest());
+			ps.setString(2, pwd1.getSalt());
+			ps.setString(3, user);
+			int i = ps.executeUpdate();
+			c.commit();
+			if (i == 1) {
+				res.setCode(0);
+				res.setName("ÐŸÐ°Ñ€Ð¾Ð»ÑŒ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¸Ð·Ð¼ÐµÐ½Ñ‘Ð½");
+			}
+
+		} catch (Exception e) {
+			LtLogger.getLogger().error(CheckNull.getPstr(e));
+
+		} finally {
+			CustomerUtils.closeResultSet(rs);
+	    	CustomerUtils.closePStatement(ps);
+			ConnectionPool.close(c);
+		}
+		return res;
+
+	}
+	public static Res chPwd(String user, String pwd, String npwd, String branch) {
+
+		Connection c = null;
+		//ResultSet rs =null;
+    	PreparedStatement ps =null;
+
+		Res res = new Res(99, "Ð¡Ð¸ÑÑ‚ÐµÐ¼Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°");
+		if(!pwd.equals(npwd)){
+			res.setCode(2);
+			res.setName("ÐÐµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚ Ð½Ð¾Ð²Ñ‹Ðµ Ð¿Ð°Ñ€Ð¾Ð»Ð¸");			
+		}
+
+		try {
+			c = ConnectionPool.getConnection( branch);
 
 			Pwd pwd1 = getDigest(pwd);
 			ps = c.prepareStatement("UPDATE users SET  password=?,salt=?  WHERE user_name=?");
@@ -409,48 +485,14 @@ public class UserService {
 			c.commit();
 			if (i == 1) {
 				res.setCode(0);
-				res.setName("Ïàðîëü óñïåøíî èçìåí¸í");
+				res.setName("ÐŸÐ°Ñ€Ð¾Ð»ÑŒ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¸Ð·Ð¼ÐµÐ½Ñ‘Ð½");
 			}
 
 		} catch (Exception e) {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 
 		} finally {
-			ConnectionPool.close(c);
-		}
-		return res;
-
-	}
-	public static Res chPwd(String user, String pwd, String npwd, String branch) {
-
-		Connection c = null;
-
-		Res res = new Res(99, "Ñèñòåìíàÿ îøèáêà");
-		if(!pwd.equals(npwd)){
-			res.setCode(2);
-			res.setName("Íå ñîâïàäàþò íîâûå ïàðîëè");			
-		}
-
-		try {
-			c = ConnectionPool.getConnection( branch);
-
-			Pwd pwd1 = getDigest(pwd);
-			PreparedStatement ps = c.prepareStatement("UPDATE users SET  password=?,salt=?  WHERE user_name=?");
-
-			ps.setString(1, pwd1.getDigest());
-			ps.setString(2, pwd1.getSalt());
-			ps.setString(3, user);
-			int i = ps.executeUpdate();
-			c.commit();
-			if (i == 1) {
-				res.setCode(0);
-				res.setName("Ïàðîëü óñïåøíî èçìåí¸í");
-			}
-
-		} catch (Exception e) {
-			LtLogger.getLogger().error(CheckNull.getPstr(e));
-
-		} finally {
+	    	CustomerUtils.closePStatement(ps);
 			ConnectionPool.close(c);
 		}
 		return res;
@@ -500,6 +542,8 @@ public class UserService {
 		} catch (Exception ex) {
 			LtLogger.getLogger().error(CheckNull.getPstr(ex));
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+	    	CustomerUtils.closePStatement(ps);
 			ConnectionPool.close(c);
 		}
 		
@@ -508,10 +552,12 @@ public class UserService {
 	public static String getVal(String in,String login, String password){
 		String out="null";
 		Connection c = null;
+		ResultSet rs =null;
+    	Statement s =null;
 		try {
 			c = ConnectionPool.getConnection(login,password);
-            Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery(in);
+            s = c.createStatement();
+            rs = s.executeQuery(in);
             if (rs.next()) {
             	out=rs.getString(1);
             }
@@ -519,6 +565,9 @@ public class UserService {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
+
+	    	CustomerUtils.closeResultSet(rs);
+	    	CustomerUtils.closeStatement(s);
 			ConnectionPool.close(c);
 		}		
 		
@@ -576,6 +625,8 @@ public class UserService {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+	    	CustomerUtils.closePStatement(ps);
 			ConnectionPool.close(c);
 		}
 		//return authenticated;
@@ -660,11 +711,13 @@ public class UserService {
 
         List<Role> list = new ArrayList<Role>();
         Connection c = null;
+        ResultSet rs =null;
+    	Statement s =null;
 
         try {
                 c = ConnectionPool.getConnection( branch);
-                Statement s = c.createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM bf_Roles");
+                s = c.createStatement();
+                rs = s.executeQuery("SELECT * FROM bf_Roles");
                 while (rs.next()) {
                         list.add(new Role(
                                         rs.getInt("id"),
@@ -674,6 +727,9 @@ public class UserService {
         } catch (SQLException e) {
                 LtLogger.getLogger().error(CheckNull.getPstr(e));
         } finally {
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closeStatement(s);
+
                 ConnectionPool.close(c);
         }
         return list;
@@ -683,13 +739,16 @@ public class UserService {
 
         Connection c = null;
         PreparedStatement ps = null;
+    	ResultSet rs =null;
         try {
                 c = ConnectionPool.getConnection(branch);
                 ps = c.prepareStatement("SELECT SEQ_bf_role.NEXTVAL id FROM DUAL");
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 if (rs.next()) {
                         role.setId(rs.getInt("id"));
                 }
+                CustomerUtils.closeResultSet(rs);
+            	CustomerUtils.closePStatement(ps);
                 ps = c.prepareStatement("INSERT INTO bf_roles (id, name, dataaccess ) VALUES (?,?,?)");
                 
                 ps.setInt(1,role.getId());
@@ -701,6 +760,9 @@ public class UserService {
                 LtLogger.getLogger().error(CheckNull.getPstr(e));
 
         } finally {
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+
                 ConnectionPool.close(c);
         }
         return role;
@@ -709,10 +771,12 @@ public class UserService {
 public static void update(Role role, String branch)  {
 
         Connection c = null;
+        
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getConnection( branch);
-                PreparedStatement ps = c.prepareStatement("UPDATE bf_roles SET  name=?, dataaccess=?  WHERE id=?");
+                ps = c.prepareStatement("UPDATE bf_roles SET  name=?, dataaccess=?  WHERE id=?");
                 
                 
                 ps.setString(1,role.getName());
@@ -725,6 +789,8 @@ public static void update(Role role, String branch)  {
                 LtLogger.getLogger().error(CheckNull.getPstr(e));
                 
         } finally {
+        
+        	CustomerUtils.closePStatement(ps);
                 ConnectionPool.close(c);
         }
 
@@ -733,20 +799,24 @@ public static void update(Role role, String branch)  {
 public static void remove(Role role, String branch)  {
 
         Connection c = null;
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getConnection( branch);
-                PreparedStatement ps = c.prepareStatement("DELETE FROM bf_roles WHERE id=?");
+                ps = c.prepareStatement("DELETE FROM bf_roles WHERE id=?");
                 ps.setInt(1, role.getId());
                 ps.executeUpdate();
+                CustomerUtils.closePStatement(ps);
                 
                 ps = c.prepareStatement("DELETE FROM bf_user_roles WHERE roleid=?");
                 ps.setInt(1, role.getId());
                 ps.executeUpdate();
+                CustomerUtils.closePStatement(ps);
                 
                 ps = c.prepareStatement("DELETE FROM bf_role_actions WHERE roleid=?");
                 ps.setInt(1, role.getId());
                 ps.executeUpdate();
+                CustomerUtils.closePStatement(ps);
                 
                 ps = c.prepareStatement("DELETE FROM bf_role_modules WHERE roleid=?");
                 ps.setInt(1, role.getId());
@@ -756,6 +826,7 @@ public static void remove(Role role, String branch)  {
         } catch (Exception e) {
                 LtLogger.getLogger().error(CheckNull.getPstr(e));
         } finally {
+        	CustomerUtils.closePStatement(ps);
                 ConnectionPool.close(c);
         }
 }
@@ -764,13 +835,15 @@ public static List<Module> getModuleInRole(int role,String branch)  {
 
     List<Module> list = new ArrayList<Module>();
     Connection c = null;
+    ResultSet rs =null;
+    PreparedStatement ps =null;
 
     try {
             c = ConnectionPool.getConnection(branch);
-            PreparedStatement ps = c.prepareStatement("select m.* from bf_modules m where m.group_id in (0,144) and  m.mtype<>0 and "+
+            ps = c.prepareStatement("select m.* from bf_modules m where m.group_id in (0,144) and  m.mtype<>0 and "+
             " exists(select null from bf_role_modules r where r.moduleid=m.id and r.roleid=?)");
             ps.setInt(1, role);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                     list.add(new Module(
                             rs.getInt("id"),
@@ -783,6 +856,8 @@ public static List<Module> getModuleInRole(int role,String branch)  {
     } catch (SQLException e) {
             LtLogger.getLogger().error(CheckNull.getPstr(e));
     } finally {
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
             ConnectionPool.close(c);
     }
     return list;
@@ -793,13 +868,16 @@ public static List<Module> getModuleNotInRole(int role, String branch)  {
 
     List<Module> list = new ArrayList<Module>();
     Connection c = null;
+    ResultSet rs =null;
+    PreparedStatement ps =null;
+
 
     try {
             c = ConnectionPool.getConnection(branch);
-            PreparedStatement ps = c.prepareStatement("select m.* from bf_modules m where m.group_id in (0,144) and   m.mtype<>0 and "+
+            ps = c.prepareStatement("select m.* from bf_modules m where m.group_id in (0,144) and   m.mtype<>0 and "+
             "not exists(select null from bf_role_modules r where r.moduleid=m.id and r.roleid=?)");
             ps.setInt(1, role);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                     list.add(new Module(
                             rs.getInt("id"),
@@ -812,6 +890,8 @@ public static List<Module> getModuleNotInRole(int role, String branch)  {
     } catch (SQLException e) {
             LtLogger.getLogger().error(CheckNull.getPstr(e));
     } finally {
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
             ConnectionPool.close(c);
     }
     return list;
@@ -821,6 +901,9 @@ public static void addModule(int role, int module,String branch)  {
 
     Connection c = null;
     PreparedStatement ps = null;
+    ResultSet rs =null;
+    
+
     try {
             c = ConnectionPool.getConnection(branch);
             ps = c.prepareStatement("INSERT INTO bf_role_modules (roleid,moduleid ) VALUES (?,?)");
@@ -831,6 +914,9 @@ public static void addModule(int role, int module,String branch)  {
     } catch (Exception e) {
             LtLogger.getLogger().error(CheckNull.getPstr(e));
     } finally {
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
+
             ConnectionPool.close(c);
     }
 }
@@ -844,6 +930,7 @@ public static void removeModule(int role, int module,String branch)  {
             ps.setInt(1,role);
             ps.setInt(2,module);
             ps.executeUpdate();
+            CustomerUtils.closePStatement(ps);
             ps = c.prepareStatement("delete from BF_ROLE_ACTIONS where roleid=? and mid=?");
             ps.setInt(1,role);
             ps.setInt(2,module);
@@ -852,6 +939,7 @@ public static void removeModule(int role, int module,String branch)  {
     } catch (Exception e) {
             LtLogger.getLogger().error(CheckNull.getPstr(e));
     } finally {
+    	CustomerUtils.closePStatement(ps);
             ConnectionPool.close(c);
     }
 }
@@ -860,20 +948,24 @@ public static void removeModule(int role, int module,String branch)  {
 public static int getUser_Access(String alias, int uid, String pbranch)  {
 	int res = 0;
     Connection c = null;
-
+    ResultSet rs =null;
+    PreparedStatement ps =null;
+    
     try {
             c = ConnectionPool.getConnection(alias );
            
-            PreparedStatement ps = c.prepareStatement("select min(r.dataaccess) res from bf_roles r where exists (select 'x' from bf_user_roles u where u.roleid=r.id and u.userid=? and u.branch=?)");
+            ps = c.prepareStatement("select min(r.dataaccess) res from bf_roles r where exists (select 'x' from bf_user_roles u where u.roleid=r.id and u.userid=? and u.branch=?)");
             ps.setInt(1, uid);
             ps.setString(2, pbranch);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             if (rs.next()) res=rs.getInt("res");
            
             
     } catch (SQLException e) {
             e.printStackTrace();
     } finally {
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
             ConnectionPool.close(c);
     }
     return res;
@@ -885,14 +977,15 @@ public static List<Action> getActionInRole(int role, int module,String branch, i
 
     List<Action> list = new ArrayList<Action>();
     Connection c = null;
-
+    ResultSet rs =null;
+    PreparedStatement ps =null;
     try {
             c = ConnectionPool.getConnection( branch);
            /* System.out.println("select a.* from bf_actions a where a.mid="+module+" and "+
                     "exists(select null from bf_role_actions r "+
                     "where r.mid=a.mid and r.actionid=a.id"+
                     " and r.roleid="+role+" and r.deal_id="+deal_id+")");*/
-            PreparedStatement ps = c.prepareStatement("select a.* from bf_actions a where a.mid=? and a.deal_id=? and "+
+            ps = c.prepareStatement("select a.* from bf_actions a where a.mid=? and a.deal_id=? and "+
                            "exists(select null from bf_role_actions r "+
                            "where r.mid=a.mid and r.actionid=a.id"+
                            " and r.roleid=? and r.deal_id=?)"); 
@@ -900,7 +993,7 @@ public static List<Action> getActionInRole(int role, int module,String branch, i
             ps.setInt(2, deal_id);
             ps.setInt(3, role);
             ps.setInt(4, deal_id);
-                   ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                     list.add(new Action(
                             rs.getInt("id"),
@@ -914,7 +1007,9 @@ public static List<Action> getActionInRole(int role, int module,String branch, i
             LtLogger.getLogger().error(CheckNull.getPstr(e));
             
     } finally {
-            ConnectionPool.close(c);
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
+        ConnectionPool.close(c);
     }
     return list;
 
@@ -924,10 +1019,12 @@ public static List<Action> getActionNotInRole(int role, int module, String branc
 
     List<Action> list = new ArrayList<Action>();
     Connection c = null;
+    ResultSet rs =null;
+    PreparedStatement ps =null;
 
     try {
             c = ConnectionPool.getConnection( branch);
-            PreparedStatement ps = c.prepareStatement("select a.* from bf_actions a where a.mid=? and a.deal_id=? and "+
+            ps = c.prepareStatement("select a.* from bf_actions a where a.mid=? and a.deal_id=? and "+
                            "not exists(select null from bf_role_actions r "+
                            "where r.mid=a.mid and r.actionid=a.id"+
                            " and r.roleid=? and r.deal_id=? )");
@@ -935,7 +1032,7 @@ public static List<Action> getActionNotInRole(int role, int module, String branc
             ps.setInt(2, deal_id);
             ps.setInt(3, role);
             ps.setInt(4, deal_id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                     list.add(new Action(
                             rs.getInt("id"),
@@ -949,7 +1046,9 @@ public static List<Action> getActionNotInRole(int role, int module, String branc
             LtLogger.getLogger().error(CheckNull.getPstr(e));
             
     } finally {
-            ConnectionPool.close(c);
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
+    ConnectionPool.close(c);
     }
     return list;
 
@@ -959,6 +1058,8 @@ public static void addAction(int role, int module, Action action, String branch)
 
     Connection c = null;
     PreparedStatement ps = null;
+
+
     try {
             c = ConnectionPool.getConnection(branch);
             
@@ -976,7 +1077,8 @@ public static void addAction(int role, int module, Action action, String branch)
             LtLogger.getLogger().error(CheckNull.getPstr(e));
 
     } finally {
-            ConnectionPool.close(c);
+    	CustomerUtils.closePStatement(ps);
+    	ConnectionPool.close(c);
     }
 }
 public static void removeAction(int role, int module, Action action, String branch)  {
@@ -998,6 +1100,7 @@ public static void removeAction(int role, int module, Action action, String bran
             
             
     } finally {
+    	CustomerUtils.closePStatement(ps);
             ConnectionPool.close(c);
     }
 }
@@ -1006,12 +1109,15 @@ public static List<Role> getUserInRole(int user, String user_branch, String bran
 
     List<Role> list = new ArrayList<Role>();
     Connection c = null;
+    ResultSet rs =null;
+    PreparedStatement ps =null;
+
     try {
             c = ConnectionPool.getConnection( branch);
-            PreparedStatement ps = c.prepareStatement("select r.* from bf_roles r where  exists(select null from bf_user_roles u where u.userid=? and u.roleid=r.id and u.branch=?)");
+            ps = c.prepareStatement("select r.* from bf_roles r where  exists(select null from bf_user_roles u where u.userid=? and u.roleid=r.id and u.branch=?)");
             ps.setInt(1, user);
             ps.setString(2, user_branch);
-            ResultSet rs = ps.executeQuery();            
+            rs = ps.executeQuery();            
             while (rs.next()) {
                     list.add(new Role(
                             rs.getInt("id"),
@@ -1023,6 +1129,9 @@ public static List<Role> getUserInRole(int user, String user_branch, String bran
             LtLogger.getLogger().error(CheckNull.getPstr(e));
             
     } finally {
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
+
             ConnectionPool.close(c);
     }
     return list;
@@ -1033,12 +1142,14 @@ public static List<Role> getUserNotInRole(int user, String user_branch, String b
 
     List<Role> list = new ArrayList<Role>();
     Connection c = null;
+    PreparedStatement ps =null;
+    ResultSet rs = null;
     try {
             c = ConnectionPool.getConnection( branch);
-            PreparedStatement ps = c.prepareStatement("select r.* from bf_roles r where  not exists(select null from bf_user_roles u where u.userid=? and u.roleid=r.id and u.branch=?)");
+            ps = c.prepareStatement("select r.* from bf_roles r where  not exists(select null from bf_user_roles u where u.userid=? and u.roleid=r.id and u.branch=?)");
             ps.setInt(1, user);
             ps.setString(2, user_branch);
-            ResultSet rs = ps.executeQuery();            
+            rs = ps.executeQuery();            
             while (rs.next()) {
                     list.add(new Role(
                             rs.getInt("id"),
@@ -1049,6 +1160,9 @@ public static List<Role> getUserNotInRole(int user, String user_branch, String b
     } catch (SQLException e) {
             LtLogger.getLogger().error(CheckNull.getPstr(e));
     } finally {
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
+
             ConnectionPool.close(c);
     }
     return list;
@@ -1070,6 +1184,7 @@ public static void addRole(int user, int role, String user_branch, String branch
     } catch (Exception e) {
             LtLogger.getLogger().error(CheckNull.getPstr(e));
     } finally {
+    	CustomerUtils.closePStatement(ps);
             ConnectionPool.close(c);
     }
 }
@@ -1088,6 +1203,8 @@ public static void removeRole(int user, int role, String user_branch, String bra
     } catch (Exception e) {
             LtLogger.getLogger().error(CheckNull.getPstr(e));
     } finally {
+
+    	CustomerUtils.closePStatement(ps);
             ConnectionPool.close(c);
     }
 }
@@ -1096,15 +1213,17 @@ public static void UsrLog(UserActionsLog useractionslog)  {
 
     Connection c = null;
     PreparedStatement ps = null;
+    ResultSet rs =null;
     try {
             c = ConnectionPool.getConnection("iy00444");
             ps = c.prepareStatement("SELECT SEQ_BF_USR_ACTLOG.NEXTVAL id FROM DUAL");
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             if (rs.next()) {
                     useractionslog.setId(rs.getLong("id"));
             }
-            ps = c.prepareStatement("INSERT INTO BF_USER_ACTIONS_LOG (id, user_id, user_name, ip_address, action_date, act_type, entity_type, entity_id, branch) VALUES (?,?,?,?,sysdate,?,?,?,?)");
+            CustomerUtils.closePStatement(ps);
             
+            ps = c.prepareStatement("INSERT INTO BF_USER_ACTIONS_LOG (id, user_id, user_name, ip_address, action_date, act_type, entity_type, entity_id, branch) VALUES (?,?,?,?,sysdate,?,?,?,?)");
             ps.setLong(1,useractionslog.getId());
             ps.setInt(2,useractionslog.getUser_id());
             ps.setString(3,useractionslog.getUser_name().toUpperCase());
@@ -1120,6 +1239,9 @@ public static void UsrLog(UserActionsLog useractionslog)  {
             LtLogger.getLogger().error(CheckNull.getPstr(e));
 
     } finally {
+    	
+    	CustomerUtils.closeResultSet(rs);
+    	CustomerUtils.closePStatement(ps);
             ConnectionPool.close(c);
     }
    // return useractionslog;
