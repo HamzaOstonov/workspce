@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.is.ConnectionPool;
 import com.is.account.Account;
+import com.is.customer.CustomerUtils;
 import com.is.trpay.TrPay;
 import com.is.trpay.TrPayFilter;
 import com.is.utils.CheckNull;
@@ -62,6 +63,9 @@ import com.is.utils.FilterField;
     public static int getCount(LogFilter filter, String alias)
     {
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
+
         int n = 0;
         List<FilterField> flFields =getFilterFields(filter);
         StringBuffer sql = new StringBuffer();
@@ -74,12 +78,12 @@ import com.is.utils.FilterField;
         }
         try {
                 c = ConnectionPool.getConnection(alias );
-                PreparedStatement ps = c.prepareStatement(sql.toString());
+                ps = c.prepareStatement(sql.toString());
 
                     for(int k=0;k<flFields.size();k++){
                     ps.setObject(k+1, flFields.get(k).getColobject());
                     }
-                    ResultSet rs = ps.executeQuery();
+                    rs = ps.executeQuery();
 
                 if (rs.next()) {
                     n = rs.getInt(1);
@@ -88,7 +92,10 @@ import com.is.utils.FilterField;
                 e.printStackTrace();
 
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+
+        	ConnectionPool.close(c);
         }
         return n;
 
@@ -98,6 +105,9 @@ import com.is.utils.FilterField;
 
         List<Log> list = new ArrayList<Log>();
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
+
         int v_lowerbound = pageIndex + 1;
         int v_upperbound = v_lowerbound + pageSize - 1;
         int params;
@@ -120,7 +130,7 @@ import com.is.utils.FilterField;
 
         try {
                 c = ConnectionPool.getConnection( alias );
-                PreparedStatement ps = c.prepareStatement(sql.toString());
+                ps = c.prepareStatement(sql.toString());
                 for(params=0;params<flFields.size();params++){
                 ps.setObject(params+1, flFields.get(params).getColobject());
                 }
@@ -128,7 +138,7 @@ import com.is.utils.FilterField;
                 ps.setInt(params++,v_upperbound);
                 ps.setInt(params++,v_lowerbound);
 
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 while (rs.next()) {
                         list.add(new Log(
                                         rs.getString("user_id"),
@@ -147,6 +157,8 @@ import com.is.utils.FilterField;
                 e.printStackTrace();
 
         } finally {
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
                 ConnectionPool.close(c);
         }
         return list;

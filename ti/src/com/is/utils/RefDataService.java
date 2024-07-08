@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.is.ConnectionPool;
+import com.is.customer.CustomerUtils;
 
 public class RefDataService {
 	private static HashMap<String, String> _tstopCauses = null;
@@ -84,7 +85,7 @@ public class RefDataService {
 
 	public static List<RefData> getPurposeCode(String alias) {
 		return getRefData(
-				"select '00000' as data,'Без кода назначения платежа' as label from dual union all select code_plat data, code_plat||'      ('||name_plat||')' label from S_NAZN where ACT='A'",
+				"select '00000' as data,'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' as label from dual union all select code_plat data, code_plat||'      ('||name_plat||')' label from S_NAZN where ACT='A'",
 				alias);
 	}
 
@@ -380,11 +381,13 @@ public class RefDataService {
 
 		List<RefData> list = new LinkedList<RefData>();
 		Connection c = null;
+		ResultSet rs =null;
+		Statement s=null;
 
 		try {
 			c = ConnectionPool.getConnection(branch);
-			Statement s = c.createStatement();
-			ResultSet rs = s.executeQuery(sql);
+			s = c.createStatement();
+			rs = s.executeQuery(sql);
 			while (rs.next()) {
 				list.add(new RefData(rs.getString("data"), rs
 						.getString("label")));
@@ -392,6 +395,9 @@ public class RefDataService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closeStatement(s);
+
 			ConnectionPool.close(c);
 		}
 		return list;
@@ -401,12 +407,14 @@ public class RefDataService {
 	public static List<RefData> getRefData(String sql, String key, String branch) {
 		List<RefData> list = new LinkedList<RefData>();
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
 		try {
 			c = ConnectionPool.getConnection(branch);
-			PreparedStatement ps = c.prepareStatement(sql);
+			ps = c.prepareStatement(sql);
 			ps.setString(1, key);
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				list.add(new RefData(rs.getString("data"), rs
 						.getString("label")));
@@ -414,6 +422,9 @@ public class RefDataService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
+
 			ConnectionPool.close(c);
 		}
 		return list;
@@ -422,13 +433,15 @@ public class RefDataService {
 	public static List<RefData> getRefData(String sql, String key1, String key2, String branch) {
 		List<RefData> list = new LinkedList<RefData>();
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
 		try {
 			c = ConnectionPool.getConnection(branch);
-			PreparedStatement ps = c.prepareStatement(sql);
+			ps = c.prepareStatement(sql);
 			ps.setString(1, key1);
 			ps.setString(2, key2);			
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				list.add(new RefData(rs.getString("data"), rs
 						.getString("label")));
@@ -436,6 +449,9 @@ public class RefDataService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closePStatement(ps);
+
 			ConnectionPool.close(c);
 		}
 		return list;
@@ -445,16 +461,22 @@ public class RefDataService {
 
 		HashMap<String, String> list = new HashMap<String, String>();
 		Connection c = null;
+		ResultSet rs =null;
+		Statement s =null;
+		
 		try {
 			c = ConnectionPool.getConnection(branch);
-			Statement s = c.createStatement();
-			ResultSet rs = s.executeQuery(sql);
+			s = c.createStatement();
+			rs = s.executeQuery(sql);
 			while (rs.next()) {
 				list.put(rs.getString("data"), rs.getString("label"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closeStatement(s);
+
 			ConnectionPool.close(c);
 		}
 		return list;
@@ -464,10 +486,13 @@ public class RefDataService {
 
 		List<RefData> list = new LinkedList<RefData>();
 		Connection c = null;
+		ResultSet rs =null;
+		Statement s =null;
+		
 		try {
 			c = ConnectionPool.getTConnection();
-			Statement s = c.createStatement();
-			ResultSet rs = s.executeQuery(sql);
+			s = c.createStatement();
+			rs = s.executeQuery(sql);
 			while (rs.next()) {
 				list.add(new RefData(rs.getString("data"), rs
 						.getString("label")));
@@ -475,6 +500,9 @@ public class RefDataService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closeStatement(s);
+
 			ConnectionPool.close(c);
 		}
 		return list;
@@ -484,16 +512,22 @@ public class RefDataService {
 
 		HashMap<String, String> list = new HashMap<String, String>();
 		Connection c = null;
+		ResultSet rs =null;
+		Statement s =null;
+
 		try {
 			c = ConnectionPool.getTConnection();
-			Statement s = c.createStatement();
-			ResultSet rs = s.executeQuery(sql);
+			s = c.createStatement();
+			rs = s.executeQuery(sql);
 			while (rs.next()) {
 				list.put(rs.getString("data"), rs.getString("label"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			CustomerUtils.closeResultSet(rs);
+			CustomerUtils.closeStatement(s);
+
 			ConnectionPool.close(c);
 		}
 		return list;

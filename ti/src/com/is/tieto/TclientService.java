@@ -17,6 +17,7 @@ import com.is.LtLogger;
 //import com.is.customer.Customer;
 //import com.is.customer.CustomerService;
 import com.is.account.Account;
+import com.is.customer.CustomerUtils;
 import com.is.trpay.Ti_Duplicate;
 import com.is.trpay.Ti_DuplicateDebit;
 import com.is.trpay.Ti_Duplicate_Other;
@@ -35,12 +36,14 @@ public class TclientService {
 
             List<Tclient> list = new ArrayList<Tclient>();
             Connection c = null;
+            ResultSet rs =null;
+            PreparedStatement ps =null;
 
             try {
                     c = ConnectionPool.getTConnection();
-                    PreparedStatement ps = c.prepareStatement("SELECT * FROM izd_clients cl where cl.serial_no =? and cl.bank_c='01'");
+                    ps = c.prepareStatement("SELECT * FROM izd_clients cl where cl.serial_no =? and cl.bank_c='01'");
                     ps.setString(1, serial_no);
-                    ResultSet rs = ps.executeQuery();
+                    rs = ps.executeQuery();
                     while (rs.next()) {
                             list.add(new Tclient(
                                             rs.getString("client"),
@@ -77,7 +80,9 @@ public class TclientService {
             	LtLogger.getLogger().error(CheckNull.getPstr(e));
                     e.printStackTrace();
             } finally {
-                    ConnectionPool.close(c);
+            	CustomerUtils.closeResultSet(rs);
+            	CustomerUtils.closePStatement(ps);
+            	ConnectionPool.close(c);
             }
             return list;
 
@@ -90,12 +95,14 @@ public class TclientService {
 
         Tclient list = null;
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getTConnection();
-                PreparedStatement ps = c.prepareStatement("SELECT * FROM izd_clients cl where cl.client =? and cl.bank_c='01'");
+                ps = c.prepareStatement("SELECT * FROM izd_clients cl where cl.client =? and cl.bank_c='01'");
                 ps.setString(1, client_id);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 while (rs.next()) {
                         list = new Tclient(
                                         rs.getString("client"),
@@ -132,14 +139,12 @@ public class TclientService {
         	LtLogger.getLogger().error(CheckNull.getPstr(e));
                 e.printStackTrace();
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+        	ConnectionPool.close(c);
         }
         return list;
-
 }
-
-
-
 
 
     private static String getCond(List<FilterField> flfields){
@@ -237,6 +242,8 @@ public class TclientService {
     public static int getCount(TclientFilter filter)  {
 
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
         int n = 0;
         List<FilterField> flFields =getFilterFields(filter);
         StringBuffer sql = new StringBuffer();
@@ -249,12 +256,12 @@ public class TclientService {
         }
         try {
                 c = ConnectionPool.getTConnection();
-                PreparedStatement ps = c.prepareStatement(sql.toString());
+                ps = c.prepareStatement(sql.toString());
 
                     for(int k=0;k<flFields.size();k++){
                     ps.setObject(k+1, flFields.get(k).getColobject());
                     }
-                    ResultSet rs = ps.executeQuery();
+                    rs = ps.executeQuery();
 
                 if (rs.next()) {
                     n = rs.getInt(1);
@@ -264,7 +271,9 @@ public class TclientService {
                 e.printStackTrace();
 
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+        	ConnectionPool.close(c);
         }
         return n;
 
@@ -276,6 +285,9 @@ public class TclientService {
 
             List<Tclient> list = new ArrayList<Tclient>();
             Connection c = null;
+            ResultSet rs =null;
+            PreparedStatement ps =null;
+
             int v_lowerbound = pageIndex + 1;
             int v_upperbound = v_lowerbound + pageSize - 1;
             int params;
@@ -295,7 +307,7 @@ public class TclientService {
 //System.out.println(sql.toString());
             try {
                     c = ConnectionPool.getTConnection();
-                    PreparedStatement ps = c.prepareStatement(sql.toString());
+                    ps = c.prepareStatement(sql.toString());
                     for(params=0;params<flFields.size();params++){
                     ps.setObject(params+1, flFields.get(params).getColobject());
                     }
@@ -306,7 +318,7 @@ public class TclientService {
           //          String halias = CustomerService.get_alias_ho(alias);
                     ps.setString(params++,"01");
 
-                    ResultSet rs = ps.executeQuery();
+                    rs = ps.executeQuery();
                     while (rs.next()) {
                             list.add(new Tclient(
                                             rs.getString("client"),
@@ -344,16 +356,19 @@ public class TclientService {
                     e.printStackTrace();
 
             } finally {
-                    ConnectionPool.close(c);
+            	CustomerUtils.closeResultSet(rs);
+            	CustomerUtils.closePStatement(ps);
+            	ConnectionPool.close(c);
             }
             return list;
-
     }
 
     public static List<AccInfo> getAccInfo(String client)  {
 
         List<AccInfo> list = new ArrayList<AccInfo>();
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getTConnection();
@@ -364,7 +379,7 @@ public class TclientService {
                 "FROM IZD_ACC_INFO a,izd_cards c "+
                 "where c.cl_acct_key=a.tab_key and client=? and a.bank_c='01' and a.groupc='02' and c.bank_c='01' and c.groupc='02'");
                 */
-                PreparedStatement ps = c.prepareStatement(
+                ps = c.prepareStatement(
    					 "select "+
 					     "ac.account_no, "+
 					     "ac.card_acct, "+
@@ -419,7 +434,7 @@ public class TclientService {
 
                 
                 ps.setString(1, client);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 while (rs.next()) {
                         list.add(new AccInfo(
                                         rs.getLong("account_no"),
@@ -454,7 +469,9 @@ public class TclientService {
         	LtLogger.getLogger().error(CheckNull.getPstr(e));
                 e.printStackTrace();
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+        	ConnectionPool.close(c);
         }
         return list;
 
@@ -464,6 +481,8 @@ public class TclientService {
 
         List<AccInfo> list = new ArrayList<AccInfo>();
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getTConnection();
@@ -474,7 +493,7 @@ public class TclientService {
                 "FROM IZD_ACC_INFO a,izd_cards c "+
                 "where c.cl_acct_key=a.tab_key and client=? and c.status1='0' and a.bank_c='01' and a.groupc='02' and c.bank_c='01' and c.groupc='02'");
                 */
-                PreparedStatement ps = c.prepareStatement(
+                ps = c.prepareStatement(
                 					 "select "+
 								     "ac.account_no, "+
 								     "ac.card_acct, "+
@@ -524,7 +543,7 @@ public class TclientService {
 								      "and t.client_id = ?"
 								      );
                 ps.setString(1, client);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 while (rs.next()) {
                         list.add(new AccInfo(
                                         rs.getLong("account_no"),
@@ -560,10 +579,11 @@ public class TclientService {
         	LtLogger.getLogger().error(CheckNull.getPstr(e));
                 e.printStackTrace();
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+        	ConnectionPool.close(c);
         }
         return list;
-
 }
     
     
@@ -574,6 +594,8 @@ public class TclientService {
         //List<AccInfo> list = new ArrayList<AccInfo>();
     	AccInfo res = null;
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getTConnection();
@@ -585,7 +607,7 @@ public class TclientService {
                 "where c.cl_acct_key=a.tab_key and a.card_acct=? and a.bank_c='01' and a.groupc='02' and c.bank_c='01' and c.groupc='02'");
                 */
                 
-                PreparedStatement ps = c.prepareStatement(
+                ps = c.prepareStatement(
    					 "select "+
 					     "ac.account_no, "+
 					     "ac.card_acct, "+
@@ -636,7 +658,7 @@ public class TclientService {
                 
                 
                 ps.setString(1, Card_acct);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                
                         		res = new AccInfo(
                                         rs.getLong("account_no"),
@@ -670,7 +692,9 @@ public class TclientService {
         	LtLogger.getLogger().error(CheckNull.getPstr(e));
                 e.printStackTrace();
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+        	ConnectionPool.close(c);
         }
         return res;
 
@@ -678,20 +702,18 @@ public class TclientService {
     
     
     
-    
- 
-    
-    
     public static TietoCardSetting getTietoCardSetting(int tietocardsettingId, String alias) {
 
         TietoCardSetting tietocardsetting = new TietoCardSetting();
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getConnection(alias);
-                PreparedStatement ps = c.prepareStatement("SELECT * FROM BF_TIETO_CARD_SETTING WHERE code=?");
+                ps = c.prepareStatement("SELECT * FROM BF_TIETO_CARD_SETTING WHERE code=?");
                 ps.setInt(1, tietocardsettingId);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 if (rs.next()) {
                         tietocardsetting = new TietoCardSetting();
                         
@@ -721,7 +743,9 @@ public class TclientService {
         	LtLogger.getLogger().error(CheckNull.getPstr(e));
                 e.printStackTrace();
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+        	ConnectionPool.close(c);
         }
         return tietocardsetting;
 }
@@ -731,10 +755,12 @@ public class TclientService {
 
         String res = "";
         Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
 
         try {
                 c = ConnectionPool.getConnection(alias);
-                PreparedStatement ps = c.prepareStatement("select acc.account res from BF_TR_ACC acc, BF_TR_TEMPLATE t " +
+                ps = c.prepareStatement("select acc.account res from BF_TR_ACC acc, BF_TR_TEMPLATE t " +
                 		"where t.operation_id = 1 " +
                 		"and acc.acc_template_id = t.acc_dt " +
                 		"and ROWNUM = 1 " +
@@ -742,14 +768,16 @@ public class TclientService {
                 		"order by t.ord");
                 ps.setString(1, branch);
                 
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 rs.next();
                 res = rs.getString("res");
         } catch (Exception e) {
         	LtLogger.getLogger().error(CheckNull.getPstr(e));
                 e.printStackTrace();
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+        	ConnectionPool.close(c);
         }
         return res;
 }
@@ -759,10 +787,11 @@ public class TclientService {
     {
 		String res="";
     	Connection c = null;
+    	CallableStatement proc=null;
     	try {
     		c = ConnectionPool.getConnection(alias);
     		
-    		CallableStatement proc = c.prepareCall("{ ? = call BF.CHECK_CUSTOMER(?, ?) }");
+    		proc = c.prepareCall("{ ? = call BF.CHECK_CUSTOMER(?, ?) }");
     		
 			proc.registerOutParameter(1, Types.VARCHAR);
 			
@@ -771,30 +800,30 @@ public class TclientService {
 			
 			proc.execute();
 			
-			
 			res = (String)proc.getObject(1);
 			
 			//System.out.println("id:"+res);
-			
     		
     	} catch (Exception e) {
     		LtLogger.getLogger().error(CheckNull.getPstr(e));
               //  e.printStackTrace();
                 res="";
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeCStatement(proc);
+        	ConnectionPool.close(c);
         }
         return res;
     }
 
 	public static Res check_allowed_card_action(int deal_group, int deal_id, int action_id, String card, String alias)
     {
-		Res res = new Res(0,"");
+		Res res = new Res(0, "");
     	Connection c = null;
+    	CallableStatement proc=null;
     	try {
     		c = ConnectionPool.getConnection(alias);
     		
-    		CallableStatement proc = c.prepareCall("{call BF.CHECK_ALLOWED_CARD_ACTION(?, ?, ?, ?) }");
+    		proc = c.prepareCall("{call BF.CHECK_ALLOWED_CARD_ACTION(?, ?, ?, ?) }");
 			
 			proc.setInt(1, deal_group);
 			proc.setInt(2, deal_id);
@@ -808,7 +837,8 @@ public class TclientService {
                 res.setCode(-1);
                 res.setName(e.getMessage());
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeCStatement(proc);   
+        	ConnectionPool.close(c);
         }
         return res;
     }
@@ -831,10 +861,11 @@ public class TclientService {
 	
 	//	String res="";
     	Connection c = null;
+    	CallableStatement proc = null;
     	try {
     		c = ConnectionPool.getConnection(alias);
     		
-    		CallableStatement proc = c.prepareCall("{ call BF.CHECK_OPEN_CARD(?,?) }");
+    		proc = c.prepareCall("{ call BF.CHECK_OPEN_CARD(?,?) }");
     		
     		proc.setString(1, new_card_type);
 			proc.setString(2, qstring);
@@ -849,6 +880,7 @@ public class TclientService {
     			res.setName(e.getMessage());
                 return res;
         } finally {
+        	CustomerUtils.closeCStatement(proc);
                 ConnectionPool.close(c);
         }		
 		return res;
@@ -858,12 +890,14 @@ public class TclientService {
 
         List<Action> list = new ArrayList<Action>();
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getConnection( alias );
                 //System.out.println("select a.* from bf_actions a where a.mid=11 and exists(select 'x' from bf_role_actions r,bf_user_roles u where u.roleid=r.roleid and u.userid="+userid+" and r.actionid=a.id)");
                       
-                PreparedStatement ps = c.prepareStatement("Select act.*"+
+                ps = c.prepareStatement("Select act.*"+
 
 															" From   BF_USER_ROLES   UR,"+
 															       " BF_ROLE_ACTIONS RA,"+
@@ -880,7 +914,7 @@ public class TclientService {
                 //ps.setInt(2, deal_id);
                 ps.setInt(1, userid);
                 ps.setString(2, user_branch);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
               
                 while (rs.next()) {
                         list.add(new Action(
@@ -897,6 +931,9 @@ public class TclientService {
                 LtLogger.getLogger().error(CheckNull.getPstr(e));
                 
         } finally {
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+
                 ConnectionPool.close(c);
         }
         return list;
@@ -907,12 +944,14 @@ public class TclientService {
 
         String res = null;
         Connection c = null;
+        ResultSet rs =null;
+        PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getTConnection();
-                PreparedStatement ps = c.prepareStatement("SELECT name_en FROM base_country where iso3 = ?");
+                ps = c.prepareStatement("SELECT name_en FROM base_country where iso3 = ?");
                 ps.setString(1, ISO3);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 while (rs.next())
                 {
                 	res = rs.getString("name_en");
@@ -922,7 +961,9 @@ public class TclientService {
         	LtLogger.getLogger().error(CheckNull.getPstr(e));
                 e.printStackTrace();
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+            ConnectionPool.close(c);
         }
         return res;
 
@@ -932,12 +973,14 @@ public class TclientService {
 	{
 		Agreement res = new Agreement();
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getTConnection();
-                PreparedStatement ps = c.prepareStatement("SELECT * FROM izd_agreement t where t.agre_nom = ?");
+                ps = c.prepareStatement("SELECT * FROM izd_agreement t where t.agre_nom = ?");
                 ps.setInt(1, agre_nom);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 while (rs.next())
                 {
                 	res.setAGRE_NOM(agre_nom);
@@ -975,6 +1018,8 @@ public class TclientService {
         	LtLogger.getLogger().error(CheckNull.getPstr(e));
                 e.printStackTrace();
         } finally {
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
                 ConnectionPool.close(c);
         }
 		return res;
@@ -984,17 +1029,19 @@ public class TclientService {
 	{
 		String res = null;
     	Connection c = null;
-    	
+    	ResultSet rs =null;
+    	PreparedStatement ps =null;
+
     	try
 		{
 			c = ConnectionPool.getTConnection();
 			
-			PreparedStatement ps = c.prepareStatement("select * from izd_cards t where t.card = ? and t.bank_c = ? and t.groupc = ?");
+			ps = c.prepareStatement("select * from izd_cards t where t.card = ? and t.bank_c = ? and t.groupc = ?");
 			ps.setString(1, card);
 			ps.setString(2, ConnectionPool.getValue("BANK_C", alias));
 			ps.setString(3, ConnectionPool.getValue("GROUPC", alias));
 			
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			if (rs.next())
 			{
 				res = rs.getString("card_name");
@@ -1005,7 +1052,11 @@ public class TclientService {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
 		}
-    	
+    	finally {
+    		CustomerUtils.closeResultSet(rs);
+    		CustomerUtils.closePStatement(ps);
+    		ConnectionPool.close(c);
+    	}
     	return res;
 	}
 	
@@ -1015,14 +1066,17 @@ public class TclientService {
 		String res = new String();
 		
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
+
 		try
 		{
 			c = ConnectionPool.getConnection(alias);
-			PreparedStatement ps = c.prepareStatement("select t.report res from BF_TIETO_TR_ACTION_REPORT t " +
+			ps = c.prepareStatement("select t.report res from BF_TIETO_TR_ACTION_REPORT t " +
 					" where t.deal_id = ? and t.action_id = ?");
 			ps.setInt(1, deal_id);
 			ps.setInt(2, action_id);
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			rs.next();
 			res = rs.getString("res");
 			
@@ -1030,6 +1084,11 @@ public class TclientService {
 		{
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
+		}
+		finally {
+			CustomerUtils.closeResultSet(rs);
+    		CustomerUtils.closePStatement(ps);
+    		ConnectionPool.close(c);
 		}
 		
 		return res;
@@ -1041,11 +1100,13 @@ public class TclientService {
 		HashMap<String, String> res = new HashMap<String, String>();
 		
 		Connection c = null;
+		ResultSet rs =null;
+		PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getTConnection();
                 
-                PreparedStatement ps = c.prepareStatement(
+                ps = c.prepareStatement(
    					 "select "+
 					     "ac.account_no, "+
 					     "ac.card_acct, "+
@@ -1096,7 +1157,7 @@ public class TclientService {
                 
                 ps.setString(1, client);
                 ps.setString(2, product);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 while (rs.next())
                 {
                 	if (!(res.containsKey(rs.getString("tranz_acct"))))
@@ -1106,6 +1167,10 @@ public class TclientService {
 		{
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			e.printStackTrace();
+		} finally {
+			CustomerUtils.closeResultSet(rs);
+    		CustomerUtils.closePStatement(ps);
+    		ConnectionPool.close(c);
 		}
                 
 		return res;
@@ -1115,13 +1180,15 @@ public class TclientService {
     {
             String res = null;
             Connection c = null;
+            ResultSet rs =null;
+            PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getConnection(alias);
 
-                PreparedStatement ps = c.prepareStatement("select t.account res from bf_tr_acc t where t.acc_template_id=2 and t.acc_mfo = ?");
+                ps = c.prepareStatement("select t.account res from bf_tr_acc t where t.acc_template_id=2 and t.acc_mfo = ?");
                 ps.setString(1, branch);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
 
                 while (rs.next()) {
                         res = rs.getString("res");
@@ -1129,7 +1196,9 @@ public class TclientService {
         } catch (SQLException e) {
                 com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+            ConnectionPool.close(c);
         }
             return res;
     }
@@ -1138,13 +1207,15 @@ public class TclientService {
     {
             String[] res = new String[2];
             Connection c = null;
+            ResultSet rs =null;
+            PreparedStatement ps =null;
 
         try {
                 c = ConnectionPool.getConnection(alias);
 
-                PreparedStatement ps = c.prepareStatement("select * from (select t.course outcourse from ss_course t where t.course_type = 4 and t.currency = '840' and t.act = 'A') out_course,\r\n" + 
+                ps = c.prepareStatement("select * from (select t.course outcourse from ss_course t where t.course_type = 4 and t.currency = '840' and t.act = 'A') out_course,\r\n" + 
                 		"(select t.course incourse from ss_course t where t.course_type = 5 and t.currency = '840' and t.act = 'A') in_course");
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
 
                 while (rs.next()) {
                         res[0] = rs.getString("outcourse");
@@ -1153,6 +1224,9 @@ public class TclientService {
         } catch (SQLException e) {
                 com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
         } finally {
+
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
                 ConnectionPool.close(c);
         }
             return res;
@@ -1162,14 +1236,17 @@ public class TclientService {
     {
             String res = null;
             Connection c = null;
+            ResultSet rs =null;
+            PreparedStatement ps =null;
+
 
         try {
                 c = ConnectionPool.getConnection(alias);
 
-                PreparedStatement ps = c.prepareStatement("select user_name_trans from bf_users_fullname_transleat where user_id = ? and branch = ?");
+                ps = c.prepareStatement("select user_name_trans from bf_users_fullname_transleat where user_id = ? and branch = ?");
                 ps.setString(1, user_id+"");
                 ps.setString(2, branch);
-                ResultSet rs = ps.executeQuery();
+                rs = ps.executeQuery();
                 //rs.next();
                 if (rs != null) {
                 	  while (rs.next()) {
@@ -1180,7 +1257,9 @@ public class TclientService {
         	e.printStackTrace();
                 com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
         } finally {
-                ConnectionPool.close(c);
+        	CustomerUtils.closeResultSet(rs);
+        	CustomerUtils.closePStatement(ps);
+        	ConnectionPool.close(c);
         }
             return res;
     }
@@ -1290,6 +1369,9 @@ public class TclientService {
          } catch (Exception e) {
                  e.printStackTrace();
          } finally {
+        	 CustomerUtils.closeResultSet(rs);
+        	 CustomerUtils.closePStatement(ps);
+
          	ConnectionPool.close(c);
          }
          return seq;
@@ -1321,6 +1403,8 @@ public class TclientService {
          } catch (Exception e) {
                  e.printStackTrace();
          } finally {
+        	 CustomerUtils.closeResultSet(rs);
+        	 CustomerUtils.closePStatement(ps);
          	ConnectionPool.close(c);
          }
          return seq;
@@ -1358,6 +1442,7 @@ public class TclientService {
          } catch (Exception e) {
                  e.printStackTrace();
          } finally {
+        	 CustomerUtils.closePStatement(ps);
                  ConnectionPool.close(c);
          }
          return duplicate;
@@ -1395,7 +1480,8 @@ public class TclientService {
          } catch (Exception e) {
                  e.printStackTrace();
          } finally {
-                 ConnectionPool.close(c);
+        	 	CustomerUtils.closePStatement(ps);
+                ConnectionPool.close(c);
          }
          return duplicate;
  }
@@ -1432,7 +1518,8 @@ public class TclientService {
          } catch (Exception e) {
                  e.printStackTrace();
          } finally {
-                 ConnectionPool.close(c);
+        	 CustomerUtils.closePStatement(ps);   
+        	 ConnectionPool.close(c);
          }
          return duplicate_debit;
  }
@@ -1469,6 +1556,7 @@ public class TclientService {
          } catch (Exception e) {
                  e.printStackTrace();
          } finally {
+        	 CustomerUtils.closePStatement(ps);
                  ConnectionPool.close(c);
          }
          return duplicate_debit;
@@ -1497,6 +1585,7 @@ public class TclientService {
          } catch (Exception e) {
                  e.printStackTrace();
          } finally {
+        	 CustomerUtils.closePStatement(ps);
                  ConnectionPool.close(c);
          }
          return duplicate_other;
@@ -1506,13 +1595,15 @@ public class TclientService {
 	    {
 		 		Ti_Duplicate d = null;
 	            Connection c = null;
+	            ResultSet rs =null;
+	            PreparedStatement ps =null;
 
 	        try {
 	        		System.out.println("seq = "+id);
 	                c = ConnectionPool.getConnection(alias);
-	                PreparedStatement ps = c.prepareStatement("select * from ti_duplicate where id = ?");
+	                ps = c.prepareStatement("select * from ti_duplicate where id = ?");
 	                ps.setInt(1, id);
-	                ResultSet rs = ps.executeQuery();
+	                rs = ps.executeQuery();
 	                rs.next();
 	                
 	                System.out.println(rs.getInt("id"));
@@ -1558,7 +1649,9 @@ public class TclientService {
 	        	e.printStackTrace();
 	                com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
 	        } finally {
-	                ConnectionPool.close(c);
+	        	CustomerUtils.closeResultSet(rs);
+	        	CustomerUtils.closePStatement(ps);
+	        	ConnectionPool.close(c);
 	        }
 	            return d;
 	    }
@@ -1567,15 +1660,18 @@ public class TclientService {
 	    {
 		 Ti_DuplicateDebit dd = null;
 	            Connection c = null;
+	            ResultSet rs =null;
+	            PreparedStatement ps =null;
 
 	        try {
 	        		System.out.println("seq = "+id);
 	                c = ConnectionPool.getConnection(alias);
-	                PreparedStatement ps = c.prepareStatement("select * from ti_duplicate_debit where id = ?");
+	                ps = c.prepareStatement("select * from ti_duplicate_debit where id = ?");
 	                ps.setInt(1, id);
-	                ResultSet rs = ps.executeQuery();
+	                rs = ps.executeQuery();
 	                rs.next();
 	                
+	                dd=new Ti_DuplicateDebit();
 	                dd.setId(rs.getInt("id"));
 	                dd.setBranch(rs.getString("branch"));
                     dd.setBank_name(rs.getString("bank_name"));
@@ -1599,7 +1695,9 @@ public class TclientService {
 	        	e.printStackTrace();
 	                com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
 	        } finally {
-	                ConnectionPool.close(c);
+	        	CustomerUtils.closeResultSet(rs);
+	        	CustomerUtils.closePStatement(ps);
+	        	ConnectionPool.close(c);
 	        }
 	            return dd;
 	    }
@@ -1608,12 +1706,15 @@ public class TclientService {
 	 public static int getDuplicateMaxId(String alias, String branch)
 	    {
 		 		Connection c = null;
+		 		ResultSet rs =null;
+		 		PreparedStatement ps =null;
+
 	            int maxId = 0;
 	        try {
 	        		c = ConnectionPool.getConnection(alias);
-	                PreparedStatement ps = c.prepareStatement("select max(id) id from ti_duplicate where my_branch = ?");
+	                ps = c.prepareStatement("select max(id) id from ti_duplicate where my_branch = ?");
 	                ps.setString(1,branch);
-	                ResultSet rs = ps.executeQuery();
+	                rs = ps.executeQuery();
 	                rs.next();
 
 	                        maxId = rs.getInt("id");
@@ -1622,7 +1723,10 @@ public class TclientService {
 	        	e.printStackTrace();
 	                com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
 	        } finally {
-	                ConnectionPool.close(c);
+	        	CustomerUtils.closeResultSet(rs);
+	        	CustomerUtils.closePStatement(ps);
+
+	        	ConnectionPool.close(c);
 	        }
 	            return maxId;
 	    }
@@ -1630,12 +1734,15 @@ public class TclientService {
 	 public static int getDuplicateFilialMaxId(String alias, String branch)
 	    {
 		 		Connection c = null;
+		 		ResultSet rs =null;
+		 		PreparedStatement ps =null;
+
 	            int maxId = 0;
 	        try {
 	        		c = ConnectionPool.getConnection(alias);
-	                PreparedStatement ps = c.prepareStatement("select max(id) id from ti_duplicate_filial where my_branch = ? ");
+	                ps = c.prepareStatement("select max(id) id from ti_duplicate_filial where my_branch = ? ");
 	                ps.setString(1,branch);
-	                ResultSet rs = ps.executeQuery();
+	                rs = ps.executeQuery();
 	                rs.next();
 
 	                        maxId = rs.getInt("id");
@@ -1644,20 +1751,27 @@ public class TclientService {
 	        	e.printStackTrace();
 	                com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
 	        } finally {
-	                ConnectionPool.close(c);
+	        	CustomerUtils.closeResultSet(rs);
+	        	CustomerUtils.closePStatement(ps);
+
+	        	ConnectionPool.close(c);
 	        }
 	            return maxId;
 	    }
 	 
+
 	 public static int getDuplicateDebitMaxId(String alias, String branch)
 	    {
 		 		Connection c = null;
+		 		ResultSet rs =null;
+		 		PreparedStatement ps =null;
+
 	            int maxId = 0;
 	        try {
 	        		c = ConnectionPool.getConnection(alias);
-	                PreparedStatement ps = c.prepareStatement("select max(id) id from ti_duplicate_debit where my_branch = ?");
+	                ps = c.prepareStatement("select max(id) id from ti_duplicate_debit where my_branch = ?");
 	                ps.setString(1, branch);
-	                ResultSet rs = ps.executeQuery();
+	                rs = ps.executeQuery();
 	                rs.next();
 
 	                        maxId = rs.getInt("id");
@@ -1666,6 +1780,9 @@ public class TclientService {
 	        	e.printStackTrace();
 	                com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
 	        } finally {
+	        	CustomerUtils.closeResultSet(rs);
+	        	CustomerUtils.closePStatement(ps);
+
 	                ConnectionPool.close(c);
 	        }
 	            return maxId;
@@ -1674,12 +1791,15 @@ public class TclientService {
 	 public static int getDuplicateDebitFilialMaxId(String alias, String branch)
 	    {
 		 		Connection c = null;
+		 		ResultSet rs =null;
+		 		PreparedStatement ps =null;
+
 	            int maxId = 0;
 	        try {
 	        		c = ConnectionPool.getConnection(alias);
-	                PreparedStatement ps = c.prepareStatement("select max(id) id from ti_duplicate_debit_filial where my_branch = ? ");
+	                ps = c.prepareStatement("select max(id) id from ti_duplicate_debit_filial where my_branch = ? ");
 	                ps.setString(1,branch);
-	                ResultSet rs = ps.executeQuery();
+	                rs = ps.executeQuery();
 	                rs.next();
 
 	                        maxId = rs.getInt("id");
@@ -1688,7 +1808,9 @@ public class TclientService {
 	        	e.printStackTrace();
 	                com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
 	        } finally {
-	                ConnectionPool.close(c);
+	        	CustomerUtils.closeResultSet(rs);
+	        	CustomerUtils.closePStatement(ps);
+	        	ConnectionPool.close(c);
 	        }
 	            return maxId;
 	    }
@@ -1696,19 +1818,24 @@ public class TclientService {
 	 public static int getDuplicateOtherMaxId(String alias)
 	    {
 		 		Connection c = null;
+		 		ResultSet rs =null;
+		 		PreparedStatement ps =null;
+
 	            int maxId = 0;
 	        try {
 	        		c = ConnectionPool.getConnection(alias);
-	                PreparedStatement ps = c.prepareStatement("select max(id) id from ti_duplicate_other");
-	                ResultSet rs = ps.executeQuery();
+	                ps = c.prepareStatement("select max(id) id from ti_duplicate_other");
+	                rs = ps.executeQuery();
 	                rs.next();
 
-	                        maxId = rs.getInt("id");
+	                maxId = rs.getInt("id");
 	                        
 	        } catch (SQLException e) {
 	        	e.printStackTrace();
 	                com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
 	        } finally {
+	        	CustomerUtils.closeResultSet(rs);
+	        	CustomerUtils.closePStatement(ps);
 	                ConnectionPool.close(c);
 	        }
 	            return maxId;
