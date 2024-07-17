@@ -457,6 +457,11 @@ public class ContactPersonComposer extends GenericForwardComposer {
         String id = context.getContactPersonId();
 
         Customer localCustomer = actionService.getCustomer(branch, id);
+        //2024.07.17
+        if (localCustomer==null) 
+        	logger.error("not err. localCustomer is null. branch="+branch+", id="+id);
+        if (localCustomer.getUnion_id()==null) 
+        	logger.error("not err. localCustomer.getUnion_id() is null. branch="+branch+", id="+id);
 
         String idSAP = null;
         try {
