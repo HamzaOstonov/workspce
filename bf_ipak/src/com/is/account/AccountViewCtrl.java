@@ -152,6 +152,12 @@ public class AccountViewCtrl extends GenericForwardComposer {
 		if (clientId != null)
 			clientName = accountService.getClientname(branch1, clientId);
 
+		parameter = (String[]) param.get("signPhysical");
+		if (parameter != null) {
+			initPhysicalClientAccounts();
+			
+		}
+		
 		dataGrid.setItemRenderer(new ListitemRenderer() {
 			public void render(Listitem row, Object data) throws Exception {
 				Account pAccount = (Account) data;
@@ -201,6 +207,11 @@ public class AccountViewCtrl extends GenericForwardComposer {
 		refreshModel();
 		hideAll();
 		grd.setVisible(true);
+	}
+
+	public void initPhysicalClientAccounts() {
+		aacc_bal.setModel(new ListModelList(AccountUtil.sortByClientType("08", saccList)));
+		acc_bal.setModel(new ListModelList(AccountUtil.sortByClientType("08", saccList)));
 	}
 
 	private void setModels() {
