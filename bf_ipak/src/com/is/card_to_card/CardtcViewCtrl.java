@@ -98,41 +98,42 @@ public void doAfterCompose(Component comp) throws Exception {
             dataGrid.setRows(20);
    // }
 
-	mbranch = (String) session.getAttribute("branch");
-	if (mod_type.getValue().compareTo("usual")==0)filter.setBranch(mbranch);
-
-
-        dataGrid.setItemRenderer(new ListitemRenderer(){
-    @SuppressWarnings("unchecked")
-    public void render(Listitem row, Object data) throws Exception {
-                TrAcc pTrAcc = (TrAcc) data;
-
-                row.setValue(pTrAcc);
-                /*
-                row.appendChild(new Listcell(pTrAcc.getId()));
-                row.appendChild(new Listcell(pTrAcc.getBranch()));
-                row.appendChild(new Listcell(pTrAcc.getAcc_template_id()));
-                */
-                row.appendChild(new Listcell(pTrAcc.getAcc_mfo()));
-                row.appendChild(new Listcell(pTrAcc.getAccount()));
-                row.appendChild(new Listcell(pTrAcc.getAcc_name()));
-
-
-    }});
+            
+//	mbranch = (String) session.getAttribute("branch");
+//	if (mod_type.getValue().compareTo("usual")==0)filter.setBranch(mbranch);
+//
+//
+//        dataGrid.setItemRenderer(new ListitemRenderer(){
+//    @SuppressWarnings("unchecked")
+//    public void render(Listitem row, Object data) throws Exception {
+//                TrAcc pTrAcc = (TrAcc) data;
+//
+//                row.setValue(pTrAcc);
+//                /*
+//                row.appendChild(new Listcell(pTrAcc.getId()));
+//                row.appendChild(new Listcell(pTrAcc.getBranch()));
+//                row.appendChild(new Listcell(pTrAcc.getAcc_template_id()));
+//                */
+//                row.appendChild(new Listcell(pTrAcc.getAcc_mfo()));
+//                row.appendChild(new Listcell(pTrAcc.getAccount()));
+//                row.appendChild(new Listcell(pTrAcc.getAcc_name()));
+//
+//
+//    }});
 
     //refreshModel(_startPageNumber);
     
     
-    chacc$acc.setItemRenderer(new ListitemRenderer(){
-        @SuppressWarnings("unchecked")
-        public void render(Listitem row, Object data) throws Exception {
-            Account pAccount = (Account) data;
-            row.setValue(pAccount);
-            row.appendChild(new Listcell(pAccount.getBranch()));
-            row.appendChild(new Listcell(pAccount.getId()));
-            row.appendChild(new Listcell(pAccount.getName()));
-
-        }});
+//    chacc$acc.setItemRenderer(new ListitemRenderer(){
+//        @SuppressWarnings("unchecked")
+//        public void render(Listitem row, Object data) throws Exception {
+//            Account pAccount = (Account) data;
+//            row.setValue(pAccount);
+//            row.appendChild(new Listcell(pAccount.getBranch()));
+//            row.appendChild(new Listcell(pAccount.getId()));
+//            row.appendChild(new Listcell(pAccount.getName()));
+//
+//        }});
 
 }
 
