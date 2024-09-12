@@ -20,7 +20,7 @@ protected List<TrAcc> getPageData(int itemStartNumber, int pageSize, Object fl,S
 }else{
         fc = new TrAccFilter();
 }
-    return TrAccService.getTrAccsFl(itemStartNumber, pageSize,fc, alias);
+    return CardtcService.getTrAccsFl(itemStartNumber, pageSize,fc, alias);
 }
 
 @Override
@@ -31,7 +31,7 @@ public int getTotalSize(Object fl,String alias)  {
 }else{
         fc = new TrAccFilter();
 }
-    return TrAccService.getCount(fc, alias);
+    return CardtcService.getCount(fc, alias);
 }
 
 @Override
