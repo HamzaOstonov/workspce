@@ -22,7 +22,7 @@ public class CardtcService {
 	private static String msql = "SELECT * FROM BF_TR_ACC ";
 
 	private static List<RefData> listCardTypes;
-	
+
 	public List<TrAcc> getTrAcc(String alias) {
 
 		List<TrAcc> list = new ArrayList<TrAcc>();
@@ -427,20 +427,56 @@ public class CardtcService {
 
 	}
 
-	public static List<RefData> getCardTypes(final String alias) {
-
-
+	public static List<Card> getHumoCards(CardFilter filter, final String alias) {
+		List<Card> list = new ArrayList<Card>();
+		Connection c = null;
+		ResultSet rs = null;
+		PreparedStatement s =null;
 		
-		if (listCardTypes == null || listCardTypes.size() == 0)
-		{
-			listCardTypes = (List<RefData>) RefDataService
-						.getRefData(
-								"select ID data, NAME label from SS_card_jump_type order by 1",
-								alias);
-	
-		}
-	return listCardTypes;
+		try {
+			c = ConnectionPool.getConnection(alias);
 
+			//PreparedStatement ps1 = c.prepareStatement("select * from ss_dblink_branch t where t.branch = ?");
+			//ps1.setString(1, branch);
+			//ResultSet rs1 = ps1.executeQuery();
+			//String us = null;
+			//if (rs1.next()) {
+			//	us = rs1.getString("user_name");
+			//}
+			//ConnectionPool.close(c);
+			//c = ConnectionPool.getConnection(us);
+sdf;
+			PreparedStatement ps = c.prepareStatement("select * from .......todo...  and rownum < 50");
+			
+			rs = ps.executeQuery();
+
+			
+			while (rs.next()) {
+				Card card= new Card();
+				card.setBranch(rs.getString("branch"));
+				
+				list.add(card);
+			}
+
+		} catch (SQLException e) {
+			com.is.LtLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
+		} finally {
+			ConnectionPool.close(c);
+		}
+		return list;
+		
 	}
+
+	
+	
+	public static List<RefData> getCardTypes(final String alias) {
+		if (listCardTypes == null || listCardTypes.size() == 0) {
+			listCardTypes = (List<RefData>) RefDataService
+					.getRefData("select ID data, NAME label from SS_card_jump_type order by 1", alias);
+
+		}
+		return listCardTypes;
+	}
+
 
 }

@@ -158,7 +158,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	}
 
 	private void refreshModel(int activePage) {
-		traccPaging.setPageSize(_pageSize);
+		//traccPaging.setPageSize(_pageSize);
 		model = new PagingListModel(activePage, _pageSize, filter, alias);
 
 		// if(_needsTotalSizeUpdate) {
@@ -166,7 +166,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		// _needsTotalSizeUpdate = false;
 		// }
 
-		traccPaging.setTotalSize(_totalSize);
+		//traccPaging.setTotalSize(_totalSize);
 
 		dataGrid.setModel((ListModel) model);
 		if (model.getSize() > 0) {
@@ -250,7 +250,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	}
 
 	private void sendSelEvt() {
-		if (dataGrid.getSelectedIndex() == 0) {
+		/*if (dataGrid.getSelectedIndex() == 0) {
 			btn_first.setDisabled(true);
 			btn_prev.setDisabled(true);
 		} else {
@@ -263,7 +263,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		} else {
 			btn_next.setDisabled(false);
 			btn_last.setDisabled(false);
-		}
+		}*/
 		SelectEvent evt = new SelectEvent("onSelect", dataGrid, dataGrid.getSelectedItems());
 		Events.sendEvent(evt);
 	}
@@ -316,7 +316,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 				filter = new TrAccFilter();
 
 				// filter.setId(fid.getValue());
-				filter.setBranch(fbranch.getValue());
+				//filter.setBranch(fbranch.getValue());
 				if (mod_type.getValue().compareTo("usual") == 0)
 					filter.setBranch(mbranch);
 				// filter.setAcc_template_id(Integer.parseInt(
