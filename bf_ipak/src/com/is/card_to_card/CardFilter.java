@@ -4,9 +4,11 @@ import java.util.Date;
 
 public class CardFilter {
 
+	private String branch;
 	private String client_code;
 	private String card_number;
 	private String client_name;
+	private String card_name;
 	private String pinfl;
 	public String getClient_code() {
 		return client_code;
@@ -31,6 +33,18 @@ public class CardFilter {
 	}
 	public void setPinfl(String pinfl) {
 		this.pinfl = pinfl;
+	}
+	public String getCard_name() {
+		return card_name;
+	}
+	public void setCard_name(String card_name) {
+		this.card_name = card_name;
+	}
+	public String getBranch() {
+		return branch;
+	}
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 	
 	

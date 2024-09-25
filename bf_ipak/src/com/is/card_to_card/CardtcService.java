@@ -431,7 +431,8 @@ public class CardtcService {
 		List<Card> list = new ArrayList<Card>();
 		Connection c = null;
 		ResultSet rs = null;
-		PreparedStatement s =null;
+		PreparedStatement ps =null;
+		
 		
 		try {
 			c = ConnectionPool.getConnection(alias);
@@ -445,16 +446,62 @@ public class CardtcService {
 			//}
 			//ConnectionPool.close(c);
 			//c = ConnectionPool.getConnection(us);
-sdf;
-			PreparedStatement ps = c.prepareStatement("select * from .......todo...  and rownum < 50");
-			
-			rs = ps.executeQuery();
 
+			//PreparedStatement ps = c.prepareStatement("select * from .......todo...  and rownum < 50");
+
+			String sql="select "+
+					"c.branch, "+
+					"c.real_card card_number, "+ 
+					"ba.tranz_acct def_atm_account, "+ 
+					"c.client_b client_id, "+
+					"c.card_name embossed_ch_name, "+ 
+					"c.expiry1 expiration_date, "+
+					"c.status1 card_status, "+
+					"c.account_no contract_id, "+ 
+					"c.status1 hot_card_status "+
+					"from humo_cards c, bf_empc_accounts ba "+ 
+					"where c.branch=? "//+
+					//"and substr(c.real_card,1,8) in ('98600301','98600303','98600308','98600309','98600324','98600325','98600330','98600366','40276700','40734200')";
+					;
+			
+			if (filter.getClient_code()!=null && !filter.getClient_code().equals("")) 
+				sql=sql+ " and c.client_b like ?";
+			if (filter.getCard_number()!=null && !filter.getCard_number().equals("")) 
+				sql=sql+ " and c.card like ?";
+			if (filter.getCard_name()!=null && !filter.getCard_name().equals("")) 
+				sql=sql+ " and c.card_name like ?";
+			
+			if ( (filter.getClient_code()==null || filter.getClient_code().equals("")) && 
+					(filter.getCard_number()==null || filter.getCard_number().equals("")) &&
+					(filter.getCard_name()==null || filter.getCard_name().equals(""))
+					)
+				sql=sql+ " and rownum<?";
+			
+			ps = c.prepareStatement(sql);
+			ps.setString(1, filter.getBranch());
+			int i=2;
+			if (filter.getClient_code()!=null && !filter.getClient_code().equals("")) 
+				ps.setString(i++, filter.getClient_code());
+			if (filter.getCard_number()!=null && !filter.getCard_number().equals("")) 
+				ps.setString(i++, filter.getCard_number());			
+			if (filter.getCard_name()!=null && !filter.getCard_name().equals("")) 
+				ps.setString(i++, filter.getCard_name());
+			if ( (filter.getClient_code()==null || filter.getClient_code().equals("")) && 
+					(filter.getCard_number()==null || filter.getCard_number().equals("")) &&
+					(filter.getCard_name()==null || filter.getCard_name().equals(""))
+					)
+				ps.setInt(i++, 1000);
+			rs = ps.executeQuery();
 			
 			while (rs.next()) {
 				Card card= new Card();
 				card.setBranch(rs.getString("branch"));
-				
+				card.setCard_number(rs.getString("card_number"));
+				card.setAccount(rs.getString("def_atm_account"));
+				card.setName(rs.getString("embossed_ch_name"));
+				card.setExpiry(rs.getString("expiration_date"));
+				card.setStatus(rs.getString("card_status"));
+				card.setContract(rs.getString("contract_id"));
 				list.add(card);
 			}
 

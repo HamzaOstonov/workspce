@@ -50,8 +50,8 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	private Toolbar tb;
 	private Textbox id, acc_template_id, acc_mfo, account, acc_name, chacc$acc_filter_mask;
 	private Textbox aid, aacc_template_id, aacc_mfo, aaccount, aacc_name;
-	private Textbox fid, facc_template_id, facc_mfo, faccount, facc_name, mod_type, txbId_client, txbCard,
-			txbName, txbPinfl;
+	private Textbox fid, facc_template_id, facc_mfo, faccount, facc_name, mod_type, txbId_client, txbCard, txbName,
+			txbPinfl;
 	private RefCBox rcb_card_from, rcb_card_to;
 
 	private Paging traccPaging;
@@ -63,13 +63,14 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 
 	// public TrAcc current;
 	public TrAccFilter filter = new TrAccFilter();
+	public CardFilter cardfilter = new CardFilter();
 
 	PagingListModel model = null;
 	ListModelList lmodel = null;
 	private AnnotateDataBinder binder;
 	SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 
-	private TrAcc current = new TrAcc();
+	private Card current = new Card();
 	private Account currentacc = new Account();
 
 	public Account getCurrentacc() {
@@ -97,19 +98,18 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		binder.loadAll();
 		String[] parameter = (String[]) param.get("ht");
 		alias = (String) session.getAttribute("alias");
-		
-		//this.uid = (Integer) this.session.getAttribute("uid");
-		//this.un = (String) this.session.getAttribute("un");
-		//this.pwd = (String) this.session.getAttribute("pwd");
+
+		// this.uid = (Integer) this.session.getAttribute("uid");
+		// this.un = (String) this.session.getAttribute("un");
+		// this.pwd = (String) this.session.getAttribute("pwd");
 		this.branch = (String) this.session.getAttribute("branch");
 
-		
 		String[] group_id = (String[]) this.param.get("group_id");
 		// if (parameter!=null){
 		// _pageSize = Integer.parseInt( parameter[0])/36;
 		dataGrid.setRows(20);
 		// }
-		
+
 		rcb_card_from.setModel(new ListModelList(CardtcService.getCardTypes(alias)));
 		rcb_card_to.setModel(new ListModelList(CardtcService.getCardTypes(alias)));
 
@@ -118,23 +118,27 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		// (mod_type.getValue().compareTo("usual")==0)filter.setBranch(mbranch);
 		//
 		//
-		// dataGrid.setItemRenderer(new ListitemRenderer(){
-		// @SuppressWarnings("unchecked")
-		// public void render(Listitem row, Object data) throws Exception {
-		// TrAcc pTrAcc = (TrAcc) data;
-		//
-		// row.setValue(pTrAcc);
-		// /*
-		// row.appendChild(new Listcell(pTrAcc.getId()));
-		// row.appendChild(new Listcell(pTrAcc.getBranch()));
-		// row.appendChild(new Listcell(pTrAcc.getAcc_template_id()));
-		// */
-		// row.appendChild(new Listcell(pTrAcc.getAcc_mfo()));
-		// row.appendChild(new Listcell(pTrAcc.getAccount()));
-		// row.appendChild(new Listcell(pTrAcc.getAcc_name()));
-		//
-		//
-		// }});
+		dataGrid.setItemRenderer(new ListitemRenderer() {
+			@SuppressWarnings("unchecked")
+			public void render(Listitem row, Object data) throws Exception {
+				Card card = (Card) data;
+
+				row.setValue(card);
+				/*
+				 * row.appendChild(new Listcell(pTrAcc.getId()));
+				 * row.appendChild(new Listcell(pTrAcc.getBranch()));
+				 * row.appendChild(new Listcell(pTrAcc.getAcc_template_id()));
+				 */
+				row.appendChild(new Listcell(card.getBranch()));
+				row.appendChild(new Listcell(card.getCard_number()));
+				row.appendChild(new Listcell(card.getAccount()));
+				row.appendChild(new Listcell(card.getName()));
+				row.appendChild(new Listcell(card.getExpiry()));
+				row.appendChild(new Listcell(card.getStatus()));
+				row.appendChild(new Listcell(card.getContract()));
+
+			}
+		});
 
 		// refreshModel(_startPageNumber);
 
@@ -158,7 +162,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	}
 
 	private void refreshModel(int activePage) {
-		//traccPaging.setPageSize(_pageSize);
+		// traccPaging.setPageSize(_pageSize);
 		model = new PagingListModel(activePage, _pageSize, filter, alias);
 
 		// if(_needsTotalSizeUpdate) {
@@ -166,21 +170,21 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		// _needsTotalSizeUpdate = false;
 		// }
 
-		//traccPaging.setTotalSize(_totalSize);
+		// traccPaging.setTotalSize(_totalSize);
 
 		dataGrid.setModel((ListModel) model);
 		if (model.getSize() > 0) {
-			this.current = (TrAcc) model.getElementAt(0);
+			this.current = (Card) model.getElementAt(0);
 			sendSelEvt();
 		}
 	}
 
 	// Omitted...
-	public TrAcc getCurrent() {
+	public Card getCurrent() {
 		return current;
 	}
 
-	public void setCurrent(TrAcc current) {
+	public void setCurrent(Card current) {
 		this.current = current;
 	}
 
@@ -199,19 +203,20 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 
 		// if((!current.getBranch().equals(current.getAcc_mfo()))&&(mbranch.compareTo(ConnectionPool.getValue("HO",
 		// alias))!=0))
-		if ((current != null) && (!current.getBranch().equals(current.getAcc_mfo()))
-				&& (mbranch.compareTo(ConnectionPool.getValue("HO", alias)) != 0)
-				&& mod_type.getValue().compareTo("usual") == 0) {
-			btn_save.setDisabled(true);
-			acc_mfo.setDisabled(true);
-			account.setDisabled(true);
-			acc_name.setDisabled(true);
-		} else {
-			btn_save.setDisabled(false);
-			acc_mfo.setDisabled(false);
-			account.setDisabled(false);
-			acc_name.setDisabled(false);
-		}
+		// if ((current != null) &&
+		// (!current.getBranch().equals(current.getAcc_mfo()))
+		// && (mbranch.compareTo(ConnectionPool.getValue("HO", alias)) != 0)
+		// && mod_type.getValue().compareTo("usual") == 0) {
+		// btn_save.setDisabled(true);
+		// acc_mfo.setDisabled(true);
+		// account.setDisabled(true);
+		// acc_name.setDisabled(true);
+		// } else {
+		// btn_save.setDisabled(false);
+		// acc_mfo.setDisabled(false);
+		// account.setDisabled(false);
+		// acc_name.setDisabled(false);
+		// }
 		account.setDisabled((current != null) && (current.getAccount().toUpperCase().contains("ACC")));
 	}
 
@@ -250,20 +255,14 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	}
 
 	private void sendSelEvt() {
-		/*if (dataGrid.getSelectedIndex() == 0) {
-			btn_first.setDisabled(true);
-			btn_prev.setDisabled(true);
-		} else {
-			btn_first.setDisabled(false);
-			btn_prev.setDisabled(false);
-		}
-		if (dataGrid.getSelectedIndex() == (model.getSize() - 1)) {
-			btn_next.setDisabled(true);
-			btn_last.setDisabled(true);
-		} else {
-			btn_next.setDisabled(false);
-			btn_last.setDisabled(false);
-		}*/
+		/*
+		 * if (dataGrid.getSelectedIndex() == 0) { btn_first.setDisabled(true);
+		 * btn_prev.setDisabled(true); } else { btn_first.setDisabled(false);
+		 * btn_prev.setDisabled(false); } if (dataGrid.getSelectedIndex() ==
+		 * (model.getSize() - 1)) { btn_next.setDisabled(true);
+		 * btn_last.setDisabled(true); } else { btn_next.setDisabled(false);
+		 * btn_last.setDisabled(false); }
+		 */
 		SelectEvent evt = new SelectEvent("onSelect", dataGrid, dataGrid.getSelectedItems());
 		Events.sendEvent(evt);
 	}
@@ -284,20 +283,27 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 
 	public void onClick$tbtn_search() {
 
-
-		if (filter.getBranch() == null)
-			filter.setBranch(branch);
+		if (cardfilter.getBranch() == null)
+			cardfilter.setBranch(branch);
+		// cardfilter.setCard_name("HAMZA");
 		// this.filter.setId_client("60000001");
 		// this.filter.setP_pinfl("56789012340078");
 		// this.bfilter = this.filter;
-		//filter.setFilter_type("N");
-		//this.filter.setEndpoint(listCustomerEndpoint);
-		this.refreshModel(/* this._startPageNumber */0);
+		// filter.setFilter_type("N");
+		// this.filter.setEndpoint(listCustomerEndpoint);
+		// this.refreshModel(/* this._startPageNumber */0);
 
-		ISLogger.getLogger().error(
-				"onClick$tbtn_search end! ");
+		// model = new PagingListModel(activePage, _pageSize, filter, alias);
+		ListModelList modelList = new ListModelList(CardtcService.getHumoCards(cardfilter, alias));
+		dataGrid.setModel((ListModel) modelList);
+		if (modelList.getSize() > 0) {
+			this.current = (Card) modelList.getElementAt(0);
+			sendSelEvt();
+		}
+
+		ISLogger.getLogger().error("onClick$tbtn_search end! ");
 	}
-	
+
 	public void onClick$btn_save() {
 		try {
 
@@ -316,7 +322,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 				filter = new TrAccFilter();
 
 				// filter.setId(fid.getValue());
-				//filter.setBranch(fbranch.getValue());
+				// filter.setBranch(fbranch.getValue());
 				if (mod_type.getValue().compareTo("usual") == 0)
 					filter.setBranch(mbranch);
 				// filter.setAcc_template_id(Integer.parseInt(
@@ -330,10 +336,10 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 				// current.setId(Integer.parseInt(id.getValue()));
 				// current.setBranch(branch.getValue());
 				// current.setAcc_template_id(Integer.parseInt(acc_template_id.getValue()));
-				current.setAcc_mfo(acc_mfo.getValue());
-				current.setAccount(account.getValue());
-				current.setAcc_name(acc_name.getValue());
-				CardtcService.update(current, alias);
+				// current.setAcc_mfo(acc_mfo.getValue());
+				// current.setAccount(account.getValue());
+				// current.setAcc_name(acc_name.getValue());
+				// CardtcService.update(current, alias);
 			}
 
 			onClick$btn_back();
@@ -362,8 +368,9 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	}
 
 	public void onDoubleClick$account() {
-		chacc$acc.setModel(
-				new BindingListModelList(CardtcService.getAccount(current, "", alias, acc_mfo.getValue()), false));
+		// chacc$acc.setModel(
+		// new BindingListModelList(CardtcService.getAccount(current, "", alias,
+		// acc_mfo.getValue()), false));
 		chacc.setVisible(true);
 	}
 
@@ -382,8 +389,9 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	}
 
 	public void onClick$acc_filter$chacc() {
-		chacc$acc.setModel(new BindingListModelList(
-				CardtcService.getAccount(current, chacc$acc_filter_mask.getValue(), alias, acc_mfo.getValue()), false));
+		// chacc$acc.setModel(new BindingListModelList(
+		// CardtcService.getAccount(current, chacc$acc_filter_mask.getValue(),
+		// alias, acc_mfo.getValue()), false));
 	}
 
 }
