@@ -460,12 +460,13 @@ public class CardtcService {
 					"c.account_no contract_id, "+ 
 					"c.status1 hot_card_status "+
 					"from humo_cards c, bf_empc_accounts ba "+ 
-					"where c.branch=? "//+
+					"where c.account_no=ba.account_no "+
+					"and c.branch=? "//+
 					//"and substr(c.real_card,1,8) in ('98600301','98600303','98600308','98600309','98600324','98600325','98600330','98600366','40276700','40734200')";
 					;
 			
 			if (filter.getClient_code()!=null && !filter.getClient_code().equals("")) 
-				sql=sql+ " and c.client_b like ?";
+				sql=sql+ " and c.client_b = ?";
 			if (filter.getCard_number()!=null && !filter.getCard_number().equals("")) 
 				sql=sql+ " and c.card like ?";
 			if (filter.getCard_name()!=null && !filter.getCard_name().equals("")) 
@@ -543,13 +544,13 @@ public class CardtcService {
 					;
 			
 			if (filter.getClient_code()!=null && !filter.getClient_code().equals("")) 
-				sql=sql+ " and substr(c.def_atm_account,15,8) like ?";
+				sql=sql+ " and substr(c.def_atm_account,15,8) = ?";
 			if (filter.getCard_number()!=null && !filter.getCard_number().equals("")) 
 				sql=sql+ " and c.card_number like ?";
 			if (filter.getCard_name()!=null && !filter.getCard_name().equals("")) 
 				sql=sql+ " and c.embossed_ch_name like ?";
 			if (filter.getCurrency()!=null && !filter.getCurrency().equals("")) 
-				sql=sql+ " and substr(c.def_atm_account,11,3) like ?";
+				sql=sql+ " and substr(c.def_atm_account,11,3) = ?";
 			
 			
 			if ( (filter.getClient_code()==null || filter.getClient_code().equals("")) && 

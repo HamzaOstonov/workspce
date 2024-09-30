@@ -86,7 +86,6 @@
 									width="10%" />
 
 							</listhead>
-
 						</listbox>
 						<toolbar visible="true" orient="vertical">
 							<toolbarbutton id="tbtn_settings"
@@ -116,38 +115,16 @@
 							multiple="true" width="100%"
 							selectedItem="@{trpaymain$composer.currentto}">
 							<listhead sizable="true">
-								<listheader label="id" width="10px" />
-								<listheader label="№" width="50px"
+								<listheader label="Филиал" width="8%" />
+								<listheader label="Карта" width="18%"
 									id="nnmb_h2" />
-								<listheader
-									label="${labels.trpay.branch}" width="40px"
-									sort="auto(branch)" />
-								<listheader
-									label="${labels.trpay.cur_acc}" width="160px"
-									sort="auto(cur_acc)" />
-								<listheader
-									label="${labels.trpay.card_acc}" width="160px"
-									sort="auto(card_acc)" />
-								<listheader
-									label="${labels.trpay.account_no}" width="150px"
-									sort="auto(account_no)" />
-								<listheader
-									label="${labels.trpay.amount}" width="100px"
-									sort="auto(amount)" />
-								<listheader
-									label="${labels.trpay.date_created}" width="80px"
-									sort="auto(date_created)" />
-								<listheader label="Действие"
-									width="150px" />
-								<listheader
-									label="${labels.trpay.cl_name}" width="180px"
-									sort="auto(cl_name)" />
-								<listheader
-									label="${labels.trpay.state}" width="150px" sort="auto(state)" />
-								<listheader label="Операция"
-									width="180px" sort="auto(state)" />
-								<listheader label="Печать"
-									sort="auto(state)" />
+								<listheader label="Счет" width="17%" />
+								<listheader label="Наименование"
+									width="20%" />
+								<listheader label="Срок" width="7%" />
+								<listheader label="Статус" width="20%" />
+								<listheader label="Контракт"
+									width="10%" />
 
 							</listhead>
 

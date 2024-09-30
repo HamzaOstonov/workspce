@@ -143,6 +143,23 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 			}
 		});
 
+		dataGrid2.setItemRenderer(new ListitemRenderer() {
+			@SuppressWarnings("unchecked")
+			public void render(Listitem row, Object data) throws Exception {
+				Card card = (Card) data;
+
+				row.setValue(card);
+				row.appendChild(new Listcell(card.getBranch()));
+				row.appendChild(new Listcell(card.getCard_number()));
+				row.appendChild(new Listcell(card.getAccount()));
+				row.appendChild(new Listcell(card.getName()));
+				row.appendChild(new Listcell(card.getExpiry()));
+				row.appendChild(new Listcell(card.getStatus()));
+				row.appendChild(new Listcell(card.getContract()));
+
+			}
+		});
+
 		// refreshModel(_startPageNumber);
 
 		// chacc$acc.setItemRenderer(new ListitemRenderer(){
@@ -321,7 +338,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 				dataGrid2.setModel((ListModel) modelList);
 				if (modelList.getSize() > 0) {
 					this.currentTo = (Card) modelList.getElementAt(0);
-					sendSelEvt();
+					//sendSelEvt();
 				}
 
 				
