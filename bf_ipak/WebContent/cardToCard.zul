@@ -72,7 +72,7 @@
 						</toolbar>
 						<listbox style="border::normal;height:300px;"
 							id="dataGrid" multiple="true" width="100%"
-							selectedItem="@{trpaymain$composer.current}">
+							selectedItem="@{trpaymain$composer.currentfrom}">
 							<listhead sizable="true">
 								<listheader label="Филиал" width="8%" />
 								<listheader label="Карта" width="18%"
@@ -114,7 +114,7 @@
 						</grid>
 						<listbox style="border:none" id="dataGrid2"
 							multiple="true" width="100%"
-							selectedItem="@{trpaymain$composer.current}">
+							selectedItem="@{trpaymain$composer.currentto}">
 							<listhead sizable="true">
 								<listheader label="id" width="10px" />
 								<listheader label="№" width="50px"

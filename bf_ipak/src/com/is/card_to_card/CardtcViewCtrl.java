@@ -64,13 +64,15 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	// public TrAcc current;
 	public TrAccFilter filter = new TrAccFilter();
 	public CardFilter cardfilter = new CardFilter();
+	public CardFilter cardfilter2 = new CardFilter();
 
 	PagingListModel model = null;
 	ListModelList lmodel = null;
 	private AnnotateDataBinder binder;
 	SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 
-	private Card current = new Card();
+	private Card currentFrom = new Card();
+	private Card currentTo = new Card();	
 	private Account currentacc = new Account();
 
 	public Account getCurrentacc() {
@@ -94,7 +96,8 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 		// TODO Auto-generated method stub
 		binder = new AnnotateDataBinder(comp);
-		binder.bindBean("current", this.current);
+		binder.bindBean("currentfrom", this.currentFrom);
+		binder.bindBean("currentto", this.currentTo);		
 		binder.loadAll();
 		String[] parameter = (String[]) param.get("ht");
 		alias = (String) session.getAttribute("alias");
@@ -158,35 +161,35 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	public void onPaging$traccPaging(ForwardEvent event) {
 		final PagingEvent pe = (PagingEvent) event.getOrigin();
 		_startPageNumber = pe.getActivePage();
-		refreshModel(_startPageNumber);
+		//refreshModel(_startPageNumber);
 	}
 
-	private void refreshModel(int activePage) {
-		// traccPaging.setPageSize(_pageSize);
-		model = new PagingListModel(activePage, _pageSize, filter, alias);
-
-		// if(_needsTotalSizeUpdate) {
-		_totalSize = model.getTotalSize(filter, alias);
-		// _needsTotalSizeUpdate = false;
-		// }
-
-		// traccPaging.setTotalSize(_totalSize);
-
-		dataGrid.setModel((ListModel) model);
-		if (model.getSize() > 0) {
-			this.current = (Card) model.getElementAt(0);
-			sendSelEvt();
-		}
-	}
+//	private void refreshModel(int activePage) {
+//		// traccPaging.setPageSize(_pageSize);
+//		model = new PagingListModel(activePage, _pageSize, filter, alias);
+//
+//		// if(_needsTotalSizeUpdate) {
+//		_totalSize = model.getTotalSize(filter, alias);
+//		// _needsTotalSizeUpdate = false;
+//		// }
+//
+//		// traccPaging.setTotalSize(_totalSize);
+//
+//		dataGrid.setModel((ListModel) model);
+//		if (model.getSize() > 0) {
+//			this.current = (Card) model.getElementAt(0);
+//			sendSelEvt();
+//		}
+//	}
 
 	// Omitted...
-	public Card getCurrent() {
-		return current;
-	}
-
-	public void setCurrent(Card current) {
-		this.current = current;
-	}
+//	public Card getCurrent() {
+//		return current;
+//	}
+//
+//	public void setCurrent(Card current) {
+//		this.current = current;
+//	}
 
 	public void onDoubleClick$dataGrid$grd() {
 		grd.setVisible(false);
@@ -196,9 +199,9 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		fgrd.setVisible(false);
 		btn_back.setImage("/images/folder.png");
 		btn_back.setLabel(Labels.getLabel("grid"));
-		if ((current != null) && (current.getAccount() == null)) {
-			current.setAccount("");
-		}
+		//if ((current != null) && (current.getAccount() == null)) {
+		//	current.setAccount("");
+		//}
 		// if(!current.getAcc_mfo().equals(current.getBranch()))
 
 		// if((!current.getBranch().equals(current.getAcc_mfo()))&&(mbranch.compareTo(ConnectionPool.getValue("HO",
@@ -217,7 +220,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		// account.setDisabled(false);
 		// acc_name.setDisabled(false);
 		// }
-		account.setDisabled((current != null) && (current.getAccount().toUpperCase().contains("ACC")));
+		//account.setDisabled((current != null) && (current.getAccount().toUpperCase().contains("ACC")));
 	}
 
 	public void onClick$btn_back() {
@@ -285,6 +288,8 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 
 		if (cardfilter.getBranch() == null)
 			cardfilter.setBranch(branch);
+		if (txbId_client.getValue()!=null)
+			cardfilter.setClient_code(txbId_client.getValue());
 		// cardfilter.setCard_name("HAMZA");
 		// this.filter.setId_client("60000001");
 		// this.filter.setP_pinfl("56789012340078");
@@ -297,13 +302,38 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		ListModelList modelList = new ListModelList(CardtcService.getHumoCards(cardfilter, alias));
 		dataGrid.setModel((ListModel) modelList);
 		if (modelList.getSize() > 0) {
-			this.current = (Card) modelList.getElementAt(0);
+			this.currentFrom = (Card) modelList.getElementAt(0);
 			sendSelEvt();
 		}
 
 		ISLogger.getLogger().error("onClick$tbtn_search end! ");
 	}
 
+	public void onSelect$dataGrid() {
+		if (currentFrom != null) {
+			if (rcb_card_to.getValue()!=null) {
+				cardfilter2.setBranch(currentFrom.getBranch());
+				cardfilter2.setClient_code(currentFrom.getClient_code());
+				cardfilter2.setCurrency(currentFrom.getCurrency());
+				
+				
+				ListModelList modelList = new ListModelList(CardtcService.getVisaSumCards(cardfilter2, alias));
+				dataGrid2.setModel((ListModel) modelList);
+				if (modelList.getSize() > 0) {
+					this.currentTo = (Card) modelList.getElementAt(0);
+					sendSelEvt();
+				}
+
+				
+			} else {
+				alert ("Не выбрано тип карты-получатель");	
+			}
+			
+		} else {
+			alert ("Не выбрано карта-отправитель");
+		}
+	}		
+		
 	public void onClick$btn_save() {
 		try {
 
@@ -343,7 +373,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 			}
 
 			onClick$btn_back();
-			refreshModel(_startPageNumber);
+			//refreshModel(_startPageNumber);
 			SelectEvent evt = new SelectEvent("onSelect", dataGrid, dataGrid.getSelectedItems());
 			Events.sendEvent(evt);
 		} catch (Exception e) {
@@ -364,7 +394,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		fgrd.setVisible(false);
 		CheckNull.clearForm(addgrd);
 		CheckNull.clearForm(fgrd);
-		refreshModel(_startPageNumber);
+		//refreshModel(_startPageNumber);
 	}
 
 	public void onDoubleClick$account() {
@@ -392,6 +422,22 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 		// chacc$acc.setModel(new BindingListModelList(
 		// CardtcService.getAccount(current, chacc$acc_filter_mask.getValue(),
 		// alias, acc_mfo.getValue()), false));
+	}
+
+	public Card getCurrentFrom() {
+		return currentFrom;
+	}
+
+	public void setCurrentFrom(Card currentFrom) {
+		this.currentFrom = currentFrom;
+	}
+
+	public Card getCurrentTo() {
+		return currentTo;
+	}
+
+	public void setCurrentTo(Card currentTo) {
+		this.currentTo = currentTo;
 	}
 
 }

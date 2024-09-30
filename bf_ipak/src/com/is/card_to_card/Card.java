@@ -9,6 +9,8 @@ public class Card {
 	private String expiry;
 	private String status;
 	private String contract;
+	private String client_code;
+	private String currency;
 	
 	public String getBranch() {
 		return branch;
@@ -51,6 +53,18 @@ public class Card {
 	}
 	public void setContract(String contract) {
 		this.contract = contract;
+	}
+	public String getClient_code() {
+		return client_code;
+	}
+	public void setClient_code(String client_code) {
+		this.client_code = client_code;
+	}
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 
 	

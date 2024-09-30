@@ -10,6 +10,8 @@ public class CardFilter {
 	private String client_name;
 	private String card_name;
 	private String pinfl;
+	private String currency;
+	
 	public String getClient_code() {
 		return client_code;
 	}
@@ -45,6 +47,12 @@ public class CardFilter {
 	}
 	public void setBranch(String branch) {
 		this.branch = branch;
+	}
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 	
 	
