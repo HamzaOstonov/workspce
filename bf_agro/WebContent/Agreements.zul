@@ -1,0 +1,260 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="maincurrencymain" width="100%" border="normal" apply="com.is.tieto_globuz.agreements.AgreementViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="maincurrencyPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{maincurrencymain$composer.current}">
+                        <listhead sizable="true">      
+                         		<listheader label="${labels.maincurrency.id}" width="120px" />                          
+                                <listheader label="${labels.maincurrency.merchant}" width="200px" />
+								<listheader label="${labels.maincurrency.agreement_type}" width="200px" />
+                                <listheader label="${labels.maincurrency.action}" />
+                        </listhead>
+
+                </listbox>
+
+        </div>
+ 
+ 	<window id = "agreementSelection" width = "500px" mode = "modal" visible = "false" closable = "true"
+	title = "Выбор договора" position = "center, center"
+	onClose = "self.visible  =  false; event.stopPropagation();">		
+		
+		<grid>
+			<columns>
+				<column width = "100%" />
+			</columns>
+			<rows>
+				<row>
+					<label value = "Выберите договор: "/>
+				</row>
+				<row>
+					<rcombobox id = "agrSelect" mold = "rounded" width = "100%" />
+				</row>
+			</rows>
+		</grid>
+
+		<toolbar>
+			<toolbarbutton id = "selectBtn" label = "Выбрать" image = "/images/+.png" />
+			<toolbarbutton id = "cancelBtn" label = "${labels.cancel}" image = "/images/stop.png" />
+		</toolbar>
+        
+	</window>
+	
+	
+	       <div id="frm" visible="false">
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="30%" />
+                                  <column width="70%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.maincurrency.card_type}" /><rcombobox id="acard_type"  style="background: #99CCFF" /></row>
+                                  <row><label value="${labels.maincurrency.merchant}" /><rcombobox id="amerchant"   style="background: #99CCFF" /></row>
+                                  <row><label value="${labels.maincurrency.acq_bank}" /><textbox id="aacq_bank" maxlength="2" value = "03" style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.acq_branch}" /><textbox id="aacq_branch" maxlength="3" value = "001" style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.tr_ccy}" /><textbox id="atr_ccy" maxlength="3" value = "UZS" style="background: #99CCFF" /></row>
+                                  <row><label value="${labels.maincurrency.imprint_fee}" /><textbox id="aimprint_fee" maxlength="6" value = "0"   style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.imprint_min}" /><textbox id="aimprint_min" maxlength="8" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.imprint_max}" /><textbox id="aimprint_max" maxlength="12" value = "0"  style="background: #99CCFF" /></row>
+                                  <row><label value="${labels.maincurrency.pos_fee}" /><textbox id="apos_fee" maxlength="6" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.pos_min}" /><textbox id="apos_min" maxlength="8" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.pos_max}" /><textbox id="apos_max" maxlength="12" value = "0" style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.cashback_fee}" /><textbox id="acashback_fee" maxlength="6" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.casback_min}" /><textbox id="acasback_min" maxlength="8" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.cashback_max}" /><textbox id="acashback_max" maxlength="12" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.atm_fee}" /><textbox id="aatm_fee" maxlength="6" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.atm_min}" /><textbox id="aatm_min" maxlength="9" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.atm_max}" /><textbox id="aatm_max" maxlength="12" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.pos_limit}" /><textbox id="apos_limit" maxlength="12" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.pos_limit_act}" /><textbox id="apos_limit_act" maxlength="12" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.imprint_limit}" /><textbox id="aimprint_limit" maxlength="12" value = "0"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.status}" /><textbox id="astatus" maxlength="1"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.agr_number}" /><textbox id="aagr_number" maxlength="15"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.agr_date}" /><datebox id="aagr_date"  mold="rounded" disabled="true" maxlength="8" /></row>
+                                  <row><label value="${labels.maincurrency.algorithm}" /><textbox id="aalgorithm" maxlength="1"  style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.order_period}" /><textbox id="aorder_period" maxlength="2" style="background: #99CCFF"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_pos_fee}" /><textbox id="abank_pos_fee" maxlength="6" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_pos_min}" /><textbox id="abank_pos_min" maxlength="8" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_pos_max}" /><textbox id="abank_pos_max" maxlength="12" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_imp_fee}" /><textbox id="abank_imp_fee" maxlength="6" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_imp_min}" /><textbox id="abank_imp_min" maxlength="8" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_imp_max}" /><textbox id="abank_imp_max" maxlength="12" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_atm_fee}" /><textbox id="abank_atm_fee" maxlength="6" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_atm_min}" /><textbox id="abank_atm_min" maxlength="8" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_atm_max}" /><textbox id="abank_atm_max" maxlength="12" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_algorithm}" /><textbox id="abank_algorithm" maxlength="1" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_calc_mode}" /><textbox id="abank_calc_mode" maxlength="1" mold="rounded"  /></row>
+                                  <row><label value="${labels.maincurrency.bank_account}" /><textbox id="abank_account" maxlength="25" style="background: #99CCFF"  /></row>
+                          </rows>
+                  </grid>
+                  
+                  
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="30%" />
+                                  <column width="70%" />
+                          </columns>
+                          <rows>
+                                  
+							<row>
+	<label value="${labels.maincurrency.id}" />
+		<textbox id="fid"  mold="rounded"  value="@{maincurrencymain$composer.filter.id}" />
+	</row>
+	<row>
+		<label value="${labels.maincurrency.merchant}" />
+		<rcombobox id="fmerchant"  mold="rounded"  selectedItem="@{maincurrencymain$composer.filter.merchant}" />
+	</row>
+	<row>
+		<label value="${labels.maincurrency.agreement_type}" />
+		<rcombobox id="fagreement_type" mold="rounded"  selectedItem="@{maincurrencymain$composer.filter.agreement_type}" />
+	</row>
+	<row>
+		<label value="${labels.maincurrency.action}" />
+		<rcombobox id="faction" mold="rounded"  selectedItem="@{maincurrencymain$composer.filter.action}" />
+	</row>
+                          </rows>
+                  </grid>
+                  
+                  
+                  
+                  
+                                   <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="false">
+                          <columns>
+                                  <column width="30%" />
+                                  <column width="70%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.maincurrency.card_type}" /><rcombobox id="card_type"  mold="rounded"  selectedItem="@{maincurrencymain$composer.currentWithMerchant.card_type}" disabled = "true" /></row>
+                                  <row><label value="${labels.maincurrency.merchant}" /><rcombobox id="merchant"  mold="rounded"  selectedItem="@{maincurrencymain$composer.currentWithMerchant.merchant}" disabled = "true" /></row>
+                                  <row><label value="${labels.maincurrency.acq_bank}" /><textbox id="acq_bank" maxlength="2" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.acq_bank}" disabled = "true" /></row>
+                                  <row><label value="${labels.maincurrency.acq_branch}" /><textbox id="acq_branch" maxlength="3" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.acq_branch}" disabled = "true" /></row>
+                                  <row><label value="${labels.maincurrency.tr_ccy}" /><textbox id="tr_ccy" maxlength="3" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.tr_ccy}" disabled = "true" /></row>
+                                  <row><label value="${labels.maincurrency.imprint_fee}" /><textbox id="imprint_fee" maxlength="6" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.imprint_fee}" /></row>
+                                  <row><label value="${labels.maincurrency.imprint_min}" /><textbox id="imprint_min" maxlength="8" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.imprint_min}" /></row>
+                                  <row><label value="${labels.maincurrency.imprint_max}" /><textbox id="imprint_max" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.imprint_max}" /></row>
+                                  <row><label value="${labels.maincurrency.pos_fee}" /><textbox id="pos_fee" maxlength="6" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.pos_fee}" /></row>
+                                  <row><label value="${labels.maincurrency.pos_min}" /><textbox id="pos_min" maxlength="8" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.pos_min}" /></row>
+                                  <row><label value="${labels.maincurrency.pos_max}" /><textbox id="pos_max" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.pos_max}" /></row>
+                                  <row><label value="${labels.maincurrency.cashback_fee}" /><textbox id="cashback_fee" maxlength="6" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.cashback_fee}" /></row>
+                                  <row><label value="${labels.maincurrency.casback_min}" /><textbox id="casback_min" maxlength="8" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.casback_min}" /></row>
+                                  <row><label value="${labels.maincurrency.cashback_max}" /><textbox id="cashback_max" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.cashback_max}" /></row>
+                                  <row><label value="${labels.maincurrency.atm_fee}" /><textbox id="atm_fee" maxlength="6" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.atm_fee}" /></row>
+                                  <row><label value="${labels.maincurrency.atm_min}" /><textbox id="atm_min" maxlength="8" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.atm_min}" /></row>
+                                  <row><label value="${labels.maincurrency.atm_max}" /><textbox id="atm_max" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.atm_max}" /></row>
+                                  <row><label value="${labels.maincurrency.pos_limit}" /><textbox id="pos_limit" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.pos_limit}" /></row>
+                                  <row><label value="${labels.maincurrency.pos_limit_act}" /><textbox id="pos_limit_act" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.pos_limit_act}" /></row>
+                                  <row><label value="${labels.maincurrency.imprint_limit}" /><textbox id="imprint_limit" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.imprint_limit}" /></row>
+                                  <row><label value="${labels.maincurrency.status}" /><textbox id="status" maxlength="1" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.status}" /></row>
+                                  <row><label value="${labels.maincurrency.agr_number}" /><textbox id="agr_number" maxlength="15" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.agr_number}" /></row>
+                                  <row><label value="${labels.maincurrency.agr_date}" /><datebox id="agr_date"  mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.agr_date}" disabled = "true" /></row>
+                                  <row><label value="${labels.maincurrency.algorithm}" /><textbox id="algorithm" maxlength="1" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.algorithm}" /></row>
+                                  <row><label value="${labels.maincurrency.order_period}" /><textbox id="order_period" maxlength="2" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.order_period}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_pos_fee}" /><textbox id="bank_pos_fee" maxlength="6" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_pos_fee}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_pos_min}" /><textbox id="bank_pos_min" maxlength="8" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_pos_min}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_pos_max}" /><textbox id="bank_pos_max" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_pos_max}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_imp_fee}" /><textbox id="bank_imp_fee" maxlength="6" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_imp_fee}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_imp_min}" /><textbox id="bank_imp_min" maxlength="8" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_imp_min}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_imp_max}" /><textbox id="bank_imp_max" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_imp_max}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_atm_fee}" /><textbox id="bank_atm_fee" maxlength="6" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_atm_fee}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_atm_min}" /><textbox id="bank_atm_min" maxlength="8" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_atm_min}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_atm_max}" /><textbox id="bank_atm_max" maxlength="12" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_atm_max}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_algorithm}" /><textbox id="bank_algorithm" maxlength="1" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_algorithm}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_calc_mode}" /><textbox id="bank_calc_mode" maxlength="1" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_calc_mode}" /></row>
+                                  <row><label value="${labels.maincurrency.bank_account}" /><textbox id="bank_account" maxlength="25" mold="rounded"  value="@{maincurrencymain$composer.currentWithMerchant.bank_account}" /></row>
+                          </rows>
+                  </grid>
+                  
+                  
+                  
+                  
+
+      <grid id="addOnUs" visible="false">
+          <columns>
+            <column width="30%" />
+            <column width="70%" />
+          </columns>
+          <rows>
+            
+            <row><label value="${labels.maincurrency.card_type}" /><rcombobox id="card_type_onUs" style="background: #99CCFF" /></row>
+            <row><label value="${labels.maincurrency.merchant}" /><rcombobox id="merchant_onUs" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.iss_cmi}" /><textbox id="iss_cmi_onUs" maxlength="8" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.imprint_fee}" /><textbox id="imprint_fee_onUs" maxlength="6" style="background: #99CCFF" /></row>
+            <row><label value="${labels.maincurrency.imprint_min}" /><textbox id="imprint_min_onUs" maxlength="8" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.imprint_max}" /><textbox id="imprint_max_onUs" maxlength="12"  style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.pos_fee}" /><textbox id="pos_fee_onUs" maxlength="6" style="background: #99CCFF" /></row>
+            <row><label value="${labels.maincurrency.pos_min}" /><textbox id="pos_min_onUs" maxlength="8" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.pos_max}" /><textbox id="pos_max_onUs" maxlength="12" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.cashback_fee}" /><textbox id="cashback_fee_onUs" maxlength="6"  style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.casback_min}" /><textbox id="cashback_min_onUs" maxlength="8" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.cashback_max}" /><textbox id="cashback_max_onUs" maxlength="12" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.atm_fee}" /><textbox id="atm_fee_onUs" maxlength="6" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.atm_min}" /><textbox id="atm_min_onUs" maxlength="8" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.atm_max}" /><textbox id="atm_max_onUs" maxlength="12" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.tr_ccy}" /><textbox id="tr_ccy_onUs" maxlength="3" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.bin}" /><textbox id="bin_onUs" maxlength="15" style="background: #99CCFF"  /></row>
+            <row><label value="${labels.maincurrency.algorithm}" /><textbox id="algorithm_onUs" maxlength="1" style="background: #99CCFF"  /></row>
+         </rows>
+      </grid>
+      
+      
+            <grid id="iaddOnUs" visible="false">
+          <columns>
+            <column width="30%" />
+            <column width="70%" />
+          </columns>
+          <rows>
+            
+            <row><label value="${labels.maincurrency.card_type}" /><rcombobox id="icard_type_onUs" style="background: #99CCFF" selectedItem="@{maincurrencymain$composer.currentOn_us.card_type}" disabled = "true" /></row>
+            <row><label value="${labels.maincurrency.merchant}" /><rcombobox id="imerchant_onUs" style="background: #99CCFF" selectedItem="@{maincurrencymain$composer.currentOn_us.merchant}" disabled = "true"  /></row>
+            <row><label value="${labels.maincurrency.iss_cmi}" /><textbox id="iiss_cmi_onUs" maxlength="8" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.iss_cmi}"  /></row>
+            <row><label value="${labels.maincurrency.imprint_fee}" /><textbox id="iimprint_fee_onUs" maxlength="6" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.imprint_fee}" /></row>
+            <row><label value="${labels.maincurrency.imprint_min}" /><textbox id="iimprint_min_onUs" maxlength="8" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.imprint_min}"  /></row>
+            <row><label value="${labels.maincurrency.imprint_max}" /><textbox id="iimprint_max_onUs" maxlength="12"  style="background: #99CCFF"  value="@{maincurrencymain$composer.currentOn_us.imprint_max}" /></row>
+            <row><label value="${labels.maincurrency.pos_fee}" /><textbox id="ipos_fee_onUs" maxlength="6" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.pos_fee}" /></row>
+            <row><label value="${labels.maincurrency.pos_min}" /><textbox id="ipos_min_onUs" maxlength="8" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.pos_min}"  /></row>
+            <row><label value="${labels.maincurrency.pos_max}" /><textbox id="ipos_max_onUs" maxlength="12" style="background: #99CCFF"  value="@{maincurrencymain$composer.currentOn_us.pos_max}" /></row>
+            <row><label value="${labels.maincurrency.cashback_fee}" /><textbox id="icashback_fee_onUs" maxlength="6"  style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.cashback_fee}" /></row>
+            <row><label value="${labels.maincurrency.casback_min}" /><textbox id="icashback_min_onUs" maxlength="8" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.cashback_min}" /></row>
+            <row><label value="${labels.maincurrency.cashback_max}" /><textbox id="icashback_max_onUs" maxlength="12" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.cashback_max}" /></row>
+            <row><label value="${labels.maincurrency.atm_fee}" /><textbox id="iatm_fee_onUs" maxlength="6" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.atm_fee}" /></row>
+            <row><label value="${labels.maincurrency.atm_min}" /><textbox id="iatm_min_onUs" maxlength="8" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.atm_min}" /></row>
+            <row><label value="${labels.maincurrency.atm_max}" /><textbox id="iatm_max_onUs" maxlength="12" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.atm_max}" /></row>
+            <row><label value="${labels.maincurrency.tr_ccy}" /><textbox id="itr_ccy_onUs" maxlength="3" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.tr_ccy}" /></row>
+            <row><label value="${labels.maincurrency.bin}" /><textbox id="ibin_onUs" maxlength="15" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.bin}" /></row>
+            <row><label value="${labels.maincurrency.algorithm}" /><textbox id="ialgorithm_onUs" maxlength="1" style="background: #99CCFF" value="@{maincurrencymain$composer.currentOn_us.algorithm}" /></row>
+         </rows>
+      </grid>
+                  
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>
+

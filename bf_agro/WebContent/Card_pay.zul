@@ -1,0 +1,224 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="Card_pay" width="100%"  height="100%" border="normal" apply="com.is.card_pay.Card_payViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                
+        </toolbar>
+
+  		<div align="center">
+			<grid id="mygrid" width="800px">     
+				<columns>
+					<column width="25%"/>
+					<column width="25%"/>
+					<column width="25%"/>
+					<column width="25%"/>
+					<!-- <column width="14%"/>
+					<column width="20%"/> -->
+					<column />
+				</columns>   
+        		<rows>
+        			<row>
+        			<label value="Код клиента" />
+        			<textbox id="clnt" readonly="true" /> 
+        			<label value="Счет клиента" />
+        			<textbox id="d_acc" width="220px" ctrlKeys="#f9" />
+        			</row>
+        			<row>
+        			<label value="Сумма" />
+        			<textbox id="sum" />
+        			<label value="Карта клиента" />
+        			<textbox id="d_card_num" width="200px"/>
+        			
+        			<!-- <label value="Счет корреспондента" />
+        			<textbox id="c_acc" width="220px" ctrlKeys="#f9" />
+        			<label value="name_card" />
+        			<textbox id="name_card" width="200px"/>
+        			<label value="Карта корреспондента" />
+        			<textbox id="c_card_num" width="200px"/> -->
+					</row>
+					
+        			<row>
+        			 <!-- <button id="clean" label="${labels.delete}" /><longbox id="delete" value="0" /> -->
+        			<button id="save" label="Сохранить"/>
+        			<button id="cr" label="Документ"/>
+        			<!-- <button id="report" label="report_excel"/>
+        			<button id="report2" label="report_word"/>  -->
+        			
+        			</row>
+      			</rows>
+        	</grid>
+        </div>
+
+        <div id="grd">
+
+                <paging id="card_payPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{Card_paymain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.Card_pay.branch}" width="200px" />
+                                <listheader label="${labels.Card_pay.id}" width="200px" />
+                                <listheader label="${labels.Card_pay.client}" width="200px" />
+                                <listheader label="${labels.Card_pay.d_account}" width="200px" />
+                                <listheader label="${labels.Card_pay.d_card_number}" width="200px" />
+                                <listheader label="${labels.Card_pay.c_account}" width="200px" />
+                                <listheader label="${labels.Card_pay.c_card_number}" width="200px" />
+                                <listheader label="${labels.Card_pay.v_date}" width="200px" />
+                                <listheader label="${labels.Card_pay.summa}" width="200px" />
+                                <listheader label="${labels.Card_pay.state}" width="200px" />
+                                <listheader label="${labels.Card_pay.status}" width="200px" />
+                                
+                        </listhead>
+                </listbox>
+        </div>
+        
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.Card_pay.branch}" /><textbox id="branch"  mold="rounded"  value="@{Card_paymain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.Card_pay.client}" /><textbox id="client"  mold="rounded"  value="@{Card_paymain$composer.current.client}" /></row>
+                                  <row><label value="${labels.Card_pay.d_account}" /><textbox id="d_account"  mold="rounded"  value="@{Card_paymain$composer.current.d_account}" /></row>
+                                  <row><label value="${labels.Card_pay.d_card_number}" /><textbox id="d_card_number"  mold="rounded"  value="@{Card_paymain$composer.current.d_card_number}" /></row>
+                                  <row><label value="${labels.Card_pay.c_account}" /><textbox id="c_account"  mold="rounded"  value="@{Card_paymain$composer.current.c_account}" /></row>
+                                  <row><label value="${labels.Card_pay.c_card_number}" /><textbox id="c_card_number"  mold="rounded"  value="@{Card_paymain$composer.current.c_card_number}" /></row>
+                                  <row><label value="${labels.Card_pay.v_date}" /><textbox id="v_date"  mold="rounded"  value="@{Card_paymain$composer.current.v_date}" /></row>
+                                  <row><label value="${labels.Card_pay.summa}" /><decimalbox id="summa" format="##0.00" mold="rounded"  value="@{Card_paymain$composer.current.summa}" /></row>
+                                  <row><label value="${labels.Card_pay.state}" /><textbox id="state"  mold="rounded"  value="@{Card_paymain$composer.current.state}" /></row>
+                                  <row><label value="${labels.Card_pay.status}" /><textbox id="status"  mold="rounded"  value="@{Card_paymain$composer.current.status}" /></row>
+                                  <row><label value="${labels.Card_pay.id}" /><textbox id="id"  mold="rounded"  value="@{Card_paymain$composer.current.id}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.Card_pay.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.client}" /><textbox id="aclient"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.d_account}" /><textbox id="ad_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.d_card_number}" /><textbox id="ad_card_number"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.c_account}" /><textbox id="ac_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.c_card_number}" /><textbox id="ac_card_number"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.v_date}" /><textbox id="av_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.summa}" /><textbox id="asumma"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.status}" /><textbox id="astatus"  mold="rounded"  /></row>
+                                  <row><label value="${labels.Card_pay.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.Card_pay.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{Card_paymain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.Card_pay.client}" /><textbox id="fclient"  mold="rounded"  value="@{Card_paymain$composer.filter.client}" /></row>
+                                  <row><label value="${labels.Card_pay.d_account}" /><textbox id="fd_account"  mold="rounded"  value="@{Card_paymain$composer.filter.d_account}" /></row>
+                                  <row><label value="${labels.Card_pay.d_card_number}" /><textbox id="fd_card_number"  mold="rounded"  value="@{Card_paymain$composer.filter.d_card_number}" /></row>
+                                  <row><label value="${labels.Card_pay.c_account}" /><textbox id="fc_account"  mold="rounded"  value="@{Card_paymain$composer.filter.c_account}" /></row>
+                                  <row><label value="${labels.Card_pay.c_card_number}" /><textbox id="fc_card_number"  mold="rounded"  value="@{Card_paymain$composer.filter.c_card_number}" /></row>
+                                  <row><label value="${labels.Card_pay.v_date}" /><textbox id="fv_date"  mold="rounded"  value="@{Card_paymain$composer.filter.v_date}" /></row>
+                                  <row><label value="${labels.Card_pay.summa}" /><decimalbox id="fsumma"  mold="rounded"  value="@{Card_paymain$composer.filter.summa}" /></row>
+                                  <row><label value="${labels.Card_pay.state}" /><textbox id="fstate"  mold="rounded"  value="@{Card_paymain$composer.filter.state}" /></row>
+                                  <row><label value="${labels.Card_pay.status}" /><textbox id="fstatus"  mold="rounded"  value="@{Card_paymain$composer.filter.status}" /></row>
+                                  <row><label value="${labels.Card_pay.id}" /><textbox id="fid"  mold="rounded"  value="@{Card_paymain$composer.filter.id}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+       <window id="bt_rest_confirmation_wnd" width="800px" mode="modal"
+		title="${labels.accinfo.cardwnd}" position="center,center"
+		visible="false" closable="true"
+		onClose="self.visible = false; event.stopPropagation();">
+        <div>
+        	<listbox id="">
+        		
+        	</listbox>
+        </div>
+       </window>
+       
+       <window id="chacc"  closable="true" onClose="self.visible = false; event.stopPropagation();"
+		title="Счета" border="normal" width="580px" 
+	 position="center,center" mode="popup" visible="false">
+
+           <listbox id="acc" height="250px" width="100%" rows="4" 
+                        selectedItem="@{Card_paymain$composer.currentcard}">
+                        <listhead sizable="true">
+                                <!-- <listheader label="${labels.card.branch}" width="60px" /> -->
+                                <listheader label="branch" width="60px" />
+                                <listheader label="card_number" width="180px" />
+                                <listheader label="def_atm_account" width="550px" />
+                                
+                        </listhead>
+                        </listbox>
+		</window>
+       <window id="chacc2"  closable="true" onClose="self.visible = false; event.stopPropagation();"
+		title="Счета" border="normal" width="580px" 
+	 position="center,center" mode="popup" visible="false">
+
+           <listbox id="acc2" height="250px" width="100%"   rows="4" 
+                        selectedItem="@{Card_paymain$composer.currentcard}">
+                        <listhead sizable="true">
+                                <!-- <listheader label="${labels.card.branch}" width="60px" /> -->
+                                <listheader label="branch" width="60px" />
+                                <listheader label="card_number" width="180px" />
+                                <listheader label="def_atm_account" width="550px" />
+                                
+                        </listhead>
+                        </listbox>
+		</window>
+       
+          <window id="enth_print"     mode="overlapped" title="${labels.print}" position="center,center" visible="false" closable="true" 
+		maximizable="true" width="950px"  height="550px" onClose="self.visible = false; event.stopPropagation();">
+		<script src="scripts/iprint.js"/>
+		<iframe id="frenth" width="100%"  height="100%"/>
+	</window>
+	
+<window title="ZK Essentials" border="normal" width="800px" height="500" >
+	
+	<button label="Hello"/>
+	<button label="World!"/>
+	<vlayout>
+	<textbox id="txtbx" onChange="lbl.value = txtbx.value"/>
+	</vlayout>
+	<label id="lbl"/> World!
+	<button label="Hello" id = "men" onClick="lbl.value = men.value"/>
+	<button label="Good-bye" onClick="lbl.value = self.label"/>
+	
+	</window>	
+	
+       
+</window>
+
+

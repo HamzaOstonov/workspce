@@ -1,0 +1,108 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<window id="search_clientswindow" width="100%"
+	apply="com.is.search_clients.Composer">
+	
+	<toolbar style="border:none">
+			<toolbarbutton id="btn_back" image="/images/back.png" label="Назад"/>
+			<toolbarbutton label="Детали загрузки" image="/images/statics-2.png" id="btn_view" />
+			<toolbarbutton label="Загрузить" image="/images/refresh.png" id="btn_update" visible="false"/>
+			<toolbarbutton label="Очистить базу" id="btn_remove" visible="false"/>
+			<toolbarbutton label="Версия 1.0.6 19/10/2016" />
+		</toolbar>
+		
+	<div id="toolbar_div">
+		<toolbar>
+			<label visible="false" value="Режим Поиска"/>
+			<combobox visible="false">
+				<comboitem label="100% Совпадение" value ="1" />
+				<comboitem label="70% - 100% Совпадение" value ="2" />
+				<comboitem label="40% - 70% Совпадение" value ="3" />
+				<comboitem label="0% - 40% Совпадение" value ="4" />
+			</combobox>
+		</toolbar>
+		<toolbar>
+		</toolbar>
+	<!-- <toolbar align="end" style="border:none">
+		<label value="Версия 1.0.1" />
+		<toolbarbutton label="+" id="btn_add" />
+		<toolbarbutton label="-" id="btn_remove" />
+	</toolbar> -->
+	</div>
+		
+	<div id="search_div" align="center">
+		<grid id="search_grid">
+			<columns>
+
+				<column hflex="1" label="Фамилия" />
+				<column hflex="1" label="Имя" />
+				<column hflex="1" label="Отчество" />
+				<column hflex="1" label="Дата рождения (С)" />
+				<column hflex="1" label="Дата рождения (По)" />
+				<column hflex="1" label="Серия паспорта" />
+				<column hflex="1" label="Номер паспорта" />
+			</columns>
+			<rows id="rows">
+				<row>
+					<textbox/><textbox/><textbox/>
+					<datebox/><datebox/>
+					<textbox/><textbox/>
+				</row>
+			</rows>
+		</grid>
+	</div>
+	<separator spacing="20px" />
+	<toolbar id="toolbar_control">
+		<toolbarbutton label="Ок" image="/images/search.png" id="btn_ok" />
+		<toolbarbutton label="Очистить" id="btn_clear" />
+	</toolbar>
+
+	<listbox id="result_listbox" visible="false" style="border:normal">
+		<listhead sizable="true">
+			<listheader label="МФО"></listheader>
+			<listheader label="ФИО"></listheader>
+			<listheader label="Дата Рождения"></listheader>
+			<listheader label="С/Н паспорта"></listheader>
+			<listheader label="Тип клиента"/>
+			<listheader label="Процент Совпадения"/>
+		</listhead>
+	</listbox>
+	
+	<window id="detailsWnd" width="20%" title="Детали"
+		mode="modal" position="top,center" visible="false" closable="true"
+		onClose="self.visible = false;event.stopPropagation()">
+		<listbox id="details_listbox">
+			<listhead sizable="true">
+				<listheader label="МФО"/>
+				<listheader label="Статус"/>
+			</listhead>
+		</listbox>
+	</window>
+	
+	<tabbox id="tabbox" visible="false">
+		<tabs>
+			<tab id="tabClient" label="Клиент" />
+			<tab id="tabDeposits" label="Депозитный Портфель"/>
+			<tab id="tabCards" label="Карточки"/>
+			<tab id="tabTransfers" label="Денежные переводы"/>
+			<tab id="tabAccounts" label="Счета"/>
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+				<include id="includeClientInfo"/>
+			</tabpanel>
+			<tabpanel>
+				<include id="includeDeposits" />
+			</tabpanel>
+			<tabpanel>
+				<include id="includeCards" />
+			</tabpanel>
+			<tabpanel>
+				<include id="includeTransfers" />
+			</tabpanel>
+			<tabpanel>
+				<include id="includeAccounts" />
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+</window>
+

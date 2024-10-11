@@ -1,0 +1,621 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="courtdecisionmain" width="100%" border="normal"
+	apply="com.is.credit_problems.CourtDecisionViewCtrl">
+	<toolbar>
+		<toolbarbutton id="btn_back" label="${labels.back}"
+			image="/images/file.png" />
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<toolbarbutton id="btn_add" label="${labels.add}"
+			image="/images/+.png" />
+
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+	</toolbar>
+
+	<div id="grd">
+		<paging id="courtdecisionPaging" width="100%" />
+		<listbox style="border:none" id="dataGrid"
+			selectedItem="@{courtdecisionmain$composer.current}">
+			<listhead sizable="true">
+				<listheader label="${labels.courtdecision.credit_id}"
+					width="120px" />
+				<listheader label="${labels.courtdecision.court_id}"
+					width="350px" />
+				<listheader
+					label="${labels.courtdecision.court_statement_date}" width="230px" />
+				<listheader
+					label="${labels.courtdecision.court_decision_date}" width="150px" />
+				<listheader
+					label="${labels.courtdecision.executive_document_number}"
+					width="470px" />
+			</listhead>
+		</listbox>
+	</div>
+
+	<div id="frm" visible="false">
+		<grid id="frmgrd">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.credit_id}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="credit_id" mold="rounded"
+						value="@{courtdecisionmain$composer.current.credit_id}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.ward_statement_date}" />
+					<datebox id="ward_statement_date" mold="rounded"
+						value="@{courtdecisionmain$composer.current.ward_statement_date}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.ward_statement_sum}" />
+					<longbox id="ward_statement_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.current.ward_statement_sum}" />
+				</row>
+				<row>
+					<hbox>
+						<label value="${labels.courtdecision.court_id}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<textbox id="court_id" mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_id}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_statement_date}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<datebox id="court_statement_date" mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_statement_date}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_statement_debt}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="court_statement_debt" mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_statement_debt}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_statement_percent}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<doublebox id="court_statement_percent"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_statement_percent}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_statement_fine}" />
+					<longbox id="court_statement_fine" mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_statement_fine}" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_decision_date}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<datebox id="court_decision_date" mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_decision_date}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_decision_debt}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="court_decision_debt" mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_decision_debt}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_decision_percent}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<doublebox id="court_decision_percent"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_decision_percent}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_decision_fine}" />
+					<longbox id="court_decision_fine" mold="rounded"
+						value="@{courtdecisionmain$composer.current.court_decision_fine}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.executive_document_date}" />
+					<datebox id="executive_document_date" mold="rounded"
+						value="@{courtdecisionmain$composer.current.executive_document_date}" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.executive_document_number}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="executive_document_number"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.current.executive_document_number}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.executive_document_sum}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="executive_document_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.current.executive_document_sum}"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_list}" />
+					<textbox id="seized_property_list" mold="rounded"
+						value="@{courtdecisionmain$composer.current.seized_property_list}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_quality_id}" />
+					<rcombobox id="seized_property_quality_id"
+						mold="rounded"
+						selecteditem="@{courtdecisionmain$composer.current.seized_property_quality_id}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_sum}" />
+					<longbox id="seized_property_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.current.seized_property_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.selling_property_list}" />
+					<textbox id="selling_property_list" mold="rounded"
+						value="@{courtdecisionmain$composer.current.selling_property_list}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.selling_property_sum}" />
+					<longbox id="selling_property_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.current.selling_property_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.not_sold_property_sum}" />
+					<longbox id="not_sold_property_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.current.not_sold_property_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_date}" />
+					<datebox id="procuracy_statement_date"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.current.procuracy_statement_date}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_number}" />
+					<longbox id="procuracy_statement_number"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.current.procuracy_statement_number}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_sum}" />
+					<longbox id="procuracy_statement_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.current.procuracy_statement_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_measures}" />
+					<textbox id="procuracy_measures" mold="rounded"
+						value="@{courtdecisionmain$composer.current.procuracy_measures}" />
+				</row>
+				<row>
+					<hbox>
+						<label value="${labels.courtdecision.note}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<textbox id="note" mold="rounded"
+						value="@{courtdecisionmain$composer.current.note}"
+						constraint="no empty, no zero" />
+				</row>
+			</rows>
+		</grid>
+		<grid id="addgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.credit_id}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="acredit_id" mold="rounded"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.ward_statement_date}" />
+					<datebox id="award_statement_date" mold="rounded" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.ward_statement_sum}" />
+					<longbox id="award_statement_sum" mold="rounded"
+						disabled="true" />
+				</row>
+				<row>
+					<hbox>
+						<label value="${labels.courtdecision.court_id}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<textbox id="acourt_id" mold="rounded"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_statement_date}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<datebox id="acourt_statement_date" mold="rounded"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_statement_debt}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="acourt_statement_debt" mold="rounded"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_statement_percent}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<doublebox id="acourt_statement_percent"
+						mold="rounded" constraint="no empty, no zero" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_statement_fine}" />
+					<longbox id="acourt_statement_fine" mold="rounded" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_decision_date}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<datebox id="acourt_decision_date" mold="rounded"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_decision_debt}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="acourt_decision_debt" mold="rounded"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.court_decision_percent}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<doublebox id="acourt_decision_percent"
+						mold="rounded" constraint="no empty, no zero" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_decision_fine}" />
+					<longbox id="acourt_decision_fine" mold="rounded" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.executive_document_date}" />
+					<datebox id="aexecutive_document_date"
+						mold="rounded" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.executive_document_number}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="aexecutive_document_number"
+						mold="rounded" constraint="no empty, no zero" />
+				</row>
+				<row>
+					<hbox>
+						<label
+							value="${labels.courtdecision.executive_document_sum}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<longbox id="aexecutive_document_sum" mold="rounded"
+						constraint="no empty, no zero" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_list}" />
+					<textbox id="aseized_property_list" mold="rounded" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_quality_id}" />
+					<rcombobox id="aseized_property_quality_id"
+						mold="rounded" disabled="true" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_sum}" />
+					<longbox id="aseized_property_sum" mold="rounded" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.selling_property_list}" />
+					<textbox id="aselling_property_list" mold="rounded" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.selling_property_sum}" />
+					<longbox id="aselling_property_sum" mold="rounded"
+						disabled="true" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.not_sold_property_sum}" />
+					<longbox id="anot_sold_property_sum" mold="rounded" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_date}" />
+					<datebox id="aprocuracy_statement_date"
+						mold="rounded" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_number}" />
+					<longbox id="aprocuracy_statement_number"
+						mold="rounded" disabled="true" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_sum}" />
+					<longbox id="aprocuracy_statement_sum"
+						mold="rounded" disabled="true" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_measures}" />
+					<textbox id="aprocuracy_measures" mold="rounded" />
+				</row>
+				<row>
+					<hbox>
+						<label value="${labels.courtdecision.note}" />
+						<span style="color: red;">*</span>
+					</hbox>
+					<textbox id="anote" mold="rounded"
+						constraint="no empty, no zero" />
+				</row>
+			</rows>
+		</grid>
+		<grid id="fgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.courtdecision.credit_id}" />
+					<longbox id="fcredit_id" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.credit_id}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.ward_statement_date}" />
+					<datebox id="fward_statement_date" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.ward_statement_date}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.ward_statement_sum}" />
+					<longbox id="fward_statement_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.ward_statement_sum}" />
+				</row>
+				<row>
+					<label value="${labels.courtdecision.court_id}" />
+					<textbox id="fcourt_id" mold="rounded"
+						selecteditem="@{courtdecisionmain$composer.filter.court_id}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_statement_date}" />
+					<datebox id="fcourt_statement_date" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.court_statement_date}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_statement_debt}" />
+					<longbox id="fcourt_statement_debt" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.court_statement_debt}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_statement_percent}" />
+					<doublebox id="fcourt_statement_percent"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.filter.court_statement_percent}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_statement_fine}" />
+					<longbox id="fcourt_statement_fine" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.court_statement_fine}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_decision_date}" />
+					<datebox id="fcourt_decision_date" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.court_decision_date}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_decision_debt}" />
+					<longbox id="fcourt_decision_debt" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.court_decision_debt}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_decision_percent}" />
+					<doublebox id="fcourt_decision_percent"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.filter.court_decision_percent}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.court_decision_fine}" />
+					<longbox id="fcourt_decision_fine" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.court_decision_fine}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.executive_document_date}" />
+					<datebox id="fexecutive_document_date"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.filter.executive_document_date}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.executive_document_number}" />
+					<longbox id="fexecutive_document_number"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.filter.executive_document_number}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.executive_document_sum}" />
+					<longbox id="fexecutive_document_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.executive_document_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_list}" />
+					<textbox id="fseized_property_list" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.seized_property_list}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_quality_id}" />
+					<rcombobox id="fseized_property_quality_id"
+						mold="rounded"
+						selecteditem="@{courtdecisionmain$composer.filter.seized_property_quality_id}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.seized_property_sum}" />
+					<longbox id="fseized_property_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.seized_property_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.selling_property_list}" />
+					<textbox id="fselling_property_list" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.selling_property_list}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.selling_property_sum}" />
+					<longbox id="fselling_property_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.selling_property_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.not_sold_property_sum}" />
+					<longbox id="fnot_sold_property_sum" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.not_sold_property_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_date}" />
+					<datebox id="fprocuracy_statement_date"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.filter.procuracy_statement_date}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_number}" />
+					<longbox id="fprocuracy_statement_number"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.filter.procuracy_statement_number}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_statement_sum}" />
+					<longbox id="fprocuracy_statement_sum"
+						mold="rounded"
+						value="@{courtdecisionmain$composer.filter.procuracy_statement_sum}" />
+				</row>
+				<row>
+					<label
+						value="${labels.courtdecision.procuracy_measures}" />
+					<textbox id="fprocuracy_measures" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.procuracy_measures}" />
+				</row>
+				<row>
+					<label value="${labels.courtdecision.note}" />
+					<textbox id="fnote" mold="rounded"
+						value="@{courtdecisionmain$composer.filter.note}" />
+				</row>
+			</rows>
+		</grid>
+
+		<toolbar>
+			<toolbarbutton id="btn_save" label="${labels.save}"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+
+</window>
+

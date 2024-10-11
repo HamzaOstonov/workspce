@@ -1,0 +1,289 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="ldcharmain" width="100%"  height="100%" border="normal" apply="com.is.ldChar.ldCharViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+     
+
+                <paging id="ldcharPaging" width="100%" />
+             
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{ldcharmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.ldchar.branch}" width="60px" />
+                                <listheader label="${labels.ldchar.id}" width="90px" />
+                                <listheader label="${labels.ldchar.eq_num}" width="70px" />
+                                <listheader label="${labels.ldchar.eq_date}" width="80px" />
+                                <listheader label="${labels.ldchar.currency}" width="70px" />
+                                <listheader label="${labels.ldchar.amount}" width="100px" />
+                                <listheader label="${labels.ldchar.p_num}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.p_date}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.crc_num}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.crc_date}" width="200px" />
+                                <listheader label="${labels.ldchar.t_author}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.t_date}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.t_type}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.is_inv}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.currency_inv}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.amount_inv}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.ld_num}" width="160px" />
+                                <listheader label="${labels.ldchar.ld_date}" width="170px" />
+                                <listheader label="${labels.ldchar.cl_num}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.shifr_id}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.prod_name}" width="200px" />
+                                <listheader label="${labels.ldchar.sred_id}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.ld_period}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.target}" width="200px" />
+                                <listheader label="${labels.ldchar.ld_amount}" width="200px" />
+                                <listheader label="${labels.ldchar.date_begin}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.date_end}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.calc_id}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.date_fee}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.arrears_reason}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.term_type}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.type_id}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.kred_id}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.klass_id}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.status}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.al_num}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.is_tax}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.tax_rate}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.pk}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.klassp_id}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.ld_type}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.status_prc}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.acceptance}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.niki_id}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.kred_id_cb}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.use_branch}" width="200px" visible="false"/>
+                                <listheader label="${labels.ldchar.ldays}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.cres}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.date_close}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.kod_int}" width="200px" visible="false" />
+                                <listheader label="${labels.ldchar.kod_fin}" width="200px" visible="false" />
+                        
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+           
+      
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.ldchar.branch}" /><textbox id="branch1"  mold="rounded"  value="@{ldcharmain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.ldchar.id}" /><textbox id="id"  mold="rounded"  value="@{ldcharmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.ldchar.eq_num}" /><textbox id="eq_num"  mold="rounded"  value="@{ldcharmain$composer.current.eq_num}" /></row>
+                                  <row><label value="${labels.ldchar.eq_date}" /><textbox id="eq_date"  mold="rounded"  value="@{ldcharmain$composer.current.eq_date}" /></row>
+                                  <row><label value="${labels.ldchar.currency}" /><textbox id="currency"  mold="rounded"  value="@{ldcharmain$composer.current.currency}" /></row>
+                                  <row><label value="${labels.ldchar.amount}" /><textbox id="amount"  mold="rounded"  value="@{ldcharmain$composer.current.amount}" /></row>
+                                  <row><label value="${labels.ldchar.p_num}" /><textbox id="p_num"  mold="rounded"  value="@{ldcharmain$composer.current.p_num}" /></row>
+                                  <row><label value="${labels.ldchar.p_date}" /><textbox id="p_date"  mold="rounded"  value="@{ldcharmain$composer.current.p_date}" /></row>
+                                  <row><label value="${labels.ldchar.crc_num}" /><textbox id="crc_num"  mold="rounded"  value="@{ldcharmain$composer.current.crc_num}" /></row>
+                                  <row><label value="${labels.ldchar.crc_date}" /><textbox id="crc_date"  mold="rounded"  value="@{ldcharmain$composer.current.crc_date}" /></row>
+                                  <row><label value="${labels.ldchar.t_author}" /><textbox id="t_author"  mold="rounded"  value="@{ldcharmain$composer.current.t_author}" /></row>
+                                  <row><label value="${labels.ldchar.t_date}" /><textbox id="t_date"  mold="rounded"  value="@{ldcharmain$composer.current.t_date}" /></row>
+                                  <row><label value="${labels.ldchar.t_type}" /><textbox id="t_type"  mold="rounded"  value="@{ldcharmain$composer.current.t_type}" /></row>
+                                  <row><label value="${labels.ldchar.is_inv}" /><textbox id="is_inv"  mold="rounded"  value="@{ldcharmain$composer.current.is_inv}" /></row>
+                                  <row><label value="${labels.ldchar.currency_inv}" /><textbox id="currency_inv"  mold="rounded"  value="@{ldcharmain$composer.current.currency_inv}" /></row>
+                                  <row><label value="${labels.ldchar.amount_inv}" /><textbox id="amount_inv"  mold="rounded"  value="@{ldcharmain$composer.current.amount_inv}" /></row>
+                                  <row><label value="${labels.ldchar.ld_num}" /><textbox id="ld_num"  mold="rounded"  value="@{ldcharmain$composer.current.ld_num}" /></row>
+                                  <row><label value="${labels.ldchar.ld_date}" /><textbox id="ld_date"  mold="rounded"  value="@{ldcharmain$composer.current.ld_date}" /></row>
+                                  <row><label value="${labels.ldchar.cl_num}" /><textbox id="cl_num"  mold="rounded"  value="@{ldcharmain$composer.current.cl_num}" /></row>
+                                  <row><label value="${labels.ldchar.shifr_id}" /><textbox id="shifr_id"  mold="rounded"  value="@{ldcharmain$composer.current.shifr_id}" /></row>
+                                  <row><label value="${labels.ldchar.prod_name}" /><textbox id="prod_name"  mold="rounded"  value="@{ldcharmain$composer.current.prod_name}" /></row>
+                                  <row><label value="${labels.ldchar.sred_id}" /><textbox id="sred_id"  mold="rounded"  value="@{ldcharmain$composer.current.sred_id}" /></row>
+                                  <row><label value="${labels.ldchar.ld_period}" /><textbox id="ld_period"  mold="rounded"  value="@{ldcharmain$composer.current.ld_period}" /></row>
+                                  <row><label value="${labels.ldchar.target}" /><textbox id="target"  mold="rounded"  value="@{ldcharmain$composer.current.target}" /></row>
+                                  <row><label value="${labels.ldchar.ld_amount}" /><textbox id="ld_amount"  mold="rounded"  value="@{ldcharmain$composer.current.ld_amount}" /></row>
+                                  <row><label value="${labels.ldchar.date_begin}" /><textbox id="date_begin"  mold="rounded"  value="@{ldcharmain$composer.current.date_begin}" /></row>
+                                  <row><label value="${labels.ldchar.date_end}" /><textbox id="date_end"  mold="rounded"  value="@{ldcharmain$composer.current.date_end}" /></row>
+                                  <row><label value="${labels.ldchar.calc_id}" /><textbox id="calc_id"  mold="rounded"  value="@{ldcharmain$composer.current.calc_id}" /></row>
+                                  <row><label value="${labels.ldchar.date_fee}" /><textbox id="date_fee"  mold="rounded"  value="@{ldcharmain$composer.current.date_fee}" /></row>
+                                  <row><label value="${labels.ldchar.arrears_reason}" /><textbox id="arrears_reason"  mold="rounded"  value="@{ldcharmain$composer.current.arrears_reason}" /></row>
+                                  <row><label value="${labels.ldchar.term_type}" /><textbox id="term_type"  mold="rounded"  value="@{ldcharmain$composer.current.term_type}" /></row>
+                                  <row><label value="${labels.ldchar.type_id}" /><textbox id="type_id"  mold="rounded"  value="@{ldcharmain$composer.current.type_id}" /></row>
+                                  <row><label value="${labels.ldchar.kred_id}" /><textbox id="kred_id"  mold="rounded"  value="@{ldcharmain$composer.current.kred_id}" /></row>
+                                  <row><label value="${labels.ldchar.klass_id}" /><textbox id="klass_id"  mold="rounded"  value="@{ldcharmain$composer.current.klass_id}" /></row>
+                                  <row><label value="${labels.ldchar.status}" /><textbox id="status"  mold="rounded"  value="@{ldcharmain$composer.current.status}" /></row>
+                            <!-- 
+                                  <row><label value="${labels.ldchar.al_num}" /><textbox id="al_num"  mold="rounded"  value="@{ldcharmain$composer.current.al_num}" /></row>
+                                  <row><label value="${labels.ldchar.is_tax}" /><textbox id="is_tax"  mold="rounded"  value="@{ldcharmain$composer.current.is_tax}" /></row>
+                                  <row><label value="${labels.ldchar.tax_rate}" /><textbox id="tax_rate"  mold="rounded"  value="@{ldcharmain$composer.current.tax_rate}" /></row>
+                                  <row><label value="${labels.ldchar.pk}" /><textbox id="pk"  mold="rounded"  value="@{ldcharmain$composer.current.pk}" /></row>
+                                  <row><label value="${labels.ldchar.klassp_id}" /><textbox id="klassp_id"  mold="rounded"  value="@{ldcharmain$composer.current.klassp_id}" /></row>
+                                  <row><label value="${labels.ldchar.ld_type}" /><textbox id="ld_type"  mold="rounded"  value="@{ldcharmain$composer.current.ld_type}" /></row>
+                                  <row><label value="${labels.ldchar.status_prc}" /><textbox id="status_prc"  mold="rounded"  value="@{ldcharmain$composer.current.status_prc}" /></row>
+                                  <row><label value="${labels.ldchar.acceptance}" /><textbox id="acceptance"  mold="rounded"  value="@{ldcharmain$composer.current.acceptance}" /></row>
+                                  <row><label value="${labels.ldchar.niki_id}" /><textbox id="niki_id"  mold="rounded"  value="@{ldcharmain$composer.current.niki_id}" /></row>
+                                  <row><label value="${labels.ldchar.kred_id_cb}" /><textbox id="kred_id_cb"  mold="rounded"  value="@{ldcharmain$composer.current.kred_id_cb}" /></row>
+                                  <row><label value="${labels.ldchar.use_branch}" /><textbox id="use_branch"  mold="rounded"  value="@{ldcharmain$composer.current.use_branch}" /></row>
+                                  <row><label value="${labels.ldchar.ldays}" /><textbox id="ldays"  mold="rounded"  value="@{ldcharmain$composer.current.ldays}" /></row>
+                                  <row><label value="${labels.ldchar.cres}" /><textbox id="cres"  mold="rounded"  value="@{ldcharmain$composer.current.cres}" /></row>
+                                  <row><label value="${labels.ldchar.date_close}" /><textbox id="date_close"  mold="rounded"  value="@{ldcharmain$composer.current.date_close}" /></row>
+                                  <row><label value="${labels.ldchar.kod_int}" /><textbox id="kod_int"  mold="rounded"  value="@{ldcharmain$composer.current.kod_int}" /></row>
+                                  <row><label value="${labels.ldchar.kod_fin}" /><textbox id="kod_fin"  mold="rounded"  value="@{ldcharmain$composer.current.kod_fin}" /></row>
+                          -->
+                          </rows>
+                  </grid>
+                 
+                 
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.ldchar.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.eq_num}" /><textbox id="aeq_num"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.eq_date}" /><textbox id="aeq_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.currency}" /><textbox id="acurrency"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.amount}" /><textbox id="aamount"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.p_num}" /><textbox id="ap_num"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.p_date}" /><textbox id="ap_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.crc_num}" /><textbox id="acrc_num"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.crc_date}" /><textbox id="acrc_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.t_author}" /><textbox id="at_author"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.t_date}" /><textbox id="at_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.t_type}" /><textbox id="at_type"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.is_inv}" /><textbox id="ais_inv"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.currency_inv}" /><textbox id="acurrency_inv"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.amount_inv}" /><textbox id="aamount_inv"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.ld_num}" /><textbox id="ald_num"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.ld_date}" /><textbox id="ald_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.cl_num}" /><textbox id="acl_num"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.shifr_id}" /><textbox id="ashifr_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.prod_name}" /><textbox id="aprod_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.sred_id}" /><textbox id="asred_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.ld_period}" /><textbox id="ald_period"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.target}" /><textbox id="atarget"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.ld_amount}" /><textbox id="ald_amount"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.date_begin}" /><textbox id="adate_begin"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.date_end}" /><textbox id="adate_end"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.calc_id}" /><textbox id="acalc_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.date_fee}" /><textbox id="adate_fee"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.arrears_reason}" /><textbox id="aarrears_reason"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.term_type}" /><textbox id="aterm_type"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.type_id}" /><textbox id="atype_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.kred_id}" /><textbox id="akred_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.klass_id}" /><textbox id="aklass_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.status}" /><textbox id="astatus"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.al_num}" /><textbox id="aal_num"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.is_tax}" /><textbox id="ais_tax"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.tax_rate}" /><textbox id="atax_rate"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.pk}" /><textbox id="apk"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.klassp_id}" /><textbox id="aklassp_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.ld_type}" /><textbox id="ald_type"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.status_prc}" /><textbox id="astatus_prc"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.acceptance}" /><textbox id="aacceptance"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.niki_id}" /><textbox id="aniki_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.kred_id_cb}" /><textbox id="akred_id_cb"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.use_branch}" /><textbox id="ause_branch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.ldays}" /><textbox id="aldays"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.cres}" /><textbox id="acres"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.date_close}" /><textbox id="adate_close"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.kod_int}" /><textbox id="akod_int"  mold="rounded"  /></row>
+                                  <row><label value="${labels.ldchar.kod_fin}" /><textbox id="akod_fin"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.ldchar.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{ldcharmain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.ldchar.id}" /><textbox id="fid"  mold="rounded"  value="@{ldcharmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.ldchar.eq_num}" /><textbox id="feq_num"  mold="rounded"  value="@{ldcharmain$composer.filter.eq_num}" /></row>
+                                  <row><label value="${labels.ldchar.eq_date}" /><textbox id="feq_date"  mold="rounded"  value="@{ldcharmain$composer.filter.eq_date}" /></row>
+                                  <row><label value="${labels.ldchar.currency}" /><textbox id="fcurrency"  mold="rounded"  value="@{ldcharmain$composer.filter.currency}" /></row>
+                                  <row><label value="${labels.ldchar.amount}" /><textbox id="famount"  mold="rounded"  value="@{ldcharmain$composer.filter.amount}" /></row>
+                                  <row><label value="${labels.ldchar.p_num}" /><textbox id="fp_num"  mold="rounded"  value="@{ldcharmain$composer.filter.p_num}" /></row>
+                                  <row><label value="${labels.ldchar.p_date}" /><textbox id="fp_date"  mold="rounded"  value="@{ldcharmain$composer.filter.p_date}" /></row>
+                                  <row><label value="${labels.ldchar.crc_num}" /><textbox id="fcrc_num"  mold="rounded"  value="@{ldcharmain$composer.filter.crc_num}" /></row>
+                                  <row><label value="${labels.ldchar.crc_date}" /><textbox id="fcrc_date"  mold="rounded"  value="@{ldcharmain$composer.filter.crc_date}" /></row>
+                                  <row><label value="${labels.ldchar.t_author}" /><textbox id="ft_author"  mold="rounded"  value="@{ldcharmain$composer.filter.t_author}" /></row>
+                                  <row><label value="${labels.ldchar.t_date}" /><textbox id="ft_date"  mold="rounded"  value="@{ldcharmain$composer.filter.t_date}" /></row>
+                                  <row><label value="${labels.ldchar.t_type}" /><textbox id="ft_type"  mold="rounded"  value="@{ldcharmain$composer.filter.t_type}" /></row>
+                                  <row><label value="${labels.ldchar.is_inv}" /><textbox id="fis_inv"  mold="rounded"  value="@{ldcharmain$composer.filter.is_inv}" /></row>
+                                  <row><label value="${labels.ldchar.currency_inv}" /><textbox id="fcurrency_inv"  mold="rounded"  value="@{ldcharmain$composer.filter.currency_inv}" /></row>
+                                  <row><label value="${labels.ldchar.amount_inv}" /><textbox id="famount_inv"  mold="rounded"  value="@{ldcharmain$composer.filter.amount_inv}" /></row>
+                                  <row><label value="${labels.ldchar.ld_num}" /><textbox id="fld_num"  mold="rounded"  value="@{ldcharmain$composer.filter.ld_num}" /></row>
+                                  <row><label value="${labels.ldchar.ld_date}" /><textbox id="fld_date"  mold="rounded"  value="@{ldcharmain$composer.filter.ld_date}" /></row>
+                                  <row><label value="${labels.ldchar.cl_num}" /><textbox id="fcl_num"  mold="rounded"  value="@{ldcharmain$composer.filter.cl_num}" /></row>
+                                  <row><label value="${labels.ldchar.shifr_id}" /><textbox id="fshifr_id"  mold="rounded"  value="@{ldcharmain$composer.filter.shifr_id}" /></row>
+                                  <row><label value="${labels.ldchar.prod_name}" /><textbox id="fprod_name"  mold="rounded"  value="@{ldcharmain$composer.filter.prod_name}" /></row>
+                                  <row><label value="${labels.ldchar.sred_id}" /><textbox id="fsred_id"  mold="rounded"  value="@{ldcharmain$composer.filter.sred_id}" /></row>
+                                  <row><label value="${labels.ldchar.ld_period}" /><textbox id="fld_period"  mold="rounded"  value="@{ldcharmain$composer.filter.ld_period}" /></row>
+                                  <row><label value="${labels.ldchar.target}" /><textbox id="ftarget"  mold="rounded"  value="@{ldcharmain$composer.filter.target}" /></row>
+                                  <row><label value="${labels.ldchar.ld_amount}" /><textbox id="fld_amount"  mold="rounded"  value="@{ldcharmain$composer.filter.ld_amount}" /></row>
+                                  <row><label value="${labels.ldchar.date_begin}" /><textbox id="fdate_begin"  mold="rounded"  value="@{ldcharmain$composer.filter.date_begin}" /></row>
+                                  <row><label value="${labels.ldchar.date_end}" /><textbox id="fdate_end"  mold="rounded"  value="@{ldcharmain$composer.filter.date_end}" /></row>
+                                  <row><label value="${labels.ldchar.calc_id}" /><textbox id="fcalc_id"  mold="rounded"  value="@{ldcharmain$composer.filter.calc_id}" /></row>
+                                  <row><label value="${labels.ldchar.date_fee}" /><textbox id="fdate_fee"  mold="rounded"  value="@{ldcharmain$composer.filter.date_fee}" /></row>
+                                  <row><label value="${labels.ldchar.arrears_reason}" /><textbox id="farrears_reason"  mold="rounded"  value="@{ldcharmain$composer.filter.arrears_reason}" /></row>
+                                  <row><label value="${labels.ldchar.term_type}" /><textbox id="fterm_type"  mold="rounded"  value="@{ldcharmain$composer.filter.term_type}" /></row>
+                                  <row><label value="${labels.ldchar.type_id}" /><textbox id="ftype_id"  mold="rounded"  value="@{ldcharmain$composer.filter.type_id}" /></row>
+                                  <row><label value="${labels.ldchar.kred_id}" /><textbox id="fkred_id"  mold="rounded"  value="@{ldcharmain$composer.filter.kred_id}" /></row>
+                                  <row><label value="${labels.ldchar.klass_id}" /><textbox id="fklass_id"  mold="rounded"  value="@{ldcharmain$composer.filter.klass_id}" /></row>
+                                  <row><label value="${labels.ldchar.status}" /><textbox id="fstatus"  mold="rounded"  value="@{ldcharmain$composer.filter.status}" /></row>
+                                  <row><label value="${labels.ldchar.al_num}" /><textbox id="fal_num"  mold="rounded"  value="@{ldcharmain$composer.filter.al_num}" /></row>
+                                  <row><label value="${labels.ldchar.is_tax}" /><textbox id="fis_tax"  mold="rounded"  value="@{ldcharmain$composer.filter.is_tax}" /></row>
+                                  <row><label value="${labels.ldchar.tax_rate}" /><textbox id="ftax_rate"  mold="rounded"  value="@{ldcharmain$composer.filter.tax_rate}" /></row>
+                                  <row><label value="${labels.ldchar.pk}" /><textbox id="fpk"  mold="rounded"  value="@{ldcharmain$composer.filter.pk}" /></row>
+                                  <row><label value="${labels.ldchar.klassp_id}" /><textbox id="fklassp_id"  mold="rounded"  value="@{ldcharmain$composer.filter.klassp_id}" /></row>
+                                  <row><label value="${labels.ldchar.ld_type}" /><textbox id="fld_type"  mold="rounded"  value="@{ldcharmain$composer.filter.ld_type}" /></row>
+                                  <row><label value="${labels.ldchar.status_prc}" /><textbox id="fstatus_prc"  mold="rounded"  value="@{ldcharmain$composer.filter.status_prc}" /></row>
+                                  <row><label value="${labels.ldchar.acceptance}" /><textbox id="facceptance"  mold="rounded"  value="@{ldcharmain$composer.filter.acceptance}" /></row>
+                                  <row><label value="${labels.ldchar.niki_id}" /><textbox id="fniki_id"  mold="rounded"  value="@{ldcharmain$composer.filter.niki_id}" /></row>
+                                  <row><label value="${labels.ldchar.kred_id_cb}" /><textbox id="fkred_id_cb"  mold="rounded"  value="@{ldcharmain$composer.filter.kred_id_cb}" /></row>
+                                  <row><label value="${labels.ldchar.use_branch}" /><textbox id="fuse_branch"  mold="rounded"  value="@{ldcharmain$composer.filter.use_branch}" /></row>
+                                  <row><label value="${labels.ldchar.ldays}" /><textbox id="fldays"  mold="rounded"  value="@{ldcharmain$composer.filter.ldays}" /></row>
+                                  <row><label value="${labels.ldchar.cres}" /><textbox id="fcres"  mold="rounded"  value="@{ldcharmain$composer.filter.cres}" /></row>
+                                  <row><label value="${labels.ldchar.date_close}" /><textbox id="fdate_close"  mold="rounded"  value="@{ldcharmain$composer.filter.date_close}" /></row>
+                                  <row><label value="${labels.ldchar.kod_int}" /><textbox id="fkod_int"  mold="rounded"  value="@{ldcharmain$composer.filter.kod_int}" /></row>
+                                  <row><label value="${labels.ldchar.kod_fin}" /><textbox id="fkod_fin"  mold="rounded"  value="@{ldcharmain$composer.filter.kod_fin}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>
+

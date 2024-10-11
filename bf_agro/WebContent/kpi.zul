@@ -1,0 +1,185 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="kpimain" width="100%" height="100%" border="normal"
+	apply="com.is.kpi.KpiViewCtrl">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" label="${labels.back}"
+			image="/images/file.png" />
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" />
+		<toolbarbutton id="btn_copy" label="${labels.kpi.copy}"
+			image="/images/cc.png" />
+		<toolbarbutton id="btn_remove" label="${labels.kpi.remove}"
+			image="/images/-.png" />
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+		<toolbarbutton target="_blank" href="/help/kpi_help.avi"
+			id="btn_help" label="${labels.kpi.help}" image="/images/help.png" />
+	</toolbar>
+	<div id="grd">
+
+		<paging id="kpiPaging" width="100%" />
+		<listbox style="border:none" id="dataGrid" multiple="true"
+			rows="4" width="100%" selectedItem="@{kpimain$composer.current}">
+			<listhead sizable="true">
+				<listheader align="center" label="${labels.kpi.id}"
+					width="70px" />
+				<listheader align="center" label="${labels.kpi.branch}"
+					width="70px" />
+				<listheader align="left" label="${labels.kpi.keyid}"
+					width="650px" />
+				<listheader align="center" label="${labels.kpi.date_plan}"
+					width="100px" />
+				<listheader align="center" label="Дата по генеральному плану"
+					width="100px" />
+				<listheader align="center" label="${labels.kpi.value}"
+					width="150px" />
+			</listhead>
+
+		</listbox>
+
+	</div>
+	<div id="frm" visible="false">
+		<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.kpi.id}" />
+					<textbox id="id" readonly="true" mold="rounded"
+						value="@{kpimain$composer.current.id}" />
+				</row>
+				<row>
+					<label value="${labels.kpi.branch}" />
+					<textbox id="branch" readonly="true" mold="rounded"
+						value="@{kpimain$composer.current.branch}" />
+				</row>
+				<!-- <row><label value="${labels.kpi.keyid}" /><textbox id="keyid" mold="rounded" 
+					value="@{kpimain$composer.current.keyid}" /></row> -->
+				<!-- <row><label value="${labels.kpi.keyid}" /><rcombobox id="keyid" 
+					mold="rounded" selecteditem="@{kpimain$composer.current.keyid}" /></row> -->
+				<row>
+					<label value="${labels.kpi.keyid}" />
+					<hbox>
+						<textbox id="keyid" mold="rounded"
+							value="@{kpimain$composer.current.keyid}" />
+						<!-- <label id="keydesc" value="@{kpimain$composer.current.keyDesc}" 
+							/> -->
+						<label id="keydesc" value="@{kpimain$composer.current.keyDesc}" />
+
+					</hbox>
+
+				</row>
+				<!-- <row><label value="${labels.kpi.keyid}" /><rcombobox id="fComboKeyid" 
+					mold="rounded" selecteditem="@{kpimain$composer.current.keyid}" /></row> -->
+				<row>
+					<label value="${labels.kpi.date_plan}" />
+					<datebox id="date_plan" mold="rounded"
+						value="@{kpimain$composer.current.date_plan}" />
+				</row>
+				<row>
+					<label value="Дата по генеральному плану" />
+					<rcombobox style="width:250px;" id="frmComboControlDate"
+						mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi.value}" />
+					<textbox id="value" mold="rounded"
+						value="@{kpimain$composer.current.value}" />
+				</row>
+			</rows>
+		</grid>
+		<grid id="addgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.kpi.branch}" />
+					<textbox id="abranch" mold="rounded" onOK="akeyid.focus();"
+						ctrlKeys="#f2#f3" />
+				</row>
+
+				<row>
+					<label value="${labels.kpi.keyid}" />
+					<hbox>
+						<textbox id="akeyid" mold="rounded" value="0" tabindex="1"
+							onOK="adate_plan.focus();" ctrlKeys="#f2#f3" />
+						<label id="akeydesc" value="" />
+					</hbox>
+				</row>
+
+
+				<row>
+					<label value="${labels.kpi.date_plan}" />
+					<datebox id="adate_plan" mold="rounded" tabindex="2"
+						onOK="aComboControlDate.focus();" ctrlKeys="#f2#f3" />
+				</row>
+				<row>
+					<label value="Дата по генеральному плану" />
+					<rcombobox style="width:250px;" tabindex="3"
+						id="aComboControlDate" mold="rounded" onOK="avalue.focus();" />
+				</row>
+				<row>
+					<label value="${labels.kpi.value}" />
+					<textbox id="avalue" mold="rounded" tabindex="4"
+						onOK="btn_save.focus();" ctrlKeys="#f2#f3" />
+				</row>
+			</rows>
+		</grid>
+		<grid id="fgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="${labels.kpi.id}" />
+					<textbox id="fid" mold="rounded" value="@{kpimain$composer.filter.id}" />
+				</row>
+				<row>
+					<label value="${labels.kpi.branch}" />
+					<textbox id="fbranch" mold="rounded"
+						value="@{kpimain$composer.filter.branch}" />
+				</row>
+				<row>
+					<label value="${labels.kpi.keyid}" />
+					<textbox id="fkeyid" mold="rounded"
+						value="@{kpimain$composer.filter.keyid}" />
+				</row>
+				<!-- <row><label value="${labels.kpi.keyid}" /><rcombobox id="findComboKeyid" 
+					mold="rounded" /></row> -->
+				<row>
+					<label value="${labels.kpi.date_plan}" />
+					<datebox id="fdate_plan" mold="rounded"
+						value="@{kpimain$composer.filter.date_plan}" />
+				</row>
+				<row>
+					<label value="Дата по генеральному плану" />
+					<rcombobox style="width:250px;" id="findComboControlDate"
+						mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi.value}" />
+					<textbox id="fvalue" mold="rounded"
+						value="@{kpimain$composer.filter.value}" />
+				</row>
+			</rows>
+		</grid>
+		<toolbar>
+			<button id="btn_save" tabindex="4" onOK="btn_save.click()"
+				label="${labels.save}" image="/images/save.png" />
+			<button id="btn_cancel" tabindex="5" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+</window>

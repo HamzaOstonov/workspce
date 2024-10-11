@@ -1,0 +1,543 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="contractmain" width="100%" height="600px" border="normal" apply="com.is.tf.contract.ContractViewCtrl" contentStyle="overflow: auto" >
+        
+        <toolbar id="tb">
+        <hbox>
+          <!--
+           <toolbarbutton id="btn_refresh" label="Refresh"
+                        image="/images/folder.png"  />
+          -->
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/folder.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" visible="false"/>
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+             
+               <!--   <textbox constraint="/.[0-9]+/: ${labels.idn}"  id="contract_idn" width="270px"  value="123456789123456789123456789"/> -->
+               <combobox id="contract_idn" autodrop="true" maxlength="27"  width="270px" buttonVisible="true" value="${labels.idn}"> 
+               
+               <comboitem label="123456789123456789123456789"
+                           image="/images/zoom+.png"
+                           description="Тестовый номер ИДН запрашиваемого контракта №1"/>
+              
+               <comboitem label="123456789123456789123456723"
+                           image="/images/zoom+.png"
+                           description="Тестовый номер ИДН запрашиваемого контракта №2"/>
+               </combobox>
+                
+                <toolbarbutton id="btn_get" label="получить контракт"
+                        image="/images/statics.png" />
+                
+                <toolbarbutton id="btn_dic" label="Обновить все cправочники"
+                        image="/images/statics.png" visible="true"/>
+
+        </hbox>
+        </toolbar>
+ 
+ 
+ <menupopup id="editPopup">
+        <menuitem id="detail" label="${labels.detail}" hoverImage="/images/forward.png"/>
+      <!-- 
+        <menuitem id="popinf" label="${labels.btninf}" hoverImage="/images/forward.png"/>
+         -->
+        <menuitem id="add_detail" label="${labels.add_detail}" hoverImage="/images/forward.png"/>
+        <menuitem id="refresh" label="${labels.refresh}" hoverImage="/images/forward.png"/>
+              
+    </menupopup>
+ 
+ 
+
+        <div id="grd" vflex="true">
+
+                <paging id="contractPaging" width="100%" />
+              
+                <listbox style="border:none" id="dataGrid" multiple="false" autopaging="false" rows="1" width="100%"
+                        selectedItem="@{contractmain$composer.current}" context="editPopup">
+                        <listhead sizable="true">
+                              
+                                
+                                <listheader label="${labels.contract.id}" width="50px" align="center" />
+                                <listheader label="${labels.contract.p0t1}" width="50px" align="center"  visible="false"/> 
+                                <listheader label="${labels.contract.p1t1}" width="200px" align="center"  />
+                                <listheader label="${labels.contract.p2t1}" width="200px" align="center" />
+                                <listheader label="${labels.contract.p3t1}" width="200px" align="center" />
+                                <listheader label="${labels.contract.p4t1}" width="250px" align="center" />
+                                <listheader label="${labels.contract.p5t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p6t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p7t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p8t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p9t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p10t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p11t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p12t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p13t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p14t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p15t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p16t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p17t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p18t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p19t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p20t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p21t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p22t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p23t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p24t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p25t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p26t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p27t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p28t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p29t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p30t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p31t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p32t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p33t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p34t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p35t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p36t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p37t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p38t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p39t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p40t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p41t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p42t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p43t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p44t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p45t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p46t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p47t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p48t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p49t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p50t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p51t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p52t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p53t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p54t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p55t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p56t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p57t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p58t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p59t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p60t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p61t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p62t1}" width="200px" visible="false" />
+                                <listheader label="${labels.contract.p65t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p66t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p67t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p68t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p69t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p70t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p71t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p72t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p73t1}" width="200px" visible="false"/>
+                                <listheader label="${labels.contract.p100t1}" width="200px" visible="false"/>
+                        
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="info" visible="false">
+              
+      
+       <tabbox width="100%" height="100%"  >
+    <tabs>
+        <tab id="garant1" label="Гарантия" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab id="garantsum" label="Изм.суммы гарантии" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+	    <tab id="garanttime" label="Изм.срока гарантии" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="${labels.a.act}" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Форма взимарасчетов Бартер" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab id="A1" label="Аккредитив" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Форма взаиморасчётов" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Комиссия инобанка за перевод средств" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Cтраховое возмещение" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Дебет" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Кредит" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Страховка" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Спецификация" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Дебет инфо" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab  label="${labels.a.compensation}" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Переход прав другому" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Дополнительное соглашение" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Поступление средств(ЭК,БТ)" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+        <tab label="Декларация" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+    </tabs>
+  
+    <tabpanels>
+       <!--  
+        <tabpanel style="color:#336699;"><include src="/Garant.zul"/></tabpanel>
+        
+        <tabpanel id ="gar1" style="color:#336699;"><include src=""/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Garantsumchange.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/garanttimechange.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Act.zul"/></tabpanel>
+        <tabpanel style="color:#336699;" ><include src="/Barterform.zul"/></tabpanel>
+        <tabpanel style="color:#336699;" ><include src="/Accreditiv.zul" /></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Calcform.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Commission.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Compensation.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Debet.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Credit.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Policy.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Specification.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Debetinfo.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Compensation.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Delegate.zul"/></tabpanel>
+        <tabpanel style="color:#336699;"><include src="/Agreement.zul"/></tabpanel>
+       <tabpanel style="color:#336699;"><include src="/Fund.zul"/></tabpanel>
+       <tabpanel style="color:#336699;"><include src="/Declaration.zul"/></tabpanel>
+ -->
+    </tabpanels>
+          
+</tabbox>
+
+    
+  
+</div>
+
+
+       
+     
+        <div id="frm" visible="false" >
+		    <tabbox id="frmgrd" width="100%" height="100%"  >
+			    <tabs>
+			       <tab label="Контракт" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="garant" label="Гарантия" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="accred" label="Аккредитив" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="policy" label="Страховой полис" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="refundimp_tab" label="Возврат ранее оплаченных средств" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="movetoim_tab" label="Переброска средств на другой контракт (взаиморасчет)" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="penalty" label="Штрафные санкции по контракту" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="debet" label="Списание дебиторской задолженности" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="kredit" label="Списание кредиторской задолженности" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="debetinf" label="Доп.инф.по деб.задолженности" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="fund" label="Поступление средств" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="comm" label="Комиссия иностранного банка за перевод средств" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="commgnk" label="Штраф ГНИ за просроченную деб.зад" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab visible="true" id="mvtoex" label="Переброска средств на другой контракт (взаиморасчет Эксп.)" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="mvfromex" label="Пререброска средств с другого контракта(Экспорт)" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="movefromim" label="Пререброска средств с другого контракта(Импорт)" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="refexp" label="Возврат ранее поступивших средств (Экспорт)" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="leaseex" label="Поступление процентов  по лизинговому договору" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+				   <tab id="leaseim" label="Оплата процентов по договору займа" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+				   <tab id="taxex" label="Налог на доход уплаченный резидентом заграницей" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="taxim" label="Налог на доход нерезидента" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			        <tab id="payment_tab" label="Оплата по контракту" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="sale_tab" label="Информация об обязательной продаже" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			       <tab id="paymref" label="Справка о расчетах" image="/images/open-folder.png" hoverImage="/images/down3.png"/>
+			      
+			       
+			       
+			       
+			    </tabs>
+		     	<tabpanels>
+		        	<tabpanel style="color:#336699;" >
+	  
+	      				<hbox id="frmgrdhb" width="100%" visible="true">
+	                          <grid id="frmgrdl"  visible="true" >
+	                          <columns>
+	                                  <column width="20%" />
+	                                  <column width="80%" />
+	                          </columns>
+	                        
+	                          <rows>
+	                                  <!-- 
+	                                  <row><label value="${labels.contract.id}" /><textbox id="id"  mold="rounded"  value="@{contractmain$composer.current.id}" visible="false"/></row>
+	                                  <row><label value="${labels.contract.p0t1}" /><rcombobox id="p0t1"  mold="rounded" value="@{contractmain$composer.current.p0t1}" visible="false"/></row>
+	                                   -->
+	                                  <row><label value="${labels.contract.p1t1}" /><label id="p1t1"  value="@{contractmain$composer.current.p1t1}" /></row>
+	                                  <row><label value="${labels.contract.p2t1}" /><textbox id="p2t1"  mold="rounded"  value="@{contractmain$composer.current.p2t1}" /></row>
+	                                  <row><label value="${labels.contract.p3t1}" /><label id="p3t1"    value="@{contractmain$composer.current.p3t1}" /></row>
+	                                  <row><label value="${labels.contract.p4t1}" /><textbox id="p4t1"  mold="rounded"  value="@{contractmain$composer.current.p4t1}" /></row>
+	                                  <row><label value="${labels.contract.p5t1}" /><textbox id="p5t1"  mold="rounded"  value="@{contractmain$composer.current.p5t1}" /></row>
+	                                  <row><label value="${labels.contract.p6t1}" /><datebox id="p6t1"  mold="rounded"  value="@{contractmain$composer.current.p6t1}" /></row>
+	                                  <row><label value="${labels.contract.p7t1}" /><textbox id="p7t1"  mold="rounded"  value="@{contractmain$composer.current.p7t1}" /></row>
+	                                  <row><label value="${labels.contract.p8t1}" /><datebox id="p8t1"  mold="rounded"  value="@{contractmain$composer.current.p8t1}" /></row>
+	                                  <row><label value="${labels.contract.p9t1}" /><textbox id="p9t1"  mold="rounded"  value="@{contractmain$composer.current.p9t1}" /></row>
+	                                  <row><label value="${labels.contract.p10t1}" /><textbox id="p10t1"  mold="rounded"  value="@{contractmain$composer.current.p10t1}" /></row>
+	                                  <row><label value="${labels.contract.p11t1}" /><textbox id="p11t1"  mold="rounded"  value="@{contractmain$composer.current.p11t1}" /></row>
+	                                  <row><label value="${labels.contract.p12t1}" /><textbox id="p12t1"  mold="rounded"  value="@{contractmain$composer.current.p12t1}" /></row>
+	                                   <row><label value="${labels.contract.p13t1}" /><textbox id="p13t1"  mold="rounded"  value="@{contractmain$composer.current.p13t1}" /></row>
+	                                  <row><label value="${labels.contract.p14t1}" /><textbox id="p14t1"  mold="rounded"  value="@{contractmain$composer.current.p14t1}" /></row>
+	                                  <row><label value="${labels.contract.p15t1}" /><textbox id="p15t1"  mold="rounded"  value="@{contractmain$composer.current.p15t1}" /></row>
+	                                  <row><label value="${labels.contract.p16t1}" /><textbox id="p16t1"  mold="rounded"  value="@{contractmain$composer.current.p16t1}" /></row>
+	                                  <row><label value="${labels.contract.p17t1}" /><textbox id="p17t1"  mold="rounded"  value="@{contractmain$composer.current.p17t1}" /></row>
+	                                  <row><label value="${labels.contract.p18t1}" /><textbox id="p18t1"  mold="rounded"  value="@{contractmain$composer.current.p18t1}" /></row>
+	                                  <row><label value="${labels.contract.p19t1}" /><textbox id="p19t1"  mold="rounded"  value="@{contractmain$composer.current.p19t1}" /></row>
+	                                  <row><label value="${labels.contract.p20t1}" /><decimalbox id="p20t1"  mold="rounded"  value="@{contractmain$composer.current.p20t1}" /></row>
+	                                  <row><label value="${labels.contract.p21t1}" /><decimalbox id="p21t1"  mold="rounded"  value="@{contractmain$composer.current.p21t1}" /></row>
+	                                 
+	                                       </rows>
+	                 </grid>
+	                     <grid id="frmgrdc"  >
+	                                  <columns>
+	                                  <column width="50%"/>
+	                                  
+	                          </columns>
+	                        
+	                          <rows>
+	                                  
+	                                  <row><label value="${labels.contract.p22t1}" /><textbox id="p22t1"  mold="rounded"  value="@{contractmain$composer.current.p22t1}" /></row>
+	                                  <row><label value="${labels.contract.p23t1}" /><textbox id="p23t1"  mold="rounded"  value="@{contractmain$composer.current.p23t1}" /></row>
+	                                  <row><label value="${labels.contract.p24t1}" /><textbox id="p24t1"  mold="rounded"  value="@{contractmain$composer.current.p24t1}" /></row>
+	                                  <row><label value="${labels.contract.p25t1}" /><textbox id="p25t1"  mold="rounded"  value="@{contractmain$composer.current.p25t1}" /></row>
+	                                  <row><label value="${labels.contract.p26t1}" /><textbox id="p26t1"  mold="rounded"  value="@{contractmain$composer.current.p26t1}" /></row>
+	                                  <row><label value="${labels.contract.p27t1}" /><textbox id="p27t1"  mold="rounded"  value="@{contractmain$composer.current.p27t1}" /></row>
+	                                  <row><label value="${labels.contract.p28t1}" /><textbox id="p28t1"  mold="rounded"  value="@{contractmain$composer.current.p28t1}" /></row>
+	                                  <row><label value="${labels.contract.p29t1}" /><textbox id="p29t1"  mold="rounded"  value="@{contractmain$composer.current.p29t1}" /></row>
+	                                  <row><label value="${labels.contract.p30t1}" /><textbox id="p30t1"  mold="rounded"  value="@{contractmain$composer.current.p30t1}" /></row>
+	                                  <row><label value="${labels.contract.p31t1}" /><textbox id="p31t1"  mold="rounded"  value="@{contractmain$composer.current.p31t1}" /></row>
+	                                  <row><label value="${labels.contract.p32t1}" /><datebox id="p32t1"  mold="rounded"  value="@{contractmain$composer.current.p32t1}" /></row>
+	                                  <row><label value="${labels.contract.p33t1}" /><textbox id="p33t1"  mold="rounded"  value="@{contractmain$composer.current.p33t1}" /></row>
+	                                  <row><label value="${labels.contract.p34t1}" /><textbox id="p34t1"  mold="rounded"  value="@{contractmain$composer.current.p34t1}" /></row>
+	                                  <row><label value="${labels.contract.p35t1}" /><textbox id="p35t1"  mold="rounded"  value="@{contractmain$composer.current.p35t1}" /></row>
+	                                  <row><label value="${labels.contract.p36t1}" /><textbox id="p36t1"  mold="rounded"  value="@{contractmain$composer.current.p36t1}" /></row>
+	                                  <row><label value="${labels.contract.p37t1}" /><textbox id="p37t1"  mold="rounded"  value="@{contractmain$composer.current.p37t1}" /></row>
+	                                  <row><label value="${labels.contract.p38t1}" /><datebox id="p38t1"  mold="rounded"  value="@{contractmain$composer.current.p38t1}" /></row>
+	                                  <row><label value="${labels.contract.p39t1}" /><textbox id="p39t1"  mold="rounded"  value="@{contractmain$composer.current.p39t1}" /></row>
+	                                  <row><label value="${labels.contract.p40t1}" /><datebox id="p40t1"  mold="rounded"  value="@{contractmain$composer.current.p40t1}" /></row>
+	                                  <row><label value="${labels.contract.p41t1}" /><textbox id="p41t1"  mold="rounded"  value="@{contractmain$composer.current.p41t1}" /></row>
+	                                  
+	                                  </rows>
+	                 </grid>
+	                   
+	                  <grid id="frmgrdr"  >
+	                                  <columns>
+	                                  <column width="50%"/>
+	                                  
+	                          </columns>
+	                        
+	                          <rows>
+	
+	                                  <row><label value="${labels.contract.p43t1}" /><textbox id="p43t1"  mold="rounded"  value="@{contractmain$composer.current.p43t1}" /></row>
+	                                  <row><label value="${labels.contract.p44t1}" /><textbox id="p44t1"  mold="rounded"  value="@{contractmain$composer.current.p44t1}" /></row>
+	                                  <row><label value="${labels.contract.p45t1}" /><textbox id="p45t1"  mold="rounded"  value="@{contractmain$composer.current.p45t1}" /></row>
+	                                  <row><label value="${labels.contract.p46t1}" /><textbox id="p46t1"  mold="rounded"  value="@{contractmain$composer.current.p46t1}" /></row>
+	                                  <row><label value="${labels.contract.p47t1}" /><textbox id="p47t1"  mold="rounded"  value="@{contractmain$composer.current.p47t1}" /></row>
+	                                  <row><label value="${labels.contract.p48t1}" /><datebox id="p48t1"  mold="rounded"  value="@{contractmain$composer.current.p48t1}" /></row>
+	                                  <row><label value="${labels.contract.p49t1}" /><textbox id="p49t1"  mold="rounded"  value="@{contractmain$composer.current.p49t1}" /></row>
+	                                  <row><label value="${labels.contract.p50t1}" /><textbox id="p50t1"  mold="rounded"  value="@{contractmain$composer.current.p50t1}" /></row>
+	                                  <row><label value="${labels.contract.p51t1}" /><textbox id="p51t1"  mold="rounded"  value="@{contractmain$composer.current.p51t1}" /></row>
+	                                  <row><label value="${labels.contract.p52t1}" /><textbox id="p52t1"  mold="rounded"  value="@{contractmain$composer.current.p52t1}" /></row>
+	                                  <row><label value="${labels.contract.p53t1}" /><textbox id="p53t1"  mold="rounded"  value="@{contractmain$composer.current.p53t1}" /></row>
+	                                  <row><label value="${labels.contract.p54t1}" /><textbox id="p54t1"  mold="rounded"  value="@{contractmain$composer.current.p54t1}" /></row>
+	                                  <row><label value="${labels.contract.p55t1}" /><textbox id="p55t1"  mold="rounded"  value="@{contractmain$composer.current.p55t1}" /></row>
+	                                  <row><label value="${labels.contract.p56t1}" /><textbox id="p56t1"  mold="rounded"  value="@{contractmain$composer.current.p56t1}" /></row>
+	                                  <row><label value="${labels.contract.p57t1}" /><textbox id="p57t1"  mold="rounded"  value="@{contractmain$composer.current.p57t1}" /></row>
+	                                  <row><label value="${labels.contract.p58t1}" /><datebox id="p58t1"  mold="rounded"  value="@{contractmain$composer.current.p58t1}" /></row>
+	                              <row><label value="${labels.contract.p59t1}" /><textbox id="p59t1"  mold="rounded"  value="@{contractmain$composer.current.p59t1}" /></row>
+	                              <row><label value="${labels.contract.p60t1}" /><textbox id="p60t1"  mold="rounded"  value="@{contractmain$composer.current.p60t1}" /></row>
+	                              <row><label value="${labels.contract.p61t1}" /><textbox id="p61t1"  mold="rounded"  value="@{contractmain$composer.current.p61t1}" /></row>
+	                              <row><label value="${labels.contract.p62t1}" /><textbox id="p62t1"  mold="rounded"  value="@{contractmain$composer.current.p62t1}" /></row>
+	                              <row><label value="${labels.contract.p65t1}" /><textbox id="p65t1"  mold="rounded"  value="@{contractmain$composer.current.p65t1}" /></row>
+                                  <row><label value="${labels.contract.p66t1}" /><textbox id="p66t1"  mold="rounded"  value="@{contractmain$composer.current.p66t1}" /></row>
+                                  <row><label value="${labels.contract.p67t1}" /><textbox id="p67t1"  mold="rounded"  value="@{contractmain$composer.current.p67t1}" /></row>
+                                  <row><label value="${labels.contract.p68t1}" /><textbox id="p68t1"  mold="rounded"  value="@{contractmain$composer.current.p68t1}" /></row>
+                                  <row><label value="${labels.contract.p69t1}" /><textbox id="p69t1"  mold="rounded"  value="@{contractmain$composer.current.p69t1}" /></row>
+                                  <row><label value="${labels.contract.p70t1}" /><textbox id="p70t1"  mold="rounded"  value="@{contractmain$composer.current.p70t1}" /></row>
+                                  <row><label value="${labels.contract.p71t1}" /><textbox id="p71t1"  mold="rounded"  value="@{contractmain$composer.current.p71t1}" /></row>
+                                  <row><label value="${labels.contract.p72t1}" /><textbox id="p72t1"  mold="rounded"  value="@{contractmain$composer.current.p72t1}" /></row>
+                                  <row><label value="${labels.contract.p73t1}" /><textbox id="p73t1"  mold="rounded"  value="@{contractmain$composer.current.p73t1}" /></row>
+                                  <row><label value="${labels.contract.p100t1}" /><textbox id="p100t1"  mold="rounded"  value="@{contractmain$composer.current.p100t1}" /></row>
+	                          </rows>
+	                  </grid>
+	                  </hbox>
+	                  </tabpanel>
+	                  
+	                  <tabpanel style="color:#336699;" height="100%"><include id="gar" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="acr" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="pol" height="600px"/></tabpanel>
+	                  <tabpanel id="id_tab_refundimp" style="color:#336699;" height="100%"><include id="refundimp_include" height="600px"/></tabpanel>
+	                  <tabpanel id="id_tab_movetoimp" style="color:#336699;" height="100%"><include id="movetoimp_include" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="pen" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="deb" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="kre" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="debinf" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="fnd" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="comi" height="600px"/></tabpanel>
+	                  <tabpanel id="tab_comgnk" style="color:#336699;" height="100%"><include id="comgnk" height="600px"/></tabpanel>
+	                  <tabpanel id="tab_mvtoexp" style="color:#336699;" height="100%"><include id="movetoexp" height="600px"/></tabpanel>
+	                  <tabpanel id="tab_mvfromex" style="color:#336699;" height="100%"><include id="movefromexp" height="600px"/></tabpanel>
+	                  <tabpanel id="id_tab_movefromim" style="color:#336699;" height="100%"><include id="movefrmim" height="600px"/></tabpanel>
+	                  <tabpanel id="tab_refexp" style="color:#336699;" height="100%"><include id="refundex" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="leaseexp" height="600px"/></tabpanel>
+					  <tabpanel style="color:#336699;" height="100%"><include id="leaseimp" height="600px"/></tabpanel>
+					   <tabpanel style="color:#336699;" height="100%"><include id="taxexp" height="600px"/></tabpanel>
+	                  <tabpanel style="color:#336699;" height="100%"><include id="taximp" height="600px"/></tabpanel>
+	                  <tabpanel id="id_tab_payment" style="color:#336699;" height="100%"><include id="payment_include" height="600px"/></tabpanel>
+	                  <tabpanel id="id_tab_sale" style="color:#336699;" height="100%"><include id="sale_include" height="600px"/></tabpanel>
+	                  <tabpanel id="id_tab_paymentref" style="color:#336699;" height="100%"><include id="paymentrf" height="600px"/></tabpanel>
+	                  
+	                  
+	                  
+	                 
+	                 
+	                  </tabpanels>
+	          
+				</tabbox>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.contract.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p0t1}" /><textbox id="ap0t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p1t1}" /><textbox id="ap1t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p2t1}" /><textbox id="ap2t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p3t1}" /><textbox id="ap3t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p4t1}" /><textbox id="ap4t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p5t1}" /><textbox id="ap5t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p6t1}" /><datebox id="ap6t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p7t1}" /><textbox id="ap7t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p8t1}" /><datebox id="ap8t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p9t1}" /><textbox id="ap9t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p10t1}" /><textbox id="ap10t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p11t1}" /><textbox id="ap11t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p12t1}" /><textbox id="ap12t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p13t1}" /><textbox id="ap13t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p14t1}" /><textbox id="ap14t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p15t1}" /><textbox id="ap15t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p16t1}" /><textbox id="ap16t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p17t1}" /><textbox id="ap17t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p18t1}" /><textbox id="ap18t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p19t1}" /><textbox id="ap19t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p20t1}" /><decimalbox id="ap20t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p21t1}" /><decimalbox id="ap21t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p22t1}" /><textbox id="ap22t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p23t1}" /><textbox id="ap23t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p24t1}" /><textbox id="ap24t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p25t1}" /><textbox id="ap25t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p26t1}" /><textbox id="ap26t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p27t1}" /><textbox id="ap27t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p28t1}" /><textbox id="ap28t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p29t1}" /><textbox id="ap29t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p30t1}" /><textbox id="ap30t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p31t1}" /><textbox id="ap31t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p32t1}" /><datebox id="ap32t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p33t1}" /><textbox id="ap33t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p34t1}" /><textbox id="ap34t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p35t1}" /><textbox id="ap35t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p36t1}" /><textbox id="ap36t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p37t1}" /><textbox id="ap37t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p38t1}" /><datebox id="ap38t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p39t1}" /><textbox id="ap39t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p40t1}" /><datebox id="ap40t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p41t1}" /><textbox id="ap41t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p42t1}" /><textbox id="ap42t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p43t1}" /><textbox id="ap43t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p44t1}" /><datebox id="ap44t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p45t1}" /><textbox id="ap45t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p46t1}" /><textbox id="ap46t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p47t1}" /><textbox id="ap47t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p48t1}" /><datebox id="ap48t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p49t1}" /><textbox id="ap49t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p50t1}" /><textbox id="ap50t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p51t1}" /><textbox id="ap51t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p52t1}" /><textbox id="ap52t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p53t1}" /><textbox id="ap53t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p54t1}" /><textbox id="ap54t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p55t1}" /><textbox id="ap55t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p56t1}" /><textbox id="ap56t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p57t1}" /><textbox id="ap57t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p58t1}" /><datebox id="ap58t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p59t1}" /><textbox id="ap59t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p60t1}" /><textbox id="ap60t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p61t1}" /><textbox id="ap61t1"  mold="rounded"  /></row>
+                                  <row><label value="${labels.contract.p62t1}" /><textbox id="ap62t1"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <div id="fgrddiv" visible="false">
+                  <grid id="fgrd" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.contract.id}" /><textbox id="fid"  mold="rounded"  value="@{contractmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.contract.p0t1}" /><textbox id="fp0t1"  mold="rounded"  value="@{contractmain$composer.filter.p0t1}" /></row>
+                                  <row><label value="${labels.contract.p1t1}" /><textbox id="fp1t1"  mold="rounded"  value="@{contractmain$composer.filter.p1t1}" /></row>
+                                  <row><label value="${labels.contract.p2t1}" /><textbox id="fp2t1"  mold="rounded"  value="@{contractmain$composer.filter.p2t1}" /></row>
+                                  <row><label value="${labels.contract.p3t1}" /><textbox id="fp3t1"  mold="rounded"  value="@{contractmain$composer.filter.p3t1}" /></row>
+                                  <row><label value="${labels.contract.p4t1}" /><textbox id="fp4t1"  mold="rounded"  value="@{contractmain$composer.filter.p4t1}" /></row>
+                                  <row><label value="${labels.contract.p5t1}" /><textbox id="fp5t1"  mold="rounded"  value="@{contractmain$composer.filter.p5t1}" /></row>
+                                  <row><label value="${labels.contract.p6t1}" /><datebox id="fp6t1"  mold="rounded"  value="@{contractmain$composer.filter.p6t1}" /></row>
+                                  <row><label value="${labels.contract.p7t1}" /><textbox id="fp7t1"  mold="rounded"  value="@{contractmain$composer.filter.p7t1}" /></row>
+                                  <row><label value="${labels.contract.p8t1}" /><datebox id="fp8t1"  mold="rounded"  value="@{contractmain$composer.filter.p8t1}" /></row>
+                                  <row><label value="${labels.contract.p9t1}" /><textbox id="fp9t1"  mold="rounded"  value="@{contractmain$composer.filter.p9t1}" /></row>
+                                  <row><label value="${labels.contract.p10t1}" /><textbox id="fp10t1"  mold="rounded"  value="@{contractmain$composer.filter.p10t1}" /></row>
+                                  <row><label value="${labels.contract.p11t1}" /><textbox id="fp11t1"  mold="rounded"  value="@{contractmain$composer.filter.p11t1}" /></row>
+                                  <row><label value="${labels.contract.p12t1}" /><textbox id="fp12t1"  mold="rounded"  value="@{contractmain$composer.filter.p12t1}" /></row>
+                                  <row><label value="${labels.contract.p13t1}" /><textbox id="fp13t1"  mold="rounded"  value="@{contractmain$composer.filter.p13t1}" /></row>
+                                  <row><label value="${labels.contract.p14t1}" /><textbox id="fp14t1"  mold="rounded"  value="@{contractmain$composer.filter.p14t1}" /></row>
+                                  <row><label value="${labels.contract.p15t1}" /><textbox id="fp15t1"  mold="rounded"  value="@{contractmain$composer.filter.p15t1}" /></row>
+                                  <row><label value="${labels.contract.p16t1}" /><textbox id="fp16t1"  mold="rounded"  value="@{contractmain$composer.filter.p16t1}" /></row>
+                                  <row><label value="${labels.contract.p17t1}" /><textbox id="fp17t1"  mold="rounded"  value="@{contractmain$composer.filter.p17t1}" /></row>
+                                  <row><label value="${labels.contract.p18t1}" /><textbox id="fp18t1"  mold="rounded"  value="@{contractmain$composer.filter.p18t1}" /></row>
+                                  <row><label value="${labels.contract.p19t1}" /><textbox id="fp19t1"  mold="rounded"  value="@{contractmain$composer.filter.p19t1}" /></row>
+                                  <row><label value="${labels.contract.p20t1}" /><decimalbox id="fp20t1"  mold="rounded"  value="@{contractmain$composer.filter.p20t1}" /></row>
+                                  <row><label value="${labels.contract.p21t1}" /><decimalbox id="fp21t1"  mold="rounded"  value="@{contractmain$composer.filter.p21t1}" /></row>
+                                  <row><label value="${labels.contract.p22t1}" /><textbox id="fp22t1"  mold="rounded"  value="@{contractmain$composer.filter.p22t1}" /></row>
+                                  <row><label value="${labels.contract.p23t1}" /><textbox id="fp23t1"  mold="rounded"  value="@{contractmain$composer.filter.p23t1}" /></row>
+                                  <row><label value="${labels.contract.p24t1}" /><textbox id="fp24t1"  mold="rounded"  value="@{contractmain$composer.filter.p24t1}" /></row>
+                                  <row><label value="${labels.contract.p25t1}" /><textbox id="fp25t1"  mold="rounded"  value="@{contractmain$composer.filter.p25t1}" /></row>
+                                  <row><label value="${labels.contract.p26t1}" /><textbox id="fp26t1"  mold="rounded"  value="@{contractmain$composer.filter.p26t1}" /></row>
+                                  <row><label value="${labels.contract.p27t1}" /><textbox id="fp27t1"  mold="rounded"  value="@{contractmain$composer.filter.p27t1}" /></row>
+                                  <row><label value="${labels.contract.p28t1}" /><textbox id="fp28t1"  mold="rounded"  value="@{contractmain$composer.filter.p28t1}" /></row>
+                                  <row><label value="${labels.contract.p29t1}" /><textbox id="fp29t1"  mold="rounded"  value="@{contractmain$composer.filter.p29t1}" /></row>
+                                  <row><label value="${labels.contract.p30t1}" /><textbox id="fp30t1"  mold="rounded"  value="@{contractmain$composer.filter.p30t1}" /></row>
+                                  <row><label value="${labels.contract.p31t1}" /><textbox id="fp31t1"  mold="rounded"  value="@{contractmain$composer.filter.p31t1}" /></row>
+                                  <row><label value="${labels.contract.p32t1}" /><datebox id="fp32t1"  mold="rounded"  value="@{contractmain$composer.filter.p32t1}" /></row>
+                                  <row><label value="${labels.contract.p33t1}" /><textbox id="fp33t1"  mold="rounded"  value="@{contractmain$composer.filter.p33t1}" /></row>
+                                  <row><label value="${labels.contract.p34t1}" /><textbox id="fp34t1"  mold="rounded"  value="@{contractmain$composer.filter.p34t1}" /></row>
+                                  <row><label value="${labels.contract.p35t1}" /><textbox id="fp35t1"  mold="rounded"  value="@{contractmain$composer.filter.p35t1}" /></row>
+                                  <row><label value="${labels.contract.p36t1}" /><textbox id="fp36t1"  mold="rounded"  value="@{contractmain$composer.filter.p36t1}" /></row>
+                                  <row><label value="${labels.contract.p37t1}" /><textbox id="fp37t1"  mold="rounded"  value="@{contractmain$composer.filter.p37t1}" /></row>
+                                  <row><label value="${labels.contract.p38t1}" /><datebox id="fp38t1"  mold="rounded"  value="@{contractmain$composer.filter.p38t1}" /></row>
+                                  <row><label value="${labels.contract.p39t1}" /><textbox id="fp39t1"  mold="rounded"  value="@{contractmain$composer.filter.p39t1}" /></row>
+                                  <row><label value="${labels.contract.p40t1}" /><datebox id="fp40t1"  mold="rounded"  value="@{contractmain$composer.filter.p40t1}" /></row>
+                                  <row><label value="${labels.contract.p41t1}" /><textbox id="fp41t1"  mold="rounded"  value="@{contractmain$composer.filter.p41t1}" /></row>
+                                  <row><label value="${labels.contract.p42t1}" /><textbox id="fp42t1"  mold="rounded"  value="@{contractmain$composer.filter.p42t1}" /></row>
+                                  <row><label value="${labels.contract.p43t1}" /><textbox id="fp43t1"  mold="rounded"  value="@{contractmain$composer.filter.p43t1}" /></row>
+                                  <row><label value="${labels.contract.p44t1}" /><datebox id="fp44t1"  mold="rounded"  value="@{contractmain$composer.filter.p44t1}" /></row>
+                                  <row><label value="${labels.contract.p45t1}" /><textbox id="fp45t1"  mold="rounded"  value="@{contractmain$composer.filter.p45t1}" /></row>
+                                  <row><label value="${labels.contract.p46t1}" /><textbox id="fp46t1"  mold="rounded"  value="@{contractmain$composer.filter.p46t1}" /></row>
+                                  <row><label value="${labels.contract.p47t1}" /><textbox id="fp47t1"  mold="rounded"  value="@{contractmain$composer.filter.p47t1}" /></row>
+                                  <row><label value="${labels.contract.p48t1}" /><datebox id="fp48t1"  mold="rounded"  value="@{contractmain$composer.filter.p48t1}" /></row>
+                                  <row><label value="${labels.contract.p49t1}" /><textbox id="fp49t1"  mold="rounded"  value="@{contractmain$composer.filter.p49t1}" /></row>
+                                  <row><label value="${labels.contract.p50t1}" /><textbox id="fp50t1"  mold="rounded"  value="@{contractmain$composer.filter.p50t1}" /></row>
+                                  <row><label value="${labels.contract.p51t1}" /><textbox id="fp51t1"  mold="rounded"  value="@{contractmain$composer.filter.p51t1}" /></row>
+                                  <row><label value="${labels.contract.p52t1}" /><textbox id="fp52t1"  mold="rounded"  value="@{contractmain$composer.filter.p52t1}" /></row>
+                                  <row><label value="${labels.contract.p53t1}" /><textbox id="fp53t1"  mold="rounded"  value="@{contractmain$composer.filter.p53t1}" /></row>
+                                  <row><label value="${labels.contract.p54t1}" /><textbox id="fp54t1"  mold="rounded"  value="@{contractmain$composer.filter.p54t1}" /></row>
+                                  <row><label value="${labels.contract.p55t1}" /><textbox id="fp55t1"  mold="rounded"  value="@{contractmain$composer.filter.p55t1}" /></row>
+                                  <row><label value="${labels.contract.p56t1}" /><textbox id="fp56t1"  mold="rounded"  value="@{contractmain$composer.filter.p56t1}" /></row>
+                                  <row><label value="${labels.contract.p57t1}" /><textbox id="fp57t1"  mold="rounded"  value="@{contractmain$composer.filter.p57t1}" /></row>
+                                  <row><label value="${labels.contract.p58t1}" /><datebox id="fp58t1"  mold="rounded"  value="@{contractmain$composer.filter.p58t1}" /></row>
+                                  <row><label value="${labels.contract.p59t1}" /><textbox id="fp59t1"  mold="rounded"  value="@{contractmain$composer.filter.p59t1}" /></row>
+                                  <row><label value="${labels.contract.p60t1}" /><textbox id="fp60t1"  mold="rounded"  value="@{contractmain$composer.filter.p60t1}" /></row>
+                                  <row><label value="${labels.contract.p61t1}" /><textbox id="fp61t1"  mold="rounded"  value="@{contractmain$composer.filter.p61t1}" /></row>
+                                  <row><label value="${labels.contract.p62t1}" /><textbox id="fp62t1"  mold="rounded"  value="@{contractmain$composer.filter.p62t1}" /></row>
+                          </rows>
+                  </grid>
+                  <toolbar>
+                  	<toolbarbutton id="btn_save" label="${labels.find}" image="/images/save.png" />
+                   	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+      		</div>
+        </div>
+
+</window>

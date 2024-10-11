@@ -1,0 +1,150 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="user_keymain" closable="true" onClose="self.visible = false; event.stopPropagation();" sizable="true" maximizable="true" style="overflow-y: auto;"
+   		title="${labels.user_keys}" border="normal" width="1000px" height="90%" position="center,center" mode="modal" visible="false" apply="com.is.clb.user.keys.User_keyWndViewCtrl">
+        <div id="grd">
+            <groupbox mold="3d" open="true" closable="true" width="100%"
+            	sclass="sp-groupbox">
+            	<caption label="${labels.search}" />
+            	<grid id="fgrd" visible="true">
+	            	<columns>
+	            		<column width="15%" />
+	            		<column width="35%" />
+	            		<column width="15%" />
+	            		<column width="35%" />
+	            	</columns>
+	            	<rows>
+						<!-- <row><label value="${labels.user_key.username}" /><textbox id="fusername"  mold="rounded"  value="@{user_keymain$composer.filter.username}" /></row> 
+						<row><label value="${labels.user_key.key_type}" /><longbox id="fkey_type"  mold="rounded"  value="@{user_keymain$composer.filter.key_type}" /></row>-->
+						<row>
+							<label value="${labels.user_key.key_code}" /><textbox id="fkey_code"  mold="rounded"  value="@{user_keymain$composer.filter.key_code}" width="300px"/>
+							<label value="${labels.user_key.key_sn}" /><textbox id="fkey_sn"  mold="rounded"  value="@{user_keymain$composer.filter.key_sn}" width="300px"/>
+						</row>
+						<!-- 
+						<row><label value="${labels.user_key.signature_algoritm}" /><textbox id="fsignature_algoritm"  mold="rounded"  value="@{user_keymain$composer.filter.signature_algoritm}" width="300px"/></row>
+						<row><label value="${labels.user_key.version}" /><textbox id="fversion"  mold="rounded"  value="@{user_keymain$composer.filter.version}" /></row>
+						<row><label value="${labels.user_key.key_size}" /><longbox id="fkey_size"  mold="rounded"  value="@{user_keymain$composer.filter.key_size}" /></row>
+						<row><label value="${labels.user_key.issuer}" /><textbox id="fissuer"  mold="rounded"  value="@{user_keymain$composer.filter.issuer}" /></row>
+						<row><label value="${labels.user_key.pkey}" /><textbox id="fpkey"  mold="rounded"  value="@{user_keymain$composer.filter.pkey}" /></row>
+						<row><label value="${labels.user_key.sign_failure}" /><longbox id="fsign_failure"  mold="rounded"  value="@{user_keymain$composer.filter.sign_failure}" /></row>
+						 -->
+						<row>
+							<label value="${labels.user_key.key_certn}" /><textbox id="fkey_certn"  mold="rounded"  value="@{user_keymain$composer.filter.key_certn}" width="300px"/>
+							<label value="${labels.user_key.key_expired}" /><datebox id="fkey_expired"  mold="rounded"  value="@{user_keymain$composer.filter.key_expired}" width="300px"/>
+						</row>
+						<!--  
+						<row><label value="${labels.user_key.activate_date}" /><datebox id="factivate_date"  mold="rounded"  value="@{user_keymain$composer.filter.activate_date}" /></row>
+						<row><label value="${labels.user_key.deactivate_date}" /><datebox id="fdeactivate_date"  mold="rounded"  value="@{user_keymain$composer.filter.deactivate_date}" /></row>
+						<row><label value="${labels.user_key.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{user_keymain$composer.filter.branch}" /></row>
+						<row><label value="${labels.user_key.emp_id}" /><longbox id="femp_id"  mold="rounded"  value="@{user_keymain$composer.filter.emp_id}" /></row>
+						<row><label value="${labels.user_key.state}" /><longbox id="fstate"  mold="rounded"  value="@{user_keymain$composer.filter.state}" /></row>
+						-->
+	              	</rows>
+	         	</grid>
+            	<toolbar>
+            		<toolbarbutton id="btn_find" label="${labels.find}" image="/images/search.png" />
+            		<toolbarbutton id="btn_find_clear" label="${labels.clear}" image="/images/clear_filter.png" />
+            		<toolbarbutton id="btn_find_cancel" label="${labels.cancel}" image="/images/cancel_filter.gif" />
+            	</toolbar>
+            </groupbox>
+            	<toolbar id="tb" width="100%" align="center" height="35px">
+				<style>
+					.sp-paging.z-paging { background: none; border:none; }
+					.sp-paging.z-paging .z-paging-btn { background: none; }
+				</style>
+				<div width="100%" align="center" height="35px">
+					<hbox width="100%" widths="100%,50px,200px" align="center" height="35px">
+						<hbox width="100%">
+							<toolbarbutton id="btn_refresh"	tooltiptext="${labels.refresh}" image="/images/refresh.png" />
+							<separator orient="vertical" spacing="10px" bar="true" height="24px" style="color: white;"></separator>
+							<toolbarbutton id="btn_first" tooltiptext="${labels.first}" image="/images/backward.png" />
+							<toolbarbutton id="btn_prev" tooltiptext="${labels.prev}" image="/images/back.png" />
+							<toolbarbutton id="btn_next" tooltiptext="${labels.next}" image="/images/front.png" />
+							<toolbarbutton id="btn_last" tooltiptext="${labels.last}" image="/images/forward.png" />
+							<separator orient="vertical" spacing="10px" bar="true" height="24px" style="color: white;"></separator>
+		
+							<toolbarbutton id="btn_add_key" label="${labels.user_key.add_key}" upload="false" image="/images/+.png" />
+						</hbox>
+						<rcombobox id="pagesize" mold="rounded" selecteditem="" width="50px" visible="false"/>
+						<paging id="User_keyPaging" width="200px" sclass="sp-paging" />
+					</hbox>
+				</div>
+			</toolbar>
+            <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%" selectedItem="@{user_keymain$composer.current}">
+            	<listhead sizable="true">
+					<!-- <listheader label="${labels.user_key.username}" /> -->
+					<listheader label="${labels.user_key.key_type}" sort="auto(key_type)"/>
+					<listheader label="${labels.user_key.key_code}" sort="auto(key_code)"/>
+					<listheader label="${labels.user_key.key_sn}" sort="auto(key_sn)"/>
+					<listheader label="${labels.user_key.key_certn}" sort="auto(key_certn)"/>
+					<!-- <listheader label="${labels.user_key.version}" />
+					<listheader label="${labels.user_key.signature_algoritm}" sort="auto(signature_algoritm)"/>
+					<listheader label="${labels.user_key.key_size}" />
+					<listheader label="${labels.user_key.issuer}" />
+					<listheader label="${labels.user_key.pkey}" />-->
+					<listheader label="${labels.user_key.sign_failure}" sort="auto(sign_failure)"/>
+					<listheader label="${labels.user_key.key_expired}" sort="auto(key_expired)"/>
+					<listheader label="${labels.user_key.activate_date}" sort="auto(activate_date)"/>
+					<listheader label="${labels.user_key.deactivate_date}" sort="auto(deactivate_date)"/>
+					<!-- <listheader label="${labels.user_key.branch}" />
+					<listheader label="${labels.user_key.emp_id}" />
+					<listheader label="${labels.user_key.state}" /> -->
+                </listhead>
+			</listbox>
+        </div>
+        <div id="frm" visible="false">
+			<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+             	</columns>
+              	<rows>
+
+					<!-- <row><label value="${labels.user_key.username}" /><textbox id="username"  mold="rounded"  value="@{user_keymain$composer.current.username}" /></row> -->
+					<row><label value="${labels.user_key.key_type}" /><longbox id="key_type"  mold="rounded"  value="@{user_keymain$composer.current.key_type}" /></row>
+					<row><label value="${labels.user_key.key_code}" /><textbox id="key_code"  mold="rounded"  value="@{user_keymain$composer.current.key_code}" /></row>
+					<row><label value="${labels.user_key.key_sn}" /><textbox id="key_sn"  mold="rounded"  value="@{user_keymain$composer.current.key_sn}" /></row>
+					<row><label value="${labels.user_key.version}" /><textbox id="version"  mold="rounded"  value="@{user_keymain$composer.current.version}" /></row>
+					<row><label value="${labels.user_key.signature_algoritm}" /><textbox id="signature_algoritm"  mold="rounded"  value="@{user_keymain$composer.current.signature_algoritm}" /></row>
+					<row><label value="${labels.user_key.key_size}" /><longbox id="key_size"  mold="rounded"  value="@{user_keymain$composer.current.key_size}" /></row>
+					<row><label value="${labels.user_key.issuer}" /><textbox id="issuer"  mold="rounded"  value="@{user_keymain$composer.current.issuer}" /></row>
+					<row><label value="${labels.user_key.pkey}" /><textbox id="pkey"  mold="rounded"  value="@{user_keymain$composer.current.pkey}" /></row>
+					<row><label value="${labels.user_key.sign_failure}" /><longbox id="sign_failure"  mold="rounded"  value="@{user_keymain$composer.current.sign_failure}" /></row>
+					<row><label value="${labels.user_key.key_expired}" /><datebox id="key_expired"  mold="rounded"  value="@{user_keymain$composer.current.key_expired}" /></row>
+					<row><label value="${labels.user_key.activate_date}" /><datebox id="activate_date"  mold="rounded"  value="@{user_keymain$composer.current.activate_date}" /></row>
+					<row><label value="${labels.user_key.deactivate_date}" /><datebox id="deactivate_date"  mold="rounded"  value="@{user_keymain$composer.current.deactivate_date}" /></row>
+					<row><label value="${labels.user_key.branch}" /><textbox id="branch"  mold="rounded"  value="@{user_keymain$composer.current.branch}" /></row>
+					<row><label value="${labels.user_key.emp_id}" /><longbox id="emp_id"  mold="rounded"  value="@{user_keymain$composer.current.emp_id}" /></row>
+					<row><label value="${labels.user_key.state}" /><longbox id="state"  mold="rounded"  value="@{user_keymain$composer.current.state}" /></row>
+                </rows>
+          	</grid>
+          	<grid id="addgrd" visible="false">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+            	</columns>
+             	<rows>
+					<!-- <row><label value="${labels.user_key.username}" /><textbox id="ausername"  mold="rounded"  value="@{user_keymain$composer.current.username}" /></row> -->
+					<row><label value="${labels.user_key.key_type}" /><longbox id="akey_type"  mold="rounded"  value="@{user_keymain$composer.current.key_type}" /></row>
+					<row><label value="${labels.user_key.key_code}" /><textbox id="akey_code"  mold="rounded"  value="@{user_keymain$composer.current.key_code}" /></row>
+					<row><label value="${labels.user_key.key_sn}" /><textbox id="akey_sn"  mold="rounded"  value="@{user_keymain$composer.current.key_sn}" /></row>
+					<row><label value="${labels.user_key.version}" /><textbox id="aversion"  mold="rounded"  value="@{user_keymain$composer.current.version}" /></row>
+					<row><label value="${labels.user_key.signature_algoritm}" /><textbox id="asignature_algoritm"  mold="rounded"  value="@{user_keymain$composer.current.signature_algoritm}" /></row>
+					<row><label value="${labels.user_key.key_size}" /><longbox id="akey_size"  mold="rounded"  value="@{user_keymain$composer.current.key_size}" /></row>
+					<row><label value="${labels.user_key.issuer}" /><textbox id="aissuer"  mold="rounded"  value="@{user_keymain$composer.current.issuer}" /></row>
+					<row><label value="${labels.user_key.pkey}" /><textbox id="apkey"  mold="rounded"  value="@{user_keymain$composer.current.pkey}" /></row>
+					<row><label value="${labels.user_key.sign_failure}" /><longbox id="asign_failure"  mold="rounded"  value="@{user_keymain$composer.current.sign_failure}" /></row>
+					<row><label value="${labels.user_key.key_expired}" /><datebox id="akey_expired"  mold="rounded"  value="@{user_keymain$composer.current.key_expired}" /></row>
+					<row><label value="${labels.user_key.activate_date}" /><datebox id="aactivate_date"  mold="rounded"  value="@{user_keymain$composer.current.activate_date}" /></row>
+					<row><label value="${labels.user_key.deactivate_date}" /><datebox id="adeactivate_date"  mold="rounded"  value="@{user_keymain$composer.current.deactivate_date}" /></row>
+					<row><label value="${labels.user_key.branch}" /><textbox id="abranch"  mold="rounded"  value="@{user_keymain$composer.current.branch}" /></row>
+					<row><label value="${labels.user_key.emp_id}" /><longbox id="aemp_id"  mold="rounded"  value="@{user_keymain$composer.current.emp_id}" /></row>
+					<row><label value="${labels.user_key.state}" /><longbox id="astate"  mold="rounded"  value="@{user_keymain$composer.current.state}" /></row>
+               	</rows>
+           	</grid>
+   			
+			<toolbar>
+         		<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+              	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+           	</toolbar>
+        </div>
+</window>

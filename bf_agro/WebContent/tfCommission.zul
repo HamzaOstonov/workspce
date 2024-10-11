@@ -1,0 +1,205 @@
+<?component name="robjbox" extends="combobox" class="com.is.utils.refobj.RefObjCBox"?>
+<?component name="rcurrbox" extends="combobox" class="com.is.tf.currency.RefCurrencyBox"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="commissionmain" width="100%"  height="100%" border="normal" apply="com.is.tf.Commission.CommissionViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="commissionPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{commissionmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.commission.id}" width="200px" />
+                                <listheader label="${labels.commission.p0t27}" width="200px" visible="false" />
+                                <listheader label="${labels.commission.p1t27}" width="200px" />
+                                <listheader label="${labels.commission.p2t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p3t27}" width="200px" />
+                                <listheader label="${labels.commission.p4t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p5t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p6t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p7t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.id_contract}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p100t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p8t27}" width="200px" />
+                                <listheader label="${labels.commission.p10t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p11t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p12t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p13t27}" width="200px" visible="false"/>
+                                <listheader label="${labels.commission.p14t27}" width="200px" />
+                                <listheader label="${labels.commission.p9t27}" width="200px" visible="false"/>
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.commission.id}" /><textbox id="id" disabled="true" mold="rounded"  value="@{commissionmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.commission.p1t27}" /><decimalbox id="p1t27" disabled="true" width="250px" format="########-#########-##-#-#####" mold="rounded"  value="@{commissionmain$composer.current.p1t27}" /></row>
+                                  <row id="row_p2t27" visible="false"><label value="${labels.commission.p2t27}" /><rcombobox id="p2t27" width="500px" mold="rounded"   /></row>
+                                  <row id="row_p9t27" visible="false"><label value="${labels.commission.p9t27}" /><robjbox id="p9t27" width="500px" mold="rounded"   /></row>
+                                  <row><label value="${labels.commission.p3t27}" />
+                                  <hbox>
+                                  <decimalbox id="p3t27" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{commissionmain$composer.current.p3t27}" />
+                                  <checkbox id="checksum" checked="false" disabled="true" label="Сумма комиссии не соответствует указанному курсу!"/>
+                                  </hbox>
+                                  </row>
+                                  <row id="kur"><label value="${labels.commission.p10t27}" />
+                                   <hbox>
+                                      <label value="1" />
+		                              <rcurrbox id="p10t271"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                              <label value="=" />
+		                              <decimalbox id="p10t272"  mold="rounded" maxlength="7" value="@{commissionmain$composer.current.p10t27}" format="### ##0.00#"/>
+		                              <rcurrbox id="p10t273"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                              <label id="cbcourse" value="" />
+	                               </hbox>
+                                 </row>
+                                  <row><label value="${labels.commission.p4t27}" />
+                                  <hbox>
+                                  <decimalbox id="p4t27"  mold="rounded" format="### ### ### ##0.00" value="@{commissionmain$composer.current.p4t27}" />
+                                  <label id="conr_val1"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row id="sum_comm2"><label value="${labels.commission.p5t27}" />
+                                  <hbox>
+                                  <decimalbox id="p5t27"  mold="rounded" format="### ### ### ##0.00" value="@{commissionmain$composer.current.p5t27}" />
+                                  <label id="conr_val2"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <!-- 
+                                  <row><label value="${labels.commission.p6t27}" /><textbox id="p6t27"  mold="rounded"  value="@{commissionmain$composer.current.p6t27}" /></row>
+                                  <row><label value="${labels.commission.p7t27}" /><textbox id="p7t27"  mold="rounded"  value="@{commissionmain$composer.current.p7t27}" /></row>
+                                  <row><label value="${labels.commission.id_contract}" /><textbox id="id_contract"  mold="rounded"  value="@{commissionmain$composer.current.id_contract}" /></row>
+                                  <row><label value="${labels.commission.p100t27}" /><textbox id="p100t27"  mold="rounded"  value="@{commissionmain$composer.current.p100t27}" /></row>
+                                  <row><label value="${labels.commission.p8t27}" /><textbox id="p8t27"  mold="rounded"  value="@{commissionmain$composer.current.p8t27}" /></row>
+                                  
+                                  <row><label value="${labels.commission.p11t27}" /><textbox id="p11t27"  mold="rounded"  value="@{commissionmain$composer.current.p11t27}" /></row>
+                                  <row><label value="${labels.commission.p12t27}" /><textbox id="p12t27"  mold="rounded"  value="@{commissionmain$composer.current.p12t27}" /></row>
+                                  <row><label value="${labels.commission.p13t27}" /><textbox id="p13t27"  mold="rounded"  value="@{commissionmain$composer.current.p13t27}" /></row>
+                                  <row><label value="${labels.commission.p14t27}" /><textbox id="p14t27"  mold="rounded"  value="@{commissionmain$composer.current.p14t27}" /></row>
+                                  
+                          		   <row><label value="${labels.commission.p0t27}" /><textbox id="p0t27"  mold="rounded"  value="@{commissionmain$composer.current.p0t27}" /></row>
+                           			-->
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <!-- 
+                                  <row><label value="${labels.commission.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p0t27}" /><textbox id="ap0t27"  mold="rounded"  /></row>
+                                  -->
+                                  <row><label value="${labels.commission.p1t27}" /><decimalbox disabled="true" id="ap1t27"  width="250px" format="########-#########-##-#-#####" mold="rounded"  value="@{commissionmain$composer.current.p1t27}" /></row>
+                                  <row id="row_ap2t27" visible="false"><label value="${labels.commission.p2t27}" /><rcombobox id="ap2t27" width="500px"  mold="rounded"  /></row>
+                                  <row id="row_ap9t27" visible="false"><label value="${labels.commission.p9t27}" /><robjbox id="ap9t27" width="500px"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p3t27}" />
+                                  <hbox>
+                                  <decimalbox id="ap3t27" format="### ### ### ##0.00" maxlength="20" mold="rounded"  />
+                                  <checkbox id="achecksum" checked="false" disabled="true" label="Сумма комиссии не соответствует указанному курсу!"/>
+                                   </hbox>
+                                   </row>
+                                  <row id="akur"><label value="${labels.commission.p10t27}" />
+                                  <hbox>
+                                  <label value="1" />
+		                           <rcurrbox id="ap10t271"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                          <label value="=" />
+                                  <decimalbox id="ap10t272" maxlength="7" format="### ##0.00#" mold="rounded"  />
+                                  <rcurrbox id="ap10t273"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                          <label id="acbcourse" value="" />
+	                              </hbox>
+                                  </row>
+                                  <row><label value="${labels.commission.p4t27}" />
+                                  <hbox>
+                                  <decimalbox format="### ### ### ##0.00" maxlength="20"  id="ap4t27"  mold="rounded"  />
+                                  <label id="aconr_val1"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row id="row_p5t27" visible="false"><label value="${labels.commission.p5t27}" />
+                                  <hbox>
+                                  <decimalbox format="### ### ### ##0.00" maxlength="20" id="ap5t27"  mold="rounded"  />
+                                  <label id="aconr_val2"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <!-- 
+                                  <row><label value="${labels.commission.p6t27}" /><textbox id="ap6t27"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p7t27}" /><textbox id="ap7t27"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.id_contract}" /><textbox id="aid_contract"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p100t27}" /><textbox id="ap100t27"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p8t27}" /><textbox id="ap8t27"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p11t27}" /><textbox id="ap11t27"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p12t27}" /><textbox id="ap12t27"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p13t27}" /><textbox id="ap13t27"  mold="rounded"  /></row>
+                                  <row><label value="${labels.commission.p14t27}" /><textbox id="ap14t27"  mold="rounded"  /></row>
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.commission.id}" /><textbox id="fid"  mold="rounded"  value="@{commissionmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.commission.p0t27}" /><textbox id="fp0t27"  mold="rounded"  value="@{commissionmain$composer.filter.p0t27}" /></row>
+                                  <row><label value="${labels.commission.p1t27}" /><textbox id="fp1t27"  mold="rounded"  value="@{commissionmain$composer.filter.p1t27}" /></row>
+                                  <row><label value="${labels.commission.p2t27}" /><textbox id="fp2t27"  mold="rounded"  value="@{commissionmain$composer.filter.p2t27}" /></row>
+                                  <row><label value="${labels.commission.p3t27}" /><textbox id="fp3t27"  mold="rounded"  value="@{commissionmain$composer.filter.p3t27}" /></row>
+                                  <row><label value="${labels.commission.p4t27}" /><textbox id="fp4t27"  mold="rounded"  value="@{commissionmain$composer.filter.p4t27}" /></row>
+                                  <row><label value="${labels.commission.p5t27}" /><textbox id="fp5t27"  mold="rounded"  value="@{commissionmain$composer.filter.p5t27}" /></row>
+                                  <row><label value="${labels.commission.p6t27}" /><textbox id="fp6t27"  mold="rounded"  value="@{commissionmain$composer.filter.p6t27}" /></row>
+                                  <row><label value="${labels.commission.p7t27}" /><textbox id="fp7t27"  mold="rounded"  value="@{commissionmain$composer.filter.p7t27}" /></row>
+                                  <row><label value="${labels.commission.id_contract}" /><textbox id="fid_contract"  mold="rounded"  value="@{commissionmain$composer.filter.id_contract}" /></row>
+                                  <row><label value="${labels.commission.p100t27}" /><textbox id="fp100t27"  mold="rounded"  value="@{commissionmain$composer.filter.p100t27}" /></row>
+                                  <row><label value="${labels.commission.p8t27}" /><textbox id="fp8t27"  mold="rounded"  value="@{commissionmain$composer.filter.p8t27}" /></row>
+                                  <row><label value="${labels.commission.p10t27}" /><textbox id="fp10t27"  mold="rounded"  value="@{commissionmain$composer.filter.p10t27}" /></row>
+                                  <row><label value="${labels.commission.p11t27}" /><textbox id="fp11t27"  mold="rounded"  value="@{commissionmain$composer.filter.p11t27}" /></row>
+                                  <row><label value="${labels.commission.p12t27}" /><textbox id="fp12t27"  mold="rounded"  value="@{commissionmain$composer.filter.p12t27}" /></row>
+                                  <row><label value="${labels.commission.p13t27}" /><textbox id="fp13t27"  mold="rounded"  value="@{commissionmain$composer.filter.p13t27}" /></row>
+                                  <row><label value="${labels.commission.p14t27}" /><textbox id="fp14t27"  mold="rounded"  value="@{commissionmain$composer.filter.p14t27}" /></row>
+                                  <row><label value="${labels.commission.p9t27}" /><textbox id="fp9t27"  mold="rounded"  value="@{commissionmain$composer.filter.p9t27}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>
+

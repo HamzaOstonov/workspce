@@ -1,0 +1,59 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window width="100%" border="normal" apply="com.is.globalTieto.TietoMainViewCtrl" id="refillmain">
+    <div>
+        <div hflex="2" style="min-height: 500px;  border-right : 1px solid #dddddd; padding-right: 4px; float:left">
+            <grid id="searchGrid">
+                <columns>
+                    <column hflex="4"/>
+                    <column hflex="8"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="${labels.refill.client_b}"/>
+                        <textbox id="client_b" mold="rounded" value="@{refillmain$composer.filter.client_b}"/>
+                    </row>
+                    <row>
+                        <label value="${labels.refill.client}"/>
+                        <textbox id="client" mold="rounded" value="@{refillmain$composer.filter.client}" width="100%"/>
+                    </row>
+                    <row>
+                        <label value="${labels.refill.surname}"/>
+                        <textbox id="surname" mold="rounded" value="@{refillmain$composer.filter.surname}" width="100%"/>
+                    </row>
+                    <row>
+                        <label value="${labels.refill.name}"/>
+                        <textbox id="name" mold="rounded" value="@{refillmain$composer.filter.f_names}" width="100%"/>
+                    </row>
+                    <row>
+                        <label value="${labels.refill.birth_date}"/>
+                        <datebox id="birthDate" mold="rounded" value="@{refillmain$composer.filter.b_date}" width="100%"/>
+                    </row>
+                </rows>
+            </grid>
+
+            <toolbarbutton id="btnSearch" label="${labels.search}" image="/images/search.png" width="45%"/>
+            <toolbarbutton id="btnCancel" label="${labels.cancel}" image="/images/stop.png" width="45%"/>
+
+
+        </div>
+        <div hflex="8" style="float: left; margin-left:5px">
+            <vbox width="100%">
+                <tabbox id="resultBox">
+                    <tabs>
+                        <tab label="${labels.refill.customers_list}" width="25%"/>
+                        <tab label="${labels.refill.acсounts_list}" width="25%"/>
+                        <tab label="${labels.refill.cards_list}" width="25%"/>
+                    </tabs>
+                    <tabpanels style="background-color:white;">
+                        <tabpanel id="customersTab">
+                        </tabpanel>
+                        <tabpanel id="accountsTab">
+                        </tabpanel>
+                        <tabpanel id="cardsTab">
+                        </tabpanel>
+                    </tabpanels>
+                </tabbox>
+            </vbox>
+        </div>
+    </div>
+</window>

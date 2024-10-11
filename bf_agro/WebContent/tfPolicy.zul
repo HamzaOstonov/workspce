@@ -1,0 +1,298 @@
+<?component name="rcurrbox" extends="combobox" class="com.is.tf.currency.RefCurrencyBox"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="policymain" sizable="true" width="100%"  height="550px" border="normal" apply="com.is.tf.policy.PolicyViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                <toolbarbutton id="btn_pol" label="Страховой полис"
+                        image="/images/forward.png"  visible="false"/>
+                <toolbarbutton id="btn_pol1" label="Изм.суммы страхового полиса"
+                        image="/images/forward.png" />
+                <toolbarbutton id="btn_pol2" label="Изм.срока страхового полиса"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="policyPaging" width="100%" height="100%"/>
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" height="100%" width="100%"
+                        selectedItem="@{policymain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.policy.id}" width="50px" />
+                              
+                                <listheader label="${labels.policy.p1t32}" width="200px" />
+                                 <listheader label="${labels.policy.p0t32}" width="50px" visible="false"/>
+                                <listheader label="${labels.policy.p2t32}" width="200px" visible="false"/>
+                                <listheader label="${labels.policy.p3t32}" width="200px" />
+                                <listheader label="${labels.policy.p4t32}" width="200px" visible="false"/>
+                                <listheader label="${labels.policy.p5t32}" width="200px" />
+                                <listheader label="${labels.policy.p6t32}" width="200px" />
+                                <listheader label="${labels.policy.p7t32}" width="200px" />
+                                <listheader label="${labels.policy.p8t32}" width="200px" visible="false"/>
+                                <listheader label="${labels.policy.p9t32}" width="200px" visible="false"/>
+                                <listheader label="${labels.policy.p10t32}" width="200px" visible="false"/>
+                                <listheader label="${labels.policy.p11t32}" width="200px" />
+                                <listheader label="${labels.policy.p12t32}" width="200px" />
+                                <listheader label="${labels.policy.p13t32}" width="200px" />
+                                <listheader label="${labels.policy.p17t32}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <!-- 
+                                  <row><label value="${labels.policy.id}" /><textbox id="id"  mold="rounded"  value="@{policymain$composer.current.id}" /></row>
+                                  
+                                   -->
+                                  <row><label value="${labels.policy.p1t32}" /><decimalbox disabled="true" format="######## ######### ## # #####" id="p1t32"  mold="rounded"  width="250px" value="@{policymain$composer.current.p1t32}" /></row>
+                                 <!-- 
+                                 <row><label value="${labels.policy.p0t32}" visible="false" /><textbox id="p0t32"  mold="rounded"  value="1"  visible="false"/></row>
+                                  -->
+                                  <row><label value="${labels.policy.p2t32}" /><textbox id="p2t32" maxlength="9" mold="rounded"  value="@{policymain$composer.current.p2t32}" /></row>
+                                  <row><label value="${labels.policy.p4t32}" /><textbox id="p4t32"  mold="rounded"  value="@{policymain$composer.current.p4t32}" /></row>
+                                  <row><label value="${labels.policy.p3t32}" /><textbox id="p3t32" maxlength="20" mold="rounded"  value="@{policymain$composer.current.p3t32}" /></row>
+                                 
+                                  <row><label value="${labels.policy.p5t32}" /><datebox id="p5t32" constraint = "no future: Дата не может быть больше настоящей" mold="rounded"  value="@{policymain$composer.current.p5t32}" /></row>
+                                  <row><label value="${labels.policy.p6t32}" /><rcombobox id="p6t32" maxlength="3" width="170px" mold="rounded"  selecteditem="@{policymain$composer.current.p6t32}" /></row>
+                                  
+                                  <row><label value="${labels.policy.p7t32}" />
+                                   <hbox>
+                                  <decimalbox id="p7t321"  mold="rounded" maxlength="20" value="@{policymain$composer.current.p7t32}" format="### ### ### ##0.00"/>
+                                   <label id="pol_val"  width="70px"    />
+                                  <checkbox id="checksum" checked="false" disabled="true" label="Сумма полиса не соответствует указанному курсу!"/>
+                                 
+                                  </hbox>
+                                   </row>
+                                  <row id="kur"><label value="${labels.policy.p8t32}" />
+	                                  <hbox >
+		                                  <label value="" />
+		                                
+		                                  <rcurrbox id="p8t321"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="p8t322"  mold="rounded" maxlength="4" value="@{policymain$composer.current.p8t32}" format="##0.00"/>
+		                                  <label value="(значение >1)"  />
+		                                  <rcurrbox id="p8t323"  width="150px"  mold="rounded"  selecteditem="" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="btn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="cbcourse" value="" />
+	                                  </hbox>
+                                   </row>
+                                  
+                                  <row><label value="${labels.policy.p9t32}" />
+                                  <hbox>
+                                  <decimalbox id="p9t32" maxlength="19" mold="rounded"  value="@{policymain$composer.current.p9t32}" format="### ### ### ##0.00"/>
+                                  <label id="conr_val1"  width="70px"    />
+                                  </hbox>
+                                  </row>
+                                  <row id="sum_gar2"><label value="${labels.policy.p10t32}" />
+                                  <hbox>
+                                  <decimalbox id="p10t32" maxlength="19" mold="rounded"  value="@{policymain$composer.current.p10t32}" format="### ### ### ##0.00"/>
+                                  <label id="conr_val2"  width="70px"    />
+                                  </hbox>
+                                  </row>
+                                  <row id="pol_date1"><label value="${labels.policy.p11t32}" /><datebox id="p11t32"  mold="rounded"  value="@{policymain$composer.current.p11t32}" /></row>
+                                  <row id="pol_date2"><label value="${labels.policy.p12t32}" /><textbox id="p12t32" maxlength="5" mold="rounded"  value="@{policymain$composer.current.p12t32}" /></row>
+                                  <row><label value="Ответственный сотрудник" /><textbox  value="Тестовый сотрудник" width="150px" disabled="true"/></row>
+                          </rows>
+                  </grid>
+                  
+                    <grid id="pol_sum" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <row><label value="ИЗМЕНЕНИЕ СУММЫ СТРАХОВОГО ПОЛИСА" /></row>
+                                  <row><label value="${labels.policy.p1t32}" /><label id="pt32"   width="250px" value="@{policymain$composer.current.p1t32}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.policysumchange.id}" /><textbox id="idd"  mold="rounded"  value="@{policysumchangemain$composer.current.id}" /></row>
+                                  <row><label value="${labels.policysumchange.p0t34}" /><textbox id="p0t34"  mold="rounded"  value="@{policysumchangemain$composer.current.p0t34}" /></row>
+                                   -->
+                                  <row><label value="${labels.policysumchange.p1t34}" /><textbox id="p1t34"  mold="rounded"  value="@{policymain$composer.current.p3t32}" /></row>
+                                  
+                                  <row><label value="${labels.policysumchange.p3t34}" /><datebox id="p3t34"  mold="rounded"  value="@{policymain$composer.current.p5t32}" /></row>
+                                  <row><label value="${labels.policysumchange.p4t34}" />
+                                  <hbox>
+                                  <decimalbox id="p4t34"  mold="rounded"  value="@{policymain$composer.current.p7t32}" format="### ### ### ##0.00"/>
+                                  <label id="p4t341"  width="70px" />
+                                  </hbox>
+                                  </row>
+                                  
+                                  <row><label value="${labels.policysumchange.p5t34}" />
+                                  <hbox>
+                                  <decimalbox id="p5t34" maxlength="19" mold="rounded"  value="@{policysumchangemain$composer.current.p5t34}" format="### ### ### ##0.00" />
+                                  <label id="pol_val2"  width="70px"    />
+                                  </hbox>
+                                  </row>
+                                  <row id="row_kur"><label value="${labels.policysumchange.p6t34}" />
+                                  <hbox>
+                                  <label value="" />
+                                  <rcurrbox id="p6t341"  width="150px"  mold="rounded"  selecteditem="${p8t321.value}" disabled="true"/>
+                                  <label value="=" />
+                                  <decimalbox id="p6t342"   mold="rounded" maxlength="8"  value="@{policymain$composer.current.p8t32}" format="##0.00" disabled="true"/>
+                                  <rcurrbox id="p6t343"  width="150px"  mold="rounded"  selecteditem="${p8t323.value}" disabled="true"/>
+                                  </hbox>
+                                  </row>
+                                  
+                                  <row><label value="${labels.policysumchange.p7t34}" />
+                                  <hbox>
+                                  <decimalbox id="p7t34" maxlength="19" mold="rounded"  value="@{policysumchangemain$composer.current.p7t34}" format="### ### ### ##0.00"/>
+                                  <label id="conr_val1a"  width="70px"    />
+                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.policysumchange.p8t34}" />
+                                  <hbox>
+                                  <decimalbox id="p8t34" maxlength="19" mold="rounded"  value="@{policysumchangemain$composer.current.p8t34}" format="### ### ### ##0.00"/>
+                                  <label id="conr_val2a"  width="70px"    />
+                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.policysumchange.p9t34}" /><rcombobox id="p9t34"  mold="rounded" width="300px"  /></row>
+                                  <row id="row_p10t34" visible="false"><label value="${labels.policysumchange.p10t34}" /><rcombobox id="p10t34" maxlength="12" mold="rounded"  selecteditem="@{policysumchangemain$composer.current.p10t34}" width="300px" /></row>
+                                  <row id="row_p11t34" visible="false"><label value="${labels.policysumchange.p11t34}" /><textbox id="p11t34"  maxlength="200" multiline="true" rows="3"  value="@{policysumchangemain$composer.current.p11t34}" width="85%"/></row>
+                                  <row><label value="Ответственный сотрудник" /><textbox  value="Тестовый сотрудник" width="150px" disabled="true"/></row>
+                          </rows>
+                  </grid>
+                  
+                  <grid id="pol_time" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                   <row><label value="ИЗМЕНЕНИЕ СРОКА СТРАХОВОГО ПОЛИСА" /></row>
+                                  <row><label value="${labels.policy.p1t32}" /><label id="pt632"   width="250px" value="@{policymain$composer.current.p1t32}" /></row>
+                                   <!-- 
+                                  <row><label value="${labels.policytimechange.id}" /><textbox id="idf"  mold="rounded"  value="@{policytimechangemain$composer.current.id}" /></row>
+                                  <row><label value="${labels.policytimechange.p0t33}" /><textbox id="p0t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p0t33}" /></row>
+                                   -->
+                                  <row><label value="${labels.policytimechange.p1t33}" /><textbox id="p1t33"  mold="rounded"  value="@{policymain$composer.current.p3t32}" /></row>
+                                  <row id="pol_date1_33"><label value="${labels.policytimechange.p2t33}" /><datebox id="p2t33"  mold="rounded"  value="@{policymain$composer.current.p5t32}" /></row>
+                                  <row id="pol_date2_33"><label value="${labels.policytimechange.p3t33}" /><textbox id="p3t33" maxlength="5" mold="rounded"  value="@{policytimechangemain$composer.current.p3t33}" /></row>
+                                  <row id="pol_date3_33"><label value="${labels.policytimechange.p4t33}" /><datebox id="p4t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p4t33}" /></row>
+                                  <row id="pol_date4_33"><label value="${labels.policytimechange.p5t33}" /><textbox id="p5t33" maxlength="5" mold="rounded"  value="@{policytimechangemain$composer.current.p5t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p6t33}" /><rcombobox id="p6t33"  mold="rounded"  width="300px" /></row>
+                                  <row id="row_p7t33" visible="false"><label value="${labels.policytimechange.p7t33}" /><rcombobox id="p7t33" maxlength="12" mold="rounded"  selecteditem="@{policytimechangemain$composer.current.p7t33}" width="300px"/></row>
+                                  <row id="row_p8t33" visible="false"><label value="${labels.policytimechange.p8t33}" /><textbox id="p8t33" maxlength="200" multiline="true" rows="3"  value="@{policytimechangemain$composer.current.p8t33}" width="85%"/></row>
+                                   <row><label value="${labels.policytimechange.p11t33}" /><datebox id="p11t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p11t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p10t33}" /><textbox id="p10t33" disabled="true" mold="rounded"  value="@{policytimechangemain$composer.current.p10t33}" /></row>
+                          </rows>
+                  </grid>
+                  
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                   <!--  
+                                  <row><label value="${labels.policy.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                
+                                  <row><label value="${labels.policy.p0t32}" visible="false" /><decimalbox id="ap0t32"  mold="rounded"  value="0" visible="false"/></row>
+                                   -->
+                                  <row><label value="${labels.policy.p1t32}" /><decimalbox disabled="true"  format="######## ######### ## # #####" id="ap1t32"  width="300px" value="@{policymain$composer.current.p1t32}"  /></row>
+                                  <row><label value="${labels.policy.p2t32}" /><textbox maxlength="9" id="ap2t32"  mold="rounded"  /></row>
+                                   <row><label value="${labels.policy.p4t32}" /><textbox id="ap4t32"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policy.p3t32}" /><textbox id="ap3t32" maxlength="20" mold="rounded"  /></row>
+                                 
+                                  <row><label value="${labels.policy.p5t32}" /><datebox id="ap5t32"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policy.p6t32}" /><rcombobox id="ap6t32" width="120px" mold="rounded" selecteditem="@{policymain$composer.current.p6t32}" /></row>
+                                  <row><label value="${labels.policy.p7t32}" />
+                                  <hbox>
+                                  <decimalbox id="ap7t32" maxlength="20" format="### ### ### ##0.00" mold="rounded"  />
+                                  <checkbox id="achecksum" checked="false" disabled="true" label="Сумма гарантии не соответствует указанному курсу!"/>
+                                 </hbox>
+                                 </row>
+                                  <row id="akur"><label value="${labels.policy.p8t32}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="ap8t321"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="ap8t322" maxlength="7" mold="rounded"  format="##0.000"/>
+		                                  <label value="(значение >1)"  />
+		                                  <rcurrbox id="ap8t323"  width="150px"  mold="rounded"  selecteditem="" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="abtn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="acbcourse" value="" />
+	                                  </hbox>
+                                   </row>
+                                  
+                                  
+                                  <row id="asum_gar1"><label value="${labels.policy.p9t32}" />
+                                  <hbox>
+                                  <decimalbox id="ap9t32" mold="rounded" maxlength="20"  format="### ### ### ##0.00" />
+                                  <label id="aconr_val1"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  
+                                  <row id="asum_gar2"><label value="${labels.policy.p10t32}" />
+                                  <hbox>
+                                  <decimalbox id="ap10t32" mold="rounded"  maxlength="20"  format="### ### ### ##0.00"/>
+                                  <label id="aconr_val2"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row id="agar_date1"><label value="${labels.policy.p11t32}" /><datebox id="ap11t32"  mold="rounded"  /></row>
+                                  <row id="agar_date2"><label value="${labels.policy.p12t32}" /><textbox maxlength="5" id="ap12t32"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.policy.id}" /><textbox id="fid"  mold="rounded"  value="@{policymain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.policy.p0t32}" /><decimalbox id="fp0t32"  mold="rounded"  value="@{policymain$composer.filter.p1t32}" /></row>
+                                  <row><label value="${labels.policy.p1t32}" /><textbox id="fp1t32"  width="250px" mold="rounded"  value="@{policymain$composer.filter.p0t32}" /></row>
+                                  <row><label value="${labels.policy.p2t32}" /><textbox id="fp2t32"  mold="rounded"  value="@{policymain$composer.filter.p2t32}" /></row>
+                                  <row><label value="${labels.policy.p3t32}" /><textbox id="fp3t32"  mold="rounded"  value="@{policymain$composer.filter.p3t32}" /></row>
+                                  <row><label value="${labels.policy.p4t32}" /><textbox id="fp4t32"  mold="rounded"  value="@{policymain$composer.filter.p4t32}" /></row>
+                                  <row><label value="${labels.policy.p5t32}" /><datebox id="fp5t32"  mold="rounded"  value="@{policymain$composer.filter.p5t32}" /></row>
+                                  <row><label value="${labels.policy.p6t32}" /><rcombobox id="fp6t32" width="320px" mold="rounded"  value="@{policymain$composer.filter.p6t32}" /></row>
+                                  <row><label value="${labels.policy.p7t32}" /><decimalbox id="fp7t32"  mold="rounded"  value="@{policymain$composer.filter.p7t32}" /></row>
+                                  <row><label value="${labels.policy.p8t32}" /><decimalbox id="fp8t32"  mold="rounded"  value="@{policymain$composer.filter.p8t32}" /></row>
+                                  <row><label value="${labels.policy.p9t32}" /><decimalbox id="fp9t32"  mold="rounded"  value="@{policymain$composer.filter.p9t32}" /></row>
+                                  <row><label value="${labels.policy.p10t32}" /><decimalbox id="fp10t32"  mold="rounded"  value="@{policymain$composer.filter.p10t32}" /></row>
+                                  <row><label value="${labels.policy.p11t32}" /><datebox id="fp11t32"  mold="rounded"  value="@{policymain$composer.filter.p11t32}" /></row>
+                                  <row><label value="${labels.policy.p12t32}" /><textbox id="fp12t32"  mold="rounded"  value="@{policymain$composer.filter.p12t32}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

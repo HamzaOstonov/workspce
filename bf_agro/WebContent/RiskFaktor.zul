@@ -1,0 +1,139 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="riskfaktormain" width="100%"  height="100%" border="normal" apply="com.is.amlcft.riskfaktor.RiskFaktorViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <!--          
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+                 -->
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                        
+                <toolbarbutton id="btn_x" label="Test контрольной суммы"
+                        image="/images/+.png" />
+                        
+                 <toolbarbutton id="btn_poi" label="TestPoi"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="riskfaktorPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{riskfaktormain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.riskfaktor.id}" width="100px" />
+                                <listheader label="${labels.riskfaktor.description_ru}" width="600px" />
+                                 <listheader label="${labels.riskfaktor.last_launch}" width="200px" />
+                                <!--  
+                                <listheader label="${labels.riskfaktor.body}" width="200px" />
+                                <listheader label="${labels.riskfaktor.operation_status_id}" width="200px" />
+                                <listheader label="${labels.riskfaktor.risk_rating_id}" width="200px" />
+                                <listheader label="${labels.riskfaktor.manual}" width="200px" />
+                                <listheader label="${labels.riskfaktor.state}" width="200px" />
+                                <listheader label="${labels.riskfaktor.description_uz}" width="200px" />
+                                <listheader label="${labels.riskfaktor.description_en}" width="200px" />
+                                
+                                <listheader label="${labels.riskfaktor.idorder}" width="200px" />
+                                <listheader label="${labels.riskfaktor.repid}" width="200px" />
+                               
+                                -->
+                        </listhead>
+
+                </listbox>
+
+
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <!--  
+                                  <row><label value="${labels.riskfaktor.id}" /><textbox id="id"  mold="rounded"  value="@{riskfaktormain$composer.current.id}" /></row>
+                                  <row><label value="${labels.riskfaktor.body}" /><textbox id="body"  mold="rounded" width="600px" value="@{riskfaktormain$composer.current.body}" /></row>
+                                  -->
+                                  <row><label value="${labels.riskfaktor.operation_status_id}" /><rcombobox id="operation_status_id"  mold="rounded"  selecteditem="@{riskfaktormain$composer.current.operation_status_id}" /></row>
+                                  <row><label value="${labels.riskfaktor.risk_rating_id}" /><rcombobox id="risk_rating_id"  mold="rounded"  selecteditem="@{riskfaktormain$composer.current.risk_rating_id}" /></row>
+                                  <!--  
+                                  <row><label value="${labels.riskfaktor.manual}" /><textbox id="manual"  mold="rounded"  value="@{riskfaktormain$composer.current.manual}" /></row>
+                                  <row><label value="${labels.riskfaktor.state}" /><textbox id="state"  mold="rounded"  value="@{riskfaktormain$composer.current.state}" /></row>
+                                  -->
+                                  <row><label value="${labels.riskfaktor.description_uz}" /><textbox id="description_uz"  mold="rounded" width="600px" value="@{riskfaktormain$composer.current.description_uz}" /></row>
+                                  <row><label value="${labels.riskfaktor.description_en}" /><textbox id="description_en"  mold="rounded" width="600px" value="@{riskfaktormain$composer.current.description_en}" /></row>
+                                  <row><label value="${labels.riskfaktor.description_ru}" /><textbox id="description_ru"  mold="rounded" width="600px" value="@{riskfaktormain$composer.current.description_ru}" /></row>
+                                  <row><label value="${labels.riskfaktor.idorder}" /><textbox id="idorder"  mold="rounded"  value="@{riskfaktormain$composer.current.idorder}" /></row>
+                                  <row><label value="${labels.riskfaktor.repid}" /><textbox id="repid"  mold="rounded"  value="@{riskfaktormain$composer.current.repid}" /></row>
+                                  
+                                  <row><label value="${labels.riskfaktor.last_launch}" /><datebox id="last_launch"  mold="rounded"  value="@{riskfaktormain$composer.current.last_launch}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.riskfaktor.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.body}" /><textbox id="abody"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.operation_status_id}" /><textbox id="aoperation_status_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.risk_rating_id}" /><textbox id="arisk_rating_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.manual}" /><textbox id="amanual"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.description_uz}" /><textbox id="adescription_uz"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.description_en}" /><textbox id="adescription_en"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.description_ru}" /><textbox id="adescription_ru"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.idorder}" /><textbox id="aidorder"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.repid}" /><textbox id="arepid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.riskfaktor.last_launch}" /><textbox id="alast_launch"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <!--  
+                                  <row><label value="${labels.riskfaktor.id}" /><textbox id="fid"  mold="rounded"  value="@{riskfaktormain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.riskfaktor.body}" /><textbox id="fbody"  mold="rounded"  value="@{riskfaktormain$composer.filter.body}" /></row>
+                                  -->
+                                  <row><label value="${labels.riskfaktor.operation_status_id}" /><rcombobox id="foperation_status_id"  mold="rounded"  selecteditem="@{riskfaktormain$composer.filter.operation_status_id}" /></row>
+                                  
+                                  <row><label value="${labels.riskfaktor.risk_rating_id}" /><rcombobox id="frisk_rating_id"  mold="rounded"  value="@{riskfaktormain$composer.filter.risk_rating_id}" /></row>
+                                  <row><label value="${labels.riskfaktor.manual}" /><textbox id="fmanual"  mold="rounded"  value="@{riskfaktormain$composer.filter.manual}" /></row>
+                                  <row><label value="${labels.riskfaktor.state}" /><textbox id="fstate"  mold="rounded"  value="@{riskfaktormain$composer.filter.state}" /></row>
+                                  <row><label value="${labels.riskfaktor.description_uz}" /><textbox id="fdescription_uz"  mold="rounded"  value="@{riskfaktormain$composer.filter.description_uz}" /></row>
+                                  <row><label value="${labels.riskfaktor.description_en}" /><textbox id="fdescription_en"  mold="rounded"  value="@{riskfaktormain$composer.filter.description_en}" /></row>
+                                  <row><label value="${labels.riskfaktor.description_ru}" /><textbox id="fdescription_ru"  mold="rounded"  value="@{riskfaktormain$composer.filter.description_ru}" /></row>
+                                  <row><label value="${labels.riskfaktor.idorder}" /><textbox id="fidorder"  mold="rounded"  value="@{riskfaktormain$composer.filter.idorder}" /></row>
+                                  <row><label value="${labels.riskfaktor.repid}" /><textbox id="frepid"  mold="rounded"  value="@{riskfaktormain$composer.filter.repid}" /></row>
+                                  <row><label value="${labels.riskfaktor.last_launch}" /><datebox id="flast_launch"  mold="rounded"  value="@{riskfaktormain$composer.filter.last_launch}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

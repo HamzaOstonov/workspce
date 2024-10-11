@@ -1,0 +1,148 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="debetinfomain" width="100%"  height="100%" border="normal" apply="com.is.tf.debetinfo.DebetinfoViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="debetinfoPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{debetinfomain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.debetinfo.id}" width="50px" />
+                                <listheader label="${labels.debetinfo.p1t31}" width="200px" visible="false" />
+                                <listheader label="${labels.debetinfo.p0t31}" width="200px"  visible="false"/>
+                                <listheader label="${labels.debetinfo.p2t31}" width="200px" />
+                                <listheader label="${labels.debetinfo.p3t31}" width="200px" />
+                                <listheader label="${labels.debetinfo.p5t31}" width="200px" visible="false"/>
+                                <listheader label="${labels.debetinfo.p6t31}" width="200px" />
+                                <listheader label="${labels.debetinfo.p7t31}" width="200px" visible="false"  />
+                                <listheader label="${labels.debetinfo.id_contract}" width="200px" visible="false" />
+                                <listheader label="${labels.debetinfo.p100t31}" width="200px" visible="false"/>
+                                <listheader label="${labels.debetinfo.p4t31}" width="200px" visible="false" />
+                                <listheader label="${labels.debetinfo.p8t31}" width="200px"  />
+                                <listheader label="${labels.debetinfo.p11t31}" width="200px" visible="false" />
+                                <listheader label="${labels.debetinfo.p12t31}" width="200px" visible="false" />
+                                <listheader label="${labels.debetinfo.p13t31}" width="200px"  />
+                                
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.debetinfo.id}" /><textbox id="id"  disabled="true" mold="rounded"  value="@{debetinfomain$composer.current.id}" /></row>
+                                  <row><label value="${labels.debetinfo.p1t31}" /><decimalbox id="p1t31" disabled="true" width="240px" mold="rounded"  value="@{debetinfomain$composer.current.p1t31}" format="######## ######### ## # #####" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.debetinfo.p0t31}" /><textbox id="p0t31"  mold="rounded"  value="@{debetinfomain$composer.current.p0t31}" /></row>
+                                   -->
+                                  <row><label value="${labels.debetinfo.p2t31}" /><rcombobox id="p2t31"  mold="rounded"  selecteditem="@{debetinfomain$composer.current.p2t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p3t31}" /><decimalbox maxlength="20" id="p3t31" format="### ### ### ##0.00"  mold="rounded"  value="@{debetinfomain$composer.current.p3t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p5t31}" /><rcombobox id="p5t31"  mold="rounded"  selecteditem="@{debetinfomain$composer.current.p5t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p6t31}" /><textbox id="p6t31" maxlength="300" multiline="true" rows="3" width="85%"  value="@{debetinfomain$composer.current.p6t31}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.debetinfo.p7t31}" /><textbox id="p7t31"  mold="rounded"  value="@{debetinfomain$composer.current.p7t31}" /></row>
+                                
+                                  <row><label value="${labels.debetinfo.id_contract}" /><textbox id="id_contract"  mold="rounded"  value="@{debetinfomain$composer.current.id_contract}" /></row>
+                                   
+                                  <row><label value="${labels.debetinfo.p100t31}" /><textbox id="p100t31"  mold="rounded"  value="@{debetinfomain$composer.current.p100t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p4t31}" /><textbox id="p4t31"  mold="rounded"  value="@{debetinfomain$composer.current.p4t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p8t31}" /><textbox id="p8t31"  mold="rounded"  value="@{debetinfomain$composer.current.p8t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p11t31}" /><textbox id="p11t31"  mold="rounded"  value="@{debetinfomain$composer.current.p11t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p12t31}" /><textbox id="p12t31"  mold="rounded"  value="@{debetinfomain$composer.current.p12t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p13t31}" /><textbox id="p13t31"  mold="rounded"  value="@{debetinfomain$composer.current.p13t31}" /></row>
+                                  
+                          -->
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                 
+                                  
+                                  <row><label value="${labels.debetinfo.p1t31}" /><decimalbox id="ap1t31" disabled="true" width="240px" mold="rounded"  value="@{debetinfomain$composer.current.p1t31}" format="######## ######### ## # #####" /></row>
+                                  <row><label value="${labels.debetinfo.p2t31}" /><rcombobox id="ap2t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p3t31}" /><decimalbox maxlength="20" id="ap3t31" format="### ### ### ##0.00"  mold="rounded"/></row>
+                                  <row><label value="${labels.debetinfo.p5t31}" /><rcombobox id="ap5t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p6t31}" /><textbox id="ap6t31"  maxlength="300" multiline="true" rows="3" width="85%"  /></row>
+                                  <!-- 
+                                   <row><label value="${labels.debetinfo.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p0t31}" /><textbox id="ap0t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p7t31}" /><textbox id="ap7t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.id_contract}" /><textbox id="aid_contract"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p100t31}" /><textbox id="ap100t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p4t31}" /><textbox id="ap4t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p8t31}" /><textbox id="ap8t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p11t31}" /><textbox id="ap11t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p12t31}" /><textbox id="ap12t31"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debetinfo.p13t31}" /><textbox id="ap13t31"  mold="rounded"  /></row>
+                                  
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.debetinfo.id}" /><textbox id="fid"  mold="rounded"  value="@{debetinfomain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.debetinfo.p0t31}" /><textbox id="fp0t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p0t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p2t31}" /><textbox id="fp2t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p2t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p3t31}" /><textbox id="fp3t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p3t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p5t31}" /><textbox id="fp5t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p5t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p6t31}" /><textbox id="fp6t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p6t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p7t31}" /><textbox id="fp7t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p7t31}" /></row>
+                                  <row><label value="${labels.debetinfo.id_contract}" /><textbox id="fid_contract"  mold="rounded"  value="@{debetinfomain$composer.filter.id_contract}" /></row>
+                                  <row><label value="${labels.debetinfo.p100t31}" /><textbox id="fp100t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p100t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p4t31}" /><textbox id="fp4t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p4t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p8t31}" /><textbox id="fp8t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p8t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p11t31}" /><textbox id="fp11t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p11t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p12t31}" /><textbox id="fp12t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p12t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p13t31}" /><textbox id="fp13t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p13t31}" /></row>
+                                  <row><label value="${labels.debetinfo.p1t31}" /><textbox id="fp1t31"  mold="rounded"  value="@{debetinfomain$composer.filter.p1t31}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

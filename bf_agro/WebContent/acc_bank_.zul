@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="customermain" width="100%"
+	apply="com.is.account_form.AccountFormViewCtrl" 
+	contentStyle="overflow:auto">
+		<div align="center">
+			<vbox>
+		<vlayout>
+		<div id="leftToolbar" visible="true" width="1700px">
+			<grid id="tfgrd">
+				<columns>
+					<column width="25%" />
+					<column width="25%" />
+					<column width="25%" />
+					<column width="25%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Firstname" />
+						<label value="Lastname" />
+						<label value="Middlename" />
+						<label value="Birthdate" />
+					</row>
+					<row>
+						<textbox  id="acc_firstname" constraint="no empty" />
+						<textbox id="acc_lastname" constraint="no empty"/>
+						<textbox id="acc_middlename" constraint="no empty"/>
+						<datebox  id="acc_birthdate" constraint="no empty" />
+					</row>
+					<row>
+						<label value="Gender" />
+						<label value="Bankname" />
+						<label value="Branch" />
+						<label value="Position" />
+					</row>
+					<row>
+						<textbox id="acc_gender" constraint="no empty"/>
+						<textbox id="acc_bankname" constraint="no empty"/>
+						<textbox  id="acc_branch" constraint="no empty" />
+						<textbox id="acc_position" constraint="no empty"/>
+					</row>
+				</rows>
+			</grid>
+		</div>              
+                <hbox>
+                  <toolbarbutton id="qosh" label="Qo'shish" />  
+				</hbox>
+		</vlayout>
+		</vbox>
+		</div>
+	<window id="edit_window" mode="modal" closable="true" width="1000px"
+		onClose="self.visible = false; event.stopPropagation();"
+		title="EDIT WINDOW" position="center,center"
+		visible="false">
+		<vlayout>
+			<hlayout>
+				<grid id="editwindow">
+					<columns>
+						<column>
+							<label value="ID" />
+							<textbox id="edit_id" />
+						</column>
+						<column>
+							<label value="TITLE" />
+							<textbox id="edit_nom" />
+						</column>
+						<column>
+							<label value="YEAR" />
+							<textbox id="edit_yil" />
+						</column>
+						<column>
+							<label value="SCORE" />
+							<textbox id="edit_rank" />
+						</column>
+					</columns>
+				</grid>
+			</hlayout>
+			<toolbar align="end">
+				<toolbarbutton id="ok_button" label="SAVE"/>
+				<toolbarbutton id="close_button" label="CANCEL"/>
+			</toolbar>
+		</vlayout>
+	</window>
+</window>

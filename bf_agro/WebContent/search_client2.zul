@@ -1,0 +1,139 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<?page contentType="text/html;charset=UTF-8"?>
+<window id="searchclientmain" width="100%"
+	apply="com.is.search_clients2.Search">
+
+	<toolbar style="border:none">
+		<toolbarbutton id="btn_back" image="/images/back.png"
+			label="Назад"
+			onClick="resultListbox.visible=true;search_div.visible=true;toolbar_control.visible=true;tab_div.visible=false;tabbox.visible=false;includeAddClient.visible=false" />
+		<toolbarbutton label="Детали загрузки"
+			image="/images/statics-2.png" id="btn_view" />
+		<toolbarbutton label="Загрузить" image="/images/refresh.png"
+			id="btn_update" visible="false" />
+		<toolbarbutton label="Очистить базу" id="btn_remove"
+			visible="false" />
+		<toolbarbutton label="Версия 1.0.6 19/10/2016" id="btn_version" />
+		<toolbarbutton label="Добавить Клиента" id="btn_add"
+			visible="true" image="/images/+.png" />
+		<toolbarbutton label="Добавить в Excel" id="btn_add_to_excel"
+			visible="false" />
+		<toolbarbutton label="Скачать Excel" id="btn_download_excel"
+			visible="false" />
+		<checkbox id="isSap" label="Поиск по SAP" />
+	</toolbar>
+	<div>
+		<include id="includeAddClient" />
+	</div>
+
+	<div id="search_div" align="center">
+		<grid id="search_grid">
+			<columns>
+				<!-- <column hflex="1" label="Филиал" /> -->
+				<column hflex="1" label="Фамилия" />
+				<column hflex="1" label="Имя" />
+				<column hflex="1" label="Отчество" />
+				<column hflex="1" label="Дата рождения (С)" />
+				<column hflex="1" label="Дата рождения (По)" />
+				<column hflex="1" label="Серия паспорта" />
+				<column hflex="1" label="Номер паспорта" />
+				<column hflex="1" label="Тип Документа" />
+			</columns>
+			<rows id="rows">
+				<row>
+					<!-- <textbox value="@{searchclientmain$composer.current.branch}" mold="rounded" width="100%"/> -->
+					<textbox
+						value="@{searchclientmain$composer.current.last_name}"
+						mold="rounded" width="100%" />
+					<textbox
+						value="@{searchclientmain$composer.current.first_name}"
+						mold="rounded" width="100%" />
+					<textbox
+						value="@{searchclientmain$composer.current.patronymic}"
+						mold="rounded" width="100%" />
+					<datebox id="date_from"
+						value="@{searchclientmain$composer.current.date_from}"
+						format="dd.MM.yyyy" mold="rounded" width="100%" />
+					<datebox id="date_to"
+						value="@{searchclientmain$composer.current.date_to}"
+						format="dd.MM.yyyy" mold="rounded" width="100%" />
+					<textbox
+						value="@{searchclientmain$composer.current.pass_ser}"
+						mold="rounded" width="100%" />
+					<textbox
+						value="@{searchclientmain$composer.current.pass_num}"
+						mold="rounded" width="100%" />
+					<rcombobox hflex="1" id="type_document" selecteditem="@{searchclientmain$composer.current.type_document}"
+						onChange="searchclientmain$composer.current.type_document = type_document.value"/> 
+				</row>
+			</rows>
+		</grid>
+	</div>
+	<separator spacing="20px" />
+	<toolbar id="toolbar_control">
+		<toolbarbutton label="Ок" image="/images/search.png"
+			id="btn_ok" />
+		<toolbarbutton label="Очистить" id="btn_clear" />
+	</toolbar>
+
+	<div id="resultdiv" width="100%">
+		<listbox id="resultListbox" width="100%" visible="false"
+			rows="8" style="border:normal">
+			<listhead sizable="true">
+				<listheader label="МФО"></listheader>
+				<listheader label="ФИО"></listheader>
+				<listheader label="Дата Рождения" />
+				<listheader label="С/Н паспорта" />
+				<listheader label="Тип клиента" />
+				<!--<listheader label="Процент Совпадения" /> -->
+				<listheader label="Состояние" />
+				<listheader label="Тип Документа" />
+			</listhead>
+		</listbox>
+	</div>
+
+	<window id="detailsWnd" width="20%" title="Детали" mode="modal"
+		position="top,center" visible="false" closable="true"
+		onClose="self.visible = false;event.stopPropagation()">
+		<listbox id="details_listbox">
+			<listhead sizable="true">
+				<listheader label="МФО" />
+				<listheader label="Статус" />
+				<listheader label="Загружено" />
+			</listhead>
+		</listbox>
+	</window>
+
+	<div id="tab_div" visible="false">
+		<toolbar>
+			<toolbarbutton id="header_name" style="font-size:large"/>
+		</toolbar>
+		<tabbox id="tabbox" visible="false" width="100%">
+			<tabs>
+				<tab id="tabClient" label="Клиент" />
+				<tab id="tabDeposits" label="Депозитный Портфель" />
+				<tab id="tabCards" label="Карточки" />
+				<tab id="tabTransfers" label="Денежные переводы" />
+				<tab id="tabAccounts" label="Счета" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<include id="includeClientInfo" />
+				</tabpanel>
+				<tabpanel>
+					<include id="includeDeposits" />
+				</tabpanel>
+				<tabpanel>
+					<include id="includeCards" />
+				</tabpanel>
+				<tabpanel>
+					<include id="includeTransfers" />
+				</tabpanel>
+				<tabpanel>
+					<include id="includeAccounts" />
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</div>
+</window>
+

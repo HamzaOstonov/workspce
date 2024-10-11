@@ -1,0 +1,203 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="bf_muniscb_reestrmain" width="100%"   
+border="normal" apply="com.is.bf_muniscb_reestr.bf_muniscb_reestrViewCtrl" 
+contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+        </toolbar>
+        <div id="grd">
+                <paging id="bf_muniscb_reestrPaging" width="100%" />
+                <listbox style="border:normal;"  id="dataGrid" multiple="true" width="100%"
+                        selectedItem="@{bf_muniscb_reestrmain$composer.current}">
+                        <listhead sizable="true">
+                                <listheader label="${labels.bf_muniscb_reestr.id}" width="50px"  />
+                                <listheader label="${labels.bf_muniscb_reestr.arch_id}" width="75px" />
+                                <listheader label="${labels.bf_muniscb_reestr.descr}" width="200px" />
+                                <listheader label="${labels.bf_muniscb_reestr.document_doc_n}" width="125px" />
+                                <listheader label="${labels.bf_muniscb_reestr.document_doc_d}" width="125px" />
+                                <listheader label="${labels.bf_muniscb_reestr.payer_branch}" width="160px" />
+                                <listheader label="${labels.bf_muniscb_reestr.payer_account}" width="180px" />
+                                <listheader label="${labels.bf_muniscb_reestr.payer_name}" width="200px" />
+                                <listheader label="${labels.bf_muniscb_reestr.payer_inn}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr.payee_branch}" width="160px" />
+                                <listheader label="${labels.bf_muniscb_reestr.payee_account}" width="180px" />
+                                <listheader label="${labels.bf_muniscb_reestr.payee_name}" width="200px" />
+                                <listheader label="${labels.bf_muniscb_reestr.payee_inn}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr.purpose_code}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr.purpose_text}" width="200px" />
+                                <listheader label="${labels.bf_muniscb_reestr.amount_currency}" width="75px" />
+                                <listheader label="${labels.bf_muniscb_reestr.amount_value}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr.confirm_code}" visible="false" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr.confirm_message}" width="75px" />
+                                <listheader label="${labels.bf_muniscb_reestr.sysinfo_data}" width="125px" />
+                                <listheader label="${labels.bf_muniscb_reestr.sysinfo_time}" width="125px" />
+                                <listheader label="${labels.bf_muniscb_reestr.settlement_supplier}" width="200px" visible="false"/>
+                                <listheader label="${labels.bf_muniscb_reestr.settlement_code}" width="200px" visible="false"/>
+                                <listheader label="${labels.bf_muniscb_reestr.ip}" width="200px" visible="false"/>
+                                <listheader label="${labels.bf_muniscb_reestr.arch_id_add}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr.sysinfo_bid}" width="180px" />
+                                <listheader label="${labels.bf_muniscb_reestr.sysinfo_tid}" width="160px" />
+                                <listheader label="${labels.bf_muniscb_reestr.sysinfo_sid}" width="80px" />
+                                <listheader label="${labels.bf_muniscb_reestr.sysinfo_fid}" width="80px" />
+                                <listheader label="${labels.bf_muniscb_reestr.sysinfo_hash}" width="225px" />
+                        </listhead>
+                </listbox>
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="10%" />
+                                  <column width="40%" />
+                                  <column width="10%" />
+                                  <column width="40%" />
+                         </columns>
+                          <rows>
+                          	      <row><label value="${labels.bf_muniscb_reestr.id}" /><textbox id="id"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.id}" />
+                          	      <label value="${labels.bf_muniscb_reestr.arch_id}" /><textbox id="arch_id"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.arch_id}" /></row>
+                          	      
+                          	      <row><label value="${labels.bf_muniscb_reestr.confirm_code}" /><textbox id="confirm_code"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.confirm_code}" />
+                                  <label value="${labels.bf_muniscb_reestr.confirm_message}" /><textbox id="confirm_message"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.confirm_message}" /></row>
+                         
+                        		  <row><label value="${labels.bf_muniscb_reestr.sysinfo_data}" /><textbox id="sysinfo_data"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.sysinfo_data}" />
+                                  <label value="${labels.bf_muniscb_reestr.sysinfo_time}" /><textbox id="sysinfo_time"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.sysinfo_time}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_bid}" /><textbox id="sysinfo_bid"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.sysinfo_bid}" />
+                                  <label value="${labels.bf_muniscb_reestr.sysinfo_tid}" /><textbox id="sysinfo_tid"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.sysinfo_tid}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_sid}" /><textbox id="sysinfo_sid"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.sysinfo_sid}" />
+                                  <label value="${labels.bf_muniscb_reestr.sysinfo_fid}" /><textbox id="sysinfo_fid"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.sysinfo_fid}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_hash}" /><textbox id="sysinfo_hash"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.sysinfo_hash}" />
+                                  <label value="${labels.bf_muniscb_reestr.payer_branch}" /><textbox id="payer_branch"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.payer_branch}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.payer_account}" /><textbox id="payer_account"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.payer_account}" />
+                                  <label value="${labels.bf_muniscb_reestr.payer_name}" /><textbox id="payer_name"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.payer_name}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.payer_inn}" /><textbox id="payer_inn"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.payer_inn}" />
+                                  <label value="${labels.bf_muniscb_reestr.payee_branch}" /><textbox id="payee_branch"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.payee_branch}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.payee_account}" /><textbox id="payee_account"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.payee_account}" />
+                                  <label value="${labels.bf_muniscb_reestr.payee_name}" /><textbox id="payee_name"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.payee_name}" /></row>
+                                 
+   								  <row><label value="${labels.bf_muniscb_reestr.payee_inn}" /><textbox id="payee_inn"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.payee_inn}" />
+                                  <label value="${labels.bf_muniscb_reestr.purpose_code}" /><textbox id="purpose_code"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.purpose_code}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.purpose_text}" /><textbox id="purpose_text"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.purpose_text}" />
+                                  <label value="${labels.bf_muniscb_reestr.amount_currency}" /><textbox id="amount_currency"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.amount_currency}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.amount_value}" /><textbox id="amount_value"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.amount_value}" />
+                                  <label value="${labels.bf_muniscb_reestr.document_doc_n}" /><textbox id="document_doc_n"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.document_doc_n}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.document_doc_d}" /><textbox id="document_doc_d"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.document_doc_d}" />
+                                  <label value="${labels.bf_muniscb_reestr.settlement_supplier}" /><textbox id="settlement_supplier"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.settlement_supplier}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.settlement_code}" /><textbox id="settlement_code"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.settlement_code}" />
+                                  <label value="${labels.bf_muniscb_reestr.ip}" /><textbox id="ip"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.ip}" /></row>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.state}" /><textbox id="descr"  mold="rounded"  value="@{bf_muniscb_reestrmain$composer.current.descr}" />
+                                  <label value="" /><label value="" /></row>
+                     	      
+                          </rows>                                 
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.arch_id}" /><textbox id="aarch_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.arch_id_add}" /><textbox id="aarch_id_add"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.confirm_code}" /><textbox id="aconfirm_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.confirm_message}" /><textbox id="aconfirm_message"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_data}" /><textbox id="asysinfo_data"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_time}" /><textbox id="asysinfo_time"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_bid}" /><textbox id="asysinfo_bid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_tid}" /><textbox id="asysinfo_tid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_sid}" /><textbox id="asysinfo_sid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_fid}" /><textbox id="asysinfo_fid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_hash}" /><textbox id="asysinfo_hash"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payer_branch}" /><textbox id="apayer_branch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payer_account}" /><textbox id="apayer_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payer_name}" /><textbox id="apayer_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payer_inn}" /><textbox id="apayer_inn"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payee_branch}" /><textbox id="apayee_branch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payee_account}" /><textbox id="apayee_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payee_name}" /><textbox id="apayee_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payee_inn}" /><textbox id="apayee_inn"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.purpose_code}" /><textbox id="apurpose_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.purpose_text}" /><textbox id="apurpose_text"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.amount_currency}" /><textbox id="aamount_currency"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.amount_value}" /><textbox id="aamount_value"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.document_doc_n}" /><textbox id="adocument_doc_n"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.document_doc_d}" /><textbox id="adocument_doc_d"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.settlement_supplier}" /><textbox id="asettlement_supplier"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.settlement_code}" /><textbox id="asettlement_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.ip}" /><textbox id="aip"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                         <columns>
+                                  <column width="10%" />
+                                  <column width="40%" />
+                                  <column width="10%" />
+                                  <column width="40%" />
+                         </columns>
+                          <rows>
+                                  <row><label value="${labels.bf_muniscb_reestr.id}" /><textbox id="fid"  mold="rounded"  />
+                                       <label value="${labels.bf_muniscb_reestr.arch_id}" /><textbox id="farch_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.arch_id_add}" /><textbox id="farch_id_add"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.confirm_code}" /><textbox id="fconfirm_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.confirm_message}" /><textbox id="fconfirm_message"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.sysinfo_data}" /><textbox id="fsysinfo_data"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_time}" /><textbox id="fsysinfo_time"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.sysinfo_bid}" /><textbox id="fsysinfo_bid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_tid}" /><textbox id="fsysinfo_tid"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.sysinfo_sid}" /><textbox id="fsysinfo_sid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.sysinfo_fid}" /><textbox id="fsysinfo_fid"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.sysinfo_hash}" /><textbox id="fsysinfo_hash"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payer_branch}" /><textbox id="fpayer_branch"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.payer_account}" /><textbox id="fpayer_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payer_name}" /><textbox id="fpayer_name"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.payer_inn}" /><textbox id="fpayer_inn"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payee_branch}" /><textbox id="fpayee_branch"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.payee_account}" /><textbox id="fpayee_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.payee_name}" /><textbox id="fpayee_name"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.payee_inn}" /><textbox id="fpayee_inn"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.purpose_code}" /><textbox id="fpurpose_code"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.purpose_text}" /><textbox id="fpurpose_text"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.amount_currency}" /><textbox id="famount_currency"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.amount_value}" /><textbox id="famount_value"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.document_doc_n}" /><textbox id="fdocument_doc_n"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.document_doc_d}" /><textbox id="fdocument_doc_d"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.settlement_supplier}" /><textbox id="fsettlement_supplier"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.settlement_code}" /><textbox id="fsettlement_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr.ip}" /><textbox id="fip"  mold="rounded"  />
+                                  		<label value="${labels.bf_muniscb_reestr.descr}" /><rcombobox id="fstate"  mold="rounded" selecteditem="@{bf_muniscb_reestrmain$composer.current.state}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                  		  <toolbarbutton id="btn_save"
+                                  label="${labels.search}" image="/images/search.png"  /> 
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                        
+                  </toolbar>
+        </div>
+
+</window>

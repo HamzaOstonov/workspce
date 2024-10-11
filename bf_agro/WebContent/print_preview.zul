@@ -1,0 +1,41 @@
+<?page contentType="text/html;charset=UTF-8" ?>
+<div align="left" apply="com.is.comjpayment.PrintPreviewViewCtrl"  width="100%" >
+<script type="text/javascript" src="/scripts/input.js"/>
+<script type="text/javascript" src="/scripts/print.js"/>
+<style media="print" >
+
+	@body { #BrowserPrintDefaults{display:none} #ad{ display:none;}
+	#leftbar{ display:none;} #contentarea{ width:100%;} margin-left:
+	0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px;
+	width:100% !important; margin:0 !important; padding:0 !important; }
+</style>
+<vbox width="100%" style="font-family: Helvetica, Arial, sans-serif; letter-spacing: 0px; line-height: 50%;">
+<label height="10px"></label>
+<div align="center" width="100%">
+<vbox align="center">
+<separator orient="horizontal" spacing="5px" />
+<label id="ol" style="font-size: 8pt; font-weight: bold;" value="OMADLOTTO LOTEREYASI"></label>
+<label id="ach" style="font-size: 6pt;" value="AXBOROT CHEKI"></label>
+<label style="font-size: 6pt;" id="game_tiraj"></label>
+<label style="font-size: 6pt;" value="------KOMBINACIYALAR------"></label>
+</vbox>
+</div>
+<vbox id="cmbs">
+</vbox>
+<div style=" margin-left: auto; margin-right: auto;" align="center">
+<label style="font-size: 6pt;" value="-----------JAMI-----------"></label>
+</div>
+<label style="font-size: 5pt;" id="cmbsum" ></label>
+<label style="font-size: 5pt;" id="sum" ></label>
+<label style="font-size: 5pt;" id="phone" value="Himoya SMS uchun telefon raqami:"></label>
+<label style="font-size: 5pt;" value="Ushbu arizaga imzo chekarman, sonli lotereyaning joriy"></label>
+<label style="font-size: 5pt;" value="tirajida ko`rsatilgan kombinaciyalarning ro`yhatga "></label>
+<label style="font-size: 5pt;" value="olinishiga rozilik bildiraman"></label>
+<separator orient="horizontal" spacing="15px" />
+<div style="margin-left: auto; margin-right: auto; ">
+<label style="font-size: 5pt;" value="Imzo  ____________"></label>
+<separator orient="horizontal" spacing="10px" />
+<label width="100%" style="text-align: center;">---------------------</label>
+</div>
+</vbox>
+</div>

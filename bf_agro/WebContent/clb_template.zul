@@ -1,0 +1,127 @@
+<?component name="rcombobox" extends="combobox" class="org.sl.utils.RefCBox"?>
+<panel id="templatemain" width="100%" border="normal" apply="com.is.clb.sets.templates.TemplateViewCtrl">
+	<toolbar id="tb">
+		<div width="100%" align="center" height="35px">
+			<style>
+	        	.sp-paging.z-paging {
+				    background: none;
+				    border:none; 
+				}
+				.sp-paging.z-paging .z-paging-btn {
+				    background: none;
+				}
+	        </style>
+			<hbox width="100%" widths="100%,200px" align="center" height="35px">
+				<hbox width="100%">
+					<toolbarbutton id="btn_refresh" label="${labels.refresh}" image="/images/refresh.png" />
+			        <toolbarbutton id="btn_back" label="${labels.back}" image="/images/file.png" />
+			        <toolbarbutton id="btn_search" label="${labels.search}" image="/images/search.png" />
+			        <toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" visible="false"/>
+			
+			        <toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png" />
+			        <toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png" />
+			        <toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png" />
+			        <toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png" />
+				</hbox>
+        		<paging id="templatePaging" width="200px" sclass="sp-paging"/>
+        	</hbox>
+        </div>
+	</toolbar>
+	<panelchildren>
+        <div id="grd">
+			<listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%" selectedItem="@{templatemain$composer.current}">
+            	<listhead sizable="true">
+                	<listheader label="${labels.template.id}" width="100px"/>
+					<listheader label="${labels.template.name}" />
+					<!-- <listheader label="${labels.template.tmpl}" /> -->
+					<listheader label="${labels.template.lang}" width="50px"/>
+                </listhead>
+			</listbox>
+			<!--  
+            <groupbox>
+            <caption label="Р”РµС‚Р°Р»Рё" />
+            	Р»РѕРіРёРЅ:
+                <label id="uusername" value="@{templatemain$composer.current.username}" />
+           		РёРјСЏ:
+             	<label id="uname" value="@{templatemain$composer.current.name}" />
+          		С‚РµР»РµС„РѕРЅ:
+             	<label id="uphone" value="@{usrmain$composer.current.phone}" />
+            </groupbox>
+			-->
+        </div>
+        <div id="frm" visible="false">
+			<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+             	</columns>
+              	<rows>
+					<row><label value="${labels.template.id}" /><longbox id="id"  mold="rounded"  value="@{templatemain$composer.current.id}" width="300px" disabled="true"/></row>
+					<row><label value="${labels.template.name}" /><textbox id="name"  mold="rounded"  value="@{templatemain$composer.current.name}" width="300px" disabled="true"/></row>
+					<row>
+						<cell colspan="2" align="left">
+							<label value="${labels.template.tmpl}" />
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div width="100%" align="left">
+				          		<separator spacing="20px" orient="horizontal"/>
+								<ckeditor id="tmpl" value="@{templatemain$composer.current.tmpl}" width="99%" height="300px" />
+							  	<separator spacing="20px" orient="horizontal"/>
+								<groupbox width="100%" style="border-left: none; border-right: none;">
+							     	<html id="tmpl_html" width="100%" content="@{templatemain$composer.current.tmpl}" style="word-wrap: break-word; overflow-x: auto; background: rgba(115,145,255, 0.1); border: 0 none;" vflex="1"/>
+							 	</groupbox>
+							 	<separator spacing="20px" orient="horizontal"/>
+							</div>
+						</cell>
+					</row>
+                </rows>
+          	</grid>
+          	<grid id="addgrd" visible="false">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+            	</columns>
+             	<rows>
+					<row><label value="${labels.template.id}" /><longbox id="aid"  mold="rounded"  value="@{templatemain$composer.current.id}" width="300px"/></row>
+					<row><label value="${labels.template.name}" /><textbox id="aname"  mold="rounded"  value="@{templatemain$composer.current.name}" width="300px"/></row>
+					<row>
+						<cell colspan="2" align="left">
+							<label value="${labels.template.tmpl}" />
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div width="100%" align="left">
+				          		<separator spacing="20px" orient="horizontal"/>
+								<ckeditor id="atmpl" value="@{templatemain$composer.current.tmpl}" width="99%" height="300px" />
+							  	<separator spacing="20px" orient="horizontal"/>
+								<groupbox width="100%" style="border-left: none; border-right: none;">
+							     	<html id="atmpl_html" width="100%" content="@{templatemain$composer.current.tmpl}" style="word-wrap: break-word; overflow-x: auto; background: rgba(115,145,255, 0.1); border: 0 none;" vflex="1"/>
+							 	</groupbox>
+							 	<separator spacing="20px" orient="horizontal"/>
+							</div>
+						</cell>
+					</row>
+               	</rows>
+           	</grid>
+   			<grid id="fgrd" visible="false">
+            	<columns>
+             		<column width="20%" />
+                   	<column width="80%" />
+             	</columns>
+          		<rows>
+
+					<row><label value="${labels.template.id}" /><longbox id="fid"  mold="rounded"  value="@{templatemain$composer.filter.id}" width="300px"/></row>
+					<row><label value="${labels.template.name}" /><textbox id="fname"  mold="rounded"  value="@{templatemain$composer.filter.name}" width="300px"/></row>
+					<row visible="false"><label value="${labels.template.tmpl}" /><textbox id="ftmpl"  mold="rounded"  value="@{templatemain$composer.filter.tmpl}" /></row>
+              	</rows>
+         	</grid>
+			<toolbar>
+         		<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+              	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+           	</toolbar>
+        </div>
+	</panelchildren>
+</panel>

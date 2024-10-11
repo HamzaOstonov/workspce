@@ -1,0 +1,19 @@
+<window width="100%" border="normal"
+	apply="com.is.globalTieto.confirmRefill.ConfirmRefillViewCtrl"
+	id="mainWindow">
+	<div>
+		<listbox selectedItem="@{mainWindow$composer.current}" id="mainList">
+			<listhead>
+				<listheader  label="${labels.refillConfirm.card}"/>
+				<listheader  label="${labels.refillConfirm.clientName}"/>
+				<listheader  label="${labels.refillConfirm.clientSurname}"/>
+				<listheader  label="${labels.refillConfirm.transAmnt}"/>
+				<listheader  label="${labels.refillConfirm.state}"/>
+				<listheader  label="${labels.refillConfirm.actions}"/>
+			</listhead>
+		</listbox>
+		<div align="center">
+			<paging id="confirmRefillPaging" />
+		</div>
+	</div>
+</window>

@@ -1,0 +1,11 @@
+<window width="100%" border="normal" apply="com.is.tieto_visa.tieto.AccntViewCtrl" id="accountmain">
+    <listbox multiple="true" width="100%"
+             id="accountsList" rows="10"
+             selectedItem="@{accountmain$composer.current}">
+        <listhead>
+            <listheader label="${labels.visaTieto.refill.account_no}" sort="auto(account_no)"/>
+            <listheader label="${labels.visaTieto.refill.card_acct}" sort="auto(card_acct)"/>
+            <listheader label="${labels.visaTieto.refill.ccy}" sort="auto(ccy)"/>
+        </listhead>
+    </listbox>
+</window>

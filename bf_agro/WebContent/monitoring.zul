@@ -1,0 +1,62 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="monitoring_main" apply="com.is.monitoring.Monitoring_vc" width="100%">
+
+<vbox width="100%">
+	<toolbar>
+		<label value="Филиал: "/>
+		<textbox id="tbox_filter" onChange="cbox_filter_branch.setSelecteditem(tbox_filter.getValue())"/>
+		<rcombobox id="cbox_filter_branch" onSelect ='tbox_filter.setValue(cbox_filter_branch.getValue())'
+		width="400px"/>
+	</toolbar>
+	
+	<toolbar>
+		<label value="С даты: "/>
+		<datebox id="since_filter"/>
+		<label value="До даты: "/>
+		<datebox id="until_filter"/>
+		<button id="search" label="Поиск"/>
+	</toolbar>
+		
+	<hbox width="100%">
+		<div width="300px" style="background-color:green;">
+			<listbox style="border:none" id="subsidiaryListbox" width="100%">
+				<listhead>
+					<listheader label="Подразделения"/>
+				</listhead>
+			</listbox>
+		</div>
+		<div width="1200px">
+			<tabbox id="tb" height="700px">
+			    <tabs id="tabs">
+			        <tab id="sumary" label="Сведения" />
+			        <tab id="payments" label="Платежи" visible="false"/>
+			    </tabs>
+			    <tabpanels>
+			        <tabpanel>
+			        	<grid>
+			        		<columns id="abstract_rows_titles" sizable="true">
+        					</columns>
+        					<rows id="abstract_rows">
+        					</rows>
+        				</grid>
+			        </tabpanel>
+			        <tabpanel>This is panel B</tabpanel>
+			    </tabpanels>
+			</tabbox>
+		</div>
+	</hbox>
+</vbox>
+
+
+
+<grid>
+	<columns>
+		<column width="20%"/>
+		<column width="80%"/>
+	</columns>
+	<rows>
+		<row/>
+	</rows>
+</grid>
+
+</window>

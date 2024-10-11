@@ -1,0 +1,528 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<div id="clientcardmain" width="100%" apply="com.is.clients.ClientCardViewCtrl">
+	<div id="frmdiv" width="100%" align="left">
+		<div id="alldiv" width="100%">
+		<groupbox id="clgr" >
+			<grid id="clgrd" ctrlKeys="^e#up#down" >
+			    <columns>
+			    	<column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			    </columns>
+			    <rows>
+			    	<row>
+			    		<label value="${labels.client.code_subject}" />
+			        	<cell colspan="2">
+			        		<div width="99%">
+			        			<rcombobox id="code_subject" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.code_subject}" width="100%" buttonVisible="false" readonly="true" onChange="self.setSelecteditem(currentclient.code_subject);"/>
+			        		</div>
+			        	</cell>
+			    		<cell colspan="6"></cell>
+			    		<hbox>
+			    		<label value="${labels.client.id}" />
+				        <separator spacing="10px" orient="vertical"></separator>
+				        <label id="id" value="@{clientcardmain$composer.currentclient.id}" /> 
+				        </hbox>
+			    	</row>
+			    	<row>
+			         	<label value="${labels.client.branch}" />
+			            <cell colspan="6">
+			            	<hbox width="99%" widths="50px,100%">
+								<textbox id="branchtext" mold="rounded"  value="@{clientcardmain$composer.currentclient.branch}" width="50px" />
+							    <rcombobox id="branch" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.branch}" width="100%" />
+							</hbox>
+			            </cell>
+			            <label value="${labels.client.id_client}" />
+			            <cell colspan="2">
+		        			<textbox id="id_client" value="@{clientcardmain$composer.currentclient.id_client}" width="96%" />
+			            </cell>	
+			        </row>	
+			        <row>
+			        	<label value="${labels.client.name}" />
+			        	<cell id="namecell" colspan="9">
+			        		<textbox id="name" value="@{clientcardmain$composer.currentclient.name}" width="99%"/>
+			            </cell>
+			            <label id="jlbl" value="${labels.client.j_short_name}" visible="false"/>
+			        	<cell id="jcell" colspan="2" visible="false">
+			        		<textbox id="j_short_name" value="@{clientmain$composer.currentclient.j_short_name}" width="96%"/>
+			        	</cell>
+			            <!-- 
+			            <label value="${labels.client.xame}" />
+			            <cell colspan="3">
+			        		<textbox id="name" value="@{clientcardmain$composer.currentclient.name}" width="99%"/>
+			            </cell>  
+			             -->                  	
+			        </row>
+			        <row id="prow" visible="true">
+			        	<label value="${labels.client.p_family}" />
+			        	<cell colspan="2">
+			        		<textbox id="p_family" value="@{clientcardmain$composer.currentclient.p_family}" width="98%"/>
+			        	</cell>
+			            <label value="${labels.client.p_first_name}" />
+			            <cell colspan="2">
+		        			<textbox id="p_first_name" value="@{clientcardmain$composer.currentclient.p_first_name}" width="97%"/>
+			        	</cell>
+			            <label value="${labels.client.p_patronymic}" />
+			            <cell colspan="3">
+		        			<textbox id="p_patronymic" value="@{clientcardmain$composer.currentclient.p_patronymic}" width="97%"/>
+			        	</cell>
+			      	</row>
+			        <row>
+			        	<label value="${labels.client.date_open}" />
+			        	<cell colspan="2">
+			        		<datebox id="date_open"  mold="rounded"  value="@{clientcardmain$composer.currentclient.date_open}" width="100%"/>
+			        	</cell>
+			        	<label value="${labels.client.date_close}" />
+			        	<cell colspan="2">
+			        		<datebox id="date_close"  mold="rounded"  value="@{clientcardmain$composer.currentclient.date_close}" width="100%"/>
+			        	</cell>
+			        	<label value="${labels.client.state}" />
+			        	<cell colspan="3">
+		        			<rcombobox id="state"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.state}" width="99%"/>
+			        	</cell>
+			        </row>
+			        <row>
+			        	<label value="${labels.client.code_country}" />
+			        	<cell colspan="4">
+			        		<rcombobox id="code_country"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.code_country}" width="100%"/>
+			        	</cell>
+			        	<label value="${labels.client.code_resident}" />
+			        	<cell colspan="4">
+		        			<rcombobox id="code_resident"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.code_resident}" width="99%"/>
+			        	</cell>
+			        </row>	
+			        <row>
+			        	<label value="${labels.client.code_form}" />
+			        	<cell colspan="4">
+			        		<rcombobox id="code_form"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.code_form}" width="100%"/>
+			        	</cell>
+			        	<label value="${labels.client.code_type}" />
+			        	<cell colspan="4">
+		        			<rcombobox id="code_type"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.code_type}" width="99%"/>
+			        	</cell>
+			        </row>
+			        <!-- 
+			        <row><label value="${labels.client.kod_err}" /><longbox id="kod_err"  mold="rounded"  value="@{clientcardmain$composer.currentclient.kod_err}" /></row>
+			        <row><label value="${labels.client.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{clientcardmain$composer.currentclient.file_name}" /></row>
+			        <row><label value="${labels.client.sign_registr}" /><longbox id="sign_registr"  mold="rounded"  value="@{clientcardmain$composer.currentclient.sign_registr}" width="300px"/></row>
+			        -->
+				</rows>
+			</grid>
+		</groupbox>
+		</div>
+		<div id="pdiv" width="100%" visible="true">
+		<groupbox id="clpinfo" >
+			<grid id="clpinfogrd" ctrlKeys="^e#up#down" >
+			    <columns>
+			    	<column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			    </columns>
+			    <rows>
+			    	<row>
+			        	<label value="${labels.client.p_type_document}" />
+			        	<cell colspan="2">
+			        		<rcombobox id="p_type_document"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_type_document}" width="99%"/>
+			        	</cell>
+			        	<label value="${labels.client.p_passport_sn}" />
+			        	<cell colspan="2">
+			        		<hbox width="97%" widths="50px,100%">
+								<textbox id="p_passport_serial"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_passport_serial}" width="40px"/>
+			        			<textbox id="p_passport_number"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_passport_number}" width="98%"/>
+							</hbox>
+			        	</cell>
+						<label value="${labels.client.p_passport_type}" />
+		        		<rcombobox id="p_passport_type"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_passport_type}" width="99%"/>
+						<label value="${labels.client.p_code_nation}" />
+		        		<rcombobox id="p_code_nation"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_code_nation}" width="94%"/>
+			        </row>
+			        <row>
+			        	<label value="${labels.client.p_birthday}" />
+			        	<cell colspan="1">
+			            	<div width="99%">
+			        			<datebox id="p_birthday"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_birthday}" width="100%"/>
+							</div>
+			            </cell>
+			         	<label value="${labels.client.p_passport_date_registration}" />
+			         	<cell colspan="1">
+			            	<div width="99%">
+			        			<datebox id="p_passport_date_registration"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_passport_date_registration}" width="100%"/>
+							</div>
+			            </cell>
+			         	<label value="${labels.client.p_passport_date_expiration}" />
+			         	<cell colspan="1">
+			        		<datebox id="p_passport_date_expiration"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_passport_date_expiration}" width="94%"/>
+			            </cell>
+			         	<label value="${labels.client.p_code_gender}" />
+			         	<cell colspan="3">
+							<rcombobox id="p_code_gender"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_code_gender}" width="98%"/>			            	
+			            </cell>
+			        </row>
+			        <row>
+			        	<label value="${labels.client.p_passport_place_registration}" />
+			        	<cell colspan="5">
+		        			<textbox id="p_passport_place_registration" value="@{clientcardmain$composer.currentclient.p_passport_place_registration}" width="99%"/><!--   mold="rounded"  -->
+			            </cell>
+			        	<label value="${labels.client.p_code_citizenship}" />
+			        	<cell colspan="3">
+			        		<rcombobox id="p_code_citizenship"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_code_citizenship}" width="98%"/>
+			            </cell>
+			        </row>
+		   		</rows>
+		 	</grid>
+		 </groupbox>
+		 <groupbox id="clpinfoadr">
+			<grid id="clpinfoadrgrd" ctrlKeys="^e#up#down">
+			    <columns>
+			    	<column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			    </columns>
+			    <rows>
+			        <row>
+			        	<label value="${labels.client.p_code_birth_region}" />
+			        	<cell colspan="4">
+			        		<rcombobox id="p_code_birth_region"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_code_birth_region}" width="100%"/>
+						</cell>
+						<label value="${labels.client.p_code_birth_distr}" />
+						<cell colspan="4">
+							<rcombobox id="p_code_birth_distr"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_code_birth_distr}" width="99%"/>
+			        	</cell>	        
+			        </row>
+			        <row>
+			        	<label value="${labels.client.p_birth_place}" />
+			        	<cell colspan="9">
+			        		<textbox id="p_birth_place" value="@{clientcardmain$composer.currentclient.p_birth_place}" width="99%"/><!--  mold="rounded" -->
+			        	</cell>
+			        </row>
+			        <row>
+			        	<label value="${labels.client.p_code_adr_region}" />
+			        	<cell colspan="4">
+			        		<rcombobox id="p_code_adr_region"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_code_adr_region}" width="100%"/>
+			        	</cell>
+			        	<label value="${labels.client.p_code_adr_distr}" />
+			        	<cell colspan="4">
+			        		<rcombobox id="p_code_adr_distr"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_code_adr_distr}" width="99%"/>
+			        	</cell>
+			        </row>
+			        <row>
+			        	<label value="${labels.client.p_post_address}" />
+			        	<cell colspan="9">
+			        		<textbox id="p_post_address" value="@{clientcardmain$composer.currentclient.p_post_address}" width="99%"/><!--  mold="rounded"  -->
+			        	</cell>
+			        </row>
+			        <row>
+			        	<label value="${labels.client.p_phone_home}" />
+			        	<cell colspan="2">
+			        		<textbox id="p_phone_home" value="@{clientcardmain$composer.currentclient.p_phone_home}" width="98%"/>
+			        	</cell>
+			        	<label value="${labels.client.p_phone_mobile}" />
+			        	<cell colspan="2">
+			        		<textbox id="p_phone_mobile" value="@{clientcardmain$composer.currentclient.p_phone_mobile}" width="98%"/>
+			        	</cell>
+			        	<label value="${labels.client.p_email_address}" />
+			        	<cell colspan="3">
+			        		<textbox id="p_email_address" value="@{clientcardmain$composer.currentclient.p_email_address}" width="97%"/><!--  mold="rounded"  -->
+			        	</cell>
+			        </row>
+			    </rows>
+			</grid>
+		</groupbox>
+		<groupbox id="clpinfocap" >
+			<grid id="clpinfocapgrd" ctrlKeys="^e#up#down" >
+			    <columns>
+			    	<column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			    </columns>
+			    <rows>
+					<row>
+						<label value="${labels.client.p_code_capacity}" />
+						<cell colspan="6">
+			        		<rcombobox id="p_code_capacity"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.p_code_capacity}" width="100%"/>
+			            </cell>
+			            <label value="${labels.client.p_certif_capacity_sn}" />
+						<cell colspan="2">
+							<hbox width="97%" widths="50px,100%">
+								<textbox id="p_pension_sertif_serial"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_pension_sertif_serial}" width="40px"/>
+								<textbox id="p_num_certif_capacity"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_num_certif_capacity}" width="98%"/>
+							</hbox>
+			            </cell>
+			     	</row>
+			     	<row>
+			     		<label value="${labels.client.p_capacity_status_place}" />
+						<cell colspan="6">
+			        		<textbox id="p_capacity_status_place" value="@{clientcardmain$composer.currentclient.p_capacity_status_place}" width="100%"/><!--  mold="rounded"  -->
+						</cell>
+						<label value="${labels.client.p_capacity_status_date}" />
+			            <cell colspan="2">
+			        		<datebox id="p_capacity_status_date"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_capacity_status_date}" width="97%"/>
+						</cell>
+			     	</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox id="clpinfoadd" >
+			<grid id="clpinfoaddgrd" ctrlKeys="^e#up#down" >
+			    <columns>
+			    	<column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			    </columns>
+			    <rows>
+			    	<row>
+			    		<label value="${labels.client.p_code_bank}" />
+			    		<cell colspan="5">
+			    			<hbox width="100%" widths="50px,100%">
+								<textbox id="p_code_banktext"  mold="rounded"  value="@{clientcardmain$composer.currentclient.p_code_bank}" width="50px"/>
+							    <rcombobox id="p_code_bank" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.p_code_bank}" width="99%" />
+							</hbox>
+			    		</cell>
+			    		<label value="${labels.client.p_code_class_credit}" />
+			    		<cell colspan="3">
+			    			<rcombobox id="p_code_class_credit" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.p_code_class_credit}" width="98%" />
+			    		</cell>
+			    	</row>
+					<row>
+						<label value="${labels.client.p_code_tax_org}" />
+						<cell colspan="3">
+							<rcombobox id="p_code_tax_org" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.p_code_tax_org}" width="98%" />
+						</cell>
+						<label value="${labels.client.p_number_tax_registration}" />
+						<cell colspan="1">
+			    			<textbox id="p_number_tax_registration" value="@{clientcardmain$composer.currentclient.p_number_tax_registration}" width="94%"/>
+			    		</cell>
+			    		<label value="${labels.client.p_inps}" />
+			    		<cell colspan="3">
+			    			<textbox id="p_inps" value="@{clientcardmain$composer.currentclient.p_inps}" width="97%"/>
+			    		</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		</div>
+		<div id="jdiv" width="100%" visible="false">
+		<groupbox id="cljinfo">
+			<grid id="cljinfogrd" ctrlKeys="^e#up#down">
+			    <columns>
+			    	<column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			    </columns>
+			    <rows>
+					<!--  
+					<row><label value="${labels.client.branch}" /><textbox id="branch"  mold="rounded"  value="@{clientJmain$composer.currentclient.branch}" /></row>
+			        <row><label value="${labels.client.id}" /><textbox id="id"  mold="rounded"  value="@{clientJmain$composer.currentclient.id}" /></row>
+			        <row><label value="${labels.client.name}" /><textbox id="name"  mold="rounded"  value="@{clientJmain$composer.currentclient.name}" /></row>
+			        -->
+			        <row>
+			        	<label value="${labels.client.j_number_registration_doc}" />
+			        	<cell colspan="2">
+			        		<textbox id="j_number_registration_doc" value="@{clientcardmain$composer.currentclient.j_number_registration_doc}" width="99%"/>
+			        	</cell>
+			        	<label value="${labels.client.j_date_registration}" />
+			        	<cell colspan="2">
+				        	<datebox id="j_date_registration"  mold="rounded"  value="@{clientcardmain$composer.currentclient.j_date_registration}" width="99%"/>
+				        </cell>
+			        	<label value="${labels.client.j_place_regist_name}" />
+			        	<cell colspan="3">
+			        		<textbox id="j_place_regist_name" value="@{clientcardmain$composer.currentclient.j_place_regist_name}" width="97%"/>
+			        	</cell>
+			        </row>
+			        <row>
+			        	<label value="${labels.client.j_code_tax_org}" />
+			        	<cell colspan="3">
+			        		<rcombobox id="j_code_tax_org" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.j_code_tax_org}" width="99%"/>
+			        	</cell>
+			        	<label value="${labels.client.j_number_tax_registration}" />
+			        	<cell colspan="1">
+			        		<textbox id="j_number_tax_registration" value="@{clientcardmain$composer.currentclient.j_number_tax_registration}" width="97%"/>
+			        	</cell>
+			        	<label value="${labels.client.j_code_head_organization}" />
+				        <cell colspan="1">
+			        		<textbox id="j_code_head_organization" value="@{clientcardmain$composer.currentclient.j_code_head_organization}" width="97%"/>
+			        	</cell>
+				        <label value="${labels.client.j_inn_head_organization}" />
+				        <cell colspan="1">
+			        		<textbox id="j_inn_head_organization" value="@{clientcardmain$composer.currentclient.j_inn_head_organization}" width="92%"/>
+			            </cell>
+			        </row>
+			        <row>
+				    	<label value="${labels.client.j_opf}" />
+				    	<cell colspan="4">
+			        		<hbox width="99%" widths="50px,100%">
+								<textbox id="j_opftext"  mold="rounded"  value="@{clientcardmain$composer.currentclient.j_opf}" width="50px"/>
+								<rcombobox id="j_opf" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.j_opf}" width="99%"/>
+							</hbox>
+			        	</cell>
+			            <label value="${labels.client.j_soato}" />
+			            <cell colspan="4">
+			        		<textbox id="j_soato" value="@{clientcardmain$composer.currentclient.j_soato}" width="98%"/>
+			        	</cell>
+			        </row>
+			        <row>    
+			            <label value="${labels.client.j_okpo}" />
+			            <cell colspan="4">
+			        		<textbox id="j_okpo" value="@{clientcardmain$composer.currentclient.j_okpo}" width="97%"/>
+			        	</cell>
+			        	<label value="${labels.client.j_code_class_credit}" />
+				        <cell colspan="4">
+				        	<rcombobox id="j_code_class_credit" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.j_code_class_credit}" width="99%" />
+			        	</cell>
+					</row>
+			        <row>
+			        	<label value="${labels.client.j_code_sector}" />
+			        	<cell colspan="4">
+			        		<hbox width="99%" widths="50px,100%">
+								<textbox id="j_code_sectortext" mold="rounded" value="@{clientcardmain$composer.currentclient.j_code_organ_direct}" width="50px"/>
+								<rcombobox id="j_code_sector" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.j_code_organ_direct}" width="99%"/>
+							</hbox>
+			        	</cell>
+			            <label value="${labels.client.j_code_organ_direct}" />
+				        <cell colspan="4">
+			        		<hbox width="100%" widths="50px,100%">
+								<textbox id="j_code_organ_directtext" mold="rounded" value="@{clientcardmain$composer.currentclient.j_code_organ_direct}" width="50px"/>
+								<rcombobox id="j_code_organ_direct" mold="rounded" selecteditem="@{clientcardmain$composer.currentclient.j_code_organ_direct}" width="99%"/>
+							</hbox>
+			        	</cell>
+				    </row>
+				    <row>
+				    	<label value="" />
+				    	<cell colspan="9">
+			        		<checkbox id="j_sign_trade" value="@{clientcardmain$composer.currentclient.j_sign_trade}" label="${labels.client.j_sign_trade}"/>
+			        	</cell>
+				   	</row>
+				</rows>
+			</grid>
+		</groupbox>    
+		<groupbox id="cljinfoadd">
+			<grid id="cljinfoaddgrd" ctrlKeys="^e#up#down">
+			    <columns>
+			    	<column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			        <column width="10%" />
+			    </columns>
+			    <rows>                                  
+				    <row>
+				    	<label value="${labels.client.j_code_bank}" />
+				    	<cell colspan="6">
+				    		<hbox width="99%" widths="50px,100%">
+								<textbox id="j_code_banktext"  mold="rounded"  value="@{clientJmain$composer.currentclient.j_code_bank}" width="50px"/>
+							    <rcombobox id="j_code_bank"  mold="rounded"  selecteditem="@{clientcardmain$composer.j_code_bank}" width="100%" />
+							</hbox>
+			        	</cell>
+			        	<label value="${labels.client.j_account}" />
+			        	<cell colspan="2">
+			            	<div width="99%">
+			        			<textbox id="j_account" value="@{clientcardmain$composer.currentclient.j_account}" width="98%"/>
+			        		</div>
+			        	</cell>
+			        </row>
+				    <!--  
+			        <row><label value="${labels.client.j_director_name}" /><textbox id="j_director_name"  mold="rounded"  value="@{clientcardmain$composer.currentclient.j_director_name}" /></row>
+			        <row><label value="${labels.client.j_director_passport}" /><textbox id="j_director_passport"  mold="rounded"  value="@{clientcardmain$composer.currentclient.j_director_passport}" /></row>
+			        <row><label value="${labels.client.j_chief_accounter_name}" /><textbox id="j_chief_accounter_name"  mold="rounded"  value="@{clientcardmain$composer.currentclient.j_chief_accounter_name}" /></row>
+			        <row><label value="${labels.client.j_chief_accounter_passport}" /><textbox id="j_chief_accounter_passport"  mold="rounded"  value="@{clientcardmain$composer.currentclient.j_chief_accounter_passport}" /></row>
+			        -->
+			        <row>
+			        	<label value="${labels.client.j_region}" />
+			        	<cell colspan="2">
+			        		<rcombobox id="j_region"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.j_region}" width="99%"/>
+			        		<!-- <textbox id="j_region"  mold="rounded"  value="@{clientcardmain$composer.currentclient.j_region}" width="100%"/> -->
+			        	</cell>
+			        	<label value="${labels.client.j_distr}" />
+			        	<cell colspan="2">
+			            	<rcombobox id="j_distr"  mold="rounded"  selecteditem="@{clientcardmain$composer.currentclient.j_distr}" width="99%"/>
+			        		<!-- <textbox id="j_distr"  mold="rounded"  value="@{clientcardmain$composer.currentclient.j_distr}"  width="100%"/> -->
+			        	</cell>
+			       		<label value="${labels.client.j_post_address}" />
+			       		<cell colspan="3">
+			        		<textbox id="j_post_address" value="@{clientcardmain$composer.currentclient.j_post_address}"  width="98%"/>
+			        	</cell>
+			        </row>
+			        <row>
+			        	<label value="${labels.client.phone}" />
+			        	<cell colspan="2">
+			        		<textbox id="j_phone" value="@{clientcardmain$composer.currentclient.j_phone}" width="98%"/>
+			        	</cell>
+			        	<label value="${labels.client.j_fax}" />
+			        	<cell colspan="2">
+			        		<textbox id="j_fax" value="@{clientcardmain$composer.currentclient.j_fax}"  width="98%"/>
+			        	</cell>
+			       		<label value="${labels.client.j_email}" />
+			       		<cell colspan="3">
+			        		<textbox id="j_email" value="@{clientcardmain$composer.currentclient.j_email}"  width="98%"/>
+			        	</cell>
+			        </row>
+			        <!-- 
+			        <row><label value="${labels.client.state}" /><longbox id="state"  mold="rounded"  value="@{clientJmain$composer.currentclient.state}" /></row>  
+			        <row><label value="${labels.client.kod_err}" /><longbox id="kod_err"  mold="rounded"  value="@{clientJmain$composer.currentclient.kod_err}" /></row>
+			        <row><label value="${labels.client.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{clientJmain$composer.currentclient.file_name}" /></row>
+			        -->
+			    </rows>
+			</grid>
+		</groupbox>                              
+		</div>
+	</div>
+	<div id="addinfoclient"></div>
+	<toolbar>
+    	<toolbarbutton id="btn_save_currentclient" label="${labels.save}" image="/images/save.png" />
+        <toolbarbutton id="btn_cancel_currentclient" label="${labels.cancel}" image="/images/stop.png" />
+    </toolbar>
+</div>

@@ -1,0 +1,155 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="goodsmain" width="100%"  height="550px" border="normal" apply="com.is.tf.Goods.GoodsViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="goodsPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{goodsmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.goods.id}" width="50px" />
+                                <listheader label="${labels.goods.p0t4}" width="200px" />
+                                <listheader label="${labels.goods.p5t4}" width="200px" />
+                                <listheader label="${labels.goods.p7t4}" width="200px" />
+                                <listheader label="${labels.goods.p8t4}" width="200px" />
+                                <listheader label="${labels.goods.p9t4}" width="200px" />
+                                <listheader label="${labels.goods.p10t4}" width="200px" />
+                                <listheader label="${labels.goods.p11t4}" width="200px" />
+                                <listheader label="${labels.goods.p12t4}" width="200px" />
+                                <listheader label="${labels.goods.p13t4}" width="200px" />
+                                <listheader label="${labels.goods.p14t4}" width="200px" />
+                                <listheader label="${labels.goods.p15t4}" width="200px" />
+                                <listheader label="${labels.goods.p16t4}" width="200px" />
+                                <listheader label="${labels.goods.p17t4}" width="200px" />
+                                <listheader label="${labels.goods.p18t4}" width="200px" />
+                                <listheader label="${labels.goods.p19t4}" width="200px" />
+                                <listheader label="${labels.goods.p20t4}" width="200px" />
+                                <listheader label="${labels.goods.p21t4}" width="200px" />
+                                <listheader label="${labels.goods.p22t4}" width="200px" />
+                                <listheader label="${labels.goods.p23t4}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.goods.id}" /><textbox id="id"  mold="rounded"  value="@{goodsmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.goods.p0t4}" /><intbox id="p0t4"  mold="rounded"  value="@{goodsmain$composer.current.p0t4}" /></row>
+                                  <row><label value="${labels.goods.p5t4}" /><textbox id="p5t4"  mold="rounded"  value="@{goodsmain$composer.current.p5t4}" /></row>
+                                  <row><label value="${labels.goods.p7t4}" /><textbox id="p7t4"  mold="rounded"  value="@{goodsmain$composer.current.p7t4}" /></row>
+                                  <row><label value="${labels.goods.p8t4}" /><decimalbox id="p8t4"  mold="rounded"  value="@{goodsmain$composer.current.p8t4}" /></row>
+                                  <row><label value="${labels.goods.p9t4}" /><textbox id="p9t4"  mold="rounded"  value="@{goodsmain$composer.current.p9t4}" /></row>
+                                  <row><label value="${labels.goods.p10t4}" /><decimalbox id="p10t4"  mold="rounded"  value="@{goodsmain$composer.current.p10t4}" /></row>
+                                  <row><label value="${labels.goods.p11t4}" /><textbox id="p11t4"  mold="rounded"  value="@{goodsmain$composer.current.p11t4}" /></row>
+                                  <row><label value="${labels.goods.p12t4}" /><decimalbox id="p12t4"  mold="rounded"  value="@{goodsmain$composer.current.p12t4}" /></row>
+                                  <row><label value="${labels.goods.p13t4}" /><decimalbox id="p13t4"  mold="rounded"  value="@{goodsmain$composer.current.p13t4}" /></row>
+                                  <row><label value="${labels.goods.p14t4}" /><textbox id="p14t4"  mold="rounded"  value="@{goodsmain$composer.current.p14t4}" /></row>
+                                  <row><label value="${labels.goods.p15t4}" /><textbox id="p15t4"  mold="rounded"  value="@{goodsmain$composer.current.p15t4}" /></row>
+                                  <row><label value="${labels.goods.p16t4}" /><textbox id="p16t4"  mold="rounded"  value="@{goodsmain$composer.current.p16t4}" /></row>
+                                  <row><label value="${labels.goods.p17t4}" /><textbox id="p17t4"  mold="rounded"  value="@{goodsmain$composer.current.p17t4}" /></row>
+                                  <row><label value="${labels.goods.p18t4}" /><textbox id="p18t4"  mold="rounded"  value="@{goodsmain$composer.current.p18t4}" /></row>
+                                  <row><label value="${labels.goods.p19t4}" /><textbox id="p19t4"  mold="rounded"  value="@{goodsmain$composer.current.p19t4}" /></row>
+                                  <row><label value="${labels.goods.p20t4}" /><textbox id="p20t4"  mold="rounded"  value="@{goodsmain$composer.current.p20t4}" /></row>
+                                  <row><label value="${labels.goods.p21t4}" /><datebox id="p21t4"  mold="rounded"  value="@{goodsmain$composer.current.p21t4}" /></row>
+                                  <row><label value="${labels.goods.p22t4}" /><textbox id="p22t4"  mold="rounded"  value="@{goodsmain$composer.current.p22t4}" /></row>
+                                  <row><label value="${labels.goods.p23t4}" /><textbox id="p23t4"  mold="rounded"  value="@{goodsmain$composer.current.p23t4}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.goods.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p0t4}" /><intbox id="ap0t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p5t4}" /><textbox id="ap5t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p7t4}" /><textbox id="ap7t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p8t4}" /><decimalbox id="ap8t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p9t4}" /><textbox id="ap9t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p10t4}" /><decimalbox id="ap10t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p11t4}" /><textbox id="ap11t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p12t4}" /><decimalbox id="ap12t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p13t4}" /><decimalbox id="ap13t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p14t4}" /><textbox id="ap14t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p15t4}" /><textbox id="ap15t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p16t4}" /><textbox id="ap16t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p17t4}" /><textbox id="ap17t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p18t4}" /><textbox id="ap18t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p19t4}" /><textbox id="ap19t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p20t4}" /><textbox id="ap20t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p21t4}" /><datebox id="ap21t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p22t4}" /><textbox id="ap22t4"  mold="rounded"  /></row>
+                                  <row><label value="${labels.goods.p23t4}" /><textbox id="ap23t4"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.goods.id}" /><textbox id="fid"  mold="rounded"  value="@{goodsmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.goods.p0t4}" /><intbox id="fp0t4"  mold="rounded"  value="@{goodsmain$composer.filter.p0t4}" /></row>
+                                  <row><label value="${labels.goods.p5t4}" /><textbox id="fp5t4"  mold="rounded"  value="@{goodsmain$composer.filter.p5t4}" /></row>
+                                  <row><label value="${labels.goods.p7t4}" /><textbox id="fp7t4"  mold="rounded"  value="@{goodsmain$composer.filter.p7t4}" /></row>
+                                  <row><label value="${labels.goods.p8t4}" /><decimalbox id="fp8t4"  mold="rounded"  value="@{goodsmain$composer.filter.p8t4}" /></row>
+                                  <row><label value="${labels.goods.p9t4}" /><textbox id="fp9t4"  mold="rounded"  value="@{goodsmain$composer.filter.p9t4}" /></row>
+                                  <row><label value="${labels.goods.p10t4}" /><decimalbox id="fp10t4"  mold="rounded"  value="@{goodsmain$composer.filter.p10t4}" /></row>
+                                  <row><label value="${labels.goods.p11t4}" /><textbox id="fp11t4"  mold="rounded"  value="@{goodsmain$composer.filter.p11t4}" /></row>
+                                  <row><label value="${labels.goods.p12t4}" /><decimalbox id="fp12t4"  mold="rounded"  value="@{goodsmain$composer.filter.p12t4}" /></row>
+                                  <row><label value="${labels.goods.p13t4}" /><decimalbox id="fp13t4"  mold="rounded"  value="@{goodsmain$composer.filter.p13t4}" /></row>
+                                  <row><label value="${labels.goods.p14t4}" /><textbox id="fp14t4"  mold="rounded"  value="@{goodsmain$composer.filter.p14t4}" /></row>
+                                  <row><label value="${labels.goods.p15t4}" /><textbox id="fp15t4"  mold="rounded"  value="@{goodsmain$composer.filter.p15t4}" /></row>
+                                  <row><label value="${labels.goods.p16t4}" /><textbox id="fp16t4"  mold="rounded"  value="@{goodsmain$composer.filter.p16t4}" /></row>
+                                  <row><label value="${labels.goods.p17t4}" /><textbox id="fp17t4"  mold="rounded"  value="@{goodsmain$composer.filter.p17t4}" /></row>
+                                  <row><label value="${labels.goods.p18t4}" /><textbox id="fp18t4"  mold="rounded"  value="@{goodsmain$composer.filter.p18t4}" /></row>
+                                  <row><label value="${labels.goods.p19t4}" /><textbox id="fp19t4"  mold="rounded"  value="@{goodsmain$composer.filter.p19t4}" /></row>
+                                  <row><label value="${labels.goods.p20t4}" /><textbox id="fp20t4"  mold="rounded"  value="@{goodsmain$composer.filter.p20t4}" /></row>
+                                  <row><label value="${labels.goods.p21t4}" /><datebox id="fp21t4"  mold="rounded"  value="@{goodsmain$composer.filter.p21t4}" /></row>
+                                  <row><label value="${labels.goods.p22t4}" /><textbox id="fp22t4"  mold="rounded"  value="@{goodsmain$composer.filter.p22t4}" /></row>
+                                  <row><label value="${labels.goods.p23t4}" /><textbox id="fp23t4"  mold="rounded"  value="@{goodsmain$composer.filter.p23t4}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

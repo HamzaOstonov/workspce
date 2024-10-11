@@ -1,0 +1,120 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="traccmain" width="100%"  height="100%" border="normal" apply="com.is.tracc.TrAccViewCtrl">
+<textbox id="mod_type" value="branch" visible="false"/>
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"  visible="false"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="traccPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{traccmain$composer.current}">
+                        <listhead sizable="true">
+                                <!--  
+                                <listheader label="${labels.tracc.id}" width="200px" />
+                                <listheader label="${labels.tracc.branch}" width="200px" />
+                                <listheader label="${labels.tracc.acc_template_id}" width="200px" />
+                                -->
+                                <listheader label="${labels.tracc.acc_mfo}" width="100px" />
+                                <listheader label="${labels.tracc.account}" width="300px" />
+                                <listheader label="${labels.tracc.acc_name}" width="400px" />
+                        </listhead>
+
+                </listbox>
+
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <!--  
+                                  <row><label value="${labels.tracc.id}" /><textbox id="id"  mold="rounded"  value="@{traccmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.tracc.branch}" /><textbox id="branch"  mold="rounded"  value="@{traccmain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.tracc.acc_template_id}" /><textbox id="acc_template_id"  mold="rounded"  value="@{traccmain$composer.current.acc_template_id}" /></row>
+                                  --> 
+                                  <row><label value="${labels.tracc.acc_mfo}" /><textbox id="acc_mfo"  mold="rounded"  value="@{traccmain$composer.current.acc_mfo}" width="70px" disabled="true"/></row>
+                                  <row><label value="${labels.tracc.account} press F9" /><textbox id="account" ctrlKeys="#f9"   mold="rounded"  value="@{traccmain$composer.current.account}" width="250px"/></row>
+                                  <row><label value="${labels.tracc.acc_name}" /><textbox id="acc_name"  mold="rounded"  value="@{traccmain$composer.current.acc_name}" width="400px"/></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                <!--   <row><label value="${labels.tracc.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.tracc.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.tracc.acc_template_id}" /><textbox id="aacc_template_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.tracc.acc_mfo}" /><textbox id="aacc_mfo"  mold="rounded"  /></row>
+                                  <row><label value="${labels.tracc.account}" /><textbox id="aaccount"  mold="rounded"  /></row>
+                                  <row><label value="${labels.tracc.acc_name}" /><textbox id="aacc_name"  mold="rounded"  /></row>
+                                -->
+                                  <row><label value="${labels.tracc.acc_mfo}" /><textbox id="aacc_mfo"  mold="rounded" width="70px"  disabled="true"/></row>
+                                  <row><label value="${labels.tracc.account}" /><textbox id="aaccount" ctrlKeys="#f9"   mold="rounded" width="250px"/></row>
+                                  <row><label value="${labels.tracc.acc_name}" /><textbox id="aacc_name"  mold="rounded" width="400px"/></row>
+                          
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <row><label value="${labels.tracc.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{traccmain$composer.filter.branch}"/></row>
+                                  <row><label value="${labels.tracc.acc_mfo}" /><textbox id="facc_mfo"  mold="rounded"  value="@{traccmain$composer.filter.acc_mfo}"/></row>
+                                  <row><label value="${labels.tracc.account}" /><textbox id="faccount"  mold="rounded"  value="@{traccmain$composer.filter.account}" /></row>
+                                  <row><label value="${labels.tracc.acc_name}" /><textbox id="facc_name"  mold="rounded"  value="@{traccmain$composer.filter.acc_name}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+       <window id="chacc"  closable="true" onClose="self.visible = false; event.stopPropagation();"
+		title="Счета" border="normal" width="580px" 
+	 position="center,center" mode="popup" visible="false">
+	 
+	 <label value="фильтр счет:" style="padding-right:10px;"/><textbox id="acc_filter_mask" width="250px" mold="rounded"/>
+	 <button label="Искать" id="acc_filter"/>
+	 
+           <listbox id="acc" height="250px" width="100%"   rows="4" 
+                        selectedItem="@{traccmain$composer.currentacc}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.account.branch}" width="60px" />
+                                <listheader label="${labels.account.id}" width="180px" />
+                                <listheader label="${labels.account.name}" width="550px" />
+                                
+                        </listhead>
+                        </listbox>
+		</window>
+
+</window>

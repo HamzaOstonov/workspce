@@ -1,0 +1,269 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="client_mass_opening" width="100%"  height="100%" border="none" apply="com.is.client_mass_opening.Client_mass_opening_fileViewCtrl">
+        
+<tabbox id="cl_tabs" visible="true">
+    <tabs>
+      <tab label="Резиденты" style="border: 1px solid #1E90FF; background-color: #EFEDE7;  font-style:italic"/>
+      <tab label="Нерезиденты" style="border: 1px solid #1E90FF; background-color: #EFEDE7;  font-style:italic"/>
+    </tabs>
+    <tabpanels>
+    
+       <tabpanel style="color:#0A0A0A;" width="1500000px" height="580px"  >
+            <div class="block">
+        <toolbarbutton id="uploadXLSX"  label="Загрузить файл" upload="true" style="border: 1px solid #1E90FF; background-color: #EFEDE7;  font-style:italic;font-size:18px; border-radius: 10px 10px" image="/images/+.png" width="180px" height="50px" />
+        <toolbarbutton visible="true" width="30px"  height="30px"/>
+		<toolbarbutton id="btn_history" label="Список файлов" style="border: 1px solid #1E90FF; background-color: #EFEDE7; font-style:italic;font-size:20px; border-radius: 10px 10px" image="/images/faq.png" width="180px" height="50px" /> 
+		<toolbarbutton visible="true" width="30px"  height="30px"/>
+		<toolbarbutton id="btn_report" label="Шаблон" style="border: 1px solid #1E90FF; background-color: #EFEDE7; font-style:italic;font-size:20px; border-radius: 10px 10px" image="/images/file.png" width="180px" height="50px" />
+    </div> 
+<style>
+.block {
+  
+    width: 63px;
+    height: 330px;
+    font-size: 0,01px;
+    position: absolute; 
+     display: flex;
+  flex-direction: column;       
+    top: 60%;
+    left: 53%; 
+    
+    margin: -125px 0 0 -125px;
+    
+}
+</style>
+            
+            
+            
+            <window id="modalDialogNE" title="Загрузить файл" closable="false" onClose="self.visible = false; event.stopPropagation();"
+     border="normal" width="1000px" 
+ mode="modal" visible="false"
+  position="center"
+  
+
+  
+  action="show: slideDown;hide: slideUp" >
+          <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="25%" />
+                                  <column width="25%" />
+                                  <column width="25%" />
+                    <column width="13%" />
+                    <column width="12%" />                 
+                          </columns>
+                          <rows>                          
+                                  <row><label value="Название файла" /><label value="Дата" /><label value="Статус" /><label value="Действия" width="100px"/><label/></row>
+                                  <row>
+                                  <label id="name_file" style="color: blue;" />
+                      <label id="date_file" value="Date" />
+                      <label id="status_file" style="color: green;" />
+                      <toolbarbutton id="btn_accept" image="/images/approved.png" />
+                      <toolbarbutton id="btn_ignore" image="/images/delete.png" />
+                                  </row>                               
+                            </rows> 
+                                                            
+                  </grid>         
+                  <label id = "messages"/>
+          <toolbar>
+                              <toolbarbutton id="btn_cancel1" label="Назад"
+                                  image="/images/backward.png" />
+                              </toolbar> 
+           </window>
+             </tabpanel>
+             
+            <tabpanel style="color:#336699;" width="1500px" height="580px"  >
+            <div class="block">
+        <toolbarbutton id="uploadNEXLSX"  label="Загрузить файл" upload="true" style="border: 1px solid #0A0A0A; background-color: #EFEDE7;  font-style:italic;font-size:18px; border-radius: 10px 10px" image="/images/+.png" width="180px" height="50px" />
+        <toolbarbutton visible="true" width="30px"  height="30px"/>
+		<toolbarbutton id="btn_historyNE" label="Список файлов" style="border: 1px solid #0A0A0A; background-color: #EFEDE7; font-style:italic;font-size:20px; border-radius: 10px 10px" image="/images/faq.png" width="180px" height="50px" /> 
+		<toolbarbutton visible="true" width="30px"  height="30px"/>
+		<toolbarbutton id="btn_reportNE" label="Шаблон" style="border: 1px solid #0A0A0A; background-color: #EFEDE7; font-style:italic;font-size:20px; border-radius: 10px 10px" image="/images/file.png" width="180px" height="50px" />
+    </div> 
+            
+    <window id="modalDialog" title="Загрузить файл" closable="false" onClose="self.visible = false; event.stopPropagation();"
+            border="normal" width="1000px " 
+            mode="modal" visible="false"
+            position="center"
+            action="show: slideDown;hide: slideUp" >
+            
+          <grid id="frmgrd" ctrlKeys="^e#up#down"
+                            visible="true">
+                          <columns>
+                                  <column width="25%" />
+                                  <column width="25%" />
+                                  <column width="25%" />
+  								  <column width="10%" /> 							  
+                          </columns>
+                          <rows>                          
+                                  <row><label value="Название файла" />
+                                  <label value="Дата" />
+                                  <label value="Статус" />
+                                  <label value="Действия" width="100px"/>
+                                  <label/>
+                                  </row>
+                                  <row><label id = "name_file"/>
+                                   <label id = "date_file"/>
+                                   <label id = "status_file"/> 
+                                   <toolbarbutton id="btn_accept" image="/images/approved.png"/>
+                                   <toolbarbutton id="btn_ignore" image="/images/delete.png"/>
+                                   </row>                               
+                            </rows> 
+                                                            
+                  </grid>         
+                  <label id = "messages"/>
+          				<toolbar>
+                             <toolbarbutton id="btn_cancel1" label="Назад" image="/images/backward.png" />
+                       </toolbar> 
+     </window>
+           
+         </tabpanel>
+             
+        </tabpanels>
+        
+        </tabbox>
+       
+              
+    <window id = "historyPanel" title="Список файлов" border="none" width="1000px" height="350px" 
+            position="center,center" mode="popup" visible="false" closable="false" contentStyle="overflow:auto" onClose="self.visible = false; event.stopPropagation();">
+           <include src="MassOpenHistory.zul" />
+   </window>
+   
+   
+   
+   
+   <window id="windowMessageConfirm" title="Окно подтверждения" closable="true" onClose="self.visible = false; event.stopPropagation();"
+   		   border="normal" width="1000px" 
+           mode="modal" visible="false"
+           position="center"
+           action="show: slideDown;hide: slideUp">
+            Вы уверены,что хотите загрузить все записи в модуль?
+            <toolbarbutton id = "windowMessage_confirm" label="Да" style="background:#f00000"/>
+            <toolbarbutton id = "windowMessage_reject"  label="Нет"/>
+   </window>
+   
+   <window id="windowMessageReject" title="Окно отклонения" closable="true" onClose="self.visible = false; event.stopPropagation();"
+           border="normal" width="1000px" 
+           mode="modal" visible="false"
+           position="center"
+           action="show: slideDown;hide: slideUp">
+            Удалить записи с ошибками и загурзить остальные записи?
+            <toolbarbutton id = "windowMessage_confirm" label="Да" style="background:#f00000"/>
+            <toolbarbutton id = "windowMessage_reject"  label="Нет"/>
+  </window>
+           
+           
+           
+  <window id = "historyPanelNE" title="Список файлов" border="none" width="1000px" height="350px" 
+            position="center,center" mode="popup" visible="false" closable="false" contentStyle="overflow:auto" onClose="self.visible = false; event.stopPropagation();">
+           <include src="MassOpenHistory.zul" />
+ </window>
+ 
+ <window id="windowMessageConfirmNE" closable="true" onClose="self.visible = false; event.stopPropagation();"
+   border="normal" width="1000px" 
+   mode="modal" visible="false"
+   position="center"
+   action="show: slideDown;hide: slideUp">
+   <style><![CDATA[
+      .windowMessageConfirmNE {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+      }
+      .windowMessageConfirmNE-text {
+         text-align: center;
+      }
+      .windowMessageConfirmNE-buttons {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-top: 10px;
+      }
+      .windowMessageConfirmNE-button {
+         width: 100px;
+         height: 30px;
+         background-color: grey;
+         border: 2px solid black;
+         border-radius: 20px;
+         color: #ffffff;
+         font-weight: bold;
+         cursor: pointer;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+   ]]></style>
+   <div class="windowMessageConfirmNE">
+      <div class="windowMessageConfirmNE-text">
+         Вы уверены, что хотите загрузить все записи в модуль?
+      </div>
+      <div class="windowMessageConfirmNE-buttons">
+         <toolbarbutton id="windowMessage_confirmNE" class="windowMessageConfirmNE-button" label="Да"/>
+         <toolbarbutton id="windowMessage_rejectNE" class="windowMessageConfirmNE-button" label="Нет"/>
+      </div>
+   </div>
+</window>
+
+<window id="windowMessageRejectNE" closable="true" onClose="self.visible = false; event.stopPropagation();"
+   border="normal" width="1000px" 
+   mode="modal" visible="false"
+   position="center"
+   action="show: slideDown;hide: slideUp">
+   <style><![CDATA[
+      .windowMessageConfirmNE {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+      }
+      .windowMessageConfirmNE-text {
+         text-align: center;
+      }
+      .windowMessageConfirmNE-buttons {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-top: 10px;
+      }
+      .windowMessageConfirmNE-button {
+         width: 100px;
+         height: 30px;
+         background-color: grey;
+         border: 2px solid black;
+         border-radius: 20px;
+         color: #ffffff;
+         font-weight: bold;
+         cursor: pointer;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+   ]]></style>
+   <div class="windowMessageConfirmNE">
+      <div class="windowMessageConfirmNE-text">
+         Удалить записи с ошибками и загурзить остальные записи?
+      </div>
+      <div class="windowMessageConfirmNE-buttons">
+         <toolbarbutton id="windowMessage_confirmNE" class="windowMessageConfirmNE-button" label="Да"/>
+         <toolbarbutton id="windowMessage_rejectNE" class="windowMessageConfirmNE-button" label="Нет"/>
+      </div>
+   </div>
+</window>
+              
+            
+             
+              
+               <!--  <paging id="client_mass_opening_filePaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{client_mass_opening_filemain$composer.current}">
+                        
+
+                </listbox>-->
+
+            
+
+       
+
+</window>

@@ -1,0 +1,110 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="client_mass_opening_residentmain" contentStyle="overflow:auto" style="background-color: #F8F9F9" width="700"  height="700px" border="none" apply="com.is.client_mass_openingCheckResident.Client_mass_opening_residentViewCtrl">
+
+
+<textbox value="${arg.id_test}" visible="false" id="id_test"/>
+        <div id="grd">
+
+                <paging id="client_mass_opening_residentPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="1400px" height="500px"
+                        selectedItem="@{client_mass_opening_residentmain$composer.current}">
+                        <listhead sizable="true">
+                                  <listheader label="" width="40px">
+                       </listheader>
+                               <!--  <listheader label="${labels.client_mass_opening_resident.id}" width="200px" />
+                                <listheader label="${labels.client_mass_opening_resident.file_id}" width="200px" />-->
+                                <listheader label="${labels.client_mass_opening_resident.pinfl}" width="200px" tooltiptext="test2"/> 
+                                <listheader label="passport seria" width="200px" />
+                                <listheader label="passport nomer" width="200px" />
+                                <listheader label="${labels.client_mass_opening_resident.code_organization}" width="200px" />
+                                <listheader label="${labels.client_mass_opening_resident.card_type}" width="200px" />
+                                <listheader label="${labels.client_mass_opening_resident.phone}" width="200px" />
+                                <listheader label="${labels.client_mass_opening_resident.lastname}" width="200px" />
+                                <listheader label="${labels.client_mass_opening_resident.date_birth}" width="200px" />                                            
+                                <listheader label="${labels.client_mass_opening_resident.acc_group}" width="200px" />
+                               
+                              
+                        </listhead>
+
+                </listbox>
+ 								<toolbarbutton id="btn_send"
+                                  label="Отправить" image="/images/save.png" style="border: 1px solid #00FFFF;   color:#100720;font-style:italic;font-size:17px; border-radius: 10px 10px" visible="true"/>
+                          		 <toolbarbutton id="btn_backk"
+                                  label="Закрыть окно" image="/images/save.png" style="border: 1px solid #00FFFF;   color:#100720;font-style:italic;font-size:17px; border-radius: 10px 10px"/>
+             
+
+        </div>
+        <hlayout>
+        <panel id="panelMain" maximizable="false" width="700px" height="700px" style="margin-bottom:50px" visible="true">
+        		  <panelchildren>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="false" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                    <row><label value="ИНФОРМАЦИЯ О КЛИЕНТЕ" style="color: blue; font-style:italic; font-size:17px; border-radius: 10px 10px" /></row>
+                                  <row><label value="Фамилия" style="font-style:italic; font-size:14px"/><textbox id="lastname" readonly="true"  mold="rounded"  value="@{client_mass_opening_residentmain$composer.current.lastname}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;  border-radius: 10px 10px"/></row>
+                                  <row><label value="Дата рождения " style="font-style:italic; font-size:14px"/><textbox id="date_birth" readonly="true" mold="rounded"  value="@{client_mass_opening_residentmain$composer.current.date_birth}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;   border-radius: 10px 10px"/></row>
+                                  <row><label value="Код организации" style="font-style:italic; font-size:14px" /><textbox id="code_organization" readonly="true" mold="rounded"  value="@{client_mass_opening_residentmain$composer.current.code_organization}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;  border-radius: 10px 10px"/></row>
+                                  <row><label value="Тип карты" style="font-style:italic; font-size:14px" /><textbox id="card_type"  mold="rounded" readonly="true" value="@{client_mass_opening_residentmain$composer.current.card_type}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;   border-radius: 10px 10px"/></row>
+                                  <row><label value="Телефон" style="font-style:italic; font-size:14px"/><textbox id="phone"  mold="rounded" readonly="true" value="@{client_mass_opening_residentmain$composer.current.phone}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;   border-radius: 10px 10px"/></row>
+                                  <row><label value="ПИНФЛ" style="font-style:italic; font-size:14px"/><textbox id="pinfl" mold="rounded" readonly="true" value="@{client_mass_opening_residentmain$composer.current.pinfl}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;   border-radius: 10px 10px"/></row>
+                                  <row><label value="ПАСПОРТ СЕРИЯ " style="font-style:italic; font-size:14px"/><textbox id="passport_series" mold="rounded" readonly="true" value="@{client_mass_opening_residentmain$composer.current.passport_series}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;   border-radius: 10px 10px"/></row>
+                                  <row><label value="ПАСПОРТ НОМЕР" style="font-style:italic; font-size:14px"/><textbox id="passport_number" mold="rounded" readonly="true" value="@{client_mass_opening_residentmain$composer.current.passport_number}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;   border-radius: 10px 10px"/></row>
+                                  
+                                  
+                                  <!-- ><row><label value="${labels.client_mass_opening_resident.status}" /><textbox id="status"  mold="rounded" readonly="true"  value="@{client_mass_opening_residentmain$composer.current.status}" /></row>
+                                  <row><label value="${labels.client_mass_opening_resident.responce}" /><textbox id="responce"  mold="rounded" visible="false" readonly="true" value="@{client_mass_opening_residentmain$composer.current.responce}" /></row>-->
+                                  <row><label value="Код группы" style="font-style:italic; font-size:14px"/><textbox id="acc_group"  mold="rounded" readonly="true" value="@{client_mass_opening_residentmain$composer.current.acc_group}" style="border: 1px solid #1E90FF; background-color: #EFEDE7;   border-radius: 10px 10px"/></row>
+                                  <row><label value="Код ошибки" style="font-style:italic; font-size:14px"/><textbox id="id_message"  mold="rounded" multiline="true" rows="6" readonly="true" style="border: 1px solid #1E90FF; background-color: #EFEDE7;  border-radius: 10px 10px"/></row>
+                          </rows>
+                  
+                  </grid>
+                  
+                  </div>
+                  
+                  </panelchildren>
+                  
+                  </panel>
+                  <panel id="panelInfo" maximizable="false" width="700px" height="700px" style="margin-bottom:0px" visible="true">
+                  <panelchildren>
+                  <grid id="frmgrd1" ctrlKeys="^e#up#down"
+                          visible="false" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                             <row><label value="ДЕЙСТВИЯ" style="background-color: #F8F9F9; font-style:italic; font-size:17px; border-radius: 10px 10px"/></row>
+                             
+                    		 <row><button id="btn_client" visible="true" label="Открыть клиента" style="border: 1px solid #1E90FF; background-color: #EFEDE7;  font-style:italic;font-size:14px; border-radius: 10px 10px"/> </row>
+                      		 <row><label value="Протокол открытия клиента" style="font-style:italic; font-size:16px" /><textbox id="protocol_client"  mold="rounded" multiline="true" rows="6" readonly="true"/></row>
+                             <row><button id="btn_score" visible="true" label="Открыть счет"  style="border: 1px solid #1E90FF; background-color: #EFEDE7;  font-style:italic;font-size:14px; border-radius: 10px 10px"/></row>
+                             <row><label value="Протокол открытия счета" style="font-style:italic; font-size:16px" /><textbox id="protocol_score"  mold="rounded" multiline="true" rows="6" readonly="true"/></row>
+                             <row><button id="btn_uzcard" visible="true" label="Открыть карту uzcard" style="border: 1px solid #1E90FF; background-color: #EFEDE7;  font-style:italic;font-size:14px; border-radius: 10px 10px" /></row>
+                             <row><label value="Протокол открытия узкард" style="font-style:italic; font-size:16px" /><textbox id="protocol_uzcard"  mold="rounded" multiline="true" rows="6" readonly="true"/></row>
+                             <row><button id="btn_xumo" visible="true" label="Открыть карту humo"  style="border: 1px solid #1E90FF; background-color: #EFEDE7;  font-style:italic;font-size:14px; border-radius: 10px 10px"/></row>
+                             <row><label value="Протокол открытия хумо " style="font-style:italic; font-size:16px" /><textbox id="protocol_xumo"  mold="rounded" multiline="true" rows="6" readonly="true"/></row>
+                                  
+                  </rows>
+                  </grid>
+                  
+                  </panelchildren>
+                  </panel>
+                  </hlayout>
+                  
+                  
+                 
+
+                  <toolbar>
+                       <!--   <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" /> -->
+                          <toolbarbutton id="btn_cancel"
+                                  label="Отмена" image="/images/stop.png" style="border: 1px solid #FF0000;   color:#100720;font-style:italic;font-size:17px; border-radius: 10px 10px"/>
+                  </toolbar>
+
+</window>

@@ -1,0 +1,48 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="humoservicemain" width="100%" border="none"
+	apply="com.is.humo.service.HumoServiceViewCtrl" contentStyle="overflow: scroll;">
+	<tabbox>
+		<tabs>
+			<tab label="Данные карты" />
+			<tab label="Списание" visible="false"/>
+			<tab label="Сотрудники" visible="false"/>
+			<tab label="Пополнения" visible="false"/>
+			<tab label="REF NUMBER" visible="false"/>
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+			<hbox align="center">
+			<label value="Номер карты "></label>
+			<textbox id="cardNumber" mold="rounded" width="300px" style="text-align: center;" maxlength="16" constraint="/^[0-9]{16}"></textbox>
+			<label value="Дата с "></label>
+			<datebox id="dateFrom" mold="rounded" style="text-align: center;" constraint="no empty" format="dd-MM-yyyy"></datebox>
+			<label value="Дата по "></label>
+			<datebox id = "dateTo" mold="rounded" style="text-align: center;" constraint="no empty" format="dd-MM-yyyy"></datebox>
+			<button id="getCardHistory" mold="trendy" label="Искать"></button>
+			<button id="historyToExcel" mold="trendy" label="Сохранить в Excel" disabled="true"></button>
+			<hbox align="end">
+			<label id="cardBalance" value="Баланс карты: 0"/>
+			</hbox>
+			</hbox>
+			<div id="grd">
+                <listbox style="border:none" id="cardHistoryDataGrid" multiple="true" emptyMessage="Нет данных для отображения" rows="400" autopaging="true" sizedByContent="true">
+                        <listhead sizable="true">  
+                        		<listheader label="№" width="auto" align="center"/>
+                                <listheader label="Тип транзакции" width="auto" align="center"/>
+                                <listheader label="Код валюты" width="auto" align="center"/>
+                                <listheader label="Сумма транзакции" width="auto" align="center"/>
+                                <listheader label="Дата и время транзакции" width="auto" align="center"/>
+                                <listheader label="ID терминала" width="auto" align="center"/>
+                                <listheader label="Наименование торговца" width="auto" align="center"/>
+                                <listheader label="Уникальный номер транзакции" width="auto" align="center"/>
+                        </listhead>
+                </listbox>
+        </div>
+			</tabpanel>
+			<tabpanel>История карты</tabpanel>
+			<tabpanel>Сотрудники</tabpanel>
+			<tabpanel>Пополнения</tabpanel>
+			<tabpanel>REF NUMBER</tabpanel>
+		</tabpanels>
+	</tabbox>
+</window>

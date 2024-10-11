@@ -1,0 +1,169 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?component name="rcombobox" extends="combobox" class="org.sl.utils.RefCBox"?>
+<window id="cardonlinenfmessagemain" width="100%"  height="100%" border="normal" apply="com.is.callcentre.cardonlinenfmessage.CardOnlinenfMessageViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <!--  
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+				-->
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+                <paging id="cardOnlinenfMessagePaging" width="100%"/>
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="15" width="100%" height="420px"
+                        selectedItem="@{cardonlinenfmessagemain$composer.current}">
+                        <listhead sizable="true">
+                                <listheader label="${labels.callcentre.branch}" width="60px"/>
+                                <!--  
+                                <listheader label="${labels.callcentre.merchant_id}" />
+                                <listheader label="${labels.callcentre.terminal_id}" />
+                                <listheader label="${labels.callcentre.host_ip}" />
+                                <listheader label="${labels.callcentre.host_port}" />
+                                -->
+                                <listheader label="${labels.callcentre.stan}" width="80px"/>
+                                <!--  
+                                <listheader label="${labels.callcentre.message_type}" />
+                                -->
+                                <listheader label="${labels.callcentre.card_number}" width="120px"/>
+                                <!--  
+                                <listheader label="${labels.callcentre.exp_date}" />
+                                <listheader label="${labels.callcentre.amount}" />
+                                <listheader label="${labels.callcentre.operation_date}" />
+                                -->
+                                <listheader label="${labels.callcentre.operation_time}" width="130px"/>
+                                <listheader label="${labels.callcentre.hot_card_status}" />
+                                <listheader label="${labels.callcentre.response_code}" />
+                                <!--  
+                                <listheader label="${labels.callcentre.additional_data}" />
+                                <listheader label="${labels.callcentre.action_code}" />
+                                <listheader label="${labels.callcentre.processing_code}" />
+                                <listheader label="${labels.callcentre.state}" />
+                                <listheader label="${labels.callcentre.parent_id}" />
+                                <listheader label="${labels.callcentre.retrievalrefnumber}" />
+                                <listheader label="${labels.callcentre.user_id}" />
+                                -->
+                                <listheader label="${labels.callcentre.user_name}" />
+                        </listhead>
+                </listbox>
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true" height="450px">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+
+	                                  <row><label value="${labels.callcentre.branch}" /><textbox id="branch"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.branch}" /></row>
+	                                  <!--  
+	                                  <row><label value="${labels.callcentre.merchant_id}" /><textbox id="merchant_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.merchant_id}" /></row>
+	                                  <row><label value="${labels.callcentre.terminal_id}" /><textbox id="terminal_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.terminal_id}" /></row>
+	                                  <row><label value="${labels.callcentre.host_ip}" /><textbox id="host_ip"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.host_ip}" /></row>
+	                                  <row><label value="${labels.callcentre.host_port}" /><textbox id="host_port"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.host_port}" /></row>
+	                                  -->
+	                                  <row><label value="${labels.callcentre.stan}" /><longbox id="stan"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.stan}" /></row>
+	                                  <!--  
+	                                  <row><label value="${labels.callcentre.message_type}" /><textbox id="message_type"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.message_type}" /></row>
+	                                  -->
+	                                  <row><label value="${labels.callcentre.card_number}" /><textbox id="card_number"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.card_number}" /></row>
+	                                  <row><label value="${labels.callcentre.exp_date}" /><textbox id="exp_date"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.exp_date}" /></row>
+	                                  <row><label value="${labels.callcentre.amount}" /><longbox id="amount"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.amount}" /></row>
+	                                  <row><label value="${labels.callcentre.operation_date}" /><datebox id="operation_date"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.operation_date}" /></row>
+	                                  <row><label value="${labels.callcentre.operation_time}" /><datebox id="operation_time"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.operation_time}" /></row>
+	                                  <row><label value="${labels.callcentre.hot_card_status}" /><textbox id="hot_card_status"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.hot_card_status}" /></row>
+	                                  <row><label value="${labels.callcentre.response_code}" /><textbox id="response_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.response_code}" /></row>
+	                                  <row><label value="${labels.callcentre.additional_data}" /><textbox id="additional_data"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.additional_data}" /></row>
+	                                  <row><label value="${labels.callcentre.action_code}" /><longbox id="action_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.action_code}" /></row>
+	                                  <row><label value="${labels.callcentre.processing_code}" /><longbox id="processing_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.processing_code}" /></row>
+	                                  <row><label value="${labels.callcentre.state}" /><longbox id="state"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.state}" /></row>
+	                                  <!--  
+	                                  <row><label value="${labels.callcentre.parent_id}" /><longbox id="parent_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.parent_id}" /></row>
+	                                  -->
+	                                  <row><label value="${labels.callcentre.retrievalrefnumber}" /><textbox id="retrievalrefnumber"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.retrievalrefnumber}" /></row>
+	                                  <row><label value="${labels.callcentre.user_id}" /><longbox id="user_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.user_id}" /></row>
+	                                  <row><label value="${labels.callcentre.user_name}" /><textbox id="user_name"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.user_name}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+
+	                                  <row><label value="${labels.callcentre.branch}" /><textbox id="abranch"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.branch}" /></row>
+	                                  <row><label value="${labels.callcentre.merchant_id}" /><textbox id="amerchant_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.merchant_id}" /></row>
+	                                  <row><label value="${labels.callcentre.terminal_id}" /><textbox id="aterminal_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.terminal_id}" /></row>
+	                                  <row><label value="${labels.callcentre.host_ip}" /><textbox id="ahost_ip"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.host_ip}" /></row>
+	                                  <row><label value="${labels.callcentre.host_port}" /><textbox id="ahost_port"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.host_port}" /></row>
+	                                  <row><label value="${labels.callcentre.stan}" /><longbox id="astan"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.stan}" /></row>
+	                                  <row><label value="${labels.callcentre.message_type}" /><textbox id="amessage_type"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.message_type}" /></row>
+	                                  <row><label value="${labels.callcentre.card_number}" /><textbox id="acard_number"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.card_number}" /></row>
+	                                  <row><label value="${labels.callcentre.exp_date}" /><textbox id="aexp_date"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.exp_date}" /></row>
+	                                  <row><label value="${labels.callcentre.amount}" /><longbox id="aamount"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.amount}" /></row>
+	                                  <row><label value="${labels.callcentre.operation_date}" /><datebox id="aoperation_date"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.operation_date}" /></row>
+	                                  <row><label value="${labels.callcentre.operation_time}" /><datebox id="aoperation_time"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.operation_time}" /></row>
+	                                  <row><label value="${labels.callcentre.response_code}" /><textbox id="aresponse_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.response_code}" /></row>
+	                                  <row><label value="${labels.callcentre.additional_data}" /><textbox id="aadditional_data"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.additional_data}" /></row>
+	                                  <row><label value="${labels.callcentre.action_code}" /><longbox id="aaction_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.action_code}" /></row>
+	                                  <row><label value="${labels.callcentre.processing_code}" /><longbox id="aprocessing_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.processing_code}" /></row>
+	                                  <row><label value="${labels.callcentre.state}" /><longbox id="astate"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.state}" /></row>
+	                                  <row><label value="${labels.callcentre.parent_id}" /><longbox id="aparent_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.parent_id}" /></row>
+	                                  <row><label value="${labels.callcentre.retrievalrefnumber}" /><textbox id="aretrievalrefnumber"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.retrievalrefnumber}" /></row>
+	                                  <row><label value="${labels.callcentre.user_id}" /><longbox id="auser_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.current.user_id}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+
+	                                  <row><label value="${labels.callcentre.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.branch}" /></row>
+	                                  <row><label value="${labels.callcentre.merchant_id}" /><textbox id="fmerchant_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.merchant_id}" /></row>
+	                                  <row><label value="${labels.callcentre.terminal_id}" /><textbox id="fterminal_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.terminal_id}" /></row>
+	                                  <row><label value="${labels.callcentre.host_ip}" /><textbox id="fhost_ip"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.host_ip}" /></row>
+	                                  <row><label value="${labels.callcentre.host_port}" /><textbox id="fhost_port"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.host_port}" /></row>
+	                                  <row><label value="${labels.callcentre.stan}" /><longbox id="fstan"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.stan}" /></row>
+	                                  <row><label value="${labels.callcentre.message_type}" /><textbox id="fmessage_type"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.message_type}" /></row>
+	                                  <row><label value="${labels.callcentre.card_number}" /><textbox id="fcard_number"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.card_number}" /></row>
+	                                  <row><label value="${labels.callcentre.exp_date}" /><textbox id="fexp_date"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.exp_date}" /></row>
+	                                  <row><label value="${labels.callcentre.amount}" /><longbox id="famount"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.amount}" /></row>
+	                                  <row><label value="${labels.callcentre.operation_date}" /><datebox id="foperation_date"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.operation_date}" /></row>
+	                                  <row><label value="${labels.callcentre.operation_time}" /><datebox id="foperation_time"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.operation_time}" /></row>
+	                                  <row><label value="${labels.callcentre.response_code}" /><textbox id="fresponse_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.response_code}" /></row>
+	                                  <row><label value="${labels.callcentre.additional_data}" /><textbox id="fadditional_data"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.additional_data}" /></row>
+	                                  <row><label value="${labels.callcentre.action_code}" /><longbox id="faction_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.action_code}" /></row>
+	                                  <row><label value="${labels.callcentre.processing_code}" /><longbox id="fprocessing_code"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.processing_code}" /></row>
+	                                  <row><label value="${labels.callcentre.state}" /><longbox id="fstate"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.state}" /></row>
+	                                  <row><label value="${labels.callcentre.parent_id}" /><longbox id="fparent_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.parent_id}" /></row>
+	                                  <row><label value="${labels.callcentre.retrievalrefnumber}" /><textbox id="fretrievalrefnumber"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.retrievalrefnumber}" /></row>
+	                                  <row><label value="${labels.callcentre.user_id}" /><longbox id="fuser_id"  mold="rounded"  value="@{cardonlinenfmessagemain$composer.filter.user_id}" /></row>
+                          </rows>
+                  </grid>
+<!--  
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+-->
+        </div>
+
+</window>

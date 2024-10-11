@@ -1,0 +1,314 @@
+<zk>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="file_reciever_main" width="100%" border="normal" 
+apply="com.is.cb_cash_requests.Requests_vc">
+<toolbar>
+	<label value="Филиал:"/>
+	<rcombobox id="menu_filer_branch" width="190px"/>
+	<label value="Дата"/>
+	<datebox id="menu_filter_date" width="190px"/>
+	<toolbarbutton image="/images/radar.png" id="refresh_tb"/>
+	<button label="Филиалы" id="branches"/>
+</toolbar>
+<toolbar>
+ 		<radiogroup id="filter_radio">
+            <radio id="r0" label="Все"/>
+            <radio id="r1" label="Принятые"/>
+            <radio id="r2" label="Сформированы шаблоны проводок"/>
+            <radio id="r3" label="Обработаны"/>
+        </radiogroup>
+</toolbar>
+<div height="1000px">
+	<listbox style="border:none" id="requests_grid" multiple="true" width="100%">
+	        <listhead sizable="true">
+	        	<listheader label="id" width="90px"/>
+	        	<listheader label="Уникальный номер распоряжения" width="220px"/>
+	        	<listheader label="Филиал" width="60px"/>
+	        	<listheader label="Сумма" width="200px"/>
+	        	<listheader width="120px"/>
+	        	<listheader label="Ошибка" width="200px"/>
+	        	<listheader label="Отгрузка" width="80px"/>
+	        	<listheader label="Сумма описей" width="200px"/>
+	        	<listheader label="Опись" width="80px"/>
+	        	<listheader width="100%"/>
+	        </listhead>
+	</listbox>
+</div>
+<window id="show_details_wnd" mode="overlapped" maximizable="true" width="950px"  height="550px" 
+	position="center,center" visible="false" closable="true"
+	onClose="self.visible = false; event.stopPropagation();"
+	title="Подробности">
+		<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true" width="100%">
+             <columns>
+                     <column width="200px" />
+                     <column width="100%" />
+             </columns>
+             <rows>
+                     <row>
+                     	<label value="id"/>
+                     	<textbox id="id"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Уникальный номер распоряжения"/>
+                     	<textbox id="CB_REQUEST_NUMBER"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Код вида распоряжения"/>
+                     	<textbox id="REQUEST_TYPE_CODE"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Дата операционного дня"/>
+                     	<textbox id="OPER_DAY"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Код отделения банка получателя средств"/>
+                     	<textbox id="RECIEVER_BANK_CODE"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Код отделения банка, получателя распоряжения"/>
+                     	<textbox id="REQUEST_BANK_CODE"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Номер распоряжения"/>
+                     	<textbox id="REQUEST_NUMBER"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Дата распоряжения"/>
+                     	<textbox id="REQUEST_DATE"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Сумма вложения"/>
+                     	<textbox id="AMOUNT"  mold="rounded" readonly="true"/>
+                     </row>
+                     <row>
+                     	<label value="Дополнительная информация"/>
+                     	<textbox id="ADDITIONAL_INFO"  mold="rounded" readonly="true" rows="3"/>
+                     </row>
+             </rows>
+        </grid>
+	</window>
+	
+<window id="reversals_wnd" mode="overlapped" maximizable="true" width="950px"  height="550px" 
+	position="center,center" visible="false" closable="true"
+	onClose="self.visible = false; event.stopPropagation();"
+	title="Отзывы">
+	
+	<listbox style="border:none" id="reverasls_grid" multiple="true" height="100%" width="100%">
+	        <listhead sizable="true">
+	        	<listheader label="id" width="90px"/>
+	        	<listheader label="Уникальный номер распоряжения" width="300px"/>
+	        	<listheader label="Сумма" width="150px"/>
+	        	<listheader width="100%"/>
+	        </listhead>
+	</listbox>
+	
+</window>
+
+<window id="branches_stat_wnd" mode="overlapped" maximizable="true" width="950px"  height="550px" 
+	position="center,center" visible="false" closable="true"
+	onClose="self.visible = false; event.stopPropagation();"
+	title="Филиалы">
+	<toolbar>
+		<toolbarbutton image="/images/radar.png" id="refresh_tb"/>
+	</toolbar>
+	<listbox style="border:none" id="branhes_grid" multiple="true" height="100%" width="100%">
+	        <listhead sizable="true">
+	        	<listheader label="Филиал" width="200px"/>
+	        	<listheader label="Приняты" width="100px"/>
+	        	<listheader label="Сформированы проводки" width="100%"/>
+	        </listhead>
+	</listbox>
+	
+</window>
+
+<window id="inventory_wnd" mode="modal" maximizable="true" width="950px"  height="550px" 
+	position="center,center" visible="false" closable="true"
+	onClose="self.visible = false; event.stopPropagation();"
+	title="Описи">
+	<div id="list_div" width="100%">
+	<toolbar>
+		<toolbarbutton id="add_btn" image="/images/+.png" label="Новая опись"/>
+	</toolbar>
+	<listbox style="border:none" id="inventory_grid" multiple="true" height="100%" width="100%">
+	        <listhead sizable="true">
+	        	<listheader label="id" width="60px"/>
+	        	<listheader label="дата" width="100px"/>
+	        	<listheader label="сумма" width="200px"/>
+	        	<listheader label="файл" width="100%"/>
+	        	<listheader label="Время отправки" width="150px"/>
+	        	<listheader label="Cумма подтверждений" width="200px"/>
+	        </listhead>
+	</listbox>
+	</div>
+	<div id="new_div" visible="false" width="100%">
+		<tabbox height="470px">
+			<tabs>
+				<tab label="Общие"/>
+				<tab label="Монеты и купюры"/>
+				<tab label="Доверенные лица"/>
+			</tabs>
+			<tabpanels>
+				<tabpanel height="100%">
+					<grid id="basic_grd" ctrlKeys="^e#up#down" visible="true" width="100%">
+						<columns>
+							<column width="200px" />
+							<column width="100%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="Номер доверенности"/>
+								<textbox id="add_TRUST_NUM"  mold="rounded"/>
+							</row>
+							<row>
+								<label value="Дата доверенности"/>
+								<datebox id="add_TRUST_DATE"  mold="rounded"/>
+							</row>
+							<row>
+								<label value="Номер описи"/>
+								<textbox id="add_doc_num"  mold="rounded"/>
+							</row>
+							<row>
+								<label value="Сумма"/>
+								<textbox id="add_amount"  mold="rounded" readonly="true"/>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel height="100%">
+					<toolbar>
+						<toolbarbutton id="add_cash" label="Добавить" image="/images/+.png"/>
+					</toolbar>
+					<listbox style="border:none" id="add_cash_grid" multiple="true" height="100%" width="100%">
+					        <listhead sizable="true">
+					        	<listheader label="Тип" width="100px"/>
+					        	<listheader label="Номинал" width="100px"/>
+					        	<listheader label="Состояние" width="100px"/>
+					        	<listheader label="Сумма" width="200px"/>
+					        	<listheader label="Удалить" width="100%"/>
+					        </listhead>
+					</listbox>
+				</tabpanel>
+				<tabpanel height="100%">
+					<toolbar>
+						<toolbarbutton id="add_person" label="Добавить" image="/images/+.png"/>
+					</toolbar>
+					<listbox style="border:none" id="add_person_grid" multiple="true" height="100%" width="100%">
+					        <listhead sizable="true">
+					        	<listheader label="Вид документа" width="250px"/>
+					        	<listheader label="Серия" width="50px"/>
+					        	<listheader label="Номер" width="100px"/>
+					        	<listheader label="Дата выдачи" width="100px"/>
+					        	<listheader label="ФИО" width="100%"/>
+					        	<listheader label="Удалить" width="100px"/>
+					        </listhead>
+					</listbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		<toolbar>
+			<toolbarbutton id="save_new" label="Отправить" image="/images/front1.png"/>
+			<toolbarbutton id="cancel_new" label="Отмена" image="/images/delete.png"/>
+		</toolbar>
+	</div>
+	
+</window>
+
+<window id="add_inventory_cash_wnd" mode="modal" maximizable="true" width="450px"  height="220px" 
+	position="center,center" visible="false" closable="true"
+	onClose="self.visible = false; event.stopPropagation();"
+	title="Добавление монет/купюр">
+	
+	<grid ctrlKeys="^e#up#down" visible="true" width="100%">
+		<columns>
+			<column width="200px" />
+			<column width="100%" />
+		</columns>
+		<rows>
+			<row>
+				<label value="Тип"/>
+				<rcombobox id="cash_type"  mold="rounded"/>
+			</row>
+			<row>
+				<label value="Номинал"/>
+				<rcombobox id="cash_note"  mold="rounded"/>
+			</row>
+			<row>
+				<label value="Состояние"/>
+				<rcombobox id="cash_state"  mold="rounded"/>
+			</row>
+			<row>
+				<label value="Сумма"/>
+				<textbox id="cash_amount"  mold="rounded"/>
+			</row>
+		</rows>
+	</grid>
+	
+	<toolbar>
+		<toolbarbutton image="/images/save.png" id="save_tb" label="Сохранить"/>
+		<toolbarbutton image="/images/delete.png" id="cancel_tb" label="Отмена"/>
+	</toolbar>
+	
+</window>
+
+
+<window id="add_person_cash_wnd" mode="modal" maximizable="true" width="550px"  height="250px" 
+	position="center,center" visible="false" closable="true"
+	onClose="self.visible = false; event.stopPropagation();"
+	title="Добавление Доверенных лиц">
+	
+	<grid ctrlKeys="^e#up#down" visible="true" width="100%">
+		<columns>
+			<column width="200px" />
+			<column width="100%" />
+		</columns>
+		<rows>
+			<row>
+				<label value="Вид документа"/>
+				<rcombobox id="doc_type"  mold="rounded" width="100%"/>
+			</row>
+			<row>
+				<label value="Серия"/>
+				<textbox id="doc_serial"  mold="rounded"/>
+			</row>
+			<row>
+				<label value="Номер"/>
+				<textbox id="doc_number"  mold="rounded"/>
+			</row>
+			<row>
+				<label value="Дата выдачи"/>
+				<datebox id="doc_given"  mold="rounded"/>
+			</row>
+			<row>
+				<label value="ФИО"/>
+				<textbox id="person_name"  mold="rounded" width="100%"/>
+			</row>
+		</rows>
+	</grid>
+	
+	<toolbar>
+		<toolbarbutton image="/images/save.png" id="save_tb" label="Сохранить"/>
+		<toolbarbutton image="/images/delete.png" id="cancel_tb" label="Отмена"/>
+	</toolbar>
+	
+</window>
+
+<window id="inventory_approval_wnd" mode="modal" maximizable="true" width="950px"  height="600px" 
+	position="center,center" visible="false" closable="true"
+	onClose="self.visible = false; event.stopPropagation();"
+	title="Подтверждения принятия нал. средств">
+	<div id="list_div" width="100%">
+		<listbox style="border:none" id="inventory_grid" multiple="true" height="100%" width="100%">
+		        <listhead sizable="true">
+		        	<listheader label="id" width="60px"/>
+		        	<listheader label="номер описи отправителя" width="100px"/>
+		        	<listheader label="дата описи" width="200px"/>
+		        	<listheader label="файл" width="100%"/>
+		        	<listheader label="время принятия" width="150px"/>
+		        </listhead>
+		</listbox>
+	</div>
+	
+</window>
+
+</window>
+</zk>

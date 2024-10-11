@@ -1,0 +1,210 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="debetmain" width="100%"  height="550px" border="normal" apply="com.is.tf.debet.DebetViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="debetPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{debetmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.debet.id}" width="50px" />
+                                <listheader label="${labels.debet.p0t24}" width="200px"  visible="false"/>
+                                <listheader label="${labels.debet.p1t24}" width="200px" />
+                                <listheader label="${labels.debet.p2t24}" width="200px" />
+                                <listheader label="${labels.debet.p3t24}" width="200px" />
+                                <listheader label="${labels.debet.p4t24}" width="200px" />
+                                <listheader label="${labels.debet.p5t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p6t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p7t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p8t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p9t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p10t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p11t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p12t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p13t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p14t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p15t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p16t24}" width="200px" />
+                                <listheader label="${labels.debet.p17t24}" width="200px" />
+                                <listheader label="${labels.debet.p18t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p19t24}" width="200px" visible="false"/>
+                                <listheader label="${labels.debet.p20t24}" width="200px" />
+                                <listheader label="${labels.debet.p100t24}" width="200px" visible="false"/>
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+         <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.debet.id}" /><textbox id="id"  mold="rounded"  value="@{debetmain$composer.current.id}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.debet.p0t24}" /><textbox id="p0t24"  mold="rounded"  value="@{debetmain$composer.current.p0t24}" /></row>
+                                   -->
+                                  <row><label value="${labels.debet.p1t24}" /><decimalbox id="p1t24"  mold="rounded" width="240px" disabled="true" value="@{debetmain$composer.current.p1t24}" format="######## ######### ## # #####"/></row>
+                                  <row><label value="${labels.debet.p16t24}" /><datebox id="p16t24"  mold="rounded"  value="@{debetmain$composer.current.p16t24}" /></row>
+                                  <row><label value="${labels.debet.p14t24}" />
+                                  <hbox>
+                                  <decimalbox id="p14t24" maxlength="20" mold="rounded"  value="@{debetmain$composer.current.p14t24}" format="### ### ### ##0.00" />
+                                  <label id="conr_val1"  width="70px"/>
+                                  </hbox>
+                                  </row>
+                                  
+                                  <row><label value="${labels.debet.p15t24}" />
+                                  <hbox>
+                                  <decimalbox id="p15t24" maxlength="20" mold="rounded"  value="@{debetmain$composer.current.p15t24}" format="### ### ### ##0.00"/>
+                                 <label id="conr_val2"  width="70px"/>
+                                 </hbox>
+                                  </row>
+                                  <row><label value="${labels.debet.p2t24}" /><rcombobox id="p2t24"  mold="rounded"  selecteditem="@{debetmain$composer.current.p2t24}" /></row>
+                                  <row><label value="${labels.debet.p3t24}" /><decimalbox id="p3t24" maxlength="20" mold="rounded"  value="@{debetmain$composer.current.p3t24}" format="### ### ### ##0.00"/></row>
+                                  <row><label value="${labels.debet.p4t24}" /><rcombobox id="p4t24"  mold="rounded" width="300px"  selecteditem="@{debetmain$composer.current.p4t24}" /></row>
+                                  <row id="row_p5t24" visible="false"><label value="${labels.debet.p5t24}" /><textbox id="p5t24" maxlength="100" mold="rounded"  value="@{debetmain$composer.current.p5t24}" /></row>
+                                  <row id="row_p6t24" visible="false"><label value="${labels.debet.p6t24}" /><textbox id="p6t24" maxlength="10" mold="rounded"  value="@{debetmain$composer.current.p6t24}" /></row>
+                                  <row id="row_p7t24" visible="false"><label value="${labels.debet.p7t24}" /><datebox id="p7t24"  mold="rounded"  value="@{debetmain$composer.current.p7t24}" /></row>
+                                  <row id="row_p8t24" visible="false"><label value="${labels.debet.p8t24}" /><textbox id="p8t24" maxlength="100" mold="rounded"  value="@{debetmain$composer.current.p8t24}" /></row>
+                                  <row id="row_p9t24" visible="false"><label value="${labels.debet.p9t24}" /><textbox id="p9t24" maxlength="10" mold="rounded"  value="@{debetmain$composer.current.p9t24}" /></row>
+                                  <row id="row_p10t24" visible="false"><label value="${labels.debet.p10t24}" /><textbox id="p10t24"  mold="rounded"  value="@{debetmain$composer.current.p10t24}" /></row>
+                                  <row id="row_p11t24" visible="false"><label value="${labels.debet.p11t24}" /><textbox id="p11t24" maxlength="10" mold="rounded"  value="@{debetmain$composer.current.p11t24}" /></row>
+                                  <row id="row_p12t24" visible="false"><label value="${labels.debet.p12t24}" /><datebox id="p12t24"  mold="rounded"  value="@{debetmain$composer.current.p12t24}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.debet.p13t24}" /><textbox id="p13t24"  mold="rounded"  value="@{debetmain$composer.current.p13t24}" /></row>
+                                   -->
+                                  
+                                  
+                                  
+                                  
+                                  
+                                <!-- 
+                                  <row><label value="${labels.debet.id_contract}" /><textbox id="id_contract"  mold="rounded"  value="@{debetmain$composer.current.id_contract}" /></row>
+                                   -->
+                                  <row><label value="${labels.debet.p17t24}" /><textbox id="p17t24" disabled="true" mold="rounded"  value="@{debetmain$composer.current.p17t24}" /></row>
+                                   <!--
+                                  <row><label value="${labels.debet.p18t24}" /><textbox id="p18t24"  mold="rounded"  value="@{debetmain$composer.current.p18t24}" /></row>
+                                  <row><label value="${labels.debet.p19t24}" /><textbox id="p19t24"  mold="rounded"  value="@{debetmain$composer.current.p19t24}" /></row>
+                                  <row><label value="${labels.debet.p20t24}" /><textbox id="p20t24"  mold="rounded"  value="@{debetmain$composer.current.p20t24}" /></row>
+                                  <row><label value="${labels.debet.p100t24}" /><textbox id="p100t24"  mold="rounded"  value="@{debetmain$composer.current.p100t24}" /></row>
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                   <!-- 
+                                  <row><label value="${labels.debet.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debet.p0t24}" /><textbox id="ap0t24"  mold="rounded"  /></row>
+                                   -->
+                                  <row><label value="${labels.debet.p1t24}" /><decimalbox disabled="true" id="ap1t24" width="240px"  mold="rounded" value="@{debetmain$composer.current.p1t24}" format="######## ######### ## # #####" /></row>
+                                  <row><label value="${labels.debet.p16t24}" /><datebox id="ap16t24"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debet.p14t24}" />
+                                  <hbox>
+                                  <decimalbox id="ap14t24" maxlength="20" format="### ### ### ##0.00" mold="rounded"  />
+                                  <label id="aconr_val1"  width="70px"/>
+                                  </hbox>
+                                  </row>
+                                  
+                                  <row><label value="${labels.debet.p15t24}" />
+                                  <hbox>
+                                  <decimalbox id="ap15t24" maxlength="20" format="### ### ### ##0.00" mold="rounded"  />
+                                  <label id="aconr_val2"  width="70px"/>
+                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.debet.p2t24}" /><rcombobox id="ap2t24"  mold="rounded" /></row>
+                                  <row><label value="${labels.debet.p3t24}" /><decimalbox maxlength="20" id="ap3t24"  mold="rounded"  format="### ### ### ##0.00" /></row>
+                                  <row><label value="${labels.debet.p4t24}" /><rcombobox id="ap4t24" width="300px" mold="rounded"  /></row>
+                                  <row id="row_ap5t24" visible="false"><label value="${labels.debet.p5t24}" /><textbox id="ap5t24"  mold="rounded"  /></row>
+                                  <row id="row_ap6t24" visible="false"><label value="${labels.debet.p6t24}" /><textbox id="ap6t24"  mold="rounded"  /></row>
+                                  <row id="row_ap7t24" visible="false"><label value="${labels.debet.p7t24}" /><textbox id="ap7t24"  mold="rounded"  /></row>
+                                  <row id="row_ap8t24" visible="false"><label value="${labels.debet.p8t24}" /><textbox id="ap8t24"  mold="rounded"  /></row>
+                                  <row id="row_ap9t24" visible="false"><label value="${labels.debet.p9t24}" /><textbox id="ap9t24"  mold="rounded"  /></row>
+                                  <row id="row_ap10t24" visible="false"><label value="${labels.debet.p10t24}" /><textbox id="ap10t24"  mold="rounded"  /></row>
+                                  <row id="row_ap11t24" visible="false"><label value="${labels.debet.p11t24}" /><textbox id="ap11t24"  mold="rounded"  /></row>
+                                  <row id="row_ap12t24" visible="false"><label value="${labels.debet.p12t24}" /><textbox id="ap12t24"  mold="rounded"  /></row>
+                                  <!-- 
+                                  <row><label value="${labels.debet.p13t24}" /><textbox id="ap13t24"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debet.id_contract}" /><textbox id="aid_contract"  mold="rounded"  /></row>
+                                  -->
+                                  <row><label value="${labels.debet.p17t24}" /><textbox disabled="true" id="ap17t24"  mold="rounded"  /></row>
+                                  <!--
+                                  <row><label value="${labels.debet.p18t24}" /><textbox id="ap18t24"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debet.p19t24}" /><textbox id="ap19t24"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debet.p20t24}" /><textbox id="ap20t24"  mold="rounded"  /></row>
+                                  <row><label value="${labels.debet.p100t24}" /><textbox id="ap100t24"  mold="rounded"  /></row>
+                                  -->  
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.debet.id}" /><textbox id="fid"  mold="rounded"  value="@{debetmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.debet.p0t24}" /><textbox id="fp0t24"  mold="rounded"  value="@{debetmain$composer.filter.p0t24}" /></row>
+                                  <row><label value="${labels.debet.p1t24}" /><textbox id="fp1t24"  mold="rounded"  value="@{debetmain$composer.filter.p1t24}" /></row>
+                                  <row><label value="${labels.debet.p2t24}" /><rcombobox id="fp2t24"  mold="rounded"  value="@{debetmain$composer.filter.p2t24}" /></row>
+                                  <row><label value="${labels.debet.p3t24}" /><textbox id="fp3t24"  mold="rounded"  value="@{debetmain$composer.filter.p3t24}" /></row>
+                                  <row><label value="${labels.debet.p4t24}" /><textbox id="fp4t24"  mold="rounded"  value="@{debetmain$composer.filter.p4t24}" /></row>
+                                  <row><label value="${labels.debet.p5t24}" /><textbox id="fp5t24"  mold="rounded"  value="@{debetmain$composer.filter.p5t24}" /></row>
+                                  <row><label value="${labels.debet.p6t24}" /><textbox id="fp6t24"  mold="rounded"  value="@{debetmain$composer.filter.p6t24}" /></row>
+                                  <row><label value="${labels.debet.p7t24}" /><textbox id="fp7t24"  mold="rounded"  value="@{debetmain$composer.filter.p7t24}" /></row>
+                                  <row><label value="${labels.debet.p8t24}" /><textbox id="fp8t24"  mold="rounded"  value="@{debetmain$composer.filter.p8t24}" /></row>
+                                  <row><label value="${labels.debet.p9t24}" /><textbox id="fp9t24"  mold="rounded"  value="@{debetmain$composer.filter.p9t24}" /></row>
+                                  <row><label value="${labels.debet.p10t24}" /><textbox id="fp10t24"  mold="rounded"  value="@{debetmain$composer.filter.p10t24}" /></row>
+                                  <row><label value="${labels.debet.p11t24}" /><textbox id="fp11t24"  mold="rounded"  value="@{debetmain$composer.filter.p11t24}" /></row>
+                                  <row><label value="${labels.debet.p12t24}" /><textbox id="fp12t24"  mold="rounded"  value="@{debetmain$composer.filter.p12t24}" /></row>
+                                  <row><label value="${labels.debet.p13t24}" /><textbox id="fp13t24"  mold="rounded"  value="@{debetmain$composer.filter.p13t24}" /></row>
+                                  <row><label value="${labels.debet.p14t24}" /><textbox id="fp14t24"  mold="rounded"  value="@{debetmain$composer.filter.p14t24}" /></row>
+                                  <row><label value="${labels.debet.p15t24}" /><textbox id="fp15t24"  mold="rounded"  value="@{debetmain$composer.filter.p15t24}" /></row>
+                                  <row><label value="${labels.debet.p16t24}" /><textbox id="fp16t24"  mold="rounded"  value="@{debetmain$composer.filter.p16t24}" /></row>
+                                  <row><label value="${labels.debet.id_contract}" /><textbox id="fid_contract"  mold="rounded"  value="@{debetmain$composer.filter.id_contract}" /></row>
+                                  <row><label value="${labels.debet.p17t24}" /><textbox id="fp17t24"  mold="rounded"  value="@{debetmain$composer.filter.p17t24}" /></row>
+                                  <row><label value="${labels.debet.p18t24}" /><textbox id="fp18t24"  mold="rounded"  value="@{debetmain$composer.filter.p18t24}" /></row>
+                                  <row><label value="${labels.debet.p19t24}" /><textbox id="fp19t24"  mold="rounded"  value="@{debetmain$composer.filter.p19t24}" /></row>
+                                  <row><label value="${labels.debet.p20t24}" /><textbox id="fp20t24"  mold="rounded"  value="@{debetmain$composer.filter.p20t24}" /></row>
+                                  <row><label value="${labels.debet.p100t24}" /><textbox id="fp100t24"  mold="rounded"  value="@{debetmain$composer.filter.p100t24}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

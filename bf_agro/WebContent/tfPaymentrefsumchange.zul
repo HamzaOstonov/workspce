@@ -1,0 +1,161 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="paymentrefsumchangemain" width="100%"  height="100%" border="normal" apply="com.is.tf.paymentrefsumchange.PaymentrefsumchangeViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="paymentrefsumchangePaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{paymentrefsumchangemain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.paymentrefsumchange.id}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p0t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p1t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p2t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p3t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p4t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p5t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p6t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p7t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p8t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p9t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p10t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.id_contract}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p12t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p13t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p14t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p15t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p18t38}" width="200px" />
+                                <listheader label="${labels.paymentrefsumchange.p100t38}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <!-- 
+                                  <row><label value="${labels.paymentrefsumchange.id}" /><textbox id="id"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.id}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p0t38}" /><textbox id="p0t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p0t38}" /></row>
+                                   -->
+                                  <row><label value="${labels.paymentrefsumchange.p1t38}" /><textbox id="p1t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p1t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p4t38}" /><decimalbox id="p4t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p4t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p6t38}" /><textbox id="p6t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p6t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p14t38}" /><textbox id="p14t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p14t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p8t38}" /><textbox id="p8t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p8t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p10t38}" /><textbox id="p10t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p10t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p15t38}" /><textbox id="p15t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p15t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p18t38}" /><datebox id="p18t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p18t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p12t38}" /><decimalbox id="p12t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p12t38}" /></row>
+                                  <!--  
+                                  <row><label value="${labels.paymentrefsumchange.p2t38}" /><decimalbox id="p2t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p2t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p3t38}" /><decimalbox id="p3t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p3t38}" /></row>
+                                  
+                                  <row><label value="${labels.paymentrefsumchange.p5t38}" /><textbox id="p5t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p5t38}" /></row>
+                                  
+                                  <row><label value="${labels.paymentrefsumchange.p7t38}" /><textbox id="p7t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p7t38}" /></row>
+                                  
+                                  <row><label value="${labels.paymentrefsumchange.p9t38}" /><textbox id="p9t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p9t38}" /></row>
+                                  
+                                  <row><label value="${labels.paymentrefsumchange.id_contract}" /><textbox id="id_contract"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.id_contract}" /></row>
+                                  
+                                  <row><label value="${labels.paymentrefsumchange.p13t38}" /><textbox id="p13t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p13t38}" /></row>
+                                  -->
+                                  
+                                  
+                                  <row><label value="${labels.paymentrefsumchange.p100t38}" /><textbox id="p100t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.current.p100t38}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.paymentrefsumchange.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p0t38}" /><textbox id="ap0t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p1t38}" /><textbox id="ap1t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p2t38}" /><decimalbox id="ap2t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p3t38}" /><decimalbox id="ap3t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p4t38}" /><decimalbox id="ap4t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p5t38}" /><textbox id="ap5t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p6t38}" /><textbox id="ap6t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p7t38}" /><textbox id="ap7t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p8t38}" /><textbox id="ap8t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p9t38}" /><textbox id="ap9t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p10t38}" /><textbox id="ap10t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.id_contract}" /><textbox id="aid_contract"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p12t38}" /><decimalbox id="ap12t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p13t38}" /><textbox id="ap13t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p14t38}" /><textbox id="ap14t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p15t38}" /><textbox id="ap15t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p18t38}" /><datebox id="ap18t38"  mold="rounded"  /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p100t38}" /><textbox id="ap100t38"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.paymentrefsumchange.id}" /><textbox id="fid"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p0t38}" /><textbox id="fp0t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p0t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p1t38}" /><textbox id="fp1t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p1t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p2t38}" /><textbox id="fp2t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p2t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p3t38}" /><textbox id="fp3t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p3t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p4t38}" /><textbox id="fp4t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p4t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p5t38}" /><textbox id="fp5t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p5t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p6t38}" /><textbox id="fp6t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p6t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p7t38}" /><textbox id="fp7t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p7t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p8t38}" /><textbox id="fp8t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p8t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p9t38}" /><textbox id="fp9t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p9t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p10t38}" /><textbox id="fp10t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p10t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.id_contract}" /><textbox id="fid_contract"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.id_contract}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p12t38}" /><decimalbox id="fp12t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p12t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p13t38}" /><textbox id="fp13t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p13t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p14t38}" /><textbox id="fp14t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p14t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p15t38}" /><textbox id="fp15t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p15t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p18t38}" /><datebox id="fp18t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p18t38}" /></row>
+                                  <row><label value="${labels.paymentrefsumchange.p100t38}" /><textbox id="fp100t38"  mold="rounded"  value="@{paymentrefsumchangemain$composer.filter.p100t38}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

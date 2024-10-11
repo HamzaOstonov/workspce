@@ -1,0 +1,210 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="usermain"  border="normal" apply="com.is.user.UserViewCtrl"
+style="background-color:red;">
+        <toolbar id="tb">
+        
+       
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                        <!--  
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" visible="false" />
+-->
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="userPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{usermain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.user.id}" width="50px" />
+                                <listheader label="${labels.user.branch}" width="100px" />
+                                <listheader label="${labels.user.username}" width="150px" />
+                                <!-- 
+                                <listheader label="${labels.user.password}" width="200px" />
+                                <listheader label="${labels.user.salt}" width="200px" />
+                                 -->
+                                
+                                <listheader label="${labels.user.full_name}" width="200px" />
+                                <listheader label="${labels.user.title}" width="200px" />
+                                <!-- 
+                                <listheader label="${labels.user.secondname}" width="200px" />
+                                
+                                <listheader label="${labels.user.surname}" width="200px" />
+                                <listheader label="${labels.user.ptype}" width="200px" />
+                                <listheader label="${labels.user.pseries}" width="200px" />
+                                <listheader label="${labels.user.pnumber}" width="200px" />
+                                <listheader label="${labels.user.pauthority}" width="200px" />
+                                <listheader label="${labels.user.state}" width="200px" />
+                                 -->
+                        </listhead>
+
+                </listbox>
+
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          
+                         
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.user.branch}" /><rcombobox id="branch"  mold="rounded" selecteditem="@{usermain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.user.id}" /><textbox id="id"  mold="rounded"  value="@{usermain$composer.current.id}" /></row>
+                                  <row><label value="${labels.user.username}" /><textbox id="username"  mold="rounded"  value="@{usermain$composer.current.user_name}" /></row>
+                                  <!--  
+                                  <row><label value="${labels.user.password}" /><textbox id="password"  mold="rounded"  value="@{usermain$composer.current.password}" /></row>
+                                  <row><label value="${labels.user.subbranch}" /><rcombobox id="subbranch"  mold="rounded"  selecteditem="@{usermain$composer.current.subbranch}" /></row>
+                                  <row><label value="${labels.user.salt}" /><textbox id="salt"  mold="rounded"  value="@{usermain$composer.current.salt}" /></row>
+                                  -->
+                                  
+                                  <row><label value="${labels.user.firstname}" /><textbox id="firstname"  mold="rounded"  value="@{usermain$composer.current.full_name}" /></row>
+                                  <row><label value="${labels.user.secondname}" /><textbox id="secondname"  mold="rounded"  value="@{usermain$composer.current.title}" /></row>
+                                  <!--
+                                  <row><label value="${labels.user.surname}" /><textbox id="surname"  mold="rounded"  value="@{usermain$composer.current.surname}" /></row>
+                                  <row><label value="${labels.user.ptype}" /><rcombobox id="ptype"  mold="rounded"  selecteditem="@{usermain$composer.current.ptype}" /></row>
+                                  <row><label value="${labels.user.pseries}" /><textbox id="pseries"  mold="rounded"  value="@{usermain$composer.current.pseries}" /></row>
+                                  <row><label value="${labels.user.pnumber}" /><textbox id="pnumber"  mold="rounded"  value="@{usermain$composer.current.pnumber}" /></row>
+                                  <row><label value="${labels.user.pauthority}" /><textbox id="pauthority"  mold="rounded"  value="@{usermain$composer.current.pauthority}" /></row>
+                                    
+                                  <row><label value="${labels.user.state}" /><textbox id="state"  mold="rounded"  value="@{usermain$composer.current.state}" /></row>
+                                  -->
+                          </rows>
+                  </grid>
+                  <!-- 
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.user.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.username}" /><textbox id="ausername"  mold="rounded"  /></row>
+                                  
+                                  <row><label value="${labels.user.password}" /><textbox id="apassword"  mold="rounded"  /></row>
+                                  
+                                  <row><label value="${labels.user.salt}" /><textbox id="asalt"  mold="rounded"  /></row>
+                                  
+                                  <row><label value="${labels.user.branch}" /><rcombobox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.subbranch}" /><rcombobox id="asubbranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.firstname}" /><textbox id="afirstname"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.secondname}" /><textbox id="asecondname"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.surname}" /><textbox id="asurname"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.ptype}" /><rcombobox id="aptype"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.pseries}" /><textbox id="apseries"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.pnumber}" /><textbox id="apnumber"  mold="rounded"  /></row>
+                                  <row><label value="${labels.user.pauthority}" /><textbox id="apauthority"  mold="rounded"  /></row>
+                                 
+                                  <row><label value="${labels.user.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                 
+                          </rows>
+                  </grid>
+                   -->
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                        
+                          
+                          <rows>
+                                  
+                                <!-- <row><label value="${labels.user.id}" /><textbox id="fid"  mold="rounded"  value="@{usermain$composer.filter.id}" /></row>-->
+                                  <row>
+                                  
+                                  <label value="${labels.user.branch}" />
+	                                  <hbox>
+	                                  		<textbox mold="rounded"  value="@{usermain$composer.filter.branch}" width="50px" />
+	                                  
+	                                  		<rcombobox id="fbranch"  mold="rounded"  selecteditem="@{usermain$composer.filter.branch}" width="400px" />
+                                  	  </hbox>
+                                  </row>
+                                  <row><label value="${labels.user.username}" /><textbox id="fusername"  mold="rounded"  value="@{usermain$composer.filter.user_name}" /></row>
+                                <!--   
+                                  <row><label value="${labels.user.password}" /><textbox id="fpassword"  mold="rounded"  value="@{usermain$composer.filter.password}" /></row>
+                                  <row><label value="${labels.user.salt}" /><textbox id="fsalt"  mold="rounded"  value="@{usermain$composer.filter.salt}" /></row>
+                                  <row><label value="${labels.user.subbranch}" /><rcombobox id="fsubbranch"  mold="rounded"  selecteditem="@{usermain$composer.filter.subbranch}" /></row>
+                                
+                                 --> 
+                                  
+                                  <row><label value="${labels.user.firstname}" /><textbox id="ffirstname"  mold="rounded"  value="@{usermain$composer.filter.full_name}" /></row>
+                                  <!-- <row><label value="${labels.user.secondname}" /><textbox id="fsecondname"  mold="rounded"  value="@{usermain$composer.filter.secondname}" /></row>
+                                  
+                                  <row><label value="${labels.user.surname}" /><textbox id="fsurname"  mold="rounded"  value="@{usermain$composer.filter.surname}" /></row>
+                                  <row><label value="${labels.user.ptype}" /><rcombobox id="fptype"  mold="rounded"  selecteditem="@{usermain$composer.filter.ptype}" /></row>
+                                  <row><label value="${labels.user.pseries}" /><textbox id="fpseries"  mold="rounded"  value="@{usermain$composer.filter.pseries}" /></row>
+                                  <row><label value="${labels.user.pnumber}" /><textbox id="fpnumber"  mold="rounded"  value="@{usermain$composer.filter.pnumber}" /></row>
+                                  <row><label value="${labels.user.pauthority}" /><textbox id="fpauthority"  mold="rounded"  value="@{usermain$composer.filter.pauthority}" /></row>
+                                    
+                                  <row><label value="${labels.user.state}" /><textbox id="fstate"  mold="rounded"  value="@{usermain$composer.filter.state}" /></row>
+                                  -->
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_role"
+                                  label="${labels.user.role}" image="/images/uses.png" /> 
+                                  <!--   
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+
+-->
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.search}" image="/images/search.png" />
+<!-- 
+                          <toolbarbutton id="btn_pwd"
+                                  label="${labels.user.chpwd}" image="/images/uses.png" />     
+                                  -->  
+                  </toolbar>
+        </div>
+        
+<window id="pwdwnd"  title="${labels.user.chpwd}" border="normal" width="438px" 
+         position="center,center" mode="popup" visible="false"> 
+
+<grid id="pwdgrd"><rows>
+  <row><label value = "${labels.user.newpwd}"/><textbox id="newpwd"  mold="rounded" type="password" constraint="no empty: "/></row>
+  <row><label value = "${labels.user.newpwd1}"/><textbox id="newpwd1"  mold="rounded" type="password" constraint="no empty: "/></row>                                     
+</rows></grid>
+<toolbar>
+<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+</toolbar>
+</window>                
+        
+<window id="rlwnd"  closable="true" onClose="self.visible = false; event.stopPropagation();"
+                title="${labels.user.rlwnd}" border="normal" width="438px" 
+         position="center,center" mode="popup" visible="false">
+        <hlayout>
+           <vlayout>
+           <label value = "${labels.user.avrole}" />
+           <listbox id="left" height="250px" width="200px" droppable="true"  />
+           </vlayout>
+           <separator orient="vertical" spacing="8px" />
+           <vlayout>
+           <label value = "${labels.user.usrole}" />
+           <listbox id="right" height="250px" width="200px" droppable="true"  />
+           </vlayout>
+        </hlayout>
+</window>        
+        
+
+</window>

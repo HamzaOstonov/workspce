@@ -1,0 +1,477 @@
+<window id="newcl_wnd" border="none" width="1000px" mode="modal"
+		title="Открытие нового клиента" position="center,center"
+		visible="false" closable="true"
+		apply="com.is.clients.clientj.newclient.NewCliientCiewCtrl"
+		onClose="self.visible = false; event.stopPropagation();">
+		
+		<div>
+			<groupbox>
+				<grid id="new1" ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+					</columns>
+					<rows>
+	
+						<row>
+							<label value="${labels.client.id_client}" />
+								<textbox id="aid_client" mold="rounded"
+								style="background:#f9d4d4" disabled="true" hflex="1" />
+							<label value="${labels.client.date_open}" />
+							<datebox id="adate_open" mold="rounded" disabled="true" hflex="1" />
+							<label value="${labels.client.date_close}" />
+							<datebox id="adate_close" mold="rounded" disabled="true" hflex="1" />
+							<label value="Дата создания по Уставу"/>
+							<datebox hflex="1"/>
+							<label value="${labels.client.state}" />
+								<rcombobox id="astate" mold="rounded" disabled="true" hflex="1" />
+						</row>
+	
+						<row>
+							<label value="${labels.client.name}" />
+							<cell colspan="6">
+								<textbox id="aname" mold="rounded"
+									style="background:#f9d4d4" hflex="1" />
+							</cell>
+							<label value="${labels.client.j_short_name}" />
+							<cell colspan="2">
+								<textbox id="aj_short_name" mold="rounded"
+									style="background:#f9d4d4"  hflex="1" />
+							</cell>
+						</row>
+	
+						<row>
+							<label value="${labels.client.code_country}" />
+							<textbox hflex="1" style="background:#f9d4d4"  id="acountryValue"/>
+							<cell colspan="2">
+								<rcombobox id="acode_country" mold="rounded"
+									style="background:#f9d4d4" hflex="1" />
+							</cell>
+							<label value="${labels.client.code_type}" />
+							<textbox hflex="1" style="background:#f9d4d4" id="atypeValue"/>
+							<cell colspan="2">
+								<rcombobox id="acode_type" mold="rounded"
+									style="background:#f9d4d4" hflex="1" />
+							</cell>
+							<label value="${labels.client.code_resident}" />
+							<rcombobox id="acode_resident" mold="rounded"
+								style="background:#f9d4d4"  hflex="1" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox>
+						<grid id="frm2" ctrlKeys="^e#up#down" visible="true">
+							<columns>
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+							</columns>
+							<rows>
+								<row>
+									<label
+										value="${labels.client.j_number_registration_doc}" />
+									<textbox disabled="true" id="j_number_registration_doc"
+										mold="rounded"
+										value="@{clientmain$composer.current.j_number_registration_doc}"
+										hflex="1" />
+									<label
+										value="${labels.client.j_date_registration}" />
+									<textbox disabled="true" id="j_date_registration" mold="rounded"
+										value="@{clientmain$composer.current.j_date_registration}"
+										hflex="1" />
+									<label
+										value="${labels.client.j_place_regist_name}" />
+									<cell colspan="6">
+										<textbox disabled="true" id="j_place_regist_name"
+											mold="rounded"
+											value="@{clientmain$composer.current.j_place_regist_name}"
+											hflex="1" />
+									</cell>
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+					<groupbox id="jView_frm">
+						<grid id="" ctrlKeys="^e#up#down" visible="true">
+							<columns>
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+							</columns>
+							<rows>
+								<row>
+									<label value="${labels.client.j_code_tax_org}" />
+									<textbox disabled="true" hflex="1" id="tax_orgValue" value="@{clientmain$composer.current.j_code_tax_org}"/>
+									<cell colspan="2">
+										<rcombobox  disabled="true" id="j_code_tax_org" mold="rounded"
+											selecteditem="@{clientmain$composer.current.j_code_tax_org}" hflex="1" />
+									</cell>
+									<label value="${labels.client.j_number_tax_registration}" />
+									<textbox disabled="true" id="j_number_tax_registration"
+										mold="rounded"
+										value="@{clientmain$composer.current.j_number_tax_registration}"
+										hflex="1" />
+									<label value="${labels.client.j_code_head_organization}" />
+									<textbox disabled="true" id="j_code_head_organization"
+										mold="rounded"
+										value="@{clientmain$composer.current.j_code_head_organization}"
+										hflex="1" />
+									<label value="${labels.client.j_inn_head_organization}" />
+									<textbox disabled="true" id="j_inn_head_organization"
+										mold="rounded"
+										value="@{clientmain$composer.current.j_inn_head_organization}"
+										hflex="1" />
+								</row>
+			
+								<row>
+									<label value="${labels.client.j_soato}" />
+									<textbox disabled="true" id="j_soato" mold="rounded"
+										value="@{clientmain$composer.current.j_soato}" hflex="1" />
+									<label value="${labels.client.j_okpo}" />
+									
+									<textbox disabled="true" id="j_okpo" mold="rounded"
+										value="@{clientmain$composer.current.j_okpo}" hflex="1" />
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+					<groupbox id="ipView_frm">
+						<grid id="" ctrlKeys="^e#up#down" visible="true">
+							<columns>
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+							</columns>
+							<rows>
+								<row>
+									<label value="${labels.client.j_code_tax_org}" />
+									<textbox id="itax_orgValue"
+												mold="rounded" hflex="1" disabled="true" 
+												value="@{clientmain$composer.current.j_code_tax_org}"/>
+									<cell colspan="2">
+										<rcombobox id="i_code_tax_org"
+											mold="rounded" hflex="1" disabled="true" 
+											selecteditem="@{clientmain$composer.current.j_code_tax_org}"/>
+									</cell>
+									<label value="${labels.client.j_number_tax_registration}" />
+									<textbox id="i_number_tax_registration"
+										mold="rounded" hflex="1" disabled="true" 
+										value="@{clientmain$composer.current.j_number_tax_registration}"/>
+									<label value="${labels.client.p_code_gender}" />
+									<textbox id="i_genderValue"
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_code_gender}"/>
+									<cell colspan="2">
+										<rcombobox id="i_code_gender"
+											mold="rounded" hflex="1" disabled="true"
+											selecteditem="@{clientmain$composer.current.p_code_gender}"/>
+									</cell>
+								</row>
+								<row>
+									<label value="${labels.client.p_birthday}" />
+									<datebox id="i_birthday"
+												mold="rounded" hflex="1"  disabled="true"
+												value="@{clientmain$composer.current.p_birthday}"/>
+									<label value="${labels.client.p_type_document}" />
+									<textbox id="i_type_docValue"
+												mold="rounded" hflex="1" disabled="true"
+												value="@{clientmain$composer.current.p_type_document}"/>
+									<cell colspan="2">
+										<rcombobox id="i_type_document" 
+											mold="rounded" hflex="1" disabled="true"
+											selecteditem="@{clientmain$composer.current.p_type_document}"/>
+									</cell>
+									<label value="${labels.client.p_passport_serial}" />
+									<textbox id="i_passport_serial"
+												mold="rounded" hflex="1" disabled="true"
+												value="@{clientmain$composer.current.p_passport_serial}"/>
+									<label value="${labels.client.p_passport_number}" />
+									<textbox id="i_passport_number"
+												mold="rounded" hflex="1" disabled="true"
+												value="@{clientmain$composer.current.p_passport_number}"/>
+								</row>
+								<row>
+									<label value="${labels.client.p_passport_date_registration}" />
+									<datebox id="i_passport_date_registration"
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_passport_date_registration}"/>
+									<label value="${labels.client.p_passport_date_expiration}" />
+									<datebox id="i_passport_date_expiration"
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_passport_date_expiration}"/>
+									<label value="${labels.client.p_passport_place_registration}" />
+									<cell colspan="5">
+										<textbox id="i_passport_place_registrationt" 
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_passport_place_registration}"/>
+									</cell>
+									
+								</row>
+								<row>
+									<label value="${labels.client.p_post_address}" />
+									<textbox id="i_adr_regionValue"
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_code_adr_region}"/>
+									<cell colspan="2">
+										<rcombobox id="i_code_adr_region" 
+											mold="rounded" hflex="1" disabled="true"
+											selecteditem="@{clientmain$composer.current.p_code_adr_region}"/>
+									</cell>
+									<textbox id="i_adr_distrValue"
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_code_adr_distr}"/>
+									<cell colspan="2">
+										<rcombobox id="i_code_adr_distr" 
+											mold="rounded" hflex="1" disabled="true"
+											selecteditem="@{clientmain$composer.current.p_code_adr_distr}"/>
+									</cell>
+									<cell colspan="3">
+										<textbox id="i_post_address" 
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_post_address}"/>
+									</cell>
+									
+								</row>
+								<row>
+									<label value="${labels.client.p_birth_place}" />
+									<cell colspan="4">
+										<textbox id="i_birth_place" 
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_birth_place}"/>
+									</cell>
+									<label value="${labels.client.p_code_citizenship}" />
+									<textbox id="i_citizenshipValue"
+											mold="rounded" hflex="1" disabled="true"
+											value="@{clientmain$composer.current.p_code_citizenship}"/>
+									<cell colspan="3">
+										<rcombobox id="i_code_citizenship" 
+											mold="rounded" hflex="1" disabled="true"
+											selecteditem="@{clientmain$composer.current.p_code_citizenship}"/>
+									</cell>
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+					<groupbox>
+						<grid id="" ctrlKeys="^e#up#down" visible="true">
+							<columns>
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+								<column />
+							</columns>
+							<rows>
+								<label value="${labels.client.j_opf}" />
+								<textbox disabled="true" hflex="1" id="opfValue" value="@{clientmain$composer.current.j_opf}"/>
+								<cell colspan="8">
+									<rcombobox  disabled="true" id="j_opf" mold="rounded"
+										selecteditem="@{clientmain$composer.current.j_opf}" hflex="1" />
+								</cell>
+								<row>
+									<label value="${labels.client.code_form}" />
+									<textbox disabled="true" hflex="1" id="formValue" value="@{clientmain$composer.current.code_form}"/>
+									<cell colspan="8">
+										<rcombobox  disabled="true" id="code_form" mold="rounded"
+											selecteditem="@{clientmain$composer.current.code_form}" hflex="1" />
+									</cell>
+								</row>
+			
+								<row>
+									<label value="${labels.client.j_code_sector}" />
+									<textbox disabled="true" hflex="1" id="sectorValue" value="@{clientmain$composer.current.j_code_sector}"/>
+									<cell colspan="8">
+										<rcombobox  disabled="true" id="j_code_sector" mold="rounded"
+											selecteditem="@{clientmain$composer.current.j_code_sector}" hflex="1" />
+									</cell>
+								</row>
+			
+								<row>
+									<label
+										value="${labels.client.j_code_organ_direct}" />
+									<textbox disabled="true" hflex="1" id="organ_directValue" value="@{clientmain$composer.current.j_code_organ_direct}"/>
+									<cell colspan="8">
+										<rcombobox  disabled="true" id="j_code_organ_direct"
+											mold="rounded"
+											selecteditem="@{clientmain$composer.current.j_code_organ_direct}"
+											hflex="1" />
+									</cell>
+								</row>
+			
+								<row>
+									<label value="${labels.client.j_region}" />
+									<textbox disabled="true" hflex="1" id="regionValue" value="@{clientmain$composer.current.j_region}"/>
+									<cell colspan="3">
+										<rcombobox  disabled="true" id="j_region" mold="rounded"
+											selecteditem="@{clientmain$composer.current.j_region}" hflex="1" />
+									</cell>
+									<label value="${labels.client.j_distr}" />
+									<textbox disabled="true" hflex="1" id="distrValue" value="@{clientmain$composer.current.j_distr}"/>
+									<cell colspan="3">
+										<rcombobox  disabled="true" id="j_distr" mold="rounded"
+											selecteditem="@{clientmain$composer.current.j_distr}" hflex="1" />
+									</cell>
+								</row>
+			
+								<row>
+									<cell colspan="3">
+										<label
+											value="${labels.client.j_sign_trade}" />
+									</cell>
+									<checkbox id="j_sign_trade"
+									 	 value="@{clientmain$composer.current.j_sign_trade}" hflex="1" />
+									<cell colspan="5">
+										<label value="${labels.client.j_patent_expiration}" />
+									</cell>
+									<datebox id="j_patent_expiration" mold="rounded"
+										value="@{clientmain$composer.current.j_patent_expiration}"
+										hflex="1" />
+								</row>
+								<row>
+									<cell colspan="2">
+										<label
+											value="Субъект малого бизнеса" />
+									</cell>
+									<checkbox id="j_small_business" label="явл/не явл"
+										value="@{clientmain$composer.current.j_small_business}"
+										hflex="1" />
+									<cell colspan="2">
+										<label value="${labels.client.j_responsible_emp}" />
+									</cell>
+									<cell colspan="5">
+									<textbox disabled="true" id="j_responsible_emp" mold="rounded"
+										value="@{clientmain$composer.current.j_responsible_emp}"
+										hflex="1" />
+									</cell>
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+			<groupbox>
+				<grid id="new3" ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.client.j_code_bank}" />
+							<textbox hflex="1" style="background:#f9d4d4" id="abankValue"/>
+							<cell colspan="3">
+								<rcombobox id="aj_code_bank" mold="rounded"
+									style="background:#f9d4d4" hflex="1" />
+							</cell>
+							<label value="${labels.client.j_code_class_credit}" />
+							<textbox hflex="1" style="background:#f9d4d4" id="aclass_creditValue"/>
+							<cell colspan="3">
+								<rcombobox id="aj_code_class_credit"
+									mold="rounded"
+									style="background:#f9d4d4"  hflex="1" />
+							</cell>
+						</row>
+	
+						<row>
+							<label value="${labels.client.j_account}" />
+							<cell colspan="3">
+								<textbox id="aj_account" mold="rounded"
+									style="background:#f9d4d4" hflex="1" />
+							</cell>
+							<label value="${labels.client.j_post_address}" />
+							<cell colspan="5">
+								<textbox id="aj_post_address" mold="rounded"
+									style="background:#f9d4d4"  hflex="1" />
+							</cell>
+						</row>
+						<row>
+							<label value="${labels.client.j_director_name}" />
+							<cell colspan="9">
+								<textbox hflex="1" style="background:#f9d4d4" id="aj_director_name"/>
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			
+			<groupbox>
+				<grid id="new6" ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.client.j_phone}" />
+							<textbox id="aj_phone" mold="rounded" style="background:#f9d4d4" 
+								 hflex="1" />
+							<label value="${labels.client.j_fax}" />
+							<textbox id="aj_fax" mold="rounded" style="background:#f9d4d4" 
+								 hflex="1" />
+							<label value="${labels.client.j_email}" />
+							<textbox id="aj_email" mold="rounded" style="background:#f9d4d4" 
+								constraint="/^(?:([A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])))?/: Пожалуйста, введите e-mail адрес"
+								 hflex="1" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+		</div>
+		<div id="newdop_info"/>
+		<toolbar >
+			<toolbarbutton id="btn_open" label="${labels.save}"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_cancel_new" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+		
+	</window>

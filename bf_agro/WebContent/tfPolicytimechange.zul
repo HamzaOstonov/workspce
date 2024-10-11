@@ -1,0 +1,147 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="policytimechangemain" width="100%"  height="100%" border="normal" apply="com.is.policytimechange.policytimechangeViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="policytimechangePaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{policytimechangemain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.policytimechange.id}" width="200px" />
+                                <listheader label="${labels.policytimechange.p0t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p1t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p2t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p3t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p4t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p5t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p6t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p7t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p8t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.id_contract}" width="200px" />
+                                <listheader label="${labels.policytimechange.p100t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p9t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p10t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p11t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p12t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p13t33}" width="200px" />
+                                <listheader label="${labels.policytimechange.p14t33}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.policytimechange.id}" /><textbox id="id"  mold="rounded"  value="@{policytimechangemain$composer.current.id}" /></row>
+                                  <row><label value="${labels.policytimechange.p0t33}" /><textbox id="p0t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p0t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p1t33}" /><textbox id="p1t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p1t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p2t33}" /><textbox id="p2t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p2t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p3t33}" /><textbox id="p3t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p3t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p4t33}" /><textbox id="p4t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p4t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p5t33}" /><textbox id="p5t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p5t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p6t33}" /><textbox id="p6t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p6t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p7t33}" /><textbox id="p7t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p7t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p8t33}" /><textbox id="p8t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p8t33}" /></row>
+                                  <row><label value="${labels.policytimechange.id_contract}" /><textbox id="id_contract"  mold="rounded"  value="@{policytimechangemain$composer.current.id_contract}" /></row>
+                                  <row><label value="${labels.policytimechange.p100t33}" /><textbox id="p100t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p100t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p9t33}" /><textbox id="p9t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p9t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p10t33}" /><textbox id="p10t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p10t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p11t33}" /><textbox id="p11t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p11t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p12t33}" /><textbox id="p12t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p12t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p13t33}" /><textbox id="p13t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p13t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p14t33}" /><textbox id="p14t33"  mold="rounded"  value="@{policytimechangemain$composer.current.p14t33}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.policytimechange.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p0t33}" /><textbox id="ap0t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p1t33}" /><textbox id="ap1t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p2t33}" /><textbox id="ap2t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p3t33}" /><textbox id="ap3t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p4t33}" /><textbox id="ap4t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p5t33}" /><textbox id="ap5t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p6t33}" /><textbox id="ap6t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p7t33}" /><textbox id="ap7t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p8t33}" /><textbox id="ap8t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.id_contract}" /><textbox id="aid_contract"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p100t33}" /><textbox id="ap100t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p9t33}" /><textbox id="ap9t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p10t33}" /><textbox id="ap10t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p11t33}" /><textbox id="ap11t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p12t33}" /><textbox id="ap12t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p13t33}" /><textbox id="ap13t33"  mold="rounded"  /></row>
+                                  <row><label value="${labels.policytimechange.p14t33}" /><textbox id="ap14t33"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.policytimechange.id}" /><textbox id="fid"  mold="rounded"  value="@{policytimechangemain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.policytimechange.p0t33}" /><textbox id="fp0t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p0t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p1t33}" /><textbox id="fp1t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p1t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p2t33}" /><textbox id="fp2t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p2t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p3t33}" /><textbox id="fp3t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p3t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p4t33}" /><textbox id="fp4t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p4t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p5t33}" /><textbox id="fp5t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p5t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p6t33}" /><textbox id="fp6t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p6t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p7t33}" /><textbox id="fp7t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p7t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p8t33}" /><textbox id="fp8t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p8t33}" /></row>
+                                  <row><label value="${labels.policytimechange.id_contract}" /><textbox id="fid_contract"  mold="rounded"  value="@{policytimechangemain$composer.filter.id_contract}" /></row>
+                                  <row><label value="${labels.policytimechange.p100t33}" /><textbox id="fp100t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p100t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p9t33}" /><textbox id="fp9t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p9t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p10t33}" /><textbox id="fp10t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p10t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p11t33}" /><textbox id="fp11t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p11t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p12t33}" /><textbox id="fp12t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p12t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p13t33}" /><textbox id="fp13t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p13t33}" /></row>
+                                  <row><label value="${labels.policytimechange.p14t33}" /><textbox id="fp14t33"  mold="rounded"  value="@{policytimechangemain$composer.filter.p14t33}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

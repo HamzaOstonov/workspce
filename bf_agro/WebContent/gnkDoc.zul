@@ -1,0 +1,195 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="gnkdocmain" width="100%"  height="100%" border="normal" apply="com.is.gnkDoc.gnkDocViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+               <!-- 
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+ -->
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                        
+                <rcombobox id="dbbranch"   mold="rounded" width="500px"  />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="gnkdocPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{gnkdocmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.gnkdoc.file_name}" width="170px" />
+                                 <listheader label="${labels.gnkdoc.v_date}" width="120px" />
+                                <listheader label="${labels.gnkdoc.branch}" width="70px" />
+                                <listheader label="${labels.gnkdoc.bank_cl}" width="140px" />
+                                <listheader label="${labels.gnkdoc.acc_cl}" width="200px" />
+                                <listheader label="${labels.gnkdoc.name_cl}" width="200px" />
+                                <listheader label="${labels.gnkdoc.bank_co}" width="140px" />
+                                <listheader label="${labels.gnkdoc.acc_co}" width="200px" />
+                                <listheader label="${labels.gnkdoc.name_co}" width="200px" />
+                                <listheader label="${labels.gnkdoc.summa}" width="150px" />
+
+                                <!--  
+                                <listheader label="${labels.gnkdoc.general_id}" width="150px" />
+                                <listheader label="${labels.gnkdoc.gnk_snd}" width="120px" />
+                                <listheader label="${labels.gnkdoc.v_date}" width="120px" />
+                                <listheader label="${labels.gnkdoc.file_in_id}" width="100px" visible="false"/>
+                                <listheader label="${labels.gnkdoc.gnk_datetime}" width="200px" />
+                                <listheader label="${labels.gnkdoc.bank_datetime}" width="200px" />
+                                <listheader label="${labels.gnkdoc.deal_type}" width="200px" />
+                                <listheader label="${labels.gnkdoc.state}" width="100px" />
+                                <listheader label="${labels.gnkdoc.doc_state}" width="90px" />
+                                <listheader label="${labels.gnkdoc.error_code}" width="100px" />
+                                <listheader label="${labels.gnkdoc.bank_snd}" width="100px" />
+                                <listheader label="${labels.gnkdoc.doc_num}" width="150px" />
+                                <listheader label="${labels.gnkdoc.d_date}" width="150px" />
+                                <listheader label="${labels.gnkdoc.purpose_id}" width="80px" />
+                                <listheader label="${labels.gnkdoc.purpose}" width="400px" />
+                                -->
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.gnkdoc.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{gnkdocmain$composer.current.file_name}" /></row>
+                                  <row><label value="${labels.gnkdoc.branch}" /><textbox id="branch"  mold="rounded"  value="@{gnkdocmain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.gnkdoc.general_id}" /><longbox id="general_id"  mold="rounded"  value="@{gnkdocmain$composer.current.general_id}" /></row>
+                                  <row><label value="${labels.gnkdoc.gnk_snd}" /><longbox id="gnk_snd" width="300px" mold="rounded"  value="@{gnkdocmain$composer.current.gnk_snd}" /></row>
+                                  <row><label value="${labels.gnkdoc.v_date}" /><datebox id="v_date"  mold="rounded"  value="@{gnkdocmain$composer.current.v_date}" /></row>
+                                 <!-- 
+                                  <row><label value="${labels.gnkdoc.file_in_id}" /><longbox id="file_in_id"  mold="rounded"  value="@{gnkdocmain$composer.current.file_in_id}" /></row>
+                                  -->
+                                  <row><label value="${labels.gnkdoc.gnk_datetime}" /><datebox id="gnk_datetime"  mold="rounded"  value="@{gnkdocmain$composer.current.gnk_datetime}" /></row>
+                                  <row><label value="${labels.gnkdoc.bank_datetime}" /><datebox id="bank_datetime"  mold="rounded"  value="@{gnkdocmain$composer.current.bank_datetime}" /></row>
+                                  <row><label value="${labels.gnkdoc.deal_type}" /><textbox id="deal_type"  mold="rounded"  value="@{gnkdocmain$composer.current.deal_type}" /></row>
+                                  <row><label value="${labels.gnkdoc.state}" /><longbox id="state"  mold="rounded"  value="@{gnkdocmain$composer.current.state}" /></row>
+                                  <row><label value="${labels.gnkdoc.doc_state}" /><longbox id="doc_state"  mold="rounded"  value="@{gnkdocmain$composer.current.doc_state}" /></row>
+                                  <row><label value="${labels.gnkdoc.error_code}" /><textbox id="error_code"  mold="rounded"  value="@{gnkdocmain$composer.current.error_code}" /></row>
+                                  <row><label value="${labels.gnkdoc.bank_snd}" /><longbox id="bank_snd"  mold="rounded"  value="@{gnkdocmain$composer.current.bank_snd}" /></row>
+                                  <row><label value="${labels.gnkdoc.doc_num}" /><textbox id="doc_num"  mold="rounded"  value="@{gnkdocmain$composer.current.doc_num}" /></row>
+                                  <row><label value="${labels.gnkdoc.d_date}" /><datebox id="d_date"  mold="rounded"  value="@{gnkdocmain$composer.current.d_date}" /></row>
+                                  <row><label value="${labels.gnkdoc.bank_cl}" /><textbox id="bank_cl"  mold="rounded"  value="@{gnkdocmain$composer.current.bank_cl}" /></row>
+                                  <row><label value="${labels.gnkdoc.acc_cl}" /><textbox id="acc_cl" width="250px" mold="rounded"  value="@{gnkdocmain$composer.current.acc_cl}" /></row>
+                                  <row><label value="${labels.gnkdoc.name_cl}" /><textbox id="name_cl" width="400px" mold="rounded"  value="@{gnkdocmain$composer.current.name_cl}" /></row>
+                                  <row><label value="${labels.gnkdoc.bank_co}" /><textbox id="bank_co"  mold="rounded"  value="@{gnkdocmain$composer.current.bank_co}" /></row>
+                                  <row><label value="${labels.gnkdoc.acc_co}" /><textbox id="acc_co" width="250px" mold="rounded"  value="@{gnkdocmain$composer.current.acc_co}" /></row>
+                                  <row><label value="${labels.gnkdoc.name_co}" /><textbox id="name_co" width="250px" mold="rounded"  value="@{gnkdocmain$composer.current.name_co}" /></row>
+                                  <row><label value="${labels.gnkdoc.summa}" /><longbox id="summa"  mold="rounded"  value="@{gnkdocmain$composer.current.summa}" /></row>
+                                  <row><label value="${labels.gnkdoc.purpose_id}" /><textbox id="purpose_id"  mold="rounded"  value="@{gnkdocmain$composer.current.purpose_id}" /></row>
+                                  <row><label value="${labels.gnkdoc.purpose}" /><textbox id="purpose" width="500px" mold="rounded"  value="@{gnkdocmain$composer.current.purpose}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.gnkdoc.file_name}" /><textbox id="afile_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.general_id}" /><textbox id="ageneral_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.gnk_snd}" /><textbox id="agnk_snd"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.v_date}" /><textbox id="av_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.file_in_id}" /><textbox id="afile_in_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.gnk_datetime}" /><textbox id="agnk_datetime"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.bank_datetime}" /><textbox id="abank_datetime"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.deal_type}" /><textbox id="adeal_type"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.doc_state}" /><textbox id="adoc_state"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.error_code}" /><textbox id="aerror_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.bank_snd}" /><textbox id="abank_snd"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.doc_num}" /><textbox id="adoc_num"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.d_date}" /><textbox id="ad_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.bank_cl}" /><textbox id="abank_cl"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.acc_cl}" /><textbox id="aacc_cl"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.name_cl}" /><textbox id="aname_cl"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.bank_co}" /><textbox id="abank_co"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.acc_co}" /><textbox id="aacc_co"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.name_co}" /><textbox id="aname_co"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.summa}" /><textbox id="asumma"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.purpose_id}" /><textbox id="apurpose_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.gnkdoc.purpose}" /><textbox id="apurpose"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.gnkdoc.file_name}" /><textbox id="ffile_name"  mold="rounded"  value="@{gnkdocmain$composer.filter.file_name}" /></row>
+                                  <row><label value="${labels.gnkdoc.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{gnkdocmain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.gnkdoc.v_date}" /><datebox id="fv_date"  mold="rounded"  value="@{gnkdocmain$composer.filter.v_date}" /></row>
+
+                                  <!--
+                                  <row><label value="${labels.gnkdoc.general_id}" /><textbox id="fgeneral_id"  mold="rounded"  value="@{gnkdocmain$composer.filter.general_id}" /></row>
+                                  <row><label value="${labels.gnkdoc.gnk_snd}" /><textbox id="fgnk_snd"  mold="rounded"  value="@{gnkdocmain$composer.filter.gnk_snd}" /></row>
+                                   
+                                  <row><label value="${labels.gnkdoc.file_in_id}" /><textbox id="ffile_in_id"  mold="rounded"  value="@{gnkdocmain$composer.filter.file_in_id}" /></row>
+                                   
+                                  <row><label value="${labels.gnkdoc.gnk_datetime}" /><textbox id="fgnk_datetime"  mold="rounded"  value="@{gnkdocmain$composer.filter.gnk_datetime}" /></row>
+                                  <row><label value="${labels.gnkdoc.bank_datetime}" /><textbox id="fbank_datetime"  mold="rounded"  value="@{gnkdocmain$composer.filter.bank_datetime}" /></row>
+                                  <row><label value="${labels.gnkdoc.deal_type}" /><textbox id="fdeal_type"  mold="rounded"  value="@{gnkdocmain$composer.filter.deal_type}" /></row>
+                                  -->
+                                  <row><label value="${labels.gnkdoc.state}" /><textbox id="fstate"  mold="rounded"  value="@{gnkdocmain$composer.filter.state}" /></row>
+                                  <row><label value="${labels.gnkdoc.doc_state}" /><textbox id="fdoc_state"  mold="rounded"  value="@{gnkdocmain$composer.filter.doc_state}" /></row>
+                                  <row><label value="${labels.gnkdoc.error_code}" /><textbox id="ferror_code"  mold="rounded"  value="@{gnkdocmain$composer.filter.error_code}" /></row>
+                                  <!--  
+                                  <row><label value="${labels.gnkdoc.bank_snd}" /><textbox id="fbank_snd"  mold="rounded"  value="@{gnkdocmain$composer.filter.bank_snd}" /></row>
+                                  <row><label value="${labels.gnkdoc.doc_num}" /><textbox id="fdoc_num"  mold="rounded"  value="@{gnkdocmain$composer.filter.doc_num}" /></row>
+                                  <row><label value="${labels.gnkdoc.d_date}" /><textbox id="fd_date"  mold="rounded"  value="@{gnkdocmain$composer.filter.d_date}" /></row>
+                                  -->
+                                  <row><label value="${labels.gnkdoc.bank_cl}" /><textbox id="fbank_cl"  mold="rounded"  value="@{gnkdocmain$composer.filter.bank_cl}" /></row>
+                                  <row><label value="${labels.gnkdoc.acc_cl}" /><textbox id="facc_cl"  mold="rounded"  value="@{gnkdocmain$composer.filter.acc_cl}" /></row>
+                                  <row><label value="${labels.gnkdoc.name_cl}" /><textbox id="fname_cl"  mold="rounded"  value="@{gnkdocmain$composer.filter.name_cl}" /></row>
+                                  <row><label value="${labels.gnkdoc.bank_co}" /><textbox id="fbank_co"  mold="rounded"  value="@{gnkdocmain$composer.filter.bank_co}" /></row>
+                                  <row><label value="${labels.gnkdoc.acc_co}" /><textbox id="facc_co"  mold="rounded"  value="@{gnkdocmain$composer.filter.acc_co}" /></row>
+                                  <row><label value="${labels.gnkdoc.name_co}" /><textbox id="fname_co"  mold="rounded"  value="@{gnkdocmain$composer.filter.name_co}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.gnkdoc.summa}" /><textbox id="fsumma"  mold="rounded"  value="@{gnkdocmain$composer.filter.summa}" /></row>
+                                   
+                                  <row><label value="${labels.gnkdoc.purpose_id}" /><textbox id="fpurpose_id"  mold="rounded"  value="@{gnkdocmain$composer.filter.purpose_id}" /></row>
+                                  -->
+                                  <row><label value="${labels.gnkdoc.purpose}" /><textbox id="fpurpose"  mold="rounded"  value="@{gnkdocmain$composer.filter.purpose}" /></row>
+                          </rows>
+              
+                        
+                        
+                  </grid>
+
+                  <toolbar>
+                         
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                           
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

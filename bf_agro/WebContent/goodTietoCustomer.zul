@@ -1,0 +1,245 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<?component name = "rcombobox" extends = "combobox" class = "com.is.utils.RefCBox"?>
+
+<window id = "customerMain" width = "100%" apply = "com.is.globalTieto.customer.CustomerViewCtrl" contentStyle = "overflow: auto">
+
+   <grid>
+		<columns>
+			<column width = "20%" align = "top" />
+			<column />
+	    </columns>
+	    <rows>
+		    <row valign = "top">
+				<!-- Menu -->
+		    	<div>
+					<grid id = "menu" width = "100%">
+						<columns>
+							<column width = "30%" />
+							<column width = "70%" />
+						</columns>
+						<rows>
+							<row>
+								<label value = "${labels.goodTieto.bankCode}" />
+								<textbox id = "bankClientId" width = "80%" />
+							</row>
+							<row>
+								<label value = "${labels.goodTieto.tietoCode}" />
+								<textbox id = "tietoClientId" width = "80%" />
+							</row>
+							<row>
+								<label value = "${labels.goodTieto.name}" />
+								<textbox id = "bankClientName" width = "80%" />
+							</row>	
+							<row>
+								<label value = "${labels.goodTieto.passport}" />
+								<textbox id = "bankClientPassport" width = "80%" />
+							</row>	
+							<row>
+								<label value = "${labels.goodTieto.date}" />
+								<datebox id = "bankClientDate" width = "82%" />
+							</row>
+						</rows>
+					</grid>
+					
+					<toolbar>
+						<toolbarbutton id = "menuSearch" label = "${labels.goodTieto.menuSearch}" image = "/images/search.png" />
+					</toolbar>			
+					<toolbar>
+						<toolbarbutton id = "menuAddAccount" label = "${labels.goodTieto.menuAddAccount}" image = "/images/+.png" />
+					</toolbar>					
+					<toolbar>
+						<toolbarbutton id = "menuAddNewClient" label = "${labels.goodTieto.menuAddNewClient}" image = "/images/uses.png" />
+					</toolbar>					
+					<toolbar>
+						<toolbarbutton id = "menuCardOperations" label = "${labels.goodTieto.menuCardOperations}" image = "/images/credit_card2.png" />
+					</toolbar>
+				
+				</div>
+				
+				<!-- Main Grid -->
+				<div id = "mainGridDiv" visible = "true">
+
+					<listbox style = "border: normal" id = "customers" rows = "10" 
+						multiple = "true" width = "100%" selectedItem = "@{customermain$composer.currentCustomer}">
+						<auxhead>
+							<auxheader />
+							<auxheader label = "${labels.goodTieto.tietoData}" colspan = "3" align = "middle"/>
+							<auxheader />
+							<auxheader label = "${labels.goodTieto.bankData}" colspan = "3" align = "middle"/>
+							<auxheader />
+						</auxhead>
+						<listhead sizable = "false" width = "100%">	
+							<listheader width = "4%"/>							
+							<listheader label = "${labels.goodTieto.tietoCode}" align = "middle" width = "10%"/>
+							<listheader label = "${labels.goodTieto.name}" align = "middle" width = "20%"/>
+							<listheader label = "${labels.goodTieto.date}" align = "middle" width = "14%" />
+							<listheader width = "4%" />							
+							<listheader label = "${labels.goodTieto.bankCode}" align = "middle" width = "10%"/>
+							<listheader label = "${labels.goodTieto.name}" align = "middle" width = "20%"/>
+							<listheader label = "${labels.goodTieto.date}" align = "middle" width = "14%" />
+							<listheader width = "4%" />							
+						</listhead>			
+					</listbox>
+					<div align = "center" >
+						<paging id = "bankdataPaging" width = "100%" />
+					</div>
+
+				</div>
+			</row>
+		</rows>
+	</grid>
+	
+	
+	
+	<window id = "openNewClient" mode = "modal" width = "60%" closable = "true" onClose = "self.visible = false; event.stopPropagation();"
+		title = "${labels.goodTieto.newClient}" position = "center, center" visible = "false">
+
+		<tabbox>
+			<tabs>
+				<tab label = "${labels.goodTieto.client}" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<hbox width = "100%">
+						<grid id = "addGrid1" style = "border-right: none;" width = "100%">
+							<columns>
+								<column width = "40%" />
+								<column width = "60%" />
+							</columns>
+							<rows>
+								<row>
+									<label value = "${labels.goodTieto.p_family}" />
+									<textbox id = "p_family" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_first_name}" />
+									<textbox id = "p_first_name" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_patronymic}" />
+									<textbox id = "p_patronymic" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_type_document}" />
+									<rcombobox id = "p_type_document" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_passport_serial}" />
+									<textbox id = "p_passport_serial" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_passport_number}" />
+									<textbox id = "p_passport_number" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_passport_date_registration}" />
+									<datebox id = "p_passport_date_registration" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_passport_date_expiration}" />
+									<datebox id = "p_passport_date_expiration" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_passport_place_registration}" />
+									<textbox id = "p_passport_place_registration" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_birthday}" />
+									<datebox id = "p_birthday" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_code_birth_region}" />
+									<rcombobox id = "p_code_birth_region" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_code_birth_distr}" />
+									<rcombobox id = "p_code_birth_distr" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_birth_place}" />
+									<textbox id = "p_birth_place" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_code_gender}" />
+									<rcombobox id = "p_code_gender" width = "80%" />
+								</row>
+							</rows>
+						</grid>
+						<grid id = "addGrid2" width = "100%">
+							<columns>
+								<column width = "40%" />
+								<column width = "60%" />
+							</columns>
+							<rows>
+								<row>
+									<label value = "${labels.goodTieto.p_code_citizenship}" />
+									<rcombobox id = "p_code_citizenship" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.code_resident}" />
+									<rcombobox id = "code_resident" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.code_country}" />
+									<rcombobox id = "code_country" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_code_adr_region}" />
+									<rcombobox id = "p_code_adr_region" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_code_adr_distr}" />
+									<rcombobox id = "p_code_adr_distr" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_code_nation}"/>
+									<rcombobox id = "p_code_nation" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_phone_mobile}" />
+									<textbox id = "p_phone_mobile" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_email_address}" />
+									<textbox id = "p_email_address" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_phone_home}" />
+									<textbox id = "p_phone_home" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.code_tel}" />
+									<textbox id = "code_tel" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.r_city}" />
+									<rcombobox id = "r_city" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_post_address}" />
+									<textbox id = "p_post_address" style = "background-color:#CCCCFF;" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_code_tax_org}" />
+									<rcombobox id = "p_code_tax_org" width = "80%" />
+								</row>
+								<row>
+									<label value = "${labels.goodTieto.p_number_tax_registration}" />
+									<textbox id = "p_number_tax_registration" width = "80%" />
+								</row>
+							</rows>
+						</grid>
+					</hbox>
+					<toolbar>
+						<toolbarbutton id = "openClientButton" label = "${labels.goodTieto.openClient}" image = "/images/+.png" />
+					</toolbar>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		
+		<toolbar>
+			<toolbarbutton id = "cancelButton" label = "${labels.goodTieto.cancel}" image = "/images/stop.png" />
+		</toolbar>
+		
+	</window>
+</window>

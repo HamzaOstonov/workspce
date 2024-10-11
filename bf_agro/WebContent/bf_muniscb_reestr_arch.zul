@@ -1,0 +1,124 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+
+<window id="bf_muniscb_reestr_archmain" width="100%"  border="normal" 
+  apply="com.is.bf_muniscb_reestr_arch.bf_muniscb_reestr_archViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+                <paging id="bf_muniscb_reestr_archPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" width="100%"
+                        selectedItem="@{bf_muniscb_reestr_archmain$composer.current}">
+                        <listhead sizable="true">
+                                <listheader label="${labels.bf_muniscb_reestr_arch.id}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr_arch.arch_date}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr_arch.arch_set_time}" width="200px" />
+                                <listheader label="${labels.bf_muniscb_reestr_arch.arch_name}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr_arch.supplier}" width="100px" align="middle" />
+                                <listheader label="${labels.bf_muniscb_reestr_arch.file_name}" width="100px" />
+                                <listheader label="${labels.bf_muniscb_reestr_arch.row_count}" width="120px" />
+                                <listheader label="${labels.bf_muniscb_reestr_arch.descr}" />
+                                <listheader label="${labels.bf_muniscb_reestr_arch.state}" width="120px" visible="false"/>
+                                
+                        </listhead>
+
+                </listbox>
+
+        </div>
+        <div id="frm" visible="false">
+	        <div id="frmgrddiv">      
+	        
+	        <tabbox id="tbb" >
+			    <tabs id="tabs">
+			        <tab id="A" label="Информация по файлу реестра" />
+			        <tab id="B" label="Платежи по реестру" /> 
+			        <tab id="C" label="Клиринговые операции" />
+			    </tabs> 
+			    <tabpanels>
+			        <tabpanel>
+				        <grid id="frmgrd" ctrlKeys="^e#up#down"
+		                          visible="true">
+		                          <columns>
+		                                  <column width="20%" />
+		                                  <column width="80%" />
+		                          </columns>
+		                          <rows>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.id}" /><textbox id="id"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.current.id}" /></row>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_date}" /><datebox id="arch_date"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.current.arch_date}" /></row>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_set_time}" /><datebox id="arch_set_time"  mold="rounded" format="dd.MM.yyyy HH:mm:ss" value="@{bf_muniscb_reestr_archmain$composer.current.arch_set_time}" /></row>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_name}" /><textbox id="arch_name"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.current.arch_name}" /></row>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.supplier}" /><textbox id="supplier"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.current.supplier}" /></row>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.current.file_name}" /></row>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.row_count}" /><textbox id="row_count"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.current.row_count}" /></row>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.descr}" /><textbox id="descr"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.current.descr}" /></row>
+		                                  <row><label value="${labels.bf_muniscb_reestr_arch.state}" /><textbox id="state"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.current.state}" /></row>
+		                          </rows>
+		                  </grid>
+	                  </tabpanel>
+			        <tabpanel>
+			          <include id="bf_muniscb_reestr_icall" />
+			         </tabpanel>
+			         <tabpanel>
+			          <include id="bf_muniscb_reestr_payments_icall"  />
+			         </tabpanel>
+			    </tabpanels>
+			</tabbox>  
+                  
+	        </div>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_date}" /><datebox id="aarch_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_set_time}" /><datebox id="aarch_set_time" format="dd.MM.yyyy HH:mm:ss"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_name}" /><textbox id="aarch_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.supplier}" /><textbox id="asupplier"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.file_name}" /><textbox id="afile_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.row_count}" /><textbox id="arow_count"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.descr}" /><textbox id="adescr"  mold="rounded"  /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.id}" /><textbox id="fid"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_date}" /><datebox id="farch_date"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.filter.arch_date}" width = "140px"/></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_set_time}" /><datebox id="farch_set_time" format="dd.MM.yyyy HH:mm:ss"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.filter.arch_set_time}" width = "140px"/></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.arch_name}" /><textbox id="farch_name"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.filter.arch_name}" /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.supplier}" /><textbox id="fsupplier"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.filter.supplier}" /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.file_name}" /><textbox id="ffile_name"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.filter.file_name}" /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.row_count}" /><textbox id="frow_count"  mold="rounded"  value="@{bf_muniscb_reestr_archmain$composer.filter.row_count}" /></row>
+                                  <row><label value="${labels.bf_muniscb_reestr_arch.descr}" /><rcombobox id="fstate"  mold="rounded"  selecteditem="@{bf_muniscb_reestr_archmain$composer.filter.state}" width = "140px"/></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+	                 <toolbarbutton id="btn_save"
+	                                  label="${labels.search}" image="/images/search.png"  /> 
+	                 <toolbarbutton id="btn_cancel"
+	                         label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

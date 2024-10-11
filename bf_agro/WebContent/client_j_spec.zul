@@ -1,0 +1,347 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="specharmain" width="100%" border="none"
+	apply="com.is.clients.controllers.SpecharViewCtrl">
+	
+	<toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+				<separator orient="vertical" spacing="10px" bar="true"
+									height="24px" style="color: white;"/>
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                <separator orient="vertical" spacing="10px" bar="true"
+								height="24px" style="color: white;"/>
+                <toolbarbutton id="btn_history" label="История" />
+        </toolbar>
+	
+	<div id="grd" >
+		<paging id="specharPaging" width="100%" />
+		<listbox id="dataGrid">
+			<listhead>
+				<listheader label="${labels.spechar.id_special}"/>
+				<listheader label="${labels.spechar.id_client}"/>
+				<listheader label="${labels.spechar.name}"/>
+				<listheader label="${labels.spechar.prim}"/>
+			</listhead>
+		</listbox>
+	</div>
+	<div id="frm" visible="false">
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_client}"/>
+						</cell>
+						<textbox id="id_client" value="@{specharmain$composer.current.id_client}" mold="rounded" disabled="true" hflex="1"/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.name}"/>
+						</cell>
+						<cell colspan="8">
+							<textbox id="name" value="@{specharmain$composer.current.name}" mold="rounded" disabled="true" hflex="1"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.type_name}"/>
+						</cell>
+						<textbox id="type_name_text" value="@{specharmain$composer.current.code_type}" mold="rounded" disabled="true" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="type_name" selecteditem="@{specharmain$composer.current.code_type}" mold="rounded" disabled="true" hflex="1"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_special}"/>
+						</cell>
+						<textbox id="id_specText" value="@{specharmain$composer.current.id_special}" mold="rounded" disabled="true" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="id_special" selecteditem="@{specharmain$composer.current.id_special}" mold="rounded" disabled="true" hflex="1"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.value}"/>
+						</cell>
+						<cell colspan="8">
+							<textbox id="value" value="@{specharmain$composer.current.value}" mold="rounded" disabled="true" hflex="1"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2"/>
+						<cell colspan="8">
+							<label value=""/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<grid>
+				<columns>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.spechar.prim}"/>
+						<cell colspan="4">
+							<textbox id="prim" value="@{specharmain$composer.current.prim}" mold="rounded" disabled="true" hflex="1"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</div>
+	<div id="fgrd" visible="false">
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_client}"/>
+						</cell>
+						<textbox id="fid_client" mold="rounded" hflex="1"/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.name}"/>
+						</cell>
+						<cell colspan="8">
+							<textbox id="fname" mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.type_name}"/>
+						</cell>
+						<textbox id="ftype_name_text" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="ftype_name" mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_special}"/>
+						</cell>
+						<textbox id="fid_specText" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="fid_special" mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.value}"/>
+						</cell>
+						<cell colspan="8">
+							<textbox id="fvalue" mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2"/>
+						<cell colspan="8">
+							<label value=""/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<grid>
+				<columns>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.spechar.prim}"/>
+						<cell colspan="4">
+							<textbox id="fprim" mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<toolbar>
+			<toolbarbutton id="btn_filter"
+                                  label="${labels.save}" image="/images/save.png" />
+            <toolbarbutton id="btn_cancel_filter"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+		</toolbar>
+	</div>
+	<div id="newgrd" visible="false">
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_client}"/>
+						</cell>
+						<textbox id="aid_client" value="@{specharmain$composer.current.id_client}" mold="rounded" hflex="1" disabled="true"/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.name}"/>
+						</cell>
+						<cell colspan="8">
+							<textbox id="aname" value="@{specharmain$composer.current.name}" mold="rounded" hflex="1" disabled="true"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.type_name}"/>
+						</cell>
+						<textbox id="taype_name_text" value="@{specharmain$composer.current.code_type}" hflex="1" disabled="true"/>
+						<cell colspan="7">
+							<rcombobox id="atype_name" selecteditem="@{specharmain$composer.current.code_type}" mold="rounded" hflex="1" disabled="true"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<grid>
+				<columns>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+					<column/><column/>
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.id_special}"/>
+						</cell>
+						<textbox id="aid_specText" hflex="1"/>
+						<cell colspan="7">
+							<rcombobox id="aid_special" mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<label value="${labels.spechar.value}"/>
+						</cell>
+						<cell colspan="8">
+							<textbox id="avalue" mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2"/>
+						<cell colspan="8">
+							<label value=""/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<grid>
+				<columns>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.spechar.prim}"/>
+						<cell colspan="4">
+							<textbox id="aprim" mold="rounded" hflex="1"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<toolbar>
+			<toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+            <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+		</toolbar>
+	</div>
+	
+	<window id="spec_history" mode="modal" closable="true" width="80%" 
+		onClose="self.visible = false; event.stopPropagation();"
+		title="История по Спец характеристикам клиента" position="center,center"
+		visible="false">
+		<div>
+			<listbox id="history" rows="10">
+				<listhead>
+					<listheader label="Дата О.Д." width="20%"/>
+					<listheader label="Действие" width="30%"/>
+					<listheader label="Инициатор"/>
+					<listheader label="Системное время" width="20%"/>
+				</listhead>
+			</listbox>
+		</div>
+	
+	</window>
+</window>

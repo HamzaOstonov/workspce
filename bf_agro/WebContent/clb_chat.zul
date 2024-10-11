@@ -1,0 +1,32 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window border="none" id="chat_main" apply="klb_chat.Chat_view_ctrl">
+<timer id="refresh_timer"/>
+	<tabbox height="100%" style="min-height:500px;">
+		<tabs>
+		    <tab label="Все чаты"/>
+		    <tab label="Ваши чаты"/>
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+				<listbox style="border:none" id="new_chats" multiple="true" rows="4" width="100%"
+	                        selectedItem="@{chat_main$composer.current_chat_in_listbox}">
+	            	<listhead sizable="true">
+	                    <listheader label="id" width="100px" />
+	                    <listheader label="ip" width="100px" />
+	                </listhead>
+	            </listbox>
+			</tabpanel>
+			<tabpanel>
+				<tabbox id="tb" height="100%">
+					<tabs id="active_chats_tabs">
+					</tabs>
+					<tabpanels id = "active_chats_tabpanels">
+					</tabpanels>
+				</tabbox>
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+	
+</window>
+</zk>
