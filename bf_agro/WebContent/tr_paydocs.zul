@@ -1,6 +1,0 @@
-<zk>
-<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
-<window border="none" apply="com.is.accounting_transaction.Transaction_ui">
-	<label id="tr_templates" width="100%" multiline="true"/>
-</window>
-</zk>

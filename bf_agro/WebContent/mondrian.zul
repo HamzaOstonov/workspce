@@ -1,4 +1,0 @@
-<?component name="rcombobox" extends="combobox" class="org.sl.utils.RefCBox"?>
-<div id="mondrianmain" width="100%" apply="com.is.mondrian.MondrianViewCtrl">
-	<iframe id="mondrianical" src="" width="100%" vflex="1" hflex="1" style="overflow: auto;"/>        
-</div>
