@@ -11,6 +11,42 @@ public class CardFilter {
 	private String card_name;
 	private String pinfl;
 	private String currency;
+	private String account;
+	private String name;
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getExpiry() {
+		return expiry;
+	}
+	public void setExpiry(String expiry) {
+		this.expiry = expiry;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getContract() {
+		return contract;
+	}
+	public void setContract(String contract) {
+		this.contract = contract;
+	}
+	private String expiry;
+	private String status;
+	private String contract;
+
 	
 	public String getClient_code() {
 		return client_code;

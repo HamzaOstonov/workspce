@@ -1,19 +1,14 @@
 <?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
 <window id="cardmain" width="100%" height="100%" border="normal"
 	apply="com.is.card_to_card.CardtcViewCtrl">
-
-
 	<tabbox id="mainTabbox">
 		<tabs>
-			<tab label="Форма переброска остаток карты" id="mainTab" />
-			<tab label="Протокол" id="confirmTab" />
-			
+			<tab label="Форма переброска остаток карты(mainTab)" id="mainTab" />
+			<tab label="Протокол(protocolTab)" id="protocolTab" />
 		</tabs>
 		<tabpanels>
 			<tabpanel>
-
 				<hlayout sclass="z-valign-top" style="overflow:auto;">
-
 					<vlayout id="grd1" hflex="1">
 						<grid>
 							<columns>
@@ -23,7 +18,7 @@
 							<rows>
 								<row>
 									<label
-										value="Тип продукта(карты) - Отправитель *" />
+										value="Тип продукта(карты) - Отправитель *(rcb_card_from)" />
 									<rcombobox id="rcb_card_from"
 										selecteditem="@{customermain$composer.current.o_client_type}" />
 								</row>
@@ -37,25 +32,25 @@
 							</columns>
 							<rows>
 								<row>
-									<label value="Клиент" />
+									<label value="Клиент(txbId_client)" />
 									<textbox id="txbId_client"
 										value="@{customermain$composer.filter.id_client}"
 										forward="onOK=onOkToFilter" />
 								</row>
 								<row>
-									<label value="Карта" />
+									<label value="Карта(txbCard)" />
 									<textbox id="txbCard"
 										value="@{customermain$composer.filter.p_pinfl}"
 										forward="onOK=onOkToFilter" />
 								</row>
 								<row>
-									<label value="Наименование" />
+									<label value="Наименование(txbName)" />
 									<textbox id="txbName"
 										value="@{customermain$composer.filter.p_pinfl}"
 										forward="onOK=onOkToFilter" />
 								</row>
 								<row>
-									<label value="ПИНФЛ" />
+									<label value="ПИНФЛ(txbPinfl)" />
 									<textbox id="txbPinfl"
 										value="@{customermain$composer.filter.p_pinfl}"
 										forward="onOK=onOkToFilter" />
@@ -68,23 +63,18 @@
 							<toolbarbutton id="btn_utv"
 								label="${labels.openway.comm}" visible="false"
 								image="/images/stop.png" />
-
 						</toolbar>
-						<listbox style="border::normal;height:300px;"
-							id="dataGrid" multiple="true" width="100%"
-							selectedItem="@{trpaymain$composer.currentfrom}">
+						<listbox id="dataGrid" style="border::normal;height:300px;"
+							multiple="true" width="100%"
+							selectedItem="@{card_to_cardmain$composer.currentfrom}">
 							<listhead sizable="true">
-								<listheader label="Филиал" width="8%" />
-								<listheader label="Карта" width="18%"
-									id="nnmb_h" />
-								<listheader label="Счет" width="17%" />
-								<listheader label="Наименование"
-									width="20%" />
-								<listheader label="Срок" width="7%" />
-								<listheader label="Статус" width="20%" />
-								<listheader label="Контракт"
-									width="10%" />
-
+								<listheader label="Филиал" width="10%" />			
+								<listheader label="Карта" width="18%" id="nnmb_h1" />
+								<listheader label="Клиент" width="10%" />
+								<listheader label="Счет" width="20%" />
+								<listheader label="Наименование" width="35%" />
+								<listheader label="Срок" width="27%" />
+								<listheader label="Статус" width="15%" />
 							</listhead>
 						</listbox>
 						<toolbar visible="true" orient="vertical">
@@ -92,10 +82,8 @@
 								label="Просмотр параметры" image="/images/config.png" />
 							<toolbarbutton id="tbtn_move_saldo"
 								label="Переброска остаток" image="/images/send.png" />
-
 						</toolbar>
 					</vlayout>
-
 					<vlayout id="grd2" hflex="1">
 						<grid>
 							<columns>
@@ -105,45 +93,73 @@
 							<rows>
 								<row>
 									<label
-										value="Тип продукта(карты) - Получатель *" />
-									<rcombobox id="rcb_card_to"
-										selecteditem="@{customermain$composer.current.o_client_type}" />
+										value="Тип продукта(карты) - Получатель *(rcb_card_to)" />
+									<rcombobox id="rcb_card_to"	selecteditem="@{card_to_cardmain$composer.currentto}" />
 								</row>
 							</rows>
 						</grid>
 						<listbox style="border:none" id="dataGrid2"
-							multiple="true" width="100%"
-							selectedItem="@{trpaymain$composer.currentto}">
+							multiple="true" width="100%" 
+							selectedItem="@{card_to_cardmain$composer.currentto}">
 							<listhead sizable="true">
-								<listheader label="Филиал" width="8%" />
-								<listheader label="Карта" width="18%"
-									id="nnmb_h2" />
-								<listheader label="Счет" width="17%" />
-								<listheader label="Наименование"
-									width="20%" />
-								<listheader label="Срок" width="7%" />
-								<listheader label="Статус" width="20%" />
-								<listheader label="Контракт"
-									width="10%" />
-
+								<listheader label="Филиал" width="10%" />								
+								<listheader label="Карта" width="18%" id="nnmb_h2" />
+								<listheader label="Клиент" width="10%" />
+								<listheader label="Счет" width="20%" />
+								<listheader label="Наименование" width="35%" />
+								<listheader label="Срок" width="27%" />
+								<listheader label="Статус" width="15%" />
 							</listhead>
-
 						</listbox>
-
 					</vlayout>
-
 				</hlayout>
-
 			</tabpanel>
 			<tabpanel>
-				<div id="confirmDiv" />
-			</tabpanel>
+		                <listbox style="border:normal;" id="dataGrid3"  
+		                multiple="true" width="100%"
+		                selectedItem="@{card_to_cardmain$composer.current0}"><!-- height:300px; -->
+					        <listhead sizable="true">
+					            <listheader label="ID" />
+					            <listheader label="NAME" />
+					            <listheader label="FROM" />
+					            <listheader label="TO" />
+					            <listheader label="AMOUNT" />
+					        </listhead>
+		    			</listbox>
+    			
+			  <window id="initialGrid1" visible="false">
+				<label value="selectedItem" />
+				        <listbox id="dataGrid24" style="border:none;" multiple="true" >
+					        <listhead sizable="true">
+					            <listheader label="Time" />
+					            <listheader label="BIG 3" />
+					            <listheader label="Yes|No" />
+					        </listhead>
+					        <listitem>
+					            <listcell label="kechagi vaqtdan oldin" />
+					            <listcell label="Qoldiq" />
+					            <listcell label="Yes" />
+					        </listitem>
+					        <listitem>
+					            <listcell label="kechagi vaqtda" />
+					            <listcell label="Provodka" />
+					            <listcell label="Yes" />
+					        </listitem>
+					        <listitem>
+					            <listcell label="kechagi vaqtdan keyin" />
+					            <listcell label="VISA SUM API" />
+					            <listcell label="No" />
+					        </listitem>
+    					</listbox>
+				        <toolbar>
+				        	<toolbarbutton id="btn_exit" label="Exit" visible="true" />
+				        </toolbar>
+		       </window>		
+
+    
+            </tabpanel>
 		</tabpanels>
+		
 	</tabbox>
-
-
-
-
-
-
+	
 </window>

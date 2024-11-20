@@ -13,7 +13,7 @@ public class PagingListModel extends AbstractPagingListModel<TrAcc> implements B
     super(startPageNumber, pageSize,fl, alias);
     }
 @Override
-protected List<TrAcc> getPageData(int itemStartNumber, int pageSize, Object fl,String alias) {
+protected List<TrAcc> getPageData1(int itemStartNumber, int pageSize, Object fl,String alias) {
     TrAccFilter fc;
     if(fl !=null){
         fc = (TrAccFilter)fl;
@@ -48,6 +48,11 @@ public int indexOf(Object obj) {
 	public int getTotalSize() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	protected List<Card> getPageData(int itemStartNumber, int pageSize, Object fl, String alias) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
