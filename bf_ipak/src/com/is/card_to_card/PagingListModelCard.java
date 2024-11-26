@@ -47,16 +47,12 @@ public int getTotalSize() {
 	}
 
 @Override
-protected List<TrAcc> getPageData1(int itemStartNumber, int pageSize, Object fl, String alias) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-@Override
 protected List<Card> getPageData(int itemStartNumber, int pageSize) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+
 
 }
 
