@@ -136,9 +136,10 @@
 
 				<window id="initialGrid1" visible="false" width="80%"
 					style="position: absolute; top: 50%; left: 50%; 
-			  		transform: translate(-50%, -50%);"
-					height="300px" border="normal">
-					<label value="selectedItem" />
+			  		transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.9); 
+           			box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);"
+					height="auto" border="normal">
+					<label id = "name" value="selectedItem" />
 					<listbox id="dataGrid4" style="border:none;"
 						multiple="true" visible="true"
 						selectedItem="@{card_to_cardmain$composer.current1}">
@@ -147,6 +148,7 @@
 							<listheader label="BIG 3" />
 							<listheader label="Yes|No" />
 							<listheader label="Description" />
+							<listheader label="protocol_id" />
 						</listhead>
 					</listbox>
 					<toolbar>

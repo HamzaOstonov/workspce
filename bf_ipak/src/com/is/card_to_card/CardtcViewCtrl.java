@@ -14,6 +14,7 @@ import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Grid;
 import org.zkoss.zul.Intbox;
+import org.zkoss.zul.Label;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
@@ -52,6 +53,7 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	private Toolbarbutton btn_back, initialGrid1$btn_exit, btn_save;
 	private Toolbarbutton tbtn_settings, tbtn_move_saldo;
 	private Toolbar tb;
+	private Label initialGrid1$name;
 	private Textbox acc_mfo, account, acc_name, chacc$acc_filter_mask;
 	private Textbox aacc_mfo, aaccount, aacc_name, brunch;
 	private Textbox facc_mfo, faccount, facc_name, mod_type, txbId_client, txbCard, txbName, txbPinfl;
@@ -187,21 +189,19 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 //			}
 //		});
 
-		if (initialGrid1$dataGrid4 != null) {
-			initialGrid1$dataGrid4.setItemRenderer(new ListitemRenderer() {
-				@Override
-				public void render(Listitem row, Object data) throws Exception {
-					Card card = (Card) data;
-					row.setValue(data);
-					row.appendChild(new Listcell(card.getClient_code()));
-					row.appendChild(new Listcell(card.getName()));
-					row.appendChild(new Listcell(card.getCard_number()));
-					row.appendChild(new Listcell(card.getStatus()));
-				}
-			});
-		} else {
-			System.out.println("dataGrid4 is not initialized.");
-		}
+		initialGrid1$dataGrid4.setItemRenderer(new ListitemRenderer() {
+			@Override
+			public void render(Listitem row, Object data) throws Exception {
+				Card card = (Card) data;
+				row.setValue(data);
+				row.appendChild(new Listcell(card.getClient_code()));
+				row.appendChild(new Listcell(card.getName()));
+				row.appendChild(new Listcell(card.getCard_number()));
+				row.appendChild(new Listcell(card.getStatus()));
+				row.appendChild(new Listcell(card.getCurrency()));
+
+			}
+		});
 
 		rcb_card_from.setValue("UZCARD");
 		rcb_card_to.setValue("HUMO");
@@ -311,7 +311,6 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	}
 
 	public void onSelect$dataGrid2() {
-		dataGrid2.setModel(new ListModelList());
 		Card filter_datagrid2 = (Card) dataGrid2.getSelectedItem().getValue();
 		filterforcard_2 = (Card) filter_datagrid2; // istalgan qator tanlandi
 		System.out.println("filterforcard_1");
@@ -322,19 +321,15 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_exit$initialGrid1() {
 		initialGrid1.setVisible(false);
-		dataGrid3.setVisible(true);
 	}
 
 	public void onDoubleClick$dataGrid3() {
-		if (dataGrid3.getSelectedItem() != null) {
-			initialGrid1.setVisible(true);
-			dataGrid3.setVisible(false);
-			Card card1 = (Card) dataGrid3.getSelectedItem().getValue();
-			List<Card> list = CardtcService.getDetailsByName(card1);
-			initialGrid1$dataGrid4.setModel(new ListModelList(list));
-		} else {
-			System.out.println("No item selected in dataGrid3.");
-		}
+		initialGrid1.setVisible(true);
+		Card card1 = (Card) dataGrid3.getSelectedItem().getValue();
+		List<Card> list = CardtcService.getDetailsByName(card1);
+		initialGrid1$dataGrid4.setModel(new ListModelList(list));
+		initialGrid1$name.setValue(card1.getClient_code());
+//		initialGrid1$name.setValue(CardtcService.getId(card1));
 	}
 
 	public String toStringCardNumber(Card selectedCard) {
@@ -374,12 +369,10 @@ public class CardtcViewCtrl extends GenericForwardComposer {
 	}
 
 	public void onClick$tbtn_move_saldo() throws InterruptedException {
-		System.out.println(toStringCardNumber(filterforcard_1) + " ==> " + toStringCardNumber(filterforcard_2) + "\n");
-		System.out.println("<---- userListModel ga getProtocolByCardNumber orqali yozildi ---->");
 		CardtcService.InsertToProtocolTable(filterforcard_1, filterforcard_2);
-		System.out.println("<---- tempCardToCardProtocol ga InsertToProtocolTable orqali yozildi ---->");
-		System.out.println("<---- dataGrid3 ga userListModel chiqarildi ---->");
-		CardtcService.InsertToDetailsTable(filterforcard_1);
+		CardtcService.InsertToDetailsTable(filterforcard_1, CardtcService.getIdFromDetails());
+
+		System.out.println(CardtcService.getIdFromDetails() + " ======== ID");
 	}
 
 	public void onDoubleClick$dataGrid$grd1() {

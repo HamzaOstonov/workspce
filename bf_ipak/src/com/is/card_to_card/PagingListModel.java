@@ -7,13 +7,13 @@ import org.zkoss.zkplus.databind.BindingListModel;
 import com.is.utils.AbstractPagingListModel;
 
 @SuppressWarnings("serial")
-public class PagingListModel extends AbstractPagingListModel<Card> implements BindingListModel {
+public class PagingListModel extends AbstractPagingListModel<TrAcc> implements BindingListModel {
 
     public PagingListModel(int startPageNumber, int pageSize, Object fl, String alias) {
     super(startPageNumber, pageSize,fl, alias);
     }
 @Override
-protected List<Card> getPageData(int itemStartNumber, int pageSize, Object fl,String alias) {
+protected List<TrAcc> getPageData1(int itemStartNumber, int pageSize, Object fl,String alias) {
     TrAccFilter fc;
     if(fl !=null){
         fc = (TrAccFilter)fl;
@@ -40,7 +40,7 @@ public int indexOf(Object obj) {
 }
 
     @Override
-    protected List<Card> getPageData(int itemStartNumber, int pageSize) {
+    protected List<TrAcc> getPageData(int itemStartNumber, int pageSize) {
             // TODO Auto-generated method stub
             return null;
     }
@@ -49,7 +49,12 @@ public int indexOf(Object obj) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+	@Override
+	protected List<Card> getPageData(int itemStartNumber, int pageSize, Object fl, String alias) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
 

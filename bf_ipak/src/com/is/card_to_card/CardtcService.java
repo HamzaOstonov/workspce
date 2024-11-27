@@ -22,7 +22,9 @@ public class CardtcService {
 	private static String psql1 = "select t.* from(select t.*,rownum rwnm from (select * from (";
 	private static String psql2 = " order by id desc) s ) t where rownum <= ?) t  where t.rwnm >= ?";
 	private static String msql = "SELECT * FROM BF_TR_ACC ";
-
+	private static Card card;
+	private static String id;
+	private static String di;
 	private static List<RefData> listCardTypes;
 
 	public List<TrAcc> getTrAcc(String alias) {
@@ -247,10 +249,10 @@ public class CardtcService {
 
 	}
 	
-	public static List<Card> getTrAccsFl(int pageIndex, int pageSize, TrAccFilter filter, String alias) {
+	public static List<TrAcc> getTrAccsFl(int pageIndex, int pageSize, TrAccFilter filter, String alias) {
 
-		List<Card> list = new ArrayList<Card>();
-		/*Connection c = null;
+		List<TrAcc> list = new ArrayList<TrAcc>();
+		Connection c = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		int v_lowerbound = pageIndex + 1;
@@ -296,7 +298,7 @@ public class CardtcService {
 			ConnectionPool.close(ps);
 			ConnectionPool.close(rs);
 			ConnectionPool.close(c);
-		}*/
+		}
 		return list;
 
 	}
@@ -419,7 +421,61 @@ public class CardtcService {
 			fl = "%";
 
 		List<Account> list = new ArrayList<Account>();
-		
+		Connection c = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		String whr = "()";
+		String nm = "";
+
+		try {
+			c = ConnectionPool.getConnection(alias);
+
+			PreparedStatement ps1 = c.prepareStatement("select * from ss_dblink_branch t where t.branch = ?");
+			ps1.setString(1, branch);
+			ResultSet rs1 = ps1.executeQuery();
+			String us = null;
+			if (rs1.next()) {
+				us = rs1.getString("user_name");
+			}
+			c = ConnectionPool.getConnection(us);
+
+			ps = c.prepareStatement("select * FROM BF_TR_ACC_TEMPLATE WHERE id=?");
+			ps.setInt(1, tracc.getAcc_template_id());
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				whr = rs.getString("acc_mask");
+				nm = rs.getString("acc_name");
+			}
+
+			Statement s = c.createStatement();
+			rs = s.executeQuery(
+					"SELECT * FROM Account where id like '" + whr + "' and id like '" + fl + "' and state=2 ");
+			// System.out.println("SELECT:"+"SELECT * FROM Account where id like
+			// '"+whr+"' and id like '"+fl+"' and state=2 ");
+			while (rs.next()) {
+				list.add(new Account(rs.getString("branch"), rs.getString("id"), rs.getString("acc_bal"),
+						rs.getString("currency"), rs.getString("client"), rs.getString("id_order"),
+						rs.getString("name"), rs.getString("sgn"), rs.getString("bal"), rs.getInt("sign_registr"),
+						rs.getLong("s_in"), rs.getLong("s_out"), rs.getLong("dt"), rs.getLong("ct"),
+						rs.getLong("s_in_tmp"), rs.getLong("s_out_tmp"), rs.getLong("dt_tmp"), rs.getLong("ct_tmp"),
+						rs.getDate("l_date"), rs.getDate("date_open"), rs.getDate("date_close"),
+						rs.getInt("acc_group_id"), rs.getInt("state"), rs.getString("state_desc")));
+			}
+			if (whr.endsWith("ACC")) {
+				Account tacc = new Account();
+				tacc.setId(whr);
+				tacc.setName(nm);
+				tacc.setBranch(tracc.getBranch());
+				list.add(tacc);
+			}
+
+		} catch (Exception e) {
+			ISLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
+		} finally {
+			ConnectionPool.close(ps);
+			ConnectionPool.close(rs);
+			ConnectionPool.close(c);
+		}
 		return list;
 
 	}
@@ -430,12 +486,71 @@ public class CardtcService {
 			fl = "%";
 
 		List<Account> list = new ArrayList<Account>();
-		
+		Connection c = null;
+		ResultSet rs1= null;
+		ResultSet rs = null;
+		PreparedStatement ps1 = null;
+//		String nm = "";
+
+		try {
+			c = ConnectionPool.getConnection(alias);
+
+			ps1 = c.prepareStatement("select * from ss_dblink_branch t where t.branch = ?");
+			ps1.setString(1, branch);
+			rs1 = ps1.executeQuery();
+			String us = null;
+			if (rs1.next()) {
+				us = rs1.getString("user_name");
+			}
+			ConnectionPool.close(c);
+			c = ConnectionPool.getConnection(us);
+
+			Statement s = c.createStatement();
+			rs = s.executeQuery("SELECT * FROM Account where id like '" + fl + "' and rownum < 50");
+			System.out.println(
+					"SELECT:" + "SELECT * FROM Account where id like whr and id lik e '" + fl + "' and state=2 ");
+			while (rs.next()) {
+				list.add(new Account(
+							rs.getString("branch"), 
+							rs.getString("id"), 
+							rs.getString("acc_bal"),
+							rs.getString("currency"), 
+							rs.getString("client"), 
+							rs.getString("id_order"),
+							rs.getString("name"), 
+							rs.getString("sgn"), 
+							rs.getString("bal"), 
+							rs.getInt("sign_registr"),
+							rs.getLong("s_in"), 
+							rs.getLong("s_out"),
+							rs.getLong("dt"), 
+							rs.getLong("ct"),
+							rs.getLong("s_in_tmp"), 
+							rs.getLong("s_out_tmp"), 
+							rs.getLong("dt_tmp"), 
+							rs.getLong("ct_tmp"),
+							rs.getDate("l_date"), 
+							rs.getDate("date_open"), 
+							rs.getDate("date_close"),
+							rs.getInt("acc_group_id"), 
+							rs.getInt("state"), 
+							rs.getString("state_desc")));
+			}
+
+		} catch (Exception e) {
+			ISLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
+		} finally {
+			ConnectionPool.close(ps1);
+			ConnectionPool.close(rs);
+			ConnectionPool.close(rs1);
+			ConnectionPool.close(c);
+		}
 		return list;
 
 	}
 	
-//	public static List<CardFilter> getClientCards(CardFilter filter, String alias) {
+	public static List<CardFilter> getClientCards(CardFilter filter, String alias) {
+		return null;
 //		List<CardFilter> list = new ArrayList<CardFilter>();
 //		Connection c = null;
 //		ResultSet rs = null;
@@ -473,7 +588,7 @@ public class CardtcService {
 //			}
 //		}
 //		return list;
-//	}
+	}
 	
 	public static List<Card> getHumoCards(Card filter, String alias) {
 		List<Card> list = new ArrayList<Card>();
@@ -895,7 +1010,7 @@ public class CardtcService {
 		PreparedStatement ps = null;
 		try {
 			c = ConnectionPool.getConnection();
-			String sql = "select time, big_3, yes_or_no, description "
+			String sql = "select time, big_3, yes_or_no, description, protocol_id "
 					+ "from api_details_table where name = ?";
 			ps = c.prepareStatement(sql);
 			ps.setString(1, card1.getName());
@@ -906,6 +1021,7 @@ public class CardtcService {
 				card.setName(rs.getString("BIG_3"));
 				card.setCard_number(rs.getString("YES_OR_NO"));
 				card.setStatus(rs.getString("DESCRIPTION"));
+				card.setCurrency(rs.getString("PROTOCOL_ID"));
 				list.add(card);
 			}
 		} catch (Exception e) {
@@ -928,12 +1044,17 @@ public class CardtcService {
 	}
 	
 	public static void InsertToProtocolTable(Card card1, Card card2) {
+		card = new Card();
 	    Connection c = null;
 	    PreparedStatement ps = null;
 	    Random random = new Random();
 	    int min = 5000; 
 	    int max = 100000; 
 	    int randomAmount = (random.nextInt((max - min) / 1000) * 1000) + min;
+	    card.setName(card1.getName());
+		card.setCard_number(card1.getCard_number());
+		card.setClient_code(card2.getCard_number());
+		card.setCurrency(String.valueOf(randomAmount));
 	    try {
 	        c = ConnectionPool.getConnection();
 	        String sql = "INSERT INTO tempCardToCardProtocol (ID, FULL_NAME, FROM_CARD, TO_CARD, AMOUNT) VALUES (0, ?, ?, ?, ?)";
@@ -959,7 +1080,81 @@ public class CardtcService {
 	    }
 	}
 
-	public static void InsertToDetailsTable(Card card) {
+	public static String getIdFromProtocol() {
+		
+		Connection c = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		try {
+			c = ConnectionPool.getConnection();
+			String sql = "select ID from tempCardToCardProtocol where "
+					+ "full_name=? and from_card = ? and to_card=? and amount=?";
+			ps = c.prepareStatement(sql);
+			ps.setString(1, card.getName());
+			ps.setString(2, card.getCard_number());
+			ps.setString(3, card.getClient_code());
+			ps.setString(4, card.getCurrency());
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				id = rs.getString("ID");
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); 
+			ISLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				ConnectionPool.close(ps);
+				ConnectionPool.close(rs);
+				ConnectionPool.close(c);
+			} catch (Exception e) {
+				e.printStackTrace(); 
+			}
+		}
+		return id;
+	}
+	
+	public static String getIdFromDetails() {
+		
+		Connection c = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		try {
+			c = ConnectionPool.getConnection();
+			String sql = "select ID from tempCardToCardProtocol where "
+					+ "full_name=? and from_card = ? and to_card=? and amount=?";
+			ps = c.prepareStatement(sql);
+			ps.setString(1, card.getName());
+			ps.setString(2, card.getCard_number());
+			ps.setString(3, card.getClient_code());
+			ps.setString(4, card.getCurrency());
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				id = rs.getString("ID");
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); 
+			ISLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				ConnectionPool.close(ps);
+				ConnectionPool.close(rs);
+				ConnectionPool.close(c);
+			} catch (Exception e) {
+				e.printStackTrace(); 
+			}
+		}
+		return id;
+	}
+	
+	public static void InsertToDetailsTable(Card card, String string) {
 	    Connection c = null;
 	    PreparedStatement ps = null;
 	    try {
@@ -975,28 +1170,31 @@ public class CardtcService {
 	        } else {
 	        	description = "Error";
 	        } 
-	        String sql_1 = "INSERT INTO api_details_table VALUES (0, SYSTIMESTAMP, ?, ?, ?, ?)";
+	        String sql_1 = "INSERT INTO api_details_table VALUES (0, SYSTIMESTAMP, ?, ?, ?, ?, ?)";
 		    ps = c.prepareStatement(sql_1);
 		    ps.setString(1, big_1);
 		    ps.setString(2, result);
 		    ps.setString(3, description);
 		    ps.setString(4, card.getName());
+		    ps.setString(5, string);
 		    ps.executeUpdate();
 
-	        String sql_2 = "INSERT INTO api_details_table VALUES (0, SYSTIMESTAMP, ?, ?, ?, ?)";
+	        String sql_2 = "INSERT INTO api_details_table VALUES (0, SYSTIMESTAMP, ?, ?, ?, ?, ?)";
 		    ps = c.prepareStatement(sql_2);
 		    ps.setString(1, big_2);
 		    ps.setString(2, result);
 		    ps.setString(3, description);
 		    ps.setString(4, card.getName());
+		    ps.setString(5, string);
 		    ps.executeUpdate();
 	        
-	        String sql_3 = "INSERT INTO api_details_table VALUES (0, SYSTIMESTAMP, ?, ?, ?, ?)";
+	        String sql_3 = "INSERT INTO api_details_table VALUES (0, SYSTIMESTAMP, ?, ?, ?, ?, ?)";
 		    ps = c.prepareStatement(sql_3);
 		    ps.setString(1, big_3);
 		    ps.setString(2, result);
 		    ps.setString(3, description);
 		    ps.setString(4, card.getName());
+		    ps.setString(5, string);
 		    ps.executeUpdate();
 
 	        
@@ -1017,4 +1215,40 @@ public class CardtcService {
 	    }
 }
 
+public static String getId(Card card) {
+
+		Connection c = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		try {
+			c = ConnectionPool.getConnection();
+			String sql = "select ID from tempCardToCardProtocol where "
+					+ "full_name=? and from_card = ? and to_card=? and amount=?";
+			ps = c.prepareStatement(sql);
+			ps.setString(1, card.getName());
+			ps.setString(2, card.getCard_number());
+			ps.setString(3, card.getClient_code());
+			ps.setString(4, card.getCurrency());
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				di = rs.getString("ID");
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); 
+			ISLogger.getLogger().error(com.is.utils.CheckNull.getPstr(e));
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				ConnectionPool.close(ps);
+				ConnectionPool.close(rs);
+				ConnectionPool.close(c);
+			} catch (Exception e) {
+				e.printStackTrace(); 
+			}
+		}
+		return di;
+	}
 }
