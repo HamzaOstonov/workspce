@@ -1351,7 +1351,8 @@ public class ParameterService {
 			}
 			s = c.createStatement();
 			sqlssdblinkbranch = "SELECT s.* FROM ss_dblink_branch s where s.branch = '" + branch + "' ";
-
+if (clientid.equals("60001342"))
+	log.error("sqlssdblinkbranch="+sqlssdblinkbranch);
 			/*
 			 * if (code_subject.equalsIgnoreCase("P")) { sqlssdblinkbranch =
 			 * "SELECT s.* FROM ss_dblink_branch s where s.branch = '"+branch+
@@ -1373,14 +1374,34 @@ public class ParameterService {
 					+ "where l.branch = ? and l.id_cl_add = ? and lis_num is not null "
 					+ "  and sla.name (+) = l.lis_give_organ " + "  and slact.name (+) = l.act_name order by l.id");
 			rs = s.executeQuery(sqlssdblinkbranch);
+			if (clientid.equals("60001342"))
+				log.error("sqlssdblinkbranch 2="+sqlssdblinkbranch);
+			
 			while (rs.next()) {
+				if (clientid.equals("60001342"))
+					log.error("sqlssdblinkbranch 3="+sqlssdblinkbranch);
+				
 				_branch = rs.getString("branch");
 				_alias = rs.getString("user_name");
+				if (clientid.equals("60001342"))
+					log.error("sqlssdblinkbranch _branch _alias="+_branch+"-"+ _alias);
+				
 				s.execute("alter session set current_schema=" + _alias);
+				if (clientid.equals("60001342"))
+					log.error("sqlssdblinkbranch _branch _alias="+_branch+"-"+ _alias);
+				
 				ps.setString(1, branch);
 				ps.setString(2, clientid);
 				rscl = ps.executeQuery();
+				if (clientid.equals("60001342"))
+					log.error("sqlssdblinkbranch _branch _alias(2)="+_branch+"-"+ _alias);
+				
 				if (rscl.next()) {
+					
+					if (clientid.equals("60001342"))
+						log.error("sqlssdblinkbranch _branch _alias id_cl_add="+_branch+"-"+ _alias+"-"+rscl.getLong("ID"));
+
+					
 					long id_cl_add = rscl.getLong("ID");
 					int uvk = rscl.getInt("RISK_DEGREE");
 					String uvkreason = rscl.getString("RISK_DEGREE_DETAIL");
@@ -1451,6 +1472,9 @@ public class ParameterService {
 
 					}
 				}
+				if (clientid.equals("60001342"))
+					log.error("sqlssdblinkbranch _branch _alias rs_last="+_branch+"-"+ _alias);
+	
 			}
 			if (sopers.length() > 0)
 				sopers = sopers.substring(0, sopers.length() - 2);
@@ -1469,8 +1493,12 @@ public class ParameterService {
 			res.put("po_note", popers);
 			res.put("licensies", lislist);
 		} catch (Exception e) {
+			if (clientid.equals("60001342"))
+				log.error("sqlssdblinkbranch _branch _alias exception="+_branch+"-"+ _alias);
+
 			e.printStackTrace();
 			log.error(CheckNull.getPstr(e));
+			
 			if (s != null)
 				try {
 					s.close();
