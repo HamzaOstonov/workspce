@@ -67,7 +67,7 @@ public class TheService {
 		dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	}
 	
-	public static FizInfoDetailsResponse fizInfoDetailsResponse(String branch, String pinfl, String passp_ser, String passp_num) throws Exception {
+	public static FizInfoDetailsResponse fizInfoDetailsResponse(String branch, String pinfl, String passp_ser, String passp_num, String p_emp_id) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		FizInfoDetailsResponse myObj;
 		Res res = new Res();
@@ -91,7 +91,7 @@ public class TheService {
         " \"pinpp\": \"" + pinfl+ "\"" +
         "};";*/
 		
-		String content = sendData(url, p_data);
+		String content = sendData(url, p_data, branch, p_emp_id);
 		//String contentTemp = "{     \"Result\": 1,     \"Data\": {\"personaldata\": {\"row\":    {        \"queryld\": \"string\",        \"pinpp\": \"31312781080071\",        \"document\": \"AB2429121\",        \"surnamelatin\": \"OSTONOV\",        \"namelatin\": \"HAMZA\",        \"patronymlatin\": \"G‘OFURJONOVICH\",        \"engsurname\": \"OSTONOV\",        \"engname\": \"KHAMZA\",        \"birth_date\": \"1978-12-13\",        \"birthplace\": \"QORAKO‘L TUMANI\",        \"birthplaceid\": \"\",        \"birthcountry\": \"УЗБЕКИСТАН\",        \"birthcountryid\": 860,        \"livestatus\": 1,        \"nationality\": \"УЗБЕК/УЗБЕЧКА\",        \"nationalityid\": \"01\",        \"citizenship\": \"УЗБЕКИСТАН\",        \"citizenshipid\": 860,        \"sex\": 1,        \"docgiveplace\": \"БУХАРСКИЙ ГОВД БУХАРСКОЙ ОБЛАСТИ\",        \"docgiveplaceid\": 6206,        \"docdatebegin\": \"2016-01-11\",        \"docdateend\": \"2026-01-10\"     }}}  }";
 		
 		myObj = objectMapper.readValue(content, FizInfoDetailsResponse.class);
@@ -101,7 +101,7 @@ public class TheService {
 	}
 
 	
-	public static FizAddressResponse fizAddressResponse(String branch, String pinfl) throws Exception {
+	public static FizAddressResponse fizAddressResponse(String branch, String pinfl, String p_emp_id) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		FizAddressResponse myObj=null;
 		Res res = new Res();
@@ -115,7 +115,7 @@ public class TheService {
 		String p_data="{ "+
         " \"pinpp\": \"" + pinfl+ "\"" +
         "};";
-		String content = sendData(url, p_data);
+		String content = sendData(url, p_data, branch, p_emp_id);
 		//String contentTemp = "{   \"Data\":    {      \"PermanentRegistration\":       {         \"Cadastre\": \"10:07:02:01:02:5011:0001:030\",         \"Country\":          {            \"Id\": \"860\",            \"Value\": \"ЎЗБЕКИСТОН\",            \"IdValue\": \"(182) ЎЗБЕКИСТОН\"         },         \"Region\":          {            \"Id\": \"26\",            \"Value\": \"ТОШКЕНТ ШАХРИ\",            \"IdValue\": \"(10) ТОШКЕНТ ШАХРИ\"         },         \"District\":          {            \"Id\": \"200\",            \"Value\": \"ЮНУСОБОД ТУМАНИ\",            \"IdValue\": \"(1010) ЮНУСОБОД ТУМАНИ\"         },         \"Address\": \"г. Ташкент, Юнусабадский район, ул. Чингиз Айтматов, Янгитарнов МСГ, 1- Дом, 30- Квартира\",         \"RegistrationDate\": \"2021-06-11T00:00:00\"      },      \"TemproaryRegistrations\": []   },   \"AnswereId\": 1,   \"AnswereMessage\": \"Ok\",   \"AnswereComment\": \"\"}";
 		if (!content.equals(""))
 			try {
@@ -132,7 +132,7 @@ public class TheService {
 		return myObj;
 	}
 	
-	public static FizPhotoResponse fizPhotoResponse(String branch, String pinfl, String docdate) throws Exception {
+	public static FizPhotoResponse fizPhotoResponse(String branch, String pinfl, String docdate, String p_emp_id) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		FizPhotoResponse myObj=null;
 		Res res = new Res();
@@ -157,7 +157,7 @@ public class TheService {
 		infoReq.setGetDataByPinppRequest(getdatareq);
 		String p_data= objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(infoReq);
 
-		String content = sendData(url, p_data);
+		String content = sendData(url, p_data, branch, p_emp_id);
 		/*StringBuffer strB = new StringBuffer();
 		strB.append("{");
 		strB.append("\"Result\": 1,");
@@ -237,7 +237,7 @@ public class TheService {
 		return myObj;
 	}
 	
-	public static FizDocsResponse fizDocsResponse(String branch, FizDocsRequest query) throws Exception {
+	public static FizDocsResponse fizDocsResponse(String branch, FizDocsRequest query, String p_emp_id) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		FizDocsResponse myObj=null;
 		Res res = new Res();
@@ -264,7 +264,7 @@ public class TheService {
 		infoReq.setGetDataByPinppRequest(getdatareq);*/
 		String p_data= objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(query);
 
-		String content = sendData(url, p_data);
+		String content = sendData(url, p_data, branch, p_emp_id);
 		/*StringBuffer strB = new StringBuffer();
 		strB.append("{");                                                 
 		strB.append("   \"result\": 1,                                                           ");                              
@@ -407,7 +407,7 @@ public class TheService {
 		return result;
 	}
 	
-	public static String sendData(String p_url, String p_data) {
+	public static String sendData(String p_url, String p_data, String p_branch, String p_emp_id) {
 		ISLogger.getLogger().error("url = " + p_url);		
 		ISLogger.getLogger().error("sendData data! : "+p_data);
 		String message = "";
