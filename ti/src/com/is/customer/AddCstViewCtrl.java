@@ -1524,8 +1524,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										RT = open_card("004", RT, false, new_card_acc);
 										if (RT == null)
 											return;
-										if (cst.getCode_resident().equals("1"))
-										open_card("001", RT, true, new_card_acc);
+										//if (cst.getCode_resident().equals("1"))
+										//open_card("001", RT, true, new_card_acc);//2025.04.01 koment
 										contract_nmb = null;
 									} else if (addwnd$sproduct.getValue().compareTo("016") == 0) {
 										Tclient ntc;
@@ -1563,8 +1563,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										RT = open_card("016", RT, false, new_card_acc);
 										if (RT == null)
 											return;
-										if (cst.getCode_resident().equals("1"))
-										open_card("001", RT, true, new_card_acc);
+										//if (cst.getCode_resident().equals("1"))
+										//open_card("001", RT, true, new_card_acc);//2025.04.01 koment
 										contract_nmb = null;
 									} else if (addwnd$sproduct.getValue().compareTo("019") == 0) {
 										Tclient ntc;
@@ -1602,8 +1602,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										RT = open_card("019", RT, false, new_card_acc);
 										if (RT == null)
 											return;
-										if (cst.getCode_resident().equals("1"))
-										open_card("001", RT, true, new_card_acc);
+										//if (cst.getCode_resident().equals("1"))
+										//open_card("001", RT, true, new_card_acc);//2025.04.01 koment
 										contract_nmb = null;
 									} else if (addwnd$sproduct.getValue().compareTo("020") == 0) {
 										Tclient ntc;
@@ -1793,8 +1793,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										RT = open_card("022", RT, false, new_card_acc);
 										if (RT == null)
 											return;
-										if (cst.getCode_resident().equals("1"))
-										open_card("002", RT, true, new_card_acc);
+										//if (cst.getCode_resident().equals("1"))
+										//open_card("002", RT, true, new_card_acc);  //2025.04.01 koment
 										contract_nmb = null;
 									} else if (addwnd$sproduct.getValue().compareTo("023") == 0) {
 										Tclient ntc;
@@ -1830,8 +1830,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										RT = open_card("023", RT, false, new_card_acc);
 										if (RT == null)
 											return;
-										if (cst.getCode_resident().equals("1"))
-										open_card("002", RT, true, new_card_acc);
+										//if (cst.getCode_resident().equals("1"))
+										//open_card("002", RT, true, new_card_acc); //2025.04.01 koment
 										contract_nmb = null;
 									} else if (addwnd$sproduct.getValue().compareTo("200") == 0) { 
 										Tclient ntc;
@@ -1979,8 +1979,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 												new_card_acc);
 										if (RT == null)
 											return;
-										if (cst.getCode_resident().equals("1"))
-										open_card("002", RT, true, new_card_acc);
+										//if (cst.getCode_resident().equals("1"))
+										//open_card("002", RT, true, new_card_acc); //2025.04.01 koment
 										contract_nmb = null;
 									} else if (addwnd$sproduct.getValue().compareTo("007") == 0) {
 										Tclient ntc;
@@ -2018,8 +2018,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 												new_card_acc);
 										if (RT == null)
 											return;
-										if (cst.getCode_resident().equals("1"))
-										open_card("002", RT, true, new_card_acc);
+										//if (cst.getCode_resident().equals("1"))
+										//open_card("002", RT, true, new_card_acc);  //2025.04.01 koment
 										contract_nmb = null;
 									}
 
@@ -2059,8 +2059,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 												new_card_acc);
 										if (RT == null)
 											return;
-										if (cst.getCode_resident().equals("1"))
-										open_card("002", RT, true, new_card_acc);
+										//if (cst.getCode_resident().equals("1"))
+										//open_card("002", RT, true, new_card_acc); //2025.04.01 koment
 										contract_nmb = null;
 									}
 
@@ -2206,8 +2206,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													new_card_acc);
 											if (RT == null)
 												return;
-											if (cst.getCode_resident().equals("1"))
-											open_card("001", RT, true, new_card_acc);
+											//if (cst.getCode_resident().equals("1"))
+											//open_card("001", RT, true, new_card_acc);  //2025.04.01 koment
 											contract_nmb = null;
 										}									
 									 else if (addwnd$sproduct.getValue().compareTo("032") == 0) {
@@ -2245,8 +2245,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													new_card_acc);
 											if (RT == null)
 												return;
-											if (cst.getCode_resident().equals("1"))
-											open_card("002", RT, true, new_card_acc);
+											//if (cst.getCode_resident().equals("1"))
+											//open_card("002", RT, true, new_card_acc);  //2025.04.01 koment
 											contract_nmb = null;
 										}
 									 else if (addwnd$sproduct.getValue().compareTo("033") == 0) {
@@ -2286,8 +2286,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													new_card_acc);
 											if (RT == null)
 												return;
-											if (cst.getCode_resident().equals("1"))
-											open_card("002", RT, true, new_card_acc);
+											//if (cst.getCode_resident().equals("1"))
+											//open_card("002", RT, true, new_card_acc); //2025.04.01 koment
 											contract_nmb = null;
 										}
 									 else if (addwnd$sproduct.getValue().compareTo("034") == 0) {
@@ -2327,8 +2327,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													new_card_acc);
 											if (RT == null)
 												return;
-											if (cst.getCode_resident().equals("1"))
-											open_card("002", RT, true, new_card_acc);
+											//if (cst.getCode_resident().equals("1"))
+											//open_card("002", RT, true, new_card_acc); //2025.04.01 koment
 											contract_nmb = null;
 										}
 									 else if (addwnd$sproduct.getValue().compareTo("040") == 0) {
@@ -2367,8 +2367,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													new_card_acc);
 											if (RT == null)
 												return;
-											if (cst.getCode_resident().equals("1"))
-											open_card("002", RT, true, new_card_acc);
+											//if (cst.getCode_resident().equals("1"))
+											//open_card("002", RT, true, new_card_acc); //2025.04.01 koment
 											contract_nmb = null;
 										}
 									 else if (addwnd$sproduct.getValue().compareTo("041") == 0) {
@@ -2407,8 +2407,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													new_card_acc);
 											if (RT == null)
 												return;
-											if (cst.getCode_resident().equals("1"))
-											open_card("002", RT, true, new_card_acc);
+											//if (cst.getCode_resident().equals("1"))
+											//open_card("002", RT, true, new_card_acc); //2025.04.01 koment
 											contract_nmb = null;
 										}
 									 else {
