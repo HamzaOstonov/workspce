@@ -5760,7 +5760,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 		// ord = null;
 		// }
 		//if (addwnd$sproduct.getValue().equals("860")) {
-		if (addwnd$sproduct.getValue().equals("200")) {
+		/*2025.05.14 da addwnd$sproduct.getValue().equals("200")ni urniga tcs.getAccount_ccy().equals("000") ni qildim.
+		 */
+		//if (addwnd$sproduct.getValue().equals("200")) {
+		if (tcs.getAccount_ccy().equals("000")) {	
 			open22618_acc1(
 					tcs.getId_order_max(),
 					ord,
