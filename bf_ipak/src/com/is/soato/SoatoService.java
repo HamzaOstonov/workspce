@@ -21,9 +21,14 @@ public class SoatoService {
     private Logger logger = Logger.getLogger(SoatoService.class);
     private static final String HEADER = "select * from ( ";
     private static final String BODY =
-            "select rownum rownm,t.*, " +
-            "(select a.region_nam from s_region a where a.region_id = t.region_id) " +
-            "region_name from (select * from s_soato) t ";
+            //"select rownum rownm,t.*, " +
+            //"(select a.region_nam from s_region a where a.region_id = t.region_id) " +
+            //"region_name from (select * from s_soato) t ";
+    		"select rownum rownm,t.*, t.code KOD_SOAT, cast(null as varchar2(4)) as KOD_GNI, t.reg_name_u region_id, t.reg_name region_name, " + 
+    		"t.loc_r_name_u distr, t.loc_r_name distr_ru " +
+    		"from (select * from s_spr_104) t ";
+    
+
     private static final String FOOTER_ = " ) b where b.rownm between ? and ?";
 
     public int getCount(Criteria criteria) {
@@ -35,7 +40,7 @@ public class SoatoService {
             c = ConnectionPool.getConnection();
             FilterStatement filterStatement = new FilterStatement(criteria);
 
-            String SQLStatement = "SELECT COUNT(*) FROM S_SOATO ";
+            String SQLStatement = "SELECT COUNT(*) FROM s_spr_104 ";
             SQLStatement += filterStatement.generateConditions();
 
             preparedStatement = c.prepareStatement(SQLStatement);

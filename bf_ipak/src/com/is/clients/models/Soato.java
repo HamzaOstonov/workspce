@@ -51,7 +51,7 @@ public class Soato implements FilterInterface<FilterField>,Cloneable {
         if (!StringUtils.isEmpty(distr)){
             list.add(new FilterField(getCond(list)+" distr=? ",distr));
         }
-        list.add(new FilterField(getCond(list) + " ACT=? ","A"));
+        list.add(new FilterField(getCond(list) + " ACTive=? ","A"));
         return list;
     }
 
