@@ -2699,6 +2699,30 @@ public class CustomerService {
 		}
 	}
 
-	// public static String get
+
+	public static void write_lock_table( String branch,	String card, String stop_cause_type, 
+			  String stop_cause_txt, String account, String user_id,  String un, String pwd, String alias) {
+
+		Connection c = null;
+		PreparedStatement ps = null;
+		try {
+			c = ConnectionPool.getConnection(un, pwd, alias);
+			ps = c.prepareStatement("update bf_tieto_customers set cur_acc = ? where branch = ? and head_customer_id = ?");
+
+			ps.setString(1, acc);
+			ps.setString(2, branch);
+			ps.setString(3, br_id);
+			ps.executeUpdate();
+			c.commit();
+		} catch (Exception e) {
+			LtLogger.getLogger().error(CheckNull.getPstr(e));
+			e.printStackTrace();
+
+		} finally {
+			CustomerUtils.closePStatement(ps);
+			ConnectionPool.close(c);
+		}
+	}
+
 
 }
