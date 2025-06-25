@@ -6531,6 +6531,11 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					"Карта No [" + cur_card.getCard() + "] заблокирована",
 					branch));
 
+			if (blockwnd$sstopcauses.getValue().equals("X")) {
+				CustomerService.write_lock_table(branch, cur_card.getCard(), blockwnd$sstopcauses.getValue(), 
+						blockwnd$txtstopcauses.getValue(), cur_card.getTranz_acct(), ""+uid, un, pwd, alias);	
+			}
+			
 		} catch (Exception e) {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
 			alert(e.getMessage());

@@ -2707,11 +2707,16 @@ public class CustomerService {
 		PreparedStatement ps = null;
 		try {
 			c = ConnectionPool.getConnection(un, pwd, alias);
-			ps = c.prepareStatement("update bf_tieto_customers set cur_acc = ? where branch = ? and head_customer_id = ?");
+			ps = c.prepareStatement("insert into card_acc_lock_close(id, branch, card_type, card_num, "+
+			 "account, card_locked_date, user_id) "+ 
+			 "values (SQ_card_acc_lock_close.nextval, ?, ?, ?, "+
+			 "?, sysdate, ?)");
 
-			ps.setString(1, acc);
-			ps.setString(2, branch);
-			ps.setString(3, br_id);
+			ps.setString(1, branch);
+			ps.setString(2, "1");
+			ps.setString(3, card);
+			ps.setString(4, account);
+			ps.setString(5, user_id);
 			ps.executeUpdate();
 			c.commit();
 		} catch (Exception e) {
