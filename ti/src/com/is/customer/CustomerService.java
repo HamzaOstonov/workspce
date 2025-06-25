@@ -2708,9 +2708,9 @@ public class CustomerService {
 		try {
 			c = ConnectionPool.getConnection(un, pwd, alias);
 			ps = c.prepareStatement("insert into card_acc_lock_close(id, branch, card_type, card_num, "+
-			 "account, card_locked_date, user_id) "+ 
+			 "account, card_locked_date, user_id, state) "+ 
 			 "values (SQ_card_acc_lock_close.nextval, ?, ?, ?, "+
-			 "?, sysdate, ?)");
+			 "?, sysdate, ?, 0)");
 
 			ps.setString(1, branch);
 			ps.setString(2, "1");
