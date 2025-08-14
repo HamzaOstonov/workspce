@@ -18,7 +18,7 @@ public class RefDataService {
 
 	public static HashMap<String, String> getHTstopCauses() {
 		if (_tstopCauses == null) {
-			_tstopCauses = getHRefTData("select cause data,name label from izd_stop_causes where bank_c='01'  order by cause");
+			_tstopCauses = getHRefTData("select cause data,name label from izd_stop_causes where bank_c='01' order by cause");
 		}
 		return _tstopCauses;
 	}
@@ -151,7 +151,7 @@ public class RefDataService {
 	}
 
 	public static List<RefData> getTstopCauses() {
-		return getRefTData("select cause data,name label from izd_stop_causes where bank_c='01'  order by cause");
+		return getRefTData("select cause data,name label from izd_stop_causes where bank_c='01' order by cause");
 	}
 
 	public static List<RefData> getFieldState(String alias) {
@@ -319,6 +319,11 @@ public class RefDataService {
 				branch);
 	}
 
+	public static List<RefData> getStopCauses(String branch) {
+		return getRefData("select cause data,name label from bf_izd_stop_causes where bank_c='01' and act <> 'Z' order by cause", branch);
+	}
+
+	
 	public static List<RefData> getType_client(String branch) {
 		return getRefData(
 				"select kod_k data, name_k2 label from S_TYPEKL where act <> 'Z' order by kod_k",

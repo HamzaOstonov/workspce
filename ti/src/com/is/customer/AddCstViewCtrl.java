@@ -763,10 +763,14 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							public void onEvent(Event event) throws Exception {
 								cur_card = (AccInfo) event.getTarget()
 										.getAttribute("acc");
+								//blockwnd$sstopcauses
+								//		.setModel(new ListModelList(
+								//				com.is.utils.RefDataService
+								//						.getTstopCauses()));
 								blockwnd$sstopcauses
-										.setModel(new ListModelList(
-												com.is.utils.RefDataService
-														.getTstopCauses()));
+								.setModel(new ListModelList(
+										com.is.utils.RefDataService
+												.getStopCauses(alias)));								
 								blockwnd.setVisible(true);
 							}
 
@@ -6531,10 +6535,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					"Карта No [" + cur_card.getCard() + "] заблокирована",
 					branch));
 
-			if (blockwnd$sstopcauses.getValue().equals("X")) {
-				CustomerService.write_lock_table(branch, cur_card.getCard(), blockwnd$sstopcauses.getValue(), 
-						blockwnd$txtstopcauses.getValue(), cur_card.getTranz_acct(), ""+uid, un, pwd, alias);	
-			}
+			//if (blockwnd$sstopcauses.getValue().equals("X")) {
+			//	CustomerService.write_lock_table(branch, cur_card.getCard(), blockwnd$sstopcauses.getValue(), 
+			//			blockwnd$txtstopcauses.getValue(), cur_card.getTranz_acct(), ""+uid, un, pwd, alias);	
+			//}
 			
 		} catch (Exception e) {
 			LtLogger.getLogger().error(CheckNull.getPstr(e));
