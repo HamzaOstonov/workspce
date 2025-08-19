@@ -2890,10 +2890,10 @@ public abstract class AbstractClientController extends GenericForwardComposer im
 			@Override
 			public void onEvent(Event event) throws Exception {
 				Soato soato = (Soato) event.getData();
-				newcl.setJ_region(soato.getRegion());
-				newcl.setJ_distr(soato.getDistr());
+				//newcl.setJ_region(soato.getRegion());
+				//newcl.setJ_distr(soato.getDistr());
 				newcl.setJ_soato(soato.getKod_soat());
-				newcl.setJ_code_tax_org(soato.getKod_gni());
+				//newcl.setJ_code_tax_org(soato.getKod_gni());
 				binder.loadAll();
 			}
 		});

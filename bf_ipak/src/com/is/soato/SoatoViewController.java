@@ -58,7 +58,8 @@ public class SoatoViewController extends GenericForwardComposer {
                 });
             }
         });
-        region.setModel(new ListModelList(ReferenceDictionary.getRegions(session.getAttribute("alias").toString())));
+        //region.setModel(new ListModelList(ReferenceDictionary.getRegions(session.getAttribute("alias").toString())));
+        region.setModel(new ListModelList(ReferenceDictionary.getRegions_spr_104(session.getAttribute("alias").toString())));
         self.addEventListener(Events.ON_CLOSE, new EventListener() {
             @Override
             public void onEvent(Event event) throws Exception {
@@ -106,7 +107,7 @@ public class SoatoViewController extends GenericForwardComposer {
         if (current == null)
             throw new Exception("Current is null");
         Soato soato = (Soato) current.clone();
-        soato.setKod_soat("17" + soato.getKod_soat());
+        //soato.setKod_soat("17" + soato.getKod_soat());
         Events.sendEvent("onNotifySoato",self,soato);
         self.detach();
     }
@@ -116,10 +117,12 @@ public class SoatoViewController extends GenericForwardComposer {
         //distr.setModel(new BindingListModelList(ReferenceDictionary.getDistricts(
         //        event.getValue(),
         //        session.getAttribute("alias").toString()),true));
-        distr.setModel(new BindingListModelList(ReferenceDictionary.getDistrByRegion(
+        //distr.setModel(new BindingListModelList(ReferenceDictionary.getDistrByRegion(
+        //        event.getValue(),
+        //        session.getAttribute("alias").toString()),true));
+        distr.setModel(new BindingListModelList(ReferenceDictionary.getDistrByRegion_spr_104(
                 event.getValue(),
                 session.getAttribute("alias").toString()),true));
-
     }
 
     public void onChange$region(){
@@ -127,10 +130,14 @@ public class SoatoViewController extends GenericForwardComposer {
         //distr.setModel(new BindingListModelList(ReferenceDictionary.getDistricts(
         //        region.getValue(),
         //        session.getAttribute("alias").toString()),true));
-        distr.setModel(new BindingListModelList(ReferenceDictionary.getDistrByRegion(
+        //distr.setModel(new BindingListModelList(ReferenceDictionary.getDistrByRegion(
+        //        region.getValue(),
+        //        session.getAttribute("alias").toString()),true));
+
+        distr.setModel(new BindingListModelList(ReferenceDictionary.getDistrByRegion_spr_104(
                 region.getValue(),
                 session.getAttribute("alias").toString()),true));
-        
+
         binder.loadAll();
     }
 

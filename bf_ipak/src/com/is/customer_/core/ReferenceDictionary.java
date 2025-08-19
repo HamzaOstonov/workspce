@@ -37,10 +37,12 @@ public class ReferenceDictionary {
 	public static List<RefData> pasportTypes;
 	public static List<RefData> genderTypes;
 	public static List<RefData> regions;
+	public static List<RefData> regions_spr_104;
 	//public static List<RefData> allRegions;
 	//public static List<RefData> allDistricts;
 	private static List<RefData> listDistr;
 	private static HashMap<String, List<RefData>> listDistrByRegion;	
+	private static HashMap<String, List<RefData>> listDistrByRegion_spr_104;
 	public static List<RefData> capacity;
 	public static List<RefData> sKlass;
 	public static List<RefData> gNI;
@@ -243,7 +245,7 @@ public class ReferenceDictionary {
 	public static List<RefData> getPasportTypes(String alias) {
 		if (pasportTypes == null)
 			pasportTypes = RefDataService.getRefData(
-					"select 'O' data, 'не биометрический' label from dual union all select 'N' data, 'биометрический' label from dual ",
+					"select 'O' data, 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' label from dual union all select 'N' data, 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' label from dual ",
 					alias);
 		return pasportTypes;
 	}
@@ -262,6 +264,13 @@ public class ReferenceDictionary {
 		return regions;
 	}
 
+	public static List<RefData> getRegions_spr_104(String alias) {
+		if (regions_spr_104 == null)
+			regions_spr_104 = RefDataService.getRefData(
+					"select distinct reg_code as data, reg_name as label from s_spr_104 order by 1", alias);
+		return regions_spr_104;
+	}
+
 	/*public static List<RefData> getDistricts(String code, String alias) {
 		return RefDataService.getRefData(
 				"select distr data, distr_name label, region_id from s_distr where act <> 'Z' and region_id =" + code
@@ -269,7 +278,6 @@ public class ReferenceDictionary {
 				alias);
 	}*/
 	public static List<RefData> getDistrByRegion(String region_id, final String alias) {
-	
 		if (listDistrByRegion == null ) 
 			listDistrByRegion = new HashMap<String, List<RefData>>();
 		if ( !listDistrByRegion.containsKey(region_id) ) {
@@ -277,10 +285,22 @@ public class ReferenceDictionary {
 			.getRefData(
 					"select distr data, distr_name label from s_distr where region_id=? and act='A' order by 1", region_id,
 					alias);
-			
 		   listDistrByRegion.put(region_id, lst);
 		}
 		return listDistrByRegion.get(region_id);
+	}
+
+	public static List<RefData> getDistrByRegion_spr_104(String region_id, final String alias) {
+		if (listDistrByRegion_spr_104 == null ) 
+			listDistrByRegion_spr_104 = new HashMap<String, List<RefData>>();
+		if ( !listDistrByRegion_spr_104.containsKey(region_id) ) {
+			List<RefData> lst = RefDataService
+			.getRefData(
+					"select distinct loc_r_code data, loc_r_name label from s_spr_104 where loc_r_code like ?||'%' order by 1", region_id,
+					alias);
+			listDistrByRegion_spr_104.put(region_id, lst);
+		}
+		return listDistrByRegion_spr_104.get(region_id);
 	}
 
 	/*public static List<RefData> getAllRegions(String alias) {

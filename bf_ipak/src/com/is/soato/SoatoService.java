@@ -19,18 +19,21 @@ import java.util.List;
 
 public class SoatoService {
     private Logger logger = Logger.getLogger(SoatoService.class);
-    private static final String HEADER = "select * from ( ";
-    private static final String BODY =
-            //"select rownum rownm,t.*, " +
-            //"(select a.region_nam from s_region a where a.region_id = t.region_id) " +
-            //"region_name from (select * from s_soato) t ";
-    		"select rownum rownm,t.*, t.code KOD_SOAT, cast(null as varchar2(4)) as KOD_GNI, t.reg_name_u region_id, t.reg_name region_name, " + 
-    		"t.loc_r_name_u distr, t.loc_r_name distr_ru " +
-    		"from (select * from s_spr_104) t ";
+    //private static final String HEADER = "select * from ( ";
+    //private static final String BODY =
+    //        "select rownum rownm,t.*, " +
+    //        "(select a.region_nam from s_region a where a.region_id = t.region_id) " +
+    //        "region_name from (select * from s_soato) t ";
+    //private static final String FOOTER_ = " ) b where b.rownm between ? and ?";
+
     
-
-    private static final String FOOTER_ = " ) b where b.rownm between ? and ?";
-
+    private static final String HEADER = "select * from ( "+
+    		"select rownum rownm, t.*, t.code KOD_SOAT, cast(null as varchar2(4)) as KOD_GNI, t.reg_code region_id, t.reg_name region_name, " + 
+    		"t.loc_r_code distr_id, t.loc_r_name distr_name from (";
+    private static final String BODY =
+    		"select * from s_spr_104";
+    private static final String FOOTER_ = ") t ) b where b.rownm between ? and ?";
+    
     public int getCount(Criteria criteria) {
         int count = 0;
         Connection c = null;
@@ -73,6 +76,7 @@ public class SoatoService {
             SQLStatement.append(HEADER);
             SQLStatement.append(BODY);
             SQLStatement.append(filterStatement.generateConditions());
+            SQLStatement.append(" order by code");
             SQLStatement.append(FOOTER_);
 
             preparedStatement = c.prepareStatement(SQLStatement.toString());
@@ -98,8 +102,8 @@ public class SoatoService {
                 resultSet.getString("KOD_SOAT"),
                 resultSet.getString("KOD_GNI"),
                 resultSet.getString("region_id"),
-                resultSet.getString("distr"),
-                resultSet.getString("distr_ru"),
+                resultSet.getString("distr_id"),
+                resultSet.getString("distr_name"),
                 resultSet.getString("region_name")
         );
     }
