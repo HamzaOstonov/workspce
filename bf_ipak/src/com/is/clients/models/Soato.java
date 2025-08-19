@@ -40,18 +40,18 @@ public class Soato implements FilterInterface<FilterField>,Cloneable {
     public List<FilterField> getFilterFields() {
         List<FilterField> list = new ArrayList<FilterField>();
         if (!StringUtils.isEmpty(kod_soat)){
-            list.add(new FilterField(getCond(list)+" kod_soat=? ",kod_soat));
+            list.add(new FilterField(getCond(list)+" kod_soat=? ", kod_soat));
         }
         if (!StringUtils.isEmpty(kod_gni)){
-            list.add(new FilterField(getCond(list)+" kod_gni=? ",kod_gni));
+            list.add(new FilterField(getCond(list)+" kod_gni=? ", kod_gni));
         }
         if (!StringUtils.isEmpty(region)){
-            list.add(new FilterField(getCond(list)+" region_id=? ",region));
+            list.add(new FilterField(getCond(list)+" reg_code=? ", region));
         }
         if (!StringUtils.isEmpty(distr)){
-            list.add(new FilterField(getCond(list)+" distr=? ",distr));
+            list.add(new FilterField(getCond(list)+" loc_r_code=? ", distr));
         }
-        list.add(new FilterField(getCond(list) + " ACTive=? ","A"));
+        list.add(new FilterField(getCond(list) + " ACTive=? ", "A"));
         return list;
     }
 
