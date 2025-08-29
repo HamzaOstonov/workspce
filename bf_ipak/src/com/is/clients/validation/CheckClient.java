@@ -458,9 +458,9 @@ public class CheckClient extends Validator<ClientJ> {
             message = "Введите код адреса";
             return false;
         }
-//		if(client.getJ_soato()!=null && client.getJ_soato().length()>8){
-//			message = "Длина поля Код адреса не должна превышать 8 символов";
-//		}
+		if(client.getJ_soato()!=null && client.getJ_soato().length()!=10){
+			message = "Длина поля Код адреса должна быть 10 символов";
+		}
         if (!isIp() && CheckNull.isEmpty(client.getJ_okpo())) {
             message = "Введите код юридического лица";
             return false;
