@@ -460,6 +460,7 @@ public class CheckClient extends Validator<ClientJ> {
         }
 		if(client.getJ_soato()!=null && client.getJ_soato().length()!=10){
 			message = "Длина поля Код адреса должна быть 10 символов";
+			return false;
 		}
         if (!isIp() && CheckNull.isEmpty(client.getJ_okpo())) {
             message = "Введите код юридического лица";
