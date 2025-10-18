@@ -1833,7 +1833,7 @@ public class CustomerService {
 		return customer;
 	}
 
-	public static Res removeTс(String un, String pw, int id, String alias) {
+	public static Res removeTc(String un, String pw, int id, String alias) {
 
 		Res res = null;
 		Connection c = null;
@@ -2091,7 +2091,7 @@ public class CustomerService {
 		 * branch_customer_id.startsWith("0"))&& (HO_customer_id != null &&
 		 * branch_customer_id != null && HO_customer_id != branch_customer_id))
 		 * throw new IllegalArgumentException(
-		 * "Неверные уникальные номера клиентов ИП в связке");
+		 * "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 		 * 
 		 * try { if(mapping_id != null) { ps =
 		 * c.prepareStatement("select * from bf_tieto_customers c where c.id = ?"
@@ -2113,7 +2113,7 @@ public class CustomerService {
 		 * old_branch_customer_id || branch_customer_id != null &&
 		 * old_ho_customer_id != null && branch_customer_id !=
 		 * old_ho_customer_id)) throw new IllegalArgumentException(
-		 * "Неверные уникальные номера клиентов ИП в связке"); } finally {
+		 * "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"); } finally {
 		 * try{if(ps != null) ps.close();}catch(Exception e){} try{if(rs !=
 		 * null) rs.close();}catch(Exception e){} }
 		 */

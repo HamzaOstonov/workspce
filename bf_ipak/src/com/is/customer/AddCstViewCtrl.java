@@ -594,12 +594,12 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													curip,
 													7,
 													1,
-													"Выполнено действие ["
+													"Р’С‹РїРѕР»РЅРµРЅРѕ РґРµР№СЃС‚РІРёРµ ["
 															+ (String) event
 																	.getTarget()
 																	.getAttribute(
 																			"capt")
-															+ "] для счета ["
+															+ "] РґР»СЏ СЃС‡РµС‚Р° ["
 															+ ((Account) event
 																	.getTarget()
 																	.getAttribute(
@@ -629,7 +629,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				Listcell h_add_acc_cell = new Listcell();
 				if (pAccInfo.getState() == 2) {
 					bt_acc_act = new Toolbarbutton();
-					bt_acc_act.setLabel("Сохранить");
+					bt_acc_act.setLabel("РЎРѕС…СЂР°РЅРёС‚СЊ");
 					bt_acc_act.setAttribute("acc", pAccInfo);
 					bt_acc_act.setImage("/images/save.png");
 					bt_acc_act.addEventListener(Events.ON_CLICK,
@@ -669,14 +669,14 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 											curip,
 											7,
 											1,
-											"Обновлена связка клиента ["
+											"РћР±РЅРѕРІР»РµРЅР° СЃРІСЏР·РєР° РєР»РёРµРЅС‚Р° ["
 													+ cl_n
-													+ "] с id в ГО ["
+													+ "] СЃ id РІ Р“Рћ ["
 													+ cur_HO_customer
 															.getId_client()
-													+ "] филиал ["
+													+ "] С„РёР»РёР°Р» ["
 													+ branch
-													+ "] установлен счет ["
+													+ "] СѓСЃС‚Р°РЅРѕРІР»РµРЅ СЃС‡РµС‚ ["
 													+ ((Account) event
 															.getTarget()
 															.getAttribute("acc"))
@@ -737,24 +737,24 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 				btunblock_card.setImage("/images/+.png");
 				btblock_card.setImage("/images/-.png");
-				btunblock_card.setLabel("Разблокировать карту");
-				btblock_card.setLabel("Блокировать карту");
-				bt_rest_confirmation.setLabel("Документы о счете");
-				bt_block_card_acc.setLabel("Перевести в неактивный");
+				btunblock_card.setLabel("Р Р°Р·Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ РєР°СЂС‚Сѓ");
+				btblock_card.setLabel("Р‘Р»РѕРєРёСЂРѕРІР°С‚СЊ РєР°СЂС‚Сѓ");
+				bt_rest_confirmation.setLabel("Р”РѕРєСѓРјРµРЅС‚С‹ Рѕ СЃС‡РµС‚Рµ");
+				bt_block_card_acc.setLabel("РџРµСЂРµРІРµСЃС‚Рё РІ РЅРµР°РєС‚РёРІРЅС‹Р№");
 				bt_block_card_acc.setImage("/images/+.png");
 				bt_close_card_acc.setImage("/images/+.png");
-				bt_close_card_acc.setLabel("Закрыть");
-				bt_unblock_card_acc.setLabel("Открыть");
+				bt_close_card_acc.setLabel("Р—Р°РєСЂС‹С‚СЊ");
+				bt_unblock_card_acc.setLabel("РћС‚РєСЂС‹С‚СЊ");
 				bt_unblock_card_acc.setImage("/images/+.png");
 
 				btrefresh_card.setImage("/images/front1.png");
-				btrefresh_card.setLabel("Перевыпустить карту");
+				btrefresh_card.setLabel("РџРµСЂРµРІС‹РїСѓСЃС‚РёС‚СЊ РєР°СЂС‚Сѓ");
 				btrefresh_card_app.setImage("/images/file.png");
 				bt_rest_confirmation.setImage("/images/file.png");
-				btrefresh_card_app.setLabel("Заявление на перевыпуск карты");
+				btrefresh_card_app.setLabel("Р—Р°СЏРІР»РµРЅРёРµ РЅР° РїРµСЂРµРІС‹РїСѓСЃРє РєР°СЂС‚С‹");
 				bt_refresh_with_new.setImage("/images/front1.png");
 				bt_refresh_with_new
-						.setLabel("Перевыпустить карту с новыми данными");
+						.setLabel("РџРµСЂРµРІС‹РїСѓСЃС‚РёС‚СЊ РєР°СЂС‚Сѓ СЃ РЅРѕРІС‹РјРё РґР°РЅРЅС‹РјРё");
 
 				bt_rest_confirmation.setAttribute("acc", pAccInfo);
 				bt_rest_confirmation.addEventListener(Events.ON_CLICK,
@@ -797,7 +797,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							@Override
 							public void onEvent(Event event) throws Exception {
 								if (tietocl == null) {
-									alert("Клиент tieto не выбран");
+									alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 									return;
 								}
 
@@ -832,7 +832,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							@Override
 							public void onEvent(Event event) throws Exception {
 								if (tietocl == null) {
-									alert("Клиент tieto не выбран");
+									alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 									return;
 								}
 
@@ -918,7 +918,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										return;
 									}
 
-									alert("Статус счета изменен на неактивный");
+									alert("РЎС‚Р°С‚СѓСЃ СЃС‡РµС‚Р° РёР·РјРµРЅРµРЅ РЅР° РЅРµР°РєС‚РёРІРЅС‹Р№");
 									UserService
 											.UsrLog(new UserActionsLog(
 													uid,
@@ -926,7 +926,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													curip,
 													7,
 													1,
-													"Карта No ["
+													"РљР°СЂС‚Р° No ["
 															+ ((AccInfo) event
 																	.getTarget()
 																	.getAttribute(
@@ -991,7 +991,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										return;
 									}
 
-									alert("Счет активирован");
+									alert("РЎС‡РµС‚ Р°РєС‚РёРІРёСЂРѕРІР°РЅ");
 									UserService
 											.UsrLog(new UserActionsLog(
 													uid,
@@ -999,7 +999,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													curip,
 													7,
 													1,
-													"Карта No ["
+													"РљР°СЂС‚Р° No ["
 															+ ((AccInfo) event
 																	.getTarget()
 																	.getAttribute(
@@ -1062,7 +1062,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										alert(resp.getError_description());
 										return;
 									}
-									alert("Счет закрыт");
+									alert("РЎС‡РµС‚ Р·Р°РєСЂС‹С‚");
 									UserService
 											.UsrLog(new UserActionsLog(
 													uid,
@@ -1070,7 +1070,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													curip,
 													7,
 													1,
-													"Карта No ["
+													"РљР°СЂС‚Р° No ["
 															+ ((AccInfo) event
 																	.getTarget()
 																	.getAttribute(
@@ -1208,7 +1208,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										throw new Exception(orih.value
 												.getError_description());
 									}
-									alert("Карта перевыпущена");
+									alert("РљР°СЂС‚Р° РїРµСЂРµРІС‹РїСѓС‰РµРЅР°");
 									UserService
 											.UsrLog(new UserActionsLog(
 													uid,
@@ -1216,13 +1216,13 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													curip,
 													7,
 													1,
-													"Карта No ["
+													"РљР°СЂС‚Р° No ["
 															+ ((AccInfo) event
 																	.getTarget()
 																	.getAttribute(
 																			"acc"))
 																	.getCard()
-															+ "] перевыпущена",
+															+ "] РїРµСЂРµРІС‹РїСѓС‰РµРЅР°",
 													branch));
 
 								} catch (Exception e) {
@@ -1276,13 +1276,13 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 													curip,
 													7,
 													1,
-													"Карта No ["
+													"РљР°СЂС‚Р° No ["
 															+ ((AccInfo) event
 																	.getTarget()
 																	.getAttribute(
 																			"acc"))
 																	.getCard()
-															+ "] разблокирована",
+															+ "] СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅР°",
 													branch));
 								} catch (Exception e) {
 									LtLogger.getLogger().error(
@@ -1334,11 +1334,11 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 				String state = "";
 				if (pAccInfo.getAc_status().compareTo("0") == 0)
-					state = "Активен";
+					state = "РђРєС‚РёРІРµРЅ";
 				if (pAccInfo.getAc_status().compareTo("3") == 0)
-					state = "Не активен";
+					state = "РќРµ Р°РєС‚РёРІРµРЅ";
 				if (pAccInfo.getAc_status().compareTo("4") == 0)
-					state = "Закрыт";
+					state = "Р—Р°РєСЂС‹С‚";
 
 				row.appendChild(new Listcell(pAccInfo.getCard()));
 				row.appendChild(new Listcell(df.format(pAccInfo
@@ -1448,7 +1448,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				Listcell h_add_acc_cell = new Listcell();
 				if (pAccInfo.getState() == 2) {
 					bt_acc_act = new Toolbarbutton();
-					bt_acc_act.setLabel("Открыть карту");
+					bt_acc_act.setLabel("РћС‚РєСЂС‹С‚СЊ РєР°СЂС‚Сѓ");
 					bt_acc_act.setAttribute("acc", pAccInfo);
 					bt_acc_act.setImage("/images/credit_card1.png");
 					bt_acc_act.addEventListener(Events.ON_CLICK,
@@ -1459,11 +1459,11 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 									Res res;
 									if (CheckNull.isEmpty(addwnd$sproduct
 											.getValue())) {
-										alert("Продукт не выбран");
+										alert("РџСЂРѕРґСѓРєС‚ РЅРµ РІС‹Р±СЂР°РЅ");
 										return;
 									}
 									
-									//--проверка срок паспорта
+									//--РїСЂРѕРІРµСЂРєР° СЃСЂРѕРє РїР°СЃРїРѕСЂС‚Р°
 									String client_id = ((Account) event
 											.getTarget().getAttribute("acc"))
 											.getClient();
@@ -1479,7 +1479,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 										//if (date1.after(date2)) {
 								        //    System.out.println("Date1 is after Date2");
 										if (dateWithoutTime.after(cst.getP_passport_date_expiration())) {
-  										    alert ("Истек срок действия документа(паспорта). " + cst.getP_passport_date_expiration());
+  										    alert ("РСЃС‚РµРє СЃСЂРѕРє РґРµР№СЃС‚РІРёСЏ РґРѕРєСѓРјРµРЅС‚Р°(РїР°СЃРїРѕСЂС‚Р°). " + cst.getP_passport_date_expiration());
 											return;
 										}
 									}
@@ -2504,8 +2504,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					btbreak = new Toolbarbutton();
 					btbreak.setLabel("");
 					btbreak.setImage("/images/link_break16.png");
-					btbreak.setTooltiptext("Разделить связку");
-					// btbreak.setTooltip("Удалить связку");
+					btbreak.setTooltiptext("Р Р°Р·РґРµР»РёС‚СЊ СЃРІСЏР·РєСѓ");
+					// btbreak.setTooltip("РЈРґР°Р»РёС‚СЊ СЃРІСЏР·РєСѓ");
 					// btbreak.setAttribute("ti_cl", pTclient);
 					btbreak.addEventListener(Events.ON_CLICK,
 							new EventListener() {
@@ -2515,7 +2515,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 									int lnk_id = (Integer) event.getTarget()
 											.getAttribute("lnk_id");
 
-									Res res = CustomerService.removeTс(un, pwd,
+									Res res = CustomerService.removeTc(un, pwd,
 											lnk_id, alias);
 
 									if (res.getCode() != 0) {
@@ -2544,7 +2544,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					btedit.setAttribute("edit_ho", false);
 					btedit.setAttribute("edit_br", false);
 					btedit.setAttribute("edit_ti", false);
-					btedit.setTooltiptext("Редактировать везде");
+					btedit.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РІРµР·РґРµ");
 					btedit.addEventListener(Events.ON_CLICK,
 							new EventListener() {
 								@Override
@@ -2568,7 +2568,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 											|| (cur_branch_customer != null && cur_branch_customer
 													.getCode_subject().equals(
 															"J"))) {
-										alert("Невозможно редактрование клиента ИП");
+										alert("РќРµРІРѕР·РјРѕР¶РЅРѕ СЂРµРґР°РєС‚СЂРѕРІР°РЅРёРµ РєР»РёРµРЅС‚Р° РРџ");
 										return;
 									}
 									edit_ti = (Boolean) event.getTarget()
@@ -2587,7 +2587,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 									else if (tietocl != null)
 										fill_form(tietocl);
 									add_everywhere
-											.setTitle("Редактирование клиента");
+											.setTitle("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РєР»РёРµРЅС‚Р°");
 									fl_edit = true;
 									add_everywhere.setVisible(true);
 								}
@@ -2604,7 +2604,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					bth.setLabel("");
 					bth.setImage("/images/edit.png");
 					bth.setAttribute("br_cl", pCustomer);
-					bth.setTooltiptext("Редактировать ГО");
+					bth.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р“Рћ");
 					row.setAttribute("br_cl", pCustomer);
 					bth.addEventListener(Events.ON_CLICK, new EventListener() {
 						@Override
@@ -2643,7 +2643,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					btt.setLabel("");
 					btt.setImage("/images/+.png");
 					btt.setAttribute("br_cl", pCustomer);
-					btt.setTooltiptext("Редактировать tieto");
+					btt.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ tieto");
 					btt.addEventListener(Events.ON_CLICK, new EventListener() {
 						@Override
 						public void onEvent(Event event) throws Exception {
@@ -2665,7 +2665,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							add_br = false;
 							set_default();
 							fl_edit = false;
-							add_everywhere.setTitle("Открытие клиента [TIETO]");
+							add_everywhere.setTitle("РћС‚РєСЂС‹С‚РёРµ РєР»РёРµРЅС‚Р° [TIETO]");
 							add_everywhere.setVisible(true);
 						}
 
@@ -2676,7 +2676,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					// btacc.setLabel("acc");
 					btacc.setImage("/images/edit.png");
 					btacc.setAttribute("br_cl", pCustomer);
-					btacc.setTooltiptext("Редактировать счет 20206");
+					btacc.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ СЃС‡РµС‚ 20206");
 					btacc.addEventListener(Events.ON_CLICK,
 							new EventListener() {
 								@Override
@@ -2957,8 +2957,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					btbreak = new Toolbarbutton();
 					btbreak.setLabel("");
 					btbreak.setImage("/images/link_break16.png");
-					btbreak.setTooltiptext("Разделить связку");
-					// btbreak.setTooltip("Удалить связку");
+					btbreak.setTooltiptext("Р Р°Р·РґРµР»РёС‚СЊ СЃРІСЏР·РєСѓ");
+					// btbreak.setTooltip("РЈРґР°Р»РёС‚СЊ СЃРІСЏР·РєСѓ");
 					// btbreak.setAttribute("ti_cl", pTclient);
 					btbreak.addEventListener(Events.ON_CLICK,
 							new EventListener() {
@@ -2968,7 +2968,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 									int lnk_id = (Integer) event.getTarget()
 											.getAttribute("lnk_id");
 
-									Res res = CustomerService.removeTс(un, pwd,
+									Res res = CustomerService.removeTc(un, pwd,
 											lnk_id, alias);
 
 									if (res.getCode() != 0) {
@@ -2997,7 +2997,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					btedit.setAttribute("edit_ho", false);
 					btedit.setAttribute("edit_br", false);
 					btedit.setAttribute("edit_ti", false);
-					btedit.setTooltiptext("Редактировать везде");
+					btedit.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РІРµР·РґРµ");
 					btedit.addEventListener(Events.ON_CLICK,
 							new EventListener() {
 								@Override
@@ -3021,7 +3021,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 											|| (cur_branch_customer != null && cur_branch_customer
 													.getCode_subject().equals(
 															"J"))) {
-										alert("Невозможно редактрование клиента ИП");
+										alert("РќРµРІРѕР·РјРѕР¶РЅРѕ СЂРµРґР°РєС‚СЂРѕРІР°РЅРёРµ РєР»РёРµРЅС‚Р° РРџ");
 										return;
 									}
 									edit_ti = (Boolean) event.getTarget()
@@ -3040,7 +3040,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 									else if (tietocl != null)
 										fill_form(tietocl);
 									add_everywhere
-											.setTitle("Редактирование клиента");
+											.setTitle("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РєР»РёРµРЅС‚Р°");
 									fl_edit = true;
 									add_everywhere.setVisible(true);
 								}
@@ -3076,7 +3076,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					btb.setLabel("");
 					btb.setImage("/images/edit.png");
 					btb.setAttribute("ho_cl", pCustomer);
-					btb.setTooltiptext("Редактировать филиал");
+					btb.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ С„РёР»РёР°Р»");
 					btb.addEventListener(Events.ON_CLICK, new EventListener() {
 						@Override
 						public void onEvent(Event event) throws Exception {
@@ -3112,7 +3112,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					btt.setLabel("");
 					btt.setImage("/images/+.png");
 					btt.setAttribute("ho_cl", pCustomer);
-					btt.setTooltiptext("Редактировать tieto");
+					btt.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ tieto");
 					btt.addEventListener(Events.ON_CLICK, new EventListener() {
 						@Override
 						public void onEvent(Event event) throws Exception {
@@ -3134,7 +3134,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							add_br = false;
 							fl_edit = false;
 							set_default();
-							add_everywhere.setTitle("Открытие клиента [TIETO]");
+							add_everywhere.setTitle("РћС‚РєСЂС‹С‚РёРµ РєР»РёРµРЅС‚Р° [TIETO]");
 							add_everywhere.setVisible(true);
 						}
 
@@ -3145,7 +3145,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					// btacc.setLabel("acc");
 					btacc.setImage("/images/edit.png");
 					btacc.setAttribute("ti_cl", tietocl);
-					btacc.setTooltiptext("Редактировать счет 20206");
+					btacc.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ СЃС‡РµС‚ 20206");
 					btacc.addEventListener(Events.ON_CLICK,
 							new EventListener() {
 								@Override
@@ -3463,8 +3463,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				btbreak = new Toolbarbutton();
 				btbreak.setLabel("");
 				btbreak.setImage("/images/link_break16.png");
-				btbreak.setTooltiptext("Разделить связку");
-				// btbreak.setTooltip("Удалить связку");
+				btbreak.setTooltiptext("Р Р°Р·РґРµР»РёС‚СЊ СЃРІСЏР·РєСѓ");
+				// btbreak.setTooltip("РЈРґР°Р»РёС‚СЊ СЃРІСЏР·РєСѓ");
 				btbreak.setAttribute("ti_cl", pTclient);
 				btbreak.addEventListener(Events.ON_CLICK, new EventListener() {
 					@Override
@@ -3472,7 +3472,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						int lnk_id = (Integer) event.getTarget().getAttribute(
 								"lnk_id");
 
-						Res res = CustomerService.removeTс(un, pwd, lnk_id,
+						Res res = CustomerService.removeTc(un, pwd, lnk_id,
 								alias);
 
 						if (res.getCode() != 0) {
@@ -3501,7 +3501,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				btedit.setAttribute("edit_ho", false);
 				btedit.setAttribute("edit_br", false);
 				btedit.setAttribute("edit_ti", false);
-				btedit.setTooltiptext("Редактировать везде");
+				btedit.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РІРµР·РґРµ");
 				btedit.addEventListener(Events.ON_CLICK, new EventListener() {
 					@Override
 					public void onEvent(Event event) throws Exception {
@@ -3523,7 +3523,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 								.getCode_subject().equals("J"))
 								|| (cur_branch_customer != null && cur_branch_customer
 										.getCode_subject().equals("J"))) {
-							alert("Невозможно редактрование клиента ИП");
+							alert("РќРµРІРѕР·РјРѕР¶РЅРѕ СЂРµРґР°РєС‚СЂРѕРІР°РЅРёРµ РєР»РёРµРЅС‚Р° РРџ");
 							return;
 						}
 
@@ -3542,7 +3542,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							fill_form(cur_HO_customer, tietocl);
 						else if (tietocl != null)
 							fill_form(tietocl);
-						add_everywhere.setTitle("Редактирование клиента");
+						add_everywhere.setTitle("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РєР»РёРµРЅС‚Р°");
 						fl_edit = true;
 						add_everywhere.setVisible(true);
 					}
@@ -3556,7 +3556,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				bth.setLabel("");
 				bth.setImage("/images/edit.png");
 				bth.setAttribute("ti_cl", pTclient);
-				bth.setTooltiptext("Редактировать ГО");
+				bth.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р“Рћ");
 				bth.addEventListener(Events.ON_CLICK, new EventListener() {
 					@Override
 					public void onEvent(Event event) throws Exception {
@@ -3596,7 +3596,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				btb.setLabel("");
 				btb.setImage("/images/edit.png");
 				btb.setAttribute("ti_cl", pTclient);
-				btb.setTooltiptext("Редактировать филиал");
+				btb.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ С„РёР»РёР°Р»");
 				btb.addEventListener(Events.ON_CLICK, new EventListener() {
 					@Override
 					public void onEvent(Event event) throws Exception {
@@ -3631,7 +3631,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				// btacc.setLabel("acc");
 				btacc.setImage("/images/edit.png");
 				btacc.setAttribute("ti_cl", pTclient);
-				btacc.setTooltiptext("Редактировать счет 20206");
+				btacc.setTooltiptext("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ СЃС‡РµС‚ 20206");
 				btacc.addEventListener(Events.ON_CLICK, new EventListener() {
 					@Override
 					public void onEvent(Event event) throws Exception {
@@ -4139,7 +4139,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 		CheckNull.clearForm(add_everywhere$addgrdr);
 		CheckNull.clearForm(add_everywhere$addgrdl);
 
-		add_everywhere.setTitle("Открытие клиента [ГО] - [ФИЛИАЛ] - [TIETO]");
+		add_everywhere.setTitle("РћС‚РєСЂС‹С‚РёРµ РєР»РёРµРЅС‚Р° [Р“Рћ] - [Р¤РР›РРђР›] - [TIETO]");
 		add_everywhere$acode_resident.setSelecteditem("1");
 		add_everywhere$ap_code_citizenship.setSelecteditem("860");
 		add_everywhere$acode_country.setSelecteditem("860");
@@ -4151,7 +4151,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 	public void onClick$tbtn_add() {
 		atcust = getTFromBank(current, atcust);
 		atcust.setBank_c(addTieto$abank_c.getValue());
-		alert("Открывается в Tieto : " + atcust.getSearch_name() + " l "
+		alert("РћС‚РєСЂС‹РІР°РµС‚СЃСЏ РІ Tieto : " + atcust.getSearch_name() + " l "
 				+ addTieto$asearch_name.getValue());
 		addTieto.setVisible(true);
 	}
@@ -4272,7 +4272,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 			filter.setP_birthday(tcustomer.getP_birthday());
 			refreshModel(_startPageNumber);
 			addCust.setVisible(false);
-			alert("Клиент добавлен");
+			alert("РљР»РёРµРЅС‚ РґРѕР±Р°РІР»РµРЅ");
 		}
 
 	}
@@ -4287,7 +4287,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_bind() {
 		CustomerService.create(tcust, alias);
-		alert("Связаны банковский " + tcust.getHead_customer_id() + " и Тието "
+		alert("РЎРІСЏР·Р°РЅС‹ Р±Р°РЅРєРѕРІСЃРєРёР№ " + tcust.getHead_customer_id() + " Рё РўРёРµС‚Рѕ "
 				+ tcust.getTieto_customer_id());
 	}
 
@@ -4379,7 +4379,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_prn_cap() {
 		if (tietocl == null) {
-			alert("Клиент не выбран либо не объединен.");
+			alert("РљР»РёРµРЅС‚ РЅРµ РІС‹Р±СЂР°РЅ Р»РёР±Рѕ РЅРµ РѕР±СЉРµРґРёРЅРµРЅ.");
 			return;
 		}
 		printwnd.setVisible(true);
@@ -4539,10 +4539,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					cl_n = lg_c.getName() + " " + lg_c.getP_birthday();
 				}
 
-				log = "Обновлена связка клиента с id в филиале ["
+				log = "РћР±РЅРѕРІР»РµРЅР° СЃРІСЏР·РєР° РєР»РёРµРЅС‚Р° СЃ id РІ С„РёР»РёР°Р»Рµ ["
 						+ cur_branch_customer.getId_client()
-						+ "] для филиала [" + branch
-						+ "]: выбран клиент в ГО ["
+						+ "] РґР»СЏ С„РёР»РёР°Р»Р° [" + branch
+						+ "]: РІС‹Р±СЂР°РЅ РєР»РёРµРЅС‚ РІ Р“Рћ ["
 						+ addCustomer$add_cst_id.getValue() + "] [" + cl_n
 						+ "]";
 			} else if (is_ti) {
@@ -4558,9 +4558,9 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					cl_n = lg_c.getName() + " " + lg_c.getP_birthday();
 				}
 
-				log = "Обновлена связка клиента с tieto id ["
-						+ tietocl.getClient() + "] для филиала [" + branch
-						+ "]: выбран клиент в ГО ["
+				log = "РћР±РЅРѕРІР»РµРЅР° СЃРІСЏР·РєР° РєР»РёРµРЅС‚Р° СЃ tieto id ["
+						+ tietocl.getClient() + "] РґР»СЏ С„РёР»РёР°Р»Р° [" + branch
+						+ "]: РІС‹Р±СЂР°РЅ РєР»РёРµРЅС‚ РІ Р“Рћ ["
 						+ addCustomer$add_cst_id.getValue() + "] [" + cl_n
 						+ "]";
 			}
@@ -4585,9 +4585,9 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					cl_n = lg_c.getName() + " " + lg_c.getP_birthday();
 				}
 
-				log = "Обновлена связка клиента с id в ГО ["
-						+ cur_HO_customer.getId_client() + "] для филиала ["
-						+ branch + "]: установлен клиент в филиале ["
+				log = "РћР±РЅРѕРІР»РµРЅР° СЃРІСЏР·РєР° РєР»РёРµРЅС‚Р° СЃ id РІ Р“Рћ ["
+						+ cur_HO_customer.getId_client() + "] РґР»СЏ С„РёР»РёР°Р»Р° ["
+						+ branch + "]: СѓСЃС‚Р°РЅРѕРІР»РµРЅ РєР»РёРµРЅС‚ РІ С„РёР»РёР°Р»Рµ ["
 						+ addCustomer$add_cst_id.getValue() + "] [" + cl_n
 						+ "]";
 			} else if (is_ti) {
@@ -4601,9 +4601,9 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					cl_n = lg_c.getName() + " " + lg_c.getP_birthday();
 				}
 
-				log = "Обновлена связка клиента с tieto id ["
-						+ tietocl.getClient() + "] для филиала [" + branch
-						+ "]: установлен id в филиале ["
+				log = "РћР±РЅРѕРІР»РµРЅР° СЃРІСЏР·РєР° РєР»РёРµРЅС‚Р° СЃ tieto id ["
+						+ tietocl.getClient() + "] РґР»СЏ С„РёР»РёР°Р»Р° [" + branch
+						+ "]: СѓСЃС‚Р°РЅРѕРІР»РµРЅ id РІ С„РёР»РёР°Р»Рµ ["
 						+ addCustomer$add_cst_id.getValue() + "] [" + cl_n
 						+ "]";
 			}
@@ -4645,97 +4645,97 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 		if ((!((add_everywhere$ap_passport_number.getValue()).matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_passport_number.getValue().length() > 9)) {
 			fl_err = true;
-			err += "\nНомер паспорта";
+			err += "\nРќРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р°";
 		}
 		if ((!((add_everywhere$ap_passport_serial.getValue()).matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_passport_serial.getValue().length() > 9)) {
 			fl_err = true;
-			err += "\nСерия паспорта";
+			err += "\nРЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р°";
 		}
 		if ((!((add_everywhere$ap_passport_place_registration.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]+")))
 				|| (add_everywhere$ap_passport_place_registration.getValue()
 						.length() > 200)) {
 			fl_err = true;
-			err += "\nМесто регистрации паспорта";
+			err += "\nРњРµСЃС‚Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё РїР°СЃРїРѕСЂС‚Р°";
 		}
 		if ((!((add_everywhere$ap_family.getValue()).matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_family.getValue().length() > 34)) {
 			fl_err = true;
-			err += "\nФамилия";
+			err += "\nР¤Р°РјРёР»РёСЏ";
 		}
 		if ((!((add_everywhere$ap_first_name.getValue()).matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_first_name.getValue().length() > 20)) {
 			fl_err = true;
-			err += "\nИмя";
+			err += "\nРРјСЏ";
 		}
 		if ((!((add_everywhere$ap_patronymic.getValue()).matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_patronymic.getValue().length() > 20)) {
 			fl_err = true;
-			err += "\nОтчество";
+			err += "\nРћС‚С‡РµСЃС‚РІРѕ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_type_document.getValue()))) {
 			fl_err = true;
-			err += "\nТип документа";
+			err += "\nРўРёРї РґРѕРєСѓРјРµРЅС‚Р°";
 		}
 		if ((!((add_everywhere$ap_number_tax_registration.getValue()).matches("[0-9]*")))
 				|| (add_everywhere$ap_number_tax_registration.getValue()
 						.length() > 9)) {
 			fl_err = true;
-			err += "\nИНН";
+			err += "\nРРќРќ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_code_citizenship.getValue()))) {
 			fl_err = true;
-			err += "\nГражданство";
+			err += "\nР“СЂР°Р¶РґР°РЅСЃС‚РІРѕ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$acode_country.getValue()))) {
 			fl_err = true;
-			err += "\nСтрана";
+			err += "\nРЎС‚СЂР°РЅР°";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$acode_resident.getValue()))) {
 			fl_err = true;
-			err += "\nРезидент";
+			err += "\nР РµР·РёРґРµРЅС‚";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_code_adr_region.getValue()))) {
 			fl_err = true;
-			err += "\nРегион проживания";
+			err += "\nР РµРіРёРѕРЅ РїСЂРѕР¶РёРІР°РЅРёСЏ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_code_adr_distr.getValue()))) {
 			fl_err = true;
-			err += "\nРайон проживания";
+			err += "\nР Р°Р№РѕРЅ РїСЂРѕР¶РёРІР°РЅРёСЏ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_passport_date_registration
 				.getValue()))) {
 			fl_err = true;
-			err += "\nДата регистрации паспорта";
+			err += "\nР”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё РїР°СЃРїРѕСЂС‚Р°";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_birthday.getValue()))) {
 			fl_err = true;
-			err += "\nДата рождения";
+			err += "\nР”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$acode_tel.getValue()))) {
 			fl_err = true;
-			err += "\nПароль для телефонных разговоров";
+			err += "\nРџР°СЂРѕР»СЊ РґР»СЏ С‚РµР»РµС„РѕРЅРЅС‹С… СЂР°Р·РіРѕРІРѕСЂРѕРІ";
 		}
 		if ((!((add_everywhere$ap_post_address.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]+")))
 				|| (add_everywhere$ap_post_address.getValue().length() > 95)) {
 			fl_err = true;
-			err += "\nПочтовый адрес";
+			err += "\nРџРѕС‡С‚РѕРІС‹Р№ Р°РґСЂРµСЃ";
 		}
 		if ((add_everywhere$ap_birth_place.getValue() == null || add_everywhere$ap_birth_place
 				.getValue().length() == 0)
 				|| (!((add_everywhere$ap_birth_place.getValue()).matches("[a-zA-Z0-9\\s\\.\\,_\\/-]*")))
 				|| (add_everywhere$ap_birth_place.getValue().length() > 200)) {
 			fl_err = true;
-			err += "\nМесто рождения";
+			err += "\nРњРµСЃС‚Рѕ СЂРѕР¶РґРµРЅРёСЏ";
 		}
 		if ((!((add_everywhere$ap_phone_mobile.getValue()).matches("998[0-9]*")))
 				|| (add_everywhere$ap_phone_mobile.getValue().length() != 12)) {
 			fl_err = true;
-			err += "\nНомер телефона. 998*********";
+			err += "\nРќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°. 998*********";
 		}
 
 		if (fl_err) {
-			alert("Ошибка заполнения формы:\nневерно заполнено поле " + err);
+			alert("РћС€РёР±РєР° Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹:\nРЅРµРІРµСЂРЅРѕ Р·Р°РїРѕР»РЅРµРЅРѕ РїРѕР»Рµ " + err);
 			return;
 		}
 
@@ -4795,7 +4795,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 		new_customer.setCode_form("");
 		new_customer.setCode_type("08");
 
-		if (!fl_edit) { // новый клиент
+		if (!fl_edit) { // РЅРѕРІС‹Р№ РєР»РёРµРЅС‚
 			String HO_id = cur_HO_customer != null ? cur_HO_customer.getId_client() : null;
 			String Branch_id = cur_branch_customer != null ? cur_branch_customer.getId_client() : null;
 			String Tieto_id = tietocl != null ? tietocl.getClient() : null;
@@ -4811,18 +4811,18 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							new_customer, 1, 0, halias, branch.compareTo(TclientService.getV_HO()) == 0);
 
 				if (res.getCode() != 0) {
-					alert("ОШИБКА\nОткрытие клиента в ГО:\n" + res.getName());
+					alert("РћРЁРР‘РљРђ\nРћС‚РєСЂС‹С‚РёРµ РєР»РёРµРЅС‚Р° РІ Р“Рћ:\n" + res.getName());
 					fl_edit = false;
 					return;
 				} else {
-					alert("Клиент добавлен(ГО): " + res.getName());
+					alert("РљР»РёРµРЅС‚ РґРѕР±Р°РІР»РµРЅ(Р“Рћ): " + res.getName());
 					Customer cst = com.is.customer.CustomerService
 							.getCustomerById_tbl(res.getName(),
 									TclientService.getV_HO(),
 									halias);
 					HO_id = cst.getId_client();
 					UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-							"Открыт клиент в ГО id [" + HO_id + "]", branch));
+							"РћС‚РєСЂС‹С‚ РєР»РёРµРЅС‚ РІ Р“Рћ id [" + HO_id + "]", branch));
 
 					if ((!add_br) && (!add_ti)) {
 						refreshModel(_starttPageNumber);
@@ -4831,7 +4831,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						return;
 					}
 
-					// отправка клиента в SAP 2019-01-22
+					// РѕС‚РїСЂР°РІРєР° РєР»РёРµРЅС‚Р° РІ SAP 2019-01-22
 					// Customer_ReqestOutProxy pp = new
 					// Customer_ReqestOutProxy("customerEndpoint", "_username",
 					// "_password");
@@ -4881,30 +4881,30 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					BusinessPartnerResponceHeader header = resp.getHeader();
 					if (header.getId_client_sap() == null)
 					{
-						//удалить клиента
+						//СѓРґР°Р»РёС‚СЊ РєР»РёРµРЅС‚Р°
 						new_customer.setId_client(cst.getId_client());
 						new_customer.setId(cst.getId());
 						res = CustomerService.doAction_utv(session.getAttribute("un").toString(),
 								session.getAttribute("pwd").toString(),
 								new_customer, 6, halias, branch.compareTo(TclientService.getV_HO()) == 0);
 					    if (res.getCode() != 0) {
-					    	//alert("ОШИБКА\nУдаление клиента в ГО:\n" + res.getName());
+					    	//alert("РћРЁРР‘РљРђ\nРЈРґР°Р»РµРЅРёРµ РєР»РёРµРЅС‚Р° РІ Р“Рћ:\n" + res.getName());
 							throw new SAPException(
-							"\n1.SAP CRM Id has not been assigned \n2.Удаление клиента в ГО:\n" + res.getName());
+							"\n1.SAP CRM Id has not been assigned \n2.РЈРґР°Р»РµРЅРёРµ РєР»РёРµРЅС‚Р° РІ Р“Рћ:\n" + res.getName());
 					    } 	
 						throw new SAPException(
 						"\nSAP CRM Id has not been assigned");
 					}
 					cst.setIdSap(header.getId_client_sap());
 					
-					//утвердить клиента
+					//СѓС‚РІРµСЂРґРёС‚СЊ РєР»РёРµРЅС‚Р°
 					new_customer.setId_client(cst.getId_client());
 					new_customer.setId(cst.getId());
 					res = CustomerService.doAction_utv(session.getAttribute("un").toString(),
 							session.getAttribute("pwd").toString(),
 							new_customer, 2, halias, branch.compareTo(TclientService.getV_HO()) == 0);
 				    if (res.getCode() != 0) {
-					   alert("ОШИБКА\nУтверждение клиента в ГО:\n" + res.getName());
+					   alert("РћРЁРР‘РљРђ\nРЈС‚РІРµСЂР¶РґРµРЅРёРµ РєР»РёРµРЅС‚Р° РІ Р“Рћ:\n" + res.getName());
 					   fl_edit = false;
 					   return;
 				    } 	
@@ -4923,21 +4923,21 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							new_customer, 1, 0, alias, true);
 
 					if (res.getCode() != 0) {
-						alert("ОШИБКА\nОткрытие клиента в филиале:\n"
+						alert("РћРЁРР‘РљРђ\nРћС‚РєСЂС‹С‚РёРµ РєР»РёРµРЅС‚Р° РІ С„РёР»РёР°Р»Рµ:\n"
 								+ res.getName());
 						fl_edit = false;
 						return;
 					} else {
-						alert("Клиент добавлен(филиал): " + res.getName());
+						alert("РљР»РёРµРЅС‚ РґРѕР±Р°РІР»РµРЅ(С„РёР»РёР°Р»): " + res.getName());
 						Customer cst = com.is.customer.CustomerService
 								.getCustomerById_tbl(res.getName(), branch,
 										alias);
 						Branch_id = cst.getId_client();
 						UserService.UsrLog(new UserActionsLog(uid, un, curip,
-								7, 1, "Открыт клиент в филиале [" + branch
+								7, 1, "РћС‚РєСЂС‹С‚ РєР»РёРµРЅС‚ РІ С„РёР»РёР°Р»Рµ [" + branch
 										+ "] id [" + Branch_id + "]", branch));
 
-						// отправка клиента в SAP 2019-06-27
+						// РѕС‚РїСЂР°РІРєР° РєР»РёРµРЅС‚Р° РІ SAP 2019-06-27
 						// Customer_ReqestOutProxy pp = new
 						// Customer_ReqestOutProxy("customerEndpoint",
 						// "_username", "_password");
@@ -4971,7 +4971,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						}
 						BusinessPartnerResponceHeader header = resp.getHeader();
 						if (header.getId_client_sap() == null) {
-							//удалить клиента
+							//СѓРґР°Р»РёС‚СЊ РєР»РёРµРЅС‚Р°
 							new_customer.setId_client(cst.getId_client());
 							new_customer.setId(cst.getId());
 							res = CustomerService.doAction_utv(
@@ -4979,10 +4979,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 									new_customer, 6, alias, true);
 
 							if (res.getCode() != 0) {
-								//alert("ОШИБКА\nУдаление клиента в филиале:\n"
+								//alert("РћРЁРР‘РљРђ\nРЈРґР°Р»РµРЅРёРµ РєР»РёРµРЅС‚Р° РІ С„РёР»РёР°Р»Рµ:\n"
 								//		+ res.getName());
 								throw new SAPException(
-								"\n1.SAP CRM Id has not been assigned. \n2.Удаление клиента в филиале:\n"+res.getName());
+								"\n1.SAP CRM Id has not been assigned. \n2.РЈРґР°Р»РµРЅРёРµ РєР»РёРµРЅС‚Р° РІ С„РёР»РёР°Р»Рµ:\n"+res.getName());
 							}
 							throw new SAPException(
 							"\nSAP CRM Id has not been assigned");
@@ -4991,7 +4991,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						cst.setIdSap(header.getId_client_sap());
 						LtLogger.getLogger().error("** not err sap f5.");
 
-						//утвердить клиента
+						//СѓС‚РІРµСЂРґРёС‚СЊ РєР»РёРµРЅС‚Р°
 						new_customer.setId_client(cst.getId_client());
 						new_customer.setId(cst.getId());
 						res = CustomerService.doAction_utv(
@@ -4999,7 +4999,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 								new_customer, 2, alias, true);
 
 						if (res.getCode() != 0) {
-							alert("ОШИБКА\nУтверждение клиента в филиале:\n"
+							alert("РћРЁРР‘РљРђ\nРЈС‚РІРµСЂР¶РґРµРЅРёРµ РєР»РёРµРЅС‚Р° РІ С„РёР»РёР°Р»Рµ:\n"
 									+ res.getName());
 							fl_edit = false;
 							return;
@@ -5020,7 +5020,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 								: ncr.getName()), 101, alias, branch, true);
 
 				if (res.getCode() != 0) {
-					alert("ОШИБКА\nОткрытие счета 20206 в Филиале:\n"
+					alert("РћРЁРР‘РљРђ\nРћС‚РєСЂС‹С‚РёРµ СЃС‡РµС‚Р° 20206 РІ Р¤РёР»РёР°Р»Рµ:\n"
 							+ res.getName());
 					return;
 				}
@@ -5031,8 +5031,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				// 79):ncr.getName()), 101, alias, branch, true);
 
 				UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-						"Открыт счет [" + cur_acc + "] в филиале [" + branch
-								+ "] для клиента id [" + Branch_id + "]",
+						"РћС‚РєСЂС‹С‚ СЃС‡РµС‚ [" + cur_acc + "] РІ С„РёР»РёР°Р»Рµ [" + branch
+								+ "] РґР»СЏ РєР»РёРµРЅС‚Р° id [" + Branch_id + "]",
 						branch));
 
 				if (!add_ti) {
@@ -5108,10 +5108,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						System.out.println("resp " + orInfo.getResponse_code()
 								+ "  client " + customerInfo.value.getCLIENT());
 					} else {
-						alert("Клиент добавлен (tieto)");
+						alert("РљР»РёРµРЅС‚ РґРѕР±Р°РІР»РµРЅ (tieto)");
 						Tieto_id = customerInfo.value.getCLIENT();
 						UserService.UsrLog(new UserActionsLog(uid, un, curip,
-								7, 1, "Открыт клиент в tieto id [" + Tieto_id
+								7, 1, "РћС‚РєСЂС‹С‚ РєР»РёРµРЅС‚ РІ tieto id [" + Tieto_id
 										+ "]", branch));
 					}
 
@@ -5129,9 +5129,9 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				CustomerService.create_lnk(branch, HO_id, Branch_id, Tieto_id,
 						cur_acc, alias);
 				UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-						"Создана связка id в ГО [" + HO_id + "] филиал ["
-								+ Branch_id + "] тието [" + Tieto_id
-								+ "] счет [" + cur_acc + "] для филиала ["
+						"РЎРѕР·РґР°РЅР° СЃРІСЏР·РєР° id РІ Р“Рћ [" + HO_id + "] С„РёР»РёР°Р» ["
+								+ Branch_id + "] С‚РёРµС‚Рѕ [" + Tieto_id
+								+ "] СЃС‡РµС‚ [" + cur_acc + "] РґР»СЏ С„РёР»РёР°Р»Р° ["
 								+ branch + "]", branch));
 			}
 
@@ -5146,10 +5146,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							cur_HO_customer.getId_client(), Tieto_id, alias);
 
 					UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-							"Обновлена связка id в ГО ["
+							"РћР±РЅРѕРІР»РµРЅР° СЃРІСЏР·РєР° id РІ Р“Рћ ["
 									+ cur_HO_customer.getId_client()
-									+ "] для филиала [" + branch
-									+ "]: выбран клиент tieto [" + Tieto_id
+									+ "] РґР»СЏ С„РёР»РёР°Р»Р° [" + branch
+									+ "]: РІС‹Р±СЂР°РЅ РєР»РёРµРЅС‚ tieto [" + Tieto_id
 									+ "] [" + tcl_name + "]", branch));
 				}
 				if (is_ho && !is_br) {
@@ -5157,10 +5157,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 							cur_HO_customer.getId_client(), Tieto_id, alias);
 
 					UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-							"Обновлена связка id в ГО ["
+							"РћР±РЅРѕРІР»РµРЅР° СЃРІСЏР·РєР° id РІ Р“Рћ ["
 									+ cur_HO_customer.getId_client()
-									+ "] для филиала [" + branch
-									+ "]: выбран клиент tieto [" + Tieto_id
+									+ "] РґР»СЏ С„РёР»РёР°Р»Р° [" + branch
+									+ "]: РІС‹Р±СЂР°РЅ РєР»РёРµРЅС‚ tieto [" + Tieto_id
 									+ "] [" + tcl_name + "]", branch));
 				}
 				if (!is_ho && is_br) {
@@ -5169,16 +5169,16 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 									Tieto_id, alias);
 
 					UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-							"Обновлена связка id в филиале ["
+							"РћР±РЅРѕРІР»РµРЅР° СЃРІСЏР·РєР° id РІ С„РёР»РёР°Р»Рµ ["
 									+ cur_branch_customer.getId_client()
-									+ "] для филиала [" + branch
-									+ "]: выбран клиент id tieto [" + Tieto_id
+									+ "] РґР»СЏ С„РёР»РёР°Р»Р° [" + branch
+									+ "]: РІС‹Р±СЂР°РЅ РєР»РёРµРЅС‚ id tieto [" + Tieto_id
 									+ "] [" + tcl_name + "]", branch));
 				}
 			}
-		} // конец новый клиента 
+		} // РєРѕРЅРµС† РЅРѕРІС‹Р№ РєР»РёРµРЅС‚Р° 
 		else 
-		{ // корректировать сушествуюшего клиента
+		{ // РєРѕСЂСЂРµРєС‚РёСЂРѕРІР°С‚СЊ СЃСѓС€РµСЃС‚РІСѓСЋС€РµРіРѕ РєР»РёРµРЅС‚Р°
 			Boolean tmp_edit_ho = edit_ho;
 			if (edit_ho) {
 				new_customer.setBranch(TclientService.getV_HO());
@@ -5196,11 +5196,11 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					return;
 				}
 				edit_ho = false;
-				alert("Клиент отредактирован(ГО):");
+				alert("РљР»РёРµРЅС‚ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅ(Р“Рћ):");
 				UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-						"Отредактирован клиент МФО ["
+						"РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅ РєР»РёРµРЅС‚ РњР¤Рћ ["
 								+ TclientService.getV_HO()
-								+ "], ID клиента ["
+								+ "], ID РєР»РёРµРЅС‚Р° ["
 								+ cur_HO_customer.getId_client() + "] ["
 								+ new_customer.getName() + "]", branch));
 				// add_everywhere.setVisible(false);
@@ -5220,10 +5220,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				}
 				// fl_edit = false;
 				edit_br = false;
-				alert("Клиент отредактирован(филиал):");
+				alert("РљР»РёРµРЅС‚ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅ(С„РёР»РёР°Р»):");
 				UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-						"Отредактирован клиент МФО [" + branch
-								+ "], ID клиента ["
+						"РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅ РєР»РёРµРЅС‚ РњР¤Рћ [" + branch
+								+ "], ID РєР»РёРµРЅС‚Р° ["
 								+ cur_HO_customer.getId_client() + "] ["
 								+ new_customer.getName() + "]", branch));
 
@@ -5323,10 +5323,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						System.out.println("resp " + orInfo.getResponse_code()
 								+ "  client " + rtc.getCLIENT());
 					} else {
-						alert("Клиент отредактирован (Tieto)");
+						alert("РљР»РёРµРЅС‚ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅ (Tieto)");
 						String Tieto_id = rtc.getCLIENT();
 						UserService.UsrLog(new UserActionsLog(uid, un, curip,
-								7, 1, "Отредактирован клиент  в TIETO ["
+								7, 1, "РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅ РєР»РёРµРЅС‚  РІ TIETO ["
 										+ rtc.getCLIENT() + "] ["
 										+ rtc.getSURNAME() + " "
 										+ rtc.getF_NAMES() + " "
@@ -5339,7 +5339,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					alert(e.getMessage());
 				}
 			}
-		}// конец корректировка
+		}// РєРѕРЅРµС† РєРѕСЂСЂРµРєС‚РёСЂРѕРІРєР°
 
 		fl_edit = false;
 		refreshModel(_starttPageNumber);
@@ -5490,10 +5490,10 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						duplication.setIdSap(response.getMESSAGE_V1());
 						duplicatedCustomers.add(duplication);
 					} else
-						throw new SAPException("\n SAP Ошибка \n"
+						throw new SAPException("\n SAP РћС€РёР±РєР° \n"
 								+ response.getMESSAGE());
 				}
-				// Если признак существует то после этого вызвать процедуру
+				// Р•СЃР»Рё РїСЂРёР·РЅР°Рє СЃСѓС‰РµСЃС‚РІСѓРµС‚ С‚Рѕ РїРѕСЃР»Рµ СЌС‚РѕРіРѕ РІС‹Р·РІР°С‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ
 				if (response != null
 						&& response.getTYPE().equalsIgnoreCase("I")) {
 					if (response.getID() != null
@@ -5506,7 +5506,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 			}
 		}
 		if (duplicatedCustomers.size() > 0)
-			throw new SAPDuplicationException("Нашлись дупликаты ",
+			throw new SAPDuplicationException("РќР°С€Р»РёСЃСЊ РґСѓРїР»РёРєР°С‚С‹ ",
 					duplicatedCustomers);
 	}
 
@@ -5647,9 +5647,9 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				}
 
 			} else
-				alert("Серия или номер паспорта не заполнены");
+				alert("РЎРµСЂРёСЏ РёР»Рё РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р° РЅРµ Р·Р°РїРѕР»РЅРµРЅС‹");
 		} catch (WrongValueException e) {
-			alert("Серия или номер паспорта не заполнены");
+			alert("РЎРµСЂРёСЏ РёР»Рё РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р° РЅРµ Р·Р°РїРѕР»РЅРµРЅС‹");
 			e.printStackTrace();
 		}
 	}
@@ -5657,26 +5657,26 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 	public void onClick$fill_client_form_btn2$add_everywhere() {
 
 		System.out.println("2 count in combobox = "
-				+ add_everywhere$ap_code_adr_distr.getItemCount());// тут
-																	// показывает
-																	// что 203
-																	// штук. все
-																	// районы
-																	// респ узб.
-																	// при
-																	// загрузке
-																	// страницы
-																	// первым
-																	// загружается
-																	// все
-																	// регионы.
+				+ add_everywhere$ap_code_adr_distr.getItemCount());// С‚СѓС‚
+																	// РїРѕРєР°Р·С‹РІР°РµС‚
+																	// С‡С‚Рѕ 203
+																	// С€С‚СѓРє. РІСЃРµ
+																	// СЂР°Р№РѕРЅС‹
+																	// СЂРµСЃРї СѓР·Р±.
+																	// РїСЂРё
+																	// Р·Р°РіСЂСѓР·РєРµ
+																	// СЃС‚СЂР°РЅРёС†С‹
+																	// РїРµСЂРІС‹Рј
+																	// Р·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ
+																	// РІСЃРµ
+																	// СЂРµРіРёРѕРЅС‹.
 		if (add_everywhere$ap_code_adr_distr.getModel() != null)
 			System.out.println("2 count in model ="
-					+ add_everywhere$ap_code_adr_distr.getModel().getSize()); // здес
-																				// показывает
+					+ add_everywhere$ap_code_adr_distr.getModel().getSize()); // Р·РґРµСЃ
+																				// РїРѕРєР°Р·С‹РІР°РµС‚
 																				// 13,
-																				// это
-																				// правильно
+																				// СЌС‚Рѕ
+																				// РїСЂР°РІРёР»СЊРЅРѕ
 
 	}
 
@@ -5697,7 +5697,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_add$addwnd() {
 		if (CheckNull.isEmpty(addwnd$sproduct.getValue())) {
-			alert("Продукт не выбран");
+			alert("РџСЂРѕРґСѓРєС‚ РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 		TietoCardSetting tcs = TclientService.getTietoCardSetting(
@@ -5731,7 +5731,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 		// if ((new_card_acc.substring(0, 5)).compareTo("22618")!=0)
 		// {
-		// alert("Неверный счет карты:\n"+new_card_acc);
+		// alert("РќРµРІРµСЂРЅС‹Р№ СЃС‡РµС‚ РєР°СЂС‚С‹:\n"+new_card_acc);
 		// return "";
 		// }
 		Tclient ntc;
@@ -5891,7 +5891,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 					avalue.getU_CODE6(), avalue.getU_FIELD3(),
 					avalue.getU_FIELD4());
 			re.setAGRE_NOM(BigDecimal.valueOf(agre_nom_upd));
-			// перевыпуск с заменой
+			// РїРµСЂРµРІС‹РїСѓСЃРє СЃ Р·Р°РјРµРЅРѕР№
 			if (edit_agree) {
 				// LtLogger.getLogger().info(
 				// "** not err edit_agree  ************** " + str1);
@@ -5941,8 +5941,8 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				String new_card_num = cardsListInfo.value.getRow(0)
 						.getLogicalCard().getCARD();
 				UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-						"Открыта карта [" + new_card_num
-								+ "] для клиента (tieto id [" + ntc.getClient()
+						"РћС‚РєСЂС‹С‚Р° РєР°СЂС‚Р° [" + new_card_num
+								+ "] РґР»СЏ РєР»РёРµРЅС‚Р° (tieto id [" + ntc.getClient()
 								+ "]) [" + ntc.getF_names() + " "
 								+ ntc.getSurname() + "]", branch));
 				System.out.println("AGRE_NOM : "
@@ -5955,7 +5955,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 			e.printStackTrace();
 			return null;
 		}
-		alert("Карта открыта: " + tcs.getName());
+		alert("РљР°СЂС‚Р° РѕС‚РєСЂС‹С‚Р°: " + tcs.getName());
 		addwnd.setVisible(false);
 		return RT;
 	}
@@ -5970,13 +5970,13 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$tbtn_add_card() {
 		if (tietocl == null) {
-			alert("Клиент не выбран");
+			alert("РљР»РёРµРЅС‚ РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 		String cl_id = CustomerService.get_HO_by_tieto(tietocl.getClient(),
 				alias);
 		if (TclientService.check_user(alias, branch, tietocl.getClient()) == "") {
-			alert("Клиент не объединен");
+			alert("РљР»РёРµРЅС‚ РЅРµ РѕР±СЉРµРґРёРЅРµРЅ");
 			return;
 		}
 
@@ -6280,14 +6280,14 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						: ncr.getName()), 101, alias, branch, true);
 
 		if (res.getCode() != 0) {
-			alert("ОШИБКА\nОткрытие счета 20206 в филиале:\n" + res.getName());
+			alert("РћРЁРР‘РљРђ\nРћС‚РєСЂС‹С‚РёРµ СЃС‡РµС‚Р° 20206 РІ С„РёР»РёР°Р»Рµ:\n" + res.getName());
 			return;
 		}
 		String tranzacc = res.getName();
 
 		UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-				"Открыт счет [" + tranzacc + "] в филиале [" + branch
-						+ "] для клиента ["
+				"РћС‚РєСЂС‹С‚ СЃС‡РµС‚ [" + tranzacc + "] РІ С„РёР»РёР°Р»Рµ [" + branch
+						+ "] РґР»СЏ РєР»РёРµРЅС‚Р° ["
 						+ cur_branch_customer.getId_client() + "] ["
 						+ ncr.getName() + " " + ncr.getP_birthday() + "]",
 				branch));
@@ -6369,13 +6369,13 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				branch.compareTo(TclientService.getV_HO()) == 0);
 
 		if (res.getCode() != 0) {
-			alert("ОШИБКА\nОткрытие счета 22618 в ГО:\n" + res.getName());
+			alert("РћРЁРР‘РљРђ\nРћС‚РєСЂС‹С‚РёРµ СЃС‡РµС‚Р° 22618 РІ Р“Рћ:\n" + res.getName());
 			return;
 		}
 		new_card_acc = res.getName();
 
 		UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-				"Открыт счет [" + new_card_acc + "] для клиента ["
+				"РћС‚РєСЂС‹С‚ СЃС‡РµС‚ [" + new_card_acc + "] РґР»СЏ РєР»РёРµРЅС‚Р° ["
 						+ cst.getId_client() + "] [" + cst.getName() + " "
 						+ cst.getP_birthday() + "]", branch));
 
@@ -6415,13 +6415,13 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				branch.compareTo(TclientService.getV_HO()) == 0);
 
 		if (res.getCode() != 0) {
-			alert("ОШИБКА\nОткрытие счета 22618 в ГО:\n" + res.getName());
+			alert("РћРЁРР‘РљРђ\nРћС‚РєСЂС‹С‚РёРµ СЃС‡РµС‚Р° 22618 РІ Р“Рћ:\n" + res.getName());
 			return;
 		}
 		new_card_acc = res.getName();
 
 		UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-				"Открыт счет [" + new_card_acc + "] для клиента ["
+				"РћС‚РєСЂС‹С‚ СЃС‡РµС‚ [" + new_card_acc + "] РґР»СЏ РєР»РёРµРЅС‚Р° ["
 						+ cst.getId_client() + "] [" + cst.getName() + " "
 						+ cst.getP_birthday() + "]", branch));
 
@@ -6459,7 +6459,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						+ orInfo.getError_description());
 			}
 			UserService.UsrLog(new UserActionsLog(uid, un, curip, 7, 1,
-					"Карта No [" + cur_card.getCard() + "] заблокирована",
+					"РљР°СЂС‚Р° No [" + cur_card.getCard() + "] Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅР°",
 					branch));
 
 		} catch (Exception e) {
@@ -6486,7 +6486,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_visa_cup_app$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6506,7 +6506,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_visa_cup_d$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6517,7 +6517,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_exchange_app$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6528,7 +6528,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_exchange_app_fl$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6539,7 +6539,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_exchange_d$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6550,7 +6550,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_u_exchange_d$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6561,7 +6561,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_au_pt_d$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6572,7 +6572,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_au_pt_app$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6622,7 +6622,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_exchange_app_fl$add_everywhere() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6685,7 +6685,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_add_acc_app$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6735,7 +6735,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	/*public void onClick$btn_universal_rep_test() {
 		if (tietocl == null) {
-		//	alert("Клиент tieto не выбран");
+		//	alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 		//	return;
 			tietocl = new Tclient();
 			
@@ -6757,7 +6757,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 	
 	public void onClick$btn_universal_rep$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6800,7 +6800,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_TI_APPLICATION_AUTOCARD_ACC$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6814,7 +6814,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 
 	public void onClick$btn_TI_DOGOVOR_AUTOCARD$show_cards() {
 		if (tietocl == null) {
-			alert("Клиент tieto не выбран");
+			alert("РљР»РёРµРЅС‚ tieto РЅРµ РІС‹Р±СЂР°РЅ");
 			return;
 		}
 
@@ -6836,75 +6836,75 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 				.matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_passport_number.getValue().length() > 9)) {
 			fl_err = true;
-			err += "\nНомер паспорта";
+			err += "\nРќРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р°";
 		}
 		if ((!((add_everywhere$ap_passport_serial.getValue())
 				.matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_passport_serial.getValue().length() > 9)) {
 			fl_err = true;
-			err += "\nСерия паспорта";
+			err += "\nРЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р°";
 		}
 		if ((!((add_everywhere$ap_passport_place_registration.getValue())
 				.matches("[a-zA-Z0-9\\s\\.\\,_\\/-]+")))
 				|| (add_everywhere$ap_passport_place_registration.getValue()
 						.length() > 200)) {
 			fl_err = true;
-			err += "\nМесто регистрации паспорта";
+			err += "\nРњРµСЃС‚Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё РїР°СЃРїРѕСЂС‚Р°";
 		}
 		if ((!((add_everywhere$ap_family.getValue()).matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_family.getValue().length() > 34)) {
 			fl_err = true;
-			err += "\nФамилия";
+			err += "\nР¤Р°РјРёР»РёСЏ";
 		}
 		if ((!((add_everywhere$ap_first_name.getValue())
 				.matches("[a-zA-Z0-9]+")))
 				|| (add_everywhere$ap_first_name.getValue().length() > 20)) {
 			fl_err = true;
-			err += "\nИмя";
+			err += "\nРРјСЏ";
 		}
 		if ((!((add_everywhere$ap_patronymic.getValue())
 				.matches("[a-zA-Z0-9]*")))
 				|| (add_everywhere$ap_patronymic.getValue().length() > 20)) {
 			fl_err = true;
-			err += "\nОтчество";
+			err += "\nРћС‚С‡РµСЃС‚РІРѕ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_type_document.getValue()))) {
 			fl_err = true;
-			err += "\nТип документа";
+			err += "\nРўРёРї РґРѕРєСѓРјРµРЅС‚Р°";
 		}
 		if ((!((add_everywhere$ap_number_tax_registration.getValue())
 				.matches("[0-9]*")))
 				|| (add_everywhere$ap_number_tax_registration.getValue()
 						.length() > 9)) {
 			fl_err = true;
-			err += "\nИНН";
+			err += "\nРРќРќ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_code_citizenship.getValue()))) {
 			fl_err = true;
-			err += "\nГражданство";
+			err += "\nР“СЂР°Р¶РґР°РЅСЃС‚РІРѕ";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$acode_country.getValue()))) {
 			fl_err = true;
-			err += "\nСтрана";
+			err += "\nРЎС‚СЂР°РЅР°";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$acode_resident.getValue()))) {
 			fl_err = true;
-			err += "\nРезидент";
+			err += "\nР РµР·РёРґРµРЅС‚";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_passport_date_registration
 				.getValue()))) {
 			fl_err = true;
-			err += "\nДата регистрации паспорта";
+			err += "\nР”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё РїР°СЃРїРѕСЂС‚Р°";
 		}
 		if ((CheckNull.isEmpty(add_everywhere$ap_birthday.getValue()))) {
 			fl_err = true;
-			err += "\nДата рождения";
+			err += "\nР”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ";
 		}
 		if ((!((add_everywhere$ap_post_address.getValue())
 				.matches("[a-zA-Z0-9\\s\\.\\,_\\/-]+")))
 				|| (add_everywhere$ap_post_address.getValue().length() > 95)) {
 			fl_err = true;
-			err += "\nПочтовый адрес";
+			err += "\nРџРѕС‡С‚РѕРІС‹Р№ Р°РґСЂРµСЃ";
 		}
 		if ((add_everywhere$ap_birth_place.getValue() == null || add_everywhere$ap_birth_place
 				.getValue().length() == 0)
@@ -6912,11 +6912,11 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 						.matches("[a-zA-Z0-9\\s\\.\\,_\\/-]*")))
 				|| (add_everywhere$ap_birth_place.getValue().length() > 200)) {
 			fl_err = true;
-			err += "\nМесто рождения";
+			err += "\nРњРµСЃС‚Рѕ СЂРѕР¶РґРµРЅРёСЏ";
 		}
 
 		if (fl_err) {
-			alert("Ошибка заполнения формы:\nневерно заполнено поле " + err);
+			alert("РћС€РёР±РєР° Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹:\nРЅРµРІРµСЂРЅРѕ Р·Р°РїРѕР»РЅРµРЅРѕ РїРѕР»Рµ " + err);
 			return null;
 		}
 
@@ -7075,7 +7075,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 			alert(res.getName());
 			return;
 		}
-		alert("Клиент открыт");
+		alert("РљР»РёРµРЅС‚ РѕС‚РєСЂС‹С‚");
 		refreshModel(_starttPageNumber);
 	}
 
@@ -7100,7 +7100,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 			alert(res.getName());
 			return;
 		}
-		alert("Клиент утвержден");
+		alert("РљР»РёРµРЅС‚ СѓС‚РІРµСЂР¶РґРµРЅ");
 		refreshModel(_starttPageNumber);
 	}
 	

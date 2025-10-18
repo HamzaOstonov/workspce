@@ -344,7 +344,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 		// String seria = pasport_ser.getValue();
 
 		// adres
-		FizAddressResponse far = TheService.fizAddressResponse(null, pin);
+		FizAddressResponse far = TheService.fizAddressResponse(sessionAttributes.getBranch(), pin, ""+sessionAttributes.getUid());
 
 		customer.setCode_country(far.getDataObject().getPermanentRegistration().getCountry().getId());
 		customer.setP_code_adr_region(far.getDataObject().getPermanentRegistration().getRegion().getId());
@@ -364,7 +364,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 		String seria = pasport_ser.getValue();
 
 		// details
-		FizInfoDetailsResponse fizInfo = TheService.fizInfoDetailsResponse(null, pin, seria, number);
+		FizInfoDetailsResponse fizInfo = TheService.fizInfoDetailsResponse(sessionAttributes.getBranch(), pin, seria, number, ""+sessionAttributes.getUid());
 		customer.setP_family_local(fizInfo.getData().getPersonaldata().getRow().getSurnamelatin());
 		customer.setP_first_name_local(fizInfo.getData().getPersonaldata().getRow().getNamelatin());
 		customer.setP_pinfl("" + fizInfo.getData().getPersonaldata().getRow().getPinpp());
@@ -399,7 +399,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 		// myImage.setContent(image1);
 
 		// photo
-		FizPhotoResponse ff = TheService.fizPhotoResponse(null, pin, strDocDate);
+		FizPhotoResponse ff = TheService.fizPhotoResponse(sessionAttributes.getBranch(), pin, strDocDate, ""+sessionAttributes.getUid());
 
 		if (ff.getResult() == 1) {
 
@@ -497,7 +497,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 		}
 
 		// photo
-		FizPhotoResponse ff = TheService.fizPhotoResponse(null, pin, strDocDate);
+		FizPhotoResponse ff = TheService.fizPhotoResponse(sessionAttributes.getBranch(), pin, strDocDate, ""+sessionAttributes.getUid());
 		if (ff != null) {
 			if (ff.getResult() == 1) {
 
@@ -579,7 +579,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 			msg = "Сервис fizPhoto - Ошибка при обрашении к сервису";
 		}
 
-		FizAddressResponse far = TheService.fizAddressResponse(null, pin);
+		FizAddressResponse far = TheService.fizAddressResponse(sessionAttributes.getBranch(), pin, ""+sessionAttributes.getUid());
 
 		if (far != null) {
 			if (far.getAnswereId() == 1) {
@@ -674,7 +674,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 			query.setDocument(docSerNum);
 		}
 		query.setTransaction_id(CustomerUtils.getFizDocsNextId().floatValue());
-		FizDocsResponse ff = TheService.fizDocsResponse(null, query);
+		FizDocsResponse ff = TheService.fizDocsResponse(sessionAttributes.getBranch(), query, ""+sessionAttributes.getUid());
 		if (ff != null) {
 
 			if (ff.getResult() == 1) {
@@ -765,7 +765,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 			msg = "Сервис fizDocs - Ошибка при обрашении к сервису";
 		}
 
-		FizAddressResponse far = TheService.fizAddressResponse(null, pin);
+		FizAddressResponse far = TheService.fizAddressResponse(sessionAttributes.getBranch(), pin, ""+sessionAttributes.getUid());
 
 		if (far != null) {
 			if (far.getAnswereId() == 1) {
