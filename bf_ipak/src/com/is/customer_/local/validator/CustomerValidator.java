@@ -388,10 +388,10 @@ public class CustomerValidator {
         if ((customer.getP_type_document().equals("1") || customer.getP_type_document().equals("6"))
                 && (!CheckNull.isEmpty(customer.getP_inps()))) {
 
-            if (!isInpsCorrect(customer.getP_inps())) {
+            /*if (!isInpsCorrect(customer.getP_inps())) {
                 message = "ИНПС должен состоять из 14 знаков";
                 return false;
-            }
+            }*/
             /*if (businessPartner.getP_code_gender().equals("1")) {
                 if (!businessPartner.getP_inps().startsWith("3")) {
                     message = "У мужчин ИНПС начинается с 3";
@@ -404,10 +404,10 @@ public class CustomerValidator {
                     return false;
                 }
             }*/
-            if (!inpsDateCorrect(customer.getP_inps() )) {
+            /*if (!inpsDateCorrect(customer.getP_inps() )) {
                 message = "Дата Рождения не соотвествует ИНПС";
                 return false;
-            }
+            }*/
             
         }
         if (customer.isDocumentDateRegistrationValid(CustomerUtils.getOperDate(sessionAttributes))) {
