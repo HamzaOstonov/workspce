@@ -302,6 +302,9 @@ public class SearchService {
 		if (!CheckNull.isEmpty(filter.getP_code_adr_distr())) {
 			flfields.add(new FilterField(getCond(flfields) + "p_code_adr_distr=?", filter.getP_code_adr_distr()));
 		}
+		if (!CheckNull.isEmpty(filter.getP_code_adr_mahalla())) {
+			flfields.add(new FilterField(getCond(flfields) + "p_code_adr_mahalla=?", filter.getP_code_adr_mahalla()));
+		}
 		if (!CheckNull.isEmpty(filter.getP_inps())) {
 			flfields.add(new FilterField(getCond(flfields) + "p_inps=?", filter.getP_inps()));
 		}
@@ -569,6 +572,9 @@ public class SearchService {
 		if (!CheckNull.isEmpty(filter.getP_code_adr_distr())) {
 			flfields.add(new FilterField(getCond(flfields) + "p_code_adr_distr=?", filter.getP_code_adr_distr()));
 		}
+		if (!CheckNull.isEmpty(filter.getP_code_adr_mahalla())) {
+			flfields.add(new FilterField(getCond(flfields) + "p_code_adr_mahalla=?", filter.getP_code_adr_mahalla()));
+		}
 		if (!CheckNull.isEmpty(filter.getP_inps())) {
 			flfields.add(new FilterField(getCond(flfields) + "p_inps=?", filter.getP_inps()));
 		}
@@ -764,7 +770,7 @@ public class SearchService {
 				.setP_type_document(resultSet.getString("p_type_document"))
 				.setP_passport_date_expiration(resultSet.getDate("p_passport_date_expiration"))
 				.setP_code_adr_region(resultSet.getString("p_code_adr_region"))
-				.setP_code_adr_distr(resultSet.getString("p_code_adr_distr")).setP_inps(resultSet.getString("p_inps")).setP_pinfl(resultSet.getString("p_pinfl"))
+				.setP_code_adr_distr(resultSet.getString("p_code_adr_distr")).setP_code_adr_mahalla(resultSet.getString("p_code_adr_mahalla")).setP_inps(resultSet.getString("p_inps")).setP_pinfl(resultSet.getString("p_pinfl"))
 				.setP_family(resultSet.getString("p_family")).setP_first_name(resultSet.getString("p_first_name"))
 				.setP_patronymic(resultSet.getString("p_patronymic"))
 				.setP_family_local(resultSet.getString("p_last_name_cyr"))

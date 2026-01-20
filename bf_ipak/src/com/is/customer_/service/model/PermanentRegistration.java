@@ -12,6 +12,12 @@ public class PermanentRegistration {
 	private Region RegionObject;
 	@JsonProperty("District")
 	private District DistrictObject;
+	
+	@JsonProperty("Maxalla")
+	private Maxalla MaxallaObject;
+	@JsonProperty("Street")
+	private Street StreetObject;
+	
 	@JsonProperty("Address")
 	private String Address;
 	@JsonProperty("RegistrationDate")
@@ -69,4 +75,22 @@ public class PermanentRegistration {
 	 public void setRegistrationDate(String RegistrationDate) {
 	  this.RegistrationDate = RegistrationDate;
 	 }
+	@JsonProperty("Maxalla")
+	public Maxalla getMaxallaObject() {
+		return MaxallaObject;
+	}
+	@JsonProperty("Maxalla")
+	public void setMaxallaObject(Maxalla maxallaObject) {
+		MaxallaObject = maxallaObject;
+	}
+	@JsonProperty("Street")
+	public Street getStreetObject() {
+		return StreetObject;
+	}
+	@JsonProperty("Street")
+	public void setStreetObject(Street streetObject) {
+		StreetObject = streetObject;
+	}
+	
+	
 }

@@ -117,6 +117,51 @@ public class TheService {
         "};";
 		String content = sendData(url, p_data, branch, p_user_id);
 		//String contentTemp = "{   \"Data\":    {      \"PermanentRegistration\":       {         \"Cadastre\": \"10:07:02:01:02:5011:0001:030\",         \"Country\":          {            \"Id\": \"860\",            \"Value\": \"ЎЗБЕКИСТОН\",            \"IdValue\": \"(182) ЎЗБЕКИСТОН\"         },         \"Region\":          {            \"Id\": \"26\",            \"Value\": \"ТОШКЕНТ ШАХРИ\",            \"IdValue\": \"(10) ТОШКЕНТ ШАХРИ\"         },         \"District\":          {            \"Id\": \"200\",            \"Value\": \"ЮНУСОБОД ТУМАНИ\",            \"IdValue\": \"(1010) ЮНУСОБОД ТУМАНИ\"         },         \"Address\": \"г. Ташкент, Юнусабадский район, ул. Чингиз Айтматов, Янгитарнов МСГ, 1- Дом, 30- Квартира\",         \"RegistrationDate\": \"2021-06-11T00:00:00\"      },      \"TemproaryRegistrations\": []   },   \"AnswereId\": 1,   \"AnswereMessage\": \"Ok\",   \"AnswereComment\": \"\"}";
+        //2026.01.19 dan yangisi
+		/*{
+	    "Data": {
+	        "PermanentRegistration": {
+	            "Cadastre": "20:12:01:65:01:0810",
+	            "Country": {
+	                "Id": "860",
+	                "Value": "ЎЗБЕКИСТОН",
+	                "IdValue": "(182) ЎЗБЕКИСТОН"
+	            },
+	            "Region": {
+	                "Id": "06",
+	                "Value": "БУХОРО ВИЛОЯТИ",
+	                "IdValue": "(20) БУХОРО ВИЛОЯТИ"
+	            },
+	            "District": {
+	                "Id": "030",
+	                "Value": "БУХОРО ШАҲРИ",
+	                "IdValue": "(2013) БУХОРО ШАҲРИ"
+	            },
+	            "Maxalla": {
+	                "Id": "1414",
+	                "Guid": 20120063,
+	                "Value": "ШИРБУДИН МФЙ"
+	            },
+	            "Street": {
+	                "Id": "6017",
+	                "Guid": "812-000102",
+	                "Value": "ШИРБУДДИН КУЧАСИ"
+	            },
+	            "Address": "65-СОНЛИ ШИРБУДИН НОМЛИ МФЙ, ШИРБУДИН,",
+	            "RegistrationDate": "2013-03-29T00:00:00"
+	        },
+	        "TemproaryRegistrations": [
+	            {
+	                "Cadastre": "1:",
+	                "Address": ""
+	            }
+	        ]
+	    },
+	    "AnswereId": 1,
+	    "AnswereMessage": "Ok",
+	    "AnswereComment": ""
+	    }*/
+		//String contentTemp ="{\"Data\":{\"PermanentRegistration\":{\"Cadastre\":\"10:07:06:01:01:5036:0001:040\",\"Country\":{\"Id\":\"860\",\"Value\":\"ЎЗБЕКИСТОН\",\"IdValue\":\"(182) ЎЗБЕКИСТОН\"},\"Region\":{\"Id\":\"26\",\"Value\":\"ТОШКЕНТ ША?РИ\",\"IdValue\":\"(10) ТОШКЕНТ ША?РИ\"},\"District\":{\"Id\":\"200\",\"Value\":\"ЮНУСОБОД ТУМАНИ\",\"IdValue\":\"(1010) ЮНУСОБОД ТУМАНИ\"},\"Maxalla\":{\"Id\":\"678\",\"Guid\":\"107-0107\",\"Value\":\"БИЛЛУР МФЙ\"},\"Street\":{\"Id\":\"763\",\"Guid\":\"ТЮА00068\",\"Value\":\"4 МАВЗЕСИ\"},\"Address\":\"г. Ташкент, Юнусабадский район, кв. 4, Биллур МСГ, 37- Дом, 40- Квартира\",\"RegistrationDate\":\"2021-05-10T00:00:00\"},\"TemproaryRegistrations\":[{\"Cadastre\":\"10:07:01:01:01:5024:0001:042\",\"Country\":{\"Id\":\"860\",\"Value\":\"O‘ZBEKISTON\",\"IdValue\":\"(182) O‘ZBEKISTON\"},\"Region\":{\"Id\":\"26\",\"Value\":\"TOSHKENT SHAHRI\",\"IdValue\":\"(10) TOSHKENT SHAHRI\"},\"District\":{\"Id\":\"200\",\"Value\":\"YUNUSOBOD TUMANI\",\"IdValue\":\"(1010) YUNUSOBOD TUMANI\"},\"Address\":\"г. Ташкент, Юнусабадский, кв. Ц 4, Кашкар МСГ, 27- Дом, 42- Квартира\",\"DateFrom\":\"2020-12-11T00:00:00\",\"DateTill\":\"2021-12-11T00:00:00\"},{\"Cadastre\":\"10:07:01:01:01:5024:0001:042\",\"Country\":{\"Id\":\"860\",\"Value\":\"O‘ZBEKISTON\",\"IdValue\":\"(182) O‘ZBEKISTON\"},\"Region\":{\"Id\":\"26\",\"Value\":\"TOSHKENT SHAHRI\",\"IdValue\":\"(10) TOSHKENT SHAHRI\"},\"District\":{\"Id\":\"200\",\"Value\":\"YUNUSOBOD TUMANI\",\"IdValue\":\"(1010) YUNUSOBOD TUMANI\"},\"Address\":\"КАШКАР МФЙ, МАРКАЗ 4 МАВЗЕСИ,  uy:27 xonadon:42\",\"DateFrom\":\"2020-01-03T09:52:51\",\"DateTill\":\"2021-01-03T09:52:51\"}]},\"AnswereId\":1,\"AnswereMessage\":\"Ok\",\"AnswereComment\":\"\"}";
 		if (!content.equals(""))
 			try {
 				myObj = objectMapper.readValue(content, FizAddressResponse.class);

@@ -43,6 +43,7 @@ public class ReferenceDictionary {
 	private static List<RefData> listDistr;
 	private static HashMap<String, List<RefData>> listDistrByRegion;	
 	private static HashMap<String, List<RefData>> listDistrByRegion_spr_104;
+	private static HashMap<String, List<RefData>> listMahallaByDistr;
 	public static List<RefData> capacity;
 	public static List<RefData> sKlass;
 	public static List<RefData> gNI;
@@ -277,17 +278,17 @@ public class ReferenceDictionary {
 						+ " order by distr",
 				alias);
 	}*/
-	public static List<RefData> getDistrByRegion(String region_id, final String alias) {
-		if (listDistrByRegion == null ) 
-			listDistrByRegion = new HashMap<String, List<RefData>>();
-		if ( !listDistrByRegion.containsKey(region_id) ) {
+	public static List<RefData> getMahallasByDistr(String distr_id, final String alias) {
+		if (listMahallaByDistr == null ) 
+			listMahallaByDistr = new HashMap<String, List<RefData>>();
+		if ( !listMahallaByDistr.containsKey(distr_id) ) {
 			List<RefData> lst = RefDataService
 			.getRefData(
-					"select distr data, distr_name label from s_distr where region_id=? and act='A' order by 1", region_id,
+					"select koduzkad data, name_ru label from s_spr_125 where distr=? and active='A' order by 1", distr_id,
 					alias);
-		   listDistrByRegion.put(region_id, lst);
+			listMahallaByDistr.put(distr_id, lst);
 		}
-		return listDistrByRegion.get(region_id);
+		return listMahallaByDistr.get(distr_id);
 	}
 
 	public static List<RefData> getDistrByRegion_spr_104(String region_id, final String alias) {
@@ -303,6 +304,19 @@ public class ReferenceDictionary {
 		return listDistrByRegion_spr_104.get(region_id);
 	}
 
+	public static List<RefData> getDistrByRegion(String region_id, final String alias) {
+		if (listDistrByRegion == null ) 
+			listDistrByRegion = new HashMap<String, List<RefData>>();
+		if ( !listDistrByRegion.containsKey(region_id) ) {
+			List<RefData> lst = RefDataService
+			.getRefData(
+					"select distr data, distr_name label from s_distr where region_id=? and act='A' order by 1", region_id,
+					alias);
+		   listDistrByRegion.put(region_id, lst);
+		}
+		return listDistrByRegion.get(region_id);
+	}
+	
 	/*public static List<RefData> getAllRegions(String alias) {
 		if (allRegions == null)
 			allRegions = RefDataService

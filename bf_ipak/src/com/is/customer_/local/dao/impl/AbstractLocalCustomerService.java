@@ -265,6 +265,11 @@ public abstract class AbstractLocalCustomerService {
         setParam.setString(2, client.getSubbranch());
         setParam.execute();
         /*end 2023.05.02*/
+        /*2026.01.20*/
+        setParam.setString(1, "P_CODE_ADR_MAHALLA");
+        setParam.setString(2, client.getP_code_adr_mahalla());
+        setParam.execute();
+        /*end 2026.01.20*/
     }
 
     protected String executeActionOtherBranch(Connection c, Customer customer, int action) throws SQLException {

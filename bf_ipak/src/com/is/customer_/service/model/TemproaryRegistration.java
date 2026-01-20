@@ -8,7 +8,7 @@ public class TemproaryRegistration {
 	@JsonProperty("Cadastre")
 	private String Cadastre;
 	@JsonProperty("Country")
-	private String Country;
+	private Country CountryObject;
 	@JsonProperty("Region")
 	private Region RegionObject;
 	@JsonProperty("District")
@@ -28,8 +28,8 @@ public class TemproaryRegistration {
 	  return Cadastre;
 	 }
 	@JsonProperty("Country")
-	 public String getCountry() {
-	  return Country;
+	 public Country getCountry() {
+	  return CountryObject;
 	 }
 	@JsonProperty("Region")
 	 public Region getRegion() {
@@ -54,8 +54,8 @@ public class TemproaryRegistration {
 	  this.Cadastre = Cadastre;
 	 }
 	@JsonProperty("Country")
-	 public void setCountry(String CountryObject) {
-	  this.Country = CountryObject;
+	 public void setCountry(Country CountryObject) {
+	  this.CountryObject = CountryObject;
 	 }
 	@JsonProperty("Region")
 	 public void setRegion(Region RegionObject) {

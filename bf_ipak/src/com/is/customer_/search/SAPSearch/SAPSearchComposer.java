@@ -121,11 +121,11 @@ public class SAPSearchComposer extends GenericForwardComposer {
             results = searchInteractor.search(userForm);
             if (results.size() == 0) {
                 if (!consumeMessages)
-                    Messagebox.show("Деловых партнеров не найдено");
+                    Messagebox.show("Р”РµР»РѕРІС‹С… РїР°СЂС‚РЅРµСЂРѕРІ РЅРµ РЅР°Р№РґРµРЅРѕ. Delovix partnerov ne naydeno!");
                 //onClick$btnCreateCustomer();
             } else if (results.get(0).getCount() > results.size())
                 if (!consumeMessages)
-                    Messagebox.show("Найденных записе больше 100");
+                    Messagebox.show("РќР°Р№РґРµРЅРЅС‹С… Р·Р°РїРёСЃРµ Р±РѕР»СЊС€Рµ 100. Naydennyx zapisey bolshe 100");
 
             resultListbox.setModel(new ListModelList(results));
         } catch (SearchInteractorImpl.SearchInteractionException e) {

@@ -47,12 +47,12 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 	public RefCBox state;
 	private RefCBox code_subject, code_country, p_code_citizenship, code_resident, p_type_document, p_code_gender,
 			p_code_nation, p_code_class_credit, p_code_adr_region, p_pass_place_region, p_code_capacity, p_code_tax_org,
-			p_code_adr_distr, p_pass_place_district, file_name, subbranch;
+			p_code_adr_distr, p_pass_place_district, file_name, subbranch, p_code_adr_mahalla;
 	protected Textbox p_code_citizenship_text, p_passport_serial, p_passport_number, p_type_document_text,
 			p_pass_place_region_text, p_pass_place_district_text, p_passport_place_registration, p_code_tax_org_text,
 			p_code_adr_region_text, p_code_adr_distr_text, p_post_address_flat, p_post_address, p_post_address_quarter,
 			p_post_address_street, p_post_address_house, p_num_certif_capacity, p_pension_sertif_serial,
-			p_capacity_status_place, p_pinfl, pasport_ser, pasport_num, pinfl, inn;
+			p_capacity_status_place, p_pinfl, pasport_ser, pasport_num, pinfl, inn, p_code_adr_mahalla_text;
 	protected Datebox p_birthday, birth_date, doc_date;
 	private Datebox p_capacity_status_date, p_passport_date_expiration, p_passport_date_registration,
 			date_open, date_open1, date_close, date_close1;
@@ -67,7 +67,9 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 	protected static List<RefData> nationMapList = null;
 	protected String code_distr_pasp="";
 	protected String code_distr_adr="";
+	protected String code_mahalla_adr="";
 	protected static List<RefData> documentMapList = null;
+	protected static List<RefData> mahallaMapList = null;	
     
 	protected SessionAttributes sessionAttributes;
 	protected Customer customer;
@@ -94,7 +96,7 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 		}
 	}
 
-	// Инициализация справочников
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	protected void initModelsForListbox() {
 
 		List<RefData> countryTypes = ReferenceDictionary.getCountries(sessionAttributes.getSchema());
@@ -127,8 +129,13 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 		else
 			p_code_adr_distr.setModel(new ListModelList(new ArrayList<RefData>()));
 			//p_code_adr_distr.setModel(new ListModelList(getAllDistricts()));
-			
-		
+
+		if (p_code_adr_mahalla!=null) {
+			if (!CheckNull.isEmpty(customer.getP_code_adr_distr()))
+				p_code_adr_mahalla.setModel(new ListModelList(getMahallasByDistr(customer.getP_code_adr_distr()))); 
+			else
+				p_code_adr_mahalla.setModel(new ListModelList(new ArrayList<RefData>()));
+		}
 		if (!CheckNull.isEmpty(customer.getP_pass_place_region()))
 			p_pass_place_district.setModel(new ListModelList(getDistrictsByRegion(customer.getP_pass_place_region())));
 		else
@@ -142,6 +149,10 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 			documentMapList = 
 		 RefDataService.getRefData(
 				"select trim(t.id) data, trim(t.map) label from ss_document_elgov t order by 1", sessionAttributes.getSchema());
+		if (mahallaMapList == null)
+			mahallaMapList = 
+		 RefDataService.getRefData(
+				"select kod_1c data, koduzkad label from s_spr_125 t where active='A' order by kod_1c", sessionAttributes.getSchema());
 		
 	}
 
@@ -325,6 +336,13 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 		    return ReferenceDictionary.getDistricts(sessionAttributes.getSchema());
 	}
 
+	private List<RefData> getMahallasByDistr(String distr_id) {
+		if (distr_id != null)
+			//return ReferenceDictionary.getDistricts(region_id, sessionAttributes.getSchema());
+		    return ReferenceDictionary.getMahallasByDistr(distr_id, sessionAttributes.getSchema()); 
+		return new ArrayList<RefData>();
+	}
+	
 	public void onChange$p_pass_place_region_text() {
 		p_pass_place_district.setModel(new ListModelList(getDistrictsByRegion(p_pass_place_region_text.getValue())));
 		p_pass_place_region.setSelecteditem(p_pass_place_region_text.getValue());
@@ -449,10 +467,9 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 				p_pass_place_district.getText(),
 				customer.getP_type_document() != null
 						&& (customer.getP_type_document().equals("1") || customer.getP_type_document().equals("6"))
-								? " ИИБ" : "");
+								? " пїЅпїЅпїЅ" : "");
 		customer.setP_passport_place_registration(placeRegistration);
 		p_passport_place_registration.setText(placeRegistration);
-
 	}
 
 	public void onChange$p_code_adr_region() {
@@ -466,27 +483,12 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 		changeCodeTaxByRegion(p_code_adr_region.getValue());
 	}
 
-	private void setConcatenationForAddress() {
-		/*
-		 * String postAddress = String.format("%s %s %s %s %s %s",
-		 * p_code_adr_region.getText(),p_code_adr_distr.getText(),
-		 * p_post_address_quarter.getText(),p_post_address_street.getText(),
-		 * p_post_address_house.getText(),p_post_address_flat.getText());
-		 */
-		/*
-		 * p_post_address.setText(postAddress);
-		 * customer.setP_post_address(postAddress);
-		 */
-	}
-
 	public void method_p_code_adr_distr() {
 		Events.sendEvent(p_code_adr_distr, new Event("onInitRender"));
-		//alert(p_code_adr_distr.getItems().size()+"-"+p_code_adr_distr.getValue()+"-"+customer.getP_code_adr_distr());
 		if (p_code_adr_distr.getItems().size() == 0
 				|| (p_code_adr_distr.getValue() != customer.getP_code_adr_distr())) {
 			binder.loadComponent(p_code_adr_distr);
 		}
-		//binder.loadAll();
 	}
 
 	public void onChange$p_code_adr_region_text(InputEvent event) {
@@ -513,7 +515,13 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 		// p_code_tax_org.setSelecteditem(taxId);
 		// p_code_tax_org_text.setValue(taxId);
 		// customer.setP_code_tax_org(taxId);
+		p_code_adr_mahalla.setValue(null);
+		customer.setP_code_adr_mahalla(null);
+		p_code_adr_mahalla_text.setValue(null);
+		p_code_adr_mahalla.setModel(new ListModelList(getMahallasByDistr(p_code_adr_distr.getValue())));
+		binder.loadAll();
 	}
+
 
 	public void onChange$p_code_adr_distr_text(InputEvent event) {
 		String value = event.getValue();
@@ -525,8 +533,29 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 		// p_code_tax_org.setSelecteditem(taxId);
 		// p_code_tax_org_text.setValue(taxId);
 		// customer.setP_code_tax_org(taxId);
+		p_code_adr_mahalla.setModel(new ListModelList(getMahallasByDistr(value)));
+		if (!StringUtils.isEmpty(customer.getP_code_adr_mahalla())) {
+			p_code_adr_mahalla.setValue(null);
+			p_code_adr_mahalla_text.setValue(null);
+			customer.setP_code_adr_mahalla(null);
+		}
+		binder.loadAll();
 	}
 
+	public void onChange$p_code_adr_mahalla() {
+		String mahallaId = p_code_adr_mahalla.getValue();
+		customer.setP_code_adr_mahalla(mahallaId);
+		p_code_adr_mahalla_text.setValue(mahallaId);
+	}
+
+
+	public void onChange$p_code_adr_mahalla_text(InputEvent event) {
+		String value = event.getValue();
+		p_code_adr_mahalla.setSelecteditem(value);
+		p_code_adr_mahalla_text.setValue(p_code_adr_mahalla.getValue());
+		customer.setP_code_adr_mahalla(p_code_adr_mahalla.getValue());
+	}
+	
 	public void onAfterRender$p_code_adr_distr()
 	{
 		if (code_distr_adr!="")
@@ -534,6 +563,20 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 		code_distr_adr="";
 	}
 
+	public void method_p_code_adr_mahalla() {
+		Events.sendEvent(p_code_adr_mahalla, new Event("onInitRender"));
+		if (p_code_adr_mahalla.getItems().size() == 0
+				|| (p_code_adr_mahalla.getValue() != customer.getP_code_adr_mahalla())) {
+			binder.loadComponent(p_code_adr_mahalla);
+		}
+	}
+
+	public void onAfterRender$p_code_adr_mahalla()
+	{
+		if (code_mahalla_adr!="")
+			p_code_adr_mahalla.setSelecteditem(code_mahalla_adr);
+		code_mahalla_adr="";
+	}
 	
 	private void changeCodeTaxByRegion(String region) {
 		p_code_tax_org.setValue(null);
@@ -563,7 +606,7 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 	}
 
 	public void onFocus$p_post_address() {
-		setConcatenationForAddress();
+		//setConcatenationForAddress();
 	}
 
 	public void initDependentComboboxes() {
@@ -596,6 +639,9 @@ public abstract class AbstractCustomerComposer extends GenericForwardComposer {
 				changeDocumentType(customer.getP_type_document());
 				changeSignPublicOfficial(customer.getSign_public_official());
 				// setModelForCodeTax(customer.getP_code_adr_region());
+				p_code_adr_mahalla.setModel(new ListModelList(getMahallasByDistr(customer.getP_code_adr_distr())));
+				Events.sendEvent(p_code_adr_mahalla, new Event("onInitRender"));
+				
 			}
 		} catch (Exception e) {
 			ISLogger.getLogger().error(CheckNull.getPstr(e));

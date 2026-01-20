@@ -27,6 +27,7 @@ import com.is.customer_.service.model.FizPhotoResponse;
 import com.is.utils.CheckNull;
 import com.is.utils.RefData;
 import com.is.utils.RefDataService;
+import com.sun.xml.internal.bind.v2.TODO;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
@@ -613,6 +614,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 		// }
 
 		method_p_code_adr_distr();
+		method_p_code_adr_mahalla();
 
 		if (!msg.equals("") || !msg2.equals("")) {
 			alert(msg + " " + "\n\r" + " " + msg2);
@@ -772,6 +774,18 @@ public class CustomerComposer extends AbstractCustomerComposer {
 				customer.setCode_country(far.getDataObject().getPermanentRegistration().getCountry().getId());
 				customer.setP_code_adr_region(far.getDataObject().getPermanentRegistration().getRegion().getId());
 				customer.setP_code_adr_distr(far.getDataObject().getPermanentRegistration().getDistrict().getId());
+				//shuerga kod_mahallani quyamiz
+				if (far.getDataObject().getPermanentRegistration().getMaxallaObject().getId() != null) {
+					for (int i = 0; i < mahallaMapList.size(); i++) {
+						if ((mahallaMapList.get(i)).getData().equals(far.getDataObject().getPermanentRegistration().getMaxallaObject().getId())
+								|| (mahallaMapList.get(i)).getData() == far.getDataObject().getPermanentRegistration().getMaxallaObject().getId()) {
+							customer.setP_code_adr_mahalla(mahallaMapList.get(i).getLabel());
+							break;
+						}
+					}
+				}
+				if (customer.getP_code_adr_mahalla()==null || customer.getP_code_adr_mahalla().equals("") )
+					customer.setP_code_adr_mahalla("0000000000");
 				// customer.setP_post_address(far.getDataObject().getPermanentRegistration().getAddress());
 				customer.setP_post_address(
 						far.getDataObject().getPermanentRegistration().getAddress() != null
@@ -805,6 +819,7 @@ public class CustomerComposer extends AbstractCustomerComposer {
 		// }
 
 		method_p_code_adr_distr();
+		method_p_code_adr_mahalla();
 
 		if (!msg.equals("") || !msg2.equals("")) {
 			alert(msg + " " + "\n\r" + " " + msg2);

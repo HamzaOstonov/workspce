@@ -527,7 +527,6 @@
                                 value="${labels.client_p.p_code_adr_distr}"/>
                         <cell>
                             <textbox
-
                                     id="p_code_adr_distr_text" hflex="1"
                                     value="@{customerWnd$composer.customer.p_code_adr_distr}"/>
                             <rcombobox mold="rounded"
@@ -564,6 +563,18 @@
                         </cell>
                     </row>
                     <row>
+                        <label
+                                style="color:red;font-weight:bold"
+                                value="Махалла"/>
+                        <cell>
+                            <textbox
+                                    id="p_code_adr_mahalla_text" hflex="2" maxlength="10"
+                                    value="@{customerWnd$composer.customer.p_code_adr_mahalla}"/>
+                            <rcombobox mold="rounded"
+                                    readonly="true"
+                                    id="p_code_adr_mahalla" hflex="5"
+                                    selecteditem="@{customerWnd$composer.customer.p_code_adr_mahalla}"/>
+                        </cell>
                         <label style="color:red;font-weight:bold"
                                 value="${labels.client_p.p_post_address}"/>
                         <cell colspan="3">

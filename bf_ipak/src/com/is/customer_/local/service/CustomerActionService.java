@@ -239,6 +239,7 @@ public class CustomerActionService extends AbstractLocalCustomerService
 						resultSet.getString("p_drive_permit_place"))
 				.setP_agreement(resultSet.getString("p_agreement"))
 				.setSubbranch(resultSet.getString("subbranch"))
+				.setP_code_adr_mahalla(resultSet.getString("p_code_adr_mahalla"))
 				.createCustomer();
 	}
 

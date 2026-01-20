@@ -66,6 +66,7 @@ public class Customer implements Cloneable{
     private Date p_passport_date_expiration;
     private String p_code_adr_region;
     private String p_code_adr_distr;
+    private String p_code_adr_mahalla;
     private String p_inps;
     private String p_pinfl;
     private String p_pass_place_region;
@@ -109,8 +110,8 @@ public class Customer implements Cloneable{
     private String po_other_data;
     private String subbranch;
 
-    // Был ли создан в SAP до этого или нет
-    // признак SAP
+    // пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ SAP пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ SAP
     private boolean i014;
 
     public Customer() {
@@ -169,7 +170,8 @@ public class Customer implements Cloneable{
                     String drive_permit_place,
                     String agreement,
                     String unionId,
-                    String subbranch) {
+                    String subbranch,
+                    String code_adr_mahalla) {
         this.longId = longId;
         this.idSap = idSap;
         this.branch = branch;
@@ -251,6 +253,7 @@ public class Customer implements Cloneable{
         this.p_agreement=agreement;
         this.union_id = unionId;
         this.subbranch = subbranch;
+        this.p_code_adr_mahalla = code_adr_mahalla;
     }
     
     public void initBaseAttributes(String sessionBranch){

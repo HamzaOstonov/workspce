@@ -79,6 +79,7 @@ public class CustomerBuilder {
     private String p_agreement;
     private String unionId;
     private String subbranch;
+    private String p_code_adr_mahalla;    
     
     public CustomerBuilder setLongId(Long _id) {
         this._id = _id;
@@ -340,6 +341,11 @@ public class CustomerBuilder {
         return this;
     }
 
+    public CustomerBuilder setP_code_adr_mahalla(String p_code_adr_mahalla) {
+        this.p_code_adr_mahalla = p_code_adr_mahalla;
+        return this;
+    }
+    
     public CustomerBuilder setP_inps(String p_inps) {
         this.p_inps = p_inps;
         return this;
@@ -478,6 +484,7 @@ public class CustomerBuilder {
                 p_drive_permit_place,
                 p_agreement,
                 unionId, 
-                subbranch);
+                subbranch,
+                p_code_adr_mahalla);
     }
 }
