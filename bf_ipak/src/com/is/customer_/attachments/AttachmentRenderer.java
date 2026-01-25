@@ -19,7 +19,7 @@ import com.is.customer_.core.utils.CustomerUtils;
 import com.is.customer_.core.utils.ReferenceDecoder;
 import com.is.customer_.sap.EmergencyMode;
 import com.is.customer_.sap.service.AttachmentInterface;
-
+import com.is.ISLogger;
 /**
  * Created by root on 11.05.2017. 15:21
  */
@@ -90,8 +90,10 @@ public class AttachmentRenderer implements ListitemRenderer {
 			public void onEvent(Event event) throws Exception {
 				// Attachment content =
 				// service.getAttachmentContent(attachment.getUrl());
+				ISLogger.getLogger().error("AttachmentRenderer 01. "+attachment.getUrl());
 				Execution exec = Executions.getCurrent();
-
+				ISLogger.getLogger().error("AttachmentRenderer 02. "+exec.getContextPath());
+				ISLogger.getLogger().error("AttachmentRenderer 03. "+exec.getLocalAddr());
 				// nayti put, tipa bf_ipak ili bf , bf_agro
 				String doroga;
 				try {
@@ -99,6 +101,8 @@ public class AttachmentRenderer implements ListitemRenderer {
 					doroga = "/" + doroga.substring(doroga.indexOf("/") + 1);
 				} catch (Exception e) {
 					doroga = "/bf";
+					ISLogger.getLogger().error("AttachmentRenderer 030. "+e.getMessage());
+					ISLogger.getLogger().error("AttachmentRenderer 031. "+e.getCause());
 				} finally {
 				}
 				String localAdr = exec.getLocalAddr();
@@ -113,8 +117,9 @@ public class AttachmentRenderer implements ListitemRenderer {
 				/*exec.getLocalPort() + doroga +*/ "/attachmentServlet?documentId=" + attachment.getUrl() + "&schema="
 						+ schema + "&clientId=" +  customer.getId()
 						+ "&branch=" +  customer.getBranch();
-
+				ISLogger.getLogger().error("AttachmentRenderer 04. "+request);
 				Executions.getCurrent().sendRedirect(request, "_blank");
+				ISLogger.getLogger().error("AttachmentRenderer 05. "+request);
 			}
 		});
 		a.setParent(listcell);
@@ -125,14 +130,14 @@ public class AttachmentRenderer implements ListitemRenderer {
 		Listcell listcell = new Listcell();
 		Toolbarbutton tb = new Toolbarbutton();
 		tb.setImage("/images/deletered3.png");
-		tb.setTooltiptext("”‰‡ÎËÚ¸");
+		tb.setTooltiptext("–£–¥–∞–ª–∏—Ç—å");
 		tb.addEventListener(Events.ON_CLICK, new EventListener() {
 			@Override
 			public void onEvent(Event event) throws Exception {
 
 				// deleteFile(attachment);
 				try {
-					Messagebox.show("”‰‡ÎËÚ¸ Ù‡ÈÎ?", "", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
+					Messagebox.show("–£–¥–∞–ª–∏—Ç—å —Ñ–∞–π–ª?", "", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
 							new EventListener() {
 								@Override
 								public void onEvent(Event event) throws Exception {
@@ -171,7 +176,7 @@ public class AttachmentRenderer implements ListitemRenderer {
 
 	/*public void deleteFile(final Attachment current) throws RemoteException {
 		try {
-			Messagebox.show("”‰‡ÎËÚ¸ Ù‡ÈÎ?", "", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
+			Messagebox.show("–£–¥–∞–ª–∏—Ç—å —Ñ–∞–π–ª?", "", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
 					new EventListener() {
 						@Override
 						public void onEvent(Event event) throws Exception {

@@ -112,14 +112,14 @@ public class AttachmentComposer extends GenericForwardComposer {
 	public void onClick$btn_deleteFile() throws RemoteException {
 		if ((current == null) || (current.getUrl() == null)) {
 			try {
-				Messagebox.show("Не выбран файл", "Information", Messagebox.OK, Messagebox.INFORMATION);
+				Messagebox.show("РќРµ РІС‹Р±СЂР°РЅ С„Р°Р№Р»", "Information", Messagebox.OK, Messagebox.INFORMATION);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			return;
 		}
 		try {
-			Messagebox.show("Удалить файл?", "", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
+			Messagebox.show("РЈРґР°Р»РёС‚СЊ С„Р°Р№Р»?", "", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
 					new EventListener() {
 						@Override
 						public void onEvent(Event event) throws Exception {
@@ -154,7 +154,7 @@ public class AttachmentComposer extends GenericForwardComposer {
 
 	public void onUpload$btnUploadFile(UploadEvent event) throws Exception {
 		if (appsTypes.getValue() == null || appsTypes.getValue().trim().isEmpty()) {
-			Messagebox.show("Выберите тип документа");
+			Messagebox.show("Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°");
 			return;
 		} else {
 			Media aMedia = event.getMedia();
@@ -167,8 +167,8 @@ public class AttachmentComposer extends GenericForwardComposer {
 
 			// if (aMedia.getName() == null ||
 			// FilenameUtils.removeExtension(aMedia.getName()).length() >= 18) {
-			// Messagebox.show("Длина имени файла должна содержать не более 18
-			// сиволов");
+			// Messagebox.show("Р”Р»РёРЅР° РёРјРµРЅРё С„Р°Р№Р»Р° РґРѕР»Р¶РЅР° СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ Р±РѕР»РµРµ 18
+			// СЃРёРІРѕР»РѕРІ");
 			// return;
 			// }
 
@@ -185,7 +185,7 @@ public class AttachmentComposer extends GenericForwardComposer {
 			}
 
 			localAttachmentService.saveAttachment(attachment, selectedCustomer);
-			attachment = new Attachment(); //очистить
+			attachment = new Attachment(); //РѕС‡РёСЃС‚РёС‚СЊ
 
 			refresh(selectedCustomer);
 			binder.loadAll();
@@ -216,7 +216,7 @@ public class AttachmentComposer extends GenericForwardComposer {
 	}
 
 	public void onClick$btnAdd$urlWnd() throws Exception {
-		// Только для загрузки ссылок
+		// РўРѕР»СЊРєРѕ РґР»СЏ Р·Р°РіСЂСѓР·РєРё СЃСЃС‹Р»РѕРє
 		attachment.convertURLToBytes();
 		attachment.setFileName(attachment.getDescription());
 		// attachment.setData(attachment.getUrl().getBytes("UTF-8"));

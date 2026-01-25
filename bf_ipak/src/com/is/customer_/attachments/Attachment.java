@@ -51,13 +51,13 @@ public class Attachment implements Comparable<Attachment>{
 
     public void isURLValid(){
         if (this.url == null || this.url.trim().isEmpty()) {
-            throw new InvalidAttachmentException("Заполните URL");
+            throw new InvalidAttachmentException("Р—Р°РїРѕР»РЅРёС‚Рµ URL");
         }
         if (this.data == null) {
-            throw new InvalidAttachmentException("Заполните URL");
+            throw new InvalidAttachmentException("Р—Р°РїРѕР»РЅРёС‚Рµ URL");
         }
         if (this.description == null)
-            throw new InvalidAttachmentException("Заполните Номер Документа / Описание");
+            throw new InvalidAttachmentException("Р—Р°РїРѕР»РЅРёС‚Рµ РќРѕРјРµСЂ Р”РѕРєСѓРјРµРЅС‚Р° / РћРїРёСЃР°РЅРёРµ");
     }
 
     /**

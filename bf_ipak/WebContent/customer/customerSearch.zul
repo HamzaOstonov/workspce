@@ -39,7 +39,7 @@
 					</columns>
 					<rows>
 						<row>
-							<label value="${labels.client_p.id_client}" />
+							<label value="${labels.client.id_client}" />
 							<textbox id="id" readonly="true"
 								value="@{customerWnd$composer.customer.id}" />
 							<label value="${labels.client.state}" />
@@ -47,12 +47,12 @@
 								buttonVisible="false" readonly="true"
 								selecteditem="@{customerWnd$composer.customer.state}" hflex="1"
 								onChange="customerWnd$composer.customer.state = state.value" />
-							<label value="${labels.client_p.code_type}" />
+							<label value="${labels.client.code_type}" />
 							<rcombobox id="code_type" 
 								hflex="1" buttonVisible="false" readonly="true" disabled="true" />
 						</row>
 						<row>
-							<label value="${labels.client_p.fio}" />
+							<label value="${labels.client.fio}" />
 							<cell colspan="3">
 								<textbox id="name_search" hflex="1"
 									value="@{customerWnd$composer.customer.name_search}" />
@@ -63,12 +63,12 @@
 						</row>
 						<row>
 							<label
-								value="${labels.client_p.p_number_tax_registration}" />
+								value="${labels.client.p_number_tax_registration}" />
 							<textbox id="p_number_tax_registration"
 								hflex="1"
 								value="@{customerWnd$composer.customer.p_number_tax_registration}" />
 							<label
-								value="${labels.client_p.p_code_tax_org}" />
+								value="${labels.client.p_code_tax_org}" />
 							<cell>
 								<textbox id="p_code_tax_org_text"
 								    hflex="1"
@@ -84,7 +84,7 @@
 							</cell>
 
 							<label
-								value="${labels.client_p.code_country}" />
+								value="${labels.client.code_country}" />
 							<cell>
 								<textbox
 									onChange="code_country.selecteditem = self.value;
@@ -102,14 +102,14 @@
 						</row>
 						<row>
 							<label
-								value="${labels.client_p.p_birthday}" />
+								value="${labels.client.p_birthday}" />
 							<cell>
 								<datebox id="p_birthday"
 									format="dd.MM.yyyy" lenient="false"
 									value="@{customerWnd$composer.customer.p_birthday}" hflex="2" />
 
 								<label
-									value="${labels.client_p.p_code_citizenship}" hflex="1" />
+									value="${labels.client.p_code_citizenship}" hflex="1" />
 							</cell>
 							<cell>
 								<textbox id="p_code_citizenship_text"
@@ -127,13 +127,13 @@
 							</cell>
 							<cell align="right">
 								<label hflex="1"
-									value="${labels.client_p.p_passport_serial}" />
+									value="${labels.client.p_passport_serial}" />
 								<textbox hflex="1" maxlength="2"
 									id="p_passport_serial" constraint="${passportSerialConst}"
 									value="@{customerWnd$composer.customer.p_passport_serial}" />
 							</cell>
 							<label hflex="1"
-								value="${labels.client_p.p_passport_number}" />
+								value="${labels.client.p_passport_number}" />
 							<textbox id="p_passport_number"
 								constraint="${passportNumberConst}" hflex="3" maxlength="7"
 								value="@{customerWnd$composer.customer.p_passport_number}" />
