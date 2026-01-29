@@ -23,6 +23,7 @@ public class SAPEnpointService {
 
 	static {
 	    String path = System.getenv("CATALINA_HOME") + "\\webapps\\bf\\sap.properties";
+	    //String path = System.getenv("CATALINA_HOME") + "\\webapps\\bf_ipak\\sap.properties"; //2026.01.29
 		Properties props = new Properties();
 		InputStream io = null;
 		try {

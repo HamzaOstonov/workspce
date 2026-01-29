@@ -80,7 +80,7 @@ public class SearchInteractorImpl implements SearchInteractor {
             results = sapSearch.search(input);
         } catch (RemoteException e) {
             logger.error(CheckNull.getPstr(e));
-            throw new SearchInteractionException("Проблема с подключением к веб сервису SAP CRM");
+            throw new SearchInteractionException("РџСЂРѕР±Р»РµРјР° СЃ РїРѕРґРєР»СЋС‡РµРЅРёРµРј Рє РІРµР± СЃРµСЂРІРёСЃСѓ SAP CRM");
         }
         return results;
     }

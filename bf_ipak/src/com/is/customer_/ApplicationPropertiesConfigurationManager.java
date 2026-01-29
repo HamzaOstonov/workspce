@@ -23,8 +23,10 @@ public class ApplicationPropertiesConfigurationManager {
     private void init() {
         properties = new HashMap<String, String>();
         String path;
-        if (System.getenv("CATALINA_HOME")!=null)
+        if (System.getenv("CATALINA_HOME")!=null){
           path = System.getenv("CATALINA_HOME") + "\\webapps\\bf\\application.properties";
+          //path = System.getenv("CATALINA_HOME") + "\\webapps\\bf_ipak\\application.properties";
+        }
         else
           path = "D:\\workspce\\bf_ipak\\WebContent\\application.properties";
         Properties properties = new Properties();

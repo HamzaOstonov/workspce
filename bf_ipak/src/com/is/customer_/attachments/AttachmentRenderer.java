@@ -90,10 +90,10 @@ public class AttachmentRenderer implements ListitemRenderer {
 			public void onEvent(Event event) throws Exception {
 				// Attachment content =
 				// service.getAttachmentContent(attachment.getUrl());
-				ISLogger.getLogger().error("AttachmentRenderer 01. "+attachment.getUrl());
+				//ISLogger.getLogger().error("AttachmentRenderer 01. "+attachment.getUrl());
 				Execution exec = Executions.getCurrent();
-				ISLogger.getLogger().error("AttachmentRenderer 02. "+exec.getContextPath());
-				ISLogger.getLogger().error("AttachmentRenderer 03. "+exec.getLocalAddr());
+				//ISLogger.getLogger().error("AttachmentRenderer 02. "+exec.getContextPath());
+				//ISLogger.getLogger().error("AttachmentRenderer 03. "+exec.getLocalAddr());
 				// nayti put, tipa bf_ipak ili bf , bf_agro
 				String doroga;
 				try {
@@ -101,8 +101,8 @@ public class AttachmentRenderer implements ListitemRenderer {
 					doroga = "/" + doroga.substring(doroga.indexOf("/") + 1);
 				} catch (Exception e) {
 					doroga = "/bf";
-					ISLogger.getLogger().error("AttachmentRenderer 030. "+e.getMessage());
-					ISLogger.getLogger().error("AttachmentRenderer 031. "+e.getCause());
+					//ISLogger.getLogger().error("AttachmentRenderer 030. "+e.getMessage());
+					//ISLogger.getLogger().error("AttachmentRenderer 031. "+e.getCause());
 				} finally {
 				}
 				String localAdr = exec.getLocalAddr();
@@ -117,9 +117,21 @@ public class AttachmentRenderer implements ListitemRenderer {
 				/*exec.getLocalPort() + doroga +*/ "/attachmentServlet?documentId=" + attachment.getUrl() + "&schema="
 						+ schema + "&clientId=" +  customer.getId()
 						+ "&branch=" +  customer.getBranch();
-				ISLogger.getLogger().error("AttachmentRenderer 04. "+request);
-				Executions.getCurrent().sendRedirect(request, "_blank");
-				ISLogger.getLogger().error("AttachmentRenderer 05. "+request);
+
+				
+				/*try {
+					Executions.getCurrent().sendRedirect(request, "_self");
+				} catch (Exception e) {
+					ISLogger.getLogger().error("AttachmentRenderer 04(1). "+e.getMessage());
+					ISLogger.getLogger().error("AttachmentRenderer 04(1-1). "+e.getCause());
+				}*/
+				//try {
+				    Executions.getCurrent().sendRedirect(request, "_blank");
+				/*} catch (Exception e) {
+					ISLogger.getLogger().error("AttachmentRenderer 04(2). "+e.getMessage());
+					ISLogger.getLogger().error("AttachmentRenderer 04(2-1). "+e.getCause());
+				}*/
+				
 			}
 		});
 		a.setParent(listcell);

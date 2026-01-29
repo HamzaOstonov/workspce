@@ -73,14 +73,4 @@ public class Attachment implements Comparable<Attachment>{
         return ComparisonChain.start().compare(this.createdAt,that.createdAt).result();
     }
 
-    private static class InvalidAttachmentException extends RuntimeException{
-        public InvalidAttachmentException(String message){
-            super(message);
-        }
-
-        @Override
-        public  String toString(){
-            return super.getMessage();
-        }
-    }
 }
