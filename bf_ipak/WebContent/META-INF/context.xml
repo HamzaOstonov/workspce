@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/bf_ipak" docbase="webapps/bf_ipak/">
+<Context path="/bf" docbase="webapps/bf/">
 	<!-- ipakyuli  -->
 	<Resource name="jdbc/myoracle" auth="Container"
 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" type="javax.sql.DataSource"
