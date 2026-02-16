@@ -429,6 +429,7 @@ public class TclientService {
 						      //"and ac.groupc = '01' "+  //
 						      "and p.code = a.product "+
 						      "and t.cl_acct_key=ac.tab_key "+
+						      "and ac.cond_set!='207' "+ //2026.02.16
 						      "and t.client_id = ?"
 						      );
 

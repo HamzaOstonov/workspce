@@ -6512,6 +6512,14 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 	}
 
 	public void onClick$btn_block$blockwnd() {
+		/*Latin harflariga tekshirish*/
+		if (blockwnd$txtstopcauses.getValue() != null && !String.valueOf(blockwnd$txtstopcauses.getValue()).isEmpty())
+			if (!String.valueOf(blockwnd$txtstopcauses.getValue()).matches("[A-Za-z\\s\\-']+"))
+				{
+				alert("Только латинские буквы");
+				return;
+				}
+		
 		OperationConnectionInfo connectionInfo = new OperationConnectionInfo();
 		OperationResponseInfo orInfo = null;
 		RowType_AddCardToStopList_Request parameters = new RowType_AddCardToStopList_Request();
