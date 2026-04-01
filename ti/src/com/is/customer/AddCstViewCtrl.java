@@ -820,6 +820,36 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 									return;
 								}
 
+								//2026.04.01 begin
+								//20206 shetni account dan tekshiramiz. status 2=utverjden bulmasa kartani perevipusk qilishni tuxtatamiz 
+
+								Account card_acc1 =null;
+								Connection c1 = null;
+								try {
+									c1 = ConnectionPool.getConnection(alias);
+									card_acc1 = AccountService.getAccount(
+											((AccInfo) event.getTarget().getAttribute("acc")).getTranz_acct(), "IY00444", "00444", c1);
+								} catch (SQLException e) {
+									e.printStackTrace();
+								} finally {
+									try {
+										if (c1 != null)
+											c1.close();
+									} catch (Exception e) {
+									}
+								}
+                                
+								if (card_acc1==null) {
+									alert("Нет данных по счету "+((AccInfo) event.getTarget().getAttribute("acc")).getTranz_acct());
+									return;
+								}
+								if (card_acc1.getState()!=2) {
+									alert("Текушее состояние счета "+((AccInfo) event.getTarget().getAttribute("acc")).getTranz_acct()+" : 'Не утвержден'. Должно быть 'утвержден'.");
+									return;
+								}
+									
+								//2026.04.01 end
+								
 								Tclient ntc;
 								ntc = tietocl;
 
@@ -828,7 +858,7 @@ public class AddCstViewCtrl extends GenericForwardComposer {
 												.getTarget()
 												.getAttribute("acc"))
 												.getCard_type()), alias);
-								// 13.10.1017
+								// 13.10.2017
 								// Res res =
 								// com.is.tieto.TclientService.check_card(((AccInfo)event.getTarget().getAttribute("acc")).getCard_type(),TclientService.getAccInfo_active(ntc.getClient()),
 								// alias);
