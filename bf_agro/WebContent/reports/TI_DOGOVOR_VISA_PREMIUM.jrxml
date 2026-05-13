@@ -1,0 +1,2381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TI_DOGOVOR_VISA_PREMIUM" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="10">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="14077"/>
+	<parameter name="CONTRACT_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CONTRACT_NUMBER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_TYPE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_TYPE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BANK_FACE_POST" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BANK_FACE_POST>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BANK_FACE_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BANK_FACE_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_SERIAL" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_SERIAL>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_NUMBER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_DATE_ISSUE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_DATE_ISSUE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_ISSUE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_ISSUE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BRANCH_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BRANCH_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["BRANCH"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH_INN" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BRANCH_INN>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH_OKONH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BRANCH_OKONH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_PHONE1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_PHONE1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_PHONE2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_PHONE1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CONTRACT_DATE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date()).toString()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON4" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON4>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON5" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON5>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_DOC1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_DOC1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_DOC2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_DOC2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_DOC3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_DOC3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_DOC4" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_DOC4>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_DOC5" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_DOC5>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_RELATION1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_RELATION1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_RELATION2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_RELATION2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_RELATION3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_RELATION3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_RELATION4" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_RELATION4>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ADDITIONAL_PERSON_RELATION5" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<ADDITIONAL_PERSON_RELATION5>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_FULL_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_FULL_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="POST_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<POST_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BANK_INN" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BANK_INN>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BANK_OKONH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BANK_OKONH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PHONE_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PHONE_NUMBER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PHONE_WORK" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PHONE_WORK>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select to_char(1)as t from dual]]>
+	</queryString>
+	<field name="T" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="822" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ДОГОВОР №___________"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[О представлении в пользование и обслуживание]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="33" width="344" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["международной ПРЕМИАЛЬНОЙ пластиковой карточки"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="47" width="555" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[АИКБ "Ипак Йули"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="275" height="13"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[г.Ташкент]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="275" y="60" width="280" height="13"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="73" width="131" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[АИКБ "Ипак Йули", далее ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="131" y="73" width="38" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA["Банк"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="73" width="41" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[, в лице]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="73" width="345" height="10"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[","]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="83" width="276" height="10"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[действующего на основании Доверенности, с одной стороны, и далее ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="276" y="82" width="279" height="10"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="93" width="555" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["действующий на основании Паспорта серии "+$P{DOC_SERIAL}+" №"+$P{DOC_NUMBER}+" (выдан "+$P{DOC_DATE_ISSUE}+" "+$P{DOC_ISSUE}+") заключили настоящий договор о нижеследующем:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="113" width="555" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Определения]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="125" width="104" height="30"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Карточка]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="155" width="104" height="20"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[СКС]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="175" width="104" height="20"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Держатель карты]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="196" width="104" height="20"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Транзакция]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="216" width="104" height="20"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ПИН-код]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="236" width="104" height="10"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[CVV-2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="246" width="104" height="20"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ТСП]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="266" width="104" height="10"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Возврат оплаты]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="276" width="104" height="20"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Страховой депозит]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="126" width="451" height="30"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[международная платежная пластиковая карточка Visa Gold и/или Visa Platinum, выпущенная Банком на имя клиента, позволяющая распоряжаться денежными средствами, находящимися на карточном счете клиента, для оплаты товаров/услуг и получения наличных денежных сумм со специального карточного счета;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="156" width="451" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[специальный карточный счет клиента, открываемый в Банке на имя клиента, для отражения операций совершенных по карточке;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="176" width="451" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[клиент или лицо, им уполномоченное клиентом пользоваться карточкой, на основании соответственно оформленного документа;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="196" width="451" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[любой платеж или получение наличных денежных средств, совершаемый держателем карты с помощью карточки и/или номера карточки;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="216" width="451" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[персональный идентификационный номер держателя карты, удостоверяющий право распоряжения денежными средствами, учитываемыми на картсчете, и подтверждающий, что распоряжение дано держателем карты.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="236" width="451" height="10"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[трехзначный код, наносящийся на обратную сторону карты для совершения транзакций через интернет;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="246" width="451" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[торгово-сервисное предприятие, принимающее карточку в качестве оплаты за товары и/или услуги, как на территории Республики Узбекистан, так и за рубежом;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="266" width="451" height="10"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[любой возврат денежных средств, осуществляемый ТСП, в отношении транзакции, для кредитования СКС клиента;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="276" width="451" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[сумма денежных средств на СКС, которая недоступна клиенту по карточке (не активная  часть средств на СКС) на весь срок действия данного договора.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="296" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.Предмет договора]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="309" width="555" height="113"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.1.	В соответствии с предметом настоящего Договора Банк предоставляет международную пластиковую карточку (Visa Gold, Visa Platinum), на имя Клиента и производит ее обслуживание, а Клиент обязуется оплатить оказанные услуги Банка согласно действующим тарифам, установленным Банком.
+Банк выпускает карточку на три года (c даты подписания договора) в комплекте с ПИН-кодом, на основании письменного заявления Клиента.
+1.2.СКС клиента ведется в долларах США, и все комиссионные вознаграждения взимаются Банком в валюте СКС согласно тарифам Банка, настоящего договора и приложений к нему.
+1.3. В случае использования карточки за пределами Республики Узбекистан, при необходимости, происходит автоматическая конвертация в валюту страны пребывания, по курсу устанавливаемому платежными системами (Visa International).
+1.4.Карточка должна быть возвращена Банку по окончании срока ее действия.
+1.5.Возврат суммы страхового депозита осуществляется Банком по истечении 30 календарных дней с момента возвращения карточки в Банк.
+1.6. Вместе с выпуском Карточки и ее обслуживанием Держателю карты также предоставляются дополнительные услуги, описание и условия предоставления которых изложены в приложениях №1, 2, 3, 4 и 6 к настоящему договору.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="422" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[2.Обязанности Банка]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="447" width="555" height="46"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[2.1	в течение двух банковских дней после подписания данного договора открыть на имя клиента СКС и выпустить карточку;
+2.2	дебетовать СКС по всем транзакциям по карточке;
+2.3	кредитовать СКС в случае возврата оплаты по карточке клиента;
+2.4	выдавать по письменному заявлению клиента выписку по СКС;
+2.5	заблокировать карточку по письменному требованию клиента;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="493" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[3.Права Банка]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="592" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[4.Обязанности Клиента]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="627" width="555" height="172"/>
+				<box leftPadding="0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[4.2	Оплачивать все услуги БАНКА по обслуживанию Карточки согласно тарифам Банка
+4.3	поставить свою подпись на оборотной стороне карточки в момент ее получения в Банке;
+4.4	в строгом порядке сохранять конфиденциальность информации в отношении карточки;
+4.5	не передавать третьим лицам все сведения в отношении карточки, а также ПИН-код и CVV-2 код;
+4.6	незамедлительно, в течение трех дней, сообщить в письменном виде Банк об изменениях места жительства, номеров телефонов и паспортных данных;
+4.7	использовать средства на карте в пределах активного остатка на СКС и не допускать возникновения задолженности по СКС;
+4.8	при образовании отрицательного остатка на СКС, немедленно погасить всю сумму задолженности. В случае непогашения задолженности в течение 10 банковских дней, уплачивает штраф размере 30% от неоплаченной суммы;
+4.9	в случае утери, кражи, утраты карточки незамедлительно сообщить в Банк (тел.:140-78-18, 140-69-00), при этом клиент должен назвать личный пароль для телефонных переговоров, после устного уведомления, клиент обязан подтвердить это письменно в течение 24 часов;
+4.10	в случае утери, кражи, утраты карточки в небанковские дни (суббота, воскресенье и праздничные дни) незамедлительно сообщить о случившемся, с указанием номера карточки, по номеру (круглосуточно, бесплатно): +1 (410) 581 99 94 или +1 (410) 581 38 36 либо по другим тел доступным на официальном интернет сайте VISA  www.visa.com.ru
+4.11	В случае прекращения Договора и окончания срока использования Карточки Держатель обязан вернуть Карточку в Банк.]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="816" width="100" height="1"/>
+			</break>
+			<staticText>
+				<reportElement x="0" y="435" width="100" height="12"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Банк обязан:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="506" width="100" height="10"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Банк в праве:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="516" width="555" height="76"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[3.1 	приостанавливать (блокировать) действие Карточки, в случае нарушения Держателем условий настоящего Договора и в случаях, предусмотренных законодательством РУз.
+3.2	взимать с клиента все расходы, понесенные Банком в результате нарушения клиентом условий настоящего договора;
+3.3	в одностороннем порядке вносить изменения в Тарифы с предварительным извещением Держателя за 10 (десять) календарных дней до даты введения изменений в действие. Информация об изменениях Тарифов доводится до сведения Держателя путём размещения текста изменений на информационных стендах в помещениях Банка, на сайте банка www.ipakyulibank.com .
+3.4	в случае изменений в тарифах изменять размер страхового депозита на СКС;
+3.5	При выполнении условий настоящего Договора, руководствоваться внутренними нормативными актами Банка.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="605" width="100" height="10"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Клиент обязан:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="615" width="555" height="10"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[использовать карточку в соответствии с условиями настоящего договора;]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="344" y="33" width="86" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="33" width="124" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+		</band>
+		<band height="795">
+			<staticText>
+				<reportElement x="0" y="13" width="555" height="82"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ 	Клиент вправе:
+5.2	пополнять остаток на СКС;
+5.3	осуществить перевыпуск карточки, в случае утери/кражи/утраты;
+5.4	письменно запросить выписку по СКС;
+5.5	получать информацию о состоянии СКС по телефону (при условии сообщения личного пароля для телефонных переговоров).
+5.6	воспользоваться дополнительными услугами, на условиях, оговоренных в приложениях к настоящему договору.
+5.7	путем заполнения формы, указанной в приложении №5 к настоящему договору предоставить перечень лиц уполномоченных для внесения средств на СКС клиента.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[5.Права Клиента]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="108" width="555" height="115"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[6.2	Клиент несет полную ответственность за:
+•	достоверность всей информации, предоставляемой Банку;
+•	за негативные последствия в результате проведения транзакций по карточке через Интернет (с участием и/или без участия клиента);
+•	за не оповещение или несвоевременное оповещение Банка в письменном виде о краже/утери/утраты карточки, ПИН-кода и/или CVV-2.
+6.3	Банк не несет ответственности:
+•	в случае если карточка не принимается каким-либо отдельным терминалом, банкоматом или каким-либо другим оборудованием из-за обстоятельств, находящихся вне ведома и/или контроля Банка;
+•	если держатель банковской карты нарушил правила и процедуры, оговоренные в заключенных между ними договорами;
+•	в случае противоправных действий со стороны держателя банковской карточки;
+•	если утрата банковской карты и (или) ПИН-кода произошла в результате грубой неосторожности или небрежного отношения держателя к банковской карте.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="95" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[6.Ответственность Сторон]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="236" width="555" height="50"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[7.2	Стороны не несут ответственности за неисполнение своих обязательств по настоящему договору, если это неисполнение или частичное неисполнение явилось следствием обстоятельств непреодолимой силы, к которым относятся: война, землетрясение, пожар, забастовка или иные бедствия.
+7.3	Обстоятельства непреодолимой силы будут считаться форс-мажором при подтверждении их в установленном законом порядке, уполномоченными на то органами.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="223" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[7.Форс-Мажор]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="299" width="555" height="32"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[8.2	Вся информация, ставшая известной сторонам в период действия настоящего договора является конфиденциальной и не подлежит передаче третьим лицам без письменного разрешения на то стороны по договору, кроме случаев предусмотренных действующим законодательством Республики Узбекистан.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="286" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[8.Конфиденциальность]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="344" width="555" height="43"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[9.2	Все споры, возникающие в процессе исполнения сторонами настоящего договора, будут по возможности разрешаться путем двухсторонних мирных переговоров.
+9.3	В случае невозможности решения возникших разногласий путем переговоров, споры будут разрешаться в судебном порядке согласно действующему законодательству Республики Узбекистан.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="331" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[9.Порядок разрешения споров]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="387" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[10.Другие условия]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="400" width="555" height="78"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[10.2	Настоящий договор заключается сроком на 3 (три) года с даты подписания его обеими сторонами и автоматически продлевается на следующий срок, если ни одна из сторон письменно не сообщила о своем  намерении прекратить действие договор за 30 банковских дней до истечения срока действия договора.
+10.3	Договор составлен в двух идентичных оригинальных экземплярах, имеющих одинаковую юридическую силу, по одному для каждой из сторон.
+10.4	Все изменения и дополнения к настоящему договору вносятся в письменном виде и вступают в силу после подписания их обеими сторонами.
+10.5	Все приложения к настоящему договору являются неотъемлемыми частями договора и обязательны для исполнения.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="478" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[11.Адреса и реквизиты сторон]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="491" width="275" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Банк:"+$P{HO_BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="524" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{HO_BRANCH_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="544" width="245" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="544" width="30" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К/сч:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="567" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["МФО:"+$P{HO_BRANCH}+" ИНН:"+$P{HO_BANK_INN}+" ОКОНХ:"+$P{HO_BANK_OKONH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="601" width="275" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="614" width="275" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="491" width="265" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Клиент:"+$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="290" y="524" width="265" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="544" width="265" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tel:"+$P{PHONE_NUMBER}+" "+$P{PHONE_WORK}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="567" width="265" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[С правилами использования карточки и тарифами Банка ознакомлен и согласен]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="601" width="265" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="614" width="265" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="768" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="822">
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Приложение №1]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="33" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["к договору №__________"+" от "+new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="53" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ГЛОБАЛЬНАЯ СЛУЖБА ПОМОЩИ КЛИЕНТАМ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="66" width="555" height="175"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.1.	Данный пакет услуг предоставляется держателям карт Visa Gold и Visa Platinum.
+1.2.	Услуги, входящие в пакет:
+1.2.1.	Экстренная выдача наличности за пределами Республики Узбекистан.
+1.2.2.	Экстренная замена карты за пределами Республики Узбекистан.
+1.3.	Экстренная выдача наличности:
+1.3.1.	Услуга экстренной выдачи платежной системой наличных денежных средств предоставляется за пределами Республики Узбекистан при обращении клиента в центр поддержки Visa в случае невозможности проведения операций по карте (утрата карты, техническая неисправность и др.). Сумма одной операции экстренной выдачи наличных денежных средств не может превышать величины доступных средств по карте и быть более 5000$ (Пять тысяч долларов США) или эквивалентной ей сумме в другой валюте. Стоимость одного обращения в центр поддержки Visa с запросом экстренной выдачи наличности – 50$ (Пятьдесят долларов США), списывается при каждом запросе услуги. При фактической экстренной выдачи наличности с карт счета клиента дополнительно взимается 175$ (Сто семьдесят пять долларов США). Для запроса услуги достаточно позвонить по одному из следующих круглосуточных номеров: +7 495 725 7975, +7 495 725 7976.
+1.4.	Экстренная замена карты:
+1.4.1.	Услуга экстренной замены карты предоставляется при обращении клиента в центр поддержки Visa в случае невозможности проведения операций по карте (утрата карты, техническая неисправность и др.). Стоимость одного обращения в центр поддержки Visa с запросом экстренной замены карты – 50$ (Пятьдесят долларов США), списывается при каждом запросе услуги. При фактической экстренной замене карты с карт счета клиента дополнительно взимается 250$ (Двести пятьдесят  долларов США). Для запроса услуги достаточно позвонить по одному из следующих круглосуточных номеров: +7 495 725 7975, +7 495 725 7976.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="289" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{HO_BRANCH_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="256" width="275" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Банк:"+$P{HO_BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="366" width="275" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="332" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["МФО:"+$P{HO_BRANCH}+" ИНН:"+$P{HO_BANK_INN}+" ОКОНХ:"+$P{HO_BANK_OKONH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="309" width="30" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К/сч:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="379" width="275" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="256" width="265" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Клиент:"+$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="332" width="265" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[С правилами использования карточки и тарифами Банка ознакомлен и согласен]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="309" width="265" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tel:"+$P{PHONE_NUMBER}+" "+$P{PHONE_WORK}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="309" width="245" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="366" width="265" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="290" y="289" width="265" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="379" width="265" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="439" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="822">
+			<staticText>
+				<reportElement x="0" y="47" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ПРОГРАММА «МЕДИЦИНСКАЯ И ЮРИДИЧЕСКАЯ ПОДДЕРЖКА В ЭКСТРЕННОЙ СИТУАЦИИ»]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="555" height="52"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.1.	Данная программа предоставляется держателям карт Visa Gold и Visa Platinum компанией “International SOS”.
+1.2.	Услуги, входящие в программу:
+1.2.1.	Медицинские услуги
+1.2.2.	Юридические услуги
+1.3.	Медицинские услуги включают следующее:
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="27" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["к договору №__________"+" от "+new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="14" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Приложение №2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="112" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.1.	Медицинские консультации по телефону]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="125" width="555" height="36"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[В случае обращения Клиента, компания «International SOS» организует предоставление медицинской консультации Держателю Карты по телефону. Необходимо отметить, что в процессе телефонного разговора, даже при наличии местного лечащего врача, не может быть поставлен точный диагноз, его нужно рассматривать только как консультацию.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="161" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.2.	Направления в Медицинские учреждения в стране пребывания]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="174" width="555" height="64"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Компания «International SOS» предоставляет по требованию Держателя Карты имя/название, адрес, телефонный номер и, при возможности, часы работы врачей, больниц, клиник, стоматологов и стоматологических клиник (далее в совокупности именуемых «Медицинские учреждения»). Компания «International SOS» не несет ответственность за определение диагноза или проведение лечения. Несмотря на то, что компания «International SOS» обеспечивает такие консультации, она не может гарантировать качество работы «Медицинских учреждений/специалистов», и окончательный выбор «Медицинских учреждений/специалистов» остается за Держателем карты. Тем не менее, компания «International SOS» обязуется проявить должную осмотрительность при выборе «Медицинских учреждений».]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="251" width="555" height="24"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Компания «International SOS» обязуется контролировать состояние здоровья Держателя Карты во время и после госпитализации с учетом всех ее обязательств в отношении сохранения конфиденциальности и соответствующих полномочий.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="238" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.3.	Медицинский мониторинг во время и после госпитализации]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="288" width="555" height="48"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Компания «International SOS» обеспечит доставку Держателю Карты основных медикаментов, лекарств, расходных материалов или медицинского оборудования, необходимых для ухода за Держателем Карты, и/или его/ее лечения, и отсутствующих в месте пребывания Держателя Карты. Доставка таких лекарств, медикаментов и расходных материалов будет осуществляться в соответствии с требованиями местного законодательства и местных правил. Компания «International SOS» не оплачивает указанные лекарства, материалы, оборудование и их доставку.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="275" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.4.	Доставка необходимых медикаментов и оборудования]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="349" width="555" height="50"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[В случае, если при возникновении ситуации, когда Держателю Карты требуется неотложная медицинская помощь и по телефону невозможно принять решение о целесообразности его/ее эвакуации, или в том случае, если Держателя Карты нельзя транспортировать, а медицинские услуги в стране пребывания недоступны, компания «International SOS» за счет Держателя Карты направит к Держателю Карты врача соответствующей специализации. Компания «International SOS» не оплачивает услуги врача, гонорары за консультацию и какие"либо сопутствующие расходы.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="336" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.5.	Организация визита врача]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="399" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.6.	Гарантия оплаты депозита при госпитализации]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="412" width="555" height="38"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Компания «International SOS» гарантирует или осуществит от имени Держателя Карты оплату необходимой суммы депозита для поступлении пациента в стационар в размере до 2500 долларов США. «International SOS» сможет осуществить данную услугу только после получения гарантийной предоплаты со счета Держателя Карты посредством его/ее кредитной карты или за счет средств Семьи Держателя Карты.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="463" width="555" height="50"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[В случае Заболевания или Несчастного случая, компания «International SOS» организует воздушную и/или наземную транспортировку и медицинское сопровождение и коммуникацию во время транспортировки, и окажет все обычные дополнительные услуги, необходимые для транспортировки Держателя Картыв ближайшую больницу с надлежащим медицинским уходом.
+Компания «International SOS» также обеспечивает предоставление необходимых средств связи и услуг переводчика, а также передвижного медицинского оборудования и сопровождения медицинских работников.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="450" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.7.	Организация экстренной медицинской эвакуации]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="513" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.8.	Организация медицинской репатриации]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="526" width="555" height="32"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Компания «International SOS» организует возвращение Держателя Карты в Страну Постоянного Проживания после экстренной медицинской эвакуации и последующей госпитализации Держателя Карты. Компания «International SOS» также обеспечивает предоставление необходимых средств связи и услуг переводчика, а также передвижного медицинского оборудования и сопровождения медицинских работников.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="558" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.9.	Организация транспортировки останков]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="571" width="555" height="23"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[В случае смерти Держателя Карты во время Поездки, Компания «International SOS» окажет помощь в оформлении необходимых документов и организует репатриацию останков в любую страну, выбранную законным представителем Держателя Карточки.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="594" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.10.	Организация визита к Держателю Карты в случае его госпитализации]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="607" width="555" height="34"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[В случае госпитализации Держателя Карты за пределами его Страны Постоянного Проживания, Компания «International SOS» организует транспортировку туда и обратно Лица, выбранного Держателем Карты для того, чтобы навестить Держателя Карты во время его/ее госпитализации.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="654" width="555" height="39"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Если находящиеся на иждивении дети оказались без присмотра в результате Несчастного Случая или Заболевания Держателя Карты, то Компания «International SOS» организует транспортировку вышеуказанных детей общественным перевозчиком до места их обычного проживания. По решению Компании «International SOS» в случае необходимости будут предоставлены квалифицированные сопровождающие лица.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="641" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.3.11.	Организация репатриации детей]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="693" width="555" height="54"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.4.	Медицинские услуги по пп. 1.3.1., 1.3.2. и 1.3.3. предоставляются бесплатно.  Стоимость Услуг  по пп. 1.3.4.  – 1.3.11 исчисляется в зависимости от конкретного случая. Предоставление вышеуказанных подлежащих оплате Услуг осуществляется только после получения гарантийной предоплаты от Держателя Карты при помощи его/ее кредитной карточки.
+
+1.5.	Юридические услуги включают следующее:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="747" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.5.1.	Справка о наличии и адреса юристов в стране пребывания]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="760" width="555" height="41"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Компания «International SOS» сообщит Держателю Карты имя, адрес, телефонные номера, а по требованию Держателей карт и, по возможности, часы работы указанных консультантов и практикующих юристов. Компания «International SOS» не предоставляет юридические консультации Держателям Карт и не несет ответственности за оплату гонораров юристов и сопутствующих издержек, которые должны оплачиваться Держателем Карты.]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="807" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="822">
+			<staticText>
+				<reportElement x="0" y="26" width="555" height="39"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Компания «International SOS» сообщит Держателю Карты имя, адрес, телефонные номера, а по требованию Держателей карт и, по возможности, часы работы переводчиков по всему миру. Компания «International SOS» не несет ответственности за оплату услуг переводчика и сопутствующих издержек, которые должны оплачиваться Держателем Карты.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[1.5.2.	Справка о наличии и адреса бюро переводов в стране пребывания]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="201" width="265" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="154" width="265" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[С правилами использования карточки и тарифами Банка ознакомлен и согласен]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="290" y="111" width="265" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="131" width="265" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tel:"+$P{PHONE_NUMBER}+" "+$P{PHONE_WORK}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="131" width="245" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="78" width="275" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Банк:"+$P{HO_BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="131" width="30" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К/сч:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="201" width="275" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="78" width="265" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Клиент:"+$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="188" width="265" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="154" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["МФО:"+$P{HO_BRANCH}+" ИНН:"+$P{HO_BANK_INN}+" ОКОНХ:"+$P{HO_BANK_OKONH}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="111" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{HO_BRANCH_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="188" width="275" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="269" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="822">
+			<staticText>
+				<reportElement x="0" y="62" width="555" height="12"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[УСЛОВИЯ И ПОЛОЖЕНИЯ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="29" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["к договору №__________"+" от "+new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="16" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Приложение №3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="49" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Программа «Защищенная Покупка»]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="74" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ I. Определения]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="87" width="555" height="248"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[«Защищенная Покупка» означает товар, стоимостью более 50 долларов США, приобретенный Правообладающим Лицом при помощи Приемлемого счета. Для того чтобы покупка читалась Защищенной Покупкой, полная стоимость товара должна быть оплачена с Приемлемого Счета.
+
+«Тщательная проверка» означает выполнение всех необходимых действий по проверке, которые были бы предприняты в подобных обстоятельствах любым благоразумным и осторожным лицом с целью защиты Застрахованной Покупки от кражи или предупреждения нанесения ей повреждений.
+
+«Приемлемый Счет» означает все счета кредитных или дебетовых карт Visa PLATINUM или Visa INFINITE, эмитированных Банком - эмитентом, принадлежащие Правообладающему Лицу.
+
+«Правообладающее Лицо» означает клиента Банка - эмитента, старше 18 лет, являющегося держателем кредитной или дебетовой карты Visa PLATINUM или Visa INFINITE,
+эмитированной Банком – эмитентом карт Visa в регионе CEMEA.
+
+«Гарант» означает компанию White Horse Insurance Ireland Ltd.
+
+«Банк-эмитент» означает любой Банк - член системы Visa CEMEA.
+
+«Подписчик» означает Visa CEMEA (UK) Ltd.
+
+«Таинственное Исчезновение» означает необъяснимое исчезновение купленного товара при отсутствии доказательства противоправных действий со стороны других лиц или лица.
+
+«Украденный» означает ущерб, выраженный в исчезновении Защищенной Покупки из известного места при обстоятельствах, указывающих на возможность кражи.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="348" width="555" height="73"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Действие Программы для Правообладающего Лица будет приостановлено при наступлении одного из перечисленных ниже событий в зависимости от того, какое из них произойдет раньше:
+1) наступление даты, после которой Правообладающее Лицо более не является таковым по определению данной Программы;
+2) наступление даты, после которой Приемлемый Счет определяется как незащищенный Банком-эмитентом по причине закрытия или неурегулированности счета;
+3) наступление даты, после которой действие данной Программы прекращается вследствие истечения срока или досрочного прекращения договора между Гарантом и Подписчиком.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="335" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ II. Прекращение действия Программы]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="434" width="555" height="24"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[В случае, если Защищенная Покупка или Защищенная Покупка, переданная другому лицу в качестве подарка, была украдена или повреждена, соответствующая компенсация будет выплачена при соблюдении условий данной Программы.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="421" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ III. Описание Программы]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="471" width="555" height="80"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Выплата компенсации, в пределах, указанных ниже, производится при выполнении нижеперечисленных условий. Если утрата покупки произошла в течение a) 90 дней при нахождении в стране пребывания и b) 90 дней при нахождении за границей от даты совершения Защищенной Покупки. Регистрация Защищенной Покупки не требуется. Компенсация выплачивается за вычетом первых 50 долларов США от суммы ущерба. В случае, если данный риск подпадает под какие-либо страховые программы или иные гарантии возмещения ущерба, то выплаты по данной Программе производятся только в той части от стоимости Защищенной Покупки, которая не защищена никакими иными страховыми программами или гарантиями. Ни при каких обстоятельствах данная Программа не будет рассматриваться в качестве дополнительного страхования. Выплаты по данной Программе осуществляются по суммам остатков от всех имеющих законную юридическую силу статей страхования, содержащихся в страховых программах или иных документах, предоставляющих право на возмещение ущерба. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="458" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Лимиты выплат:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="551" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Оценка суммы компенсации ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="564" width="555" height="93"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Компенсация по данной Программе будет выплачиваться в размере:
+	суммы Защищенной Покупки, отраженной в выписке по Приемлемому Счету; или
+	суммы действительных расходов, связанных с ремонтом Защищенной Покупки или ее заменой аналогичным по характеру и качеству товаром.
+В отношении Защищенной Покупки, состоящей из парных предметов или набора, сумма компенсации будет ограничиваться стоимостью конкретного предмета, который был украден или поврежден, за исключением тех случаев, когда предметы не могут использоваться порознь, и не могут заменяться один на другой; при том условии, что размер компенсации за драгоценности или предметы изящных искусств, представленные в парах, в наборах или коллекциях, не может превышать стоимости конкретного потерянного или поврежденного предмета, без учета особой стоимости такого предмета, которую он может иметь в качестве части пары, набора или коллекции.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="670" width="555" height="54"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[	Максимальная сумма компенсации за один предмет - 1 500 долларов США .
+	Максимальный размер выплаты за один случай - 5 000 долларов США (по каждой карте).
+	Максимальный размер выплат в совокупности – 20 000 долларов США.
+При этом максимальный размер выплат по всем заявлениям на компенсацию от Правообладающих Лиц по обеим Программам «Продление Гарантии» и «Защита Покупки», поданным в течение одного года действия Программ, не может превышать 1 000 000 долларов США.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="657" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Лимиты Выплат для карт VISA PLATINUM:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="737" width="555" height="75"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К Защищенным Покупкам не относятся:
+	лодки;
+	моторные транспортные средства (включая, но не ограничиваясь, самолеты, автомобили и мотоциклы) или моторы, оборудование и принадлежности для них (включая, но не ограничиваясь, коммуникационное оборудование, предназначенное для использования исключительно в транспортных средствах);
+	земля и строения (включая, но не ограничиваясь, дома и жилые постройки);
+	дорожные чеки, любого вида билеты, финансовые оборотные инструменты, золото и серебро, редкие монеты или монеты из драгоценных металлов, наличные деньги или их эквивалент;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="724" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ IV. Исключения]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="817" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="822">
+			<staticText>
+				<reportElement x="0" y="1" width="555" height="270"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[	растения и животные;
+	расходные материалы и портящиеся товары;
+	предметы, которые Правообладающее Лицо, повреждает путем их деформации (включая повреждения вследствие разрезки, распилки или изменения формы);
+	услуги (включая, но не ограничиваясь, выполнение или участие в работе или техническом обслуживании, ремонте и монтаже продукции, товаров, имущества или предоставление любого рода профессиональных консультаций).
+	украденные или поврежденные драгоценности, фотоаппараты или видеозаписывающее оборудование, помещенные в багаж, за исключением тех случаев, когда Правообладающее Лицо, несет их в качестве ручной клади или же они находятся под личным присмотром Правообладающего Лица, или спутника, сопровождающего Лицо, прежде известного Правообладающему Лицу.
+
+Действие программы не распространяется на случаи порчи или повреждения, вызванного мошенническими действиями, неправильным употреблением товара, его износом, естественным
+ухудшением качества, молью, паразитами, врожденными дефектами, войной или любыми боевыми действиями (включая, но не только, вторжение, восстание или переворот); применением любого оружия, в котором используются принципы ядерного расщепления или действие радиации, будь то в мирное время или во время войны, а также оружия, в котором используются принципы ядерной реакции или радиации, вне зависимости от того, являются они контролируемыми или нет и является ли произведенный вследствие этого ущерб прямым или опосредованным, а также полностью или частично вызванными или усугубленным рисками, на которые распространяется действие данной Программы; а также конфискацией, произведенной любыми правительственными, общественными или таможенными чиновниками. Действие данной Программы также не распространяется на риски, связанные с контрабандной деятельностью, ущербом, вызванным незаконными действиями или поступками, стихийными бедствиями (включая, но не только наводнения, ураганы и землетрясения); на случаи, классифицирующиеся как Таинственное Исчезновение; а также на имущество, находящееся под охраной или опекой любого общественного перевозчика.
+
+Действие Программы не распространяется на случаи порчи или повреждения, вызванные невыполнением Правообладающим Лицом действий Тщательной Проверки, направленных на избежание или уменьшение размера ущерба, нанесенного Защищенным Покупкам. Действие данной Программы также не распространяется на товары, украденные в общественных местах, за исключением тех случаев, когда они были заперты с учетом существующих на данный момент обстоятельств, а также если заявление об их краже не поступило в полицию или иной соответствующий орган власти, расположенный в месте события, в течение тридцати шести (36) часов после совершения кражи. Действие данной Программы не распространяется на утерянные и украденные товары, оставленные в транспортных средствах без присмотра.
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="272" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ V. Условия]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="285" width="555" height="379"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Выплаты по данной Программе производятся при соблюдении следующих условий:
+A. Уведомление о событии
+В случае любого ущерба, подпадающего под условия данной Программы, Гарант должен в течение сорока пяти (45) дней с момента наступления вышеуказанного события получить соответствующее уведомление. В противном случае, если такое уведомление не поступает в течение сорока пяти (45) дней, заявление на компенсацию будет отклонено. Правообладающее Лицо должно предпринять все разумные меры для защиты, сохранения и/или восстановления имущества.
+B. Формы заявлений на компенсацию
+Гарант или его уполномоченный представитель, после получения уведомления о событии, должны предоставить Правообладающему Лицу необходимые формы заявлений на компенсацию для заполнения и внесения информации, подтверждающей факт ущерба.
+C. Информация, подтверждающая факт ущерба
+Гарант или его уполномоченный представитель должны получить в письменном виде информацию, подтверждающую факт ущерба (включая любые данные, необходимые для обоснования поданного заявления на компенсацию), направленную по указанному Гарантом адресу в течение девяноста (90) дней после даты наступления события. Выплаты производятся в течение двенадцати (12) месяцев после наступления события, но только по тем заявлениям на компенсацию, по которым была предоставлена вся информация, подтверждающая факт ущерба. Правообладающее Лицо должно заполнить форму заявления на компенсацию и приложить все необходимые документы, включая протокол из милиции или другие подтверждающие документы.
+D. Порядок выплат по заявлениям на компенсацию
+Выплаты по данной Программе производятся только после получения письменного доказательства ущерба и всех сопроводительных документов к заявлению на компенсацию. Гарант может потребовать от Правообладающего Лица доставить поврежденный предмет, подлежащий компенсации, по указанному Гарантом адресу за счет Правообладающего Лица.
+E. Выплаты по заявлениям на компенсацию
+Все компенсации по данной Программе выплачиваются Правообладающему Лицу или, в случае его смерти, членам семьи, совместно владеющим имуществом Правообладающего Лица.
+F. Неверное истолкование фактов и мошеннические действия
+Данная Программа прекращает свое действие в отношении Правообладающего Лица, если до или после ущерба Правообладающее Лицо скрыло или неправильно представило существенный факт или обстоятельство, касающиеся данного ущерба, или интерес в нем Правообладающего Лица; или в том случае, если Правообладающее Лицо совершило мошенническое действие или лжесвидетельство в отношении к вышесказанному.
+G. Право Гаранта на возмещение ущерба от третьих Сторон
+В том случае, если Гарант производит выплату компенсации, он имеет право на возмещение данных выплат со стороны третьих лиц или сторон. Любая сторона или лицо, которому или на имя которой Гарант производит выплату, обязано передать ему свои права на возмещение ущерба, нанесенного третьими сторонами или лицами. Сторона или лицо, передающее свои права, обязано сделать все от него зависящее для обеспечения данных прав и не предпринимать действий, которые могут их нарушить.
+H. Судебные иски
+Никакие действия для возмещения ущерба по данной Программе не могут предприниматься в судебном или внесудебном порядке до истечения срока в шестьдесят (60) дней после предоставления всех документов, подтверждающих факт ущерба в соответствии с требованиями данной Программы.
+I. Соответствие с местным законодательством
+Любые положения данной Программы, противоречащие на дату вступления ее в силу законодательству государства, в котором данная Программа действует, должны соответствовать минимальным требованиям такого законодательства.
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="664" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ VI. Заключительные положения]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="677" width="555" height="12"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Данная программа предоставляется только для держателей карт Visa Platinum.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="742" width="265" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tel:"+$P{PHONE_NUMBER}+" "+$P{PHONE_WORK}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="792" width="265" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="765" width="265" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[С правилами использования карточки и тарифами Банка ознакомлен и согласен]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="805" width="275" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="765" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["МФО:"+$P{HO_BRANCH}+" ИНН:"+$P{HO_BANK_INN}+" ОКОНХ:"+$P{HO_BANK_OKONH}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="689" width="265" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Клиент:"+$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="290" y="722" width="265" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="689" width="275" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Банк:"+$P{HO_BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="792" width="275" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="805" width="265" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="722" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{HO_BRANCH_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="742" width="30" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К/сч:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="742" width="245" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+			<break>
+				<reportElement x="0" y="818" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="822">
+			<staticText>
+				<reportElement x="0" y="44" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Программа «Продление Гарантии»]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="57" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ I. Определения]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="24" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["к договору №__________"+" от "+new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="11" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Приложение №4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="70" width="555" height="145"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[«Защищенная Покупка» означает товар, стоимостью более 50 долларов США, приобретенный Правообладающим Лицом при помощи Приемлемого счета. Для того чтобы покупка считалась Защищенной Покупкой, полная стоимость товара должна быть оплачена с Приемлемого Счета.
+
+«Приемлемый Счет» означает все счета кредитных или дебетовых карт Visa PLATINUM или Visa INFINITE, эмитированных Банком - эмитентом, принадлежащие Правообладающему Лицу.
+
+«Правообладающее Лицо» означает клиента Банка - эмитента, старше 18 лет, являющегося держателем кредитной или дебетовой карты Visa PLATINUM или Visa INFINITE, эмитированной Банком - эмитентом.
+
+«Гарант» означает компанию White Horse Insurance Ireland Ltd.
+
+«Банк-эмитент» означает любой Банк - член системы Visa в регионе CEMEA.
+
+«Подписчик» означает Visa CEMEA (UK) Ltd.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="215" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ II. Прекращение действия Программы]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="228" width="555" height="72"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Действие Программы для Правообладающего Лица будет приостановлено при наступлении одного из нижеперечисленных событий в зависимости от того, какое из них произойдет раньше:
+1) наступление даты, после которой Правообладающее Лицо более не является таковым по определению данной Программы;
+2) наступление даты, после которой Приемлемый Счет определяется как незащищенный Банком-эмитентом по причине закрытия или неурегулированности счета;
+3) наступление даты, после которой действие данной Программы прекращается вследствие истечения срока или досрочного прекращения договора между Гарантом и Подписчиком.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="300" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ III. Описание Программы]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="313" width="555" height="100"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Данная Программа увеличивает в два раза срок гарантии производителя, если это применимо, на период, не превышающий двадцать четыре (24) месяца после даты совершения Защищенной Покупки, в соответствии с условиями данной Программы. Программа также распространяется на товары, в отношении которых действует гарантия торговой сети, но только в том случае, если товар продается под логотипом торговой сети. Если какая-либо гарантия была приобретена в дополнение к гарантии производителя или гарантии торговой сети, данная Программа вступает в силу только после истечения сроков всех остальных гарантий, но действует только в течение двадцати четырех (24) месяцев после даты совершения Защищенной Покупки. Регистрация Защищенной Покупки не требуется. Действие Программы распространяется также на Защищенные Покупки, переданные другим лицам в качестве подарка. Если Защищенная Покупка перестает надежно функционировать и требует ремонта в течение периода, на который распространяется данная Программа, стоимость ремонта будет компенсирована. Помимо этого, Гарант имеет право по своему усмотрению заменить товар. Ни при каких обстоятельствах по данной Программе не может быть выплачена компенсация, превышающая действительную сумму Защищенной Покупки.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="413" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ IV. Исключения]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="426" width="555" height="90"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[	К Защищенным Покупкам не относятся:
+	катера и лодки;
+	моторные транспортные средства (включая, но не ограничиваясь, самолеты, автомобили и мотоциклы) или моторы, оборудование и принадлежности для них (включая, но не ограничиваясь, коммуникационное оборудование, предназначенное для использования исключительно в транспортных средствах);
+	земля и строения (включая, но не ограничиваясь этим, дома и жилые постройки);
+	расходные материалы, скоропортящиеся товары или услуги (включая, но не ограничиваясь, выполнение или участие в работе или техническом обслуживании, ремонте и монтаже продукции, товаров, имущества или предоставление любого рода профессиональных консультаций).
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="516" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ V. Условия]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="529" width="555" height="258"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Выплаты по данной Программе производятся при соблюдении следующих условий:
+A. Уведомление о событии
+В случае любого ущерба, подпадающего под условия данной Программы, Гарант должен в течение сорока пяти (45) дней с момента наступления вышеуказанного события получить соответствующее уведомление. В противном случае, если такое уведомление не поступает в течение сорока пяти (45) дней, заявление на компенсацию будет отклонено. Правообладающее Лицо должно предпринять все разумные меры для защиты, сохранения и/или восстановления имущества.
+
+Лимиты выплат:
+Для карт VISA PLATINUM:
+	Максимальная сумма компенсации за один предмет - 1 500 долларов США .
+	максимальный размер выплаты за один случай - 5 000 долларов США (по каждой карте).
+	Максимальный размер выплат в совокупности – 20 000 долларов США.
+При этом максимальный размер выплат по всем заявлениям на компенсацию от Правообладающих Лиц по обеим Программам «Продление Гарантии» и «Защита Покупки», поданным в течение одного года действия Программ, не может превышать 1 000 000 долларов США.
+
+B. Формы заявлений на компенсацию
+Гарант или его уполномоченный представитель, после получения уведомления о событии, должны предоставить Правообладающему Лицу необходимую форму заявления на компенсацию для заполнения и внесения информации, подтверждающей факт ущерба.
+C. Информация, подтверждающая факт ущерба
+Гарант или его уполномоченный представитель должны получить в письменном виде информацию, подтверждающую факт ущерба (включая любые данные, необходимые для обоснования поданного заявления на возмещение), направленную по указанному Гарантом адресу в течение девяноста (90) дней после даты наступления события. Выплаты  производятся в течение двенадцати (12) месяцев после наступления события, но только по тем заявлениям на компенсацию, по которым была предоставлена вся информация, подтверждающая факт ущерба.
+D. Порядок выплат по заявлениям на компенсацию.
+Выплаты по данной Программе производятся только после получения письменного доказательства ущерба и всех сопроводительных документов к заявлению на компенсацию. Гарант может потребовать от Правообладающего Лица доставить поврежденный предмет, подлежащий компенсации, по указанному Гарантом адресу за счет Правообладающего Лица.
+E. Выплаты по заявлениям на компенсацию.
+Все компенсации по данной Программе выплачиваются Правообладающему Лицу или, в случае его смерти, членам семьи, совместно владеющим имуществом Правообладающего Лица.
+]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="798" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="822">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="165"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[F. Неверное истолкование фактов и мошеннические действия
+Данная Программа прекращает свое действие в отношении Правообладающего Лица, если до или после ущерба Правообладающее Лицо скрыло или неправильно представило существенный факт или обстоятельство, касающиеся данного ущерба, или интерес в нем Правообладающего Лица; или в том случае, если Правообладающее Лицо совершило мошенническое действие или лжесвидетельство в отношении к вышесказанному.
+G. Право Гаранта на возмещение ущерба от третьих Сторон
+В том случае, если Гарант производит выплату компенсации, он имеет право на возмещение данных выплат со стороны третьих лиц или сторон. Любая сторона или лицо, которому или на имя которой Гарант производит выплату, обязано передать ему свои права на возмещение ущерба, нанесенного третьими сторонами или лицами. Сторона или лицо, передающее свои права, обязано сделать все от него зависящее для обеспечения данных прав и не предпринимать действий, которые могут их нарушить.
+H. Судебные иски
+Никакие действия для возмещения ущерба по данной Программе не могут предприниматься в судебном или внесудебном порядке до истечения срока в шестьдесят (60) дней после предоставления всех документов, подтверждающих факт ущерба в соответствии с требованиями данной Программы.
+I. Соответствие с местным законодательством
+Любые положения данной Программы, противоречащие на дату вступления ее в силу законодательству государства, в котором данная Программа действует, должны соответствовать минимальным требованиям такого законодательства.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="165" width="555" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЧАСТЬ V. Заключительные положения]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="178" width="555" height="14"/>
+				<textElement textAlignment="Justified">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Данная программа предоставляется только для держателей карт Visa Platinum.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="236" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{HO_BRANCH_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="319" width="265" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="256" width="265" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tel:"+$P{PHONE_NUMBER}+" "+$P{PHONE_WORK}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="203" width="275" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Банк:"+$P{HO_BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="203" width="265" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Клиент:"+$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="306" width="265" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="332" width="100" height="1"/>
+			</break>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="256" width="245" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="279" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["МФО:"+$P{HO_BRANCH}+" ИНН:"+$P{HO_BANK_INN}+" ОКОНХ:"+$P{HO_BANK_OKONH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="256" width="30" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К/сч:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="306" width="275" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="290" y="236" width="265" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="319" width="275" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="279" width="265" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[С правилами использования карточки и тарифами Банка ознакомлен и согласен]]></text>
+			</staticText>
+		</band>
+		<band height="822">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="26" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["к договору №__________"+" от "+new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="13" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Приложение №5]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="11" y="46" width="544" height="10"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="46" width="11" height="10"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Я,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="56" width="356" height="10"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[настоящим уполномочиваю следующих лиц вносить средства на мою международную карту]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="356" y="56" width="199" height="10"/>
+				<box leftPadding="5">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="66" width="555" height="10"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[: (с предоставлением копий паспортов)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="101" width="261" height="10"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Ф.И.О]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="101" width="135" height="10"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Номер и серия паспорта]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="101" width="159" height="10"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Степень родства]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="315" width="74" height="10"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Подпись клиента:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="315" width="187" height="10"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="343" width="74" height="10"/>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Дата:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="74" y="343" width="187" height="10"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="375" width="100" height="1"/>
+			</break>
+			<staticText>
+				<reportElement x="396" y="111" width="159" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="111" width="261" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="111" width="135" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="131" width="261" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="131" width="159" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="131" width="135" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="151" width="261" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="151" width="159" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="151" width="135" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="171" width="261" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="171" width="159" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="171" width="135" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="191" width="261" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="191" width="159" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="191" width="135" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+		<band height="822">
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="13" width="555" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["к договору №__________"+" от "+new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="0" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Приложение №6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="554" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Правила пользования дисконтными картами Priority Pass и IAPA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="34" width="554" height="10"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[I.	Термины и определения]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="554" height="49"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[	Банк – АИКБ "Ипак Йули".
+	Банковская карта – премиальные карты Банка – Visa Gold/Visa Platinum.
+	Компания Priority Pass Limited - компания Priority Pass Limited, которая является владельцем и администратором Программы Priority Pass и всех ее членских льгот.
+	Компания IAPA EAME – компания International Airline Passengers Association Ltd, владелец программы IAPA.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="93" width="554" height="10"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[II.	Правила пользования картой Priority Pass]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="103" width="554" height="719"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[	Карта Priority Pass может быть использована только держателем карты Priority Pass. Карта Priority Pass не подлежит передаче другим лицам и является действительной только до даты истечения срока её действия, указанного на лицевой стороне карты, и при наличии подписи ее держателя. Использование карты Priority Pass с истекшим сроком действия либо использование карты Priority Pass лицом, не являющимся её держателем, запрещено.
+	Срок действия карты Priority Pass ограничен сроком действия Банковской карты, в дополнение к которой она выдавалась. Если держатель Банковской карты отказывается от использования Банковской карты и возвращает её в Банк, либо отказывается от очередной замены в связи с истечением срока, то карта Priority Pass становится недействительной с момента возврата держателем Банковской карты в Банк, либо с момента истечения срока действия Банковской карты. Вместе с Банковской картой клиент обязан вернуть в Банк также карту Priority Pass. Если клиент не возвращает карту Priority Pass, Банк имеет право ее заблокировать.
+	Клиент несет ответственность за любые расходы Банка, которые могут возникнуть в результате использования недействительной карты Priority Pass.
+	Карта Priority Pass не является платежной картой, ее использования в данном качестве запрещено.
+	Доступ в VIP-залы возможен только при предъявлении действительной карты Priority Pass. Платежные карты не принимаются в качестве замены карты Priority Pass.
+	Доступ в VIP-залы предоставляется только держателю карты Priority Pass и сопровождающим его лицам, и только при предъявлении действующих авиабилетов, т.е. путешествующим пассажирам.
+	При предъявлении держателем карты Priority Pass при посещении VIP-зала, сотрудники VIP-зала делают отпечаток карты Priority Pass и выдают держателю чек "Record of Visit", либо делают запись в регистрационном журнале. В некоторых VIP-залах имеются электронные считывающие устройства, с помощью которых считывается информация, зашифрованная на магнитной полосе карты Priority Pass. В тех случаях, когда это требуется, держателю карты Priority Pass следует расписаться на чеке "Record of Visit", который содержит информацию о наименовании VIP-зала, дате посещения, числе сопровождающих лиц, если таковые имеются, но не содержит стоимости посещения.
+	Обязанностью сотрудника VIP-зала является обязательная запись в регистрационном журнале или отпечатанный с карты Priority Pass чек, держатель карты Priority Pass, в свою очередь, обязан перед подписанием чека проверить корректное отражение в нем данных о посещении VIP-зала, а также обеспечить сохранность копии чека "Record of Visit", предоставленного при посещении VIP-зала.
+	Плата за посещение VIP-залов держателем карты Priority Pass и сопровождающими его лицами списывается Банком в безакцептном порядке с банковского счета Клиента, открытого для совершения операций с использованием Банковской карты,  на что настоящим Клиент выражает свое согласие и безотзывно уполномочивает Банк. Плата за посещение VIP-залов взимается отдельно за каждое посещение VIP-зала Клиентом и/или сопровождающими его лицами. Плата за посещение VIP-зала списывается в размере, указанном в Тарифах Банка.
+	Доступ в VIP-залы может быть закрыт для сотрудников авиакомпаний, аэропортов и других сотрудников туристической индустрии, путешествующих по сниженному тарифу. За пределами США к билету должен прилагаться посадочный талон на вылетающий рейс (т.е. право посещения VIP-залов имеют только отбывающие пассажиры). Необходимо учитывать, что в некоторых европейских аэропортах VIP-залы расположены в выделенных шенгенских зонах аэропорта. Это означает, что доступ в указанные VIP-залы разрешен только при перелетах между странами Шенгенского соглашения (Австрия, Бельгия, Дания, Финляндия, Франция, Германия, Греция, Нидерланды, Исландия, Италия, Люксембург, Норвегия, Португалия, Испания и Швеция).
+	Право посещения VIP-залов предоставляется при условии соблюдения держателями карт и сопровождающими их лицами (в т.ч. детьми) установленных правил поведения и приличий в одежде (за пределами США лица в шортах в VIP-залы не допускаются). Детей, беспокоящих других посетителей, могут попросить покинуть помещение VIP-зала. Компания Priority Pass Limited и Банк не несут ответственности за какие-либо убытки, понесенные держателем карты и сопровождающими его лицами вследствие отказа компании-оператора VIP-зала в праве пользования VIP-залом по причине несоблюдения держателем карты и/или сопровождающими его лицами указанных правил.
+	В зависимости от конкретного VIP-зала условия доступа и набор предоставляемых услуг могут существенно отличаться, в части возрастных ограничений на доступ, количественных ограничений на доступ сопровождающих гостей, наличия или отсутствия бесплатного обслуживания детей.
+	Все участвующие в программе Priority Pass VIP-залы принадлежат и находятся в управлении посторонних организаций. Держатель карты и сопровождающие его лица обязаны соблюдать правила и положения всех участвующих в программе Priority Pass VIP-залов.
+	Доступ в VIP-зал может быть ограничен в силу нехватки мест, причем такое решение целиком и полностью выносится на усмотрение оператора конкретного VIP-зала.
+	Компания Priority Pass Limited и Банк не несут ответственности за услуги и привилегии, предлагаемые в VIP-залах, их время работы и занятый в них персонал. Администрация программы Priority Pass обязуется предпринять все меры для того, чтобы обеспечить предоставление всех заявленных в справочнике услуг и привилегий VIP-залов, однако компания Priority Pass Limited и Банк не гарантируют возможность использования упомянутых услуг или привилегий в любое время посещения VIP-зала держателем карты.
+	Компания Priority Pass Limited и Банк также не несут ответственности за какие-либо убытки, понесенные держателем карты и/или сопровождающими его лицами вследствие предоставления или частичного либо полного непредоставления каких бы то ни было заявленных в справочнике услуг и привилегий. За детей, сопровождающих держателя карты (в тех случаях, когда детям разрешено посещение VIP-зала) взимается плата за посещение по полному тарифу, если иное не оговорено в информации по данному VIP-залу.
+	Участвующие в программе Priority Pass VIP-залы оставляют за собой право ограничивать максимальную продолжительность пребывания (обычно 3-4 часа) с тем, чтобы избежать чрезмерного скопления людей. Данное решение остается на усмотрении компании-оператора VIP-зала, которая вправе взимать дополнительную оплату за более продолжительное пребывание в VIP-зале.
+	Участвующие в программе Priority Pass VIP-залы не связаны договорными обязательствами в части объявлений о рейсах, и компания Priority Pass Limited и Банк не несут ответственности за какие бы то ни было прямые или косвенные убытки, понесенные держателем карты и/или сопровождающими его лицами вследствие опоздания на рейс (рейсы).
+	Бесплатное обеспечение алкогольными напитками (при допущении местных законов) производится в зависимости от правил, установленных каждым конкретным VIP-залом, и в отдельных случаях может быть ограниченным. В таком случае держатель карты Priority Pass и/или сопровождающие его лица должны произвести оплату за употребленные сверх бесплатного лимита напитков непосредственно сотруднику VIP-зала (см. индивидуальные правила VIP-зала).
+	Телефонные услуги предоставляются в зависимости от правил, установленных каждым конкретным VIP-залом. Бесплатное пользование, как правило, ограничено только местными звонками.
+	Плата за использование факса, душевых кабин, Интернета и Wi-fi доступа (при наличии) взимается по усмотрению конкретной компании-оператора VIP-зала, и держатель карты обязан заплатить за эти услуги непосредственно работникам VIP-зала.
+	Компания Priority Pass Limited и Банк не несут ответственности за любые разногласия, возникшие между держателем карты Priority Pass и/или сопровождающими его лицами и сотрудниками VIP-зала.
+	Держатель карты Priority Pass несет ответственность за обязательства, ущерб, потери, претензии, иски, судебные решения, расходы и издержки (включая плату за услуги адвоката), возникшие в результате посещения держателем карты Priority Pass или сопровождающими его лицами VIP-зала и повлекшие повреждения или уничтожение собственности, нанесение телесных повреждений либо смерть любого человека; за исключением случаев, если такие убытки возникли из-за действий крайней небрежности либо умышленного неподобающего поведения со стороны компании Priority Pass Limited, ее руководителей, служащих, работников и агентов.
+	В случае утраты (утеря, кража) или повреждения карты Priority Pass держатель карты Priority Pass обязан незамедлительно сообщить в Банк.
+]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="817" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="822">
+			<staticText>
+				<reportElement x="0" y="12" width="554" height="10"/>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[III.	Правила пользования картой IAPA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="554" height="438"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[	Карта IAPA может быть использована только держателем карты IAPA. Карта IAPA не подлежит передаче другим лицам и является действительной только до даты истечения срока её действия, указанного на лицевой стороне карты.
+	Срок действия карты IAPA ограничен сроком действия Банковской карты, в дополнение к которой она выдавалась. Если держатель Банковской карты отказывается от использования Банковской карты и возвращает её в Банк, либо отказывается от очередной замены в связи с истечением срока, то карта IAPA становится недействительной с момента возврата держателем Банковской карты в Банк, либо с момента истечения срока действия Банковской карты. Вместе с Банковской картой клиент обязан вернуть в Банк также карту IAPA. Если клиент не возвращает карту IAPA, Банк имеет право ее заблокировать.
+	Карта IAPA не является платежной картой.
+	Карта IAPA дает ее держателю возможность получения исключительно скидок при аренде автомобиля и проживании в гостиницах.
+	Карта IAPA является собственностью Банка и подлежит возврату по требованию Банка в случае ее использования или попытки использования не в соответствии с настоящими Правилами.
+	О любых случаях, когда карта IAPA не принята или не были предложены предусмотренные льготы, следует письменно известить Банк, приложив к письму подробное описание ситуации и копию счета, если таковой имеется.
+	Скидки предоставляются только держателям карт IAPA. Не держателям карт IAPA скидки не предоставляются, если только они не проживают в том же номере, что и держатель карты IAPA.
+	Для того чтобы воспользоваться льготами, предоставляемыми членам IAPA, при заказе номера в отеле или аренде автомобиля необходимо указать, что Вы являетесь держателем карты IAPA и сообщить ее номер.
+	В справочнике IAPA по каждой отдельной гостинице указаны особые инструкции по бронированию, а также особые идентификационные номера IAPA. Необходимо следовать этим инструкциям и/или называть идентификационный номер IAPA при бронировании номера в гостиницах.
+	Возможны следующие программы скидок, действующие в гостиницах:
+
+% –   Процентная скидка
+GR – Гарантируемая ставка
+CR –  Корпоративная ставка
+PCR –Привилегированная корпоративная ставка
+FPR – Гибкая привилегированная ставка
+BFR – Наилучшая гибкая ставка
+BAR – Наилучшая имеющаяся ставка
+BUR – Наилучшая неограниченная ставка
+J – Программа сверхвысоких скидок
+
+	Скидки предоставляются на стандартные номера, если только нет других указаний.
+	Чтобы пользоваться спортивными сооружениями гостиницы, держатель карты IAPA должен проживать в гостинице более 1 суток.
+	Бронирование номеров следует осуществлять только через Центральный офис бронирования (ближайший – Лондонский, + 44 20 8681 6555) или самостоятельно через сайт для членов Ассоциации IAPA www.iapa.com.
+	При самостоятельной аренде автомобиля необходимо назвать соответствующий идентификационный номер IAPA, чтобы этот номер был указан в договоре аренды. Для Вашего удобства эти номера указаны на оборотной стороне Вашей Карты.
+	Компания IAPA EAME и Банк не несут ответственности за любые разногласия, возникшие между держателем карты IAPA и третьими лицами.
+	Компания IAPA EAME и Банк не несут ответственности за услуги и льготы, предлагаемые участниками программы IAPA. Компания IAPA EAME обязуется предпринять все меры для того, чтобы обеспечить предоставление всех заявленных в справочнике льгот, однако компания IAPA EAME и Банк не могут гарантировать доступность этих льгот.
+	Компания IAPA EAME и Банк также не несут ответственности за какие-либо убытки, понесенные держателем карты, вследствие частичного либо полного непредоставления каких бы то ни было заявленных в справочнике льгот.
+	В случае утраты (утеря, кража) или повреждения карты IAPA держатель карты IAPA обязан незамедлительно сообщить в Банк.
+	Для получения дополнительной информации о работе программы IAPA Вы можете обратиться в Банк.
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="477" width="275" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Банк:"+$P{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="530" width="30" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К/сч:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="580" width="265" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="593" width="275" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="291" y="477" width="265" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Клиент:"+$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="31" y="530" width="245" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="291" y="553" width="265" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[С правилами использования карточки и тарифами Банка ознакомлен и согласен]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1" y="510" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{BRANCH_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="580" width="275" height="13"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="593" width="265" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(подпись)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="291" y="530" width="265" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tel:"+$P{PHONE_NUMBER}+" "+$P{PHONE_WORK}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="553" width="275" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["МФО:"+$P{BRANCH}+" ИНН:"+$P{HO_BANK_INN}+"ОКОНХ:"+$P{HO_BANK_OKONH}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="291" y="510" width="265" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Адрес:"+" "+$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

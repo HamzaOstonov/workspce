@@ -1,0 +1,155 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="declarationmain" width="100%"  height="550px" border="normal" apply="com.is.tf.declaration.DeclarationViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="declarationPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{declarationmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.declaration.id}" width="200px" />
+                                <listheader label="${labels.declaration.p1t48}" width="200px" />
+                                <listheader label="${labels.declaration.p2t48}" width="200px" />
+                                <listheader label="${labels.declaration.p3t48}" width="200px" />
+                                <listheader label="${labels.declaration.p4t48}" width="200px" />
+                                <listheader label="${labels.declaration.p5t48}" width="200px" />
+                                <listheader label="${labels.declaration.p6t48}" width="200px" />
+                                <listheader label="${labels.declaration.p7t48}" width="200px" />
+                                <listheader label="${labels.declaration.p8t48}" width="200px" />
+                                <listheader label="${labels.declaration.p9t48}" width="200px" />
+                                <listheader label="${labels.declaration.p10t48}" width="200px" />
+                                <listheader label="${labels.declaration.p11t48}" width="200px" />
+                                <listheader label="${labels.declaration.p12t48}" width="200px" />
+                                <listheader label="${labels.declaration.p13t48}" width="200px" />
+                                <listheader label="${labels.declaration.p14t48}" width="200px" />
+                                <listheader label="${labels.declaration.p15t48}" width="200px" />
+                                <listheader label="${labels.declaration.p16t48}" width="200px" />
+                                <listheader label="${labels.declaration.p17t48}" width="200px" />
+                                <listheader label="${labels.declaration.p18t48}" width="200px" />
+                                <listheader label="${labels.declaration.p19t48}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.declaration.id}" /><textbox id="id"  mold="rounded"  value="@{declarationmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.declaration.p1t48}" /><textbox id="p1t48"  mold="rounded"  value="@{declarationmain$composer.current.p1t48}" /></row>
+                                  <row><label value="${labels.declaration.p2t48}" /><textbox id="p2t48"  mold="rounded"  value="@{declarationmain$composer.current.p2t48}" /></row>
+                                  <row><label value="${labels.declaration.p3t48}" /><textbox id="p3t48"  mold="rounded"  value="@{declarationmain$composer.current.p3t48}" /></row>
+                                  <row><label value="${labels.declaration.p4t48}" /><textbox id="p4t48"  mold="rounded"  value="@{declarationmain$composer.current.p4t48}" /></row>
+                                  <row><label value="${labels.declaration.p5t48}" /><textbox id="p5t48"  mold="rounded"  value="@{declarationmain$composer.current.p5t48}" /></row>
+                                  <row><label value="${labels.declaration.p6t48}" /><textbox id="p6t48"  mold="rounded"  value="@{declarationmain$composer.current.p6t48}" /></row>
+                                  <row><label value="${labels.declaration.p7t48}" /><textbox id="p7t48"  mold="rounded"  value="@{declarationmain$composer.current.p7t48}" /></row>
+                                  <row><label value="${labels.declaration.p8t48}" /><textbox id="p8t48"  mold="rounded"  value="@{declarationmain$composer.current.p8t48}" /></row>
+                                  <row><label value="${labels.declaration.p9t48}" /><textbox id="p9t48"  mold="rounded"  value="@{declarationmain$composer.current.p9t48}" /></row>
+                                  <row><label value="${labels.declaration.p10t48}" /><textbox id="p10t48"  mold="rounded"  value="@{declarationmain$composer.current.p10t48}" /></row>
+                                  <row><label value="${labels.declaration.p11t48}" /><textbox id="p11t48"  mold="rounded"  value="@{declarationmain$composer.current.p11t48}" /></row>
+                                  <row><label value="${labels.declaration.p12t48}" /><textbox id="p12t48"  mold="rounded"  value="@{declarationmain$composer.current.p12t48}" /></row>
+                                  <row><label value="${labels.declaration.p13t48}" /><textbox id="p13t48"  mold="rounded"  value="@{declarationmain$composer.current.p13t48}" /></row>
+                                  <row><label value="${labels.declaration.p14t48}" /><textbox id="p14t48"  mold="rounded"  value="@{declarationmain$composer.current.p14t48}" /></row>
+                                  <row><label value="${labels.declaration.p15t48}" /><textbox id="p15t48"  mold="rounded"  value="@{declarationmain$composer.current.p15t48}" /></row>
+                                  <row><label value="${labels.declaration.p16t48}" /><textbox id="p16t48"  mold="rounded"  value="@{declarationmain$composer.current.p16t48}" /></row>
+                                  <row><label value="${labels.declaration.p17t48}" /><textbox id="p17t48"  mold="rounded"  value="@{declarationmain$composer.current.p17t48}" /></row>
+                                  <row><label value="${labels.declaration.p18t48}" /><textbox id="p18t48"  mold="rounded"  value="@{declarationmain$composer.current.p18t48}" /></row>
+                                  <row><label value="${labels.declaration.p19t48}" /><textbox id="p19t48"  mold="rounded"  value="@{declarationmain$composer.current.p19t48}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.declaration.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p1t48}" /><textbox id="ap1t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p2t48}" /><textbox id="ap2t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p3t48}" /><textbox id="ap3t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p4t48}" /><textbox id="ap4t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p5t48}" /><textbox id="ap5t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p6t48}" /><textbox id="ap6t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p7t48}" /><textbox id="ap7t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p8t48}" /><textbox id="ap8t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p9t48}" /><textbox id="ap9t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p10t48}" /><textbox id="ap10t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p11t48}" /><textbox id="ap11t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p12t48}" /><textbox id="ap12t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p13t48}" /><textbox id="ap13t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p14t48}" /><textbox id="ap14t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p15t48}" /><textbox id="ap15t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p16t48}" /><textbox id="ap16t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p17t48}" /><textbox id="ap17t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p18t48}" /><textbox id="ap18t48"  mold="rounded"  /></row>
+                                  <row><label value="${labels.declaration.p19t48}" /><textbox id="ap19t48"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.declaration.id}" /><textbox id="fid"  mold="rounded"  value="@{declarationmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.declaration.p1t48}" /><textbox id="fp1t48"  mold="rounded"  value="@{declarationmain$composer.filter.p1t48}" /></row>
+                                  <row><label value="${labels.declaration.p2t48}" /><textbox id="fp2t48"  mold="rounded"  value="@{declarationmain$composer.filter.p2t48}" /></row>
+                                  <row><label value="${labels.declaration.p3t48}" /><textbox id="fp3t48"  mold="rounded"  value="@{declarationmain$composer.filter.p3t48}" /></row>
+                                  <row><label value="${labels.declaration.p4t48}" /><textbox id="fp4t48"  mold="rounded"  value="@{declarationmain$composer.filter.p4t48}" /></row>
+                                  <row><label value="${labels.declaration.p5t48}" /><textbox id="fp5t48"  mold="rounded"  value="@{declarationmain$composer.filter.p5t48}" /></row>
+                                  <row><label value="${labels.declaration.p6t48}" /><textbox id="fp6t48"  mold="rounded"  value="@{declarationmain$composer.filter.p6t48}" /></row>
+                                  <row><label value="${labels.declaration.p7t48}" /><textbox id="fp7t48"  mold="rounded"  value="@{declarationmain$composer.filter.p7t48}" /></row>
+                                  <row><label value="${labels.declaration.p8t48}" /><textbox id="fp8t48"  mold="rounded"  value="@{declarationmain$composer.filter.p8t48}" /></row>
+                                  <row><label value="${labels.declaration.p9t48}" /><textbox id="fp9t48"  mold="rounded"  value="@{declarationmain$composer.filter.p9t48}" /></row>
+                                  <row><label value="${labels.declaration.p10t48}" /><textbox id="fp10t48"  mold="rounded"  value="@{declarationmain$composer.filter.p10t48}" /></row>
+                                  <row><label value="${labels.declaration.p11t48}" /><textbox id="fp11t48"  mold="rounded"  value="@{declarationmain$composer.filter.p11t48}" /></row>
+                                  <row><label value="${labels.declaration.p12t48}" /><textbox id="fp12t48"  mold="rounded"  value="@{declarationmain$composer.filter.p12t48}" /></row>
+                                  <row><label value="${labels.declaration.p13t48}" /><textbox id="fp13t48"  mold="rounded"  value="@{declarationmain$composer.filter.p13t48}" /></row>
+                                  <row><label value="${labels.declaration.p14t48}" /><textbox id="fp14t48"  mold="rounded"  value="@{declarationmain$composer.filter.p14t48}" /></row>
+                                  <row><label value="${labels.declaration.p15t48}" /><textbox id="fp15t48"  mold="rounded"  value="@{declarationmain$composer.filter.p15t48}" /></row>
+                                  <row><label value="${labels.declaration.p16t48}" /><textbox id="fp16t48"  mold="rounded"  value="@{declarationmain$composer.filter.p16t48}" /></row>
+                                  <row><label value="${labels.declaration.p17t48}" /><textbox id="fp17t48"  mold="rounded"  value="@{declarationmain$composer.filter.p17t48}" /></row>
+                                  <row><label value="${labels.declaration.p18t48}" /><textbox id="fp18t48"  mold="rounded"  value="@{declarationmain$composer.filter.p18t48}" /></row>
+                                  <row><label value="${labels.declaration.p19t48}" /><textbox id="fp19t48"  mold="rounded"  value="@{declarationmain$composer.filter.p19t48}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

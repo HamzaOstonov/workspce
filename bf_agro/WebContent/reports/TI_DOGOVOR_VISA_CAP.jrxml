@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TI_DOGOVOR_VISA_CAP" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="40" rightMargin="20" topMargin="10" bottomMargin="10">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2437"/>
+	<style name="style1" mode="Opaque" backcolor="#FF3333"/>
+	<style name="style2"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\PROJECTS\\TIET\\REPORTS\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_TYPE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_TYPE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_SERIAL" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_SERIAL>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_NUMBER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_DATE_ISSUE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_DATE_ISSUE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_ISSUE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_ISSUE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_BIRTHDAY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_BIRTHDAY>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PHONE_PASSWORD" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PHONE_PASSWORD>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="POST_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<POST_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CITIZENSHIP" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CITIZENSHIP>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PHONE_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PHONE_NUMBER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="JOB_PLACE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<JOB_PLACE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PHONE_WORK" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PHONE_WORK>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EMAIL" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<EMAIL>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_VID" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_VID>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_DEPARTMENT_EXEC" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_DEPARTMENT_EXEC>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MICRO_DEPARTMENT_EXEC" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<MICRO_DEPARTMENT_EXEC>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CONTRACT_NUM" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CONTRACT_NUM>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BANK_PERSON" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<<BANK_PERSON>>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BRANCH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BANK_INN" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BANK_INN>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BANK_OKONH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BANK_OKONH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_FULL_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_FULL_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HO_BRANCH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<HO_BRANCH>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRANCH_NAME" class="java.lang.String"/>
+	<parameter name="BRANCH_ADDRESS" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select to_char(1)as t from dual]]>
+	</queryString>
+	<field name="T" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="809">
+			<staticText>
+				<reportElement x="0" y="261" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[II. ПРЕДМЕТ ДОГОВОРА И ОБЩИЕ УСЛОВИЯ  ДОГОВОРА]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="271" width="535" height="148"/>
+				<textElement>
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[2.1. Настоящий Договор заключен на основании заявления Клиента и регулирует отношения, связанные с открытием Карточного счета, приёмом и зачислением поступающих на Карточный счёт денежных средств, перечислением с Карточного счета соответствующих сумм в порядке, предусмотренном настоящим договором, а также предоставлением Банком услуг по выпуску и обслуживанию  Банковской карты (Visa и/или UnionPay).
+2.2. Банк выпускает Банковскую карту со сроком действия до 3 (трех) календарных лет в комплекте с ПИН-кодом в конверте, на основании письменного заявления Клиента.
+2.3. Валютой Карточного счета Клиента является доллар США.
+2.4. В случае использования Банковской карты за пределами Республики Узбекистан, при необходимости, происходит автоматическая конвертация в валюту страны пребывания, по курсу, устанавливаемому платежными системами (Visa International, UnionPay International).
+2.5. Банковская карта, подлежит обязательному возврату:
+по окончании срока ее действия;
+при ее замене;
+при расторжении настоящего Договора.
+по требованию банка в порядке, предусмотренном законодательством.
+2.6. Возврат суммы страхового депозита осуществляется Банком по истечении 30 календарных дней с момента подачи Клиентом заявления на закрытие Карточного счета.
+2.7. На остаток денежных средств на Карточном счете Клиента проценты не начисляются.
+2.8. Плата за услуги Банка, взимается Банком из денежных средств Клиента, находящихся на Карточном счету, по мере проведения отдельных операций, путём безакцептного списания Банком необходимой суммы с Карточного счёта Клиента.
+2.9. Любая Транзакция считается совершенной Клиентом, если в течение 40 (Сорока) календарных дней с момента осуществления Транзакции Клиент письменно не оспорил транзакцию. Все споры в отношении совершенных по Банковской карте транзакций решаются в соответствии с операционными правилами международных платежных систем «Visa International» и «UnionPay International».]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="419" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[III. ПРАВА И ОБЯЗАННОСТИ БАНКА]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="432" width="535" height="328"/>
+				<textElement>
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[3.1. Банк вправе:
+3.1.1. проверять подлинность документов и достоверность сведений, предоставленных Клиентом при открытии Карточного счета и получении Банковской карты;
+3.1.2. при необходимости, изменять размер страхового депозита на карточном счету на основании изменений, вносимых в тарифы банка;
+3.1.3. в целях противодействия легализации доходов, полученных преступным путем, и финансированию терроризма требовать от Клиента предоставления информации и документов, позволяющих идентифицировать Клиента и подтверждающих законность операций, совершаемых по счету. При выявлении случаев нарушения порядка расчетов, установленного действующим законодательством Республики Узбекистан, нормативными актами Центрального банка Республики Узбекистан, правилами Банка, а также нарушения порядка оформления в своевременного предоставления платежных документов Клиентом, Банк приостанавливает проведения операции, а также отказывает в проведении платежа, противоречащего законодательству;
+3.1.4. устанавливать ограничения по использованию Карточного счета и Банковской карты на условиях настоящего Договора и действующего законодательства Республики Узбекистан;
+3.1.5. Без согласия Клиента списывать с Карточного счета Клиента:
+суммы, подлежащие списанию с Карточного счета по мере их использования Клиентом на основании транзакционных файлов международной платежной системы VISA/UnionPay;
+суммы, подлежащие списанию в соответствии с Тарифами Банка;
+суммы, ошибочно зачисленные на Карточный счет при выявлении указанных фактов.
+3.1.6. в одностороннем порядке ограничить использование Банковской карты, в целях обеспечения сохранности средств на Карточном счету, в случаях когда имеются подозрения в правомерности использования Банковской карты;
+3.1.7. в одностороннем порядке, независимо от согласия Клиента, изменять Тарифы Банка. При этом Банк извещает Клиента о произведённых изменениях в Тарифах Банка за 10 (десять) дней до введения их в действие путем размещения соответствующей информации в Банке в месте обслуживания Клиентов, а также на официальном сайте Банка;
+3.1.8. в одностороннем порядке изменять условия получения и использования Банковской карты в связи с изменением действующего законодательства Республики Узбекистан, в том числе нормативных актов Центрального банка Республики Узбекистан, а также правил и рекомендаций международных платежных систем;
+3.1.9. по желанию Клиента при обращении в службу Call-Center Банка (+998 71 140 69 00, 120 00 09) (при условии сообщения верного пароля для телефонных разговоров), предоставлять Клиенту дистанционные услуги, перечень которых размещен на официальном сайте Банка;
+3.1.10. в случае необходимости, в установленном законодательстве порядке, проверять законность производимых Клиентом зачислений на Карточный счет и запрашивать необходимые подтверждающие документы;
+3.1.11. пользоваться иными правами в соответствии с действующим законодательством Республики Узбекистан и условиями настоящего Договора.
+3.2. Банк обязан:
+3.2.1. в течении 3-х (трех) банковских дней после заключения настоящего Договора и получения заявления от Клиента открыть карточный счет и выдать Банковскую карту Клиенту;
+3.2.2. оказывать расчетные услуги по поручению Клиента в рамках действующего законодательства, на условиях настоящего договора. Банк зачисляет на Карточный счет Клиента и/или перечисляет c его счета денежные средства не позднее 3 (трех) банковских дней по мере получения Банком соответствующего электронного платежного документа о поступлении денежных средств или заявления Клиента о перечислении (переводе) денежных средств;
+3.2.3. производить списание с Карточного счета суммы всех Транзакций, осуществленных по Банковской карте и подтвержденных набором ПИН-Кода;
+3.2.4. выдавать, по письменному заявлению Клиента, выписку по его карточному счету или информацию по Карточному счету при обращении Клиента в Call-Centеr Банка (+998 71 140 69 00, 120 00 09) (при условии сообщения верного пароля для телефонных разговоров);
+3.2.5. соблюдать тайну операций по Карточному счёту и предоставлять сведения, составляющие банковскую тайну третьим лицам только в случаях предусмотренных действующим законодательством Республики Узбекистан;
+3.2.6. при расторжении настоящего Договора, закрыть карточный счет и осуществить возврат Клиенту остатка денежных средств  на условиях настоящего Договора;
+3.2.7. уведомлять Клиента обо всех изменениях в Тарифах Банка, путем размещения объявлений в  в головном офисе Банка , его филиалах и  удаленных пунктах обслуживания , а также на официальном сайте Банка;
+3.2.8. блокировать Банковскую карту, при получении письменного заявления от Клиента или при обращении в Call-Centеr Банка (+998 71 140 69 00, 120 00 09) (при условии сообщения верного Пароля для телефонных разговоров) об утере или краже Банковской карты;
+3.2.9. на основании письменного заявления Клиента в течении 3-х банковских дней перевыпустить новую Банковскую карту с уплатой комиссии согласно Тарифов Банка;
+3.2.10. предоставлять дистанционные услуги, указанные на официальном сайте Банка www.ipakyulibank.uz в разделах «VISA Classic», «UnionPay Classic» (при условии сообщения верного пароля для телефонных разговоров);
+3.2.11. иные обязанности, предусмотренные настоящим Договором.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="215" width="451" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[любой возврат денежных средств на Карточный счет Клиента, осуществляемый ТСП; ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="197" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ТСП]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="54" width="128" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[АИКБ «Ипак Йули», далее «Банк», в лице ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="187" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[CVV-2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="1" width="515" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ДОГОВОР №____________"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="68" y="177" width="467" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[персональный идентификационный номер, используемый при совершении Транзакции с помощью Банковской карты;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="235" width="68" height="23"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Пароль для телефонных разговоров]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[I. ОПРЕДЕЛЕНИЯ, ПРИМЕНЯЕМЫЕ В НАСТОЯЩЕМ ДОГОВОРЕ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="235" width="467" height="23"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" isStrikeThrough="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Пароль, указываемый Клиентом в заявлении на выпуск Банковской карты, используемый для получения информации в отношении Банковской карты и Карточного счета по телефону.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="129" width="467" height="25"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[международная платежная пластиковая карта «Visa» и/или «UnionPay», выпущенная Банком на имя Клиента, используемая в качестве платежного средства и предоставляющая своему Клиенту возможность осуществления операций в пределах средств на карточном счете, в том числе безналичных расчетов (платежей) через карточный счет и получения с него наличных денежных средств на условиях настоящего Договора;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="64" width="274" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[, далее «Клиент», также индивидуально именуемые как «Сторона» и вместе как «Стороны»,]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="415" y="41" width="100" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="68" y="187" width="467" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[трехзначный код, наносящийся на обратную сторону Банковской карты для совершения транзакций через интернет;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="165" width="467" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[безналичный платеж или операция по получению наличных денежных средств, совершаемых Клиентом с помощью Банковской карты;]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="128" y="54" width="200" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="21" width="515" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["на выпуск и обслуживание международных пластиковых карт и обслуживания карточных счетов"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="177" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ПИН-код]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="74" width="333" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["заключили настоящий договор : на нижеследующих условиях"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="215" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Возврат оплаты]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="30" width="233" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="64" width="18" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[и ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="197" width="467" height="18"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[торгово-сервисное предприятие, принимающее Банковскую карту в качестве оплаты за товары (работы, услуги), как на территории Республики Узбекистан, так и за рубежом;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="154" width="467" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[специальный карточный счет, открываемый в Банке на имя Клиента, для отражения транзакций  (операций) по Банковской карте;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="225" width="467" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" isStrikeThrough="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Обязательный минимальный остаток денежных средств, поддерживаемый на Карточном счете клиента. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="129" width="68" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Банковская карта]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="18" y="64" width="243" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="165" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Транзакция]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="41" width="100" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[г._____________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="54" width="207" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[действующего на основании ______________, с одной стороны,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="225" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Страховой депозит]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="154" width="68" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Карточный счет]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="789" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="809">
+			<staticText>
+				<reportElement x="0" y="353" width="535" height="206"/>
+				<textElement>
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[5.1. Клиент несет ответственность за законность совершаемых по карточному счету операций и достоверность предоставляемой Банку информации и документов и обязан возместить Банку убытки, причинённые неправомерными действиями.
+5.2. За необоснованное списание с Карточного счёта Клиента Банк несёт ответственность перед Клиентом в размере необоснованной списанной суммы (реальный ущерб).
+5.3. В случаях непредусмотренных настоящим договором Стороны несут ответственность за нарушения принятых на себя обязательств в соответствии с действующим законодательством.
+5.4. Стороны освобождаются от ответственности за неисполнение обязательств по настоящему договору, если неисполнение будет являться следствием форс-мажорных обстоятельств.
+5.5. Клиент несет полную ответственность за:
+-транзакции, проведенные по Банковской карте через Интернет;
+-все транзакции, осуществленные с вводом ПИН-кода;
+-транзакции, осуществленные вследствие не оповещения или несвоевременного оповещения Банка в письменном виде о краже/утери Карточки, ПИН-кода и/или CVV-2;
+-не сообщение об ошибочно зачисленных на Карточный счет денежных средств в соответствии с действующим законодательством Республики Узбекистан;
+- любые Транзакции, которые имели место до получения Банком письменного заявления Клиента об утрате Банковской карты;
+- нарушение своих обязательств и других условий настоящего договора.
+5.6.Банк не несет ответственность:
+-в случае если Банковская карта не принимается каким-либо отдельным терминалом, банкоматом или каким-либо другим оборудованием из-за обстоятельств, находящихся вне ведома и/или контроля Банка;
+-в случае возникновения конфликтных ситуаций между Клиентом и третьими лицами, когда такие ситуации возникли вследствие невыполнения Клиентом условий настоящего договора, а также во всех случаях, находящихся вне сферы контроля Банка;
+-за ущерб, понесенный Клиентом по оспоренной транзакции, если такой спор был решен не в пользу Клиента в соответствии с Операционными правилами международных платежных систем «Visa International» и «UnionPay International»;
+-если Клиент умышленно или по неосторожности содействовал нарушению или нарушил условия настоящего договора и действующее законодательство Республики Узбекистан.
+5.7. Банк несёт ответственность за:
+- своевременное ведение Карточного счета Клиента;
+- нарушение своих обязательств и других условий настоящего договора;
+-разглашение банковской тайны - в соответствии с действующим законодательством Республики Узбекистан.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="563" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[VI. СРОК ДЕЙСТВИЯ ДОГОВОРА,
+ПОРЯДОК ЕГО ИЗМЕНЕНИЯ И РАСТОРЖЕНИЯ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="573" width="535" height="108"/>
+				<textElement>
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[6.1. Настоящий договор вступает в силу со дня его подписания Сторонами и действует на неопределенный срок.
+6.2. Все изменения и дополнения в настоящий договор производятся по соглашению Сторон в письменной форме, за исключением случаев изменения Банком Тарифов Банка, которое производится Банком в одностороннем порядке.
+6.3. Клиент имеет право в любое время расторгнуть настоящий договор, предоставив в Банк заявление на закрытие карточного счета. При этом Клиент обязан вернуть  Банковскую карту в Банк.
+6.4. При отсутствии операций по Карточному счету в течение 3 (трех) месяцев и отсутствии остатка на Карточном счету Клиент просит, расторгнуть настоящий договор, и поручает Банку закрыть карточный счет. Клиент и Банк рассматривают данный пункт Договора как заявление на закрытие счета в соответствии с пунктом 1 статьи 788 Гражданского Кодекса Республики Узбекистан.
+6.5. Настоящий договор, может быть, расторгнут при отсутствии возможности осуществлять надлежащую проверку Клиента и при осуществлении подозрительных операций в соответствии с требованиями Правил внутреннего контроля по противодействию легализации доходов, полученных от преступной деятельности, и финансированию терроризма в коммерческих банках.
+6.6. По требованию Банка настоящий договор расторгается в соответствии с требованиями законодательства РУз.
+6.7. Расторжение договора является основанием для закрытия карточного счета Клиента. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="19" width="535" height="314"/>
+				<textElement>
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[4.1. Клиент вправе:
+4.1.1. самостоятельно распоряжаться своими денежными средствами, находящимися на Карточном счете в рамках действующего законодательства и условиями настоящего договора;
+4.1.2. пополнять остаток на Карточном счете за счет собственных средств в иностранной валюте;
+4.1.3. в случае утери, порчи, истечении срока действия Банковской карты либо при изменении имени и/или фамилии письменно обратиться в Банк для перевыпуска Банковской карты;
+4.1.4. пользоваться дистанционными услугами, указанными на официальном сайте Банка www.ipakyulibank.uz в разделах «VISA Classic», «UnionPay Classic» (при условии сообщения верного пароля для телефонных разговоров).
+4.1.5. получать информацию о Тарифах Банка, их изменениях, а также новых банковских услугах с использованием Банковской карты, как в головном офисе и/или филиалах банка, так и на официальном сайте Банка;
+4.1.6. отказаться от использования Банковской карты с последующим закрытием Карточного счета;
+4.1.7. устанавливать и/или изменять лимит трат по Банковской карте путем подачи письменного заявления в Банк;
+4.1.8. иные права, предусмотренные настоящим Договором.
+
+4.2. Клиент обязан:
+4.2.1. использовать Банковскую карту в соответствии с условиями настоящего Договора и действующим законодательством Республики Узбекистан;
+4.2.2. проставить свою подпись на оборотной стороне Банковской карты в момент ее получения в Банке;
+4.2.3. в строгом порядке сохранять конфиденциальность информации в отношении Банковской карты, ПИН-код и пароля для телефонных разговоров;
+4.2.4. своевременно оплачивать комиссионное вознаграждение Банка в соответствии с Тарифами Банка;
+4.2.5. возмещать расходы Банка, понесенные в результате нарушения условий настоящего Договора и действующего законодательства Республики Узбекистан;
+4.2.6. в случае изменения паспортных и других данных (фамилии, имени, отчества, местожительство и др.) информировать об этих изменениях Банк в течение 3 (трех) дней;
+4.2.7. использовать Банковскую карту только в пределах активного остатка на Карточном счету и не допускать возникновения задолженности по нему. При образовании отрицательного остатка на Карточном счете, погасить всю сумму задолженности в течение 15 банковских дней со дня образования задолженности. В случае непогашения задолженности в течение 15 банковских дней со дня образования задолженности, Клиент обязан выплатить штраф в размере 10 % от суммы задолженности;
+4.2.8. при совершении операций по Карточному счёту, обеспечить на своем Карточном счету достаточный объем денежных средств необходимый для совершения операции и взимания Банком платы за услуги;
+4.2.9. при использовании суммы Страхового депозита пополнить его в течение 20 банковских дней с момента использования суммы Страхового депозита;
+4.2.10. в случае утери, кражи Банковской карты или возникновения подозрения в том, что информация в отношении Банковской карты стала известна третьим лицам, незамедлительно уведомить Банк по телефону (+998 71 1406900, 1200009) и поручить Банку блокировку Банковской карты (при условии сообщения верного пароля для телефонных разговоров). После устного уведомления, Клиент обязан подтвердить это письменно:
+- в течение 24 часов, если Клиент находится в пределах Республики Узбекистан;
+- незамедлительно, по прибытию Клиента в Республику Узбекистан;
+4.2.11. сообщать Банку об ошибочно зачисленных на Карточный счет денежных средств или неправильном списании с Карточного счёта в течении двух банковских дней со дня получении информации о состоянии своего Карточного счёта;
+4.2.12. Вернуть Банковскую карту в Банк:
+- в течение 3 (трех) банковских дней с даты окончании срока действия Банковской карты;
+- в день подачи заявления на перевыпуск или закрытие Банковской карты;
+4.2.13. нести полную ответственность за достоверность предоставленной информации и документов;
+4.2.14. не реже 1 раза в месяц проверять историю транзакций, проведенных по Банковской карте;
+4.2.15. перед началом использования Банковской карты ознакомиться и строго соблюдать Правила использования банковских карт, размещенных в разделе «Пластиковые карты» на официальном сайте Банка.
+
+4.1.16. иные обязанности, предусмотренные настоящим Договором.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[IV. ПРАВА И ОБЯЗАННОСТИ КЛИЕНТА]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="341" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[V. ОТВЕТСТВЕННОСТЬ СТОРОН]]></text>
+			</staticText>
+		</band>
+		<band height="809">
+			<textField>
+				<reportElement x="88" y="183" width="60" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HO_BANK_INN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="274" y="213" width="68" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Подпись)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="193" width="237" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[с правилами использования карточки и тарифами Банка ознакомлен и согласен]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="181" y="183" width="80" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HO_BANK_OKONH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="183" width="217" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PHONE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="68" y="163" width="193" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRANCH_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="274" y="211" width="261" height="1"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="183" width="18" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ИНН:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="183" width="32" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ОКОНХ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="212" width="68" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Подпись)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="24" width="535" height="116"/>
+				<textElement>
+					<font size="6" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[7.1. Отношения между Банком и Клиентом, не предусмотренные настоящим договором, регулируются в порядке, установленном действующим законодательством Республики Узбекистан.
+7.2. Порядок проведения операций по Карточному счету Клиента регулируется нормативно-правовыми документами Центрального банка Республики Узбекистан, обязательными для исполнения обеими сторонами.
+7.3. В случае возникновения споров между Банком и Клиентом обязателен досудебный порядок решения споров путём направления претензии. Споры и разногласия, по которым стороны не достигнут договоренности, разрешаются в судебном порядке согласно действующему законодательству.
+7.4. Взаимные претензии по расчетам между Клиентом и другими лицами рассматриваются ими без участия Банка.
+7.5. Настоящий договор заключен в двух экземплярах, обладающих одинаковой юридической силой. Один экземпляр договора хранится у Банка, второй – у Клиентом.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="318" y="163" width="217" height="20"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="11" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[VII. ПРОЧИЕ УСЛОВИЯ ДОГОВОРА]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="163" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Адрес:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="153" width="44" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Клиент]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="318" y="153" width="217" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="183" width="50" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HO_BRANCH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="274" y="163" width="44" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Адрес]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="68" y="173" width="193" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="274" y="183" width="44" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Дом.Тел]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="153" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Банк:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="535" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[11.Адреса и реквизиты сторон]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="193" width="261" height="18"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="173" width="68" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[К/cч:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="183" width="18" height="10"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[МФО:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="68" y="153" width="193" height="10"/>
+				<box leftPadding="2" bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

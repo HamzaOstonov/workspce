@@ -1,0 +1,286 @@
+<?component name="robjbox" extends="combobox" class="com.is.utils.refobj.RefObjCBox"?>
+<?component name="rcurrbox" extends="combobox" class="com.is.tf.currency.RefCurrencyBox"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="paymentmain" width="100%"  height="550px" border="normal" apply="com.is.tf.payment.PaymentViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="paymentPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{paymentmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.payment.id}" width="50px" />
+                                <listheader label="${labels.payment.p1t44}" width="200px" />
+                                <listheader label="${labels.payment.p0t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p2t44}" width="200px" />
+                                <listheader label="${labels.payment.p3t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p4t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p5t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p6t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p7t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p8t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p9t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p10t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p11t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p12t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p13t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p14t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p15t44}" width="200px" />
+                                <listheader label="${labels.payment.p16t44}" width="200px" />
+                                <listheader label="${labels.payment.p17t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p18t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p19t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p20t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p21t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p22t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p23t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p24t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.id_contract}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p27t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p28t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p29t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p30t44}" width="200px" visible="false"/>
+                                <listheader label="${labels.payment.p100t44}" width="200px" visible="false"/>
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd"  visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.payment.id}" /><textbox id="id"  mold="rounded" disabled="true" value="@{paymentmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.payment.p1t44}" /><decimalbox id="p1t44"  width="250px" format="########-#########-##-#-#####"  readonly="true" mold="rounded"  value="@{paymentmain$composer.current.p1t44}" /></row>
+                                 <!-- 
+                                  <row><label value="${labels.payment.p0t44}" visible="false"/><textbox id="p0t44"  mold="rounded"  value="1"  visible="false" /></row>
+                                   -->
+                                  <row><label value="${labels.payment.p2t44}" /><datebox id="p2t44"  mold="rounded"  value="@{paymentmain$composer.current.p2t44}" /></row>
+                                  <row><label value="${labels.payment.p3t44}" /><rcombobox id="p3t44" width="350px" mold="rounded"  selecteditem="@{paymentmain$composer.current.p3t44}" /></row>
+                                  <row id="row_p4t44" visible="false"><label value="${labels.payment.p4t44}" /><textbox id="p4t44"  maxlength="100" multiline="true" rows="3" width="75%"  value="@{paymentmain$composer.current.p4t44}" /></row>
+                                  <row id="row_p5t44" visible="false"><label value="${labels.payment.p5t44}" /><datebox id="p5t44"  mold="rounded"  value="@{paymentmain$composer.current.p5t44}" /></row>
+                                  <row id="row_p6t44" visible="false"><label value="${labels.payment.p6t44}" /><textbox id="p6t44"  maxlength="100" multiline="true" rows="3" width="75%" value="@{paymentmain$composer.current.p6t44}" /></row>
+                                  <row><label value="${labels.payment.p7t44}" /><rcombobox id="p7t44"  width="350px" mold="rounded"  selecteditem="@{paymentmain$composer.current.p7t44}" /></row>
+                                  <row id="row_p8t44" visible="false"><label value="${labels.payment.p8t44}" /><rcombobox id="p8t44"  width="350px" mold="rounded" selecteditem="@{paymentmain$composer.current.p8t44}" /></row>
+                                  <row id="row_p9t44" visible="false"><label value="${labels.payment.p9t44}" /><rcombobox id="p9t44" width="350px" mold="rounded"  selecteditem="@{paymentmain$composer.current.p9t44}" /></row>
+                                  <row id="row_p11t44" visible="false"><label value="${labels.payment.p11t44}" /><textbox id="p11t44"   maxlength="100" multiline="true" rows="3" width="75%"  value="@{paymentmain$composer.current.p11t44}" /></row>
+                                  <row id="row_p10t44" visible="false"><label value="${labels.payment.p10t44}" /><rcombobox id="p10t44"  mold="rounded"  selecteditem="@{paymentmain$composer.current.p10t44}" /></row>
+                                  <row><label value="${labels.payment.p12t44}" /><rcombobox id="p12t44"  mold="rounded" width="350px" selecteditem="@{paymentmain$composer.current.p12t44}" /></row>
+                                  <row id="row_p13t44" visible="true"><label value="${labels.payment.p13t44}" /><robjbox id="p13t44" width="350px" mold="rounded"  selecteditem="@{paymentmain$composer.current.p13t44}" /></row>
+                                  <row id="row_p14t44" visible="true"><label value="${labels.payment.p14t44}" /><robjbox id="p14t44" width="350px" mold="rounded"  selecteditem="@{paymentmain$composer.current.p14t44}" /></row>
+                                  <row><label value="${labels.payment.p15t44}" /><rcombobox id="p15t44" width="350px" mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);"/></row>
+                                  <row><label value="${labels.payment.p16t44}" /><decimalbox id="p16t44" format="### ### ### ##0.00" width="250px" mold="rounded"  value="@{paymentmain$composer.current.p16t44}" /></row>
+                                  <row id="row_p17t44" visible="true"><label value="${labels.payment.p17t44}" />
+                                  <hbox>
+                                  <label value="1" />
+                                  <rcurrbox id="p17t441"  width="150px"  mold="rounded" disabled="false" onInitRenderLater="self.setSelectedIndex(0);"/>
+                                  <label value="=" />
+                                  <decimalbox id="p17t442"  mold="rounded" format="###0.00#"  value="@{paymentmain$composer.current.p17t44}" />
+                                  <rcurrbox id="p17t443"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="false"/>
+                                  <separator orient="vertical" spacing="10px"/>
+		                          <toolbarbutton id="btn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                          <separator orient="vertical" spacing="10px"/>
+		                          <label id="cbcourse" value="" />
+                                  </hbox>
+                                  </row>
+                                  <row id="row_p18t44" visible="true"><label value="${labels.payment.p18t44}" />
+                                  <hbox>
+                                  <decimalbox id="p18t44" format="### ### ### ##0.00" width="250px" mold="rounded"  value="@{paymentmain$composer.current.p18t44}" />
+                                  <label id="conr_val1"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row id="row_p19t44" visible="true"><label value="${labels.payment.p19t44}" />
+                                  <hbox>
+                                  <decimalbox id="p19t44" format="### ### ### ##0.00" width="250px" mold="rounded"  value="@{paymentmain$composer.current.p19t44}" />
+                                  <label id="conr_val2"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row id="row_p20t44" visible="false"><label value="${labels.payment.p20t44}" />
+                                  <hbox>
+                                  <decimalbox id="p20t44" format="### ### ### ##0.00" width="250px" mold="rounded"  value="@{paymentmain$composer.current.p20t44}" />
+                                  <label id="conr_val21"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row id="row_p21t44" visible="false"><label value="${labels.payment.p21t44}" />
+                                  <hbox>
+                                  <decimalbox id="p21t44" format="### ### ### ##0.00" width="250px" mold="rounded"  value="@{paymentmain$composer.current.p21t44}" />
+                                  <label id="conr_val22"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  
+                                  <row><label value="${labels.payment.p23t44}" /><decimalbox id="p23t44"  mold="rounded"  value="@{paymentmain$composer.current.p23t44}" /></row>
+                                  <row><label value="${labels.payment.p24t44}" /><textbox id="p24t44"  mold="rounded"  value="@{paymentmain$composer.current.p24t44}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.payment.id_contract}" /><textbox id="id_contract"  mold="rounded"  value="@{paymentmain$composer.current.id_contract}" /></row>
+                                  <row><label value="${labels.payment.p27t44}" /><textbox id="p27t44"  mold="rounded"  value="@{paymentmain$composer.current.p27t44}" /></row>
+                                  <row><label value="${labels.payment.p28t44}" /><textbox id="p28t44"  mold="rounded"  value="@{paymentmain$composer.current.p28t44}" /></row>
+                                   -->
+                                  <row><label value="${labels.payment.p29t44}" /><textbox id="p29t44"  mold="rounded"  value="@{paymentmain$composer.current.p29t44}" /></row>
+                                  <row><label value="${labels.payment.p30t44}" /><textbox id="p30t44"  mold="rounded"  value="@{paymentmain$composer.current.p30t44}" /></row>
+                                  <row><label value="${labels.payment.p22t44}" /><decimalbox id="p22t44"  mold="rounded"  value="@{paymentmain$composer.current.p22t44}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.payment.p100t44}" /><textbox id="p100t44"  mold="rounded"  value="@{paymentmain$composer.current.p100t44}" /></row>
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <!-- 
+                                  <row><label value="${labels.payment.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                   -->
+                                  <row><label value="${labels.payment.p1t44}" /><decimalbox id="ap1t44"  width="250px" format="########-#########-##-#-#####"  readonly="true" mold="rounded"  value="@{paymentmain$composer.current.p1t44}"  /></row>
+                                  <!-- 
+                                  <row><label value="${labels.payment.p0t44}" visible="false"/><textbox id="ap0t44"  mold="rounded" value="0" visible="false" /></row>
+                                   -->
+                                  <row><label value="${labels.payment.p2t44}" /><datebox id="ap2t44"  mold="rounded"  /></row>
+                                  <row><label value="${labels.payment.p3t44}" /><rcombobox width="350px" id="ap3t44"  mold="rounded"  /></row>
+                                  <row id="row_ap4t44" visible="false"><label value="${labels.payment.p4t44}" /><textbox id="ap4t44"  maxlength="100" multiline="true" rows="3" width="75%"  /></row>
+                                  <row id="row_ap5t44" visible="false"><label value="${labels.payment.p5t44}" /><datebox id="ap5t44"  mold="rounded"  /></row>
+                                  <row id="row_ap6t44" visible="false"><label value="${labels.payment.p6t44}" /><textbox id="ap6t44"  maxlength="100" multiline="true" rows="3" width="75%"  /></row>
+                                  <row><label value="${labels.payment.p7t44}" /><rcombobox id="ap7t44"  width="350px" mold="rounded"  /></row>
+                                  <row id="row_ap8t44" visible="false"><label value="${labels.payment.p8t44}" /><rcombobox width="350px" id="ap8t44"  mold="rounded"  /></row>
+                                  <row id="row_ap9t44" visible="false"><label value="${labels.payment.p9t44}" /><rcombobox width="350px" id="ap9t44"  mold="rounded"  /></row>
+                                  <row id="row_ap11t44" visible="false"><label value="${labels.payment.p11t44}" /><textbox id="ap11t44"   maxlength="100" multiline="true" rows="3" width="75%"  /></row>
+                                  <row id="row_ap10t44" visible="true"><label value="${labels.payment.p10t44}" /><rcombobox id="ap10t44" width="350px" mold="rounded"  /></row>
+                                  <row><label value="${labels.payment.p12t44}" /><rcombobox id="ap12t44" width="350px" mold="rounded"  /></row>
+                                  <row id="row_ap13t44" visible="false"><label value="${labels.payment.p13t44}" /><robjbox id="ap13t44" width="350px" mold="rounded"  /></row>
+                                  <row id="row_ap14t44" visible="false"><label value="${labels.payment.p14t44}" /><robjbox id="ap14t44" width="350px" mold="rounded"  /></row>
+                                  <row><label value="${labels.payment.p15t44}" /><rcombobox id="ap15t44" width="350px" mold="rounded" onInitRenderLater="self.setSelectedIndex(0);" /></row>
+                                  <row><label value="${labels.payment.p16t44}" /><decimalbox id="ap16t44" format="### ### ### ##0.00" width="250px" mold="rounded"  /></row>
+                                                                   
+                                  <row id="row_ap17t44" visible="true"><label value="${labels.payment.p17t44}" />
+                                  <hbox>
+                                  <label value="1" />
+                                  <rcurrbox id="ap17t441"  width="150px"  mold="rounded" disabled="false" onInitRenderLater="self.setSelectedIndex(0);"/>
+                                  <label value="=" />
+                                  <decimalbox id="ap17t442"  mold="rounded" format="###0.00#"  />
+                                  <rcurrbox id="ap17t443"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="false"/>
+                                  <separator orient="vertical" spacing="10px"/>
+		                          <toolbarbutton id="abtn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                          <separator orient="vertical" spacing="10px"/>
+		                          <label id="acbcourse" value="" />
+                                  </hbox>
+                                  </row>
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  <row id="row_ap18t44" visible="true"><label value="${labels.payment.p18t44}" />
+                                  <hbox>
+                                  <decimalbox id="ap18t44"  format="### ### ### ##0.00" width="250px" mold="rounded"  />
+                                   <label id="aconr_val1"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row id="row_ap19t44" visible="true"><label value="${labels.payment.p19t44}" />
+                                  <decimalbox id="ap19t44"  format="### ### ### ##0.00" width="250px" mold="rounded"  />
+                                   <label id="aconr_val2"  width="70px"   />
+                                  </row>
+                                  <row id="row_ap20t44" visible="true"><label value="${labels.payment.p20t44}" />
+                                  <hbox>
+                                  <decimalbox id="ap20t44" format="### ### ### ##0.00" width="250px" mold="rounded"  />
+                                   <label id="conr_aval21"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row id="row_ap21t44" visible="true"><label value="${labels.payment.p21t44}" />
+                                  <hbox>
+                                  <decimalbox id="ap21t44" format="### ### ### ##0.00" width="250px" mold="rounded"  />
+                                  <label id="conr_aval22"  width="70px"   />
+                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.payment.p23t44}" /><decimalbox id="ap23t44"  mold="rounded"  /></row>
+                                  <row><label value="${labels.payment.p24t44}" /><textbox id="ap24t44"  mold="rounded"  /></row>
+                                  <!-- 
+                                  <row><label value="${labels.payment.id_contract}" /><textbox id="aid_contract"  mold="rounded"  /></row>
+                                  <row><label value="${labels.payment.p27t44}" /><textbox id="ap27t44"  mold="rounded"  /></row>
+                                  <row><label value="${labels.payment.p28t44}" /><textbox id="ap28t44"  mold="rounded"  /></row>
+                                   -->
+                                  <row><label value="${labels.payment.p29t44}" /><textbox id="ap29t44"  mold="rounded"  /></row>
+                                  <row><label value="${labels.payment.p30t44}" /><textbox id="ap30t44"  mold="rounded"  /></row>
+                                  <row><label value="${labels.payment.p22t44}" /><decimalbox id="ap22t44"  mold="rounded"  /></row>
+                                  <!-- 
+                                  <row><label value="${labels.payment.p100t44}" /><textbox id="ap100t44"  mold="rounded"  /></row>
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.payment.id}" /><textbox id="fid"  mold="rounded"  value="@{paymentmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.payment.p1t44}" /><textbox id="fp1t44"  width="250px" mold="rounded"  value="@{paymentmain$composer.filter.p1t44}" /></row>
+                                  <row><label value="${labels.payment.p0t44}" /><textbox id="fp0t44"  mold="rounded"  value="1" visible="false"/></row>
+                                  <row><label value="${labels.payment.p2t44}" /><datebox id="fp2t44"  mold="rounded"  value="@{paymentmain$composer.filter.p2t44}" /></row>
+                                  <row><label value="${labels.payment.p3t44}" /><textbox id="fp3t44"  mold="rounded"  value="@{paymentmain$composer.filter.p3t44}" /></row>
+                                  <row><label value="${labels.payment.p4t44}" /><textbox id="fp4t44"  mold="rounded"  value="@{paymentmain$composer.filter.p4t44}" /></row>
+                                  <row><label value="${labels.payment.p5t44}" /><datebox id="fp5t44"  mold="rounded"  value="@{paymentmain$composer.filter.p5t44}" /></row>
+                                  <row><label value="${labels.payment.p6t44}" /><textbox id="fp6t44"  mold="rounded"  value="@{paymentmain$composer.filter.p6t44}" /></row>
+                                  <row><label value="${labels.payment.p7t44}" /><textbox id="fp7t44"  mold="rounded"  value="@{paymentmain$composer.filter.p7t44}" /></row>
+                                  <row><label value="${labels.payment.p8t44}" /><textbox id="fp8t44"  mold="rounded"  value="@{paymentmain$composer.filter.p8t44}" /></row>
+                                  <row><label value="${labels.payment.p9t44}" /><textbox id="fp9t44"  mold="rounded"  value="@{paymentmain$composer.filter.p9t44}" /></row>
+                                  <row><label value="${labels.payment.p10t44}" /><textbox id="fp10t44"  mold="rounded"  value="@{paymentmain$composer.filter.p10t44}" /></row>
+                                  <row><label value="${labels.payment.p11t44}" /><textbox id="fp11t44"  mold="rounded"  value="@{paymentmain$composer.filter.p11t44}" /></row>
+                                  <row><label value="${labels.payment.p12t44}" /><textbox id="fp12t44"  mold="rounded"  value="@{paymentmain$composer.filter.p12t44}" /></row>
+                                  <row><label value="${labels.payment.p13t44}" /><textbox id="fp13t44"  mold="rounded"  value="@{paymentmain$composer.filter.p13t44}" /></row>
+                                  <row><label value="${labels.payment.p14t44}" /><textbox id="fp14t44"  mold="rounded"  value="@{paymentmain$composer.filter.p14t44}" /></row>
+                                  <row><label value="${labels.payment.p15t44}" /><rcombobox id="fp15t44"  width="350px" mold="rounded"  selecteditem="@{paymentmain$composer.filter.p15t44}" /></row>
+                                  <row><label value="${labels.payment.p16t44}" /><decimalbox id="fp16t44"  mold="rounded"  value="@{paymentmain$composer.filter.p16t44}" /></row>
+                                  <row><label value="${labels.payment.p17t44}" /><decimalbox id="fp17t44"  mold="rounded"  value="@{paymentmain$composer.filter.p17t44}" /></row>
+                                  <row><label value="${labels.payment.p18t44}" /><decimalbox id="fp18t44"  mold="rounded"  value="@{paymentmain$composer.filter.p18t44}" /></row>
+                                  <row><label value="${labels.payment.p19t44}" /><decimalbox id="fp19t44"  mold="rounded"  value="@{paymentmain$composer.filter.p19t44}" /></row>
+                                  <row><label value="${labels.payment.p20t44}" /><decimalbox id="fp20t44"  mold="rounded"  value="@{paymentmain$composer.filter.p20t44}" /></row>
+                                  <row><label value="${labels.payment.p21t44}" /><decimalbox id="fp21t44"  mold="rounded"  value="@{paymentmain$composer.filter.p21t44}" /></row>
+                                  <row><label value="${labels.payment.p22t44}" /><decimalbox id="fp22t44"  mold="rounded"  value="@{paymentmain$composer.filter.p22t44}" /></row>
+                                  <row><label value="${labels.payment.p23t44}" /><decimalbox id="fp23t44"  mold="rounded"  value="@{paymentmain$composer.filter.p23t44}" /></row>
+                                  <row><label value="${labels.payment.p24t44}" /><textbox id="fp24t44"  mold="rounded"  value="@{paymentmain$composer.filter.p24t44}" /></row>
+                                   <row><label value="${labels.payment.id_contract}" /><textbox id="fid_contract"  mold="rounded"  value="@{paymentmain$composer.filter.id_contract}" /></row>
+                                  <row><label value="${labels.payment.p27t44}" /><textbox id="fp27t44"  mold="rounded"  value="@{paymentmain$composer.filter.p27t44}" /></row>
+                                  <row><label value="${labels.payment.p28t44}" /><textbox id="fp28t44"  mold="rounded"  value="@{paymentmain$composer.filter.p28t44}" /></row>
+                                  <row><label value="${labels.payment.p29t44}" /><textbox id="fp29t44"  mold="rounded"  value="@{paymentmain$composer.filter.p29t44}" /></row>
+                                  <row><label value="${labels.payment.p30t44}" /><textbox id="fp30t44"  mold="rounded"  value="@{paymentmain$composer.filter.p30t44}" /></row>
+                                  <row><label value="${labels.payment.p100t44}" /><textbox id="fp100t44"  mold="rounded"  value="@{paymentmain$composer.filter.p100t44}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

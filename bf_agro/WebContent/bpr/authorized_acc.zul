@@ -1,0 +1,77 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<div id="bpr_authorizedmain" apply="com.is.bpri.bpr_authorized_acc.Bpr_authirizedaccViewCtrl">
+		<toolbar id="tb">
+			<toolbarbutton id="btn_back" label="${labels.back}"
+				image="/images/file.png" />
+			<toolbarbutton id="btn_search" label="${labels.search}"
+				image="/images/search.png" />
+			<toolbarbutton id="btn_add" label="${labels.add}"
+				image="/images/+.png" />
+			<toolbarbutton id="btn_first" label="${labels.first}"
+				image="/images/backward.png" />
+			<toolbarbutton id="btn_prev" label="${labels.prev}"
+				image="/images/back.png" />
+			<toolbarbutton id="btn_next" label="${labels.next}"
+				image="/images/front.png" />
+			<toolbarbutton id="btn_last" label="${labels.last}"
+				image="/images/forward.png" />
+		</toolbar>
+		<div id="grd">
+			<paging id="bpr_authorizedPaging" />
+			<listbox style="border:none" id="dataGrid" multiple="true"
+				selectedItem="@{bpr_specialfrmmain$composer.current}">
+				<listhead sizable="true">
+					<listheader label="№" />
+					<listheader label="МФО" />
+					<listheader label="Счет" />
+				</listhead>
+			</listbox>
+		</div>
+		<div id="frm" visible="false">
+			<grid id="addgrd" visible="false">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="МФО" />
+						<rcombobox buttonVisible="false" id="abranch" />
+					</row>
+					<row>
+						<label value="Счет" />
+						<textbox maxlength="20" id="aaccount" />
+					</row>
+				</rows>
+			</grid>
+			<grid id="fgrd" visible="false">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="МФО" />
+						<rcombobox buttonVisible="false" id="fbranch"
+							selecteditem="@{bpr_authorizedmain$composer.filter.branch}" />
+					</row>
+					<row>
+						<label value="Значение" />
+						<textbox maxlength="20" id="faccount"
+							selecteditem="@{bpr_authorizedmain$composer.filter.acc}" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_save" label="${labels.save}"
+					image="/images/save.png" />
+				<toolbarbutton id="btn_del" label="${labels.delete}"
+					image="/images/delete.png" />
+				<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+					image="/images/stop.png" />
+			</toolbar>
+		</div>
+	</div>
+</zk>

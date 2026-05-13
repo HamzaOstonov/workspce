@@ -1,0 +1,107 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="accreditivtimechangemain" width="100%"  height="550px" border="normal" apply="com.is.tf.Accreditivtimechange.AccreditivtimechangeViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="accreditivtimechangePaging" width="100%" mold="os"/>
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{accreditivtimechangemain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.accreditivtimechange.id}" width="200px" />
+                                <listheader label="${labels.accreditivtimechange.p0t22}" width="200px" />
+                                <listheader label="${labels.accreditivtimechange.p1t22}" width="200px" />
+                                <listheader label="${labels.accreditivtimechange.p2t22}" width="200px" />
+                                <listheader label="${labels.accreditivtimechange.p3t22}" width="200px" />
+                                <listheader label="${labels.accreditivtimechange.p4t22}" width="200px" />
+                                <listheader label="${labels.accreditivtimechange.p5t22}" width="200px" />
+                                <listheader label="${labels.accreditivtimechange.p6t22}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.accreditivtimechange.id}" /><textbox id="id"  mold="rounded"  value="@{accreditivtimechangemain$composer.current.id}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p0t22}" /><textbox id="p0t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.current.p0t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p1t22}" /><textbox id="p1t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.current.p1t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p2t22}" /><textbox id="p2t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.current.p2t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p3t22}" /><textbox id="p3t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.current.p3t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p4t22}" /><textbox id="p4t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.current.p4t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p5t22}" /><textbox id="p5t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.current.p5t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p6t22}" /><textbox id="p6t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.current.p6t22}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.accreditivtimechange.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.accreditivtimechange.p0t22}" /><textbox id="ap0t22"  mold="rounded"  /></row>
+                                  <row><label value="${labels.accreditivtimechange.p1t22}" /><textbox id="ap1t22"  mold="rounded"  /></row>
+                                  <row><label value="${labels.accreditivtimechange.p2t22}" /><textbox id="ap2t22"  mold="rounded"  /></row>
+                                  <row><label value="${labels.accreditivtimechange.p3t22}" /><textbox id="ap3t22"  mold="rounded"  /></row>
+                                  <row><label value="${labels.accreditivtimechange.p4t22}" /><textbox id="ap4t22"  mold="rounded"  /></row>
+                                  <row><label value="${labels.accreditivtimechange.p5t22}" /><textbox id="ap5t22"  mold="rounded"  /></row>
+                                  <row><label value="${labels.accreditivtimechange.p6t22}" /><textbox id="ap6t22"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.accreditivtimechange.id}" /><textbox id="fid"  mold="rounded"  value="@{accreditivtimechangemain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p0t22}" /><textbox id="fp0t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.filter.p0t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p1t22}" /><textbox id="fp1t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.filter.p1t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p2t22}" /><textbox id="fp2t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.filter.p2t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p3t22}" /><textbox id="fp3t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.filter.p3t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p4t22}" /><textbox id="fp4t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.filter.p4t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p5t22}" /><textbox id="fp5t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.filter.p5t22}" /></row>
+                                  <row><label value="${labels.accreditivtimechange.p6t22}" /><textbox id="fp6t22"  mold="rounded"  value="@{accreditivtimechangemain$composer.filter.p6t22}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

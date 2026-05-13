@@ -1,0 +1,232 @@
+<?component name="robjbox" extends="combobox" class="com.is.utils.refobj.RefObjCBox"?>
+<?component name="rcurrbox" extends="combobox" class="com.is.tf.currency.RefCurrencyBox"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+
+<window id="refundimpmain" width="100%"  height="550px" border="normal" apply="com.is.tf.refundimp.RefundimpViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="refundimpPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{refundimpmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.refundimp.id}" width="50px" />
+                                <listheader label="${labels.refundimp.p1t45}" width="200px" />
+                                <listheader label="${labels.refundimp.p0t45}" width="200px"  visible="false"/>
+                                <listheader label="${labels.refundimp.p2t45}" width="200px" />
+                                <listheader label="${labels.refundimp.p3t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p4t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p5t45}" width="200px" />
+                                <listheader label="${labels.refundimp.p6t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p7t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p8t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p9t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p10t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p11t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p12t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p13t45}" width="200px" visible="false"/>
+                                <listheader label="${labels.refundimp.p14t45}" width="200px" visible="false"/>
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        
+            
+        
+         
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                   
+                                  <row visible="false"><label value="${labels.refundimp.id}" /><textbox id="id"  mold="rounded" readonly="true" value="@{refundimpmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.refundimp.p1t45}" /><decimalbox id="p1t45" width="400px" mold="rounded" format="########-#########-##-#-#####" readonly="true" value="@{refundimpmain$composer.current.p1t45}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.refundimp.p0t45}" visible="false"/><textbox id="p0t45"  mold="rounded"  value="1"  visible="0"/></row>
+                                   -->
+                                  <row><label value="${labels.refundimp.p2t45}" /><datebox id="p2t45"  mold="rounded"  value="@{refundimpmain$composer.current.p2t45}" /></row>
+                                  <row><label value="${labels.refundimp.p4t45}" /><robjbox id="p4t45"  mold="rounded" width="400px" readonly="true" selecteditem="@{refundimpmain$composer.current.p4t45}" /></row>
+                                  <row><label value="${labels.refundimp.p13t45}" /><robjbox id="p13t45"  mold="rounded" width="400px" readonly="true" selecteditem="@{refundimpmain$composer.current.p13t45}" /></row>
+                                  <row><label value="${labels.refundimp.p3t45}" /><rcombobox id="p3t45" width="400px" mold="rounded"  selecteditem="@{refundimpmain$composer.current.p3t45}" /></row>
+                                  
+                                  <row><label value="${labels.refundimp.p5t45}" /><rcombobox id="p5t45" width="350px" mold="rounded"  selecteditem="@{refundimpmain$composer.current.p5t45}" /></row>
+                                  <row><label value="${labels.refundimp.p6t45}" /><decimalbox id="p6t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  value="@{refundimpmain$composer.current.p6t45}" /></row>
+                                                                    
+                                   <row id="kur">
+									  <label value="${labels.refundimp.p7t45}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="p7t451"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="p7t45"  mold="rounded"  value="@{refundimpmain$composer.current.p7t45}"  format="##0.00" width="100px" disabled="true"/>
+		                                  <rcurrbox id="p7t453"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="btn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="cbcourse" value="" />
+	                                  </hbox>
+                                  </row>
+                                  
+                                  
+                                  
+                                  <row id="row_p8t45" visible ="false"><label value="${labels.refundimp.p8t45}" /><decimalbox id="p8t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  value="@{refundimpmain$composer.current.p8t45}" /></row>
+                                  <row id="row_p9t45" visible ="false"><label value="${labels.refundimp.p9t45}" /><decimalbox id="p9t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  value="@{refundimpmain$composer.current.p9t45}" /></row>
+                                  <row id="row_p10t45" visible ="false"><label value="${labels.refundimp.p10t45}" /><decimalbox id="p10t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  value="@{refundimpmain$composer.current.p10t45}" /></row>
+                                  <row id="row_p11t45" visible ="false"><label value="${labels.refundimp.p11t45}" /><decimalbox id="p11t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  value="@{refundimpmain$composer.current.p11t45}" /></row>
+                                  
+                                   <row id="kur2">
+									  <label value="${labels.refundimp.p14t45}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="p14t451"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="p14t45"  mold="rounded"  value="@{refundimpmain$composer.current.p14t45}"  format="##0.00" width="100px" disabled="true"/>
+		                                  <rcurrbox id="p14t453"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="btn_recount2" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="cbcourse2" value="" />
+	                                  </hbox>
+                                  </row>
+                                  
+                                  
+                                  <row><label value="${labels.refundimp.p23t45}" /><textbox id="p23t45"  mold="rounded"  value="@{refundimpmain$composer.current.p23t45}" /></row>
+                                  <row><label value="${labels.refundimp.p15t45}" /><textbox id="p15t45" width="250px" mold="rounded"  value="@{refundimpmain$composer.current.p15t45}" /></row>
+                                  <row><label value="${labels.refundimp.p19t45}" /><textbox id="p19t45" width="250px" mold="rounded"  value="@{refundimpmain$composer.current.p19t45}" /></row>
+                                  <row><label value="${labels.refundimp.p24t45}" /><datebox id="p24t45"  mold="rounded"  value="@{refundimpmain$composer.current.p2t45}" /></row>
+                                  <row><label value="${labels.refundimp.p12t45}" /><decimalbox id="p12t45"  mold="rounded"  value="@{refundimpmain$composer.current.p12t45}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.refundimp.p16t45}" /><textbox id="p16t45"  mold="rounded"  value="@{refundimpmain$composer.current.p16t45}" /></row>
+                                  <row><label value="${labels.refundimp.p17t45}" /><textbox id="p17t45"  mold="rounded"  value="@{refundimpmain$composer.current.p17t45}" /></row>
+                                   -->
+                                  
+                                  
+                          </rows>
+                  </grid>
+                   
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row visible="false"><label value="${labels.refundimp.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.refundimp.p1t45}" /><decimalbox id="ap1t45"   width="400px" format="########-#########-##-#-#####" readonly="true" mold="rounded"  value="@{refundimpmain$composer.current.p1t45}"/></row>
+                                  <row><label value="${labels.refundimp.p0t45}" visible="false"/><textbox id="ap0t45"  mold="rounded" value="0" visible="false"/></row>
+                                  <row><label value="${labels.refundimp.p2t45}" /><datebox id="ap2t45"  mold="rounded"  /></row>
+                                  <row><label value="${labels.refundimp.p4t45}" /><robjbox id="ap4t45"  width="400px" mold="rounded"  /></row>
+                                   <row><label value="${labels.refundimp.p13t45}" /><robjbox id="ap13t45"  width="400px" mold="rounded"  /></row>
+                                   <row><label value="${labels.refundimp.p3t45}" /><rcombobox id="ap3t45"  width="400px" mold="rounded"  /></row>
+                                  <row><label value="${labels.refundimp.p5t45}" /><rcombobox id="ap5t45" width="350px" mold="rounded" selecteditem="@{refundimpmain$composer.current.p5t45}" /></row>
+                                  <row><label value="${labels.refundimp.p6t45}" /><decimalbox id="ap6t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  /></row>
+                                  <row id="akur">
+									  <label value="${labels.refundimp.p7t45}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="ap7t451"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="ap7t45"  mold="rounded"   format="##0.00" width="100px" disabled="true"/>
+		                                  <rcurrbox id="ap7t453"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="abtn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="acbcourse" value="" />
+	                                  </hbox>
+                                  </row>
+                                  
+                                  
+                                  <row id="row_ap8t45" visible ="false"><label value="${labels.refundimp.p8t45}" /><decimalbox id="ap8t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  /></row>
+                                  <row id="row_ap9t45" visible ="false"><label value="${labels.refundimp.p9t45}" /><decimalbox id="ap9t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  /></row>
+                                  <row id="row_ap10t45" visible ="false"><label value="${labels.refundimp.p10t45}" /><decimalbox id="ap10t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  /></row>
+                                  <row id="row_ap11t45" visible ="false"><label value="${labels.refundimp.p11t45}" /><decimalbox id="ap11t45" format="### ### ### ##0.00" maxlength="20" width="250px" mold="rounded"  /></row>
+                                  
+                                  <row id="akur2">
+									  <label value="${labels.refundimp.p14t45}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="ap14t451"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="ap14t45"  mold="rounded"   format="##0.00" width="100px" disabled="true"/>
+		                                  <rcurrbox id="ap14t453"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="abtn_recount2" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="acbcourse2" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.refundimp.p23t45}" /><textbox id="ap23t45"  mold="rounded"  /></row>
+                                  <row><label value="${labels.refundimp.p15t45}" /><textbox id="ap15t45" width="250px" mold="rounded"  /></row>
+                                  <row><label value="${labels.refundimp.p19t45}" /><textbox id="ap19t45" width="250px" mold="rounded"  /></row>
+                                  <row><label value="${labels.refundimp.p24t45}" /><datebox id="ap24t45"  mold="rounded"  /></row>
+                                  <row><label value="${labels.refundimp.p12t45}" /><decimalbox id="ap12t45"  mold="rounded"  /></row>
+                                 <!-- 
+                                  <row><label value="${labels.refundimp.p16t45}" /><textbox id="ap16t45"  mold="rounded"  /></row>
+                                  <row><label value="${labels.refundimp.p17t45}" /><textbox id="ap17t45"  mold="rounded"  /></row>\
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.refundimp.id}" /><textbox id="fid"  mold="rounded"  value="@{refundimpmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.refundimp.p1t45}" /><textbox id="fp1t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p1t45}" /></row>
+                                  <row><label value="${labels.refundimp.p0t45}" /><textbox id="fp0t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p0t45}" /></row>
+                                  <row><label value="${labels.refundimp.p2t45}" /><datebox id="fp2t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p2t45}" /></row>
+                                  <row><label value="${labels.refundimp.p3t45}" /><textbox id="fp3t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p3t45}" /></row>
+                                  <row><label value="${labels.refundimp.p4t45}" /><robjbox id="fp4t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p4t45}" /></row>
+                                  <row><label value="${labels.refundimp.p5t45}" /><rcombobox id="fp5t45"  mold="rounded"  selecteditem="@{refundimpmain$composer.filter.p5t45}" /></row>
+                                  <row><label value="${labels.refundimp.p6t45}" /><decimalbox id="fp6t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p6t45}" /></row>
+                                  <row><label value="${labels.refundimp.p7t45}" /><decimalbox id="fp7t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p7t45}" /></row>
+                                  <row><label value="${labels.refundimp.p8t45}" /><decimalbox id="fp8t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p8t45}" /></row>
+                                  <row><label value="${labels.refundimp.p9t45}" /><decimalbox id="fp9t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p9t45}" /></row>
+                                  <row><label value="${labels.refundimp.p10t45}" /><decimalbox id="fp10t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p10t45}" /></row>
+                                  <row><label value="${labels.refundimp.p11t45}" /><decimalbox id="fp11t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p11t45}" /></row>
+                                  <row><label value="${labels.refundimp.p12t45}" /><decimalbox id="fp12t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p12t45}" /></row>
+                                  <row><label value="${labels.refundimp.p13t45}" /><decimalbox id="fp13t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p13t45}" /></row>
+                                  <row><label value="${labels.refundimp.p14t45}" /><textbox id="fp14t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p14t45}" /></row>
+                                  <row><label value="${labels.refundimp.p15t45}" /><intbox id="fp15t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p15t45}" /></row>
+                                  <row><label value="${labels.refundimp.p16t45}" /><textbox id="fp16t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p16t45}" /></row>
+                                  <row><label value="${labels.refundimp.p17t45}" /><textbox id="fp17t45"  mold="rounded"  value="@{refundimpmain$composer.filter.p17t45}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

@@ -1,0 +1,659 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="callcentremain" width="100%" height="100%" apply="com.is.callcentre.CallCentreViewCtrl"> <!--   -->
+	<zscript><![CDATA[
+		public void foco(){
+			Clients.evalJavaScript("jq('$btn_find').focus();");
+		}
+	]]></zscript>
+	<timer id="tmr" delay="10000" repeats="true"/>
+	<div id="cardcustomerGridDiv" width="100%" height="100%" visible="true"><!--   -->
+		<borderlayout id="GridBLmain">
+		    <north size="415px" border="0">
+		    	<borderlayout id="GridBLNorth">
+				    <west id="west_1" title="${labels.search}" maxsize="350" minsize="350" size="350px" splittable="false" collapsible="true">
+				        <div id="fcardcustomerGridDiv">
+				        	  <grid id="fgrd">
+			                          <columns>
+			                                  <column width="35%" />
+			                                  <column width="65%" />
+			                          </columns>
+			                          <rows>
+												  <!-- 
+				                                  <row><label value="${labels.callcentre.company_name}" /><textbox id="fcompany_name"  mold="rounded"  value="@{callcentremain$composer.filter.company_name}" /></row> forward="onOK=onOKFilterField" onOK="fcustomer_id.focus();"
+				                                  -->
+				                                  <row><label value="${labels.callcentre.card_number}" /><textbox id="fcard_number"  mold="rounded"  value="@{callcentremain$composer.filter.card_number}" width="200px" onOK="fdef_atm_account.focus();" ctrlKeys="#f2#f3"/></row>
+				                                  <!-- 
+				                                  <row><label value="${labels.callcentre.is_primary}" /><longbox id="fis_primary"  mold="rounded"  value="@{callcentremain$composer.filter.is_primary}" /></row>
+				                                  <row><label value="${labels.callcentre.card_type}" /><textbox id="fcard_type"  mold="rounded"  value="@{callcentremain$composer.filter.card_type}" /></row>
+				                                  -->
+				                                  <row><label value="${labels.callcentre.def_atm_account}" /><textbox id="fdef_atm_account"  mold="rounded"  value="@{callcentremain$composer.filter.def_atm_account}" width="200px" onOK="fsurname.focus();" ctrlKeys="#f2#f3"/></row>
+				                                  <!-- 
+				                                  <row><label value="${labels.callcentre.def_pos_account}" /><textbox id="fdef_pos_account"  mold="rounded"  value="@{callcentremain$composer.filter.def_pos_account}" /></row>
+				                                  <row><label value="${labels.callcentre.embossed_ch_name}" /><textbox id="fembossed_ch_name"  mold="rounded"  value="@{callcentremain$composer.filter.embossed_ch_name}" /></row>
+				                                  <row><label value="${labels.callcentre.expiration_date}" /><textbox id="fexpiration_date"  mold="rounded"  value="@{callcentremain$composer.filter.expiration_date}" /></row>
+				                                  <row><label value="${labels.callcentre.card_status}" /><textbox id="fcard_status"  mold="rounded"  value="@{callcentremain$composer.filter.card_status}" /></row>
+				                                  <row><label value="${labels.callcentre.contract_id}" /><textbox id="fcontract_id"  mold="rounded"  value="@{callcentremain$composer.filter.contract_id}" /></row>
+				                                  <row><label value="${labels.callcentre.date_open}" /><datebox id="fdate_open"  mold="rounded"  value="@{callcentremain$composer.filter.date_open}" /></row>
+				                                  <row><label value="${labels.callcentre.date_close}" /><datebox id="fdate_close"  mold="rounded"  value="@{callcentremain$composer.filter.date_close}" /></row>
+				                                  <row><label value="${labels.callcentre.hot_card_status}" /><textbox id="fhot_card_status"  mold="rounded"  value="@{callcentremain$composer.filter.hot_card_status}" /></row>
+				                                  --> 
+				                                  <!-- 
+				                                  <row><label value="${labels.callcentre.person_id}" /><textbox id="fperson_id"  mold="rounded"  value="@{callcentremain$composer.filter.person_id}" /></row>
+				                                  <row><label value="${labels.callcentre.sex}" /><textbox id="fsex"  mold="rounded"  value="@{callcentremain$composer.filter.sex}" /></row>
+				                                  <row><label value="${labels.callcentre.residence}" /><textbox id="fresidence"  mold="rounded"  value="@{callcentremain$composer.filter.residence}" /></row>
+				                                  <row><label value="${labels.callcentre.security_id}" /><textbox id="fsecurity_id"  mold="rounded"  value="@{callcentremain$composer.filter.security_id}" /></row>
+				                                  -->
+				                                  <row><label value="${labels.callcentre.surname}" /><textbox id="fsurname"  mold="rounded"  value="@{callcentremain$composer.filter.surname}" width="200px" onOK="ffirst_name.focus();" ctrlKeys="#f2#f3"/></row>
+				                                  <row><label value="${labels.callcentre.first_name}" /><textbox id="ffirst_name"  mold="rounded"  value="@{callcentremain$composer.filter.first_name}" width="200px" onOK="fsecond_name.focus();" ctrlKeys="#f2#f3"/></row>
+				                                  <row><label value="${labels.callcentre.second_name}" /><textbox id="fsecond_name"  mold="rounded"  value="@{callcentremain$composer.filter.second_name}" width="200px" onOK="fbirth_date.focus();" ctrlKeys="#f2#f3"/></row>
+				                                  <row><label value="${labels.callcentre.birth_date}" /><datebox id="fbirth_date"  mold="rounded"  value="@{callcentremain$composer.filter.birth_date}" width="200px" onOK="fp_id_series.focus();" ctrlKeys="#f2#f3"/></row>
+				                                  <!-- 
+				                                  <row><label value="${labels.callcentre.p_id_type}" /><textbox id="fp_id_type"  mold="rounded"  value="@{callcentremain$composer.filter.p_id_type}" /></row>
+				                                  -->
+				                                  <row>
+					                                  <label value="${labels.callcentre.p_id_number}" />
+					                                  <hbox width="200px">
+						                                  <textbox id="fp_id_series"  mold="rounded"  value="@{callcentremain$composer.filter.p_id_series}" width="40px" onOK="fp_id_number.focus();" ctrlKeys="#f2#f3"/>
+						                                  <textbox id="fp_id_number"  mold="rounded"  value="@{callcentremain$composer.filter.p_id_number}" width="158px" onOK="fprimary_phone.focus();" ctrlKeys="#f2#f3"/>
+					                                  </hbox>
+				                                  </row>
+				                                  
+				                                  <!-- 
+				                                  <row><label value="${labels.callcentre.p_id_authority}" /><textbox id="fp_id_authority"  mold="rounded"  value="@{callcentremain$composer.filter.p_id_authority}" /></row>
+				                                  <row><label value="${labels.callcentre.p_id_issue_date}" /><datebox id="fp_id_issue_date"  mold="rounded"  value="@{callcentremain$composer.filter.p_id_issue_date}" /></row>
+				                                  <row><label value="${labels.callcentre.p_id_series}" /><textbox id="fp_id_series"  mold="rounded"  value="@{callcentremain$composer.filter.p_id_series}" /></row>
+				                                  <row><label value="${labels.callcentre.address_id}" /><textbox id="faddress_id"  mold="rounded"  value="@{callcentremain$composer.filter.address_id}" /></row>
+				                                  <row><label value="${labels.callcentre.address_type}" /><textbox id="faddress_type"  mold="rounded"  value="@{callcentremain$composer.filter.address_type}" /></row>
+				                                  <row><label value="${labels.callcentre.address_line1}" /><textbox id="faddress_line1"  mold="rounded"  value="@{callcentremain$composer.filter.address_line1}" /></row>
+				                                  <row><label value="${labels.callcentre.address_line2}" /><textbox id="faddress_line2"  mold="rounded"  value="@{callcentremain$composer.filter.address_line2}" /></row>
+				                                  <row><label value="${labels.callcentre.region}" /><textbox id="fregion"  mold="rounded"  value="@{callcentremain$composer.filter.region}" /></row>
+				                                  <row><label value="${labels.callcentre.country}" /><textbox id="fcountry"  mold="rounded"  value="@{callcentremain$composer.filter.country}" /></row>
+				                                  -->
+				                                  <row><label value="${labels.callcentre.primary_phone}" /><textbox id="fprimary_phone"  mold="rounded"  value="@{callcentremain$composer.filter.primary_phone}" width="200px" onOK="fbranch.focus();" ctrlKeys="#f2#f3"/></row>
+				                                  <!--  
+				                                  <row><label value="${labels.callcentre.mobile_phone}" /><textbox id="fmobile_phone"  mold="rounded"  value="@{callcentremain$composer.filter.mobile_phone}" /></row>
+				                                  <row><label value="${labels.callcentre.email}" /><textbox id="femail"  mold="rounded"  value="@{callcentremain$composer.filter.email}" /></row>
+				                                  -->
+				                                  <row><label value="${labels.callcentre.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{callcentremain$composer.filter.branch}" width="200px" onOK="fcustomer_id.focus();" ctrlKeys="#f2#f3"/></row>
+				                                  <row><label value="${labels.callcentre.customer_id}" /><textbox id="fcustomer_id"  mold="rounded"  value="@{callcentremain$composer.filter.customer_id}" width="200px" onOK="foco();" ctrlKeys="#f2#f3"/></row>
+				                                  
+			                          </rows>
+			                  </grid>
+			
+			                  <toolbar align="center">
+			                          <toolbarbutton id="btn_find" width="145px"
+			                                  label="${labels.find}  (F3)" image="/images/search.png" forward="onOK=onOKFilterField" tabindex="1" ctrlKeys="#f2#f3"/>
+			                          <toolbarbutton id="btn_clear" width="145px"
+		                                  label="${labels.clear}  (F2)" image="/images/stop.png" forward="onOK=onOKFilterField" tabindex="2" ctrlKeys="#f2#f3"/>
+			                  </toolbar>
+				        </div>
+				    </west>
+				    <center title="${labels.data}">
+					    <div>
+					    	<toolbar id="tb" orient="horizontal">
+					            <hbox>   
+					                <toolbarbutton id="btn_time" image="/images/clock_15x15.png" disabled="true"/>
+					                <toolbarbutton id="btn_back" label="${labels.back}"
+					                        image="/images/file.png" disabled="true"/>
+					                <toolbarbutton id="btn_first" label="${labels.first}"
+					                        image="/images/backward.png" disabled="true"/>
+					                <toolbarbutton id="btn_prev" label="${labels.prev}"
+					                        image="/images/back.png" disabled="true"/>
+					                <toolbarbutton id="btn_next" label="${labels.next}"
+					                        image="/images/front.png" disabled="true"/>
+					                <toolbarbutton id="btn_last" label="${labels.last}"
+					                        image="/images/forward.png" disabled="true"/>
+					            </hbox> 
+				        	</toolbar>
+					    	<div id="grd" visible="true" >
+				                <listbox style="border:none" id="dataGrid" multiple="true" rows="11" width="100%" height="330px"
+				                        selectedItem="@{callcentremain$composer.current}">
+				                        <listhead sizable="true">
+				                                
+				                                <listheader label="${labels.callcentre.branch}" width="50px"/>
+				                                <!--  
+				                                <listheader label="${labels.callcentre.company_name}" />
+				                                -->
+				                                <listheader label="${labels.callcentre.card_number}" width="130px"/>
+				                                <!--  
+				                                <listheader label="${labels.callcentre.is_primary}" />
+				                                <listheader label="${labels.callcentre.card_type}" />
+				                                <listheader label="${labels.callcentre.def_atm_account}" />
+				                                <listheader label="${labels.callcentre.def_pos_account}" />
+				                                <listheader label="${labels.callcentre.embossed_ch_name}" />
+				                                <listheader label="${labels.callcentre.expiration_date}" />
+				                                <listheader label="${labels.callcentre.card_status}" />
+				                                <listheader label="${labels.callcentre.contract_id}" />
+				                                <listheader label="${labels.callcentre.date_open}" />
+				                                <listheader label="${labels.callcentre.date_close}" />
+				                                <listheader label="${labels.callcentre.hot_card_status}" />
+				                                <listheader label="${labels.callcentre.customer_id}" />
+				                                <listheader label="${labels.callcentre.person_id}" />
+				                                <listheader label="${labels.callcentre.sex}" />
+				                                <listheader label="${labels.callcentre.residence}" />
+				                                <listheader label="${labels.callcentre.security_id}" />
+				                                -->
+				                                <listheader label="${labels.callcentre.fio}" />
+				                                <!--  
+				                                <listheader label="${labels.callcentre.first_name}" />
+				                                <listheader label="${labels.callcentre.second_name}" />
+				                                -->
+				                                <listheader label="${labels.callcentre.birth_date}" width="100px"/>
+				                                <!--  
+				                                <listheader label="${labels.callcentre.p_id_type}" />
+				                                -->
+				                                <listheader label="${labels.callcentre.p_id_number}" width="90px"/>
+				                                <!--  
+				                                <listheader label="${labels.callcentre.p_id_authority}" />
+				                                <listheader label="${labels.callcentre.p_id_issue_date}" />
+				                                <listheader label="${labels.callcentre.p_id_series}" />
+				                                <listheader label="${labels.callcentre.address_id}" />
+				                                <listheader label="${labels.callcentre.address_type}" />
+				                                <listheader label="${labels.callcentre.address_line1}" />
+				                                <listheader label="${labels.callcentre.address_line2}" />
+				                                <listheader label="${labels.callcentre.region}" />
+				                                <listheader label="${labels.callcentre.country}" />
+				                                --> 
+				                                <listheader label="${labels.callcentre.primary_phone}" width="120px"/>
+				                                <listheader label="${labels.callcentre.mobile_phone}" width="120px"/>
+				                                <!--  
+				                                <listheader label="${labels.callcentre.email}" />
+				                                -->
+				                        </listhead>
+				                </listbox>
+				                <paging id="cardcustomerPaging" width="100%"/>
+				        	</div>
+			        	</div>	
+				    </center>
+		    	</borderlayout>
+		    </north>
+		    <center>
+		    	<borderlayout id="GridBLSouth">
+				    <center title="${labels.callcentre.otherinformation}">
+		    			<div id="frmInfo" width="100%" visible="true"><!-- height="100%" -->
+			  	   			<hbox width="100%">
+				      			<grid id="frmInfogrdleft" ctrlKeys="^e#up#down" visible="true" width="100%">
+				                      <columns>
+				                              <column width="30%" />
+				                              <column width="70%" />
+				                      </columns>
+				                      <rows>
+				                                  <row><label value="${labels.callcentre.card_number}" /><textbox id="icard_number"  mold="rounded"  value="@{callcentremain$composer.current.card_number}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.embossed_ch_name}" /><textbox id="iembossed_ch_name"  mold="rounded"  value="@{callcentremain$composer.current.embossed_ch_name}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.def_atm_account}" /><textbox id="idef_atm_account"  mold="rounded"  value="@{callcentremain$composer.current.def_atm_account}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.expiration_date}" />
+								                  		<hbox>
+								                    		<textbox id="iexpiration_date"  mold="rounded"  value="@{callcentremain$composer.current.expiration_date}" width="150px"/>
+								                    		<textbox value="MMYY" mold="rounded" readonly="true" disabled="true" style="align: center;" width="48px"/>
+								                  		</hbox>
+								                  </row>
+								                  <row><label value="${labels.callcentre.card_status}" /><rcombobox id="icard_status"  mold="rounded"  selecteditem="@{callcentremain$composer.current.card_status}" width="200px" readonly="true" buttonVisible="false"/></row>
+				                                  <row><label value="${labels.callcentre.security_id}" /><textbox id="isecurity_id"  mold="rounded"  value="@{callcentremain$composer.current.security_id}" width="200px"/></row>
+				                                  <!--  
+				                                  <row><label value="${labels.callcentre.date_open}" /><datebox id="idate_open"  mold="rounded"  value="@{callcentremain$composer.current.date_open}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.card_type}" /><textbox id="icard_type"  mold="rounded"  value="@{callcentremain$composer.current.card_type}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.date_close}" /><datebox id="date_close"  mold="rounded"  value="@{callcentremain$composer.current.date_close}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.surname}" /><textbox id="surname"  mold="rounded"  value="@{callcentremain$composer.current.surname}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.first_name}" /><textbox id="first_name"  mold="rounded"  value="@{callcentremain$composer.current.first_name}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.second_name}" /><textbox id="second_name"  mold="rounded"  value="@{callcentremain$composer.current.second_name}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.company_name}" /><textbox id="company_name"  mold="rounded"  value="@{callcentremain$composer.current.company_name}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.is_primary}" /><longbox id="is_primary"  mold="rounded"  value="@{callcentremain$composer.current.is_primary}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.def_pos_account}" /><textbox id="def_pos_account"  mold="rounded"  value="@{callcentremain$composer.current.def_pos_account}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.contract_id}" /><textbox id="contract_id"  mold="rounded"  value="@{callcentremain$composer.current.contract_id}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.person_id}" /><textbox id="person_id"  mold="rounded"  value="@{callcentremain$composer.current.person_id}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.sex}" /><textbox id="sex"  mold="rounded"  value="@{callcentremain$composer.current.sex}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.residence}" /><textbox id="residence"  mold="rounded"  value="@{callcentremain$composer.current.residence}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.address_id}" /><textbox id="address_id"  mold="rounded"  value="@{callcentremain$composer.current.address_id}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.address_type}" /><textbox id="address_type"  mold="rounded"  value="@{callcentremain$composer.current.address_type}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.p_id_series}" /></row>
+				                                  -->
+				                      </rows>
+				          		</grid>
+				          		<grid id="frmInfogrdcenter" ctrlKeys="^e#up#down" visible="true" width="100%">
+				                      <columns>
+				                              <column width="30%" />
+				                              <column width="70%" />
+				                      </columns>
+				                      <rows>
+				                                  <row><label value="${labels.callcentre.fio}" /><textbox id="ifio"  mold="rounded"  value="@{callcentremain$composer.current.fio}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.p_id_number}" />
+					                                  <hbox>
+						                                  <textbox id="ip_id_series"  mold="rounded"  value="@{callcentremain$composer.current.p_id_series}" width="40px"/>
+						                                  <textbox id="ip_id_number"  mold="rounded"  value="@{callcentremain$composer.current.p_id_number}" width="158px"/>
+					                                  </hbox>
+				                                  </row>
+				                                  <row><label value="${labels.callcentre.p_id_authority}" /><textbox id="ip_id_authority"  mold="rounded"  value="@{callcentremain$composer.current.p_id_authority}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.p_id_issue_date}" /><datebox id="ip_id_issue_date"  mold="rounded"  value="@{callcentremain$composer.current.p_id_issue_date}" width="200px"/></row>
+				                                  <!--
+				                                  <row><label value="${labels.callcentre.birth_date}" /><datebox id="ibirth_date"  mold="rounded"  value="@{callcentremain$composer.current.birth_date}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.p_id_type}" /><textbox id="p_id_type"  mold="rounded"  value="@{callcentremain$composer.current.p_id_type}" width="200px"/></row>
+				                                  -->
+				                                  <row><label value="${labels.callcentre.address_line1}" /><textbox id="iaddress_line1"  mold="rounded"  value="@{callcentremain$composer.current.address_line1}" width="200px"/></row>
+				                                  <row><label value="${labels.callcentre.address_line2}" /><textbox id="iaddress_line2"  mold="rounded"  value="@{callcentremain$composer.current.address_line2}" width="200px"/></row>
+				                                  
+				                      </rows>
+				          		</grid>
+				          	</hbox>
+			          	</div>
+					</center>
+					<east title="${labels.callcentre.otherfunctions}" size="400px">
+						<borderlayout>
+				    		<north title="${labels.callcentre.blockcard}" size="125px">
+								<grid id="grdInfogrdCardBlock" ctrlKeys="^e#up#down" visible="true">
+							    	<columns>
+							            <column width="100px" />
+							            <column />
+							        </columns>
+							        <rows>
+							            <row spans="2" align="center"><hbox><label value="${labels.callcentre.blockcardreason} " /><label value="@{callcentremain$composer.current.card_number}"/></hbox></row>
+							            <row spans="2" align="center">
+							            	<hbox>
+							            		<rcombobox id="iblockReason"  mold="rounded"  selecteditem="" width="250px" readonly="true"/> 
+							            		<toolbarbutton id="ibtn_blockcard" label="${labels.callcentre.block}" image="/images/delete.png" />
+							            	</hbox>
+							            </row>
+							            <row>
+							            	<label value="${labels.callcentre.card_status}" />
+								            <hbox>
+											    <rcombobox id="ihot_card_status"  mold="rounded"  selecteditem="@{callcentremain$composer.current.hot_card_status}" width="250px" readonly="true" buttonVisible="false"/>
+								            	<toolbarbutton id="ibtn_getcardblockhistory"  image="/images/hd.png" tooltiptext="${labels.callcentre.getcardblockhistory}" style="text-align: center;"/>
+											</hbox>
+										</row>
+							        </rows>
+							    </grid>
+							</north>
+							<center title="${labels.callcentre.balancetitle}" >	          		
+							    <grid id="grdInfogrdCardBalance" ctrlKeys="^e#up#down" visible="true">
+							        <columns>
+							            <column width="30%" />
+							            <column width="70%" />
+							        </columns>
+							        <rows>
+							        	<row spans="2" align="center">
+							        		<hbox>
+							        			<label value="${labels.callcentre.balance} " />
+							        			<label value="@{callcentremain$composer.current.card_number}"/>
+							        			<label value=":"/>
+							        		</hbox>
+							        	</row>
+							            <row spans="2" align="center">
+							            	<hbox>
+							            		<textbox id="icardOnlineBalance"  mold="rounded"  value="" width="150px"/>
+							            		<toolbarbutton id="ibtn_cardbalance" label="Запрос онлайн баланса" image="/images/calculator.png" />
+							            	</hbox>
+							            </row>
+							        </rows>
+							    </grid>
+							</center>
+						</borderlayout>
+					</east>
+				</borderlayout>		
+		    </center>
+		</borderlayout>
+	</div>
+	<div id="cardcustomerFormDiv" width="100%" height="100%" visible="false"><!-- cardcustomerFormDiv  -->
+		<borderlayout>
+			<west id="west_2" title="${labels.callcentre.cardalldata}" maxsize="350" minsize="350" size="350px" splittable="false" collapsible="true" >
+				<div>
+				<tabbox mold="accordion">
+					<tabs>
+				        <tab label="${labels.callcentre.carddata}" />
+				        <tab label="${labels.callcentre.customerdata}" />
+				        <tab label="${labels.callcentre.otherdata}" />
+				    </tabs>
+				    <tabpanels>
+				        <tabpanel focus="true">
+					        <grid id="frmgrd1" ctrlKeys="^e#up#down" visible="true">
+					              <columns>
+					                      <column width="30%" />
+					                      <column width="70%" />
+					              </columns>
+					              <rows>
+					              		<row><label value="${labels.callcentre.branch}" /><textbox id="branch_"  mold="rounded"  value="@{callcentremain$composer.current.branch}" width="200px"/></row>
+				                        <row><label value="${labels.callcentre.card_number}" /><textbox id="card_number"  mold="rounded"  value="@{callcentremain$composer.current.card_number}" width="200px"/></row>
+					                    <row><label value="${labels.callcentre.embossed_ch_name}" /><textbox id="embossed_ch_name"  mold="rounded"  value="@{callcentremain$composer.current.embossed_ch_name}" width="200px"/></row>
+					                    <row><label value="${labels.callcentre.security_id}" /><textbox id="security_id"  mold="rounded"  value="@{callcentremain$composer.current.security_id}" width="200px"/></row>
+				                        <!--  
+					                    <row><label value="${labels.callcentre.card_type}" /><textbox id="card_type"  mold="rounded"  value="@{callcentremain$composer.current.card_type}" width="200px"/></row>
+					                    -->
+					                    <row><label value="${labels.callcentre.def_atm_account}" /><textbox id="def_atm_account"  mold="rounded"  value="@{callcentremain$composer.current.def_atm_account}" width="200px"/></row>
+					                    <row><label value="${labels.callcentre.expiration_date}" />
+					                    	<hbox>
+					                    		<textbox id="expiration_date"  mold="rounded"  value="@{callcentremain$composer.current.expiration_date}" width="150px"/>
+					                    		<textbox value="MMYY" mold="rounded" readonly="true" disabled="true" style="align: center;" width="48px"/>
+					                    	</hbox>
+					                    </row>
+					                    <row><label value="${labels.callcentre.card_status}" /><rcombobox id="card_status"  mold="rounded"  selecteditem="@{callcentremain$composer.current.card_status}" width="200px" readonly="true" buttonVisible="false"/></row>
+					                    <row><label value="${labels.callcentre.hot_card_status}" /><rcombobox id="hot_card_status"  mold="rounded"  selecteditem="@{callcentremain$composer.current.hot_card_status}" width="200px" readonly="true" buttonVisible="false"/></row>
+					                    <row><label value="${labels.callcentre.date_open}" /><datebox id="date_open"  mold="rounded"  value="@{callcentremain$composer.current.date_open}" width="200px"/></row>
+					                    <row><label value="${labels.callcentre.date_close}" /><datebox id="date_close"  mold="rounded"  value="@{callcentremain$composer.current.date_close}" width="200px"/></row>
+					              </rows>
+					  		</grid>
+				        </tabpanel>
+				        <tabpanel focus="true">
+				        	<grid id="frmgrd2" ctrlKeys="^e#up#down" visible="true">
+					              <columns>
+					                      <column width="30%" />
+					                      <column width="70%" />
+					              </columns>
+					              <rows>
+					                      <row><label value="${labels.callcentre.branch}" /><textbox id="branch"  mold="rounded"  value="@{callcentremain$composer.current.branch}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.customer_id}" /><textbox id="customer_id"  mold="rounded"  value="@{callcentremain$composer.current.customer_id}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.fio}" /><textbox id="fio"  mold="rounded"  value="@{callcentremain$composer.current.fio}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.birth_date}" /><datebox id="birth_date"  mold="rounded"  value="@{callcentremain$composer.current.birth_date}" width="200px"/></row>
+				                          <!--
+				                          <row><label value="${labels.callcentre.p_id_type}" /><textbox id="p_id_type"  mold="rounded"  value="@{callcentremain$composer.current.p_id_type}" width="200px"/></row>
+				                          -->
+				                          <row><label value="${labels.callcentre.p_id_number}" />
+				                              <hbox>
+				                                  <textbox id="p_id_series"  mold="rounded"  value="@{callcentremain$composer.current.p_id_series}" width="40px"/>
+				                                  <textbox id="p_id_number"  mold="rounded"  value="@{callcentremain$composer.current.p_id_number}" width="158px"/>
+				                              </hbox>
+				                          </row>
+				                          <row><label value="${labels.callcentre.p_id_authority}" /><textbox id="p_id_authority"  mold="rounded"  value="@{callcentremain$composer.current.p_id_authority}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.p_id_issue_date}" /><datebox id="p_id_issue_date"  mold="rounded"  value="@{callcentremain$composer.current.p_id_issue_date}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.country}" /><textbox id="country"  mold="rounded"  value="@{callcentremain$composer.current.country}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.region}" /><textbox id="region"  mold="rounded"  value="@{callcentremain$composer.current.region}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.address_line1}" /><textbox id="address_line1"  mold="rounded"  value="@{callcentremain$composer.current.address_line1}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.address_line2}" /><textbox id="address_line2"  mold="rounded"  value="@{callcentremain$composer.current.address_line2}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.primary_phone}" /><textbox id="primary_phone"  mold="rounded"  value="@{callcentremain$composer.current.primary_phone}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.mobile_phone}" /><textbox id="mobile_phone"  mold="rounded"  value="@{callcentremain$composer.current.mobile_phone}" width="200px"/></row>
+				                          <row><label value="${labels.callcentre.email}" /><textbox id="email"  mold="rounded"  value="@{callcentremain$composer.current.email}" width="200px"/></row>
+				                          
+					              </rows>
+					  		</grid>
+				        </tabpanel>
+				        <tabpanel>
+				        	<grid id="frmgrd3" ctrlKeys="^e#up#down" visible="true">
+					              <columns>
+					                      <column width="30%" />
+					                      <column width="70%" />
+					              </columns>
+					              <rows>
+					                      <row><label value="${labels.callcentre.contract_id}" /><textbox id="contract_id"  mold="rounded"  value="@{callcentremain$composer.current.contract_id}" width="200px"/></row>
+					              </rows>
+					  		</grid>
+				        </tabpanel>
+	    			</tabpanels>
+				</tabbox>
+	  			</div>
+	  		</west>
+	  		<center>
+	  			<div width="100%" height="100%">
+	  			<toolbar id="frmtb">
+					                <toolbarbutton id="frmbtn_time" image="/images/clock_15x15.png" disabled="true"/>
+					                <toolbarbutton id="frmbtn_back" label="${labels.grid}"
+					                        image="/images/folder.png" disabled="true"/>
+					                <toolbarbutton id="frmbtn_first" label="${labels.first}"
+					                        image="/images/backward.png" disabled="true"/>
+					                <toolbarbutton id="frmbtn_prev" label="${labels.prev}"
+					                        image="/images/back.png" disabled="true"/>
+					                <toolbarbutton id="frmbtn_next" label="${labels.next}"
+					                        image="/images/front.png" disabled="true"/>
+					                <toolbarbutton id="frmbtn_last" label="${labels.last}"
+					                        image="/images/forward.png" disabled="true"/>
+				</toolbar>
+					    	
+	  			<tabbox width="100%" height="100%">
+					<tabs>
+				        <tab label="${labels.callcentre.blockcardtitle}" />
+				        <tab label="${labels.callcentre.cardhistorytitle}" />
+				        <tab label="${labels.callcentre.depositetitle}" />
+				    </tabs>
+				    <tabpanels>
+				        <tabpanel>
+				        	<div width="100%" height="100%">
+				        	<borderlayout>
+					    		<north size="125px">
+									<borderlayout>
+					    				<west title="${labels.callcentre.blockcard}"  size="60%">
+											<grid ctrlKeys="^e#up#down" visible="true">
+										    	<columns>
+										            <column width="30%" />
+										            <column width="70%" />
+										        </columns>
+										        <rows>
+										            <row spans="2" align="center"><hbox><label value="${labels.callcentre.blockcardreason}" /><label value="@{callcentremain$composer.current.card_number}"/></hbox></row>
+										            <row spans="2" align="center">
+										            	<hbox>
+										            		<rcombobox id="blockReason"  mold="rounded"  selecteditem="" width="250px" readonly="true"/> 
+										            		<toolbarbutton id="btn_blockcard" label="${labels.callcentre.block}" image="/images/delete.png" />
+										            	</hbox>
+										            </row>
+										            <row>
+											            <label value="${labels.callcentre.card_status}" />
+											            <hbox>
+												            <rcombobox id="block_hot_card_status"  mold="rounded"  selecteditem="@{callcentremain$composer.current.hot_card_status}" width="250px" readonly="true" buttonVisible="false"/>
+												            <toolbarbutton id="btn_getcardblockhistory"  image="/images/hd.png" tooltiptext="${labels.pdf} историю блокировок карты" style="text-align: center;"/>
+										            	</hbox>
+										            </row>
+										        </rows>
+										    </grid>
+								    	</west>
+								    	<east title="${labels.callcentre.balancetitle}" size="40%">
+								    		<grid ctrlKeys="^e#up#down" visible="true">
+										        <columns>
+										            <column width="30%" />
+										            <column width="70%" />
+										        </columns>
+										        <rows>
+										        	<row spans="2" align="center">
+										        		<hbox>
+										        			<label value="${labels.callcentre.balance}" />
+										        			<label value="@{callcentremain$composer.current.card_number}"/>
+										        			<label value=" составляет:"/>
+										        		</hbox>
+										        	</row>
+										            <row spans="2" align="center">
+										            	<hbox>
+										            		<textbox id="cardOnlineBalance"  mold="rounded"  value="" width="200px" readonly="true"/>
+										            	</hbox>
+										            </row>
+										            <row spans="2" align="center"><toolbarbutton id="btn_cardbalance" label="${labels.callcentre.callbalance}" image="/images/calculator.png" /></row>
+										        </rows>
+										    </grid>
+								    	</east>
+								    </borderlayout>
+								</north>
+								<center title="${labels.callcentre.ministatementtitle}">	          		
+								    <div width="100%" height="100%" align="center">
+								    	<grid ctrlKeys="^e#up#down" visible="true">
+										        <columns>
+										            <column width="30%" />
+										            <column width="70%" />
+										        </columns>
+										        <rows>
+										        	<row spans="2" align="center">
+										        		<hbox>
+										        			<label value="${labels.callcentre.ministatement}"/>
+										        			<label value="@{callcentremain$composer.current.card_number}"/>
+										        		</hbox>
+										        	</row>
+										        	<row spans="2" align="center">
+										        		<hbox>
+										            		<label value="${labels.callcentre.cardbalance}" />
+										        			<label id="mcardOnlineBalance" value=""/>
+										        			<separator spacing="20px" orient="vertical"/>
+										        			<label value="${labels.callcentre.operation_time}: " />
+										            		<label id="operation_time" value="" />
+										        		</hbox>
+										        	</row>
+										            <row spans="2" align="center">
+										            	<hbox>
+											            	<toolbarbutton id="btn_getcardhistorymini" label="${labels.callcentre.callministatement}" width="200px" style="text-align: center;"/>
+											            	<toolbarbutton id="btn_getcardhistoryminipdf"  image="/images/pdf16.png" tooltiptext="${labels.pdf}" style="text-align: center;"/>
+										            	</hbox>
+									    			</row>
+										        </rows>
+										</grid>
+								    	
+								    	<listbox style="border:none" id="dataGridCardTransactionsMini" multiple="true" rows="11" width="100%" height="330px">
+						                        <listhead sizable="true">
+						                                <!--  
+						                                <listheader label="${labels.callcentre.reqid}" />
+						                                <listheader label="${labels.callcentre.branch}" />
+						                                <listheader label="${labels.callcentre.req_merchant_id}" />
+						                                <listheader label="${labels.callcentre.terminal_id}" />
+						                                <listheader label="${labels.callcentre.host_ip}" />
+						                                <listheader label="${labels.callcentre.host_port}" />
+						                                <listheader label="${labels.callcentre.stan}" />
+						                                <listheader label="${labels.callcentre.message_type}" />
+						                                -->
+						                                <listheader label="${labels.callcentre.card_number}" />
+						                                <!-- 
+						                                <listheader label="${labels.callcentre.exp_date}" />
+						                                <listheader label="${labels.callcentre.s_out}" />
+						                                <listheader label="${labels.callcentre.operation_date}" />
+						                                <listheader label="${labels.callcentre.operation_time}" />
+						                                <listheader label="${labels.callcentre.req_response_id}" />
+						                                <listheader label="${labels.callcentre.response_code}" />
+						                                <listheader label="${labels.callcentre.action_code}" />
+						                                <listheader label="${labels.callcentre.processing_code}" />
+						                                <listheader label="${labels.callcentre.state}" />
+						                                <listheader label="${labels.callcentre.retrievalrefnumber}" />
+						                                <listheader label="${labels.callcentre.additional_data}" />
+						                                <listheader label="${labels.callcentre.user_id}" />
+						                                -->
+						                                <listheader label="${labels.callcentre.transaction_date}" />
+						                                <listheader label="${labels.callcentre.transaction_type}" />
+						                                <listheader label="${labels.callcentre.dc}" />
+						                                <listheader label="${labels.callcentre.amount}" />
+						                                <listheader label="${labels.callcentre.currency}" />
+						                                <listheader label="${labels.callcentre.merchant_id}" />
+						                                <listheader label="${labels.callcentre.merchant_location}" />
+						                                <listheader label="${labels.callcentre.response_id}" />
+						                        </listhead>
+						                </listbox>
+					                </div>
+								</center>
+							</borderlayout>
+							</div>
+				        </tabpanel>
+				         <tabpanel>
+				         	<div width="100%">
+				         		<toolbar id="chtb" width="100%" height="28px">
+					                <hbox align="center" width="100%">
+					                <datebox id="chdate_from" tooltiptext="${labels.date_from}" mold="rounded" width="150px"/>
+					                <separator orient="vertical" spacing="10px"/>
+					                <datebox id="chdate_to" tooltiptext="${labels.date_to}" mold="rounded" width="150px"/>
+					                <separator orient="vertical" spacing="10px"/>
+					                <toolbarbutton id="chbtn_gethistory" label="${labels.callcentre.getcardacchistory}" image="/images/folder.png" disabled="false"/>
+					                <separator orient="vertical" spacing="20px" bar="true" height="100%"/>
+					                <toolbarbutton id="chbtn_1week" label="${labels.callcentre.oneweek}" image="/images/folder.png" disabled="false"/>
+					                <toolbarbutton id="chbtn_2week" label="${labels.callcentre.twoweek}" image="/images/folder.png" disabled="false"/>
+					                <toolbarbutton id="chbtn_1month" label="${labels.callcentre.onemonth}" image="/images/folder.png" disabled="false"/>
+					                <toolbarbutton id="chbtn_pdf" image="/images/pdf16.png" tooltiptext="${labels.pdf}" style="align: center;"/>
+									</hbox>
+								</toolbar>
+				         		<listbox style="border:none" id="cardAccHistoryGrid" multiple="true" rows="4" width="100%" height="330px"
+				         			selectedItem="@{callcentremain$composer.currentAccTr}">
+			                        <listhead sizable="true">
+			                                <!--  
+			                                <listheader label="${labels.callcentre.effectivedate}" />
+			                                -->
+			                                <listheader label="${labels.callcentre.effectivetime}" width="130px"/>
+			                                <!--  
+			                                <listheader label="${labels.callcentre.v_date}" />
+			                                -->
+			                                <listheader label="${labels.callcentre.fetransactiontype}" />
+			                                <listheader label="${labels.callcentre.amount}" align="right" width="120px"/>
+			                                <listheader label="${labels.callcentre.s_out}" align="right" width="120px"/>
+			                                <!--  
+			                                <listheader label="${labels.callcentre.branch}" width="60px"/>
+			                                -->
+			                                <listheader label="${labels.callcentre.card_number}" width="110px"/>
+			                                <!--  
+			                                <listheader label="${labels.callcentre.accountnumber}" width="120px"/>
+			                                -->
+			                                <listheader label="${labels.callcentre.state}" width="110px"/>
+			                                <listheader label="${labels.callcentre.isoterminalbranch}" width="60px"/>
+			                                <listheader label="${labels.callcentre.isoterminalid}" width="80px"/>
+			                                <!--  
+			                                <listheader label="${labels.callcentre.isomerchantbranch}" />
+			                                <listheader label="${labels.callcentre.isomerchantid}" />
+			                                <listheader label="${labels.callcentre.transactionplace}" />
+			                                -->
+			                        </listhead>
+				                </listbox>
+				                <paging id="cardAccTransactionPaging" width="100%" />
+				         		<hbox>
+				         		<grid ctrlKeys="^e#up#down" visible="true" width="100%">
+				                      <columns>
+				                              <column width="30%" />
+				                              <column width="70%" />
+				                      </columns>
+				                      <rows>
+				                            <row><label value="${labels.callcentre.effectivetime}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.effectivetime}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.v_date}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.v_date}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.branch}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.branch}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.card_number}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.card_number}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.accountnumber}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.accountnumber}" width="100%"/></row>
+			                                <!--  
+			                                <row><label value="${labels.callcentre.amount}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.amount}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.s_out}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.s_out}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.effectivetime}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.effectivetime}" width="200px"/></row>
+			                                <row><label value="${labels.callcentre.fetransactiontype}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.fetransactiontype}" width="200px"/></row>
+			                                <row><label value="${labels.callcentre.state}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.state}" width="200px"/></row>
+			                                -->
+				                      </rows>
+				          		</grid>
+				          		<grid ctrlKeys="^e#up#down" visible="true" width="100%">
+				                      <columns>
+				                              <column width="30%" />
+				                              <column width="70%" />
+				                      </columns>
+				                      <rows>
+				                            <row><label value="${labels.callcentre.isoterminalbranch}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.isoterminalbranch}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.isoterminalid}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.isoterminalid}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.isomerchantbranch}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.isomerchantbranch}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.isomerchantid}" /><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.isomerchantid}" width="100%"/></row>
+			                                <row><label value="${labels.callcentre.transactionplace}" multiline="false"/><textbox mold="rounded"  value="@{callcentremain$composer.currentAccTr.transactionplace}" width="100%"/></row>
+				                      </rows>
+				          		</grid>
+				         		</hbox>
+				         	</div>
+				        </tabpanel>
+				         <tabpanel>
+				         	<div>
+				         		<listbox style="border:none" id="sDepositeGrid" multiple="true" rows="11" width="100%" height="330px">
+				                    <listhead sizable="true">
+				                            <listheader label="${labels.callcentre.id}" width="80px"/>
+				                            <listheader label="${labels.callcentre.dateopen}"  width="100px"/>
+				                            <listheader label="${labels.callcentre.saldo}"  width="150px"/>
+				                            <listheader label="${labels.callcentre.name}" />
+				                            <listheader label="${labels.callcentre.clientcode}"  width="80px"/>
+				                            <listheader label="${labels.callcentre.currency}"  width="60px"/>
+				                            <listheader label="${labels.callcentre.dateclose}"  width="100px"/>
+				                            <listheader label="${labels.callcentre.state}" width="80px"/>
+				                    </listhead>
+				                </listbox>
+				         	</div>
+				        </tabpanel>
+	    			</tabpanels>
+				</tabbox>
+				</div>
+	  		</center>
+	  	</borderlayout>
+	</div>
+	
+	<window id="printwnd"     mode="overlapped" title="${labels.print}" position="center,center" visible="false" closable="true" 
+	maximizable="true" width="950px"  height="550px" onClose="self.visible = false; event.stopPropagation();">
+		<!-- <script src="scripts/iprint.js"/> -->
+	
+		<iframe id="rpframe" width="100%"  height="100%"/>
+		<!-- <iframe id="rpframe" width="950px"  height="550px"/>-->
+	                 <!--  <toolbar>
+	                           <toolbarbutton id="btn_print"
+	                                  label="${labels.print}" image="/images/printer.png" />
+	                          <toolbarbutton id="btn_cancel"
+	                                  label="Закрыть" image="/images/delete.png" />
+	                  </toolbar>-->
+	</window>
+	
+	<window id="wnd"     mode="overlapped" title="${labels.callcentre.cardblockhistory}" position="center,center" visible="false" closable="true" 
+	maximizable="true" width="950px"  height="550px" onClose="self.visible = false; event.stopPropagation();">
+		<include id="wicall" width="100%"  height="100%" style="overflow: auto;"/>
+	</window>
+
+</window>

@@ -1,0 +1,10 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <window title="" border="none" id="ipWnd" apply="com.is.customer_.entrepreneur.IPComposer">
+        <include id="customerInclude" src="/customer/customer_.zul"/>
+        <toolbar>
+            <toolbarbutton id="checkBtn" label="Проверить"/>
+            <toolbarbutton id="createBtn" label="Открыть"/>
+        </toolbar>
+    </window>
+</zk>

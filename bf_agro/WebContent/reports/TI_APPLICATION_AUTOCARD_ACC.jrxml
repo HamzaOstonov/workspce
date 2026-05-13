@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="237"/>
+	<parameter name="CLIENT_NAME1" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME1>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="POST_ADDRESS" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<POST_ADDRESS>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="V_DATE" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["<V_DATE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUMMA3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<SUMMA3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PSUMMA3" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PSUMMA3>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TCURRENCY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["долларах США"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="OPENDOPER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<OPENDOPER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TDP_NUM" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<TDP_NUM>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PURPOSE2" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<PURPOSE2>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_SERIAL" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_SERIAL>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_NUMBER>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_DATE_ISSUE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_DATE_ISSUE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DOC_ISSUE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DOC_ISSUE>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_IMG_PATH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\shara\\TIETO\\logo_ipak.jpg"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="acc_22618" class="java.lang.String">
+		<defaultValueExpression><![CDATA[22618]]></defaultValueExpression>
+	</parameter>
+	<title>
+		<band height="765" splitType="Stretch">
+			<staticText>
+				<reportElement x="216" y="11" width="339" height="20"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[АИКБ "Ипак-Йули"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="44" width="12" height="11"/>
+				<textElement verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[от]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="228" y="44" width="326" height="11"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_NAME1}+" "+$P{CLIENT_NAME2}+" "+$P{CLIENT_NAME3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="216" y="57" width="339" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Фамилия, Имя, Отчество заявителя)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="67" width="554" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ЗАЯВЛЕНИЕ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="341" width="472" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="112" width="139" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Прошу открыть счет ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="184" width="101" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[V]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="397" width="530" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[ОТМЕТКА БАНКА]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="491" width="157" height="18"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Начальник АИКБ "Ипак Йули":]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="31" width="338" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Наименование банка)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="112" width="391" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[карточный счет]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="126" width="391" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(депозит до востребования, сберегательный депозит, карточный счет и др.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="136" width="89" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[В Долл. США]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="150" width="88" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Наименование валюты)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="136" width="33" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[на имя]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="146" y="136" width="408" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_NAME1}+" "+$P{CLIENT_NAME2}+" "+$P{CLIENT_NAME3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="146" y="150" width="408" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Фамилия, Имя, Отчество)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="25" y="263" width="529" height="74"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\tПрошу открыть на мое имя специальный валютный карточный счет и выпустить валютную пластиковую карточку.  \n\tНастоящим подтверждаю достоверность и полноту предоставляемой информации, и уполномочиваю вас осуществлять все необходимые запросы.  \n\tС условиями Договора «На выпуск и обслуживание пластиковых карточек в иностранной валюте» ознакомлен и согласен. "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="216" width="528" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Ф.И.О.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="341" width="56" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Дата:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="355" width="236" height="14"/>
+				<box leftPadding="15">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[V]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="369" width="237" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Подпись владельца счета)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="379" width="529" height="18"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="419" width="190" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Документы на открытие счета проверил Гл. бух.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="419" width="263" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="485" y="419" width="70" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="485" y="433" width="70" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Подпись)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="443" width="87" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Разрешаю открыть]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="457" width="528" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(депозит до востребования, сберегательный депозит, карточный счет и др.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="443" width="148" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[карточный счет]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="481" width="87" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Наименование валюты)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="509" width="91" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[(Подпись)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="491" width="91" height="18"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="26" y="226" width="509" height="14"/>
+				<textElement verticalAlignment="Bottom" markup="none">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["которая является обязательной при совершении операций по моему счету №22618840"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="519" width="56" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Счет открыт]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="543" width="87" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Номер счета]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="564" width="87" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Другие отметки]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="564" width="103" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Серия и номер паспорта:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="578" width="103" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Дата выдачи:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="592" width="103" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Кем выдан:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="606" width="103" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Адрес:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="216" y="564" width="338" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DOC_SERIAL}+$P{DOC_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="216" y="578" width="338" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DOC_DATE_ISSUE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="216" y="592" width="338" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DOC_ISSUE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="216" y="606" width="338" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{POST_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="184" width="314" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Сообщаю образец моей подписи]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="443" width="88" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="443" width="130" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="443" width="75" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[счет]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="467" width="208" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="519" width="52" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA["                    "]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="519" width="102" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="519" width="13" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[20]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="519" width="28" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="519" width="56" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="false" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[года.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="543" width="28" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="543" width="52" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[22618840]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="543" width="198" height="14"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="467" width="86" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[В Долл. США]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="26" y="198" width="528" height="18"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENT_NAME1}+" "+$P{CLIENT_NAME2}+" "+$P{CLIENT_NAME3}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize" onErrorType="Blank">
+				<reportElement x="23" y="0" width="123" height="86"/>
+				<imageExpression><![CDATA[$P{P_IMG_PATH}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="114" y="620" width="103" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Вид ПК:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="216" y="620" width="338" height="14"/>
+				<box bottomPadding="1">
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="7" isBold="true" pdfEncoding="Cp1251"/>
+				</textElement>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+</jasperReport>

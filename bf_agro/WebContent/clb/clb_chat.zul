@@ -1,0 +1,34 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<window border="none" id="chat_main" apply="com.is.clb.chat.Chat_view_ctrl"  
+style="width:100%; margin-bottom:30px; background: none;overflow-y: auto;" >
+
+<timer id="refresh_timer"/>
+	<div>
+	<hbox hflex="1" height="600px">
+		<vbox hflex="1" vflex="1">
+				<listbox id="chatslist" vflex="1"><!-- 
+				selectedItem="@{chat_main$composer.current}" --> 
+					<listhead>
+						<listheader label=""/>
+						<listheader width="10%"/>
+					</listhead>
+				</listbox>
+		</vbox>
+		<vbox vflex="1" hflex="2">
+			
+				<textbox id="chat_content" mold="rounded"  style="resize: none;"
+				multiline="true" width="800px" vflex="1" readonly="true"/>
+				<separator/>
+				<textbox id="message" mold="rounded" multiline="true" 
+				style="resize: none;" height="50px"  width="800px"/>
+				<hbox>
+					<button label="send" id="save_message" style="text-align: left;"/>
+					<space  width="60%"/>
+					<button label="finish chat" id="finish_chat" style="text-align: left;"/>
+				</hbox>
+		</vbox>
+				
+				
+	</hbox>
+	</div>
+</window>

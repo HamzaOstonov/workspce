@@ -1,0 +1,123 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<panel id="signlogmain" width="100%"  height="100%" border="normal" apply="com.is.sign.log.SignlogViewCtrl">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" label="${labels.back}" image="/images/file.png" />
+        <toolbarbutton id="btn_search" label="${labels.search}" image="/images/search.png" />
+        <toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" />
+
+        <toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png" />
+        <toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png" />
+        <toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png" />
+        <toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png" />
+	</toolbar>
+	<panelchildren>
+        <div id="grd">
+			<paging id="signlogPaging" width="100%" mold="os"/>
+            <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%" selectedItem="@{signlogmain$composer.current}">
+            	<listhead sizable="true">
+					<listheader label="${labels.signlog.id}" />
+					<listheader label="${labels.signlog.dttime}" />
+					<listheader label="${labels.signlog.group_id}" />
+					<listheader label="${labels.signlog.deal_id}" />
+					<listheader label="${labels.signlog.action_id}" />
+					<listheader label="${labels.signlog.object_id}" />
+					<listheader label="${labels.signlog.sign_text}" />
+					<listheader label="${labels.signlog.sign_data}" />
+					<listheader label="${labels.signlog.key_type}" />
+					<listheader label="${labels.signlog.key_code}" />
+					<listheader label="${labels.signlog.key_sn}" />
+					<listheader label="${labels.signlog.branch}" />
+					<listheader label="${labels.signlog.user_id}" />
+					<listheader label="${labels.signlog.username}" />
+					<listheader label="${labels.signlog.scheme}" />
+					<listheader label="${labels.signlog.state}" />
+					<listheader label="${labels.signlog.err_msg}" />
+                </listhead>
+			</listbox>
+        </div>
+        <div id="frm" visible="false">
+			<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+             	</columns>
+              	<rows>
+
+					<row><label value="${labels.signlog.id}" /><longbox id="id"  mold="rounded"  value="@{signlogmain$composer.current.id}" /></row>
+					<row><label value="${labels.signlog.dttime}" /><datebox id="dttime"  mold="rounded"  value="@{signlogmain$composer.current.dttime}" /></row>
+					<row><label value="${labels.signlog.group_id}" /><intbox id="group_id"  mold="rounded"  value="@{signlogmain$composer.current.group_id}" /></row>
+					<row><label value="${labels.signlog.deal_id}" /><intbox id="deal_id"  mold="rounded"  value="@{signlogmain$composer.current.deal_id}" /></row>
+					<row><label value="${labels.signlog.action_id}" /><intbox id="action_id"  mold="rounded"  value="@{signlogmain$composer.current.action_id}" /></row>
+					<row><label value="${labels.signlog.object_id}" /><longbox id="object_id"  mold="rounded"  value="@{signlogmain$composer.current.object_id}" /></row>
+					<row><label value="${labels.signlog.sign_text}" /><textbox id="sign_text"  mold="rounded"  value="@{signlogmain$composer.current.sign_text}" /></row>
+					<row><label value="${labels.signlog.sign_data}" /><textbox id="sign_data"  mold="rounded"  value="@{signlogmain$composer.current.sign_data}" /></row>
+					<row><label value="${labels.signlog.key_type}" /><intbox id="key_type"  mold="rounded"  value="@{signlogmain$composer.current.key_type}" /></row>
+					<row><label value="${labels.signlog.key_code}" /><textbox id="key_code"  mold="rounded"  value="@{signlogmain$composer.current.key_code}" /></row>
+					<row><label value="${labels.signlog.key_sn}" /><textbox id="key_sn"  mold="rounded"  value="@{signlogmain$composer.current.key_sn}" /></row>
+					<row><label value="${labels.signlog.branch}" /><textbox id="branch"  mold="rounded"  value="@{signlogmain$composer.current.branch}" /></row>
+					<row><label value="${labels.signlog.user_id}" /><intbox id="user_id"  mold="rounded"  value="@{signlogmain$composer.current.user_id}" /></row>
+					<row><label value="${labels.signlog.username}" /><textbox id="username"  mold="rounded"  value="@{signlogmain$composer.current.username}" /></row>
+					<row><label value="${labels.signlog.scheme}" /><textbox id="scheme"  mold="rounded"  value="@{signlogmain$composer.current.scheme}" /></row>
+					<row><label value="${labels.signlog.state}" /><intbox id="state"  mold="rounded"  value="@{signlogmain$composer.current.state}" /></row>
+					<row><label value="${labels.signlog.err_msg}" /><textbox id="err_msg"  mold="rounded"  value="@{signlogmain$composer.current.err_msg}" /></row>
+                </rows>
+          	</grid>
+          	<grid id="addgrd" visible="false">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+            	</columns>
+             	<rows>
+
+					<row><label value="${labels.signlog.id}" /><longbox id="aid"  mold="rounded"  value="@{signlogmain$composer.current.id}" /></row>
+					<row><label value="${labels.signlog.dttime}" /><datebox id="adttime"  mold="rounded"  value="@{signlogmain$composer.current.dttime}" /></row>
+					<row><label value="${labels.signlog.group_id}" /><intbox id="agroup_id"  mold="rounded"  value="@{signlogmain$composer.current.group_id}" /></row>
+					<row><label value="${labels.signlog.deal_id}" /><intbox id="adeal_id"  mold="rounded"  value="@{signlogmain$composer.current.deal_id}" /></row>
+					<row><label value="${labels.signlog.action_id}" /><intbox id="aaction_id"  mold="rounded"  value="@{signlogmain$composer.current.action_id}" /></row>
+					<row><label value="${labels.signlog.object_id}" /><longbox id="aobject_id"  mold="rounded"  value="@{signlogmain$composer.current.object_id}" /></row>
+					<row><label value="${labels.signlog.sign_text}" /><textbox id="asign_text"  mold="rounded"  value="@{signlogmain$composer.current.sign_text}" /></row>
+					<row><label value="${labels.signlog.sign_data}" /><textbox id="asign_data"  mold="rounded"  value="@{signlogmain$composer.current.sign_data}" /></row>
+					<row><label value="${labels.signlog.key_type}" /><intbox id="akey_type"  mold="rounded"  value="@{signlogmain$composer.current.key_type}" /></row>
+					<row><label value="${labels.signlog.key_code}" /><textbox id="akey_code"  mold="rounded"  value="@{signlogmain$composer.current.key_code}" /></row>
+					<row><label value="${labels.signlog.key_sn}" /><textbox id="akey_sn"  mold="rounded"  value="@{signlogmain$composer.current.key_sn}" /></row>
+					<row><label value="${labels.signlog.branch}" /><textbox id="abranch"  mold="rounded"  value="@{signlogmain$composer.current.branch}" /></row>
+					<row><label value="${labels.signlog.user_id}" /><intbox id="auser_id"  mold="rounded"  value="@{signlogmain$composer.current.user_id}" /></row>
+					<row><label value="${labels.signlog.username}" /><textbox id="ausername"  mold="rounded"  value="@{signlogmain$composer.current.username}" /></row>
+					<row><label value="${labels.signlog.scheme}" /><textbox id="ascheme"  mold="rounded"  value="@{signlogmain$composer.current.scheme}" /></row>
+					<row><label value="${labels.signlog.state}" /><intbox id="astate"  mold="rounded"  value="@{signlogmain$composer.current.state}" /></row>
+					<row><label value="${labels.signlog.err_msg}" /><textbox id="aerr_msg"  mold="rounded"  value="@{signlogmain$composer.current.err_msg}" /></row>
+               	</rows>
+           	</grid>
+   			<grid id="fgrd" visible="false">
+            	<columns>
+             		<column width="20%" />
+                   	<column width="80%" />
+             	</columns>
+          		<rows>
+
+					<row><label value="${labels.signlog.id}" /><longbox id="fid"  mold="rounded"  value="@{signlogmain$composer.filter.id}" /></row>
+					<row><label value="${labels.signlog.dttime}" /><datebox id="fdttime"  mold="rounded"  value="@{signlogmain$composer.filter.dttime}" /></row>
+					<row><label value="${labels.signlog.group_id}" /><intbox id="fgroup_id"  mold="rounded"  value="@{signlogmain$composer.filter.group_id}" /></row>
+					<row><label value="${labels.signlog.deal_id}" /><intbox id="fdeal_id"  mold="rounded"  value="@{signlogmain$composer.filter.deal_id}" /></row>
+					<row><label value="${labels.signlog.action_id}" /><intbox id="faction_id"  mold="rounded"  value="@{signlogmain$composer.filter.action_id}" /></row>
+					<row><label value="${labels.signlog.object_id}" /><longbox id="fobject_id"  mold="rounded"  value="@{signlogmain$composer.filter.object_id}" /></row>
+					<row><label value="${labels.signlog.sign_text}" /><textbox id="fsign_text"  mold="rounded"  value="@{signlogmain$composer.filter.sign_text}" /></row>
+					<row><label value="${labels.signlog.sign_data}" /><textbox id="fsign_data"  mold="rounded"  value="@{signlogmain$composer.filter.sign_data}" /></row>
+					<row><label value="${labels.signlog.key_type}" /><intbox id="fkey_type"  mold="rounded"  value="@{signlogmain$composer.filter.key_type}" /></row>
+					<row><label value="${labels.signlog.key_code}" /><textbox id="fkey_code"  mold="rounded"  value="@{signlogmain$composer.filter.key_code}" /></row>
+					<row><label value="${labels.signlog.key_sn}" /><textbox id="fkey_sn"  mold="rounded"  value="@{signlogmain$composer.filter.key_sn}" /></row>
+					<row><label value="${labels.signlog.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{signlogmain$composer.filter.branch}" /></row>
+					<row><label value="${labels.signlog.user_id}" /><intbox id="fuser_id"  mold="rounded"  value="@{signlogmain$composer.filter.user_id}" /></row>
+					<row><label value="${labels.signlog.username}" /><textbox id="fusername"  mold="rounded"  value="@{signlogmain$composer.filter.username}" /></row>
+					<row><label value="${labels.signlog.scheme}" /><textbox id="fscheme"  mold="rounded"  value="@{signlogmain$composer.filter.scheme}" /></row>
+					<row><label value="${labels.signlog.state}" /><intbox id="fstate"  mold="rounded"  value="@{signlogmain$composer.filter.state}" /></row>
+					<row><label value="${labels.signlog.err_msg}" /><textbox id="ferr_msg"  mold="rounded"  value="@{signlogmain$composer.filter.err_msg}" /></row>
+              	</rows>
+         	</grid>
+			<toolbar>
+         		<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+              	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+           	</toolbar>
+        </div>
+	</panelchildren>
+</panel>

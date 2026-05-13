@@ -1,0 +1,349 @@
+<?component name="robjbox" extends="combobox" class="com.is.utils.refobj.RefObjCBox"?>
+<?component name="rcurrbox" extends="combobox" class="com.is.tf.currency.RefCurrencyBox"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="movetoimmain" width="100%"  height="550px" border="normal" apply="com.is.tf.movetoim.MovetoimViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="movetoimPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{movetoimmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.movetoim.id}" width="50px" />
+                                <listheader label="${labels.movetoim.p1t47}" width="200px" />
+                                <listheader label="${labels.movetoim.p0t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p2t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p3t47}" width="200px" />
+                                <listheader label="${labels.movetoim.p4t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p5t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p6t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p7t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p8t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p9t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p10t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p11t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p12t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p13t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p14t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p15t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p16t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p17t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p18t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p19t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p20t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p21t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p22t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p23t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p24t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p25t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p26t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p27t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p28t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p29t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p30t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p31t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p32t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p33t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p34t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p35t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p36t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p37t47}" width="200px" />
+                                <listheader label="${labels.movetoim.p38t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p39t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p40t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p41t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p42t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p43t47}" width="200px" />
+                                 <listheader label="${labels.movetoim.p46t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p47t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p48t47}" width="200px" visible="false"/>
+                                <listheader label="${labels.movetoim.p49t47}" width="200px" />
+                                <listheader label="${labels.movetoim.p100t47}" width="200px" visible="false"/>
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row ><label value="${labels.movetoim.id}" /><textbox id="id" readonly="true" mold="rounded"  value="@{movetoimmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.movetoim.p1t47}" /><decimalbox id="p1t47"  width="400px" mold="rounded" format="########-#########-##-#-#####" readonly="true"  value="@{movetoimmain$composer.current.p1t47}" /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p0t47}" visible="false" /><textbox id="p0t47"  mold="rounded"  value="1" visible="false"/></row>
+                                  <row><label value="${labels.movetoim.p37t47}" /><datebox id="p37t47"  mold="rounded"  value="@{movetoimmain$composer.current.p37t47}" /></row>
+                                  <row><label value="${labels.movetoim.p2t47}" /><robjbox id="p2t47" readonly="true" width="350px" mold="rounded"  selecteditem="@{movetoimmain$composer.current.p2t47}" /></row>
+                                  <row><label value="${labels.movetoim.p3t47}" /><decimalbox id="p3t47"  format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p3t47}" /></row>
+                                  <row id="kur" visible="false">
+								  <label value="${labels.movetoim.p4t47}" />
+	                              <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="p4t471"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="p4t47"  mold="rounded"  value="@{movetoimmain$composer.current.p4t47}"  format="##0.000" width="100px" disabled="true"/>
+		                                  <rcurrbox id="p4t473"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="btn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="cbcourse" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <row id="row_p5t47" visible="false"><label value="${labels.movetoim.p5t47}" /><decimalbox id="p5t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p5t47}" /></row>
+                                  <row id="row_p6t47" visible="false"><label value="${labels.movetoim.p6t47}" /><decimalbox id="p6t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p6t47}" /></row>
+                                  <row id="row_p7t47" visible="false"><label value="${labels.movetoim.p7t47}" /><decimalbox id="p7t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p7t47}" /></row>
+                                  <row id="row_p8t47" visible="false"><label value="${labels.movetoim.p8t47}" /><decimalbox id="p8t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p8t47}" /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p9t47}" /><textbox id="p9t47"  mold="rounded"  value="@{movetoimmain$composer.current.p9t47}" /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p10t47}" /><textbox id="p10t47"  mold="rounded"  value="@{movetoimmain$composer.current.p10t47}" /></row>
+                                  <row><label value="${labels.movetoim.p11t47}" /><rcombobox id="p11t47" readonly="true" width="400px" mold="rounded"  selecteditem="@{movetoimmain$composer.current.p11t47}" /></row>
+                                  <row><label value="${labels.movetoim.p12t47}" /><rcombobox id="p12t47" disabled="false" readonly="true" buttonVisible="false" mold="rounded" width="400px" selecteditem="@{movetoimmain$composer.current.p12t47}" /></row>
+                                  <row><label value="${labels.movetoim.p41t47}" /><textbox id="p41t47" maxlength="100" readonly="true" multiline="true" rows="2" width="65%"  value="@{movetoimmain$composer.current.p41t47}" /></row>
+                                  <row><label value="${labels.movetoim.p42t47}" /><datebox id="p42t47"  mold="rounded" readonly="true" value="@{movetoimmain$composer.current.p42t47}" /></row>
+                                  <row><label value="${labels.movetoim.p39t47}" /><textbox id="p39t47" maxlength="100" readonly="true" multiline="true" rows="3" width="75%" value="@{movetoimmain$composer.current.p39t47}" /></row>
+                                   
+                                  <row><label value="${labels.movetoim.p13t47}" /><rcombobox id="p13t47"  mold="rounded" width="400px" buttonVisible="false" readonly="true" selecteditem="@{movetoimmain$composer.current.p13t47}" /></row>
+                                  <row><label value="${labels.movetoim.p14t47}" /><rcombobox id="p14t47"  mold="rounded" width="400px" buttonVisible="false" readonly="true" selecteditem="@{movetoimmain$composer.current.p14t47}" /></row>
+                                  <row><label value="${labels.movetoim.p40t47}" /><textbox id="p40t47"  maxlength="100" multiline="true" rows="3" width="75%"  value="@{movetoimmain$composer.current.p40t47}" /></row>
+                                  <row><label value="${labels.movetoim.p15t47}" /><rcombobox id="p15t47"  mold="rounded" buttonVisible="false" readonly="true" selecteditem="@{movetoimmain$composer.current.p15t47}" /></row>
+                                  <row><label value="${labels.movetoim.p16t47}" /><rcombobox id="p16t47" width="400px" readonly="true" mold="rounded"  selecteditem="@{movetoimmain$composer.current.p16t47}" /></row>
+                                  <row id="row_p17t47" visible="false"><label value="${labels.movetoim.p17t47}" /><robjbox id="p17t47" width="400px" readonly="true" mold="rounded"  selecteditem="@{movetoimmain$composer.current.p17t47}" /></row>
+                                  <row id="row_p18t47" visible="false"><label value="${labels.movetoim.p18t47}" /><rcombobox id="p18t47" width="400px" readonly="true"  mold="rounded"  selecteditem="@{movetoimmain$composer.current.p18t47}" /></row>
+                                  <row><label value="${labels.movetoim.p19t47}" /><rcombobox id="p19t47" width="350px" buttonVisible="true" mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" /></row>
+                                  <row id="kur2" visible="true">
+								  <label value="${labels.movetoim.p20t47}" />
+	                              <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="p20t471"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="p20t47"  mold="rounded"  value="@{movetoimmain$composer.current.p20t47}"  format="##0.000" width="100px" disabled="true"/>
+		                                  <rcurrbox id="p20t473"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <label id="cbcourse2" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.movetoim.p21t47}" /><decimalbox id="p21t47"  width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p21t47}" /></row>
+                                  <row id="kur3" visible="true">
+								  <label value="${labels.movetoim.p22t47}" />
+	                              <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="p22t471"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="p22t47"  mold="rounded"  value="@{movetoimmain$composer.current.p20t47}"  format="##0.000" width="100px" disabled="true"/>
+		                                  <rcurrbox id="p22t473"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <label id="cbcourse3" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.movetoim.p23t47}" /><decimalbox id="p23t47"  width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p23t47}" /></row>
+                                  <row><label value="${labels.movetoim.p24t47}" /><decimalbox id="p24t47" width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p24t47}" /></row>
+                                  <row><label value="${labels.movetoim.p25t47}" /><decimalbox id="p25t47" width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p25t47}" /></row>
+                                  <row><label value="${labels.movetoim.p26t47}" /><decimalbox id="p26t47" width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.current.p26t47}" /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p27t47}" /><textbox id="p27t47"  mold="rounded"  value="@{movetoimmain$composer.current.p27t47}" /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p28t47}" /><textbox id="p28t47"  mold="rounded"  value="@{movetoimmain$composer.current.p28t47}" /></row>
+                                  <row><label value="${labels.movetoim.p29t47}" /><rcombobox id="p29t47" width="350px" mold="rounded"  selecteditem="@{movetoimmain$composer.current.p29t47}" /></row>
+                                  <row id="row_p30t47" visible="false"><label value="${labels.movetoim.p30t47}" /><rcombobox id="p30t47" width="200px" mold="rounded"  selecteditem="@{movetoimmain$composer.current.p30t47}" /></row>
+                                  <row id="row_p31t47" visible="false"><label value="${labels.movetoim.p31t47}" /><rcombobox id="p31t47" width="200px" mold="rounded"  selecteditem="@{movetoimmain$composer.current.p31t47}" /></row>
+                                  <row id="row_p32t47" visible="false"><label value="${labels.movetoim.p32t47}" /><textbox id="p32t47"  maxlength="100" multiline="true" rows="3" width="75%"  value="@{movetoimmain$composer.current.p32t47}" /></row>
+                                  <row id="row_p33t47" visible="false"><label value="${labels.movetoim.p33t47}" /><textbox id="p33t47" maxlength="10" mold="rounded"  value="@{movetoimmain$composer.current.p33t47}" /></row>
+                                  <row id="row_p34t47" visible="false"><label value="${labels.movetoim.p34t47}" /><datebox id="p34t47"  mold="rounded"  value="@{movetoimmain$composer.current.p34t47}" /></row>
+                                  <row id="row_p35t47" visible="false"><label value="${labels.movetoim.p35t47}" /><textbox id="p35t47"  maxlength="500" multiline="true" rows="3" width="75%"  value="@{movetoimmain$composer.current.p35t47}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.movetoim.p38t47}" /><textbox id="p38t47"  mold="rounded"  value="@{movetoimmain$composer.current.p38t47}" /></row>
+                                   -->
+                                  <row><label value="${labels.movetoim.p43t47}" /><textbox id="p43t47"  mold="rounded" width="250px" value="@{movetoimmain$composer.current.p43t47}" /></row>
+                                  <row><label value="${labels.movetoim.p49t47}" /><datebox id="p49t47"  mold="rounded"  value="@{movetoimmain$composer.current.p49t47}" /></row>
+                                  <row><label value="${labels.movetoim.p36t47}" /><textbox id="p36t47"  mold="rounded"  value="@{movetoimmain$composer.current.p36t47}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.movetoim.p46t47}" /><textbox id="p46t47"  mold="rounded"  value="@{movetoimmain$composer.current.p46t47}" /></row>
+                                  <row><label value="${labels.movetoim.p47t47}" /><textbox id="p47t47"  mold="rounded"  value="@{movetoimmain$composer.current.p47t47}" /></row>
+                                  <row><label value="${labels.movetoim.p48t47}" /><textbox id="p48t47"  mold="rounded"  value="@{movetoimmain$composer.current.p48t47}" /></row>
+                                  <row><label value="${labels.movetoim.p100t47}" /><textbox id="p100t47"  mold="rounded"  value="@{movetoimmain$composer.current.p100t47}" /></row>
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row visible="false"><label value="${labels.movetoim.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p1t47}" /><decimalbox id="ap1t47"  width="400px" mold="rounded" format="########-#########-##-#-#####" readonly="true"  value="@{movetoimmain$composer.current.p1t47}"  /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p0t47}" /><textbox id="ap0t47"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p37t47}" /><datebox id="ap37t47"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p2t47}" /><robjbox id="ap2t47" width="350px"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p3t47}" /><decimalbox id="ap3t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                   <row id="akur">
+									  <label value="${labels.movetoim.p4t47}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="ap4t471"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="ap4t47"  mold="rounded"   format="##0.00" width="100px" disabled="true"/>
+		                                  <rcurrbox id="ap4t473"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="abtn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="acbcourse" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <row id="row_ap5t47" visible="false"><label value="${labels.movetoim.p5t47}" /><decimalbox id="ap5t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row id="row_ap6t47" visible="false"><label value="${labels.movetoim.p6t47}" /><decimalbox id="ap6t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row id="row_ap7t47" visible="false"><label value="${labels.movetoim.p7t47}" /><decimalbox id="ap7t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row id="row_ap8t47" visible="false"><label value="${labels.movetoim.p8t47}" /><decimalbox id="ap8t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p9t47}" /><textbox id="ap9t47"  mold="rounded"  /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p10t47}" /><textbox id="ap10t47"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p11t47}" /><rcombobox id="ap11t47" width="400px" readonly="true"/></row>
+                                  <row><label value="${labels.movetoim.p12t47}" /><rcombobox id="ap12t47" buttonVisible="false" readonly="true" disabled="false" width="400px" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p41t47}" /><textbox id="ap41t47" readonly="true" maxlength="100" multiline="true" rows="2" width="65%" /></row>
+                                  <row><label value="${labels.movetoim.p42t47}" /><datebox id="ap42t47" readonly="true" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p39t47}" /><textbox id="ap39t47"  readonly="true" maxlength="100" multiline="true" rows="3" width="75%"  /></row>
+                                  <row><label value="${labels.movetoim.p13t47}" /><rcombobox id="ap13t47" width="400px" buttonVisible="false" readonly="true" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p14t47}" /><rcombobox id="ap14t47" width="400px" buttonVisible="false" readonly="true" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p40t47}" /><textbox id="ap40t47"  maxlength="100" multiline="true" rows="3" width="75%"  /></row>
+                                  <row><label value="${labels.movetoim.p15t47}" /><rcombobox id="ap15t47" buttonVisible="false" readonly="true" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p16t47}" /><rcombobox id="ap16t47"  width="400px" readonly="true" mold="rounded"  /></row>
+                                  <row id="row_ap17t47" visible="false"><label value="${labels.movetoim.p17t47}" /><robjbox id="ap17t47"  width="400px" readonly="true" mold="rounded"  /></row>
+                                  <row id="row_ap18t47" visible="false"><label value="${labels.movetoim.p18t47}" /><rcombobox id="ap18t47" width="400px" readonly="true"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p19t47}" /><rcombobox id="ap19t47"  width="350px" mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);"   /></row>
+                                  <row id="akur2" visible="true">
+								  <label value="${labels.movetoim.p20t47}" />
+	                              <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="ap20t471"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="ap20t47"  mold="rounded"   format="##0.000" width="100px" disabled="true"/>
+		                                  <rcurrbox id="ap20t473"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <label id="acbcourse2" value="" />
+	                                  </hbox>
+                                  </row>
+                                  
+                                  <row><label value="${labels.movetoim.p21t47}" /><decimalbox id="ap21t47" width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row id="akur3" visible="true">
+								  <label value="${labels.movetoim.p22t47}" />
+	                              <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="ap22t471"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="ap22t47"  mold="rounded"   format="##0.000" width="100px" disabled="true"/>
+		                                  <rcurrbox id="ap22t473"  width="150px"  mold="rounded"  onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <label id="acbcourse3" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.movetoim.p23t47}" /><decimalbox id="ap23t47" width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p24t47}" /><decimalbox id="ap24t47" width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p25t47}" /><decimalbox id="ap25t47" width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p26t47}" /><decimalbox id="ap26t47" width="200px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p27t47}" /><textbox id="ap27t47"  mold="rounded"  /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p28t47}" /><textbox id="ap28t47"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p29t47}" /><rcombobox id="ap29t47" width="350px" mold="rounded"  /></row>
+                                  <row id="row_ap30t47" visible="false"><label value="${labels.movetoim.p30t47}" /><rcombobox id="ap30t47" width="200px" mold="rounded"  /></row>
+                                  <row id="row_ap31t47" visible="false"><label value="${labels.movetoim.p31t47}" /><rcombobox id="ap31t47" width="200px" mold="rounded"  /></row>
+                                  <row id="row_ap32t47" visible="false"><label value="${labels.movetoim.p32t47}" /><textbox id="ap32t47"  maxlength="100" multiline="true" rows="3" width="75%" /></row>
+                                  <row id="row_ap33t47" visible="false"><label value="${labels.movetoim.p33t47}" /><textbox id="ap33t47" maxlength="10" mold="rounded"  /></row>
+                                  <row id="row_ap34t47" visible="false"><label value="${labels.movetoim.p34t47}" /><datebox id="ap34t47"  mold="rounded"  /></row>
+                                  <row id="row_ap35t47" visible="false"><label value="${labels.movetoim.p35t47}" /><textbox id="ap35t47"  maxlength="500" multiline="true" rows="3" width="75%"  /></row>
+                                  <!-- 
+                                  <row><label value="${labels.movetoim.p38t47}" /><textbox id="ap38t47"  mold="rounded"  /></row>
+                                   -->
+                                  <row><label value="${labels.movetoim.p43t47}" /><textbox id="ap43t47" width="250px" mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p49t47}" /><datebox id="ap49t47"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p36t47}" /><textbox id="ap36t47"  mold="rounded"  /></row>
+                                  <!-- 
+                                  <row><label value="${labels.movetoim.p46t47}" /><textbox id="ap46t47"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p47t47}" /><textbox id="ap47t47"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p48t47}" /><textbox id="ap48t47"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movetoim.p100t47}" /><textbox id="ap100t47"  mold="rounded"  /></row>
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.movetoim.id}" /><textbox id="fid"  mold="rounded"  value="@{movetoimmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.movetoim.p1t47}" /><decimalbox id="fp1t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p1t47}" /></row>
+                                  <row visible="fasle"><label value="${labels.movetoim.p0t47}" /><textbox id="fp0t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p0t47}" /></row>
+                                  <row><label value="${labels.movetoim.p37t47}" /><datebox id="fp37t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p37t47}" /></row>
+                                  <row><label value="${labels.movetoim.p2t47}" /><robjbox id="fp2t47" width="350px" mold="rounded"  value="@{movetoimmain$composer.filter.p2t47}" /></row>
+                                  <row><label value="${labels.movetoim.p3t47}" /><decimalbox id="fp3t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.filter.p3t47}" /></row>
+                                  <row><label value="${labels.movetoim.p4t47}" /><textbox id="fp4t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p4t47}" /></row>
+                                  <row><label value="${labels.movetoim.p5t47}" /><decimalbox id="fp5t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.filter.p5t47}" /></row>
+                                  <row><label value="${labels.movetoim.p6t47}" /><decimalbox id="fp6t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.filter.p6t47}" /></row>
+                                  <row><label value="${labels.movetoim.p7t47}" /><decimalbox id="fp7t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.filter.p7t47}" /></row>
+                                  <row><label value="${labels.movetoim.p8t47}" /><decimalbox id="fp8t47" width="250px" format="### ### ### ##0.00" maxlength="20" mold="rounded"  value="@{movetoimmain$composer.filter.p8t47}" /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p9t47}" /><textbox id="fp9t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p9t47}" /></row>
+                                  <row visible="false"><label value="${labels.movetoim.p10t47}" /><textbox id="fp10t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p10t47}" /></row>
+                                  <row><label value="${labels.movetoim.p11t47}" /><rcombobox id="fp11t47"  width="400px" value="@{movetoimmain$composer.filter.p11t47}" /></row>
+                                  <row><label value="${labels.movetoim.p12t47}" /><textbox id="fp12t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p12t47}" /></row>
+                                  
+                                  <row><label value="${labels.movetoim.p13t47}" /><textbox id="fp13t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p13t47}" /></row>
+                                  <row><label value="${labels.movetoim.p14t47}" /><textbox id="fp14t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p14t47}" /></row>
+                                  <row><label value="${labels.movetoim.p15t47}" /><textbox id="fp15t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p15t47}" /></row>
+                                  <row><label value="${labels.movetoim.p16t47}" /><textbox id="fp16t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p16t47}" /></row>
+                                  <row><label value="${labels.movetoim.p17t47}" /><textbox id="fp17t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p17t47}" /></row>
+                                  <row><label value="${labels.movetoim.p18t47}" /><textbox id="fp18t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p18t47}" /></row>
+                                  <row><label value="${labels.movetoim.p19t47}" /><rcombobox id="fp19t47"  mold="rounded"  selecteditem="@{movetoimmain$composer.filter.p19t47}" /></row>
+                                  <row><label value="${labels.movetoim.p20t47}" /><textbox id="fp20t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p20t47}" /></row>
+                                  <row><label value="${labels.movetoim.p21t47}" /><textbox id="fp21t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p21t47}" /></row>
+                                  <row><label value="${labels.movetoim.p22t47}" /><textbox id="fp22t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p22t47}" /></row>
+                                  <row><label value="${labels.movetoim.p23t47}" /><textbox id="fp23t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p23t47}" /></row>
+                                  <row><label value="${labels.movetoim.p24t47}" /><textbox id="fp24t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p24t47}" /></row>
+                                  <row><label value="${labels.movetoim.p25t47}" /><textbox id="fp25t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p25t47}" /></row>
+                                  <row><label value="${labels.movetoim.p26t47}" /><textbox id="fp26t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p26t47}" /></row>
+                                  <row><label value="${labels.movetoim.p27t47}" /><textbox id="fp27t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p27t47}" /></row>
+                                  <row><label value="${labels.movetoim.p28t47}" /><textbox id="fp28t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p28t47}" /></row>
+                                  <row><label value="${labels.movetoim.p29t47}" /><textbox id="fp29t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p29t47}" /></row>
+                                  <row><label value="${labels.movetoim.p30t47}" /><textbox id="fp30t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p30t47}" /></row>
+                                  <row><label value="${labels.movetoim.p31t47}" /><textbox id="fp31t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p31t47}" /></row>
+                                  <row><label value="${labels.movetoim.p32t47}" /><textbox id="fp32t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p32t47}" /></row>
+                                  <row><label value="${labels.movetoim.p33t47}" /><textbox id="fp33t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p33t47}" /></row>
+                                  <row><label value="${labels.movetoim.p34t47}" /><textbox id="fp34t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p34t47}" /></row>
+                                  <row><label value="${labels.movetoim.p35t47}" /><textbox id="fp35t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p35t47}" /></row>
+                                  <row><label value="${labels.movetoim.p36t47}" /><textbox id="fp36t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p36t47}" /></row>
+                                  
+                                  <row><label value="${labels.movetoim.p38t47}" /><textbox id="fp38t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p38t47}" /></row>
+                                  <row><label value="${labels.movetoim.p39t47}" /><textbox id="fp39t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p39t47}" /></row>
+                                  <row><label value="${labels.movetoim.p40t47}" /><textbox id="fp40t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p40t47}" /></row>
+                                  <row><label value="${labels.movetoim.p41t47}" /><textbox id="fp41t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p41t47}" /></row>
+                                  <row><label value="${labels.movetoim.p42t47}" /><textbox id="fp42t47"  mold="rounded"  value="@{movetoimmain$composer.filter.p42t47}" /></row>
+                                  
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

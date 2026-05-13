@@ -1,0 +1,256 @@
+<?component name="robjbox" extends="combobox" class="com.is.utils.refobj.RefObjCBox"?>
+<?component name="rcurrbox" extends="combobox" class="com.is.tf.currency.RefCurrencyBox"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+
+<window id="salemain" width="100%"  height="550px" border="normal" apply="com.is.tf.sale.SaleViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+               <toolbarbutton id="btn_sale" label="Обязательная продажа"
+                        image="/images/file.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="salePaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{salemain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.sale.id}" width="40px" />
+                                <listheader label="${labels.sale.p1t43}" width="200px" />
+                                <listheader label="${labels.sale.p0t43}" width="50px" visible="false"/>
+                                <listheader label="${labels.sale.p2t43}" width="200px" />
+                                <listheader label="${labels.sale.p3t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p4t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p5t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p6t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p7t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p8t43}" width="200px" visible="false"/>
+                                <listheader label="${labels.sale.p9t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p10t43}" width="200px" visible="false"/>
+                                <listheader label="${labels.sale.p11t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p12t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p13t43}" width="200px" />
+                                <listheader label="${labels.sale.p14t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p15t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p16t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p17t43}" width="200px" visible="false"/>
+                                <listheader label="${labels.sale.p18t43}" width="200px" visible="false"/>
+                                <listheader label="${labels.sale.p19t43}" width="200px" visible="false"/>
+                                <listheader label="${labels.sale.p20t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p21t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p22t43}" width="200px"  visible="false"/>
+                                <listheader label="${labels.sale.p23t43}" width="200px" visible="false"/>
+                                <listheader label="${labels.sale.p24t43}" width="200px" />
+                                <listheader label="${labels.sale.p25t43}" width="200px" />
+                                <listheader label="${labels.sale.p26t43}" width="200px" visible="false"/>
+                                <listheader label="${labels.sale.p27t43}" width="200px" />
+                                <listheader label="${labels.sale.p32t43}" width="200px" />
+                                
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.sale.id}" /><textbox id="id" disabled="true" mold="rounded"  value="@{salemain$composer.current.id}" /></row>
+                                  <row><label value="${labels.sale.p1t43}" /><decimalbox id="p1t43" width="250px" format="########-#########-##-#-#####"  disabled="true" mold="rounded"  value="@{salemain$composer.current.p1t43}" /></row>
+                                  <!-- 
+                                  <row><textbox id="p0t43"  value="1" visible="false"/></row>
+                                   -->
+                                  <row><label value="${labels.sale.p25t43}" /><datebox id="p25t43"  mold="rounded"  value="@{salemain$composer.current.p25t43}" /></row>
+                                  <row><label value="${labels.sale.p2t43}" /><rcombobox id="p2t43" width="350px"  mold="rounded"  selecteditem="@{salemain$composer.current.p2t43}" /></row>
+                                  <row id="row_p3t43" visible="false"><label value="${labels.sale.p3t43}" /><textbox id="p3t43" maxlength="50" multiline="true" rows="2" width="30%" value="@{salemain$composer.current.p3t43}" /></row>
+                                  <row id="row_p4t43" visible="false"><label value="${labels.sale.p4t43}" /><datebox id="p4t43"  mold="rounded"  value="@{salemain$composer.current.p4t43}" /></row>
+                                  <row id="row_p5t43" visible="false"><label value="${labels.sale.p5t43}" /><rcombobox id="p5t43" width="320px" mold="rounded"  selecteditem="@{salemain$composer.current.p5t43}" /></row>
+                                  <row id="row_p6t43" visible="false"><label value="${labels.sale.p6t43}" /><decimalbox id="p6t43" width="250px" maxlength="20" format="### ### ### ##0.00"  mold="rounded"  value="@{salemain$composer.current.p6t43}" /></row>
+                                  <row id="row_p7t43" visible="false"><label value="${labels.sale.p7t43}" /><rcombobox id="p7t43" width="320px" mold="rounded"  selecteditem="@{salemain$composer.current.p7t43}" /></row>
+                                  <!-- 
+                                  <row><label value="${labels.sale.p8t43}" /><rcombobox id="p8t43"  width="320px" mold="rounded"  selecteditem="@{salemain$composer.current.p8t43}" /></row>
+                                  <row><label value="${labels.sale.p9t43}" /><decimalbox id="p9t43"  mold="rounded"  value="@{salemain$composer.current.p9t43}" /></row>
+                                  <row><label value="${labels.sale.p10t43}" /><textbox id="p10t43"  mold="rounded"  value="@{salemain$composer.current.p10t43}" /></row>
+                                  -->
+                                  <row id="row_p11t43" visible="false"><label value="${labels.sale.p11t43}" /><rcombobox id="p11t43" width="400px" mold="rounded"  selecteditem="@{salemain$composer.current.p11t43}" /></row>
+                                  <row><label value="${labels.sale.p12t43}" /><robjbox id="p12t43" width="400px" mold="rounded"  selecteditem="@{salemain$composer.current.p12t43}" /></row>
+                                  <row id="row_p13t43" visible="false"><label value="${labels.sale.p13t43}" /><rcombobox id="p13t43" width="400px"  mold="rounded"  selecteditem="@{salemain$composer.current.p13t43}" /></row>
+                                  <row id="row_p14t43" visible="false"><label value="${labels.sale.p14t43}" /><rcombobox id="p14t43" width="400px" mold="rounded"  selecteditem="@{salemain$composer.current.p14t43}" /></row>
+                                  <row id="row_p15t43" visible="false"><label value="${labels.sale.p15t43}" /><textbox id="p15t43"  maxlength="200" multiline="true" rows="3" width="60%"   value="@{salemain$composer.current.p15t43}" /></row>
+                                  <row id="row_p16t43" visible="false"><label value="${labels.sale.p16t43}" /><rcombobox id="p16t43" width="500px" mold="rounded"  selecteditem="@{salemain$composer.current.p16t43}" /></row>
+                                  <row id="row_p17t43" visible="false"><label value="${labels.sale.p17t43}" /><rcombobox id="p17t43" width="400px" mold="rounded"  selecteditem="@{salemain$composer.current.p17t43}" /></row>
+                                  <row id="row_p18t43" visible="false"><label value="${labels.sale.p18t43}" /><textbox id="p18t43"  maxlength="200" multiline="true" rows="3" width="60%"  value="@{salemain$composer.current.p18t43}" /></row>
+                                  <row id="row_p19t43" visible="false"><label value="${labels.sale.p19t43}" /><textbox id="p19t43"  mold="rounded"  value="@{salemain$composer.current.p19t43}" /></row>
+                                  <row><label value="${labels.sale.p20t43}" /><datebox id="p20t43"  mold="rounded"  value="@{salemain$composer.current.p20t43}" /></row>
+                                  <row id="row_p21t43" visible="false"><label value="${labels.sale.p21t43}" /><textbox id="p21t43"  mold="rounded"  value="@{salemain$composer.current.p21t43}" /></row>
+                                  <row id="row_p22t43" visible="false"><label value="${labels.sale.p22t43}" /><decimalbox id="p22t43"  mold="rounded"  value="@{salemain$composer.current.p22t43}" /></row>
+                                  <row id="row_p23t43" visible="false"><label value="${labels.sale.p23t43}" /><decimalbox id="p23t43"  mold="rounded"  value="@{salemain$composer.current.p23t43}" /></row>
+                                  <row id="row_p24t43" ><label value="${labels.sale.p24t43}" /><decimalbox id="p24t43"  mold="rounded"  value="@{salemain$composer.current.p24t43}" /></row>
+                                  <row ><label value="${labels.sale.p27t43}" /><textbox id="p27t43" disabled="true" mold="rounded"  value="@{salemain$composer.current.p27t43}" /></row>
+                                  <row ><label value="${labels.sale.p32t43}" /><datebox id="p32t43"  mold="rounded"  value="@{salemain$composer.current.p32t43}" /></row>
+                                  <row><label value="${labels.sale.p26t43}" /><textbox id="p26t43"  mold="rounded"  value="@{salemain$composer.current.p26t43}" /></row>
+                                 
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.sale.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sale.p1t43}" /><decimalbox id="ap1t43" width="250px" format="########-#########-##-#-#####"  disabled="true" mold="rounded" value="@{salemain$composer.current.p1t43}" /></row>
+                                  <row><label value="${labels.sale.p25t43}" /><datebox id="ap25t43"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sale.p2t43}" /><rcombobox id="ap2t43" width="350px" mold="rounded"  /></row>
+                                  <row id="row_ap3t43" visible="false"><label value="${labels.sale.p3t43}" /><textbox id="ap3t43" maxlength="50" multiline="true" rows="2" width="30%"  mold="rounded"  /></row>
+                                  <row id="row_ap4t43" visible="false"><label value="${labels.sale.p4t43}" /><datebox id="ap4t43"  mold="rounded"  /></row>
+                                  <row id="row_ap5t43" visible="false"><label value="${labels.sale.p5t43}" /><rcombobox id="ap5t43" width="320px" mold="rounded"  /></row>
+                                  <row id="row_ap6t43" visible="false"><label value="${labels.sale.p6t43}" /><decimalbox id="ap6t43"  width="250px" maxlength="20" format="### ### ### ##0.00" mold="rounded"  /></row>
+                                  <row id="row_ap7t43" visible="false"><label value="${labels.sale.p7t43}" /><rcombobox id="ap7t43" width="320px" mold="rounded"  /></row>
+                                 <!-- 
+                                  <row><label value="${labels.sale.p8t43}" /><rcombobox id="ap8t43"  width="320px" mold="rounded"  /></row>
+                                  <row><label value="${labels.sale.p9t43}" /><decimalbox id="ap9t43"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sale.p10t43}" /><textbox id="ap10t43"  mold="rounded"  /></row>
+                                   -->
+                                  <row id="row_ap11t43" visible="false"><label value="${labels.sale.p11t43}" /><rcombobox id="ap11t43" width="400px" mold="rounded"  /></row>
+                                  <row id="row_ap12t43" visible="false"><label value="${labels.sale.p12t43}" /><robjbox id="ap12t43" width="400px" mold="rounded"  /></row>
+                                  <row id="row_ap13t43" visible="false"><label value="${labels.sale.p13t43}" /><rcombobox id="ap13t43" width="400px"  mold="rounded"  /></row>
+                                  <row id="row_ap14t43" visible="false"><label value="${labels.sale.p14t43}" /><rcombobox id="ap14t43" width="400px" mold="rounded"  /></row>
+                                  <row id="row_ap15t43" visible="false"><label value="${labels.sale.p15t43}" /><textbox id="ap15t43" maxlength="200" multiline="true" rows="3" width="60%"  /></row>
+                                  <row id="row_ap16t43" visible="false"><label value="${labels.sale.p16t43}" /><rcombobox id="ap16t43" width="500px"  mold="rounded"  /></row>
+                                  <row id="row_ap17t43" visible="false"><label value="${labels.sale.p17t43}" /><rcombobox id="ap17t43" width="400px" mold="rounded"  /></row>
+                                  <row id="row_ap18t43" visible="false"><label value="${labels.sale.p18t43}" /><textbox id="ap18t43"  maxlength="200" multiline="true" rows="3" width="60%"  /></row>
+                                  <row id="row_ap19t43" visible="false"><label value="${labels.sale.p19t43}" /><textbox id="ap19t43"  mold="rounded"  /></row>
+                                  <row id="row_ap20t43" visible="false"><label value="${labels.sale.p20t43}" /><datebox id="ap20t43"  mold="rounded"  /></row>
+                                  <row id="row_ap21t43" visible="false"><label value="${labels.sale.p21t43}" /><textbox id="ap21t43"  mold="rounded"  /></row>
+                                  <row id="row_ap22t43" visible="false"><label value="${labels.sale.p22t43}" /><decimalbox id="ap22t43"  mold="rounded"  /></row>
+                                  <row id="row_ap23t43" visible="false"><label value="${labels.sale.p23t43}" /><decimalbox id="ap23t43"  mold="rounded"  /></row>
+                                  <row id="row_ap24t43" ><label value="${labels.sale.p24t43}" /><decimalbox id="ap24t43" maxlength="20" format="### ### ### ##0.00"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sale.p27t43}" /><textbox id="ap27t43" disabled="true" mold="rounded"  /></row>
+                                  <!--
+                                  <row><label value="${labels.sale.p32t43}" /><datebox id="ap32t43" disabled="true" mold="rounded"  /></row>
+                                   
+                                  <row><label value="${labels.sale.p26t43}" /><textbox id="ap26t43"  mold="rounded"  /></row>
+                                   -->
+                          </rows>
+                  </grid>
+                  
+                             <grid id="addgrd2" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                 <!--  
+                                 <row><label value="${labels.sale.id}" /><textbox id="aaid"  mold="rounded"  /></row>
+                                  -->
+                                 <row><label value="${labels.sale.p1t43}" /><decimalbox id="aap1t43" width="250px" disabled="true" format="########-#########-##-#-#####" value="@{salemain$composer.current.p1t43}" /></row>
+                                  <row><label value="${labels.sale.p25t43}" /><datebox id="aap25t43"  mold="rounded"  /></row>
+                                 <row id="row_aap12t43" ><label value="${labels.sale.p12t43}" /><robjbox id="aap12t43" width="400px" mold="rounded"  /></row>
+                                 <row id="row_aap13t43" ><label value="${labels.sale.p13t43}" /><rcombobox id="aap13t43" width="400px"  mold="rounded"  /></row>
+                                 <row id="row_aap24t43" ><label value="${labels.sale.p24t43}" /><decimalbox id="aap24t43" maxlength="20" format="### ### ### ##0.00" mold="rounded"  /></row>
+                                 <row><label value="${labels.sale.p27t43}" /><textbox id="aap27t43" disabled="true" mold="rounded"  /></row>
+                                 <row><label value="${labels.sale.p32t43}" /><datebox id="aap32t43" disabled="true" mold="rounded"  /></row>
+                                 <row><label value="${labels.sale.p26t43}" /><textbox id="aap26t43"  mold="rounded"  /></row>
+                                 <!-- 
+                                  <row><label value="${labels.sale.p2t43}" /><rcombobox id="aap2t43" width="350px" mold="rounded"  /></row>
+                                  <row id="row_aap3t43" visible="false"><label value="${labels.sale.p3t43}" /><textbox id="aap3t43" maxlength="50" multiline="true" rows="2" width="30%"  mold="rounded"  /></row>
+                                  <row id="row_aap4t43" visible="false"><label value="${labels.sale.p4t43}" /><datebox id="aap4t43"  mold="rounded"  /></row>
+                                  <row id="row_aap5t43" visible="false"><label value="${labels.sale.p5t43}" /><rcombobox id="aap5t43" width="320px" mold="rounded"  /></row>
+                                  <row id="row_aap6t43" visible="false"><label value="${labels.sale.p6t43}" /><decimalbox id="aap6t43"  width="250px" maxlength="20" format="### ### ### ##0.00" mold="rounded"  /></row>
+                                  <row id="row_aap7t43" visible="false"><label value="${labels.sale.p7t43}" /><rcombobox id="ap7t43" width="320px" mold="rounded"  /></row>
+                              
+                                  <row><label value="${labels.sale.p8t43}" /><rcombobox id="ap8t43"  width="320px" mold="rounded"  /></row>
+                                  <row><label value="${labels.sale.p9t43}" /><decimalbox id="ap9t43"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sale.p10t43}" /><textbox id="ap10t43"  mold="rounded"  /></row>
+                                   
+                                  <row id="row_ap11t43" visible="false"><label value="${labels.sale.p11t43}" /><rcombobox id="ap11t43" width="400px" mold="rounded"  /></row>
+                                  <row id="row_ap14t43" visible="false"><label value="${labels.sale.p14t43}" /><rcombobox id="ap14t43" width="400px" mold="rounded"  /></row>
+                                  <row id="row_ap15t43" visible="false"><label value="${labels.sale.p15t43}" /><textbox id="ap15t43" maxlength="200" multiline="true" rows="3" width="60%"  /></row>
+                                  <row id="row_ap16t43" visible="false"><label value="${labels.sale.p16t43}" /><rcombobox id="ap16t43" width="500px"  mold="rounded"  /></row>
+                                  <row id="row_ap17t43" visible="false"><label value="${labels.sale.p17t43}" /><rcombobox id="ap17t43" width="400px" mold="rounded"  /></row>
+                                  <row id="row_ap18t43" visible="false"><label value="${labels.sale.p18t43}" /><textbox id="ap18t43"  maxlength="200" multiline="true" rows="3" width="60%"  /></row>
+                                  <row id="row_ap19t43" visible="false"><label value="${labels.sale.p19t43}" /><textbox id="ap19t43"  mold="rounded"  /></row>
+                                  <row id="row_ap20t43" visible="false"><label value="${labels.sale.p20t43}" /><datebox id="ap20t43"  mold="rounded"  /></row>
+                                  <row id="row_ap21t43" visible="false"><label value="${labels.sale.p21t43}" /><textbox id="ap21t43"  mold="rounded"  /></row>
+                                  <row id="row_ap22t43" visible="false"><label value="${labels.sale.p22t43}" /><decimalbox id="ap22t43"  mold="rounded"  /></row>
+                                  <row id="row_ap23t43" visible="false"><label value="${labels.sale.p23t43}" /><decimalbox id="ap23t43"  mold="rounded"  /></row>
+                                  
+                                 
+                                  
+                                  
+                                   
+                                  
+                                   -->
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.sale.id}" /><textbox id="fid"  mold="rounded"  value="@{salemain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.sale.p1t43}" /><textbox id="fp1t43"  mold="rounded"  value="@{salemain$composer.filter.p1t43}" /></row>
+                                  <row><label value="${labels.sale.p0t43}" /><textbox id="fp0t43"  mold="rounded"  value="@{salemain$composer.filter.p0t43}" /></row>
+                                  <row><label value="${labels.sale.p2t43}" /><textbox id="fp2t43"  mold="rounded"  value="@{salemain$composer.filter.p2t43}" /></row>
+                                  <row><label value="${labels.sale.p3t43}" /><textbox id="fp3t43"  mold="rounded"  value="@{salemain$composer.filter.p3t43}" /></row>
+                                  <row><label value="${labels.sale.p4t43}" /><datebox id="fp4t43"  mold="rounded"  value="@{salemain$composer.filter.p4t43}" /></row>
+                                  <row><label value="${labels.sale.p5t43}" /><rcombobox id="fp5t43"  mold="rounded"  selecteditem="@{salemain$composer.filter.p5t43}" /></row>
+                                  <row><label value="${labels.sale.p6t43}" /><textbox id="fp6t43"  mold="rounded"  value="@{salemain$composer.filter.p6t43}" /></row>
+                                  <row><label value="${labels.sale.p7t43}" /><textbox id="fp7t43"  mold="rounded"  value="@{salemain$composer.filter.p7t43}" /></row>
+                                  <row><label value="${labels.sale.p8t43}" /><rcombobox id="fp8t43"  mold="rounded"  selecteditem="@{salemain$composer.filter.p8t43}" /></row>
+                                  <row><label value="${labels.sale.p9t43}" /><textbox id="fp9t43"  mold="rounded"  value="@{salemain$composer.filter.p9t43}" /></row>
+                                  <row><label value="${labels.sale.p10t43}" /><textbox id="fp10t43"  mold="rounded"  value="@{salemain$composer.filter.p10t43}" /></row>
+                                  <row><label value="${labels.sale.p11t43}" /><textbox id="fp11t43"  mold="rounded"  value="@{salemain$composer.filter.p11t43}" /></row>
+                                  <row><label value="${labels.sale.p12t43}" /><textbox id="fp12t43"  mold="rounded"  value="@{salemain$composer.filter.p12t43}" /></row>
+                                  <row><label value="${labels.sale.p13t43}" /><textbox id="fp13t43"  mold="rounded"  value="@{salemain$composer.filter.p13t43}" /></row>
+                                  <row><label value="${labels.sale.p14t43}" /><textbox id="fp14t43"  mold="rounded"  value="@{salemain$composer.filter.p14t43}" /></row>
+                                  <row><label value="${labels.sale.p15t43}" /><textbox id="fp15t43"  mold="rounded"  value="@{salemain$composer.filter.p15t43}" /></row>
+                                  <row><label value="${labels.sale.p16t43}" /><textbox id="fp16t43"  mold="rounded"  value="@{salemain$composer.filter.p16t43}" /></row>
+                                  <row><label value="${labels.sale.p17t43}" /><textbox id="fp17t43"  mold="rounded"  value="@{salemain$composer.filter.p17t43}" /></row>
+                                  <row><label value="${labels.sale.p18t43}" /><textbox id="fp18t43"  mold="rounded"  value="@{salemain$composer.filter.p18t43}" /></row>
+                                  <row><label value="${labels.sale.p19t43}" /><textbox id="fp19t43"  mold="rounded"  value="@{salemain$composer.filter.p19t43}" /></row>
+                                  <row><label value="${labels.sale.p20t43}" /><datebox id="fp20t43"  mold="rounded"  value="@{salemain$composer.filter.p20t43}" /></row>
+                                  <row><label value="${labels.sale.p21t43}" /><textbox id="fp21t43"  mold="rounded"  value="@{salemain$composer.filter.p21t43}" /></row>
+                                  <row><label value="${labels.sale.p22t43}" /><decimalbox id="fp22t43"  mold="rounded"  value="@{salemain$composer.filter.p22t43}" /></row>
+                                  <row><label value="${labels.sale.p23t43}" /><decimalbox id="fp23t43"  mold="rounded"  value="@{salemain$composer.filter.p23t43}" /></row>
+                                  <row><label value="${labels.sale.p24t43}" /><decimalbox id="fp24t43"  mold="rounded"  value="@{salemain$composer.filter.p24t43}" /></row>
+                                  <row><label value="${labels.sale.p25t43}" /><datebox id="fp25t43"  mold="rounded"  value="@{salemain$composer.filter.p25t43}" /></row>
+                                  <row><label value="${labels.sale.p26t43}" /><textbox id="fp26t43"  mold="rounded"  value="@{salemain$composer.filter.p26t43}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

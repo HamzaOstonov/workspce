@@ -1,0 +1,1874 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="customermain" width="100%"
+	apply="com.is.tieto_visa.customer.AddCstViewCtrl"
+	contentStyle="overflow:auto">
+
+	<menupopup id="editPopup">
+		<menuitem id="pop_open_cl" label="${labels.visaTieto.opencl}" />
+	</menupopup>
+
+	<grid>
+		<columns>
+			<column width="240px" align="top" />
+			<column />
+		</columns>
+		<rows>
+			<row valign="top">
+				<div visible="true">
+					<grid id="tfgrd" width="240px">
+						<columns>
+							<column width="30%" />
+							<column width="70%" />
+						</columns>
+						<rows>
+							<row>
+								<label
+									value="${labels.visaTieto.client_b}" />
+								<textbox id="client_b"
+									value="@{customermain$composer.tfilter.client}" />
+							</row>
+							<row>
+								<label
+									value="${labels.visaTieto.f_names}" />
+								<textbox id="ff_names"
+									value="@{customermain$composer.tfilter.f_names}" />
+							</row>
+							<row>
+								<label
+									value="${labels.visaTieto.b_date}" />
+								<datebox id="fb_date"
+									value="@{customermain$composer.tfilter.b_date}" />
+							</row>
+							<row visible="false">
+								<label value="${labels.visaTieto.card}" />
+								<textbox id="card"
+									value="@{customermain$composer.tfilter.card}" />
+							</row>
+						</rows>
+					</grid>
+
+					<toolbar visible="true">
+						<toolbarbutton id="tbtn_search"
+							label="${labels.visaTieto.search}" image="/images/search.png" />
+					</toolbar>
+					<toolbar>
+						<toolbarbutton id="tbtn_add_card"
+							label="${labels.visaTieto.AddCstViewCtrl.newcard}"
+							image="/images/+.png" />
+					</toolbar>
+					<toolbar>
+						<toolbarbutton id="btn_add_everywhere"
+							label="${labels.visaTieto.openclall}" image="/images/uses.png" />
+					</toolbar>
+					<toolbar>
+						<toolbarbutton id="tbtn_card_oprations"
+							label="${labels.visaTieto.AddCstViewCtrl.cardoper}"
+							image="/images/credit_card2.png" />
+					</toolbar>
+				</div>
+
+				<div id="step1" visible="true">
+					<vbox id="tgrd" width="100%">
+						<tabbox>
+							<tabs>
+								<tab
+									label="${labels.visaTieto.bankdata}" width="25%" />
+								<tab label="${labels.visaTieto.tdata}"
+									width="25%" />
+							</tabs>
+							<tabpanels
+								style="background-color: white;">
+								<tabpanel>
+									<listbox style="border: normal"
+										id="branch_customers" rows="10" multiple="true" width="100%"
+										selectedItem="@{customermain$composer.cur_branch_customer}">
+										<auxhead>
+											<auxheader colspan="2" />
+											<auxheader
+												label="${labels.visaTieto.tdata}" colspan="4"
+												align="middle" />
+											<auxheader
+												label="${labels.visaTieto.hodata}" colspan="4"
+												align="middle" visible="false" />
+											<auxheader
+												label="${labels.visaTieto.brdata}" colspan="4"
+												align="middle" />
+											<auxheader
+												label="${labels.visaTieto.acc20206}" colspan="2"
+												align="middle" />
+										</auxhead>
+										<listhead sizable="false"
+											width="100%">
+
+											<listheader width="35px" />
+											<listheader width="35px" />
+
+											<listheader
+												label="${labels.visaTieto.client_b}" width="8%" />
+											<listheader
+												label="${labels.visaTieto.f_names}" width="15%" />
+											<listheader
+												label="${labels.visaTieto.b_date}" width="10%" />
+											<listheader width="35px" />
+
+											<listheader
+												label="${labels.visaTieto.client_b}" width="8%"
+												visible="false" />
+											<listheader
+												label="${labels.visaTieto.f_names}" visible="false" />
+											<listheader
+												label="${labels.visaTieto.b_date}" width="10%"
+												visible="false" />
+											<listheader visible="false"
+												width="35px" />
+
+											<listheader
+												label="${labels.visaTieto.client_b}" width="8%" />
+											<listheader
+												label="${labels.visaTieto.f_names}" width="15%" />
+											<listheader
+												label="${labels.visaTieto.b_date}" width="10%" />
+											<listheader width="35px" />
+
+											<listheader
+												label="${labels.visaTieto.account}" width="16%" />
+											<listheader width="35px" />
+										</listhead>
+
+									</listbox>
+									<div align="center">
+										<paging id="bankdataPaging"
+											width="100%" />
+									</div>
+								</tabpanel>
+
+								<tabpanel>
+									<toolbar>
+										<toolbarbutton
+											id="btn_fill_tieto" label="${labels.visaTieto.requestTieto}"
+											image="/images/refresh.png" />
+										<toolbarbutton
+											id="btn_ref_tieto"
+											label="${labels.visaTieto.requestUpdateTieto}"
+											image="/images/refresh.png" />
+									</toolbar>
+									<listbox style="border: normal;"
+										id="bank_customers" multiple="true" width="100%" rows="10"
+										selectedItem="@{customermain$composer.tietocl}">
+										<auxhead>
+											<auxheader colspan="2" />
+											<auxheader
+												label="${labels.visaTieto.tdata}" colspan="4"
+												align="middle" />
+											<auxheader
+												label="${labels.visaTieto.hodata}" colspan="4"
+												align="middle" visible="false" />
+											<auxheader
+												label="${labels.visaTieto.brdata}" colspan="4"
+												align="middle" />
+											<auxheader
+												label="${labels.visaTieto.acc20206}" colspan="2"
+												align="middle" />
+										</auxhead>
+
+										<listhead sizable="false"
+											width="100%">
+
+											<listheader width="30px" />
+											<listheader width="30px" />
+
+											<listheader
+												label="${labels.visaTieto.client_b}" width="8%" />
+											<listheader
+												label="${labels.visaTieto.f_names}" width="15%"
+												sort="auto(f_names)" />
+											<listheader
+												label="${labels.visaTieto.b_date}" width="10%" />
+											<listheader width="35px" />
+
+											<listheader
+												label="${labels.visaTieto.client_b}" width="8%"
+												visible="false" />
+											<listheader
+												label="${labels.visaTieto.f_names}" visible="false" />
+											<listheader
+												label="${labels.visaTieto.b_date}" width="10%"
+												visible="false" />
+											<listheader visible="false"
+												width="35px" />
+
+											<listheader
+												label="${labels.visaTieto.client_b}" width="8%" />
+											<listheader
+												label="${labels.visaTieto.f_names}" width="15%" />
+											<listheader
+												label="${labels.visaTieto.b_date}" width="10%" />
+											<listheader width="35px" />
+
+											<listheader
+												label="${labels.visaTieto.account}" width="16%" />
+											<listheader width="35px" />
+										</listhead>
+									</listbox>
+								</tabpanel>
+							</tabpanels>
+						</tabbox>
+					</vbox>
+				</div>
+			</row>
+		</rows>
+	</grid>
+
+	<window id="addCust" mode="modal" title="${labels.accinfo.cardwnd}"
+		closable="true"
+		onClose="self.visible  =  false; event.stopPropagation();"
+		position="center, center" visible="false">
+		<hbox id="addgrd" width="100%">
+			<grid id="addgrdl" width="100%">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.customer.p_family}" />
+						<textbox id="ap_family"
+							value="@{customermain$composer.tcustomer.p_family}" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_first_name}" />
+						<textbox id="ap_first_name"
+							value="@{customermain$composer.tcustomer.p_first_name}" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_patronymic}" />
+						<textbox id="ap_patronymic"
+							value="@{customermain$composer.tcustomer.p_patronymic}" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_passport_serial}" />
+						<textbox id="ap_passport_serial"
+							onChange="self.setValue(self.getValue().toUpperCase().trim());" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_passport_number}" />
+						<textbox id="ap_passport_number" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_passport_date_registration}" />
+						<datebox id="ap_passport_date_registration"
+							value="@{customermain$composer.tcustomer.p_passport_date_registration}" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_type_document}" />
+						<rcombobox id="ap_type_document"
+							selecteditem="@{customermain$composer.tcustomer.p_type_document}"
+							onChange="customermain$composer.tcustomer.p_type_document = self.getValue()" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_passport_place_registration}" />
+						<textbox id="ap_passport_place_registration"
+							value="@{customermain$composer.tcustomer.p_passport_place_registration}" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_passport_date_expiration}" />
+						<datebox id="ap_passport_date_expiration"
+							value="@{customermain$composer.tcustomer.p_passport_date_expiration}" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_birthday}" />
+						<datebox id="ap_birthday"
+							value="@{customermain$composer.tcustomer.p_birthday}" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_code_birth_region}" />
+						<rcombobox id="ap_code_birth_region"
+							selecteditem="@{customermain$composer.tcustomer.p_code_birth_region}"
+							onChange="customermain$composer.tcustomer.p_code_birth_region = self.getValue()" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_code_birth_distr}" />
+						<rcombobox id="ap_code_birth_distr"
+							selecteditem="@{customermain$composer.tcustomer.p_code_birth_distr}"
+							onChange="customermain$composer.tcustomer.p_code_birth_distr = self.getValue()" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_birth_place}" />
+						<textbox id="ap_birth_place"
+							value="@{customermain$composer.tcustomer.p_birth_place}" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_code_gender}" />
+						<rcombobox id="ap_code_gender"
+							selecteditem="@{customermain$composer.tcustomer.p_code_gender}" />
+					</row>
+				</rows>
+			</grid>
+			<grid id="addgrdr" width="100%">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.customer.p_code_nation}" />
+						<rcombobox id="ap_code_nation"
+							selecteditem="@{customermain$composer.tcustomer.p_code_nation}" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_code_adr_region}" />
+						<rcombobox id="ap_code_adr_region"
+							selecteditem="@{customermain$composer.tcustomer.p_code_adr_region}"
+							onChange="customermain$composer.tcustomer.p_code_adr_region = self.getValue()" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_code_adr_distr}" />
+						<rcombobox id="ap_code_adr_distr"
+							selecteditem="@{customermain$composer.tcustomer.p_code_adr_distr}"
+							onChange="customermain$composer.tcustomer.p_code_adr_distr = self.getValue()" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_code_tax_org}" />
+						<rcombobox id="ap_code_tax_org"
+							selecteditem="@{customermain$composer.tcustomer.p_code_tax_org}"
+							onChange="customermain$composer.tcustomer.p_code_tax_org = self.getValue()" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_number_tax_registration}" />
+						<textbox id="ap_number_tax_registration"
+							value="@{customermain$composer.tcustomer.p_number_tax_registration}" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_code_bank}" />
+						<hbox>
+							<textbox
+								value="@{customermain$composer.tcustomer.p_code_bank}"
+								width="50px" />
+							<rcombobox id="ap_code_bank" width="400px"
+								selecteditem="@{customermain$composer.tcustomer.p_code_bank}" />
+						</hbox>
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_code_citizenship}" />
+						<rcombobox id="ap_code_citizenship"
+							selecteditem="@{customermain$composer.tcustomer.p_code_citizenship}"
+							onChange="customermain$composer.tcustomer.p_code_citizenship = self.getValue()" />
+					</row>
+					<row>
+						<label value="${labels.customer.code_country}" />
+						<rcombobox id="acode_country"
+							selecteditem="@{customermain$composer.tcustomer.code_country}"
+							onChange="customermain$composer.tcustomer.code_country = self.getValue()" />
+					</row>
+					<row>
+						<label value="${labels.customer.code_resident}" />
+						<rcombobox id="acode_resident"
+							selecteditem="@{customermain$composer.tcustomer.code_resident}"
+							onChange="customermain$composer.tcustomer.code_resident = self.getValue()" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_phone_mobile}" />
+						<textbox id="ap_phone_mobile"
+							value="@{customermain$composer.tcustomer.p_phone_mobile}" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_email_address}" />
+						<textbox id="ap_email_address"
+							value="@{customermain$composer.tcustomer.p_email_address}" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_phone_home}" />
+						<textbox id="ap_phone_home"
+							value="@{customermain$composer.tcustomer.p_phone_home}" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_inps}" />
+						<textbox id="ap_inps"
+							value="@{customermain$composer.tcustomer.p_inps}" />
+					</row>
+					<row>
+						<label value="${labels.customer.p_pinfl}" />
+						<textbox id="ap_pinfl"
+							value="@{customermain$composer.tcustomer.p_pinfl}" />
+					</row>
+					<row>
+						<label
+							value="${labels.customer.p_post_address}" />
+						<textbox id="ap_post_address"
+							value="@{customermain$composer.tcustomer.p_post_address}" />
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<toolbar>
+			<toolbarbutton id="bnbtn_add" label="${labels.add}"
+				image="/images/+.png" />
+			<toolbarbutton id="bnbtn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</window>
+
+	<window id="add_everywhere" mode="modal" width="60%" closable="true"
+		onClose="self.visible  =  false; event.stopPropagation();"
+		title="${labels.visaTieto.newClient}" position="center, center"
+		visible="false">
+
+		<tabbox>
+			<tabs id="tabs">
+				<tab label="${labels.visaTieto.Client}" />
+				<tab label="${labels.visaTieto.doc}" visible="false" />
+			</tabs>
+			<tabpanels>
+				<tabpanel height="500px">
+					<hbox id="addgrd" width="100%">
+						<grid id="addgrdl" width="100%">
+							<columns>
+								<column width="40%" />
+								<column width="60%" />
+							</columns>
+							<rows>
+								<row>
+									<label
+										value="${labels.customer.p_family} *" />
+									<textbox id="ap_family"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_first_name} *" />
+									<textbox id="ap_first_name"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_patronymic}" />
+									<textbox id="ap_patronymic" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_type_document} *" />
+									<rcombobox id="ap_type_document"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_passport_serial} *" />
+									<textbox id="ap_passport_serial"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_passport_number} *" />
+									<textbox id="ap_passport_number"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_passport_date_registration}" />
+									<datebox
+										id="ap_passport_date_registration" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_passport_date_expiration}" />
+									<datebox
+										id="ap_passport_date_expiration" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_passport_place_registration} *" />
+									<textbox
+										id="ap_passport_place_registration"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_birthday} *" />
+									<datebox id="ap_birthday"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_code_birth_region}" />
+									<rcombobox
+										id="ap_code_birth_region" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_code_birth_distr}" />
+									<rcombobox id="ap_code_birth_distr" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_birth_place}" />
+									<textbox id="ap_birth_place" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_code_gender}" />
+									<rcombobox id="ap_code_gender" />
+								</row>
+								<row visible="false">
+									<label
+										value="${labels.visaTieto.cln_cat}" />
+									<textbox id="acln_cat" />
+								</row>
+								<row visible="false">
+									<label
+										value="${labels.visaTieto.title}" />
+									<textbox id="atitle" />
+								</row>
+							</rows>
+						</grid>
+						<grid id="addgrdr" width="100%">
+							<columns>
+								<column width="40%" />
+								<column width="60%" />
+							</columns>
+							<rows>
+								<row>
+									<label
+										value="${labels.customer.p_code_citizenship} *" />
+									<rcombobox id="ap_code_citizenship"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.code_resident} *" />
+									<rcombobox id="acode_resident"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.code_country} *" />
+									<rcombobox id="acode_country"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_code_adr_region}" />
+									<rcombobox id="ap_code_adr_region" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_code_adr_distr}" />
+									<rcombobox id="ap_code_adr_distr" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_code_nation}    *" />
+									<rcombobox id="ap_code_nation"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_phone_mobile}" />
+									<textbox id="ap_phone_mobile" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_email_address}  *" />
+									<textbox id="ap_email_address"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_phone_home}" />
+									<textbox id="ap_phone_home" />
+								</row>
+								<row>
+									<label
+										value="${labels.visaTieto.telpaswd} *" />
+									<textbox id="acode_tel"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.visaTieto.r_city} *" />
+									<rcombobox id="ar_city"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_post_address} *" />
+									<textbox id="ap_post_address"
+										style="background-color: #99CCFF;" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_code_tax_org}" />
+									<rcombobox id="ap_code_tax_org" />
+								</row>
+								<row>
+									<label
+										value="${labels.customer.p_number_tax_registration}" />
+									<textbox
+										id="ap_number_tax_registration" />
+								</row>
+								<row visible="false">
+									<label
+										value="${labels.customer.p_inps}" />
+									<textbox id="ap_inps" />
+								</row>
+								<row visible="false">
+									<label
+										value="${labels.customer.p_pinfl}" />
+									<textbox id="ap_pinfl" />
+								</row>
+								<row visible="false">
+									<label
+										value="${labels.visaTieto.r_street}" />
+									<textbox id="ar_street" />
+								</row>
+								<row visible="false">
+									<label
+										value="${labels.visaTieto.status_change_date}" />
+									<textbox id="astatus_change_date" />
+								</row>
+							</rows>
+						</grid>
+					</hbox>
+					<toolbar>
+						<toolbarbutton id="add_btn"
+							label="${labels.visaTieto.save}" image="/images/+.png" />
+					</toolbar>
+				</tabpanel>
+
+				<tabpanel height="500px" visible="false">
+					<hbox visible="false">
+						<vbox>
+							<toolbarbutton id="btn_add_acc_app"
+								label="Заявление на открытие счета"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_visa_cup_app"
+								label="Заявление visa/cup" image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_visa_cup_d"
+								label="Договор visa/cup" image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_exchange_app"
+								label="Заявление exchange" image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+						</vbox>
+						<vbox>
+							<toolbarbutton id="btn_exchange_d"
+								label="Договор visa classic exchange"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_u_exchange_d"
+								label="Договор union pay exchange"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_au_pt_app"
+								label="Заявление visa platinum/gold"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_au_pt_d"
+								label="Договор visa platinum/gold"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+						</vbox>
+					</hbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+
+		<toolbar>
+			<toolbarbutton id="close_btn" label="Закрыть"
+				image="/images/stop.png" />
+		</toolbar>
+
+	</window>
+
+	<window id="addTieto" mode="modal" title="${labels.accinfo.cardwnd}"
+		closable="true"
+		onClose="self.visible  =  false; event.stopPropagation();"
+		position="center,center" visible="false">
+		<hbox id="addtgrd" width="100%">
+			<grid id="addtgrdl" width="500px">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.visaTieto.client}" />
+						<textbox id="aclient" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.bank_c}" />
+						<textbox id="abank_c" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.client_b}" />
+						<textbox id="aclient_b" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.cl_type}" />
+						<textbox id="acl_type" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.cln_cat}" />
+						<textbox id="acln_cat" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.rec_date}" />
+						<textbox id="arec_date" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.f_names}" />
+						<textbox id="af_names" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.surname}" />
+						<textbox id="asurname" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.title}" />
+						<textbox id="atitle" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.m_name}" />
+						<textbox id="am_name" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.b_date}" />
+						<datebox id="ab_date" />
+					</row>
+				</rows>
+			</grid>
+			<grid id="addtgrdr" width="500px">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.visaTieto.r_street}" />
+						<textbox id="ar_street" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.r_city}" />
+						<textbox id="ar_city" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.r_cntry}" />
+						<textbox id="ar_cntry" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.usrid}" />
+						<textbox id="ausrid" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.ctime}" />
+						<textbox id="actime" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.status}" />
+						<textbox id="astatus" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.search_name}" />
+						<textbox id="asearch_name" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.sex}" />
+						<textbox id="asex" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.serial_no}" />
+						<textbox id="aserial_no" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.doc_since}" />
+						<datebox id="adoc_since" />
+					</row>
+					<row>
+						<label value="${labels.visaTieto.issued_by}" />
+						<textbox id="aissued_by" />
+					</row>
+					<row>
+						<label
+							value="${labels.visaTieto.status_change_date}" />
+						<textbox id="astatus_change_date" />
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<toolbar>
+			<toolbarbutton id="tnbtn_add"
+				label="${labels.visaTieto.save}" image="/images/+.png" />
+			<toolbarbutton id="tnbtn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</window>
+
+	<window id="printwnd" mode="modal" title="${labels.print}"
+		closable="true"
+		onClose="self.visible = false; event.stopPropagation();"
+		position="center, center" visible="false">
+		<iframe id="rpframe" width="950px" height="550px" />
+		<toolbar>
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</window>
+
+	<window id="accwnd" mode="modal" title="${labels.print}"
+		closable="true"
+		onClose="self.visible  =  false; event.stopPropagation();"
+		position="center, center" visible="false">
+		<rcombobox id="scurracc" width="400px" />
+		<toolbar>
+			<toolbarbutton id="btn_print" label="${labels.print}"
+				image="/images/printer.png" />
+			<toolbarbutton id="btn_addacc" label="${labels.add}"
+				image="/images/+.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</window>
+
+	<window id="addCustomer" height="800px" mode="modal"
+		title="${labels.visaTieto.clients}" closable="true"
+		onClose="self.visible  =  false; event.stopPropagation();"
+		position="center,center" visible="false" maximizable="true"
+		apply="com.is.tieto_visa.customer.CustomerViewCtrl">
+		<toolbar id="add_tb">
+			<textbox id="add_cst_id"
+				value="@{customermain$composer.current.id_client}" disabled="true" />
+			<toolbarbutton id="add_to_link"
+				label="${labels.visaTieto.linkBankTieto}" image="/images/link.png" />
+			<toolbarbutton id="close" label="${labels.visaTieto.close}"
+				visible="false" image="/images/stop.png" />
+		</toolbar>
+		<toolbar id="tb">
+			<toolbarbutton id="btn_back" label="${labels.back}"
+				image="/images/file.png" />
+			<toolbarbutton id="btn_search" label="${labels.search}"
+				image="/images/search.png" />
+			<toolbarbutton id="btn_add"
+				label="${labels.visaTieto.openNewClient}" image="/images/+.png" />
+			<toolbarbutton id="btn_first" label="${labels.first}"
+				image="/images/backward.png" />
+			<toolbarbutton id="btn_prev" label="${labels.prev}"
+				image="/images/back.png" />
+			<toolbarbutton id="btn_next" label="${labels.next}"
+				image="/images/front.png" />
+			<toolbarbutton id="btn_last" label="${labels.last}"
+				image="/images/forward.png" />
+			<toolbarbutton id="btn_card"
+				label="${labels.visaTieto.card}" visible="false"
+				image="/images/switcher.png" />
+		</toolbar>
+
+		<div id="grd">
+			<paging id="customerPaging" width="100%" />
+			<listbox style="border:none" height="650px" id="dataGrid"
+				multiple="true" rows="4" width="100%"
+				selectedItem="@{customermain$composer.current}">
+				<listhead sizable="true">
+					<listheader label="${labels.customer.id_client}"
+						width="100px" />
+					<listheader label="${labels.customer.name}"
+						width="400px" />
+					<listheader
+						label="${labels.customer.p_post_address}" width="400px" />
+				</listhead>
+			</listbox>
+		</div>
+
+		<div id="frm" visible="false" width="100%">
+			<hbox id="frmgrd" width="100%">
+				<grid ctrlKeys="^e#up#down" visible="true">
+					<columns>
+						<column width="20%" />
+						<column width="80%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.customer.branch}" />
+							<textbox id="branch"
+								value="@{customermain$composer.current.branch}" />
+						</row>
+						<row>
+							<label value="${labels.customer.id_client}" />
+							<textbox id="id_client"
+								value="@{customermain$composer.current.id_client}" />
+						</row>
+						<row>
+							<label value="${labels.customer.name}" />
+							<textbox id="name"
+								value="@{customermain$composer.current.name}" />
+						</row>
+						<row>
+							<label value="${labels.customer.date_open}" />
+							<textbox id="date_open"
+								value="@{customermain$composer.current.date_open}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.date_close}" />
+							<textbox id="date_close"
+								value="@{customermain$composer.current.date_close}" />
+						</row>
+						<row>
+							<label value="${labels.customer.state}" />
+							<textbox id="state"
+								value="@{customermain$composer.current.state}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_birthday}" />
+							<textbox id="p_birthday"
+								value="@{customermain$composer.current.p_birthday}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_post_address}" />
+							<textbox id="p_post_address"
+								value="@{customermain$composer.current.p_post_address}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_serial}" />
+							<textbox id="p_passport_serial"
+								value="@{customermain$composer.current.p_passport_serial}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_number}" />
+							<textbox id="p_passport_number"
+								value="@{customermain$composer.current.p_passport_number}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_place_registration}" />
+							<textbox id="p_passport_place_registration"
+								value="@{customermain$composer.current.p_passport_place_registration}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_date_registration}" />
+							<textbox id="p_passport_date_registration"
+								value="@{customermain$composer.current.p_passport_date_registration}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_bank}" />
+							<rcombobox id="p_code_bank"
+								selecteditem="@{customermain$composer.current.p_code_bank}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_class_credit}" />
+							<rcombobox id="p_code_class_credit"
+								selecteditem="@{customermain$composer.current.p_code_class_credit}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_tax_org}" />
+							<rcombobox id="p_code_tax_org"
+								selecteditem="@{customermain$composer.current.p_code_tax_org}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_number_tax_registration}" />
+							<textbox id="p_number_tax_registration"
+								value="@{customermain$composer.current.p_number_tax_registration}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_citizenship}" />
+							<rcombobox id="p_code_citizenship"
+								selecteditem="@{customermain$composer.current.p_code_citizenship}" />
+						</row>
+					</rows>
+				</grid>
+
+				<grid>
+					<columns>
+						<column width="20%" />
+						<column width="80%" />
+					</columns>
+					<rows>
+						<row>
+							<label
+								value="${labels.customer.p_birth_place}" />
+							<rcombobox id="p_birth_place"
+								selecteditem="@{customermain$composer.current.p_birth_place}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_phone_home}" />
+							<textbox id="p_phone_home"
+								value="@{customermain$composer.current.p_phone_home}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_phone_mobile}" />
+							<textbox id="p_phone_mobile"
+								value="@{customermain$composer.current.p_phone_mobile}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_email_address}" />
+							<textbox id="p_email_address"
+								value="@{customermain$composer.current.p_email_address}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_pension_sertif_serial}" />
+							<textbox id="p_pension_sertif_serial"
+								value="@{customermain$composer.current.p_pension_sertif_serial}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_gender}" />
+							<rcombobox id="p_code_gender"
+								selecteditem="@{customermain$composer.current.p_code_gender}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_nation}" />
+							<rcombobox id="p_code_nation"
+								selecteditem="@{customermain$composer.current.p_code_nation}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_birth_region}" />
+							<rcombobox id="p_code_birth_region"
+								selecteditem="@{customermain$composer.current.p_code_birth_region}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_birth_distr}" />
+							<rcombobox id="p_code_birth_distr"
+								selecteditem="@{customermain$composer.current.p_code_birth_distr}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_type_document}" />
+							<rcombobox id="p_type_document"
+								selecteditem="@{customermain$composer.current.p_type_document}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_date_expiration}" />
+							<textbox id="p_passport_date_expiration"
+								value="@{customermain$composer.current.p_passport_date_expiration}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_adr_region}" />
+							<rcombobox id="p_code_adr_region"
+								selecteditem="@{customermain$composer.current.p_code_adr_region}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_adr_distr}" />
+							<rcombobox id="p_code_adr_distr"
+								selecteditem="@{customermain$composer.current.p_code_adr_distr}" />
+						</row>
+						<row>
+							<label value="${labels.customer.p_inps}" />
+							<textbox id="p_inps"
+								value="@{customermain$composer.current.p_inps}" />
+						</row>
+							<row>
+							<label value="${labels.customer.p_pinfl}" />
+							<textbox id="p_pinfl"
+								value="@{customermain$composer.current.p_pinfl}" />
+						</row>
+						<row>
+							<label value="${labels.customer.p_family}" />
+							<textbox id="p_family"
+								value="@{customermain$composer.current.p_family}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_first_name}" />
+							<textbox id="p_first_name"
+								value="@{customermain$composer.current.p_first_name}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_patronymic}" />
+							<textbox id="p_patronymic"
+								value="@{customermain$composer.current.p_patronymic}" />
+						</row>
+					</rows>
+				</grid>
+			</hbox>
+
+			<hbox id="addgrd" width="100%">
+				<grid id="addgrdl" width="100%">
+					<columns>
+						<column width="50%" />
+						<column width="50%" />
+					</columns>
+					<rows>
+						<row>
+							<label
+								value="${labels.customer.p_family} *" />
+							<textbox id="ap_family" width="220px"
+								style="background-color:#0099FF;" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_first_name} *" />
+							<textbox id="ap_first_name" width="220px"
+								style="background-color:#0099FF;" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_patronymic}" />
+							<textbox id="ap_patronymic" width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_type_document} *" />
+							<rcombobox id="ap_type_document"
+								width="220px" style="background-color:#0099FF;" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_serial} *" />
+							<textbox id="ap_passport_serial"
+								width="220px" style="background-color:#0099FF;" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_number} *" />
+							<textbox id="ap_passport_number"
+								width="220px" style="background-color:#0099FF;" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_date_registration}" />
+							<datebox id="ap_passport_date_registration" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_date_expiration}" />
+							<datebox id="ap_passport_date_expiration" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_place_registration} *" />
+							<textbox id="ap_passport_place_registration"
+								style="background-color:#0099FF;" width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_birthday} *" />
+							<datebox id="ap_birthday"
+								style="background-color:#0099FF;" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_birth_region}" />
+							<rcombobox id="ap_code_birth_region"
+								width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_birth_distr}" />
+							<rcombobox id="ap_code_birth_distr"
+								width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_birth_place}" />
+							<textbox id="ap_birth_place" width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_gender}" />
+							<rcombobox id="ap_code_gender"
+								width="220px" />
+						</row>
+						<row visible="false">
+							<label value="${labels.visaTieto.cln_cat}" />
+							<textbox id="acln_cat" />
+						</row>
+						<row visible="false">
+							<label value="${labels.visaTieto.title}" />
+							<textbox id="atitle" />
+						</row>
+					</rows>
+				</grid>
+
+				<grid id="addgrdr" width="100%">
+					<columns>
+						<column width="50%" />
+						<column width="50%" />
+					</columns>
+					<rows>
+						<row>
+							<label
+								value="${labels.customer.p_code_citizenship} *" />
+							<rcombobox id="ap_code_citizenship"
+								style="background-color:#0099FF;" width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.code_resident} *" />
+							<rcombobox id="acode_resident"
+								style="background-color:#0099FF;" width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.code_country} *" />
+							<rcombobox id="acode_country"
+								style="background-color:#0099FF;" width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_adr_region}" />
+							<rcombobox id="ap_code_adr_region"
+								width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_adr_distr}" />
+							<rcombobox id="ap_code_adr_distr"
+								width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_nation}" />
+							<rcombobox id="ap_code_nation"
+								width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_phone_mobile}" />
+							<textbox id="ap_phone_mobile" width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_email_address}" />
+							<textbox id="ap_email_address"
+								width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_phone_home}" />
+							<textbox id="ap_phone_home" />
+						</row>
+						<row>
+							<label
+								value="Пароль для телефонных разговоров" />
+							<textbox id="acode_tel" width="220px" />
+						</row>
+						<row>
+							<label value="${labels.visaTieto.r_city} *" />
+							<textbox id="ar_city" width="220px"
+								style="background-color:#0099FF;" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_post_address} *" />
+							<textbox id="ap_post_address" width="220px"
+								style="background-color:#0099FF;" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_code_tax_org}" />
+							<rcombobox id="ap_code_tax_org"
+								width="220px" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_number_tax_registration}" />
+							<textbox id="ap_number_tax_registration"
+								width="220px" />
+						</row>
+						<row visible="false">
+							<label value="${labels.customer.p_inps}" />
+							<textbox id="ap_inps" />
+						</row>
+						<row visible="false">
+							<label value="${labels.customer.p_pinfl }" />
+							<textbox id="ap_pinfl" />
+						</row>
+						<row visible="false">
+							<label value="${labels.visaTieto.r_street}" />
+							<textbox id="ar_street" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.visaTieto.status_change_date}" />
+							<textbox id="astatus_change_date" />
+						</row>
+					</rows>
+				</grid>
+			</hbox>
+
+			<hbox id="fgrd" visible="true">
+				<grid id="fgrdl">
+					<columns>
+						<column width="20%" />
+						<column width="80%" />
+					</columns>
+					<rows>
+						<row visible="false">
+							<label value="${labels.customer.name}" />
+							<textbox id="fname"
+								value="@{customermain$composer.filter.name}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.code_resident}" />
+							<textbox id="fcode_resident"
+								value="@{customermain$composer.filter.code_resident}" />
+						</row>
+						<row visible="false">
+							<label value="${labels.customer.date_open}" />
+							<textbox id="fdate_open"
+								value="@{customermain$composer.filter.date_open}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.date_close}" />
+							<textbox id="fdate_close"
+								value="@{customermain$composer.filter.date_close}" />
+						</row>
+						<row visible="false">
+							<label value="${labels.customer.state}" />
+							<textbox id="fstate"
+								value="@{customermain$composer.filter.state}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_birthday}" />
+							<datebox id="fp_birthday"
+								value="@{customermain$composer.filter.p_birthday}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_post_address}" />
+							<textbox id="fp_post_address"
+								value="@{customermain$composer.filter.p_post_address}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_passport_type}" />
+							<textbox id="fp_passport_type"
+								value="@{customermain$composer.filter.p_passport_type}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_serial}" />
+							<textbox id="fp_passport_serial"
+								value="@{customermain$composer.filter.p_passport_serial}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_passport_number}" />
+							<textbox id="fp_passport_number"
+								value="@{customermain$composer.filter.p_passport_number}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_passport_place_registration}" />
+							<textbox id="fp_passport_place_registration"
+								value="@{customermain$composer.filter.p_passport_place_registration}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_passport_date_registration}" />
+							<textbox id="fp_passport_date_registration"
+								value="@{customermain$composer.filter.p_passport_date_registration}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_code_tax_org}" />
+							<rcombobox id="fp_code_tax_org"
+								selecteditem="@{customermain$composer.filter.p_code_tax_org}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_number_tax_registration}" />
+							<textbox id="fp_number_tax_registration"
+								value="@{customermain$composer.filter.p_number_tax_registration}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_code_citizenship}" />
+							<rcombobox id="fp_code_citizenship"
+								selecteditem="@{customermain$composer.filter.p_code_citizenship}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_birth_place}" />
+							<textbox id="fp_birth_place"
+								value="@{customermain$composer.filter.p_birth_place}" />
+						</row>
+					</rows>
+				</grid>
+
+				<grid id="fgrdr">
+					<columns>
+						<column width="20%" />
+						<column width="80%" />
+					</columns>
+					<rows>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_phone_home}" />
+							<textbox id="fp_phone_home"
+								value="@{customermain$composer.filter.p_phone_home}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_phone_mobile}" />
+							<textbox id="fp_phone_mobile"
+								value="@{customermain$composer.filter.p_phone_mobile}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_email_address}" />
+							<textbox id="fp_email_address"
+								value="@{customermain$composer.filter.p_email_address}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_pension_sertif_serial}" />
+							<textbox id="fp_pension_sertif_serial"
+								value="@{customermain$composer.filter.p_pension_sertif_serial}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_code_gender}" />
+							<rcombobox id="fp_code_gender"
+								selecteditem="@{customermain$composer.filter.p_code_gender}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_code_nation}" />
+							<rcombobox id="fp_code_nation"
+								selecteditem="@{customermain$composer.filter.p_code_nation}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_code_birth_region}" />
+							<rcombobox id="fp_code_birth_region"
+								selecteditem="@{customermain$composer.filter.p_code_birth_region}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_code_birth_distr}" />
+							<rcombobox id="fp_code_birth_distr"
+								selecteditem="@{customermain$composer.filter.p_code_birth_distr}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_type_document}" />
+							<rcombobox id="fp_type_document"
+								selecteditem="@{customermain$composer.filter.p_type_document}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_passport_date_expiration}" />
+							<textbox id="fp_passport_date_expiration"
+								value="@{customermain$composer.filter.p_passport_date_expiration}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_code_adr_region}" />
+							<rcombobox id="fp_code_adr_region"
+								selecteditem="@{customermain$composer.filter.p_code_adr_region}" />
+						</row>
+						<row visible="false">
+							<label
+								value="${labels.customer.p_code_adr_distr}" />
+							<rcombobox id="fp_code_adr_distr"
+								selecteditem="@{customermain$composer.filter.p_code_adr_distr}" />
+						</row>
+						<row visible="false">
+							<label value="${labels.customer.p_inps}" />
+							<textbox id="fp_inps"
+								value="@{customermain$composer.filter.p_inps}" />
+						</row>
+						<row visible="false">
+							<label value="${labels.customer.p_pinfl}" />
+							<textbox id="fp_pinfl"
+								value="@{customermain$composer.filter.p_pinfl}" />
+						</row>
+						<row>
+							<label value="${labels.customer.p_family}" />
+							<textbox id="fp_family"
+								value="@{customermain$composer.filter.p_family}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_first_name}" />
+							<textbox id="fp_first_name"
+								value="@{customermain$composer.filter.p_first_name}" />
+						</row>
+						<row>
+							<label
+								value="${labels.customer.p_patronymic}" />
+							<textbox id="fp_patronymic"
+								value="@{customermain$composer.filter.p_patronymic}" />
+						</row>
+					</rows>
+				</grid>
+			</hbox>
+			<toolbar>
+				<toolbarbutton id="btn_save" label="${labels.save}"
+					image="/images/save.png" />
+				<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+					image="/images/stop.png" />
+			</toolbar>
+		</div>
+
+
+
+		<window id="tmpcl" title="${labels.visaTieto.existingCustomers}"
+			width="650px" mode="modal" position="center, center"
+			visible="false">
+			<label value="${labels.visaTieto.bank_c}" />
+			<listbox id="tmpgrid" rows="5" width="100%"
+				selectedItem="@{customermain$composer.tcustomer}">
+				<listhead sizable="true">
+					<listheader label="${labels.customer.id_client}"
+						width="100px" />
+					<listheader label="${labels.customer.name}"
+						width="400px" />
+				</listhead>
+			</listbox>
+			<label value="${labels.visaTieto.tietoInator}" />
+			<listbox id="tmptgrid" rows="5" width="100%"
+				selectedItem="@{customermain$composer.tietocl}">
+				<listhead sizable="true">
+					<listheader label="${labels.visaTieto.client_b}"
+						width="100px" />
+					<listheader label="${labels.visaTieto.f_names}"
+						width="200px" />
+					<listheader label="${labels.visaTieto.surname}"
+						width="200px" />
+				</listhead>
+			</listbox>
+			<groupbox>
+				<caption label="${labels.visaTieto.selected}" />
+			</groupbox>
+			<toolbar>
+				<toolbarbutton id="btn_save" label="${labels.save}"
+					image="/images/save.png" />
+				<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+					image="/images/stop.png" />
+			</toolbar>
+		</window>
+
+
+
+		<window id="tmptcl" width="650px" mode="modal"
+			position="center, center" visible="false">
+			<listbox style="border: none" id="tmpgrid" rows="10"
+				width="100%" selectedItem="@{customermain$composer.tcustomer}">
+				<listhead sizable="true">
+					<listheader label="${labels.customer.id_client}"
+						width="100px" />
+					<listheader label="${labels.customer.name}"
+						width="400px" />
+				</listhead>
+			</listbox>
+		</window>
+
+	</window>
+
+
+	<window id="addwnd" height="500px" mode="modal" width="95%"
+		closable="true"
+		onClose="self.visible  =  false; event.stopPropagation();"
+		title="${labels.accinfo.cardwnd}" position="center, center"
+		visible="false">
+
+		<groupbox mold="3d">
+			<label value="${labels.visaTieto.product}"
+				style="margin-right: 10px;" />
+			<rcombobox id="sproduct" width="245px" />
+		</groupbox>
+		<textbox id="txtstopcauses" width="245px" rows="4"
+			visible="false" />
+
+		<toolbar>
+			<toolbarbutton id="btn_add"
+				label="${labels.visaTieto.newAcc}" image="/images/+.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+
+		<listbox id="accGrid" rows="15" width="100%">
+			<listhead sizable="true">
+				<listheader label="${labels.visaTieto.branch}"
+					width="70px" />
+				<listheader label="${labels.visaTieto.Client}"
+					width="70px" />
+				<listheader label="${labels.visaTieto.accNumber}"
+					width="220px" />
+				<listheader label="${labels.visaTieto.f_names}"
+					width="250px" />
+				<listheader label="${labels.visaTieto.currency}"
+					width="70px" />
+				<listheader label="${labels.visaTieto.open}"
+					width="80px" />
+				<listheader label="${labels.visaTieto.order}"
+					width="120px" />
+				<listheader label="${labels.visaTieto.state}"
+					width="70px" />
+			</listhead>
+		</listbox>
+	</window>
+
+
+	<window id="show_cards" mode="modal" closable="true" height="500px"
+		width="95%" onClose="self.visible  =  false; event.stopPropagation();"
+		title="${labels.accinfo.cardwnd}" position="center, center"
+		visible="false">
+
+		<tabbox>
+			<tabs id="tabs">
+				<tab label="${labels.visaTieto.cards}" />
+				<tab label="${labels.visaTieto.doc}" visible="false" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<textbox id="txtstopcauses" width="245px" rows="4"
+						visible="false" />
+
+					<listbox id="accGrid" rows="15" width="100%">
+						<auxhead>
+							<auxheader
+								label="${labels.visaTieto.cardCaps}" colspan="5" />
+							<auxheader
+								label="${labels.visaTieto.accCaps}" colspan="2" />
+						</auxhead>
+						<listhead sizable="true">
+							<listheader label="${labels.accinfo.card}"
+								width="150px" />
+							<listheader
+								label="${labels.accinfo.ab_expirity}" width="100px" />
+
+							<listheader
+								label="${labels.visaTieto.cardstatus1}" width="100px" />
+							<listheader
+								label="${labels.visaTieto.cardactions}" width="250px" />
+
+							<listheader
+								label="${labels.accinfo.tranz_acct}" width="200px" />
+							<listheader
+								label="${labels.accinfo.card_acct}" width="150px" />
+
+							<listheader
+								label="${labels.visaTieto.accstate}" width="125px" />
+							<listheader
+								label="${labels.visaTieto.accactions}" />
+						</listhead>
+					</listbox>
+				</tabpanel>
+				<tabpanel height="600px" style="overflow: scroll;"
+					visible="false">
+					<hbox>
+						<vbox>
+							<toolbarbutton id="btn_add_acc_app"
+								label="Заявление на открытие счета 20206"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton
+								id="btn_TI_APPLICATION_AUTOCARD_ACC"
+								label="Заявление на открытие счета автокарт"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_visa_cup_app"
+								label="Заявление visa/cup" image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_visa_cup_d"
+								label="Договор visa/cup" image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_exchange_app"
+								label="Заявление exchange" image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+						</vbox>
+						<vbox>
+							<toolbarbutton id="btn_exchange_d"
+								label="Договор visa classic exchange"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_u_exchange_d"
+								label="Договор union pay exchange"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_au_pt_app"
+								label="Заявление visa platinum/gold"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_au_pt_d"
+								label="Договор visa platinum/gold"
+								image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+							<toolbarbutton id="btn_TI_DOGOVOR_AUTOCARD"
+								label="Договор автокарт" image="/images/text_document.png"
+								style="margin: 10px; font-size: 20px;" />
+						</vbox>
+					</hbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		<toolbar>
+			<toolbarbutton id="btn_add" label="${labels.add}"
+				image="/images/+.png" visible="false" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+
+	</window>
+
+
+	<window id="accounts" height="500px" width="95%" mode="modal"
+		closable="true"
+		onClose="self.visible  =  false; event.stopPropagation();"
+		title="${labels.visaTieto.customerAcc}" position="center,center"
+		visible="false">
+
+		<toolbar>
+			<toolbarbutton id="btn_add"
+				label="${labels.visaTieto.openNew}" image="/images/+.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+
+		<listbox id="accGrid" rows="15" width="100%">
+			<listhead sizable="true">
+				<listheader label="${labels.visaTieto.branch}"
+					width="70px" />
+				<listheader label="${labels.visaTieto.Client}"
+					width="70px" />
+				<listheader label="${labels.visaTieto.accNumber}"
+					width="220px" />
+				<listheader label="${labels.visaTieto.f_names}"
+					width="250px" />
+				<listheader label="${labels.visaTieto.currency}"
+					width="70px" />
+				<listheader label="${labels.visaTieto.open}"
+					width="80px" />
+				<listheader label="${labels.visaTieto.order}"
+					width="120px" />
+				<listheader label="${labels.visaTieto.state}"
+					width="70px" />
+			</listhead>
+		</listbox>
+	</window>
+
+	<window id="blockwnd" width="500px" mode="modal" visible="false"
+		closable="true" title="${labels.accinfo.cardwnd}"
+		position="center, center"
+		onClose="self.visible  =  false; event.stopPropagation();">
+
+		<grid>
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label></label>
+					<textbox id="card" value="" readonly="true"
+						width="100%" />
+				</row>
+				<row>
+					<label value="${labels.visaTieto.cause}" />
+					<rcombobox id="sstopcauses" mold="rounded"
+						width="100%" readonly="true" />
+				</row>
+				<row>
+					<label value="${labels.visaTieto.description}" />
+					<textbox id="txtstopcauses" constraint="no empty"
+						rows="2" width="100%" />
+				</row>
+			</rows>
+		</grid>
+
+		<toolbar>
+			<toolbarbutton id="btn_block"
+				label="${labels.accinfo.btnblock}" image="/images/save.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+
+	</window>
+
+
+	<window id="bt_rest_confirmation_wnd" width="800px" mode="modal"
+		visible="false" closable="true" title="${labels.accinfo.cardwnd}"
+		position="center, center"
+		onClose="self.visible  =  false; event.stopPropagation();">
+
+		<toolbarbutton id="btn_balance_confirmation_without_card_number"
+			label="Справка об остатках на счете 20206"
+			image="/images/text_document.png"
+			style="margin: 10px; font-size: 20px;" />
+		<toolbarbutton id="btn_balance_confirmation_with_card_number"
+			label="Справка об остатках на счете 22618"
+			image="/images/text_document.png"
+			style="margin: 10px; font-size: 20px;" />
+		<toolbarbutton visible="false"
+			id="btn_balance_confirmation_order"
+			label="Объявление/квитанция/ордер" image="/images/text_document.png"
+			style="margin: 10px; font-size: 20px;" />
+		<toolbarbutton id="btn_TI_small" label="Справка вывоз валюты"
+			image="/images/text_document.png"
+			style="margin: 10px; font-size: 20px;" />
+
+	</window>
+
+
+
+	<window id="productChoiceWindow" width="512px" mode="modal"
+		visible="false" closable="true" title="Выбор Продукта"
+		position="center, center"
+		onClose="self.visible  =  false; event.stopPropagation();">
+
+		<grid>
+			<columns>
+				<column width="40%"></column>
+				<column width="60%"></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Выберите тип карты: " />
+					<rcombobox id="productChoice" width="100%"></rcombobox>
+				</row>
+			</rows>
+		</grid>
+
+		<toolbar>
+			<toolbarbutton id="productChoiceButton"
+				label="Открыть карту" image="/images/+.png" />
+			<toolbarbutton id="cancelButton" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+
+	</window>
+
+</window>

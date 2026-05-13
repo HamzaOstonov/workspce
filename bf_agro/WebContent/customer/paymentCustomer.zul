@@ -1,0 +1,26 @@
+<window title="" id="paymentCustomerWnd" border="normal" closable="true"
+        apply="com.is.payments.ui.PaymentCustomerComposer">
+    <toolbar>
+        <toolbarbutton id="btnConnect" label="Связать"/>
+        <toolbarbutton id="btnCorrect" label="Корректировать"/>
+    </toolbar>
+    <!--<button id="btnCreate" image="/images/send.png" label="Создать Клиента" />-->
+    <tabbox id="paymentTabbox">
+        <tabs>
+            <tab label="Основные Данные"/>
+            <tab label="Приложения" id="appsTab"/>
+            <tab label="Анкета Внутреннего Контроля" id="internalControlTab" visible="false"/>
+        </tabs>
+        <tabpanels>
+            <tabpanel>
+                <include id="customerInclude" src="/customer/customer_.zul"/>
+            </tabpanel>
+            <tabpanel>
+                <div id="appsDiv"/>
+            </tabpanel>
+            <tabpanel>
+                <include id="internalInclude"/>
+            </tabpanel>
+        </tabpanels>
+    </tabbox>
+</window>

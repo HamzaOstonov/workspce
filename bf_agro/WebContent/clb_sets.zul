@@ -1,0 +1,132 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?component name="rcombobox" extends="combobox" class="org.sl.utils.RefCBox"?>
+<panel id="klb_setsmain" width="100%" border="normal" apply="com.is.clb.sets.Klb_setsViewCtrl">
+	<panelchildren>
+        <tabbox id="tabb" width="100%" orient="vertical" height="500px" style="min-height: 400px;">
+        	<tabs width="200px">
+        		<tab label="${labels.systemvariables}"></tab>
+        		<tab label="${labels.rates}"></tab>
+        	</tabs>
+        	<tabpanels>
+        		<tabpanel style=" overflow-y: auto;">
+        			<div width="100%">
+	        			<groupbox mold="3d" open="true" closable="false" >
+						<caption label="${labels.systemvariables}" />
+	        			<toolbar id="tb" width="100%" align="center">
+							<div width="100%" align="center" height="35px">
+								<style>
+						        	.sp-paging.z-paging {
+									    background: none;
+									    border:none; 
+									}
+									.sp-paging.z-paging .z-paging-btn {
+									    background: none;
+									}
+						        </style>
+								<hbox width="100%" widths="100%,200px" align="center" height="35px">
+									<hbox width="100%">
+										<toolbarbutton id="btn_refresh" label="${labels.refresh}" image="/images/refresh.png" />
+								        <toolbarbutton id="btn_back" label="${labels.back}" image="/images/file.png" />
+								        <toolbarbutton id="btn_search" label="${labels.search}" image="/images/search.png" />
+								        <toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" visible="false"/>
+								
+								        <toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png" />
+								        <toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png" />
+								        <toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png" />
+								        <toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png" />
+									</hbox>
+					        		<paging id="klb_setsPaging" width="200px" sclass="sp-paging"/>
+					        	</hbox>
+					        </div>
+						</toolbar>
+						<div id="grd">
+				            <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%" selectedItem="@{klb_setsmain$composer.current}">
+				            	<listhead sizable="true">
+									<listheader label="${labels.klb_sets.branch}" width="0px"/>
+									<listheader label="${labels.klb_sets.id}" width="200px"/>
+									<listheader label="${labels.klb_sets.value}" />
+									<listheader label="${labels.klb_sets.name}" />
+									<listheader label="${labels.klb_sets.editable}" width="200px"/>
+				                </listhead>
+							</listbox>
+				        </div>
+				        <div id="frm" visible="false">
+							<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+				            	<columns>
+				                	<column width="20%" />
+				                 	<column width="80%" />
+				             	</columns>
+				              	<rows>
+									<row visible="false"><label value="${labels.klb_sets.branch}" /><textbox id="branch"  mold="rounded"  value="@{klb_setsmain$composer.current.branch}" width="600px"/></row>
+									<row><label value="${labels.klb_sets.id}" /><textbox id="id"  mold="rounded"  value="@{klb_setsmain$composer.current.id}" width="600px" disabled="true"/></row>
+									<row><label value="${labels.klb_sets.value}" /><textbox id="value"  mold="rounded"  value="@{klb_setsmain$composer.current.value}" width="600px"/></row>
+									<row><label value="${labels.klb_sets.name}" /><textbox id="name"  mold="rounded"  value="@{klb_setsmain$composer.current.name}" width="600px" disabled="true"/></row>
+									<row visible="false"><label value="${labels.klb_sets.editable}" /><longbox id="editable"  mold="rounded"  value="@{klb_setsmain$composer.current.editable}" width="600px"/></row>
+				                </rows>
+				          	</grid>
+				          	<grid id="addgrd" visible="false">
+				            	<columns>
+				                	<column width="20%" />
+				                 	<column width="80%" />
+				            	</columns>
+				             	<rows>
+									<row visible="false"><label value="${labels.klb_sets.branch}" /><textbox id="abranch"  mold="rounded"  value="@{klb_setsmain$composer.current.branch}" width="600px"/></row>
+									<row><label value="${labels.klb_sets.id}" /><textbox id="aid"  mold="rounded"  value="@{klb_setsmain$composer.current.id}" width="600px"/></row>
+									<row><label value="${labels.klb_sets.value}" /><textbox id="avalue"  mold="rounded"  value="@{klb_setsmain$composer.current.value}" width="600px"/></row>
+									<row><label value="${labels.klb_sets.name}" /><textbox id="aname"  mold="rounded"  value="@{klb_setsmain$composer.current.name}" width="600px"/></row>
+									<row visible="false"><label value="${labels.klb_sets.editable}" /><longbox id="aeditable"  mold="rounded"  value="@{klb_setsmain$composer.current.editable}" width="600px"/></row>
+				               	</rows>
+				           	</grid>
+				   			<grid id="fgrd" visible="false">
+				            	<columns>
+				             		<column width="20%" />
+				                   	<column width="80%" />
+				             	</columns>
+				          		<rows>
+									<row visible="false"><label value="${labels.klb_sets.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{klb_setsmain$composer.filter.branch}" width="600px"/></row>
+									<row><label value="${labels.klb_sets.id}" /><textbox id="fid"  mold="rounded"  value="@{klb_setsmain$composer.filter.id}" width="600px"/></row>
+									<row><label value="${labels.klb_sets.value}" /><textbox id="fvalue"  mold="rounded"  value="@{klb_setsmain$composer.filter.value}" width="600px"/></row>
+									<row><label value="${labels.klb_sets.name}" /><textbox id="fname"  mold="rounded"  value="@{klb_setsmain$composer.filter.name}" width="600px"/></row>
+									<row visible="false"><label value="${labels.klb_sets.editable}" /><longbox id="feditable"  mold="rounded"  value="@{klb_setsmain$composer.filter.editable}" width="600px"/></row>
+				              	</rows>
+				         	</grid>
+							<toolbar>
+				         		<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+				              	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+				           	</toolbar>
+				        </div>
+				        </groupbox>
+        			</div>
+        		</tabpanel>
+        		<tabpanel>
+        			<groupbox mold="3d" open="true" closable="false" >
+					<caption label="${labels.rates}" />
+	        			<hbox align="center" width="100%" widths="45%,10%,45%">
+				           <vbox align="center" width="100%">
+					       		<groupbox open="true" closable="false" >
+								<caption label="${labels.rate.rateout}" />
+					           	<textbox id="ratesoutfilter" width="350px"></textbox>
+					           	<listbox id="ratesout" height="400px" width="350px" droppable="true"  style="border: none;"/>
+					           	</groupbox>
+				           </vbox>
+				           <separator orient="vertical" spacing="8px" />
+				           <vbox align="center" width="100%">
+					           	<groupbox open="true" closable="false" >
+								<caption label="${labels.rate.ratein}" />
+					           	<textbox id="ratesinfilter" width="350px"></textbox>
+					           	<listbox id="ratesin" height="400px" width="350px" droppable="true"  style="border: none;"/>
+					           </groupbox>
+				           </vbox>
+						</hbox>	
+					</groupbox>
+        		
+        		</tabpanel>
+        	</tabpanels>
+        </tabbox>
+        
+        
+        
+        
+    
+	</panelchildren>
+</panel>

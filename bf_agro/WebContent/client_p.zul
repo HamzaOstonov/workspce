@@ -1,0 +1,257 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="client_pmain" width="100%"  border="normal" apply="com.is.codeGenTest.client_pViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                                     
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="client_pPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{client_pmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.client_p.branch}" width="200px" />
+                                <listheader label="${labels.client_p.id}" width="200px" />
+                                <listheader label="${labels.client_p.name}" width="200px" />
+                                <listheader label="${labels.client_p.birthday}" width="200px" />
+                                <listheader label="${labels.client_p.post_address}" width="200px" />
+                                <listheader label="${labels.client_p.passport_type}" width="200px" />
+                                <listheader label="${labels.client_p.passport_serial}" width="200px" />
+                                <listheader label="${labels.client_p.passport_number}" width="200px" />
+                                <listheader label="${labels.client_p.passport_place_registration}" width="200px" />
+                                <listheader label="${labels.client_p.passport_date_registration}" width="200px" />
+                                <listheader label="${labels.client_p.code_place_regist}" width="200px" />
+                                <listheader label="${labels.client_p.date_registration}" width="200px" />
+                                <listheader label="${labels.client_p.number_registration_doc}" width="200px" />
+                                <listheader label="${labels.client_p.code_tax_org}" width="200px" />
+                                <listheader label="${labels.client_p.number_tax_registration}" width="200px" />
+                                <listheader label="${labels.client_p.code_sector}" width="200px" />
+                                <listheader label="${labels.client_p.code_organ_direct}" width="200px" />
+                                <listheader label="${labels.client_p.code_bank}" width="200px" />
+                                <listheader label="${labels.client_p.globuzAccount}" width="200px" />
+                                <listheader label="${labels.client_p.code_class_credit}" width="200px" />
+                                <listheader label="${labels.client_p.state}" width="200px" />
+                                <listheader label="${labels.client_p.kod_err}" width="200px" />
+                                <listheader label="${labels.client_p.file_name}" width="200px" />
+                                <listheader label="${labels.client_p.code_citizenship}" width="200px" />
+                                <listheader label="${labels.client_p.birth_place}" width="200px" />
+                                <listheader label="${labels.client_p.code_capacity}" width="200px" />
+                                <listheader label="${labels.client_p.capacity_status_date}" width="200px" />
+                                <listheader label="${labels.client_p.capacity_status_place}" width="200px" />
+                                <listheader label="${labels.client_p.num_certif_capacity}" width="200px" />
+                                <listheader label="${labels.client_p.phone_home}" width="200px" />
+                                <listheader label="${labels.client_p.phone_mobile}" width="200px" />
+                                <listheader label="${labels.client_p.email_address}" width="200px" />
+                                <listheader label="${labels.client_p.pension_sertif_serial}" width="200px" />
+                                <listheader label="${labels.client_p.code_gender}" width="200px" />
+                                <listheader label="${labels.client_p.code_nation}" width="200px" />
+                                <listheader label="${labels.client_p.code_birth_region}" width="200px" />
+                                <listheader label="${labels.client_p.code_birth_distr}" width="200px" />
+                                <listheader label="${labels.client_p.type_document}" width="200px" />
+                                <listheader label="${labels.client_p.passport_date_expiration}" width="200px" />
+                                <listheader label="${labels.client_p.code_adr_region}" width="200px" />
+                                <listheader label="${labels.client_p.code_adr_distr}" width="200px" />
+                                <listheader label="${labels.client_p.inps}" width="200px" />
+                                <listheader label="${labels.client_p.family}" width="200px" />
+                                <listheader label="${labels.client_p.first_name}" width="200px" />
+                                <listheader label="${labels.client_p.patronymic}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.client_p.branch}" /><textbox id="branch"  mold="rounded"  value="@{client_pmain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.client_p.id}" /><textbox id="id"  mold="rounded"  value="@{client_pmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.client_p.name}" /><textbox id="name"  mold="rounded"  value="@{client_pmain$composer.current.name}" /></row>
+                                  <row><label value="${labels.client_p.birthday}" /><textbox id="birthday"  mold="rounded"  value="@{client_pmain$composer.current.birthday}" /></row>
+                                  <row><label value="${labels.client_p.post_address}" /><textbox id="post_address"  mold="rounded"  value="@{client_pmain$composer.current.post_address}" /></row>
+                                  <row><label value="${labels.client_p.passport_type}" /><textbox id="passport_type"  mold="rounded"  value="@{client_pmain$composer.current.passport_type}" /></row>
+                                  <row><label value="${labels.client_p.passport_serial}" /><textbox id="passport_serial"  mold="rounded"  value="@{client_pmain$composer.current.passport_serial}" /></row>
+                                  <row><label value="${labels.client_p.passport_number}" /><textbox id="passport_number"  mold="rounded"  value="@{client_pmain$composer.current.passport_number}" /></row>
+                                  <row><label value="${labels.client_p.passport_place_registration}" /><textbox id="passport_place_registration"  mold="rounded"  value="@{client_pmain$composer.current.passport_place_registration}" /></row>
+                                  <row><label value="${labels.client_p.passport_date_registration}" /><textbox id="passport_date_registration"  mold="rounded"  value="@{client_pmain$composer.current.passport_date_registration}" /></row>
+                                  <row><label value="${labels.client_p.code_place_regist}" /><textbox id="code_place_regist"  mold="rounded"  value="@{client_pmain$composer.current.code_place_regist}" /></row>
+                                  <row><label value="${labels.client_p.date_registration}" /><textbox id="date_registration"  mold="rounded"  value="@{client_pmain$composer.current.date_registration}" /></row>
+                                  <row><label value="${labels.client_p.number_registration_doc}" /><textbox id="number_registration_doc"  mold="rounded"  value="@{client_pmain$composer.current.number_registration_doc}" /></row>
+                                  <row><label value="${labels.client_p.code_tax_org}" /><textbox id="code_tax_org"  mold="rounded"  value="@{client_pmain$composer.current.code_tax_org}" /></row>
+                                  <row><label value="${labels.client_p.number_tax_registration}" /><textbox id="number_tax_registration"  mold="rounded"  value="@{client_pmain$composer.current.number_tax_registration}" /></row>
+                                  <row><label value="${labels.client_p.code_sector}" /><textbox id="code_sector"  mold="rounded"  value="@{client_pmain$composer.current.code_sector}" /></row>
+                                  <row><label value="${labels.client_p.code_organ_direct}" /><textbox id="code_organ_direct"  mold="rounded"  value="@{client_pmain$composer.current.code_organ_direct}" /></row>
+                                  <row><label value="${labels.client_p.code_bank}" /><textbox id="code_bank"  mold="rounded"  value="@{client_pmain$composer.current.code_bank}" /></row>
+                                  <row><label value="${labels.client_p.globuzAccount}" /><textbox id="globuzAccount"  mold="rounded"  value="@{client_pmain$composer.current.globuzAccount}" /></row>
+                                  <row><label value="${labels.client_p.code_class_credit}" /><textbox id="code_class_credit"  mold="rounded"  value="@{client_pmain$composer.current.code_class_credit}" /></row>
+                                  <row><label value="${labels.client_p.state}" /><textbox id="state"  mold="rounded"  value="@{client_pmain$composer.current.state}" /></row>
+                                  <row><label value="${labels.client_p.kod_err}" /><textbox id="kod_err"  mold="rounded"  value="@{client_pmain$composer.current.kod_err}" /></row>
+                                  <row><label value="${labels.client_p.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{client_pmain$composer.current.file_name}" /></row>
+                                  <row><label value="${labels.client_p.code_citizenship}" /><textbox id="code_citizenship"  mold="rounded"  value="@{client_pmain$composer.current.code_citizenship}" /></row>
+                                  <row><label value="${labels.client_p.birth_place}" /><textbox id="birth_place"  mold="rounded"  value="@{client_pmain$composer.current.birth_place}" /></row>
+                                  <row><label value="${labels.client_p.code_capacity}" /><textbox id="code_capacity"  mold="rounded"  value="@{client_pmain$composer.current.code_capacity}" /></row>
+                                  <row><label value="${labels.client_p.capacity_status_date}" /><textbox id="capacity_status_date"  mold="rounded"  value="@{client_pmain$composer.current.capacity_status_date}" /></row>
+                                  <row><label value="${labels.client_p.capacity_status_place}" /><textbox id="capacity_status_place"  mold="rounded"  value="@{client_pmain$composer.current.capacity_status_place}" /></row>
+                                  <row><label value="${labels.client_p.num_certif_capacity}" /><textbox id="num_certif_capacity"  mold="rounded"  value="@{client_pmain$composer.current.num_certif_capacity}" /></row>
+                                  <row><label value="${labels.client_p.phone_home}" /><textbox id="phone_home"  mold="rounded"  value="@{client_pmain$composer.current.phone_home}" /></row>
+                                  <row><label value="${labels.client_p.phone_mobile}" /><textbox id="phone_mobile"  mold="rounded"  value="@{client_pmain$composer.current.phone_mobile}" /></row>
+                                  <row><label value="${labels.client_p.email_address}" /><textbox id="email_address"  mold="rounded"  value="@{client_pmain$composer.current.email_address}" /></row>
+                                  <row><label value="${labels.client_p.pension_sertif_serial}" /><textbox id="pension_sertif_serial"  mold="rounded"  value="@{client_pmain$composer.current.pension_sertif_serial}" /></row>
+                                  <row><label value="${labels.client_p.code_gender}" /><textbox id="code_gender"  mold="rounded"  value="@{client_pmain$composer.current.code_gender}" /></row>
+                                  <row><label value="${labels.client_p.code_nation}" /><textbox id="code_nation"  mold="rounded"  value="@{client_pmain$composer.current.code_nation}" /></row>
+                                  <row><label value="${labels.client_p.code_birth_region}" /><textbox id="code_birth_region"  mold="rounded"  value="@{client_pmain$composer.current.code_birth_region}" /></row>
+                                  <row><label value="${labels.client_p.code_birth_distr}" /><textbox id="code_birth_distr"  mold="rounded"  value="@{client_pmain$composer.current.code_birth_distr}" /></row>
+                                  <row><label value="${labels.client_p.type_document}" /><textbox id="type_document"  mold="rounded"  value="@{client_pmain$composer.current.type_document}" /></row>
+                                  <row><label value="${labels.client_p.passport_date_expiration}" /><textbox id="passport_date_expiration"  mold="rounded"  value="@{client_pmain$composer.current.passport_date_expiration}" /></row>
+                                  <row><label value="${labels.client_p.code_adr_region}" /><textbox id="code_adr_region"  mold="rounded"  value="@{client_pmain$composer.current.code_adr_region}" /></row>
+                                  <row><label value="${labels.client_p.code_adr_distr}" /><textbox id="code_adr_distr"  mold="rounded"  value="@{client_pmain$composer.current.code_adr_distr}" /></row>
+                                  <row><label value="${labels.client_p.inps}" /><textbox id="inps"  mold="rounded"  value="@{client_pmain$composer.current.inps}" /></row>
+                                  <row><label value="${labels.client_p.family}" /><textbox id="family"  mold="rounded"  value="@{client_pmain$composer.current.family}" /></row>
+                                  <row><label value="${labels.client_p.first_name}" /><textbox id="first_name"  mold="rounded"  value="@{client_pmain$composer.current.first_name}" /></row>
+                                  <row><label value="${labels.client_p.patronymic}" /><textbox id="patronymic"  mold="rounded"  value="@{client_pmain$composer.current.patronymic}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.client_p.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.name}" /><textbox id="aname"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.birthday}" /><textbox id="abirthday"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.post_address}" /><textbox id="apost_address"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.passport_type}" /><textbox id="apassport_type"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.passport_serial}" /><textbox id="apassport_serial"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.passport_number}" /><textbox id="apassport_number"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.passport_place_registration}" /><textbox id="apassport_place_registration"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.passport_date_registration}" /><textbox id="apassport_date_registration"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_place_regist}" /><textbox id="acode_place_regist"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.date_registration}" /><textbox id="adate_registration"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.number_registration_doc}" /><textbox id="anumber_registration_doc"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_tax_org}" /><textbox id="acode_tax_org"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.number_tax_registration}" /><textbox id="anumber_tax_registration"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_sector}" /><textbox id="acode_sector"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_organ_direct}" /><textbox id="acode_organ_direct"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_bank}" /><textbox id="acode_bank"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.globuzAccount}" /><textbox id="aaccount"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_class_credit}" /><textbox id="acode_class_credit"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.kod_err}" /><textbox id="akod_err"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.file_name}" /><textbox id="afile_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_citizenship}" /><textbox id="acode_citizenship"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.birth_place}" /><textbox id="abirth_place"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_capacity}" /><textbox id="acode_capacity"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.capacity_status_date}" /><textbox id="acapacity_status_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.capacity_status_place}" /><textbox id="acapacity_status_place"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.num_certif_capacity}" /><textbox id="anum_certif_capacity"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.phone_home}" /><textbox id="aphone_home"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.phone_mobile}" /><textbox id="aphone_mobile"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.email_address}" /><textbox id="aemail_address"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.pension_sertif_serial}" /><textbox id="apension_sertif_serial"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_gender}" /><textbox id="acode_gender"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_nation}" /><textbox id="acode_nation"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_birth_region}" /><textbox id="acode_birth_region"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_birth_distr}" /><textbox id="acode_birth_distr"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.type_document}" /><textbox id="atype_document"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.passport_date_expiration}" /><textbox id="apassport_date_expiration"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_adr_region}" /><textbox id="acode_adr_region"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.code_adr_distr}" /><textbox id="acode_adr_distr"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.inps}" /><textbox id="ainps"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.family}" /><textbox id="afamily"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.first_name}" /><textbox id="afirst_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.client_p.patronymic}" /><textbox id="apatronymic"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.client_p.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{client_pmain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.client_p.id}" /><textbox id="fid"  mold="rounded"  value="@{client_pmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.client_p.name}" /><textbox id="fname"  mold="rounded"  value="@{client_pmain$composer.filter.name}" /></row>
+                                  <row><label value="${labels.client_p.birthday}" /><textbox id="fbirthday"  mold="rounded"  value="@{client_pmain$composer.filter.birthday}" /></row>
+                                  <row><label value="${labels.client_p.post_address}" /><textbox id="fpost_address"  mold="rounded"  value="@{client_pmain$composer.filter.post_address}" /></row>
+                                  <row><label value="${labels.client_p.passport_type}" /><textbox id="fpassport_type"  mold="rounded"  value="@{client_pmain$composer.filter.passport_type}" /></row>
+                                  <row><label value="${labels.client_p.passport_serial}" /><textbox id="fpassport_serial"  mold="rounded"  value="@{client_pmain$composer.filter.passport_serial}" /></row>
+                                  <row><label value="${labels.client_p.passport_number}" /><textbox id="fpassport_number"  mold="rounded"  value="@{client_pmain$composer.filter.passport_number}" /></row>
+                                  <row><label value="${labels.client_p.passport_place_registration}" /><textbox id="fpassport_place_registration"  mold="rounded"  value="@{client_pmain$composer.filter.passport_place_registration}" /></row>
+                                  <row><label value="${labels.client_p.passport_date_registration}" /><textbox id="fpassport_date_registration"  mold="rounded"  value="@{client_pmain$composer.filter.passport_date_registration}" /></row>
+                                  <row><label value="${labels.client_p.code_place_regist}" /><textbox id="fcode_place_regist"  mold="rounded"  value="@{client_pmain$composer.filter.code_place_regist}" /></row>
+                                  <row><label value="${labels.client_p.date_registration}" /><textbox id="fdate_registration"  mold="rounded"  value="@{client_pmain$composer.filter.date_registration}" /></row>
+                                  <row><label value="${labels.client_p.number_registration_doc}" /><textbox id="fnumber_registration_doc"  mold="rounded"  value="@{client_pmain$composer.filter.number_registration_doc}" /></row>
+                                  <row><label value="${labels.client_p.code_tax_org}" /><textbox id="fcode_tax_org"  mold="rounded"  value="@{client_pmain$composer.filter.code_tax_org}" /></row>
+                                  <row><label value="${labels.client_p.number_tax_registration}" /><textbox id="fnumber_tax_registration"  mold="rounded"  value="@{client_pmain$composer.filter.number_tax_registration}" /></row>
+                                  <row><label value="${labels.client_p.code_sector}" /><textbox id="fcode_sector"  mold="rounded"  value="@{client_pmain$composer.filter.code_sector}" /></row>
+                                  <row><label value="${labels.client_p.code_organ_direct}" /><textbox id="fcode_organ_direct"  mold="rounded"  value="@{client_pmain$composer.filter.code_organ_direct}" /></row>
+                                  <row><label value="${labels.client_p.code_bank}" /><textbox id="fcode_bank"  mold="rounded"  value="@{client_pmain$composer.filter.code_bank}" /></row>
+                                  <row><label value="${labels.client_p.globuzAccount}" /><textbox id="faccount"  mold="rounded"  value="@{client_pmain$composer.filter.globuzAccount}" /></row>
+                                  <row><label value="${labels.client_p.code_class_credit}" /><textbox id="fcode_class_credit"  mold="rounded"  value="@{client_pmain$composer.filter.code_class_credit}" /></row>
+                                  <row><label value="${labels.client_p.state}" /><textbox id="fstate"  mold="rounded"  value="@{client_pmain$composer.filter.state}" /></row>
+                                  <row><label value="${labels.client_p.kod_err}" /><textbox id="fkod_err"  mold="rounded"  value="@{client_pmain$composer.filter.kod_err}" /></row>
+                                  <row><label value="${labels.client_p.file_name}" /><textbox id="ffile_name"  mold="rounded"  value="@{client_pmain$composer.filter.file_name}" /></row>
+                                  <row><label value="${labels.client_p.code_citizenship}" /><textbox id="fcode_citizenship"  mold="rounded"  value="@{client_pmain$composer.filter.code_citizenship}" /></row>
+                                  <row><label value="${labels.client_p.birth_place}" /><textbox id="fbirth_place"  mold="rounded"  value="@{client_pmain$composer.filter.birth_place}" /></row>
+                                  <row><label value="${labels.client_p.code_capacity}" /><textbox id="fcode_capacity"  mold="rounded"  value="@{client_pmain$composer.filter.code_capacity}" /></row>
+                                  <row><label value="${labels.client_p.capacity_status_date}" /><textbox id="fcapacity_status_date"  mold="rounded"  value="@{client_pmain$composer.filter.capacity_status_date}" /></row>
+                                  <row><label value="${labels.client_p.capacity_status_place}" /><textbox id="fcapacity_status_place"  mold="rounded"  value="@{client_pmain$composer.filter.capacity_status_place}" /></row>
+                                  <row><label value="${labels.client_p.num_certif_capacity}" /><textbox id="fnum_certif_capacity"  mold="rounded"  value="@{client_pmain$composer.filter.num_certif_capacity}" /></row>
+                                  <row><label value="${labels.client_p.phone_home}" /><textbox id="fphone_home"  mold="rounded"  value="@{client_pmain$composer.filter.phone_home}" /></row>
+                                  <row><label value="${labels.client_p.phone_mobile}" /><textbox id="fphone_mobile"  mold="rounded"  value="@{client_pmain$composer.filter.phone_mobile}" /></row>
+                                  <row><label value="${labels.client_p.email_address}" /><textbox id="femail_address"  mold="rounded"  value="@{client_pmain$composer.filter.email_address}" /></row>
+                                  <row><label value="${labels.client_p.pension_sertif_serial}" /><textbox id="fpension_sertif_serial"  mold="rounded"  value="@{client_pmain$composer.filter.pension_sertif_serial}" /></row>
+                                  <row><label value="${labels.client_p.code_gender}" /><textbox id="fcode_gender"  mold="rounded"  value="@{client_pmain$composer.filter.code_gender}" /></row>
+                                  <row><label value="${labels.client_p.code_nation}" /><textbox id="fcode_nation"  mold="rounded"  value="@{client_pmain$composer.filter.code_nation}" /></row>
+                                  <row><label value="${labels.client_p.code_birth_region}" /><textbox id="fcode_birth_region"  mold="rounded"  value="@{client_pmain$composer.filter.code_birth_region}" /></row>
+                                  <row><label value="${labels.client_p.code_birth_distr}" /><textbox id="fcode_birth_distr"  mold="rounded"  value="@{client_pmain$composer.filter.code_birth_distr}" /></row>
+                                  <row><label value="${labels.client_p.type_document}" /><textbox id="ftype_document"  mold="rounded"  value="@{client_pmain$composer.filter.type_document}" /></row>
+                                  <row><label value="${labels.client_p.passport_date_expiration}" /><textbox id="fpassport_date_expiration"  mold="rounded"  value="@{client_pmain$composer.filter.passport_date_expiration}" /></row>
+                                  <row><label value="${labels.client_p.code_adr_region}" /><textbox id="fcode_adr_region"  mold="rounded"  value="@{client_pmain$composer.filter.code_adr_region}" /></row>
+                                  <row><label value="${labels.client_p.code_adr_distr}" /><textbox id="fcode_adr_distr"  mold="rounded"  value="@{client_pmain$composer.filter.code_adr_distr}" /></row>
+                                  <row><label value="${labels.client_p.inps}" /><textbox id="finps"  mold="rounded"  value="@{client_pmain$composer.filter.inps}" /></row>
+                                  <row><label value="${labels.client_p.family}" /><textbox id="ffamily"  mold="rounded"  value="@{client_pmain$composer.filter.family}" /></row>
+                                  <row><label value="${labels.client_p.first_name}" /><textbox id="ffirst_name"  mold="rounded"  value="@{client_pmain$composer.filter.first_name}" /></row>
+                                  <row><label value="${labels.client_p.patronymic}" /><textbox id="fpatronymic"  mold="rounded"  value="@{client_pmain$composer.filter.patronymic}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>
+

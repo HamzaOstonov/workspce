@@ -1,0 +1,47 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="" border="none" id="baseSearch">
+		<div id="main">
+			<div id="chld">
+				<grid>
+					<columns>
+						<column align="left" />
+						<column align="left" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Поиск" />
+							<cell>
+								<checkbox id="chbBaseSearch"
+									onCheck="findSAP.setVisible(!chbBaseSearch.isChecked());findLocal.setVisible(chbBaseSearch.isChecked());" />
+								<label value="Локальный поиск" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</div>
+			<tabbox id="searchTab" visible="false"
+				mold="accordion-lite">
+				<tabs>
+					<tab label="Поиск" />
+					<tab label="Расширенный Поиск" />
+				</tabs>
+				<tabpanels>
+					<tabpanel>
+						<include src="/customer/SAPSearch.zul" />
+					</tabpanel>
+					<tabpanel>
+						<include src="/customer/searchLocal.zul" />
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+			<div id="findSAP">
+				<include src="/customer/SAPSearch.zul" />
+			</div>
+			<div id="findLocal" visible="false">
+				<include src="/customer/searchLocal.zul" />
+			</div>
+
+		</div>
+	</window>
+</zk>

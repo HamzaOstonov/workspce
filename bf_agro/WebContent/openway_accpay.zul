@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.openwayutils.utils.RefCBox"?>
+<window id="customermain" width="100%"
+	apply="com.is.openway.accpay.AccPayViewCtrl">
+
+	<menupopup id="editPopup">
+		<menuitem id="pop_open_cl" label="${labels.openway.opencl}" />
+	</menupopup>
+
+	<hlayout sclass="z-valign-top" style="overflow:auto;">
+
+		<div id="leftToolbar" visible="true" width="240px">
+			<grid id="tfgrd">
+				<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.openway.client_b}" />
+						<textbox id="txbId_client"
+							value="@{customermain$composer.filter.id_client}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="${labels.openway.pinfl}" />
+						<textbox id="txbPinfl"
+							value="@{customermain$composer.filter.p_pinfl}" forward="onOK=onOkToFilter" />
+					</row>
+					<row>
+						<label value="${labels.openway.f_names}" />
+						<textbox id="txtName"
+							value="@{customermain$composer.filter.name}" forward="onOK=onOkToFilter" />
+					</row>
+
+					<row>
+						<label value="${labels.openway.b_date}" />
+						<datebox id="dbxB_date"
+							value="@{customermain$composer.filter.p_birthday}" forward="onOK=onOkToFilter" />
+					</row>
+
+					<row>
+						<label value="${labels.openway.card}" />
+						<textbox id="txtCard"
+							value="@{customermain$composer.filter.p_code_bank}" forward="onOK=onOkToFilter" />
+					</row>
+
+					<row>
+						<label value="Серия и номер паспорта" />
+						<textbox id="txtPassportSerial"
+							value="@{customermain$composer.filter.p_passport_serial}" forward="onOK=onOkToFilter" />
+					</row>
+
+				</rows>
+			</grid>
+			<toolbar visible="true" orient="vertical">
+				<toolbarbutton id="tbtn_search"
+					label="${labels.openway.search}" image="/images/search.png" />
+				<toolbarbutton id="btn_utv"
+					label="${labels.openway.comm}" visible="false"
+					image="/images/stop.png" />
+				<toolbarbutton id="tbtn_card_oprations"
+					label="${labels.openway.AddCstViewCtrl.cardoper}"
+					image="/images/credit_card2.png" />
+			</toolbar>
+		</div>
+
+		<vlayout id="tgrd" hflex="1">
+
+			<listbox
+				style="border:normal; background-color:white;height:240px;"
+				id="branch_customers" rows="10" multiple="true"
+				selectedItem="@{customermain$composer.current}">
+				<auxhead>
+					<auxheader/>
+					<auxheader label="Данные Openway" colspan="4" align="middle" />
+					<auxheader label="${labels.openway.brdata}"	colspan="4" align="middle" />
+					<auxheader label="${labels.openway.acc20206}" colspan="2" align="middle" />
+				</auxhead>
+				<listhead sizable="false">
+
+					<listheader width="10px" />
+
+					<listheader label="ПИНФЛ" width="9%" />
+					<listheader label="ФИО" width="15%" />
+					<listheader label="Дата рождения" width="9%" />
+					<listheader label="Паспорт" width="7%" />
+
+					<listheader label="${labels.openway.client_b}"
+						width="8%" />
+					<listheader label="${labels.openway.f_names}"
+						width="15%" />
+					<listheader label="${labels.openway.b_date}"
+						width="9%" />
+					<listheader label="Паспорт" width="7%" />
+
+					<listheader label="${labels.openway.globuzAccount}"
+						width="12%" />
+					<listheader width="20px" />
+					<listheader />
+				</listhead>
+
+			</listbox>
+
+			<paging id="bankdataPaging" />
+
+			<vlayout style="overflow:auto;">
+				<listbox id="accGrid"  
+					hflex="1" selectedItem="@{customermain$composer.curr_acc}">					
+					<listhead sizable="true">
+	                   
+						<listheader label="${labels.accinfo.card}"
+							width="220px" sort="auto(card)" />
+						<listheader
+							label="${labels.accinfo.ab_expirity}" width="80px"
+							sort="auto(ab_expirity)" />
+						<listheader label="Contract number"
+							width="120px" sort="auto(card_acct)" />
+						<listheader label="${labels.accinfo.tranz_acct}"
+							width="250px" sort="auto(tranz_acct)" />
+						<listheader label="Sms status" />
+						<listheader label="${labels.accinfo.status1}"
+							width="70px" sort="auto(status1)" />
+                        <listheader width="35px" />
+					</listhead>
+
+				</listbox>
+
+				<listbox id="cardGrid" hflex="1" width="100%"
+					selectedItem="@{customermain$composer.curr_card}">
+					<listhead sizable="true">
+                        <!-- <ContractNumber>430142______2890</ContractNumber> . ContractNumber -->
+						<listheader label="ContractNumber(Way)"	width="17%" />
+						<listheader label="CardExpiry"	width="7%" />
+			    	    <!-- bf_openway_contract_card.sub_product_code VISA_CLASSIC_USD.productcode1 -->
+						
+						<!-- <listheader label="Card Actions" width="70px" /> -->
+						
+						<listheader label="Product Code(IBS)" width="10%"  />
+					    <!-- bf_openway_contract_card.cbs_number 430142______2890.cbsNumber -->
+						<listheader
+							label="ContractNumber(IBS)" width="8%" />
+					    <!-- bf_openway_contract_card.rbs_number 9058-P-547326-0000003 .rbsNumberIbs -->
+						<listheader label="RbsNumber(IBS)" width="17%"  />
+						<listheader label="Balance" width="80px"  />
+						<listheader label="${labels.accinfo.status1}" width="10%"  />
+						<listheader label="status2 " width="5%" />
+						<!--<listheader label="Action" width="70px" /> -->
+					</listhead>
+				</listbox>
+
+			</vlayout>
+		</vlayout>
+
+
+	</hlayout>
+
+    <window id="paywnd" width="550px" mode="overlapped"
+		title="Операции со счетовым контрактом" position="center,center"
+		visible="false">
+
+		<toolbar>
+			<toolbarbutton id="btn_cancel" label="Закрыть"
+				image="/images/stop.png" />
+
+		</toolbar>
+
+		<listbox id="payGrid" rows="4" width="100%">
+			<listhead sizable="true">
+				<listheader label="${labels.trpay.branch}" width="70px" />
+				<listheader label="${labels.trpay.card_acc}"
+					width="200px" />
+				<listheader label="${labels.trpay.date_created}"
+					width="100px" sort="auto(date_created)" />
+				<listheader label="${labels.trpay.amount}" width="100px"
+					sort="auto(amount)" />
+			</listhead>
+		</listbox>
+
+		<grid width="100%">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label />
+					<hbox>
+						<toolbarbutton id="lock"
+							image="/images/locked.png" />
+						<toolbarbutton id="application"
+							image="/images/file.png" label="Заявление" />
+					</hbox>
+				</row>
+				<row>
+					<label value="${labels.tclient.search_name}" />
+					<textbox id="search_name" readonly="true"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Адрес" />
+					<textbox id="address" readonly="true" width="100%" />
+				</row>
+				<row>
+					<label id="add_currency_type"
+						value="${labels.doc.summa}" />
+					<decimalbox format="###.##" id="amnt" mold="rounded"
+						constraint="no empty" />
+				</row>
+				<row>
+					<label value="${labels.trpay.cur_acc}" />
+					<textbox id="curacc" readonly="true" width="200px" />
+					<hbox visible="false">
+						<rcombobox id="scurracc" mold="rounded" />
+						<toolbarbutton id="btn_addacc" visible="false"
+							label="${labels.add}" image="/images/+.png" />
+					</hbox>
+				</row>
+				<row visible="false">
+					<label value="${labels.trpay.cur_acc}" />
+					<rcombobox id="curracc_uzs" mold="rounded" readonly="true" width="100%" visible="false" />
+					<textbox id="curr_acc_uzs" readonly="true" width="200px" />
+				</row>
+				
+				<row>
+					<label value="Номер приходного ордера" />
+					<textbox id="inc_ord_num" constraint="no empty"
+						mold="rounded" />
+				</row>
+			</rows>
+		</grid>
+
+		<toolbar visible="false">
+			<toolbarbutton id="btn_block"
+				label="${labels.accinfo.btnblock}" image="/images/save.png" />
+			<toolbarbutton id="btn_unblock"
+				label="${labels.accinfo.btnunblock}" image="/images/save.png" />
+			<toolbarbutton id="btn_print" visible="false"
+				label="${labels.print}" image="/images/printer.png" />
+			<toolbarbutton id="btn_printp" visible="false"
+				label="${labels.print} PDF" image="/images/printer.png" />
+
+		</toolbar>
+
+
+		<toolbar id="pay_tlb">
+			<!--  <toolbarbutton id="btn_pay"
+				label="${labels.accinfo.btnpay}" image="/images/save.png" />
+				<toolbarbutton id="btn_pay_branch"
+				label="пополнить в филиале" image="/images/save.png" /> -->
+		</toolbar>
+
+	</window>
+	
+	<window id="printwnd" mode="overlapped" title="${labels.print}"
+		position="center,center" visible="false" maximizable="true"
+		width="950px" height="550px" closable="true"
+		onClose="self.visible = false; event.stopPropagation();">
+		<script src="scripts/iprint.js" />
+
+
+		<iframe id="rpframe" width="100%" height="100%" />
+		<!-- <iframe id="rpframe" width="950px"  height="550px"/>-->
+		<toolbar>
+			<toolbarbutton id="btn_cancel" label="Закрыть"
+				image="/images/delete.png" />
+		</toolbar>
+	</window>
+	
+	<window id="showBalanceWindow" width="600px" mode="modal"
+		visible="false" closable="true" title="Balance"
+		position="center, center"
+		onClose="self.visible  =  false; event.stopPropagation();">
+
+		<grid id="showBalanceGrid">
+			<columns>
+				<column hflex="1"></column>
+				<column hflex="2"></column>
+				<column hflex="1"></column>
+				<column hflex="2"></column>
+				<column hflex="1"></column>
+				<column hflex="2"></column>
+				<column hflex="1"></column>
+				<column hflex="2"></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Имя " />
+					<textbox readonly="true" width="100%" value="Значение"></textbox>
+					<label value="Имя " />
+					<textbox readonly="true" width="100%" value="Значение"></textbox>
+					<label value="Имя " />
+					<textbox readonly="true" width="100%" value="Значение"></textbox>
+					<label value="Имя " />
+					<textbox readonly="true" width="100%" value="Значение"></textbox>
+				</row>
+			</rows>
+		</grid>
+
+		<toolbar>
+			<toolbarbutton id="showBalanceCloseBtn"
+				label="Закрыть" />
+		</toolbar>
+
+	</window>
+	
+	
+
+</window>

@@ -1,0 +1,124 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="transfermain" width="100%"  height="550px" border="normal" apply="com.is.tf.transfer.TransferViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="transferPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{transfermain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.transfer.id}" width="200px" />
+                                <listheader label="${labels.transfer.p1t29}" width="200px" />
+                                <listheader label="${labels.transfer.p0t29}" width="200px" />
+                                <listheader label="${labels.transfer.p2t29}" width="200px" />
+                                <listheader label="${labels.transfer.p3t29}" width="200px" />
+                                <listheader label="${labels.transfer.p4t29}" width="200px" />
+                                <listheader label="${labels.transfer.p5t29}" width="200px" />
+                                <listheader label="${labels.transfer.p6t29}" width="200px" />
+                                <listheader label="${labels.transfer.p7t29}" width="200px" />
+                                <listheader label="${labels.transfer.p8t29}" width="200px" />
+                                <listheader label="${labels.transfer.p9t29}" width="200px" />
+                                <listheader label="${labels.transfer.p10t29}" width="200px" />
+                                
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.transfer.id}" /><textbox id="id"  mold="rounded"  value="@{transfermain$composer.current.id}" /></row>
+                                  <row><label value="${labels.transfer.p1t29}" /><textbox id="p1t29"  mold="rounded"  value="@{transfermain$composer.current.p1t29}" /></row>
+                                  <row><label value="${labels.transfer.p0t29}" /><textbox id="p0t29"  mold="rounded"  value="@{transfermain$composer.current.p0t29}" /></row>
+                                  <row><label value="${labels.transfer.p2t29}" /><textbox id="p2t29"  mold="rounded"  value="@{transfermain$composer.current.p2t29}" /></row>
+                                  <row><label value="${labels.transfer.p3t29}" /><textbox id="p3t29"  mold="rounded"  value="@{transfermain$composer.current.p3t29}" /></row>
+                                  <row><label value="${labels.transfer.p4t29}" /><textbox id="p4t29"  mold="rounded"  value="@{transfermain$composer.current.p4t29}" /></row>
+                                  <row><label value="${labels.transfer.p5t29}" /><decimalbox id="p5t29"  mold="rounded"  value="@{transfermain$composer.current.p5t29}" /></row>
+                                  <row><label value="${labels.transfer.p6t29}" /><textbox id="p6t29"  mold="rounded"  value="@{transfermain$composer.current.p6t29}" /></row>
+                                  <row><label value="${labels.transfer.p7t29}" /><textbox id="p7t29"  mold="rounded"  value="@{transfermain$composer.current.p7t29}" /></row>
+                                  <row><label value="${labels.transfer.p8t29}" /><textbox id="p8t29"  mold="rounded"  value="@{transfermain$composer.current.p8t29}" /></row>
+                                  <row><label value="${labels.transfer.p9t29}" /><intbox id="p9t29"  mold="rounded"  value="@{transfermain$composer.current.p9t29}" /></row>
+                                  <row><label value="${labels.transfer.p10t29}" /><intbox id="p10t29"  mold="rounded"  value="@{transfermain$composer.current.p10t29}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.transfer.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p1t29}" /><textbox id="ap1t29"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p0t29}" /><textbox id="ap0t29"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p2t29}" /><textbox id="ap2t29"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p3t29}" /><textbox id="ap3t29"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p4t29}" /><textbox id="ap4t29"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p5t29}" /><decimalbox id="ap5t29"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p6t29}" /><textbox id="ap6t29"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p7t29}" /><textbox id="ap7t29"  mold="rounded"  /></row>
+                                  <row><label value="${labels.transfer.p8t29}" /><textbox id="ap8t29"  mold="rounded"  /></row>
+                                   <row><label value="${labels.transfer.p9t29}" /><intbox id="ap9t29"  mold="rounded"  /></row>
+                                    <row><label value="${labels.transfer.p10t29}" /><intbox id="ap10t29"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.transfer.id}" /><textbox id="fid"  mold="rounded"  value="@{transfermain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.transfer.p1t29}" /><textbox id="fp1t29"  mold="rounded"  value="@{transfermain$composer.filter.p1t29}" /></row>
+                                  <row><label value="${labels.transfer.p0t29}" /><textbox id="fp0t29"  mold="rounded"  value="@{transfermain$composer.filter.p0t29}" /></row>
+                                  <row><label value="${labels.transfer.p2t29}" /><textbox id="fp2t29"  mold="rounded"  value="@{transfermain$composer.filter.p2t29}" /></row>
+                                  <row><label value="${labels.transfer.p3t29}" /><textbox id="fp3t29"  mold="rounded"  value="@{transfermain$composer.filter.p3t29}" /></row>
+                                  <row><label value="${labels.transfer.p4t29}" /><textbox id="fp4t29"  mold="rounded"  value="@{transfermain$composer.filter.p4t29}" /></row>
+                                  <row><label value="${labels.transfer.p5t29}" /><decimalbox id="fp5t29"  mold="rounded"  value="@{transfermain$composer.filter.p5t29}" /></row>
+                                  <row><label value="${labels.transfer.p6t29}" /><textbox id="fp6t29"  mold="rounded"  value="@{transfermain$composer.filter.p6t29}" /></row>
+                                  <row><label value="${labels.transfer.p7t29}" /><textbox id="fp7t29"  mold="rounded"  value="@{transfermain$composer.filter.p7t29}" /></row>
+                                  <row><label value="${labels.transfer.p8t29}" /><textbox id="fp8t29"  mold="rounded"  value="@{transfermain$composer.filter.p8t29}" /></row>
+                                  <row><label value="${labels.transfer.p9t29}" /><intbox id="fp9t29"  mold="rounded"  value="@{transfermain$composer.filter.p9t29}" /></row>
+                                  <row><label value="${labels.transfer.p10t29}" /><intbox id="fp10t29"  mold="rounded"  value="@{transfermain$composer.filter.p10t29}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

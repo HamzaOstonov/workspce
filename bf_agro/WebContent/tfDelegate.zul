@@ -1,0 +1,163 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="delegatemain" width="100%"  height="550px" border="normal" apply="com.is.tf.delegate.DelegateViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="delegatePaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{delegatemain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.delegate.id}" width="50px" />
+                                <listheader label="${labels.delegate.p0t30}" width="30px" />
+                                <listheader label="${labels.delegate.p1t30}" width="200px" />
+                                <listheader label="${labels.delegate.p2t30}" width="200px" />
+                                <listheader label="${labels.delegate.p3t30}" width="200px" />
+                                <listheader label="${labels.delegate.p4t30}" width="200px" />
+                                <listheader label="${labels.delegate.p5t30}" width="200px" />
+                                <listheader label="${labels.delegate.p6t30}" width="200px" />
+                                <listheader label="${labels.delegate.p7t30}" width="200px" />
+                                <listheader label="${labels.delegate.p8t30}" width="200px" />
+                                <listheader label="${labels.delegate.p9t30}" width="200px" />
+                                <listheader label="${labels.delegate.p10t30}" width="200px" />
+                                <listheader label="${labels.delegate.p11t30}" width="200px" />
+                                <listheader label="${labels.delegate.p12t30}" width="200px" />
+                                <listheader label="${labels.delegate.p13t30}" width="200px" />
+                                <listheader label="${labels.delegate.p14t30}" width="200px" />
+                                <listheader label="${labels.delegate.p15t30}" width="200px" />
+                                <listheader label="${labels.delegate.p16t30}" width="200px" />
+                                <listheader label="${labels.delegate.p17t30}" width="200px" />
+                                <listheader label="${labels.delegate.p18t30}" width="200px" />
+                                <listheader label="${labels.delegate.p19t30}" width="200px" />
+                                <listheader label="${labels.delegate.p20t30}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.delegate.id}" /><textbox id="id"  mold="rounded"  value="@{delegatemain$composer.current.id}" /></row>
+                                  <row><label value="${labels.delegate.p0t30}" /><textbox id="p0t30"  mold="rounded"  value="@{delegatemain$composer.current.p0t30}" /></row>
+                                  <row><label value="${labels.delegate.p1t30}" /><textbox id="p1t30"  mold="rounded"  value="@{delegatemain$composer.current.p1t30}" /></row>
+                                  <row><label value="${labels.delegate.p2t30}" /><textbox id="p2t30"  mold="rounded"  value="@{delegatemain$composer.current.p2t30}" /></row>
+                                  <row><label value="${labels.delegate.p3t30}" /><textbox id="p3t30"  mold="rounded"  value="@{delegatemain$composer.current.p3t30}" /></row>
+                                  <row><label value="${labels.delegate.p4t30}" /><textbox id="p4t30"  mold="rounded"  value="@{delegatemain$composer.current.p4t30}" /></row>
+                                  <row><label value="${labels.delegate.p5t30}" /><datebox id="p5t30"  mold="rounded"  value="@{delegatemain$composer.current.p5t30}" /></row>
+                                  <row><label value="${labels.delegate.p6t30}" /><textbox id="p6t30"  mold="rounded"  value="@{delegatemain$composer.current.p6t30}" /></row>
+                                  <row><label value="${labels.delegate.p7t30}" /><datebox id="p7t30"  mold="rounded"  value="@{delegatemain$composer.current.p7t30}" /></row>
+                                  <row><label value="${labels.delegate.p8t30}" /><textbox id="p8t30"  mold="rounded"  value="@{delegatemain$composer.current.p8t30}" /></row>
+                                  <row><label value="${labels.delegate.p9t30}" /><textbox id="p9t30"  mold="rounded"  value="@{delegatemain$composer.current.p9t30}" /></row>
+                                  <row><label value="${labels.delegate.p10t30}" /><textbox id="p10t30"  mold="rounded"  value="@{delegatemain$composer.current.p10t30}" /></row>
+                                  <row><label value="${labels.delegate.p11t30}" /><textbox id="p11t30"  mold="rounded"  value="@{delegatemain$composer.current.p11t30}" /></row>
+                                  <row><label value="${labels.delegate.p12t30}" /><textbox id="p12t30"  mold="rounded"  value="@{delegatemain$composer.current.p12t30}" /></row>
+                                  <row><label value="${labels.delegate.p13t30}" /><textbox id="p13t30"  mold="rounded"  value="@{delegatemain$composer.current.p13t30}" /></row>
+                                  <row><label value="${labels.delegate.p14t30}" /><textbox id="p14t30"  mold="rounded"  value="@{delegatemain$composer.current.p14t30}" /></row>
+                                  <row><label value="${labels.delegate.p15t30}" /><textbox id="p15t30"  mold="rounded"  value="@{delegatemain$composer.current.p15t30}" /></row>
+                                  <row><label value="${labels.delegate.p16t30}" /><textbox id="p16t30"  mold="rounded"  value="@{delegatemain$composer.current.p16t30}" /></row>
+                                  <row><label value="${labels.delegate.p17t30}" /><textbox id="p17t30"  mold="rounded"  value="@{delegatemain$composer.current.p17t30}" /></row>
+                                  <row><label value="${labels.delegate.p18t30}" /><textbox id="p18t30"  mold="rounded"  value="@{delegatemain$composer.current.p18t30}" /></row>
+                                  <row><label value="${labels.delegate.p19t30}" /><textbox id="p19t30"  mold="rounded"  value="@{delegatemain$composer.current.p19t30}" /></row>
+                                  <row><label value="${labels.delegate.p20t30}" /><textbox id="p20t30"  mold="rounded"  value="@{delegatemain$composer.current.p20t30}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.delegate.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p0t30}" /><textbox id="ap0t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p1t30}" /><textbox id="ap1t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p2t30}" /><textbox id="ap2t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p3t30}" /><textbox id="ap3t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p4t30}" /><textbox id="ap4t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p5t30}" /><datebox id="ap5t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p6t30}" /><textbox id="ap6t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p7t30}" /><datebox id="ap7t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p8t30}" /><textbox id="ap8t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p9t30}" /><textbox id="ap9t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p10t30}" /><textbox id="ap10t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p11t30}" /><textbox id="ap11t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p12t30}" /><textbox id="ap12t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p13t30}" /><textbox id="ap13t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p14t30}" /><textbox id="ap14t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p15t30}" /><textbox id="ap15t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p16t30}" /><textbox id="ap16t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p17t30}" /><textbox id="ap17t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p18t30}" /><textbox id="ap18t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p19t30}" /><textbox id="ap19t30"  mold="rounded"  /></row>
+                                  <row><label value="${labels.delegate.p20t30}" /><textbox id="ap20t30"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.delegate.id}" /><textbox id="fid"  mold="rounded"  value="@{delegatemain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.delegate.p0t30}" /><textbox id="fp0t30"  mold="rounded"  value="@{delegatemain$composer.filter.p0t30}" /></row>
+                                  <row><label value="${labels.delegate.p1t30}" /><textbox id="fp1t30"  mold="rounded"  value="@{delegatemain$composer.filter.p1t30}" /></row>
+                                  <row><label value="${labels.delegate.p2t30}" /><textbox id="fp2t30"  mold="rounded"  value="@{delegatemain$composer.filter.p2t30}" /></row>
+                                  <row><label value="${labels.delegate.p3t30}" /><textbox id="fp3t30"  mold="rounded"  value="@{delegatemain$composer.filter.p3t30}" /></row>
+                                  <row><label value="${labels.delegate.p4t30}" /><textbox id="fp4t30"  mold="rounded"  value="@{delegatemain$composer.filter.p4t30}" /></row>
+                                  <row><label value="${labels.delegate.p5t30}" /><datebox id="fp5t30"  mold="rounded"  value="@{delegatemain$composer.filter.p5t30}" /></row>
+                                  <row><label value="${labels.delegate.p6t30}" /><textbox id="fp6t30"  mold="rounded"  value="@{delegatemain$composer.filter.p6t30}" /></row>
+                                  <row><label value="${labels.delegate.p7t30}" /><datebox id="fp7t30"  mold="rounded"  value="@{delegatemain$composer.filter.p7t30}" /></row>
+                                  <row><label value="${labels.delegate.p8t30}" /><textbox id="fp8t30"  mold="rounded"  value="@{delegatemain$composer.filter.p8t30}" /></row>
+                                  <row><label value="${labels.delegate.p9t30}" /><textbox id="fp9t30"  mold="rounded"  value="@{delegatemain$composer.filter.p9t30}" /></row>
+                                  <row><label value="${labels.delegate.p10t30}" /><textbox id="fp10t30"  mold="rounded"  value="@{delegatemain$composer.filter.p10t30}" /></row>
+                                  <row><label value="${labels.delegate.p11t30}" /><textbox id="fp11t30"  mold="rounded"  value="@{delegatemain$composer.filter.p11t30}" /></row>
+                                  <row><label value="${labels.delegate.p12t30}" /><textbox id="fp12t30"  mold="rounded"  value="@{delegatemain$composer.filter.p12t30}" /></row>
+                                  <row><label value="${labels.delegate.p13t30}" /><textbox id="fp13t30"  mold="rounded"  value="@{delegatemain$composer.filter.p13t30}" /></row>
+                                  <row><label value="${labels.delegate.p14t30}" /><textbox id="fp14t30"  mold="rounded"  value="@{delegatemain$composer.filter.p14t30}" /></row>
+                                  <row><label value="${labels.delegate.p15t30}" /><textbox id="fp15t30"  mold="rounded"  value="@{delegatemain$composer.filter.p15t30}" /></row>
+                                  <row><label value="${labels.delegate.p16t30}" /><textbox id="fp16t30"  mold="rounded"  value="@{delegatemain$composer.filter.p16t30}" /></row>
+                                  <row><label value="${labels.delegate.p17t30}" /><textbox id="fp17t30"  mold="rounded"  value="@{delegatemain$composer.filter.p17t30}" /></row>
+                                  <row><label value="${labels.delegate.p18t30}" /><textbox id="fp18t30"  mold="rounded"  value="@{delegatemain$composer.filter.p18t30}" /></row>
+                                  <row><label value="${labels.delegate.p19t30}" /><textbox id="fp19t30"  mold="rounded"  value="@{delegatemain$composer.filter.p19t30}" /></row>
+                                  <row><label value="${labels.delegate.p20t30}" /><textbox id="fp20t30"  mold="rounded"  value="@{delegatemain$composer.filter.p20t30}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

@@ -1,0 +1,19 @@
+<window id="signerrwnd" closable="true" onClose="self.visible = false; event.stopPropagation();" sizable="true" maximizable="true"
+	border="normal" width="1000px" position="center,center" mode="modal" visible="true" apply="com.is.sign.SignProtocolViewCtrl">
+	<caption label="${labels.sign.signprotocol}"></caption>
+	<listbox style="border:none" id="signProtocol" multiple="true" rows="10" width="100%" sclass="clb-list">
+		<listhead sizable="true">
+			<!-- <listheader	label="${labels.sign.object_id}" width="100px" sort="auto(object_id)"/> -->
+			<listheader	label="${labels.sign.object_num}" width="100px" sort="auto(object_num)"/>
+			<!-- <listheader	label="${labels.sign.sign_text}" width="100px" sort="auto(sign_text)"/>
+			<listheader	label="${labels.sign.sign_data}" width="100px" sort="auto(sign_data)"/> -->
+			<listheader	label="${labels.sign.res_code}" width="100px" sort="auto(res_code)"/>
+			<listheader	label="${labels.sign.err_message}" sort="auto(err_message)"/>
+			<!-- <listheader	label="${labels.sign.sign_log_id}" width="100px" sort="auto(sign_log_id)"/> -->
+		</listhead>
+	</listbox>
+	<space orient="horizontal" spacing="10px"></space>
+	<toolbar align="center" >
+		<button id="btn_close" mold="trendy" label="Ok" width="100px"></button>
+	</toolbar>
+</window>

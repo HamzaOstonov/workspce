@@ -1,0 +1,24 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="main" 
+width="100%"  
+height="800px" 
+border="none" 
+apply="com.is.gnk_log.Gnk_log_vc">
+	<toolbar>
+		<label value="Филиал"/><rcombobox id="filter_branch"/>
+		<label value="Дата с"/><datebox id="filter_date_from"/>
+		<label value="Дата по"/><datebox id="filter_date_to"/>
+	</toolbar>
+	<toolbar>
+		<label value="Строка"/>
+		<textbox id="filter_string"/>
+		<button id="filter_button" label="Поиск"/>
+	</toolbar>
+	<listbox style="border:none" id="dataGrid" width="100%" height="700px">
+        <listhead sizable="true">
+                <listheader label="Филиал" width="80px"/>
+                <listheader label="Дата" width="150px"/>
+                <listheader label="Текст" width="100%"/>
+        </listhead>
+    </listbox>
+</window>

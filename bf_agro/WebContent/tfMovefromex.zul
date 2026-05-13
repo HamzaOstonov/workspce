@@ -1,0 +1,229 @@
+<?component name="robjbox" extends="combobox" class="com.is.utils.refobj.RefObjCBox"?>
+<?component name="rcurrbox" extends="combobox" class="com.is.tf.currency.RefCurrencyBox"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="movefromexmain" width="100%"  height="550px" border="normal" apply="com.is.tf.movefromex.MovefromexViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}" image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}" image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" visible="false"/>
+                <toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png" />
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="movefromexPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{movefromexmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.movefromex.id}" width="50px" />
+                                <listheader label="${labels.movefromex.p0t52}" width="200px" visible="false" />
+                                <listheader label="${labels.movefromex.p1t52}" width="200px" />
+                                <listheader label="${labels.movefromex.p2t52}" width="200px" />
+                                <listheader label="${labels.movefromex.p3t52}" width="200px" />
+                                <listheader label="${labels.movefromex.p4t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p5t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p6t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p7t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p8t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p9t52}" width="200px" />
+                                <listheader label="${labels.movefromex.p10t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p11t52}" width="200px" />
+                                <listheader label="${labels.movefromex.p12t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p13t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p14t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p15t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p16t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p17t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p18t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p19t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p20t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p21t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p22t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p23t52}" width="200px" visible="false"/>
+                                <listheader label="${labels.movefromex.p24t52}" width="200px" />
+                                <listheader label="${labels.movefromex.p28t52}" width="200px" />
+                        </listhead>
+
+                </listbox>
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <row visible="false"><label value="${labels.movefromex.id}" /><textbox id="id"  mold="rounded"  value="@{movefromexmain$composer.current.id}" width="400px" disabled="true"/></row>
+                                  <row visible="false"><label value="${labels.movefromex.p0t52}" visible="false"/><textbox id="p0t52"  mold="rounded"  value="1" visible="false" width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p1t52}" /><label id="p1t52" value="@{movefromexmain$composer.current.p1t52}" width="400px" /></row>
+                                  <row><label value="${labels.movefromex.p2t52}" /><datebox id="p2t52"  mold="rounded"  value="@{movefromexmain$composer.current.p2t52}" width="400px"  disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p3t52}" /><label id="p3t52" value="@{movefromexmain$composer.current.p3t52}"  width="400px" /></row>
+                                  <row><label value="${labels.movefromex.p4t52}" /><rcombobox id="p4t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.current.p4t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p5t52}" /><rcombobox id="p5t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.current.p5t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p6t52}" /><rcombobox id="p6t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.current.p6t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p7t52}" /><rcombobox id="p7t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.current.p7t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p8t52}" /><rcombobox id="p8t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.current.p8t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p9t52}" /><rcombobox id="p9t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.current.p9t52}"  width="400px" disabled="true"/></row>
+                                  <row id="kuradd" visible="false"><label value="${labels.movefromex.p10t52}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="p10t521"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="p10t52"  mold="rounded" format="### ##0.00#" value="@{movefromexmain$composer.current.p10t52}" width="100px" disabled="true"/>
+		                                  <label value="(значение >1)"  />
+		                                  <rcurrbox id="p10t523"  width="150px"  mold="rounded" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="btn_recountadd" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="cbcourseadd" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <row><label value="${labels.movefromex.p11t52}" /><decimalbox id="p11t52"  mold="rounded"  value="@{movefromexmain$composer.current.p11t52}"  format="### ### ### ##0.00#" width="400px"  disabled="true"/></row>
+                                  <row id="kur"><label value="${labels.movefromex.p12t52}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="p12t521"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);" disabled="true"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="p12t52"  mold="rounded"  value="@{movefromexmain$composer.current.p12t52}"  format="### ##0.00#" width="100px" disabled="true"/>
+		                                  <label value="(значение >1)"  />
+		                                  <rcurrbox id="p12t523"  width="150px"  mold="rounded" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="btn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="cbcourse" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <row>
+                                  	<label value="${labels.movefromex.p13t52}" />
+                                  	<hbox>
+	                                  	<decimalbox id="p13t52"  mold="rounded"  value="@{movefromexmain$composer.current.p13t52}"  format="### ### ### ##0.00#" width="400px" disabled="true"/>
+	                                  	<label id="lp13t52"/>
+                                  	</hbox>
+                                  </row>
+                                  <row>
+                                  	<label value="${labels.movefromex.p14t52}" />
+                                  	<hbox>
+	                                  	<decimalbox id="p14t52"  mold="rounded"  value="@{movefromexmain$composer.current.p14t52}"  format="### ### ### ##0.00#" width="400px" disabled="true"/>
+                                  		<label id="lp14t52"/>
+                                  	</hbox>
+                                  </row>
+                                  <row>
+                                  	<label value="${labels.movefromex.p15t52}" />
+                                  	<hbox>
+	                                  	<decimalbox id="p15t52"  mold="rounded"  value="@{movefromexmain$composer.current.p15t52}"  format="### ### ### ##0.00#" width="400px" disabled="true"/>
+                                  		<label id="lp15t52"/>
+                                  	</hbox>
+                                  </row>
+                                  <row>
+                                  	<label value="${labels.movefromex.p16t52}" />
+                                  	<hbox>
+	                                  	<decimalbox id="p16t52"  mold="rounded"  value="@{movefromexmain$composer.current.p16t52}"  format="### ### ### ##0.00#" width="400px" disabled="true"/>
+                                  		<label id="lp16t52"/>
+                                  	</hbox>
+                                  </row>
+                                  <row><label value="${labels.movefromex.p17t52}" /><rcombobox id="p17t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.current.p17t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p18t52}" /><textbox id="p18t52"  mold="rounded"  value="@{movefromexmain$composer.current.p18t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p19t52}" /><textbox id="p19t52"  mold="rounded"  value="@{movefromexmain$composer.current.p19t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p20t52}" /><textbox id="p20t52"  mold="rounded"  value="@{movefromexmain$composer.current.p20t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p21t52}" /><datebox id="p21t52"  mold="rounded"  value="@{movefromexmain$composer.current.p21t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p22t52}" /><textbox id="p22t52"  mold="rounded"  value="@{movefromexmain$composer.current.p22t52}"  width="400px" disabled="true"/></row>
+                                  <row><label value="${labels.movefromex.p23t52}" /><textbox id="p23t52"  mold="rounded"  value="@{movefromexmain$composer.current.p23t52}"  width="400px" disabled="true"/></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.movefromex.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p0t52}" /><textbox id="ap0t52"  mold="rounded"  value="0" visible="false" /></row>
+                                  <row><label value="${labels.movefromex.p1t52}" /><textbox id="ap1t52"  width="250px" mold="rounded"  value="@{movefromexmain$composer.current.p1t52}" /></row>
+                                  <!-- <row><label value="${labels.movefromex.p2t52}" /><datebox id="ap2t52"  mold="rounded"  /></row> -->
+                                  <row><label value="${labels.movefromex.p3t52}" /><textbox id="ap3t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p4t52}" /><textbox id="ap4t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p5t52}" /><textbox id="ap5t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p6t52}" /><textbox id="ap6t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p7t52}" /><textbox id="ap7t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p8t52}" /><textbox id="ap8t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p9t52}" /><rcombobox id="ap9t52"  mold="rounded" selecteditem="@{movefromexmain$composer.current.p9t52}" /></row>
+                                  <row id="akur"><label value="${labels.movefromex.p10t52}" />
+	                                  <hbox >
+		                                  <label value="1" />
+		                                  <rcurrbox id="ap10t521"  width="150px"  mold="rounded" onInitRenderLater="self.setSelectedIndex(0);"/>
+		                                  <label value="=" />
+		                                  <decimalbox id="ap10t52"  mold="rounded" format="##0.00#" width="100px"/>
+		                                  <label value="(значение >1)"  />
+		                                  <rcurrbox id="ap10t523"  width="150px"  mold="rounded" disabled="true"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <toolbarbutton id="abtn_recount" label="Пересчитать по курсу ЦБ" visible="false"/>
+		                                  <separator orient="vertical" spacing="10px"/>
+		                                  <label id="acbcourse" value="" />
+	                                  </hbox>
+                                  </row>
+                                  <!-- 
+                                  <row><label value="${labels.movefromex.p11t52}" /><decimalbox id="ap11t52"  mold="rounded" format="### ### ### ##0.00#"  /></row>
+                                  <row><label value="${labels.movefromex.p12t52}" /><decimalbox id="ap12t52"  mold="rounded" format="### ### ### ##0.00#"  /></row>
+                                  <row><label value="${labels.movefromex.p13t52}" /><decimalbox id="ap13t52"  mold="rounded" format="### ### ### ##0.00#"  /></row>
+                                  <row><label value="${labels.movefromex.p14t52}" /><decimalbox id="ap14t52"  mold="rounded" format="### ### ### ##0.00#"  /></row>
+                                  <row><label value="${labels.movefromex.p15t52}" /><decimalbox id="ap15t52"  mold="rounded" format="### ### ### ##0.00#"  /></row>
+                                  <row><label value="${labels.movefromex.p16t52}" /><decimalbox id="ap16t52"  mold="rounded" format="### ### ### ##0.00#"  /></row>
+                                   -->
+                                  <row><label value="${labels.movefromex.p17t52}" /><textbox id="ap17t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p18t52}" /><textbox id="ap18t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p19t52}" /><textbox id="ap19t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p20t52}" /><textbox id="ap20t52"  mold="rounded"  /></row>
+                                  <!-- <row><label value="${labels.movefromex.p21t52}" /><datebox id="ap21t52"  mold="rounded"  /></row> -->
+                                  <row><label value="${labels.movefromex.p22t52}" /><textbox id="ap22t52"  mold="rounded"  /></row>
+                                  <row><label value="${labels.movefromex.p23t52}" /><textbox id="ap23t52"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row visible="false"><label value="${labels.movefromex.id}" /><textbox id="fid"  mold="rounded"  value="@{movefromexmain$composer.filter.id}"  width="400px"/></row>
+                                  <row visible="false"><label value="${labels.movefromex.p0t52}" /><textbox id="fp0t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p0t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p1t52}" /><label id="fp1t52" value="@{movefromexmain$composer.filter.p1t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p2t52}" /><datebox id="fp2t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p2t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p3t52}" /><textbox id="fp3t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p3t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p4t52}" /><rcombobox id="fp4t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.filter.p4t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p5t52}" /><rcombobox id="fp5t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.filter.p5t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p6t52}" /><rcombobox id="fp6t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.filter.p6t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p7t52}" /><rcombobox id="fp7t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.filter.p7t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p8t52}" /><rcombobox id="fp8t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.filter.p8t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p9t52}" /><rcombobox id="fp9t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.filter.p9t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p10t52}" /><decimalbox id="fp10t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p10t52}"  width="400px" format="### ### ### ##0.00#"/></row>
+                                  <row><label value="${labels.movefromex.p11t52}" /><decimalbox id="fp11t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p11t52}"  width="400px" format="### ### ### ##0.00#"/></row>
+                                  <row><label value="${labels.movefromex.p12t52}" /><decimalbox id="fp12t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p12t52}"  width="400px" format="### ### ### ##0.00#"/></row>
+                                  <row><label value="${labels.movefromex.p13t52}" /><decimalbox id="fp13t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p13t52}"  width="400px" format="### ### ### ##0.00#"/></row>
+                                  <row><label value="${labels.movefromex.p14t52}" /><decimalbox id="fp14t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p14t52}"  width="400px" format="### ### ### ##0.00#"/></row>
+                                  <row><label value="${labels.movefromex.p15t52}" /><decimalbox id="fp15t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p15t52}"  width="400px" format="### ### ### ##0.00#"/></row>
+                                  <row><label value="${labels.movefromex.p16t52}" /><decimalbox id="fp16t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p16t52}"  width="400px" format="### ### ### ##0.00#"/></row>
+                                  <row><label value="${labels.movefromex.p17t52}" /><rcombobox id="fp17t52"  mold="rounded"  selecteditem="@{movefromexmain$composer.filter.p17t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p18t52}" /><textbox id="fp18t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p18t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p19t52}" /><textbox id="fp19t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p19t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p20t52}" /><textbox id="fp20t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p20t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p21t52}" /><datebox id="fp21t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p21t52}" format="dd.MM.yyyy" width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p22t52}" /><textbox id="fp22t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p22t52}"  width="400px"/></row>
+                                  <row><label value="${labels.movefromex.p23t52}" /><textbox id="fp23t52"  mold="rounded"  value="@{movefromexmain$composer.filter.p23t52}"  width="400px"/></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

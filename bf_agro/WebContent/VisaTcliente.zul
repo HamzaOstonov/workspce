@@ -1,0 +1,93 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window width="100%" border="normal"
+	apply="com.is.tieto_visae.tieto.TclientViewCtrl" id="tclientmain">
+	<tabbox id="mainTabbox">
+		<tabs>
+			<tab label="Форма пополнения карту" id="mainTab" visible="true"/>
+			<tab label="Работа с журналом пополнения" id="confirmTab" />
+			<tab label="Клиенты" id="visaAddTab" />
+		</tabs>
+		<tabpanels>
+			<tabpanel visible="true">
+				<div>
+					<div hflex="2"
+						style="min-height: 500px;  border-right : 1px solid #dddddd; padding-right: 4px; float:left">
+						<grid id="searchGrid">
+							<columns>
+								<column hflex="4" />
+								<column hflex="8" />
+							</columns>
+							<rows>
+								<row>
+									<label
+										value="${labels.visaTieto.refill.client_b}" />
+									<textbox id="client_b"
+										mold="rounded"
+										value="@{tclientmain$composer.filter.client_b}" />
+								</row>
+								<row>
+									<label
+										value="${labels.visaTieto.refill.client}" />
+									<textbox id="client" mold="rounded"
+										value="@{tclientmain$composer.filter.client}" width="100%" />
+								</row>
+								<row>
+									<label
+										value="${labels.visaTieto.surname}" />
+									<textbox id="surname" mold="rounded"
+										value="@{tclientmain$composer.filter.surname}" width="100%" />
+								</row>
+								<row>
+									<label
+										value="${labels.visaTieto.f_names}" />
+									<textbox id="name" mold="rounded"
+										value="@{tclientmain$composer.filter.f_names}" width="100%" />
+								</row>
+								<row>
+									<label
+										value="${labels.visaTieto.b_date}" />
+									<datebox id="birthDate"
+										mold="rounded" value="@{tclientmain$composer.filter.b_date}"
+										width="100%" />
+								</row>
+							</rows>
+						</grid>
+
+						<toolbarbutton id="btnSearch"
+							label="${labels.visaTieto.file.search}" image="/images/search.png" width="45%" />
+						<toolbarbutton id="btnCancel"
+							label="${labels.visaTieto.refill.refill_cancel_btn}" image="/images/stop.png" width="45%" />
+
+					</div>
+					<div hflex="8"
+						style="float: left; margin-left:5px">
+						<vbox width="100%">
+							<tabbox id="resultBox">
+								<tabs>
+									<tab
+										label="${labels.visaTieto.customers_list}" width="25%" />
+									<tab
+										label="${labels.visaTieto.acсounts_list}" width="25%" />
+									<tab
+										label="${labels.visaTieto.cards_list}" width="25%" />
+								</tabs>
+								<tabpanels
+									style="background-color:white;">
+									<tabpanel id="customersTab"></tabpanel>
+									<tabpanel id="accountsTab"></tabpanel>
+									<tabpanel id="cardsTab"></tabpanel>
+								</tabpanels>
+							</tabbox>
+						</vbox>
+					</div>
+				</div>
+			</tabpanel>
+			<tabpanel>
+				<div id="confirmDiv" />
+			</tabpanel>
+			<tabpanel>
+				<include id="includeVisaAdd" />
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+</window>

@@ -1,0 +1,20 @@
+/**
+ * RowType_RenewCardHolder.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package capitalBank.issuing_v_01_02_xsd.holders;
+
+public final class RowType_RenewCardHolder implements javax.xml.rpc.holders.Holder {
+    public capitalBank.issuing_v_01_02_xsd.RowType_RenewCard value;
+
+    public RowType_RenewCardHolder() {
+    }
+
+    public RowType_RenewCardHolder(capitalBank.issuing_v_01_02_xsd.RowType_RenewCard value) {
+        this.value = value;
+    }
+
+}

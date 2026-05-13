@@ -1,0 +1,44 @@
+<Schema name="BF">
+	<Cube name="BF_AMLCFT_CUBE" caption="AMLCFTCUBE" cache="true"
+		enabled="true">
+		<View alias="AMLCFT_RISK_EVENTS">
+			<SQL dialect="generic">
+        <![CDATA[select  c.id, c.branch, c.operation_id, c.risk_factor_id
+			  								from AMLCFT_RISK_EVENTS c]]>
+			</SQL>
+		</View>
+		<Dimension type="StandardDimension" foreignKey="BRANCH"
+			name="BRANCHCODE">
+			<Hierarchy name="H_BRANCHCODE" hasAll="true" allMemberName="All_H"
+				allMemberCaption="BRANCHES" primaryKey="ID" caption="BRANCH">
+				<View alias="MFO">
+					<SQL dialect="generic">
+            <![CDATA[select BANK_ID as ID, BANK_NAME as NAME from S_MFO where HEADER_ID = '09004' order by 2
+            ]]>
+					</SQL>
+				</View>
+				<Level name="L" table="MFO" column="NAME" type="String"
+					uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+				</Level>
+			</Hierarchy>
+		</Dimension>
+		<Dimension type="StandardDimension" foreignKey="RISK_FACTOR_ID"
+			name="FACTORNAME">
+			<Hierarchy name="H_FACTORNAME" hasAll="true" allMemberName="All_FACTOR"
+				allMemberCaption="FACTORS" primaryKey="ID" caption="FACTOR'S DESCRIPTION"
+				align="middle">
+				<View alias="AMLCFT_RISK_FACTORS">
+					<SQL dialect="generic">
+            <![CDATA[select c.id as ID, c.description_ru as NAME from AMLCFT_RISK_FACTORS c]]>
+					</SQL>
+				</View>
+				<Level name="L" table="AMLCFT_RISK_FACTORS" column="NAME"
+					type="String" uniqueMembers="false" levelType="Regular"
+					hideMemberIf="Never">
+				</Level>
+			</Hierarchy>
+		</Dimension>
+		<Measure name="OPERATION_ID" column="OPERATION_ID" datatype="Numeric"
+			aggregator="count" caption="OPERATION_ID" visible="true" />
+	</Cube>
+</Schema>

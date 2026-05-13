@@ -1,0 +1,142 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="riskeventmain" width="100%"  height="100%" border="normal" apply="com.is.amlcft.riskevent.RiskEventViewCtrl" 
+	contentStyle="overflow:auto">
+        <tabbox>
+        	<tabs>
+        		<tab>Общие события</tab>
+        		<tab>Отдельные события</tab>
+        	</tabs>
+        	<tabpanels>
+        		 <tabpanel>	<include src="RiskEventGroup.zul" /> </tabpanel>
+        		 <tabpanel>
+	       				<toolbar id="tb">
+				                <toolbarbutton id="btn_back" label="${labels.back}"
+				                        image="/images/file.png" />
+				                <toolbarbutton id="btn_search" label="${labels.search}"
+				                        image="/images/search.png" />
+				                <toolbarbutton id="btn_first" label="${labels.first}"
+				                        image="/images/backward.png" />
+				                <toolbarbutton id="btn_prev" label="${labels.prev}"
+				                        image="/images/back.png" />
+				                <toolbarbutton id="btn_next" label="${labels.next}"
+				                        image="/images/front.png" />
+				                <toolbarbutton id="btn_last" label="${labels.last}"
+				                        image="/images/forward.png" />
+				                        
+				                <checkbox id="chstate" label = "Выявлено" />
+				
+				        </toolbar>
+				                
+	        		 	<div id="grd">
+				                <div align="center"><paging id="riskeventPaging" width="100%" /></div>
+				                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+				                        selectedItem="@{riskeventmain$composer.current}">
+				                        <listhead sizable="true">
+				                        	<listheader label="${labels.riskevent.id}" width="5%" align="left" sort="auto(id)" />
+					                        <listheader label="${labels.riskevent.branch_code}" width="7%" />
+					                        <listheader label="${labels.riskevent.branch}" width="20%" sort="auto(branch)"/>
+					                        <listheader label="${labels.riskevent.summa}" align="right" width="10%" sort="auto(summa)"/>
+					                        <listheader label="${labels.riskevent.risk_factor_id}" width="20%" sort="auto(risk_factor_id)" />
+					                        <listheader label="${labels.riskevent.customer_id}" width="6%" sort="auto(user_id)" />
+					                        <listheader label="${labels.riskevent.event_date}" align="center" width="10%" sort="auto(event_date)"/>
+					                        <listheader label="${labels.riskevent.risk_date}" align="center"  width="10%" sort="auto(risk_date)"/>
+					                        <listheader label="${labels.riskevent.state}" align="center" width="7%" sort="auto(state)"/>
+					                        <listheader />
+					                    </listhead>
+								</listbox>
+				        </div>
+				        
+		        		<div id="frm" visible="false">
+		                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+		                          visible="true">
+		                          <columns>
+		                                  <column width="20%" />
+		                                  <column width="80%" />
+		                          </columns>
+		                          <rows>
+		                                  
+		                                  <row visible="false"><label value="${labels.riskevent.id}" /><textbox id="id"  mold="rounded"  value="@{riskeventmain$composer.current.id}" /></row>
+		                                 
+		                                  <row><label value="${labels.riskevent.risk_factor_id}" /><rcombobox id="risk_factor_id"  mold="rounded"  selecteditem="@{riskeventmain$composer.current.risk_factor_id}" width="75%" /></row>
+		                                   
+		                                  <row visible="false"><label value="${labels.riskevent.target_id}" /><textbox id="target_id"  mold="rounded"  value="@{riskeventmain$composer.current.target_id}" /></row>
+		                                  <row visible="false"><label value="${labels.riskevent.operation_id}" /><textbox id="operation_id"  mold="rounded"  value="@{riskeventmain$composer.current.operation_id}" /></row>
+		                                  
+		                                  <row><label value="${labels.riskevent.client_name}" /><textbox id="client_name"  mold="rounded"  value="@{riskeventmain$composer.current.client_name}" width="400px"/></row>
+		                                  
+		                                  <row><label value="${labels.riskevent.summa}" /><decimalbox id="summa"  mold="rounded"  value="@{riskeventmain$composer.current.summa}" width="200px" format="###,###,###,###,###.00"/></row>
+		                                  <row><label value="${labels.riskevent.ccy}" /><textbox id="ccy"  mold="rounded"  value="@{riskeventmain$composer.current.ccy}" width="75px" /></row>
+		                                                                    
+		                                  <row><label value="${labels.riskevent.event_date}" /><datebox id="event_date"  mold="rounded"  value="@{riskeventmain$composer.current.event_date}" /></row>
+		                                  <row visible="false"><label value="${labels.riskevent.user_id}" /><textbox id="user_id"  mold="rounded"  value="@{riskeventmain$composer.current.user_id}" /></row>
+		                                  <row><label value="${labels.riskevent.event_comment}" /><textbox id="event_comment"  mold="rounded"  value="@{riskeventmain$composer.current.event_comment}" width="500px"/></row>
+		                                  <row visible="false"><label value="${labels.riskevent.state}" /><textbox id="state"  mold="rounded"  value="@{riskeventmain$composer.current.state}" /></row>
+		                                  <row><label value="${labels.riskevent.customer_id}" /><textbox id="customer_id"  mold="rounded"  value="@{riskeventmain$composer.current.customer_id}" /></row>
+		                                  <row><label value="${labels.riskevent.risk_date}" /><datebox id="risk_date"  mold="rounded"  value="@{riskeventmain$composer.current.risk_date}" /></row>
+		                                  <row><label value="${labels.riskevent.branch}" /><rcombobox id="branch"  mold="rounded"  selecteditem="@{riskeventmain$composer.current.branch}" width="50%"/></row>
+		                          </rows>
+		                  </grid>
+		                  <grid id="addgrd" visible="false">
+		                          <columns>
+		                                  <column width="20%" />
+		                                  <column width="80%" />
+		                          </columns>
+		                          <rows>
+		                                  
+		                                  <row><label value="${labels.riskevent.id}" /><textbox id="aid"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.risk_factor_id}" /><textbox id="arisk_factor_id"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.target_id}" /><textbox id="atarget_id"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.operation_id}" /><textbox id="aoperation_id"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.event_date}" /><textbox id="aevent_date"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.user_id}" /><textbox id="auser_id"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.event_comment}" /><textbox id="aevent_comment"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.state}" /><textbox id="astate"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.customer_id}" /><textbox id="acustomer_id"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.risk_date}" /><textbox id="arisk_date"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.customer_passportid}" /><textbox id="acustomer_passportid"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.batch_id}" /><textbox id="abatch_id"  mold="rounded"  /></row>
+		                                  <row><label value="${labels.riskevent.doc_branch}" /><textbox id="adoc_branch"  mold="rounded"  /></row>
+		                          </rows>
+		                  </grid>
+		                  <grid id="fgrd" visible="false">
+		                          <columns>
+		                                  <column width="20%" />
+		                                  <column width="80%" />
+		                          </columns>
+		                          <rows>
+		                                  <row><label value="${labels.riskevent.id}" /><intbox id="fid"  mold="rounded" /></row>
+		                                  <row><label value="${labels.riskevent.risk_factor_id}" /><rcombobox id="frisk_factor_id"  mold="rounded"  selectedvalue="@{riskeventmain$composer.filter.risk_factor_id}" width="90%"/></row>
+		                                  <row><label value="${labels.riskevent.event_date}" /><datebox id="fevent_date"  mold="rounded"  value="@{riskeventmain$composer.filter.event_date}" /></row>
+		                                  <row><label value="${labels.riskevent.branch_code}" /><rcombobox id="fbranch_code"  mold="rounded"  selectedvalue="@{riskeventmain$composer.filter.branch_code}" width="10%"/></row>
+		                                  <row><label value="${labels.riskevent.branch}" /><rcombobox id="fbranch"  mold="rounded"  selectedvalue="@{riskeventmain$composer.filter.branch}" width="90%"/></row>
+		                                  <row><label value="${labels.riskevent.risk_date}" /><datebox id="frisk_date"  mold="rounded"  value="@{riskeventmain$composer.filter.risk_date}" /></row>
+		                                  
+		                                  <!--
+		                                  <row><label value="${labels.riskevent.target_id}" /><textbox id="ftarget_id"  mold="rounded"  value="@{riskeventmain$composer.filter.target_id}" /></row>
+		                                  <row visible="false"><label value="${labels.riskevent.operation_id}" /><textbox id="foperation_id"  mold="rounded"  value="@{riskeventmain$composer.filter.operation_id}" /></row>
+		                                    
+		                                  <row><label value="${labels.riskevent.user_id}" /><textbox id="fuser_id"  mold="rounded"  value="@{riskeventmain$composer.filter.user_id}" /></row>
+		                                  <row><label value="${labels.riskevent.event_comment}" /><textbox id="fevent_comment"  mold="rounded"  value="@{riskeventmain$composer.filter.event_comment}" /></row>
+		                                  <row><label value="${labels.riskevent.state}" /><textbox id="fstate"  mold="rounded"  value="@{riskeventmain$composer.filter.state}" /></row>
+		                                  <row><label value="${labels.riskevent.customer_id}" /><textbox id="fcustomer_id"  mold="rounded"  value="@{riskeventmain$composer.filter.customer_id}" /></row>
+		                                  <row><label value="${labels.riskevent.risk_date}" /><textbox id="frisk_date"  mold="rounded"  value="@{riskeventmain$composer.filter.risk_date}" /></row>
+		                                  <row><label value="${labels.riskevent.customer_passportid}" /><textbox id="fcustomer_passportid"  mold="rounded"  value="@{riskeventmain$composer.filter.customer_passportid}" /></row>
+		                                  <row><label value="${labels.riskevent.batch_id}" /><textbox id="fbatch_id"  mold="rounded"  value="@{riskeventmain$composer.filter.batch_id}" /></row>
+		                                  <row><label value="${labels.riskevent.doc_branch}" /><textbox id="fdoc_branch"  mold="rounded"  value="@{riskeventmain$composer.filter.doc_branch}" /></row>
+		                                  -->
+		                                  
+		                          </rows>
+		                  </grid>
+		
+		                  <toolbar>
+		                          <toolbarbutton id="btn_save"
+		                                  label="${labels.search}" image="/images/search.png" />
+		                          <toolbarbutton id="btn_cancel"
+		                                  label="${labels.cancel}" image="/images/stop.png" />
+		                  </toolbar>
+		        		</div>
+		         </tabpanel>
+        	</tabpanels>
+        </tabbox>
+</window>

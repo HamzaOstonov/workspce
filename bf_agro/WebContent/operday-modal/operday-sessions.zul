@@ -1,0 +1,18 @@
+<?page title="Bank Sessions" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <window apply="com.is.operday.composer.main.branches.modal.SessionWindow">
+        <!--<button label="OK" id="buttonOK"/>-->
+        <grid>
+            <columns>
+                <column align="center">#</column>
+                <column align="center">Name</column>
+                <column align="center">SID</column>
+                <column align="center">Serial</column>
+                <column align="center">Status</column>
+                <column align="center">Username</column>
+                <column align="center">Program</column>
+            </columns>
+            <rows id="sessionData"/>
+        </grid>
+    </window>
+</zk>

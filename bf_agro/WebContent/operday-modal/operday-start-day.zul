@@ -1,0 +1,15 @@
+<?page title="Operation Day Controller" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <window apply="com.is.operday.composer.main.branches.modal.StartOfDayWindow">
+        <grid>
+            <columns>
+                <column align="center" width="10%">Порядок</column>
+                <column align="center" width="40%">Описание</column>
+                <column align="center" width="10%">Выполнена</column>
+                <column align="center" width="10%">Обязательна</column>
+                <column align="center" width="30%">Процедура</column>
+            </columns>
+            <rows id="gridData"/>
+        </grid>
+    </window>
+</zk>

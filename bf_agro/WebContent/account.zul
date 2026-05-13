@@ -1,0 +1,182 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="accountmain" width="100%"  height="100%" border="normal" apply="com.is.tieto_globuz.tietoAccount.AccountViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+               <!--  
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+               -->
+                <toolbarbutton id="btn_blk" label="блокировать"
+                        image="/images/+.png" visible = "false" />
+                <toolbarbutton id="btn_ublk" label="разблокировать"
+                        image="/images/+.png" visible="false" />
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="accountPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{accountmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.globuzAccount.branch}" width="50px" />
+                                <listheader label="${labels.globuzAccount.id}" width="180px" />
+                                <!--  
+                                <listheader label="${labels.tietoAccount.acc_bal}" width="200px" />
+                                <listheader label="${labels.tietoAccount.currency}" width="200px" />
+                                <listheader label="${labels.tietoAccount.client}" width="200px" />
+                                <listheader label="${labels.tietoAccount.id_order}" width="200px" />
+                                -->
+                                <listheader label="${labels.globuzAccount.name}" width="550px" />
+                                <!--
+                                <listheader label="${labels.tietoAccount.sgn}" width="200px" />
+                                <listheader label="${labels.tietoAccount.bal}" width="200px" />
+                                <listheader label="${labels.tietoAccount.sign_registr}" width="200px" />
+                                <listheader label="${labels.tietoAccount.s_in}" width="200px" />
+                                -->
+                                <listheader label="${labels.globuzAccount.s_out}" width="150px" />
+                                <!--
+                                <listheader label="${labels.tietoAccount.dt}" width="200px" />
+                                <listheader label="${labels.tietoAccount.ct}" width="200px" />
+                                <listheader label="${labels.tietoAccount.s_in_tmp}" width="200px" />
+                                <listheader label="${labels.tietoAccount.s_out_tmp}" width="200px" />
+                                <listheader label="${labels.tietoAccount.dt_tmp}" width="200px" />
+                                <listheader label="${labels.tietoAccount.ct_tmp}" width="200px" />
+                                <listheader label="${labels.tietoAccount.l_date}" width="200px" />
+                                <listheader label="${labels.tietoAccount.date_open}" width="200px" />
+                                <listheader label="${labels.tietoAccount.date_close}" width="200px" />
+                                <listheader label="${labels.tietoAccount.acc_group_id}" width="200px" />
+                                -->
+                                <listheader label="${labels.globuzAccount.state}" width="200px" />
+                                
+                        </listhead>
+
+                </listbox>
+
+
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.globuzAccount.branch}" /><textbox id="branch"  mold="rounded"  value="@{accountmain$composer.current.branch}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.id}" /><textbox id="id"  mold="rounded"  value="@{accountmain$composer.current.id}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.acc_bal}" /><textbox id="acc_bal"  mold="rounded"  value="@{accountmain$composer.current.acc_bal}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.currency}" /><textbox id="currency"  mold="rounded"  value="@{accountmain$composer.current.currency}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.client}" /><textbox id="client"  mold="rounded"  value="@{accountmain$composer.current.client}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.id_order}" /><textbox id="id_order"  mold="rounded"  value="@{accountmain$composer.current.id_order}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.name}" /><textbox id="name"  mold="rounded"  value="@{accountmain$composer.current.name}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.sgn}" /><textbox id="sgn"  mold="rounded"  value="@{accountmain$composer.current.sgn}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.bal}" /><textbox id="bal"  mold="rounded"  value="@{accountmain$composer.current.bal}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.sign_registr}" /><textbox id="sign_registr"  mold="rounded"  value="@{accountmain$composer.current.sign_registr}" disabled="true"/></row>
+                                  <!--  
+                                  <row><label value="${labels.tietoAccount.s_in}" /><textbox id="s_in"  mold="rounded"  value="@{accountmain$composer.current.s_in}" /></row>
+                                  <row><label value="${labels.tietoAccount.s_out}" /><textbox id="s_out"  mold="rounded"  value="@{accountmain$composer.current.s_out}" /></row>
+                                  <row><label value="${labels.tietoAccount.dt}" /><textbox id="dt"  mold="rounded"  value="@{accountmain$composer.current.dt}" /></row>
+                                  <row><label value="${labels.tietoAccount.ct}" /><textbox id="ct"  mold="rounded"  value="@{accountmain$composer.current.ct}" /></row>
+                                  <row><label value="${labels.tietoAccount.s_in_tmp}" /><textbox id="s_in_tmp"  mold="rounded"  value="@{accountmain$composer.current.s_in_tmp}" /></row>
+                                  <row><label value="${labels.tietoAccount.s_out_tmp}" /><textbox id="s_out_tmp"  mold="rounded"  value="@{accountmain$composer.current.s_out_tmp}" /></row>
+                                  <row><label value="${labels.tietoAccount.dt_tmp}" /><textbox id="dt_tmp"  mold="rounded"  value="@{accountmain$composer.current.dt_tmp}" /></row>
+                                  <row><label value="${labels.tietoAccount.ct_tmp}" /><textbox id="ct_tmp"  mold="rounded"  value="@{accountmain$composer.current.ct_tmp}" /></row>
+                                  -->
+                                  <row><label value="${labels.globuzAccount.l_date}" /><textbox id="l_date"  mold="rounded"  value="@{accountmain$composer.current.l_date}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.date_open}" /><textbox id="date_open"  mold="rounded"  value="@{accountmain$composer.current.date_open}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.date_close}" /><textbox id="date_close"  mold="rounded"  value="@{accountmain$composer.current.date_close}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.acc_group_id}" /><textbox id="acc_group_id"  mold="rounded"  value="@{accountmain$composer.current.acc_group_id}" disabled="true"/></row>
+                                  <row><label value="${labels.globuzAccount.state}" /><textbox id="state"  mold="rounded"  value="@{accountmain$composer.current.state}" disabled="true"/></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.globuzAccount.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.acc_bal}" /><textbox id="aacc_bal"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.currency}" /><textbox id="acurrency"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.client}" /><textbox id="aclient"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.id_order}" /><textbox id="aid_order"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.name}" /><textbox id="aname"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.sgn}" /><textbox id="asgn"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.bal}" /><textbox id="abal"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.sign_registr}" /><textbox id="asign_registr"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.s_in}" /><textbox id="as_in"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.s_out}" /><textbox id="as_out"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.dt}" /><textbox id="adt"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.ct}" /><textbox id="act"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.s_in_tmp}" /><textbox id="as_in_tmp"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.s_out_tmp}" /><textbox id="as_out_tmp"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.dt_tmp}" /><textbox id="adt_tmp"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.ct_tmp}" /><textbox id="act_tmp"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.l_date}" /><textbox id="al_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.date_open}" /><textbox id="adate_open"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.date_close}" /><textbox id="adate_close"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.acc_group_id}" /><textbox id="aacc_group_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.globuzAccount.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.globuzAccount.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{accountmain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.globuzAccount.id}" /><textbox id="fid"  mold="rounded"  value="@{accountmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.globuzAccount.acc_bal}" /><textbox id="facc_bal"  mold="rounded"  value="@{accountmain$composer.filter.acc_bal}" /></row>
+                                  <row><label value="${labels.globuzAccount.currency}" /><textbox id="fcurrency"  mold="rounded"  value="@{accountmain$composer.filter.currency}" /></row>
+                                  <row><label value="${labels.globuzAccount.client}" /><textbox id="fclient"  mold="rounded"  value="@{accountmain$composer.filter.client}" /></row>
+                                  <row><label value="${labels.globuzAccount.id_order}" /><textbox id="fid_order"  mold="rounded"  value="@{accountmain$composer.filter.id_order}" /></row>
+                                  <row><label value="${labels.globuzAccount.name}" /><textbox id="fname"  mold="rounded"  value="@{accountmain$composer.filter.name}" /></row>
+                                  <!--  
+                                  <row><label value="${labels.tietoAccount.sgn}" /><textbox id="fsgn"  mold="rounded"  value="@{accountmain$composer.filter.sgn}" /></row>
+                                  <row><label value="${labels.tietoAccount.bal}" /><textbox id="fbal"  mold="rounded"  value="@{accountmain$composer.filter.bal}" /></row>
+                                  <row><label value="${labels.tietoAccount.sign_registr}" /><textbox id="fsign_registr"  mold="rounded"  value="@{accountmain$composer.filter.sign_registr}" /></row>
+                                  <row><label value="${labels.tietoAccount.s_in}" /><textbox id="fs_in"  mold="rounded"  value="@{accountmain$composer.filter.s_in}" /></row>
+                                  <row><label value="${labels.tietoAccount.s_out}" /><textbox id="fs_out"  mold="rounded"  value="@{accountmain$composer.filter.s_out}" /></row>
+                                  <row><label value="${labels.tietoAccount.dt}" /><textbox id="fdt"  mold="rounded"  value="@{accountmain$composer.filter.dt}" /></row>
+                                  <row><label value="${labels.tietoAccount.ct}" /><textbox id="fct"  mold="rounded"  value="@{accountmain$composer.filter.ct}" /></row>
+                                  <row><label value="${labels.tietoAccount.s_in_tmp}" /><textbox id="fs_in_tmp"  mold="rounded"  value="@{accountmain$composer.filter.s_in_tmp}" /></row>
+                                  <row><label value="${labels.tietoAccount.s_out_tmp}" /><textbox id="fs_out_tmp"  mold="rounded"  value="@{accountmain$composer.filter.s_out_tmp}" /></row>
+                                  <row><label value="${labels.tietoAccount.dt_tmp}" /><textbox id="fdt_tmp"  mold="rounded"  value="@{accountmain$composer.filter.dt_tmp}" /></row>
+                                  <row><label value="${labels.tietoAccount.ct_tmp}" /><textbox id="fct_tmp"  mold="rounded"  value="@{accountmain$composer.filter.ct_tmp}" /></row>
+                                  <row><label value="${labels.tietoAccount.l_date}" /><textbox id="fl_date"  mold="rounded"  value="@{accountmain$composer.filter.l_date}" /></row>
+                                  <row><label value="${labels.tietoAccount.date_open}" /><textbox id="fdate_open"  mold="rounded"  value="@{accountmain$composer.filter.date_open}" /></row>
+                                  <row><label value="${labels.tietoAccount.date_close}" /><textbox id="fdate_close"  mold="rounded"  value="@{accountmain$composer.filter.date_close}" /></row>
+                                  <row><label value="${labels.tietoAccount.acc_group_id}" /><textbox id="facc_group_id"  mold="rounded"  value="@{accountmain$composer.filter.acc_group_id}" /></row>
+                                  <row><label value="${labels.tietoAccount.state}" /><textbox id="fstate"  mold="rounded"  value="@{accountmain$composer.filter.state}" /></row>
+                                  -->
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

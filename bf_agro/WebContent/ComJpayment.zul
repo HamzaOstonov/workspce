@@ -1,0 +1,345 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="comjpaymentmain" width="100%"  height="100%" border="normal" apply="com.is.comjpayment.ComJpaymentViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_add" label="${labels.comjpayment.pay}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_refresh" label="${labels.refresh}"
+                        image="/images/radar.png" />
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                <toolbarbutton id="btn_print" label="Печать"
+                        image="/images/printer.png" />
+                <toolbarbutton id="btn_check_payment" label="Проврить платеж"
+                        image="/images/printer.png" />
+                <toolbarbutton id="btn_print_arch_inquiry" label="Архивная справка"
+                        image="/images/printer.png" />
+                 <!--         
+                 <toolbarbutton id="btn_sarkor_pay" label="Sarkor"
+                        image="/images/forward.png" />
+                        
+                  <toolbarbutton id="btn_light_reestr" label="Reestr"
+                        image="/images/cash-register.png" />
+                 -->       
+                        
+             <!--            
+                <toolbarbutton id="btn_munis" label="Munis"
+                        image="/images/forward.png" />
+                <toolbarbutton id="btn_munis_pay" label="Munis Pay"
+                        image="/images/forward.png" />
+                <toolbarbutton id="btn_beeline_pay" label="Beeline Pay"
+                        image="/images/forward.png" />
+                        					-->
+        </toolbar>
+        
+        
+
+        <div id="grd">
+
+                <paging id="comjpaymentPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{comjpaymentmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.comjpayment.id}" width="50px" />
+                                <listheader label="Филиал" width="50px" />
+                                <listheader label="${labels.comjpayment.services_list_id}" width="300px" />
+                                <listheader label="${labels.comjpayment.p_name}" width="200px" />
+                                <listheader label="${labels.comjpayment.p_number}" width="200px" />
+                                <listheader label="Сумма, UZS" width="150px" />
+                                <listheader label="${labels.comjpayment.date_complete}" width="200px" />
+                                <listheader label="${labels.comjpayment.status}" width="150px" />
+                                <listheader label="${labels.comjpayment.provider}" width="200px" />
+<!--
+                                <listheader label="${labels.comjpayment.from_date}" width="200px" />
+                                <listheader label="${labels.comjpayment.to_date}" width="200px" />
+                                <listheader label="${labels.comjpayment.from_value}" width="200px" />
+                                <listheader label="${labels.comjpayment.to_value}" width="200px" />
+                                <listheader label="${labels.comjpayment.difference}" width="200px" />
+                                <listheader label="${labels.comjpayment.penalty_amount}" width="200px" />
+                                
+                                <listheader label="${labels.comjpayment.full_amount}" width="200px" />
+                                <listheader label="${labels.comjpayment.currency}" width="200px" />
+                                <listheader label="${labels.comjpayment.provider_amount}" width="200px" />
+                                <listheader label="${labels.comjpayment.fee_amount}" width="200px" />
+                                <listheader label="${labels.comjpayment.customer_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.deal_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.state}" width="200px" />
+                                <listheader label="${labels.comjpayment.customerj_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.document_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.transaction_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.branch_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.subbranch_id}" width="200px" />
+                                
+                                <listheader label="${labels.comjpayment.operation_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.parent_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.parent_group_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.payment_type_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.prt_id}" width="200px" />
+                                <listheader label="${labels.comjpayment.client_address}" width="200px" />
+                                <listheader label="${labels.comjpayment.provider_discount_amount}" width="200px" />
+                                <listheader label="${labels.comjpayment.budget_inn}" width="200px" />
+                                <listheader label="${labels.comjpayment.budget_account}" width="200px" />
+                                -->
+                        </listhead>
+
+                </listbox>
+
+
+
+        </div>
+        <div id="frm" visible="false">
+                  <hbox><grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true" width="500px">
+                          <columns>
+                                  <column width="200px" />
+                                  <column width="300px" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row visible="false"><label value="${labels.comjpayment.id}"/><textbox id="id"  mold="rounded"  value="@{comjpaymentmain$composer.current.id}" readonly="true"/></row>
+                                  <row id="rservices_list_id"><label value="${labels.comjpayment.services_list_id}" /><rcombobox readonly="true" id="services_list_id"  mold="rounded"  selecteditem="@{comjpaymentmain$composer.current.services_list_id}" disabled="true"/></row>
+                                  <row id="rprovider"><label value="${labels.comjpayment.provider}" /><textbox id="provider_dsc"  mold="rounded" disabled="true"/></row>
+                                  <row id="rstate"><label value="${labels.comjpayment.status}" /><textbox id="state_dsc"  mold="rounded" disabled="true"/></row>
+                                  <row id="rp_name"><label value="${labels.comjpayment.p_name}" /><textbox id="p_name"  mold="rounded"  value="@{comjpaymentmain$composer.current.p_name}" disabled="true"/></row>
+                                  <row id="rp_number"><label value="${labels.comjpayment.p_number}" /><textbox id="p_number"  mold="rounded"  value="@{comjpaymentmain$composer.current.p_number}" disabled="true"/></row>
+                                  <row id="rfrom_date"><label value="${labels.comjpayment.from_date}" /><datebox id="from_date"  mold="rounded"  value="@{comjpaymentmain$composer.current.from_date}" disabled="true"/></row>
+                                  <row id="rto_date"><label value="${labels.comjpayment.to_date}" /><datebox id="to_date"  mold="rounded"  value="@{comjpaymentmain$composer.current.to_date}" disabled="true"/></row>
+                                  <row id="rfrom_value"><label value="${labels.comjpayment.from_value}" /><textbox id="from_value"  mold="rounded"  value="@{comjpaymentmain$composer.current.from_value}" disabled="true"/></row>
+                                  <row id="rto_value"><label value="${labels.comjpayment.to_value}" /><textbox id="to_value"  mold="rounded"  value="@{comjpaymentmain$composer.current.to_value}" disabled="true"/></row>
+                                  <row id="rdifference"><label value="${labels.comjpayment.difference}" /><textbox id="difference"  mold="rounded"  value="@{comjpaymentmain$composer.current.difference}" disabled="true"/></row>
+                                  <row id="rpenalty_amount"><label value="${labels.comjpayment.penalty_amount}" /><textbox id="penalty_amount"  mold="rounded"  value="@{comjpaymentmain$composer.current.penalty_amount}" disabled="true"/></row>
+                                  <row id="rpayment_type_id"><label value="${labels.comjpayment.payment_type_id}" /><rcombobox readonly="true" id="payment_type_id"  mold="rounded"  selecteditem="@{comjpaymentmain$composer.current.payment_type_id}" disabled="true"/></row>
+                                  <row id="ramount"><label value="${labels.comjpayment.amount}" />
+                                  <hbox>
+                                  	<textbox id="amount" mold="rounded"  value="@{comjpaymentmain$composer.current.damount}" disabled="true"/>
+                                  	<label value="UZS"/>
+                                  </hbox>
+                                  </row>
+                                  <row id="rdistrict_id" visible="false"><label value="район/регион" />
+                                  <hbox>
+                                  	<rcombobox readonly="true" id="region_id"  mold="rounded"  />
+                                  	<rcombobox readonly="true" id="district_id"  mold="rounded"  />
+                                  </hbox>
+                                  </row>
+                                  <!-- <row id="rfull_amount"><label value="${labels.comjpayment.full_amount}" /><textbox id="full_amount"  mold="rounded"  value="@{comjpaymentmain$composer.current.full_amount}" /></row>
+                                  			<row id="rcurrency"><label value="${labels.comjpayment.currency}" /><textbox id="currency"  mold="rounded"  value="@{comjpaymentmain$composer.current.currency}" /></row>
+                                  			<row id="rprovider_amount"><label value="${labels.comjpayment.provider_amount}" /><textbox id="provider_amount"  mold="rounded"  value="@{comjpaymentmain$composer.current.provider_amount}" /></row>
+                                  			<row id="rfee_amount"><label value="${labels.comjpayment.fee_amount}" /><textbox id="fee_amount"  mold="rounded"  value="@{comjpaymentmain$composer.current.fee_amount}" /></row>
+                                  			<row id="rcustomer_id" visible="false"><label value="${labels.comjpayment.customer_id}" /><textbox id="customer_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.customer_id}" /></row>
+                                  			<row id="rdeal_id"><label value="${labels.comjpayment.deal_id}" /><textbox id="deal_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.deal_id}" /></row>
+                                  			<row id="rstate"><label value="${labels.comjpayment.state}" /><textbox id="state"  mold="rounded"  value="@{comjpaymentmain$composer.current.state}" /></row>
+                                  			<row id="rcustomerj_id"><label value="${labels.comjpayment.customerj_id}" /><textbox id="customerj_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.customerj_id}" /></row>
+                                  			<row id="rdocument_id"><label value="${labels.comjpayment.document_id}" /><textbox id="document_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.document_id}" /></row>
+                                  			<row id="rtransaction_id"><label value="${labels.comjpayment.transaction_id}" /><textbox id="transaction_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.transaction_id}" /></row>
+                                  			<row id="rbranch_id"><label value="${labels.comjpayment.branch_id}" /><textbox id="branch_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.branch_id}" /></row>
+                                  			<row id="rsubbranch_id"><label value="${labels.comjpayment.subbranch_id}" /><textbox id="subbranch_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.subbranch_id}" /></row>
+                                 			<row id="rdate_complete"><label value="${labels.comjpayment.date_complete}" /><textbox id="date_complete"  mold="rounded"  value="@{comjpaymentmain$composer.current.date_complete}" /></row>
+                                 			<row id="roperation_id"><label value="${labels.comjpayment.operation_id}" /><textbox id="operation_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.operation_id}" /></row>
+                                  			<row id="rparent_id"><label value="${labels.comjpayment.parent_id}" /><textbox id="parent_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.parent_id}" /></row>
+                                  			<row id="rparent_group_id"><label value="${labels.comjpayment.parent_group_id}" /><textbox id="parent_group_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.parent_group_id}" /></row>
+                                  			<row id="rpayment_type_id"><label value="${labels.comjpayment.payment_type_id}" /><textbox id="payment_type_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.payment_type_id}" /></row>
+                                  			<row id="rprt_id"><label value="${labels.comjpayment.prt_id}" /><textbox id="prt_id"  mold="rounded"  value="@{comjpaymentmain$composer.current.prt_id}" /></row>-->
+                                  <row id="rclient_address"><label value="${labels.comjpayment.client_address}" /><textbox id="client_address"  mold="rounded"  value="@{comjpaymentmain$composer.current.client_address}" /></row>
+                                  			<!-- <row id="rprovider_discount_amount"><label value="${labels.comjpayment.provider_discount_amount}" /><textbox id="provider_discount_amount"  mold="rounded"  value="@{comjpaymentmain$composer.current.provider_discount_amount}" /></row>
+                                  			<row id="rbudget_inn"><label value="${labels.comjpayment.budget_inn}" /><textbox id="budget_inn"  mold="rounded"  value="@{comjpaymentmain$composer.current.budget_inn}" /></row>
+                                  			<row id="rbudget_account"><label value="${labels.comjpayment.budget_account}" /><textbox id="budget_account"  mold="rounded"  value="@{comjpaymentmain$composer.current.budget_account}" /></row>-->
+                          </rows>
+                  </grid>
+                  	<grid width="400px" height="400px" id="adddata_grid" style="vertical-overflow:auto;" visible="false">
+                  		<columns>
+                                  <column width="200px" />
+                                  <column width="200px" />
+                        </columns>
+                        <rows id="adddata_rows">
+                        </rows>
+                  	</grid>
+                  </hbox>
+                  
+                  <vbox id="addgrd" visible="false">
+                  
+                  <hbox>
+                  <vbox>
+                  <hbox>
+                  <vbox>
+                  <grid id="faddgrd" width="500px">
+                  	<columns>
+                        <column width="20%" />
+                        <column width="80%" />
+                    </columns>
+                  	<rows>
+                  		<row visible="false" id="a_subsid_r"><label value="Подразделение" /><rcombobox readonly="true" id="a_subsid"  mold="rounded" /></row>
+                  		<row visible="false" id="ra_subsid_serial"><label value="Серия" /><textbox id="a_subsid_serial"  mold="rounded" /></row>
+                  		<row visible="false" id="ra_subsid_number"><label value="Номер" /><textbox id="a_subsid_number"  mold="rounded" /></row>
+                  		
+                  		
+                  		<row visible="false"><label value="Частые" /><rcombobox readonly="true" id="ffreq_service_id"  mold="rounded" /></row>
+                  		<row><label value="${labels.comcustomer.category_id}" /><rcombobox readonly="true" id="fcategory_id"  mold="rounded" /></row>
+                  		<row id = "rfregion"><label value="${labels.comcustomer.region}" /><rcombobox readonly="true" id="fregion"  mold="rounded" /></row>
+                  		<row id = "rfdistr"><label value="${labels.comcustomer.distr}" /><rcombobox readonly="true" id="fdistr"  mold="rounded"  /></row>
+                  		<row><label value="${labels.comjpayment.customerj_id}" /><rcombobox readonly="true" id="customer_id"  mold="rounded"  /></row>
+                  		<row id = "r_spec_distr" visible="false"><label value="Отделение поставщика"/><rcombobox readonly="true" id="provider_spec_district" mold="rounded"/></row>
+                  	</rows>                
+                  </grid>
+                  
+                  <grid width="500px" id="addgrd1">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row visible="false"><label value="${labels.comjpayment.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row id="raservices_list_id"><label value="${labels.comjpayment.services_list_id}" />
+                                  		<rcombobox readonly="true" id="aservices_list_id"  mold="rounded" />
+                                  </row>
+                                  <row id="ra_budg_selector" visible="false"><label value="Назначение платежа" /><textbox id="abudg_selector"  mold="rounded" width="370px" maxlength="50" /></row>
+                                  <row id="ra_budg_inn" visible="false"><label value="Бюджетный ИНН" /><textbox id="abudg_inn"  mold="rounded"  /></row>
+                                  <row id="ra_free_branch" visible="false"><label value="Филиал" /><textbox id="a_free_branch"  mold="rounded"  /></row>
+                                  <row id="ra_acc_name" visible="false"><label value="Название счета" /><textbox id="a_acc_name"  mold="rounded" width="370px" /></row>
+                                  <row id="ra_free_acc" visible="false"><label value="Счет свободного платежа" /><textbox id="afree_acc"  mold="rounded" width="370px"  /></row>
+                                  <row id="rap_name" visible="false"><label value="${labels.comjpayment.p_name}" /><textbox id="ap_name"  mold="rounded"  /></row>
+                                  <row id="rap_number" visible="false"><label value="${labels.comjpayment.p_number}" /><textbox id="ap_number"  mold="rounded" width="370px"  /></row>
+                                  <row id="rap_inn" visible="false"><label value="ИНН получателя" /><textbox id="ap_inn"  mold="rounded"  /></row>
+                                  
+                                  <row id="rafrom_date" visible="false"><label value="${labels.comjpayment.from_date}" /><datebox id="afrom_date"  mold="rounded"  /></row>
+                                  <row id="rato_date" visible="false"><label value="${labels.comjpayment.to_date}" /><datebox id="ato_date"  mold="rounded"  /></row>
+                                  <row id="rafrom_value" visible="false"><label value="${labels.comjpayment.from_value}" /><textbox id="afrom_value"  mold="rounded"  /></row>
+                                  <row id="rato_value" visible="false"><label value="${labels.comjpayment.to_value}" /><textbox id="ato_value"  mold="rounded"  /></row>
+                                  <row id="radifference" visible="false"><label value="${labels.comjpayment.difference}" /><textbox id="adifference"  mold="rounded"  /></row>
+                                  <row id="rapenalty_amount" visible="false"><label value="${labels.comjpayment.penalty_amount}" /><textbox id="apenalty_amount"  mold="rounded"  /></row>
+                                  <row id="rapayment_type_id"><label value="${labels.comjpayment.payment_type_id}" /><rcombobox readonly="true" id="apayment_type_id"  mold="rounded"  /></row>                                 
+                                  <row id="raamount"><label value="${labels.comjpayment.amount}" id="aamount_l"/><textbox id="aamount"  mold="rounded"  /></row>
+                                  
+                                  <row id="radistrict_id" visible="false"><label value="район/регион" />
+                                  <hbox>
+                                  	<rcombobox readonly="true" id="aregion_id"  mold="rounded"  />
+                                  	<rcombobox readonly="true" id="adistrict_id"  mold="rounded"  />
+                                  </hbox>
+                                  </row>
+                                  <!-- <row id="rafull_amount"><label value="${labels.comjpayment.full_amount}" /><textbox id="afull_amount"  mold="rounded"  /></row>
+                                  			<row id="racurrency"><label value="${labels.comjpayment.currency}" /><textbox id="acurrency"  mold="rounded"  /></row>
+                                  			<row id="raprovider_amount"><label value="${labels.comjpayment.provider_amount}" /><textbox id="aprovider_amount"  mold="rounded"  /></row>
+                                  			<row id="rafee_amount"><label value="${labels.comjpayment.fee_amount}" /><textbox id="afee_amount"  mold="rounded"  /></row>-->
+                                  <row id="racustomer_id" visible="false"><label value="${labels.comjpayment.customer_id}" /><textbox id="acustomer_id"  mold="rounded"  /></row>
+                                  			<!--<row id="radeal_id"><label value="${labels.comjpayment.deal_id}" /><textbox id="adeal_id"  mold="rounded"  /></row>
+                                  			<row id="rastate"><label value="${labels.comjpayment.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                  			<row id="racustomerj_id"><label value="${labels.comjpayment.customerj_id}" /><textbox id="acustomerj_id"  mold="rounded"  /></row>
+                                  			<row id="radocument_id"><label value="${labels.comjpayment.document_id}" /><textbox id="adocument_id"  mold="rounded"  /></row>
+                                  			<row id="ratransaction_id"><label value="${labels.comjpayment.transaction_id}" /><textbox id="atransaction_id"  mold="rounded"  /></row>
+                                  			<row id="rabranch_id"><label value="${labels.comjpayment.branch_id}" /><textbox id="abranch_id"  mold="rounded"  /></row>
+                                  			<row id="rasubbranch_id"><label value="${labels.comjpayment.subbranch_id}" /><textbox id="asubbranch_id"  mold="rounded"  /></row>
+                                  			<row id="radate_complete"><label value="${labels.comjpayment.date_complete}" /><textbox id="adate_complete"  mold="rounded"  /></row>
+                                  			<row id="raoperation_id"><label value="${labels.comjpayment.operation_id}" /><textbox id="aoperation_id"  mold="rounded"  /></row>
+                                  			<row id="raparent_id"><label value="${labels.comjpayment.parent_id}" /><textbox id="aparent_id"  mold="rounded"  /></row>
+                                  			<row id="raparent_group_id"><label value="${labels.comjpayment.parent_group_id}" /><textbox id="aparent_group_id"  mold="rounded"  /></row>
+                                  			<row id="rapayment_type_id"><label value="${labels.comjpayment.payment_type_id}" /><textbox id="apayment_type_id"  mold="rounded"  /></row>
+                                  			<row id="raprt_id"><label value="${labels.comjpayment.prt_id}" /><textbox id="aprt_id"  mold="rounded"  /></row>-->
+                                  <row id="raclient_address"   visible="false"><label value="${labels.comjpayment.client_address}" /><textbox id="aclient_address"  mold="rounded" width="370px" /></row>
+                                  			<!-- <row id="raprovider_discount_amount"><label value="${labels.comjpayment.provider_discount_amount}" /><textbox id="aprovider_discount_amount"  mold="rounded"  /></row>
+                                  			<row id="rabudget_inn"><label value="${labels.comjpayment.budget_inn}" /><textbox id="abudget_inn"  mold="rounded"  /></row>
+                                  			<row id="rabudget_account"><label value="${labels.comjpayment.budget_account}" /><textbox id="abudget_account"  mold="rounded"  /></row>-->
+                          </rows>
+                  </grid>
+                  </vbox>
+                  <vbox style="overflow:auto;">
+                  <grid width="600px" height="400px" id="fadddata_grid"   visible="false" >
+                  		<columns>
+                                  <column width="200px" />
+                                  <column width="200px" />
+                        </columns>
+                        <rows id="fadddata_rows">
+                        </rows>
+                  	</grid>
+                  	</vbox>
+                  	</hbox>
+                  </vbox>
+                  </hbox>
+                  
+                  <toolbar>
+                          <toolbarbutton id="btn_find"
+                                  label="${labels.search}" image="/images/binoculars.png" />
+
+                          <toolbarbutton id="btn_pay"
+                                  label="${labels.comjpayment.pay}" image="/images/cash-register.png" />
+                          <toolbarbutton id="btn_cancel_pay"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+                  <toolbar visible="false">
+                  		<label value="branch"/><textbox id="t_branch"/>
+                  		<label value="bid"/><textbox id="t_bid"/>
+                  		<label value="sid"/><textbox id="t_sid"/>
+                  		<toolbarbutton id="btn_test_sid" label="test_sid" image="/images/stop.png" />
+                  		<toolbarbutton id="btn_test_bid" label="test_bid" image="/images/stop.png" />
+                  </toolbar>
+                  </vbox>
+                  
+                  <vbox id="fgrd" visible="false">
+                  <grid id="fgrd1" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <row>
+                                  
+                                  <label value="${labels.user.branch}" />
+	                                  <hbox>
+	                                  		<textbox mold="rounded" id="fbranch"  value="@{usermain$composer.filter.branch}" width="50px" />
+                                  	  </hbox>
+                                  </row>
+                                  <row><label value="${labels.comjpayment.id}" /><textbox id="fid"  mold="rounded" /></row>
+                                  <row><label value="${labels.comjpayment.services_list_id}" /><rcombobox readonly="true" id="fservices_list_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.comjpayment.p_name}" /><textbox id="fp_name"  mold="rounded" /></row>
+                                  <row><label value="${labels.comjpayment.p_number}" /><textbox id="fp_number"  mold="rounded"  /></row>
+
+                                  <row><label value="${labels.comjpayment.amount}" /><textbox id="famount"  mold="rounded" /></row>
+                                  
+                                  <row><label value="С суммы" /><textbox id="famount_from"  mold="rounded"/></row>
+                                  <row><label value="По сумму" /><textbox id="famount_to"  mold="rounded"/></row>
+                                  
+                                  <row visible="false"><label value="${labels.comjpayment.date_complete}" /><datebox id="fdate_complete"  mold="rounded" /></row>
+                                  
+                                  <row><label value="С даты платежа" /><datebox id="fdate_complete_from"  mold="rounded"/></row>
+                                  <row><label value="По дату платежа" /><datebox id="fdate_complete_to"  mold="rounded"/></row>
+                                  
+                                  <row><label value="Состояние" /><rcombobox width="500px" readonly="true" id="fstates"  mold="rounded"/></row>
+                                  
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.search}" image="/images/search.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+                  </vbox>
+        </div>
+        
+<window id="printwnd"     mode="overlapped" title="${labels.print}" position="center,center" visible="false" closable="true" 
+maximizable="true" width="950px"  height="550px" onClose="self.visible = false; event.stopPropagation();">
+<script src="scripts/iprint.js"/>
+
+
+<iframe id="rpframe" width="100%"  height="100%"/>
+<!-- <iframe id="rpframe" width="950px"  height="550px"/>-->
+                 <!--  <toolbar>
+                           <toolbarbutton id="btn_print"
+                                  label="${labels.print}" image="/images/printer.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="Закрыть" image="/images/delete.png" />
+                  </toolbar>-->
+</window>
+</window>

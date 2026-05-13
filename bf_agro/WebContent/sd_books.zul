@@ -1,0 +1,726 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<style>
+		.red {
+		color: blue;
+		font-style: oblique;
+		}
+		.customIcon{
+		width: 100%;
+		height: 25px;
+		text-align: center;
+		background:
+		-webkit-linear-gradient(-90deg, rgba(52,133,209,1) 0,
+		rgba(55,141,211,0.5) 24%, rgba(47,125,188,0.2) 50%,
+		rgba(55,141,211,0.5) 79%, rgba(52,133,209,1) 100%);
+		background: -moz-linear-gradient(180deg, rgba(52,133,209,1) 0,
+		rgba(55,141,211,0.5) 24%, rgba(47,125,188,0.2) 50%,
+		rgba(55,141,211,0.5) 79%, rgba(52,133,209,1) 100%);
+		background: linear-gradient(180deg, rgba(52,133,209,1) 0, rgba(55,141,211,0.5)
+		24%, rgba(47,125,188,0.2) 50%, rgba(55,141,211,0.5) 79%,
+		rgba(52,133,209,1) 100%);
+		background-repeat: repeat;
+		}
+	</style>
+	<style>
+		.labelstyle {
+		font-weight: bold;
+		font-family: 'Trebuchet MS';
+		color: black;
+		}
+	</style>
+	<style>
+		.newstyle {
+		background-color: orange;
+		}
+	</style>
+	<window id="sdbooksmain" width="100%" border="normal"
+		apply="com.is.sd_books.Composer">
+   <script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+   <script><![CDATA[
+jq(document).ready(function(){
+    // Highlight element with id mark
+    jq("menu#btn_capdate").css("background", "yellow");
+});
+    ]]></script>
+
+		<toolbar id="tb" visible="true">
+			<toolbarbutton id="btn_back" label="${labels.back}"
+				image="/images/back.png" />
+			<toolbarbutton id="btn_new_dep"
+				label="${labels.v_sd_books_on_account.new_deposit_open_dep}" image="/images/+.png" />
+			<toolbarbutton id="btn_filter" label="Фильтр"
+				image="/images/filter.png" />
+			 <toolbarbutton id="btn_refresh" label="Обновить" image ="/images/refresh.png" 
+				/> 
+		</toolbar>
+
+		<div id="grd">
+			<toolbar id="tb_hint" visible="true">
+				<label value="${labels.v_sd_books_on_account.active }" />
+				<space />
+				<label value="${labels.v_sd_books_on_account.arrested }"
+					style="color:red" />
+				<space />
+				<label value="${labels.v_sd_books_on_account.closed }" style="color:blue" />
+				<space />
+				<label value="${labels.v_sd_books_on_account.pledged }" style="color:violet" />
+			</toolbar>
+			<paging id="depositListboxPaging" /> <!-- izmineniye -->
+			<listbox id="dataGrid" multiple="true" width="100%"
+				selectedItem="@{sdbooksmain$composer.current}">
+				<listhead sizable="true">
+
+					<listheader width="8%" label="${labels.v_sd_books_on_account.dep}" />
+					<listheader width="5%"
+						label="${labels.v_sd_books_on_account.filial}" />
+					<listheader width="20%" label="${labels.v_sd_books_on_account.name}" />
+					<listheader width="10%" align = "right"
+						label="${labels.v_sd_books_on_account.saldo}" />
+					<listheader width="13%" align = "right"
+						label="${labels.v_sd_books_on_account.date_open}" />
+					<listheader width="10%" align = "center" label="${labels.v_sd_books_on_account.num}" />
+					<listheader width="20%"  align = "right"
+						label="${labels.v_sd_books_on_account.account}" />
+					<listheader width="15%"  align = "right"
+						label="${labels.v_sd_books_on_account.date_close}" />
+					<listheader width="20%"  align = "right"
+						label="${labels.v_sd_books_on_account.deadline}" />
+				</listhead>
+			</listbox>
+		</div>
+
+		<div id="frm" visible="false" style="border: 1px black solid; ">
+			<menubar>
+				<menu label="Действие">
+					<menupopup>
+						<menuitem id="btn_save_operation" sclass="customIcon"
+							label="${labels.v_sd_books_on_account.operations_save}" />
+						<menuitem id="btn_lead"
+							label="${labels.v_sd_books_on_account.operations_lead_operation}"
+							image="/images/prsetting.png" />
+						<menuitem id="btn_delete_operation" sclass="customIcon"
+							label="Удалить Операцию" />
+						<menuitem id="btn_delete_lead" label="Удалить проводку" />
+					</menupopup>
+				</menu>
+				<menu label="Сервис">
+					<menupopup>
+						<menuitem id="btn_capdate" label="Дата ближайшей капитализации" />
+					</menupopup>
+				</menu>
+				<menuitem label="Сберкнижка" id="btn_clerk" onClick="clerkWnd.visible = true" />
+				<menuitem label="Инфопанель" id="btn_info" visible="false" />
+				<menu label="Отчеты">
+					<menupopup>
+						<menuitem label="Заявление на Открытие Счета" id="btn_appl" />
+						<menuitem label="Дополнительное Соглашение" id="btn_dops"
+							visible="false" />
+						<menuitem label="Договор на Открытие Вклада" id="btn_dep" />
+						<menuitem label="Кассовый Ордер" id="btn_cashorder"
+							visible="false" />
+						<menuitem label="Акт переплаты или недоплаты" id="btn_act"
+							visible="false" />
+						<menuitem label="Приходный Ордер" id="btn_creditorder" />
+						<menuitem label="Кассовый Ордер 2 Часть" id="btn_cashorder_part2"
+							visible="false" />
+						<menuitem label="Кассовый Ордер 3 Часть" id="btn_cashorder_part3"
+							visible="false" />
+						<menuitem label="Расходный Ордер" id="btn_debit_order" />
+						<menuitem label="Инвентаризационная Карточка" id="btn_inventcard"
+							visible="false" />
+						<menuitem label="Шахсий Хисобварак 2015" id="btn_shahsiy2015"
+							visible="false" />
+						<menuitem label="Омонат Дафтарча 1" id="btn_sdBook_btn1"
+							visible="true" />
+						<menuitem label="Омонат Дафтарча 2" id="btn_sdBook_btn2"
+							visible="true" />
+					</menupopup>
+				</menu>
+				<menuitem id="btn_prc" label="Начисленные проценты" image="/images/statics-2.png" />
+				<menuitem id="btn_errors" label="${labels.v_sd_books_on_account.errors_title}"
+					image="/images/basket.png" />
+			</menubar>
+			<grid id="fgd" sizedByContent="true" style="border: 1px black solid; ">
+				<columns>
+					<column hflex="1" />
+					<column hflex="3" />
+					<column hflex="1" />
+					<column hflex="2" />
+					<column hflex="1" />
+					<column hflex="2" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.v_sd_books_on_account.filial}">
+						</label>
+						<cell>
+							<textbox readonly="true" id="filial_text" disabled="true"
+								mold="rounded" hflex="1" value="@{sdbooksmain$composer.current.filial}" />
+							<rcombobox readonly="true" id="filial" hflex="3"
+								buttonVisible="false" mold="rounded" disabled="true"
+								selecteditem="@{sdbooksmain$composer.current.filial}" />
+						</cell>
+						<label value="${labels.v_sd_books_on_account.state}" />
+						<rcombobox readonly="true" id="state" mold="rounded"
+							disabled="true" buttonVisible="false"
+							selecteditem="@{sdbooksmain$composer.current.state_id}" />
+						<label value="${labels.v_sd_books_on_account.deadline}" />
+						<datebox readonly="true" disabled="true" hflex="1" mold="rounded"
+							value="@{sdbooksmain$composer.current.deadline}" format="dd-MM-yyyy" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.dep}" />
+						<cell>
+							<textbox readonly="true" id="dep_text" mold="rounded"
+								hflex="1" value="@{sdbooksmain$composer.current.dep}" disabled="true" />
+							<rcombobox readonly="true" id="dep" disabled="true"
+								mold="rounded" hflex="3" selecteditem="@{sdbooksmain$composer.current.dep}"
+								buttonVisible="false" />
+
+
+						</cell>
+						<label value="${labels.v_sd_books_on_account.account}" />
+						<textbox readonly="true" id="account_text" mold="rounded"
+							hflex="1" disabled="true" value="@{sdbooksmain$composer.current.account}" />
+						<label value="${labels.v_sd_books_on_account.num}" />
+						<textbox readonly="true" id="num" mold="rounded" hflex="1"
+							value="@{sdbooksmain$composer.current.num}" disabled="true" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.new_deposit_oper_date}" />
+						<textbox id="f_operdate" mold="rounded" constraint="no empty"
+							readonly="true" disabled="true" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.new_deposit_operations}" />
+						<rcombobox constraint="no empty" id="f_oper" mold="rounded"
+							hflex="1" />
+						<label id="f_sum_text" value="${labels.v_sd_books_on_account.new_deposit_sum}" />
+						<textbox id="f_sum" mold="rounded" hflex="1" />
+						<label value="" />
+						<button id="saveDepp"
+							label="${labels.v_sd_books_on_account.operations_save}" />
+					</row>
+				</rows>
+			</grid>
+
+			<listbox style="border: 1px black solid; " id="circulateListbox"
+				multiple="true" hflex="1" height="25%" rows="5">
+				<listhead sizable="true">
+					<listheader label="${labels.sd_circulate.oper_date}"
+						width="8%" />
+					<listheader label="${labels.sd_circulate.circulate_cr}"
+						width="10%" />
+					<listheader label="${labels.sd_circulate.circulate_db}"
+						width="10%" />
+					<listheader label="${labels.sd_circulate.saldo}" width="10%" />
+					<listheader label="${labels.sd_circulate.pc}" width="5%" />
+					<listheader label="${labels.sd_circulate.prc_circulate_cr}"
+						width="10%" />
+					<listheader label="${labels.sd_circulate.prc_circulate_db}"
+						width="10%" />
+					<listheader label="${labels.sd_circulate.prc_saldo}"
+						width="10%" />
+					<listheader label="${labels.sd_circulate.fx_code}"
+						width="5%" />
+					<listheader label="${labels.sd_circulate.note}" width="15%" />
+					<listheader label="${labels.sd_circulate.general_id}"
+						width="5%" />
+					<listheader label="${labels.sd_circulate.clerk_name}"
+						width="10%" />
+					<listheader label="${labels.sd_circulate.sd}" width="10%" />
+				</listhead>
+			</listbox>
+			<toolbar>
+				<label value="${labels.v_sd_books_on_account.operations_lead}"
+					style="color:blue" />
+				<space />
+				<label value="${labels.v_sd_books_on_account.operations_non_lead}" />
+				<space />
+				<label value="${labels.v_sd_books_on_account.operations_unlead}"
+					style="color:red" />
+				<space />
+			</toolbar>
+			<grid style="border:none" id="frmgrd" sizedByContent="true"
+				ctrlKeys="^e#up#down" visible="false">
+				<columns>
+					<column hflex="1" />
+					<column hflex="1" />
+					<column hflex="1" />
+					<column hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.v_sd_books_on_account.name}" />
+						<textbox readonly="false" hflex="1" mold="rounded"
+							value="@{sdbooksmain$composer.current.name}" />
+						<label value="${labels.v_sd_books_on_account.born_date}" />
+						<datebox disabled="true" mold="rounded"
+							value="@{sdbooksmain$composer.current.born_date}" format="dd-MM-yyyy" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.address}" />
+						<textbox hflex="1" mold="rounded"
+							value="@{sdbooksmain$composer.current.address}" />
+						<label value="${labels.v_sd_books_on_account.type_document}" />
+						<rcombobox id="c_type_document" readonly="true" hflex="1"
+							mold="rounded" buttonVisible="false" disabled="true"
+							selecteditem="@{sdbooksmain$composer.current.type_document}" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.pass_ser}" />
+						<textbox readonly="true" mold="rounded"
+							value="@{sdbooksmain$composer.current.pass_ser}" />
+						<label value="${labels.v_sd_books_on_account.pass_num}" />
+						<textbox readonly="true" mold="rounded"
+							value="@{sdbooksmain$composer.current.pass_num}" />
+					</row>
+					<row>
+
+						<label value="${labels.v_sd_books_on_account.pass_date}" />
+						<datebox disabled="true" mold="rounded"
+							value="@{sdbooksmain$composer.current.pass_date}" />
+						<label value="${labels.v_sd_books_on_account.passport_date_expiration}" />
+						<datebox disabled="true" readonly="true"
+							value="@{sdbooksmain$composer.current.passport_date_expiration}"
+							mold="rounded" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.pass_reg}" />
+						<textbox hflex="1" readonly="true" mold="rounded"
+							value="@{sdbooksmain$composer.current.pass_reg}" />
+						<label value="${labels.v_sd_books_on_account.resident_code}" />
+						<rcombobox id="c_resident_code" disabled="true"
+							buttonVisible="false" mold="rounded"
+							selecteditem="@{sdbooksmain$composer.current.resident_code}" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.code_citizenship}" />
+						<textbox readonly="true" mold="rounded"
+							value="@{sdbooksmain$composer.current.code_citizenship}" />
+						<rcombobox id="c_code_citizenship" readonly="true" mold="rounded"
+							buttonVisible="false" disabled="true"
+							selecteditem="@{sdbooksmain$composer.current.code_citizenship}" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.birth_place}" />
+						<textbox hflex="1" mold="rounded"
+							value="@{sdbooksmain$composer.current.birth_place}" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.phone_home}" />
+						<textbox hflex="1" mold="rounded" readonly="true"
+							value="@{sdbooksmain$composer.current.phone_home}" />
+						<label value="${labels.v_sd_books_on_account.phone_mobile}" />
+						<textbox hflex="1" mold="rounded" readonly="true"
+							value="@{sdbooksmain$composer.current.phone_mobile}" />
+					</row>
+				</rows>
+			</grid>
+		</div>
+
+		<window id="new_depositWnd" width="45%" mode="modal" title=" "
+			vflex="1" position="center,center" visible="false" closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+			<grid sizedByContent="true" width="100%" style="border: 1px black solid; ">
+				<columns>
+					<column hflex="1" />
+					<column hflex="1" />
+					<column hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.v_sd_books_on_account.filial}" />
+						<textbox id="filial_text" readonly="true" mold="rounded"
+							width="100%" value="@{sdbooksmain$composer.new_dep.filial}" />
+						<rcombobox id="n_filial" mold="rounded" readonly="true"
+							width="100%" selecteditem="@{sdbooksmain$composer.new_dep.filial}"
+							onChange="sdbooksmain$composer.new_dep.filial = n_filial.value;
+								filial_text.value = n_filial.value;" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.dep }" />
+						<textbox id="dep_text" readonly="true" width="100%" mold="rounded"
+							value="@{sdbooksmain$composer.new_dep.dep}" />
+						<rcombobox id="n_dep" width="100%" mold="rounded"
+							selecteditem="@{sdbooksmain$composer.new_dep.dep}" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.new_deposit_operations}" />
+						<rcombobox id="n_oper" width="100%" mold="rounded"
+							readonly="true" selecteditem="@{sdbooksmain$composer.new_dep.operTurn}"
+							onChange="sdbooksmain$composer.new_dep.operTurn = n_oper.value" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.new_deposit_oper_date}" />
+						<datebox id="operDate" constraint="no empty" hflex="1"
+							mold="rounded" readonly="true"
+							value="@{sdbooksmain$composer.new_dep.operDate}" />
+					</row>
+					<row>
+						<label value="Серия / Номер Сберкнижки" />
+						<cell>
+							<textbox id="p_ser" mold="rounded" hflex="1"
+								value="@{sdbooksmain$composer.new_dep.p_ser}" />
+							<rcombobox id="p_num" mold="rounded" hflex="3"
+								selecteditem="@{sdbooksmain$composer.new_dep.p_num}"
+								onChange="sdbooksmain$composer.new_dep.p_num=p_num.value;
+							 p_ser.value=p_num.value;" />
+
+							<textbox id="p_num_txt" mold="rounded" hflex="3" visible="false"
+								value="@{sdbooksmain$composer.new_dep.p_num}" />
+						</cell>
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.new_deposit_sum}" />
+						<textbox id="n_sum" width="100%" mold="rounded" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar style="border: 1px black solid; ">
+				<toolbarbutton id="btn_open" height="50%" mold="default"
+					style="border: 1px black solid; " label="${labels.v_sd_books_on_account.new_deposit_open_dep}" />
+
+				<space />
+				<toolbarbutton id="btn_add_prCondDep" height="50%"
+					mold="default" style="border: 1px black solid; "
+					label="Добавить Индивидуальные параметры и открыт вклад" />
+
+			</toolbar>
+
+
+		</window>
+
+		<window id="searchWnd" width="60%" mode="modal" title="${labels.search}"
+			vflex="1" position="center,center" visible="false" closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+			<grid id="search_grd">
+				<columns>
+					<column hflex="1" />
+					<column hflex="1" />
+					<column hflex="1" />
+					<column hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.v_sd_books_on_account.filial}" />
+						<textbox id="s_filial" width="100%" mold="rounded"
+							value="@{sdbooksmain$composer.filter.filial}" />
+						<label value="${labels.v_sd_books_on_account.dep}" />
+						<textbox id="s_dep" width="100%" mold="rounded"
+							value="@{sdbooksmain$composer.filter.dep}" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.num }" />
+						<textbox id="s_num" width="100%" mold="rounded"
+							value="@{sdbooksmain$composer.filter.num}" />
+						<label value="${labels.v_sd_books_on_account.account }" />
+						<textbox id="s_account" width="100%" mold="rounded"
+							value="@{sdbooksmain$composer.filter.account}" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.date_open }" />
+						<datebox id="s_date_open" format="dd.MM.yyyy" mold="rounded"
+							value="@{sdbooksmain$composer.filter.date_open}" width="100%" />
+						<label value="${labels.v_sd_books_on_account.date_close}" />
+						<datebox id="s_date_close" format="dd.MM.yyyy" mold="rounded"
+							width="100%" value="@{sdbooksmain$composer.filter.date_close}" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.state} " />
+						<rcombobox id="s_states" mold="rounded"
+							selecteditem="@{sdbooksmain$composer.filter.state_id}" />
+					</row>
+				</rows>
+			</grid>
+
+			<toolbar>
+				<toolbarbutton id="btn_ok" label="${labels.search}"
+					image="/images/search.png" />
+				<toolbarbutton id="btn_clear" label="${labels.clear}"  />
+			</toolbar>
+
+		</window>
+		<window id="errorWnd" width="70%" mode="modal"
+			title="${labels.v_sd_books_on_account.errors_title }" position="center,center"
+			visible="false" closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+
+			<div>
+				<listbox id="error_listbox" multiple="true" width="100%"
+					rows="8">
+					<listhead>
+						<listheader width="10%"
+							label="${labels.v_sd_books_on_account.errors_date}" />
+						<listheader width="90%"
+							label="${labels.v_sd_books_on_account.errors_reason}" />
+					</listhead>
+				</listbox>
+			</div>
+
+		</window>
+		<window id="client_detailsWnd" width="85%" title="Детали клиента"
+			mode="modal" position="center,center" visible="false" closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+
+			<grid style="border:none" id="frmgrd" sizedByContent="true"
+				ctrlKeys="^e#up#down">
+				<columns>
+					<column hflex="1" />
+					<column hflex="1" />
+					<column hflex="1" />
+					<column hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.v_sd_books_on_account.name}" />
+						<textbox readonly="false" id="name" hflex="1" mold="rounded" />
+						<label value="${labels.v_sd_books_on_account.born_date}" />
+						<datebox disabled="true" id="born_date" mold="rounded" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.address}" />
+						<textbox id="address" hflex="1" mold="rounded" />
+						<label value="${labels.v_sd_books_on_account.type_document}" />
+						<textbox readonly="true" id="name_pas" hflex="1" mold="rounded" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.pass_ser}" />
+						<textbox readonly="true" id="pass_ser" mold="rounded" />
+						<label value="${labels.v_sd_books_on_account.pass_num}" />
+						<textbox readonly="true" id="pass_num" mold="rounded" />
+					</row>
+					<row>
+
+						<label value="${labels.v_sd_books_on_account.pass_date}" />
+						<datebox disabled="true" id="pass_date" mold="rounded" />
+						<label value="${labels.v_sd_books_on_account.passport_date_expiration}" />
+						<datebox disabled="true" readonly="true"
+							id="passport_date_expiration" mold="rounded" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.pass_reg}" />
+						<textbox hflex="1" readonly="true" id="pass_reg" mold="rounded" />
+						<label value="${labels.v_sd_books_on_account.resident_code}" />
+						<checkbox disabled="true" id="resident_code" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.code_citizenship}" />
+						<textbox readonly="true" id="code_citizenship" mold="rounded" />
+						<textbox readonly="true" id="country" />
+					</row>
+					<row>
+						<label value="${labels.v_sd_books_on_account.birth_place}" />
+						<textbox hflex="1" id="birth_place" mold="rounded" />
+					</row>
+				</rows>
+			</grid>
+		</window>
+		<window id="prcWnd" title=" " width="92%" height="70%" mode="modal"
+			position="center,center" visible="false" closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+
+
+			<button id="btn_lead_win_pc"
+				label="${labels.v_sd_books_on_account.operations_lead_operation}"
+				image="/images/prsetting.png" />
+			<button id="btn_delete_operation_win_pc" label="Удалить Операцию" />
+			<button id="btn_delete_lead_win_pc" label="Удалить проводку" />
+
+
+			<div height="99%">
+				<!-- <paging id="prc_listboxPaging"/> -->
+				<listbox id="prc_listbox" multiple="true" width="100%" rows="6"
+					vflex="1">
+					<listhead sizable="true">
+						<listheader label="Дата" hflex="1" />
+						<listheader label="Приход" hflex="1" />
+						<listheader label="Расход" hflex="1" />
+						<listheader label="Остаток" hflex="1" />
+						<listheader label="%" hflex="1" />
+						<listheader label="ИД" hflex="1" />
+						<listheader label="Код" hflex="1" />
+						<listheader label="Назначение платежа" hflex="1" />
+						<listheader label="Сотрудник" hflex="1" />
+						<listheader label="Сберкнижка" hflex="1" />
+					</listhead>
+				</listbox>
+			</div>
+		</window>
+		<window id="clerkWnd" title=" " width="50%" mode="modal"
+			position="center,center" visible="false" closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+			<grid id="clerkGrid" vflex="1">
+				<columns>
+					<column hflex="2" />
+					<column hflex="1" />
+					<column hflex="2" />
+					<column hflex="2" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Серия Сберкнижки" hflex="1" />
+						<textbox id="p_ser" hflex="1" mold="rounded" readonly="true"
+							value="@{sdbooksmain$composer.current.p_ser}" />
+						<label value="Номер Сберкнижки" hflex="1" />
+						<textbox id="p_num" hflex="1" mold="rounded" readonly="true"
+							value="@{sdbooksmain$composer.current.p_num}" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<!--<toolbarbutton id="btn_change" label="Изменить" onClick="p_ser.setReadonly(false);p_num.setReadonly(false)" 
+					/> -->
+				<toolbarbutton id="btn_save_changed" label="Сохранить" />
+			</toolbar>
+		</window>
+		<window id="check_SDclerk" title="Прикреплана сбер.книжка"
+			width="460px" mode="modal" position="center,center" visible="false"
+			closable="true" onClose="self.visible = false; event.stopPropagation();">
+			<grid id="checkGrid" style="background: blue" sizedByContent="true"
+				width="100%" vflex="2">
+				<columns>
+					<column hflex="6" sclass="newstyle" />
+					<column hflex="1" sclass="newstyle" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Порвать книжку(Перевести Состояние-Испорчена)"
+							hflex="8" sclass="labelstyle" />
+						<checkbox id="id_check_torn" width="40%" />
+					</row>
+					<row>
+						<label
+							value="Вернуть книжку ответисполнителю(Перевести Состояние-У Ответисполнителя)"
+							hflex="8" sclass="labelstyle" />
+						<checkbox id="id_check_clerk" width="40%" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton style="margin:7px;" id="btn_save_chk"
+					label="Сохранить" hflex="4" />
+				<toolbarbutton style="margin:7px;" id="btn_chk_cancel"
+					label="Отмена" hflex="3" />
+			</toolbar>
+		</window>
+		<window id="add_PrivCond" title="Индивидуальные условия (для Вклада)"
+			width="650px" height="400px" mode="modal" contentStyle="overflow:auto"
+			sizable="true" position="center,center" visible="false" closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+			<listbox id="ad_prCond" multiple="true" width="100%" vflex="3">
+				<listhead sizable="true">
+					<listheader label="Код" hflex="1" />
+					<listheader label="Наименование" hflex="4" />
+					<listheader label="Значение" hflex="2" />
+
+				</listhead>
+				<listitem>
+					<listcell>
+						<textbox id="pr_id_par" hflex="1" readonly="true" />
+					</listcell>
+					<listcell>
+						<textbox id="pr_id_desc" hflex="4" readonly="true" />
+					</listcell>
+					<listcell>
+						<textbox id="pr_id_value" hflex="2" readonly="true" />
+					</listcell>
+				</listitem>
+				<listitem>
+					<listcell>
+						<textbox id="pr_id_par1" hflex="1" visible="false"
+							onClick="self.select()" readonly="true" />
+					</listcell>
+					<listcell>
+						<textbox id="pr_id_desc1" hflex="4" visible="false"
+							readonly="true" />
+					</listcell>
+					<listcell>
+						<textbox id="pr_id_value1" hflex="2" visible="false"
+							readonly="true" />
+					</listcell>
+				</listitem>
+				<listitem>
+					<listcell>
+						<textbox id="pr_id_par2" hflex="1" visible="false"
+							readonly="true" />
+					</listcell>
+					<listcell>
+						<textbox id="pr_id_desc2" hflex="4" visible="false"
+							readonly="true" />
+					</listcell>
+					<listcell>
+						<textbox id="pr_id_value2" hflex="2" visible="false"
+							readonly="true" />
+					</listcell>
+
+				</listitem>
+
+			</listbox>
+			<separator />
+			<grid id="pr_cond_Grid" sizedByContent="true" hflex="7" vflex="2">
+				<columns>
+					<column hflex="2" sclass="newstyle" />
+					<column hflex="5" sclass="newstyle" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Параметр" hflex="2" sclass="labelstyle" />
+						<rcombobox readonly="true" mold="rounded" id="id_prCond_desc"
+							hflex="4" selecteditem="@{sdbooksmain$composer.sd_pr_cond.name_par}" />
+					</row>
+					<row>
+						<label value="Значение" hflex="2" sclass="labelstyle" />
+						<cell>
+							<rcombobox id="id_prCond_val" hflex="1" mold="rounded"
+								readonly="true" />
+
+							<textbox id="id_prCond_txt" mold="rounded" hflex="1"
+								visible="false" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<grid id="pr_cond_Grid2" hflex="2" vflex="1">
+				<columns>
+					<column hflex="1" sclass="newstyle" />
+					<column hflex="1" sclass="newstyle" />
+				</columns>
+				<rows>
+					<row>
+						<label id="id_date_action" value="Дата начало действия:"
+							sclass="labelstyle" visible="false" />
+						<cell>
+							<textbox id="id_prCond_Date" mold="rounded" hflex="1"
+								visible="false" readonly="true" />
+						</cell>
+					</row>
+					<row>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<toolbar style="border: 1px black solid; " height="35px">
+				<toolbarbutton style="border: 1px black solid; " id="btn_interrupt"
+					label="Прервать регистрацию" hflex="6" />
+				<toolbarbutton style="border: 1px black solid; " id="btn_save_chk"
+					label="Сохранить" hflex="4" visible="false" />
+				<toolbarbutton style="border: 1px black solid; " id="btn_add_row"
+					label="Добавить" hflex="4" />
+				<toolbarbutton style="border: 1px black solid; " id="btn_chk_del"
+					label="Удалить" hflex="4" />
+				<toolbarbutton style="border: 1px black solid; " id="btn_chk_exit"
+					label="Выход и Открыт" hflex="6" />
+			</toolbar>
+		</window>
+
+		<window id="docWnd" title=" " width="70%" mode="modal"
+			position="center,center" visible="false" closable="true"
+			onClose="self.visible = false; event.stopPropagation();">
+			<include id="doc" style="margin:7px;" />
+		</window>
+	</window>
+</zk>

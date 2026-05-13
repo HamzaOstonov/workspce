@@ -1,0 +1,102 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<panel id="user_imeimain" width="100%"  height="280px" border="normal" apply="com.is.pc.user.imei.User_imeiViewCtrl">
+	<toolbar id="tbimei" width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+    	<div width="100%" align="center" height="35px">
+			<hbox width="100%" widths="100%,200px" align="center" height="35px">
+				<hbox width="100%">
+					<toolbarbutton id="imei_btn_refresh" tooltiptext="${labels.refresh}" image="/images/refresh.png" />
+					<toolbarbutton id="imei_btn_first" tooltiptext="${labels.first}" image="/images/backward.png" />
+					<toolbarbutton id="imei_btn_prev" tooltiptext="${labels.prev}" image="/images/back.png" />
+					<toolbarbutton id="imei_btn_next" tooltiptext="${labels.next}" image="/images/front.png" />
+					<toolbarbutton id="imei_btn_last" tooltiptext="${labels.last}" image="/images/forward.png" />
+				</hbox>
+				<paging id="user_imeiPaging" width="200px" sclass="sp-paging"/>
+			</hbox>
+		</div>
+	</toolbar>
+	<panelchildren>
+        <div id="imei_grd">
+            <listbox style="border:none" id="imei_dataGrid" multiple="true" rows="5" height="200px" width="100%" selectedItem="@{user_imeimain$composer.current}">
+            	<listhead sizable="true">
+					<listheader label="${labels.pc.user_imei.username}" width="120px"/>
+					<listheader label="${labels.pc.user_imei.imei}" width="120px"/>
+					<listheader label="${labels.pc.user_imei.access_id}" />
+                </listhead>
+			</listbox>
+			<toolbar id="tbbottom" width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+		    	<div width="100%" align="center" height="35px">
+					<hbox width="100%" widths="100%" align="center" height="35px">
+						<hbox width="100%">
+							<toolbarbutton id="imei_btn_add" label="${labels.add}" image="/images/+.png"/>
+							<toolbarbutton id="imei_btn_delete" label="${labels.delete}" image="/images/delete.png" />
+						</hbox>
+					</hbox>
+				</div>
+			</toolbar>	
+        </div>
+        <div id="imei_frm" visible="false">
+			<grid id="imei_frmgrd" ctrlKeys="^e#up#down" visible="true">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+             	</columns>
+              	<rows>
+					<row><label value="${labels.pc.user_imei.username}" /><textbox id="imei_username"  mold="rounded"  value="@{user_imeimain$composer.current.username}" /></row>
+					<row><label value="${labels.pc.user_imei.imei}" /><textbox id="imei_imei"  mold="rounded"  value="@{user_imeimain$composer.current.imei}" /></row>
+					<row><label value="${labels.pc.user_imei.access_id}" /><longbox id="imei_access_id"  mold="rounded"  value="@{user_imeimain$composer.current.access_id}" /></row>
+					<row><label value="${labels.pc.user_imei.state}" /><longbox id="imei_state"  mold="rounded"  value="@{user_imeimain$composer.current.state}" /></row>
+                </rows>
+          	</grid>
+          	<grid id="imei_addgrd" visible="false">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+            	</columns>
+             	<rows>
+					<row><label value="${labels.pc.user_imei.username}" /><textbox id="imei_ausername"  mold="rounded"  value="@{user_imeimain$composer.current.username}" /></row>
+					<row><label value="${labels.pc.user_imei.imei}" /><textbox id="imei_aimei"  mold="rounded"  value="@{user_imeimain$composer.current.imei}" /></row>
+					<row><label value="${labels.pc.user_imei.access_id}" /><longbox id="imei_aaccess_id"  mold="rounded"  value="@{user_imeimain$composer.current.access_id}" /></row>
+					<row><label value="${labels.pc.user_imei.state}" /><longbox id="imei_astate"  mold="rounded"  value="@{user_imeimain$composer.current.state}" /></row>
+               	</rows>
+           	</grid>
+   			<grid id="imei_fgrd" visible="false">
+            	<columns>
+             		<column width="20%" />
+                   	<column width="80%" />
+             	</columns>
+          		<rows>
+
+					<row><label value="${labels.pc.user_imei.username}" /><textbox id="imei_fusername"  mold="rounded"  value="@{user_imeimain$composer.filter.username}" /></row>
+					<row><label value="${labels.pc.user_imei.imei}" /><textbox id="imei_fimei"  mold="rounded"  value="@{user_imeimain$composer.filter.imei}" /></row>
+					<row><label value="${labels.pc.user_imei.access_id}" /><longbox id="imei_faccess_id"  mold="rounded"  value="@{user_imeimain$composer.filter.access_id}" /></row>
+					<row><label value="${labels.pc.user_imei.state}" /><longbox id="imei_fstate"  mold="rounded"  value="@{user_imeimain$composer.filter.state}" /></row>
+              	</rows>
+         	</grid>
+			<toolbar>
+         		<toolbarbutton id="imei_btn_save" label="${labels.save}" image="/images/save.png" />
+              	<toolbarbutton id="imei_btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+           	</toolbar>
+        </div>
+        <window id="imeiwnd" closable="true" onClose="self.visible = false; event.stopPropagation();" sizable="false" maximizable="false" style="overflow-y: auto;"
+    		title="${labels.pc.user_imei.addimei}" border="normal" width="500px" height="200px" position="center,center" mode="modal" visible="false">
+        	<div id="imeiwnddiv" width="100%" height="100%" style="overflow-y: scroll;">
+	        	<grid id="frmwndgrd">
+	            	<columns>
+	                	<column width="20%" />
+	                 	<column width="80%" />
+	            	</columns>
+	             	<rows>
+						<row><label value="${labels.pc.user_imei.username}" /><textbox id="username"  mold="rounded" width="300px" readonly="true"/></row>
+						<row><label value="${labels.pc.user_imei.imei}" /><textbox id="imei"  mold="rounded" width="300px"/></row>
+						<row><label value="${labels.pc.user_imei.access_id}" /><rcombobox id="access_id"  mold="rounded" width="300px" readonly="true"/></row>
+						<row visible="false"><label value="${labels.pc.user_imei.state}" /><longbox id="state"  mold="rounded" width="300px"/></row>
+	               	</rows>
+	           	</grid>
+	           	<toolbar>
+	         		<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+	              	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+	           	</toolbar>
+        	</div>
+        </window>
+	</panelchildren>
+</panel>

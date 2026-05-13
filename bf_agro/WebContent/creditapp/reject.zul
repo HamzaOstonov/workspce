@@ -1,0 +1,54 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<style>
+		.label{
+		font-size: 20px;
+		font-weight: 900;
+		}
+	</style>
+	<div apply="com.is.creditapp.reject.Reject">
+		<grid id="idgrd">
+			<rows>
+				<row align="center">
+					<cell colspan="4">
+						<label id="idlabel" sclass="label" value="Регистрационный номер" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<grid id="maingrd">
+			<rows>
+				<row align="center">
+					<cell colspan="4">
+						<label value="Сведения об отклонении заявки" />
+					</cell>
+				</row>
+				<row id="inforow" visible="false">
+					<label value="МФО банка" />
+					<textbox id="mfo" maxlength="5" width="100%" />
+					<label value="Дата решения об отклонении" />
+					<datebox id="datecancel" maxlength="10" format="dd.MM.yyyy"
+						width="100%" />
+				</row>
+				<row>
+					<label value="№ решения об отклонении" />
+					<textbox id="rdoc" maxlength="5" width="100%" />
+					<label value="Орган банка принявший решение об отклонении" />
+					<rcombobox id="ragency" width="100%" />
+				</row>
+				<row>
+					<label value="Код причины отклонения" />
+					<rcombobox id="preason" width="100%" />
+					<label value="Причина отклонения" />
+					<textbox id="rtxt" maxlength="100" width="100%" />
+				</row>
+			</rows>
+		</grid>
+		<toolbar>
+			<toolbarbutton id="btn_reject" label="Отклонить" image="/images/stop.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+</zk>

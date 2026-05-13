@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Created by ZK Studio
+-->
+
+<zk>
+	<device-config>
+		<device-type>ajax</device-type>
+		<timeout-uri></timeout-uri><!-- An empty URL can cause the browser to reload the same URL -->
+	</device-config>
+	<listener>
+        <listener-class>com.is.login.AppInit</listener-class>
+    </listener>
+    <preference>
+	    <name>org.zkoss.zk.ui.WebApp.name</name>
+	    <value>Client bank</value>
+	</preference>
+	<library-property>
+	   	<name>org.zkoss.zul.progressbox.position</name>
+	    <value>center</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.theme.preferred</name>
+		<value>breeze</value>
+	</library-property>
+	<system-config>
+	    <label-location>/WEB-INF/zk-label.properties</label-location>
+	    <label-location>/WEB-INF/document-label.properties</label-location>
+	    <label-location>/WEB-INF/account-label.properties</label-location>
+	    <label-location>/WEB-INF/user-label.properties</label-location>
+	    <label-location>/WEB-INF/salary-label.properties</label-location>
+	    <label-location>/WEB-INF/about-label.properties</label-location>
+	    <label-location>/WEB-INF/mailer-label.properties</label-location>
+	    <label-location>/WEB-INF/munis_zk-label.properties</label-location>
+	</system-config>	
+	
+	<session-config>
+	    <session-timeout>0</session-timeout>
+    	<timer-keep-alive>true</timer-keep-alive>	
+  	</session-config>
+</zk>

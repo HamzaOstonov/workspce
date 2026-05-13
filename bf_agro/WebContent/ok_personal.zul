@@ -1,0 +1,899 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="ok_personalmain" width="100%"   border="none"  apply="com.is.hr.ok_personalViewCtrl"><!-- height="100%" -->
+    	 <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+               <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" /> 
+               <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" /> 
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+         </toolbar>
+         <!-- toolbar id="tb1" width="100%" align="center" height="35px">
+         		<toolbarbutton id="btn_salary" label="Расчёт Зарплата"
+                        image="/images/add-favorite.png" /> 
+         		<toolbarbutton id="btn_rollback" label="возврат"
+                        image="/images/import2.png" />           	          
+                <toolbarbutton id="btn_print" label="Принт"
+                        image="/images/printer.png" />
+                <toolbarbutton id="btn_excel" label="Exel"
+                        image="/images/excel.png" />
+                <toolbarbutton id="btn_addition" label="Дополнения"
+                        image="/images/faq.png" />
+         </toolbar -->
+     
+       
+
+        <div id="grd" height="100%">
+        <paging id="ok_personalPaging" width="200px" visible="false" /><!--  height="100%" vflex="0.9" style="overflow:auto" sizedByContent="true"  --> 
+        	<listbox   id="dataGrid" multiple="true"  span="true" width="100%" mold="paging"
+                  pagingPosition="top"  
+                  pageSize="10"  autopaging="true" 
+                        selectedItem="@{ok_personalmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.ok_personal.id}" width="200px" />
+                                <listheader label="${labels.ok_personal.branch}" width="80px" />
+                                <listheader label="${labels.ok_personal.personal_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.colleague_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.status_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.salary_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.family}" width="150px" />
+                                <listheader label="${labels.ok_personal.first_name}" width="150px" />
+                                <listheader label="${labels.ok_personal.patronymic}" width="150px" />
+                                <listheader label="${labels.ok_personal.gender_code}" width="150px" />
+                                <listheader label="${labels.ok_personal.birthday}" width="100px" />
+                                <listheader label="${labels.ok_personal.region_id}" width="200px" />
+                                <listheader label="${labels.ok_personal.distr}" width="200px" />
+                                <listheader label="${labels.ok_personal.nationality_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.family_status_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.reg_type_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.home_address}" width="200px" />
+                                <listheader label="${labels.ok_personal.home_addressfact}" width="200px" />
+                                <listheader label="${labels.ok_personal.pass_seriya}" width="200px" />
+                                <listheader label="${labels.ok_personal.pass_num}" width="200px" />
+                                <listheader label="${labels.ok_personal.pass_date}" width="200px" />
+                                <listheader label="${labels.ok_personal.pass_reg}" width="200px" />
+                                <listheader label="${labels.ok_personal.record_book_number}" width="200px" />
+                                <listheader label="${labels.ok_personal.record_book_series}" width="200px" />
+                                <listheader label="${labels.ok_personal.telefon}" width="200px" />
+                                <listheader label="${labels.ok_personal.emp_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.ins_date}" width="200px" />
+                                <listheader label="${labels.ok_personal.profmember}" width="200px" />
+                                <listheader label="${labels.ok_personal.tabno}" width="200px" />
+                                <listheader label="${labels.ok_personal.education_title_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.birthplace}" width="200px" />
+                                <listheader label="${labels.ok_personal.motive_out}" width="200px" />
+                                <listheader label="${labels.ok_personal.basis_num}" width="200px" />
+                                <listheader label="${labels.ok_personal.basis_date}" width="200px" />
+                                <listheader label="${labels.ok_personal.leave_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.department_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.post_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.nn}" width="200px" />
+                                <listheader label="${labels.ok_personal.motive_dismissial_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.nps_id}" width="150px" />
+                                <listheader label="${labels.ok_personal.special_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.inn}" width="150px" />
+                                <listheader label="${labels.ok_personal.cod_distr_uvd}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_distr_prim}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_str_birth}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_obl_prim}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_place_birth_prim}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_sitizent}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_str_sitizent}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_str_live}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_obl_live}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_obl_live_prim}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_distr_live}" width="200px" />
+                                <listheader label="${labels.ok_personal.cod_distr_live_prim}" width="200px" />
+                                <listheader label="${labels.ok_personal.code_naci_prim}" width="200px" />
+                                <listheader label="${labels.ok_personal.check_kfs}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_boss}" width="200px" />
+                                <listheader label="${labels.ok_personal.bank_spec}" width="200px" />
+                                <listheader label="${labels.ok_personal.notice}" width="200px" />
+                                <listheader label="${labels.ok_personal.prich_id}" width="200px" />
+                                <listheader label="${labels.ok_personal.name_pr}" width="200px" />
+                                <listheader label="${labels.ok_personal.srok_date}" width="200px" />
+                                <listheader label="${labels.ok_personal.home_addressfact_region_id}" width="200px" />
+                                <listheader label="${labels.ok_personal.home_addressfact_distr}" width="200px" />
+                                <listheader label="${labels.ok_personal.home_address_region_id}" width="200px" />
+                                <listheader label="${labels.ok_personal.home_address_distr}" width="200px" />
+                                <listheader label="${labels.ok_personal.passport_type_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.regplace_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.pass_date_end}" width="200px" />
+                                <listheader label="${labels.ok_personal.gosubmit_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.live_place}" width="200px" />
+                                <listheader label="${labels.ok_personal.birthplace_point}" width="200px" />
+                                <listheader label="${labels.ok_personal.maiden_family}" width="200px" />
+                                <listheader label="${labels.ok_personal.department_code_old}" width="200px" />
+                                <listheader label="${labels.ok_personal.post_code_old}" width="200px" />
+                                <listheader label="${labels.ok_personal.special_code_old}" width="200px" />
+                                <listheader label="${labels.ok_personal.spec_ikki}" width="200px" />
+                                <listheader label="${labels.ok_personal.department_code_new}" width="200px" />
+                                <listheader label="${labels.ok_personal.post_code_new}" width="200px" />
+                                <listheader label="${labels.ok_personal.special_code_new}" width="200px" />
+                                <listheader label="${labels.ok_personal.reg_date_end}" width="200px" />
+                                <listheader label="${labels.ok_personal.trud_sogl}" width="200px" />
+                                <listheader label="${labels.ok_personal.application_date}" width="200px" />
+                                <listheader label="${labels.ok_personal.reply_date}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_party}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_academic}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_degree}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_award}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_scientific}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_voyage}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_convictions}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_language}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_rise}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_election}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_premium}" width="200px" />
+                                <listheader label="${labels.ok_personal.is_army}" width="200px" />
+                                <listheader label="${labels.ok_personal.user_name}" width="200px" />
+                                <listheader label="${labels.ok_personal.maidenstag}" width="200px" />
+                                <listheader label="${labels.ok_personal.zp_rate_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.family_lat}" width="200px" />
+                                <listheader label="${labels.ok_personal.first_name_lat}" width="200px" />
+                                <listheader label="${labels.ok_personal.patronymic_lat}" width="200px" />
+                                <listheader label="${labels.ok_personal.comments}" width="200px" />
+                                <listheader label="${labels.ok_personal.emp_code_name}" width="200px" />
+                                <listheader label="${labels.ok_personal.tabel_line}" width="200px" />
+                                <listheader label="${labels.ok_personal.id_client}" width="200px" />
+                                <listheader label="${labels.ok_personal.user_id}" width="200px" />
+                                <listheader label="${labels.ok_personal.gph_date_begin}" width="200px" />
+                                <listheader label="${labels.ok_personal.gph_date_end}" width="200px" />
+                                <listheader label="${labels.ok_personal.gph_summa}" width="200px" />
+                                <listheader label="${labels.ok_personal.gph_post_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.gph_department_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.gph_order_date}" width="200px" />
+                                <listheader label="${labels.ok_personal.gph_order_num}" width="200px" />
+                                <listheader label="${labels.ok_personal.gph_rezident}" width="200px" />
+                                <listheader label="${labels.ok_personal.email}" width="200px" />
+                                <listheader label="${labels.ok_personal.zp_rate_code_old}" width="200px" />
+                                <listheader label="${labels.ok_personal.zp_rate_code_new}" width="200px" />
+                                <listheader label="${labels.ok_personal.profession_personal}" width="200px" />
+                                <listheader label="${labels.ok_personal.bxm}" width="200px" />
+                                <listheader label="${labels.ok_personal.institution_code}" width="200px" />
+                                <listheader label="${labels.ok_personal.institution_end_year}" width="200px" />
+                        </listhead>
+
+                </listbox>
+        		
+        	</div>
+        	
+        	<div id="frm" visible="false">
+        <tabbox id="Details_TabBox"><!--  height="100%" width="100%"-->
+        <tabs>
+        <tab id="draft" label="Данные сотрудника"/>
+        <tab id="pay_calc" label="Заработная плата"/>
+        <tab id="relation" label="Родственные отношения"/>
+        <tab id="period" label="Сведения о работе"/>
+        <tab id="education" label="Образование"/>
+        <tab id="academic" label="Учёные звания"/>
+        <tab id="army" label="Воинская служба"/>
+        <tab id="addinform" label="Дополнительные сведения"/>
+        <tab id="award" label="Награды"/>
+        <tab id="change_fio" label="Сведения об изменении ФИО"/>
+        </tabs>
+        <tabpanels>
+   
+        <tabpanel vflex="1">
+        <div>
+        <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="false">
+              
+                          <columns>
+                                  <column width="10%" align="right"/>
+                                  <column width="90%" align="left" />                                                                 
+                           </columns>
+                          <rows>
+                                  <row>                                  	                    		
+                                  		<label value="${labels.ok_personal.id}" /><textbox id="id"    value="@{ok_personalmain$composer.current.id}" />                                		                                  	
+                                  </row>
+                                  <row>                                  	                    		
+                                  		<label value="${labels.ok_personal.branch}" /><rcombobox id="branch"   selecteditem="@{ok_personalmain$composer.current.branch}" width="98%"/>                                  		                                  	
+                                  </row>
+                                   <row>                                  	                    				
+                                  		<label value="${labels.ok_personal.personal_code}" /><rcombobox id="personal_code"   selecteditem="@{ok_personalmain$composer.current.personal_code}" width="98%"/>                		                                  	
+                                  </row>
+                                  <row>                                  	                                  		
+                                  <label value="${labels.ok_personal.colleague_code}" /><textbox id="colleague_code"    value="@{ok_personalmain$composer.current.colleague_code}" />
+                                  <label value="${labels.ok_personal.status_code}" /><rcombobox id="status_code"    selecteditem="@{ok_personalmain$composer.current.status_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.salary_code}" /><textbox id="salary_code"   value="@{ok_personalmain$composer.current.salary_code}" />
+                                  <label value="${labels.ok_personal.family}" /><textbox id="family"    value="@{ok_personalmain$composer.current.family}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.first_name}" /><textbox id="first_name"    value="@{ok_personalmain$composer.current.first_name}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.patronymic}" /><textbox id="patronymic"    value="@{ok_personalmain$composer.current.patronymic}" /></row>
+                                  <row>
+                                 	<label value="${labels.ok_personal.gender_code}" /><rcombobox id="gender_code"    selecteditem="@{ok_personalmain$composer.current.gender_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.birthday}" /><datebox id="birthday" format="dd.MM.yyyy"   value="@{ok_personalmain$composer.current.birthday}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.region_id}" /><rcombobox id="region_id"    selecteditem="@{ok_personalmain$composer.current.region_id}" />
+                                  </row>
+                                  <row><label value="${labels.ok_personal.distr}" /><rcombobox id="distr"    selecteditem="@{ok_personalmain$composer.current.distr}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.nationality_code}" /><rcombobox id="nationality_code"    selecteditem="@{ok_personalmain$composer.current.nationality_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.family_status_code}" /><rcombobox id="family_status_code"    selecteditem="@{ok_personalmain$composer.current.family_status_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.reg_type_code}" /><rcombobox id="reg_type_code"    selecteditem="@{ok_personalmain$composer.current.reg_type_code}" />
+                                  </row>
+                                  <row>
+                                  	<label value="${labels.ok_personal.home_address}" /><textbox id="home_address"    value="@{ok_personalmain$composer.current.home_address}" width="40%"/>
+                                  </row>
+                          </rows>
+                  </grid>
+                  <grid id="frmgrd2" visible="true">
+                  <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row>
+                                  <label value="${labels.ok_personal.home_addressfact}" /><textbox id="home_addressfact"    value="@{ok_personalmain$composer.current.home_addressfact}" />
+                                  <label value="${labels.ok_personal.pass_seriya}" /><textbox id="pass_seriya"    value="@{ok_personalmain$composer.current.pass_seriya}" />
+                                  <label value="${labels.ok_personal.pass_num}" /><textbox id="pass_num"    value="@{ok_personalmain$composer.current.pass_num}" /></row>
+                                  <row><label value="${labels.ok_personal.pass_date}" /><datebox id="pass_date"  format = "dd.MM.yyyy"  value="@{ok_personalmain$composer.current.pass_date}" />
+                                  <label value="${labels.ok_personal.pass_reg}" /><textbox id="pass_reg"    value="@{ok_personalmain$composer.current.pass_reg}" />
+                                  <label value="${labels.ok_personal.record_book_number}" /><textbox id="record_book_number"    value="@{ok_personalmain$composer.current.record_book_number}" />
+                                  <label value="${labels.ok_personal.record_book_series}" /><textbox id="record_book_series"    value="@{ok_personalmain$composer.current.record_book_series}" /></row>
+                                  <row><label value="${labels.ok_personal.telefon}" /><textbox id="telefon"    value="@{ok_personalmain$composer.current.telefon}" />
+                                  <label value="${labels.ok_personal.emp_code}" /><rcombobox id="emp_code"    selecteditem="@{ok_personalmain$composer.current.emp_code}" />
+                                  <label value="${labels.ok_personal.ins_date}" /><datebox id="ins_date"   format = "dd.MM.yyyy" value="@{ok_personalmain$composer.current.ins_date}" />
+                                  <label value="${labels.ok_personal.profmember}" /><textbox id="profmember"    value="@{ok_personalmain$composer.current.profmember}" /></row>
+                                  <row><label value="${labels.ok_personal.tabno}" /><textbox id="tabno"    value="@{ok_personalmain$composer.current.tabno}" />
+                                  <label value="${labels.ok_personal.education_title_code}" /><textbox id="education_title_code"    value="@{ok_personalmain$composer.current.education_title_code}" />
+                                  <label value="${labels.ok_personal.birthplace}" /><textbox id="birthplace"    value="@{ok_personalmain$composer.current.birthplace}" />
+                                  <label value="${labels.ok_personal.motive_out}" /><textbox id="motive_out"    value="@{ok_personalmain$composer.current.motive_out}" /></row>
+                    </rows>
+                    </grid>
+                    <grid id="frmgrd3" visible="true">
+                    <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="${labels.ok_personal.basis_num}" /><textbox id="basis_num"    value="@{ok_personalmain$composer.current.basis_num}" />
+                                  <label value="${labels.ok_personal.basis_date}" /><datebox id="basis_date" format = "dd.MM.yyyy"    value="@{ok_personalmain$composer.current.basis_date}" />
+                                  <label value="${labels.ok_personal.leave_code}" /><textbox id="leave_code"    value="@{ok_personalmain$composer.current.leave_code}" />
+                                  <label value="${labels.ok_personal.department_code}" /><textbox id="department_code"    value="@{ok_personalmain$composer.current.department_code}" /></row>
+                                  <row><label value="${labels.ok_personal.post_code}" /><textbox id="post_code"    value="@{ok_personalmain$composer.current.post_code}" />
+                                  <label value="${labels.ok_personal.nn}" /><textbox id="nn"    value="@{ok_personalmain$composer.current.nn}" />
+                                  <label value="${labels.ok_personal.motive_dismissial_code}" /><textbox id="motive_dismissial_code"    value="@{ok_personalmain$composer.current.motive_dismissial_code}" />
+                                  <label value="${labels.ok_personal.nps_id}" /><textbox id="nps_id"    value="@{ok_personalmain$composer.current.nps_id}" width="80%"/></row>
+                                  <row><label value="${labels.ok_personal.special_code}" /><textbox id="special_code"    value="@{ok_personalmain$composer.current.special_code}" />
+                                  <label value="${labels.ok_personal.inn}" /><textbox id="inn"    value="@{ok_personalmain$composer.current.inn}" />
+                                  <label value="${labels.ok_personal.cod_distr_uvd}" /><textbox id="cod_distr_uvd"    value="@{ok_personalmain$composer.current.cod_distr_uvd}" />
+                                  <label value="${labels.ok_personal.cod_distr_prim}" /><textbox id="cod_distr_prim"    value="@{ok_personalmain$composer.current.cod_distr_prim}" /></row>
+                                  <row><label value="${labels.ok_personal.cod_str_birth}" /><textbox id="cod_str_birth"    value="@{ok_personalmain$composer.current.cod_str_birth}" />
+                                  <label value="${labels.ok_personal.cod_obl_prim}" /><textbox id="cod_obl_prim"    value="@{ok_personalmain$composer.current.cod_obl_prim}" />
+                                  <label value="${labels.ok_personal.cod_place_birth_prim}" /><textbox id="cod_place_birth_prim"    value="@{ok_personalmain$composer.current.cod_place_birth_prim}" />
+                                  <label value="${labels.ok_personal.cod_sitizent}" /><textbox id="cod_sitizent"    value="@{ok_personalmain$composer.current.cod_sitizent}" /></row>
+                      	</rows> 			           
+                     </grid> 	
+                     <grid id="frmgrd4" visible="true">
+                     <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="${labels.ok_personal.cod_str_sitizent}" /><textbox id="cod_str_sitizent"    value="@{ok_personalmain$composer.current.cod_str_sitizent}" />
+                                  <label value="${labels.ok_personal.cod_str_live}" /><textbox id="cod_str_live"    value="@{ok_personalmain$composer.current.cod_str_live}" />
+                                  <label value="${labels.ok_personal.cod_obl_live}" /><textbox id="cod_obl_live"    value="@{ok_personalmain$composer.current.cod_obl_live}" />
+                                  <label value="${labels.ok_personal.cod_obl_live_prim}" /><textbox id="cod_obl_live_prim"    value="@{ok_personalmain$composer.current.cod_obl_live_prim}" /></row>
+                                  <row><label value="${labels.ok_personal.cod_distr_live}" /><textbox id="cod_distr_live"    value="@{ok_personalmain$composer.current.cod_distr_live}" />
+                                  <label value="${labels.ok_personal.cod_distr_live_prim}" /><textbox id="cod_distr_live_prim"    value="@{ok_personalmain$composer.current.cod_distr_live_prim}" />
+                                  <label value="${labels.ok_personal.code_naci_prim}" /><textbox id="code_naci_prim"    value="@{ok_personalmain$composer.current.code_naci_prim}" />
+                                  <label value="${labels.ok_personal.check_kfs}" /><textbox id="check_kfs"    value="@{ok_personalmain$composer.current.check_kfs}" /></row>
+                                  <row><label value="${labels.ok_personal.is_boss}" /><textbox id="is_boss"    value="@{ok_personalmain$composer.current.is_boss}" />
+                                  <label value="${labels.ok_personal.bank_spec}" /><textbox id="bank_spec"    value="@{ok_personalmain$composer.current.bank_spec}" />
+                                  <label value="${labels.ok_personal.notice}" /><textbox id="notice"    value="@{ok_personalmain$composer.current.notice}" />
+                                  <label value="${labels.ok_personal.prich_id}" /><textbox id="prich_id"    value="@{ok_personalmain$composer.current.prich_id}" /></row>
+                                  <row><label value="${labels.ok_personal.name_pr}" /><textbox id="name_pr"    value="@{ok_personalmain$composer.current.name_pr}" />
+                                  <label value="${labels.ok_personal.srok_date}" /><datebox id="srok_date"    value="@{ok_personalmain$composer.current.srok_date}" />
+                                  <label value="${labels.ok_personal.home_addressfact_region_id}" /><textbox id="home_addressfact_region_id"    value="@{ok_personalmain$composer.current.home_addressfact_region_id}" />
+                                  <label value="${labels.ok_personal.home_addressfact_distr}" /><textbox id="home_addressfact_distr"    value="@{ok_personalmain$composer.current.home_addressfact_distr}" /></row>
+                           </rows>
+                       </grid>
+                       <grid id="frmgrd5" visible="true" >
+                       <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="${labels.ok_personal.home_address_region_id}" /><textbox id="home_address_region_id"    value="@{ok_personalmain$composer.current.home_address_region_id}" />
+                                  <label value="${labels.ok_personal.home_address_distr}" /><textbox id="home_address_distr"    value="@{ok_personalmain$composer.current.home_address_distr}" />
+                                  <label value="${labels.ok_personal.passport_type_code}" /><textbox id="passport_type_code"    value="@{ok_personalmain$composer.current.passport_type_code}" />
+                                  <label value="${labels.ok_personal.regplace_code}" /><textbox id="regplace_code"    value="@{ok_personalmain$composer.current.regplace_code}" /></row>
+                                  <row><label value="${labels.ok_personal.pass_date_end}" /><datebox id="pass_date_end"  format = "dd.MM.yyyy"  value="@{ok_personalmain$composer.current.pass_date_end}" />
+                                  <label value="${labels.ok_personal.gosubmit_code}" /><textbox id="gosubmit_code"    value="@{ok_personalmain$composer.current.gosubmit_code}" />
+                                  <label value="${labels.ok_personal.live_place}" /><textbox id="live_place"    value="@{ok_personalmain$composer.current.live_place}" />
+                                  <label value="${labels.ok_personal.birthplace_point}" /><textbox id="birthplace_point"    value="@{ok_personalmain$composer.current.birthplace_point}" /></row>
+                                  <row><label value="${labels.ok_personal.maiden_family}" /><textbox id="maiden_family"    value="@{ok_personalmain$composer.current.maiden_family}" />
+                                  <label value="${labels.ok_personal.department_code_old}" /><textbox id="department_code_old"    value="@{ok_personalmain$composer.current.department_code_old}" />
+                                  <label value="${labels.ok_personal.post_code_old}" /><textbox id="post_code_old"    value="@{ok_personalmain$composer.current.post_code_old}" />
+                                  <label value="${labels.ok_personal.special_code_old}" /><textbox id="special_code_old"    value="@{ok_personalmain$composer.current.special_code_old}" /></row>
+                                  <row><label value="${labels.ok_personal.spec_ikki}" /><textbox id="spec_ikki"    value="@{ok_personalmain$composer.current.spec_ikki}" />
+                                  <label value="${labels.ok_personal.department_code_new}" /><textbox id="department_code_new"    value="@{ok_personalmain$composer.current.department_code_new}" />
+                                  <label value="${labels.ok_personal.post_code_new}" /><textbox id="post_code_new"    value="@{ok_personalmain$composer.current.post_code_new}" />
+                                  <label value="${labels.ok_personal.special_code_new}" /><textbox id="special_code_new"    value="@{ok_personalmain$composer.current.special_code_new}" /></row>
+                         </rows>
+                         </grid>
+                         <grid id="frmgrd6" visible="true">
+                         <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                         
+                                  <row><label value="${labels.ok_personal.reg_date_end}" /><datebox id="reg_date_end"  format = "dd.MM.yyyy"  value="@{ok_personalmain$composer.current.reg_date_end}" />
+                                  <label value="${labels.ok_personal.trud_sogl}" /><textbox id="trud_sogl"    value="@{ok_personalmain$composer.current.trud_sogl}" />
+                                  <label value="${labels.ok_personal.application_date}" /><datebox id="application_date" format="dd.MM.yyyy"   value="@{ok_personalmain$composer.current.application_date}" />
+                                  <label value="${labels.ok_personal.reply_date}" /><datebox id="reply_date" format="dd.MM.yyyy"   value="@{ok_personalmain$composer.current.reply_date}" /></row>
+                                  <row><label value="${labels.ok_personal.is_party}" /><textbox id="is_party"    value="@{ok_personalmain$composer.current.is_party}" />
+                                  <label value="${labels.ok_personal.is_academic}" /><textbox id="is_academic"    value="@{ok_personalmain$composer.current.is_academic}" />
+                                  <label value="${labels.ok_personal.is_degree}" /><textbox id="is_degree"    value="@{ok_personalmain$composer.current.is_degree}" />
+                                  <label value="${labels.ok_personal.is_award}" /><textbox id="is_award"    value="@{ok_personalmain$composer.current.is_award}" /></row>
+                                  <row><label value="${labels.ok_personal.is_scientific}" /><textbox id="is_scientific"    value="@{ok_personalmain$composer.current.is_scientific}" />
+                                  <label value="${labels.ok_personal.is_voyage}" /><textbox id="is_voyage"    value="@{ok_personalmain$composer.current.is_voyage}" />
+                                  <label value="${labels.ok_personal.is_convictions}" /><textbox id="is_convictions"    value="@{ok_personalmain$composer.current.is_convictions}" />
+                                  <label value="${labels.ok_personal.is_language}" /><textbox id="is_language"    value="@{ok_personalmain$composer.current.is_language}" /></row>
+                                  <row><label value="${labels.ok_personal.is_rise}" /><textbox id="is_rise"    value="@{ok_personalmain$composer.current.is_rise}" />
+                                  <label value="${labels.ok_personal.is_election}" /><textbox id="is_election"    value="@{ok_personalmain$composer.current.is_election}" />
+                                  <label value="${labels.ok_personal.is_premium}" /><textbox id="is_premium"    value="@{ok_personalmain$composer.current.is_premium}" />
+                                  <label value="${labels.ok_personal.is_army}" /><textbox id="is_army"    value="@{ok_personalmain$composer.current.is_army}" /></row>
+                             </rows> 
+                            </grid>
+                            <grid id="frmgrd7" visible="true">
+                            <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="${labels.ok_personal.user_name}" /><textbox id="user_name"    value="@{ok_personalmain$composer.current.user_name}" />
+                                  <label value="${labels.ok_personal.maidenstag}" /><textbox id="maidenstag"    value="@{ok_personalmain$composer.current.maidenstag}" />
+                                  <label value="${labels.ok_personal.zp_rate_code}" /><textbox id="zp_rate_code"    value="@{ok_personalmain$composer.current.zp_rate_code}" />
+                                  <label value="${labels.ok_personal.family_lat}" /><textbox id="family_lat"    value="@{ok_personalmain$composer.current.family_lat}" /></row>
+                                  <row><label value="${labels.ok_personal.first_name_lat}" /><textbox id="first_name_lat"    value="@{ok_personalmain$composer.current.first_name_lat}" />
+                                  <label value="${labels.ok_personal.patronymic_lat}" /><textbox id="patronymic_lat"    value="@{ok_personalmain$composer.current.patronymic_lat}" />
+                                  <label value="${labels.ok_personal.comments}" /><textbox id="comments"    value="@{ok_personalmain$composer.current.comments}" />
+                                  <label value="${labels.ok_personal.emp_code_name}" /><textbox id="emp_code_name"    value="@{ok_personalmain$composer.current.emp_code_name}" /></row>
+                                  <row><label value="${labels.ok_personal.tabel_line}" /><textbox id="tabel_line"    value="@{ok_personalmain$composer.current.tabel_line}" />
+                                  <label value="${labels.ok_personal.id_client}" /><textbox id="id_client"    value="@{ok_personalmain$composer.current.id_client}" />
+                                  <label value="${labels.ok_personal.user_id}" /><textbox id="user_id"    value="@{ok_personalmain$composer.current.user_id}" />
+                                  <label value="${labels.ok_personal.gph_date_begin}" /><datebox id="gph_date_begin"    value="@{ok_personalmain$composer.current.gph_date_begin}" /></row>
+                                  <row><label value="${labels.ok_personal.gph_date_end}" /><datebox id="gph_date_end"    value="@{ok_personalmain$composer.current.gph_date_end}" />
+                                  <label value="${labels.ok_personal.gph_summa}" /><textbox id="gph_summa"    value="@{ok_personalmain$composer.current.gph_summa}" />
+                                  <label value="${labels.ok_personal.gph_post_code}" /><textbox id="gph_post_code"    value="@{ok_personalmain$composer.current.gph_post_code}" />
+                                  <label value="${labels.ok_personal.gph_department_code}" /><textbox id="gph_department_code"    value="@{ok_personalmain$composer.current.gph_department_code}" /></row>
+                                  <row><label value="${labels.ok_personal.gph_order_date}" /><datebox id="gph_order_date"    value="@{ok_personalmain$composer.current.gph_order_date}" />
+                                  <label value="${labels.ok_personal.gph_order_num}" /><textbox id="gph_order_num"    value="@{ok_personalmain$composer.current.gph_order_num}" />
+                                  <label value="${labels.ok_personal.gph_rezident}" /><textbox id="gph_rezident"    value="@{ok_personalmain$composer.current.gph_rezident}" />
+                                  <label value="${labels.ok_personal.email}" /><textbox id="email"    value="@{ok_personalmain$composer.current.email}" /></row>
+                                  <row><label value="${labels.ok_personal.zp_rate_code_old}" /><textbox id="zp_rate_code_old"    value="@{ok_personalmain$composer.current.zp_rate_code_old}" />
+                                  <label value="${labels.ok_personal.zp_rate_code_new}" /><textbox id="zp_rate_code_new"    value="@{ok_personalmain$composer.current.zp_rate_code_new}" />
+                                  <label value="${labels.ok_personal.profession_personal}" /><textbox id="profession_personal"    value="@{ok_personalmain$composer.current.profession_personal}" />
+                                  <label value="${labels.ok_personal.bxm}" /><textbox id="bxm"    value="@{ok_personalmain$composer.current.bxm}" /></row>
+                                  <row><label value="${labels.ok_personal.institution_code}" /><textbox id="institution_code"    value="@{ok_personalmain$composer.current.institution_code}" /></row>
+                                  <row><label value="${labels.ok_personal.institution_end_year}" /><textbox id="institution_end_year"   value="@{ok_personalmain$composer.current.institution_end_year}" /></row>
+                      	  </rows>
+                      	  </grid>
+        <grid id="addgrd" ctrlKeys="^e#up#down"
+                          visible="false">
+              
+                          <columns>
+                                  <column width="10%" align="right"/>
+                                  <column width="90%" align="left" />                                                                 
+                           </columns>
+                          <rows>
+                                  <row>                                  	                    		
+                                  		<label value="id}" /><textbox id="aid" />                     		                                  	
+                                  </row>
+                                  
+                                  <row>                                  	                    				
+                                  		<label value="branch}" /><rcombobox id="abranch"   selecteditem="@{ok_personalmain$composer.current.branch}" width="98%"/>                		                                  	
+                                  </row>
+                                  <row>                                  	                    				
+                                  		<label value="personal_code}" /><rcombobox id="apersonal_code"   selecteditem="@{ok_personalmain$composer.current.personal_code}" width="98%"/>                		                                  	
+                                  </row>
+                                  <row>                                  	                                  		
+                                  <label value="colleague_code}" /><textbox id="acolleague_code" />
+                                  <label value="status_code}" /><rcombobox id="astatus_code"    selecteditem="@{ok_personalmain$composer.current.status_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="salary_code}" /><textbox id="asalary_code"   />
+                                  <label value="family}" /><textbox id="afamily"   />
+                                  </row>
+                                  <row>
+                                  <label value="first_name}" /><textbox id="afirst_name"   />
+                                  </row>
+                                  <row>
+                                  <label value="patronymic}" /><textbox id="apatronymic"    /></row>
+                                  <row>
+                                 	<label value="gender_code}" /><rcombobox id="agender_code"    selecteditem="@{ok_personalmain$composer.current.gender_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="birthday}" /><datebox id="abirthday" format="dd.MM.yyyy" />
+                                  </row>
+                                  <row>
+                                  <label value="region_id}" /><rcombobox id="aregion_id"    selecteditem="@{ok_personalmain$composer.current.region_id}" />
+                                  </row>
+                                  <row><label value="distr}" /><rcombobox id="adistr"    selecteditem="@{ok_personalmain$composer.current.distr}" />
+                                  </row>
+                                  <row>
+                                  <label value="nationality_code}" /><rcombobox id="anationality_code"    selecteditem="@{ok_personalmain$composer.current.nationality_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="family_status_code}" /><rcombobox id="afamily_status_code"    selecteditem="@{ok_personalmain$composer.current.family_status_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="reg_type_code}" /><rcombobox id="areg_type_code"    selecteditem="@{ok_personalmain$composer.current.reg_type_code}" />
+                                  </row>
+                                  <row>
+                                  	<label value="home_address}" /><textbox id="ahome_address"   width="40%"/>
+                                  </row>
+                          </rows>
+                  </grid>
+        		 <grid id="addgrd2" visible="false">
+                  <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row>
+                                  <label value="home_addressfact}" /><textbox id="ahome_addressfact"  />
+                                  <label value="pass_seriya}" /><textbox id="apass_seriya"   />
+                                  <label value="pass_num}" /><textbox id="apass_num"   /></row>
+                                  <row><label value="pass_date}" /><datebox id="apass_date"  format = "dd.MM.yyyy"  />
+                                  <label value="pass_reg}" /><textbox id="apass_reg" />
+                                  <label value="record_book_number}" /><textbox id="arecord_book_number"  />
+                                  <label value="record_book_series}" /><textbox id="arecord_book_series"  /></row>
+                                  <row><label value="telefon}" /><textbox id="atelefon"   />
+                                  <label value="emp_code}" /><rcombobox id="aemp_code"    selecteditem="@{ok_personalmain$composer.current.emp_code}" />
+                                  <label value="ins_date}" /><datebox id="ains_date"   format = "dd.MM.yyyy"  />
+                                  <label value="profmember}" /><textbox id="aprofmember"    /></row>
+                                  <row><label value="tabno}" /><textbox id="atabno"   />
+                                  <label value="education_title_code}" /><textbox id="aeducation_title_code"   />
+                                  <label value="birthplace}" /><textbox id="abirthplace" />
+                                  <label value="motive_out}" /><textbox id="amotive_out"   /></row>
+                    </rows>
+                    </grid>
+                   <grid id="addgrd3" visible="false">
+                    <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="basis_num}" /><textbox id="abasis_num"  />
+                                  <label value="basis_date}" /><datebox id="abasis_date" format = "dd.MM.yyyy" />
+                                  <label value="leave_code}" /><textbox id="aleave_code"   />
+                                  <label value="department_code}" /><textbox id="adepartment_code"   /></row>
+                                  <row><label value="post_code}" /><textbox id="apost_code"    />
+                                  <label value="nn}" /><textbox id="ann"   />
+                                  <label value="motive_dismissial_code}" /><textbox id="amotive_dismissial_code"    />
+                                  <label value="nps_id}" /><textbox id="anps_id"   width="80%"/></row>
+                                  <row><label value="special_code}" /><textbox id="aspecial_code"    />
+                                  <label value="inn}" /><textbox id="ainn" />
+                                  <label value="cod_distr_uvd}" /><textbox id="acod_distr_uvd"   />
+                                  <label value="cod_distr_prim}" /><textbox id="acod_distr_prim"  /></row>
+                                  <row><label value="cod_str_birth}" /><textbox id="acod_str_birth"  />
+                                  <label value="cod_obl_prim}" /><textbox id="acod_obl_prim"  />
+                                  <label value="cod_place_birth_prim}" /><textbox id="acod_place_birth_prim" />
+                                  <label value="cod_sitizent}" /><textbox id="acod_sitizent"  /></row>
+                      	</rows> 			           
+                     </grid> 	
+                     <grid id="addgrd4" visible="false">
+                     <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="cod_str_sitizent}" /><textbox id="acod_str_sitizent"/>
+                                  <label value="cod_str_live}" /><textbox id="acod_str_live"/>
+                                  <label value="cod_obl_live}" /><textbox id="acod_obl_live"/>
+                                  <label value="cod_obl_live_prim}" /><textbox id="acod_obl_live_prim"/></row>
+                                  <row><label value="cod_distr_live}" /><textbox id="acod_distr_live"/>
+                                  <label value="cod_distr_live_prim}" /><textbox id="acod_distr_live_prim"  />
+                                  <label value="code_naci_prim}" /><textbox id="acode_naci_prim" />
+                                  <label value="check_kfs}" /><textbox id="acheck_kfs"   /></row>
+                                  <row><label value="is_boss}" /><textbox id="ais_boss"   />
+                                  <label value="bank_spec}" /><textbox id="abank_spec"    />
+                                  <label value="notice}" /><textbox id="anotice"    />
+                                  <label value="prich_id}" /><textbox id="aprich_id"  /></row>
+                                  <row><label value="name_pr}" /><textbox id="aname_pr"    />
+                                  <label value="srok_date}" /><datebox id="asrok_date"     />
+                                  <label value="home_addressfact_region_id}" /><textbox id="ahome_addressfact_region_id"    />
+                                  <label value="home_addressfact_distr}" /><textbox id="ahome_addressfact_distr"   /></row>
+                           </rows>
+                       </grid>
+                       <grid id="addgrd5" visible="false" >
+                       <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="home_address_region_id}" /><textbox id="ahome_address_region_id"  />
+                                  <label value="home_address_distr}" /><textbox id="ahome_address_distr"   />
+                                  <label value="passport_type_code}" /><textbox id="apassport_type_code"    />
+                                  <label value="regplace_code}" /><textbox id="aregplace_code"     /></row>
+                                  <row><label value="pass_date_end}" /><datebox id="apass_date_end"  format = "dd.MM.yyyy"  />
+                                  <label value="gosubmit_code}" /><textbox id="agosubmit_code"   />
+                                  <label value="live_place}" /><textbox id="alive_place"   />
+                                  <label value="birthplace_point}" /><textbox id="abirthplace_point"   /></row>
+                                  <row><label value="maiden_family}" /><textbox id="amaiden_family"   />
+                                  <label value="department_code_old}" /><textbox id="adepartment_code_old" />
+                                  <label value="post_code_old}" /><textbox id="apost_code_old" />
+                                  <label value="special_code_old}" /><textbox id="aspecial_code_old" /></row>
+                                  <row><label value="spec_ikki}" /><textbox id="aspec_ikki"/>
+                                  <label value="department_code_new}" /><textbox id="adepartment_code_new" />
+                                  <label value="post_code_new}" /><textbox id="apost_code_new"   />
+                                  <label value="special_code_new}" /><textbox id="aspecial_code_new"   /></row>
+                         </rows>
+                         </grid>
+                         <grid id="addgrd6" visible="false">
+                         <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                         
+                                  <row><label value="reg_date_end}" /><datebox id="areg_date_end"  format = "dd.MM.yyyy"  />
+                                  <label value="trud_sogl}" /><textbox id="atrud_sogl"    />
+                                  <label value="application_date}" /><datebox id="aapplication_date" format="dd.MM.yyyy"    />
+                                  <label value="reply_date}" /><datebox id="areply_date" format="dd.MM.yyyy"   /></row>
+                                  <row><label value="is_party}" /><textbox id="ais_party"   />
+                                  <label value="is_academic}" /><textbox id="ais_academic"   />
+                                  <label value="is_degree}" /><textbox id="ais_degree"     />
+                                  <label value="is_award}" /><textbox id="ais_award"    /></row>
+                                  <row><label value="is_scientific}" /><textbox id="ais_scientific"    />
+                                  <label value="is_voyage}" /><textbox id="ais_voyage"     />
+                                  <label value="is_convictions}" /><textbox id="ais_convictions"     />
+                                  <label value="is_language}" /><textbox id="ais_language"  /></row>
+                                  <row><label value="is_rise}" /><textbox id="ais_rise"    />
+                                  <label value="is_election}" /><textbox id="ais_election"    />
+                                  <label value="is_premium}" /><textbox id="ais_premium"   />
+                                  <label value="is_army}" /><textbox id="ais_army"   /></row>
+                             </rows> 
+                            </grid>
+                            <grid id="addgrd7" visible="false">
+                            <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="user_name}" /><textbox id="auser_name"  />
+                                  <label value="maidenstag}" /><textbox id="amaidenstag"   />
+                                  <label value="zp_rate_code}" /><textbox id="azp_rate_code"    />
+                                  <label value="family_lat}" /><textbox id="afamily_lat"    /></row>
+                                  <row><label value="first_name_lat}" /><textbox id="afirst_name_lat"  />
+                                  <label value="patronymic_lat}" /><textbox id="apatronymic_lat"   />
+                                  <label value="comments}" /><textbox id="acomments"   />
+                                  <label value="emp_code_name}" /><textbox id="aemp_code_name"    /></row>
+                                  <row><label value="tabel_line}" /><textbox id="atabel_line"   />
+                                  <label value="id_client}" /><textbox id="aid_client"   />
+                                  <label value="user_id}" /><textbox id="auser_id"    />
+                                  <label value="gph_date_begin}" /><datebox id="agph_date_begin"  /></row>
+                                  <row><label value="gph_date_end}" /><datebox id="agph_date_end"    />
+                                  <label value="gph_summa}" /><textbox id="agph_summa"  />
+                                  <label value="gph_post_code}" /><textbox id="agph_post_code"   />
+                                  <label value="gph_department_code}" /><textbox id="agph_department_code"    /></row>
+                                  <row> <label value="gph_order_date}" /><datebox id="agph_order_date"    />
+                                  <label value="gph_order_num}" /><textbox id="agph_order_num"   />
+                                  <label value="gph_rezident}" /><textbox id="agph_rezident"  />
+                                  <label value="email}" /><textbox id="aemail"  /></row>
+                                  <row><label value="zp_rate_code_old}" /><textbox id="azp_rate_code_old"  />
+                                  <label value="zp_rate_code_new}" /><textbox id="azp_rate_code_new"  />
+                                  <label value="profession_personal}" /><textbox id="aprofession_personal"  />
+                                  <label value="bxm}" /><textbox id="abxm"   /></row>
+                                  <row><label value="institution_code}" /><textbox id="ainstitution_code"   /></row>
+                                  <row><label value="institution_end_year}" /><textbox id="ainstitution_end_year" /></row>
+                      	  </rows>
+                      	  </grid>
+        <grid id="fgrd" ctrlKeys="^e#up#down"
+                          visible="false">
+              
+                          <columns>
+                                  <column width="10%" align="right"/>
+                                  <column width="90%" align="left" />                                                                 
+                           </columns>
+                          <rows>
+                                  
+                                  
+                                  <row>                                  	                    		
+                               			<label value="${labels.ok_personal.id}" /><textbox id="fid"  />           		                                  	
+                                  </row>
+                                  <row>                                  	                    				
+                                  		<label value="${labels.ok_personal.branch}" /><rcombobox id="fbranch"   selecteditem="@{ok_personalmain$composer.current.branch}" width="98%"/>                                  		                                  	
+                                  </row>
+                                  <row>                                  	                    				
+                                  		<label value="${labels.ok_personal.personal_code}" /><rcombobox id="fpersonal_code"   selecteditem="@{ok_personalmain$composer.current.personal_code}" width="98%"/>                		                                  	
+                                  </row>
+                                  <row>                                  	                                  		
+                                  <label value="${labels.ok_personal.colleague_code}" /><textbox id="fcolleague_code"  />
+                                  <label value="${labels.ok_personal.status_code}" /><rcombobox id="fstatus_code"    selecteditem="@{ok_personalmain$composer.current.status_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.salary_code}" /><textbox id="fsalary_code"/>
+                                  <label value="${labels.ok_personal.family}" /><textbox id="ffamily"   />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.first_name}" /><textbox id="ffirst_name"   />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.patronymic}" /><textbox id="fpatronymic"    /></row>
+                                  <row>
+                                 	<label value="${labels.ok_personal.gender_code}" /><rcombobox id="fgender_code"    selecteditem="@{ok_personalmain$composer.current.gender_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.birthday}" /><datebox id="fbirthday" format="dd.MM.yyyy" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.region_id}" /><rcombobox id="fregion_id"    selecteditem="@{ok_personalmain$composer.current.region_id}" />
+                                  </row>
+                                  <row><label value="${labels.ok_personal.distr}" /><rcombobox id="fdistr"    selecteditem="@{ok_personalmain$composer.current.distr}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.nationality_code}" /><rcombobox id="fnationality_code"    selecteditem="@{ok_personalmain$composer.current.nationality_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.family_status_code}" /><rcombobox id="ffamily_status_code"    selecteditem="@{ok_personalmain$composer.current.family_status_code}" />
+                                  </row>
+                                  <row>
+                                  <label value="${labels.ok_personal.reg_type_code}" /><rcombobox id="freg_type_code"    selecteditem="@{ok_personalmain$composer.current.reg_type_code}" />
+                                  </row>
+                                  <row>
+                                  	<label value="${labels.ok_personal.home_address}" /><textbox id="fhome_address"   width="40%"/>
+                                  </row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd2" visible="false">
+                  <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row>
+                                  <label value="${labels.ok_personal.home_addressfact}" /><textbox id="fhome_addressfact"  />
+                                  <label value="${labels.ok_personal.pass_seriya}" /><textbox id="fpass_seriya"   />
+                                  <label value="${labels.ok_personal.pass_num}" /><textbox id="fpass_num"   /></row>
+                                  <row><label value="${labels.ok_personal.pass_date}" /><datebox id="fpass_date"  format = "dd.MM.yyyy"  />
+                                  <label value="${labels.ok_personal.pass_reg}" /><textbox id="fpass_reg" />
+                                  <label value="${labels.ok_personal.record_book_number}" /><textbox id="frecord_book_number"  />
+                                  <label value="${labels.ok_personal.record_book_series}" /><textbox id="frecord_book_series"  /></row>
+                                  <row><label value="${labels.ok_personal.telefon}" /><textbox id="ftelefon"   />
+                                  <label value="${labels.ok_personal.emp_code}" /><rcombobox id="femp_code"    selecteditem="@{ok_personalmain$composer.current.emp_code}" />
+                                  <label value="${labels.ok_personal.ins_date}" /><datebox id="fins_date"   format = "dd.MM.yyyy"  />
+                                  <label value="${labels.ok_personal.profmember}" /><textbox id="fprofmember"    /></row>
+                                  <row><label value="${labels.ok_personal.tabno}" /><textbox id="ftabno"   />
+                                  <label value="${labels.ok_personal.education_title_code}" /><textbox id="feducation_title_code"   />
+                                  <label value="${labels.ok_personal.birthplace}" /><textbox id="fbirthplace" />
+                                  <label value="${labels.ok_personal.motive_out}" /><textbox id="fmotive_out"   /></row>
+                    </rows>
+                    </grid>
+                    <grid id="fgrd3" visible="false">
+                    <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="${labels.ok_personal.basis_num}" /><textbox id="fbasis_num"  />
+                                  <label value="${labels.ok_personal.basis_date}" /><datebox id="fbasis_date" format = "dd.MM.yyyy" />
+                                  <label value="${labels.ok_personal.leave_code}" /><textbox id="fleave_code"   />
+                                  <label value="${labels.ok_personal.department_code}" /><textbox id="fdepartment_code"   /></row>
+                                  <row><label value="${labels.ok_personal.post_code}" /><textbox id="fpost_code"    />
+                                  <label value="${labels.ok_personal.nn}" /><textbox id="fnn"   />
+                                  <label value="${labels.ok_personal.motive_dismissial_code}" /><textbox id="fmotive_dismissial_code"    />
+                                  <label value="${labels.ok_personal.nps_id}" /><textbox id="fnps_id"   width="80%"/></row>
+                                  <row><label value="${labels.ok_personal.special_code}" /><textbox id="fspecial_code"    />
+                                  <label value="${labels.ok_personal.inn}" /><textbox id="finn" />
+                                  <label value="${labels.ok_personal.cod_distr_uvd}" /><textbox id="fcod_distr_uvd"   />
+                                  <label value="${labels.ok_personal.cod_distr_prim}" /><textbox id="fcod_distr_prim"  /></row>
+                                  <row><label value="${labels.ok_personal.cod_str_birth}" /><textbox id="fcod_str_birth"  />
+                                  <label value="${labels.ok_personal.cod_obl_prim}" /><textbox id="fcod_obl_prim"  />
+                                  <label value="${labels.ok_personal.cod_place_birth_prim}" /><textbox id="fcod_place_birth_prim" />
+                                  <label value="${labels.ok_personal.cod_sitizent}" /><textbox id="fcod_sitizent"  /></row>
+                      	</rows> 			           
+                     </grid> 	
+                     <grid id="fgrd4" visible="false">
+                     <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="${labels.ok_personal.cod_str_sitizent}" /><textbox id="fcod_str_sitizent"/>
+                                  <label value="${labels.ok_personal.cod_str_live}" /><textbox id="fcod_str_live"/>
+                                  <label value="${labels.ok_personal.cod_obl_live}" /><textbox id="fcod_obl_live"/>
+                                  <label value="${labels.ok_personal.cod_obl_live_prim}" /><textbox id="fcod_obl_live_prim"/></row>
+                                  <row><label value="${labels.ok_personal.cod_distr_live}" /><textbox id="fcod_distr_live"/>
+                                  <label value="${labels.ok_personal.cod_distr_live_prim}" /><textbox id="fcod_distr_live_prim"  />
+                                  <label value="${labels.ok_personal.code_naci_prim}" /><textbox id="fcode_naci_prim" />
+                                  <label value="${labels.ok_personal.check_kfs}" /><textbox id="fcheck_kfs"   /></row>
+                                  <row><label value="${labels.ok_personal.is_boss}" /><textbox id="fis_boss"   />
+                                  <label value="${labels.ok_personal.bank_spec}" /><textbox id="fbank_spec"    />
+                                  <label value="${labels.ok_personal.notice}" /><textbox id="fnotice"    />
+                                  <label value="${labels.ok_personal.prich_id}" /><textbox id="fprich_id"  /></row>
+                                  <row><label value="${labels.ok_personal.name_pr}" /><textbox id="fname_pr"    />
+                                  <label value="${labels.ok_personal.srok_date}" /><datebox id="fsrok_date"     />
+                                  <label value="${labels.ok_personal.home_addressfact_region_id}" /><textbox id="fhome_addressfact_region_id"    />
+                                  <label value="${labels.ok_personal.home_addressfact_distr}" /><textbox id="fhome_addressfact_distr"   /></row>
+                           </rows>
+                       </grid>
+                       <grid id="fgrd5" visible="false" >
+                       <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="${labels.ok_personal.home_address_region_id}" /><textbox id="fhome_address_region_id"  />
+                                  <label value="${labels.ok_personal.home_address_distr}" /><textbox id="fhome_address_distr"   />
+                                  <label value="${labels.ok_personal.passport_type_code}" /><textbox id="fpassport_type_code"    />
+                                  <label value="${labels.ok_personal.regplace_code}" /><textbox id="fregplace_code"     /></row>
+                                  <row><label value="${labels.ok_personal.pass_date_end}" /><datebox id="fpass_date_end"  format = "dd.MM.yyyy"  />
+                                  <label value="${labels.ok_personal.gosubmit_code}" /><textbox id="fgosubmit_code"   />
+                                  <label value="${labels.ok_personal.live_place}" /><textbox id="flive_place"   />
+                                  <label value="${labels.ok_personal.birthplace_point}" /><textbox id="fbirthplace_point"   /></row>
+                                  <row><label value="${labels.ok_personal.maiden_family}" /><textbox id="fmaiden_family"   />
+                                  <label value="${labels.ok_personal.department_code_old}" /><textbox id="fdepartment_code_old" />
+                                  <label value="${labels.ok_personal.post_code_old}" /><textbox id="fpost_code_old" />
+                                  <label value="${labels.ok_personal.special_code_old}" /><textbox id="fspecial_code_old" /></row>
+                                  <row><label value="${labels.ok_personal.spec_ikki}" /><textbox id="fspec_ikki"/>
+                                  <label value="${labels.ok_personal.department_code_new}" /><textbox id="fdepartment_code_new" />
+                                  <label value="${labels.ok_personal.post_code_new}" /><textbox id="fpost_code_new"   />
+                                  <label value="${labels.ok_personal.special_code_new}" /><textbox id="fspecial_code_new"   /></row>
+                         </rows>
+                         </grid>
+                         <grid id="fgrd6" visible="false">
+                         <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                         
+                                  <row><label value="${labels.ok_personal.reg_date_end}" /><datebox id="freg_date_end"  format = "dd.MM.yyyy"  />
+                                  <label value="${labels.ok_personal.trud_sogl}" /><textbox id="ftrud_sogl"    />
+                                  <label value="${labels.ok_personal.application_date}" /><datebox id="fapplication_date" format="dd.MM.yyyy"    />
+                                  <label value="${labels.ok_personal.reply_date}" /><datebox id="freply_date" format="dd.MM.yyyy"   /></row>
+                                  <row><label value="${labels.ok_personal.is_party}" /><textbox id="fis_party"   />
+                                  <label value="${labels.ok_personal.is_academic}" /><textbox id="fis_academic"   />
+                                  <label value="${labels.ok_personal.is_degree}" /><textbox id="fis_degree"     />
+                                  <label value="${labels.ok_personal.is_award}" /><textbox id="fis_award"    /></row>
+                                  <row><label value="${labels.ok_personal.is_scientific}" /><textbox id="fis_scientific"    />
+                                  <label value="${labels.ok_personal.is_voyage}" /><textbox id="fis_voyage"     />
+                                  <label value="${labels.ok_personal.is_convictions}" /><textbox id="fis_convictions"     />
+                                  <label value="${labels.ok_personal.is_language}" /><textbox id="fis_language"  /></row>
+                                  <row><label value="${labels.ok_personal.is_rise}" /><textbox id="fis_rise"    />
+                                  <label value="${labels.ok_personal.is_election}" /><textbox id="fis_election"    />
+                                  <label value="${labels.ok_personal.is_premium}" /><textbox id="fis_premium"   />
+                                  <label value="${labels.ok_personal.is_army}" /><textbox id="fis_army"   /></row>
+                             </rows> 
+                            </grid>
+                            <grid id="fgrd7" visible="false">
+                            <columns>
+                                  <column width="150px" />
+                                  <column width="150px" />
+                                  <column width="150px"/>
+                                  <column width="150px"/>
+                           </columns>
+                          <rows>
+                                  <row><label value="${labels.ok_personal.user_name}" /><textbox id="fuser_name"  />
+                                  <label value="${labels.ok_personal.maidenstag}" /><textbox id="fmaidenstag"   />
+                                  <label value="${labels.ok_personal.zp_rate_code}" /><textbox id="fzp_rate_code"    />
+                                  <label value="${labels.ok_personal.family_lat}" /><textbox id="ffamily_lat"    /></row>
+                                  <row><label value="${labels.ok_personal.first_name_lat}" /><textbox id="ffirst_name_lat"  />
+                                  <label value="${labels.ok_personal.patronymic_lat}" /><textbox id="fpatronymic_lat"   />
+                                  <label value="${labels.ok_personal.comments}" /><textbox id="fcomments"   />
+                                  <label value="${labels.ok_personal.emp_code_name}" /><textbox id="femp_code_name"    /></row>
+                                  <row><label value="${labels.ok_personal.tabel_line}" /><textbox id="ftabel_line"   />
+                                  <label value="${labels.ok_personal.id_client}" /><textbox id="fid_client"   />
+                                  <label value="${labels.ok_personal.user_id}" /><textbox id="fuser_id"    />
+                                  <label value="${labels.ok_personal.gph_date_begin}" /><datebox id="fgph_date_begin"   /></row>
+                                  <row><label value="${labels.ok_personal.gph_date_end}" /><datebox id="fgph_date_end"   />
+                                  <label value="${labels.ok_personal.gph_summa}" /><textbox id="fgph_summa"   />
+                                  <label value="${labels.ok_personal.gph_post_code}" /><textbox id="fgph_post_code"     />
+                                  <label value="${labels.ok_personal.gph_department_code}" /><textbox id="fgph_department_code" /></row>
+                                  <row><label value="${labels.ok_personal.gph_order_date}" /><datebox id="fgph_order_date"  />
+                                  <label value="${labels.ok_personal.gph_order_num}" /><textbox id="fgph_order_num"  />
+                                  <label value="${labels.ok_personal.gph_rezident}" /><textbox id="fgph_rezident"   />
+                                  <label value="${labels.ok_personal.email}" /><textbox id="femail"    value="@{ok_personalmain$composer.current.email}" /></row>
+                                  <row><label value="${labels.ok_personal.zp_rate_code_old}" /><textbox id="fzp_rate_code_old"   />
+                                  <label value="${labels.ok_personal.zp_rate_code_new}" /><textbox id="fzp_rate_code_new"  />
+                                  <label value="${labels.ok_personal.profession_personal}" /><textbox id="fprofession_personal"  />
+                                  <label value="${labels.ok_personal.bxm}" /><textbox id="fbxm"   /></row>
+                                  <row><label value="${labels.ok_personal.institution_code}" /><textbox id="finstitution_code"   /></row>
+                                  <row><label value="${labels.ok_personal.institution_end_year}" /><textbox id="finstitution_end_year" /></row>
+                      	  </rows>
+                      	  </grid>
+                  </div>
+                  
+                  </tabpanel>
+        <!-- tabpanel vflex="1"><include src="/pay_calc_LOG.zul"/></tabpanel -->          
+       
+        <tabpanel vflex="1"><include id="ok_relation"/></tabpanel>
+       
+        <tabpanel vflex="1"><include id="ok_period"/></tabpanel>
+        
+        <tabpanel vflex="1"><include id="ok_education"/></tabpanel>
+        
+        <tabpanel vflex="1"><include id="ok_academic"/></tabpanel>
+        
+        <tabpanel vflex="1"><include id="ok_army"/></tabpanel>
+        
+        <tabpanel vflex="1"><include id="ok_addinform"/></tabpanel>
+        
+        <tabpanel vflex="1"><include id="ok_award"/></tabpanel>
+        
+        <tabpanel vflex="1"><include id="ok_change_fio"/></tabpanel>
+        
+        
+        
+        </tabpanels>
+        
+                  
+                  
+ </tabbox>               
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save" visible="false"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_additional" visible="false"
+                                  label="${labels.add}" image="/images/+.png" />
+                          <toolbarbutton id="btn_fsearch" visible="false"
+                          		  label="${labels.search}" image="/images/search.png" /> 
+                          <toolbarbutton id="btn_delete" visible="false"
+                                  label="${labels.delete}" image="/images/delete.png" />
+                          <toolbarbutton id="btn_cancel" visible="false"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+</window>

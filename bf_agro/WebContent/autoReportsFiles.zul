@@ -1,0 +1,113 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="autoreportsfilesmain" width="100%"  height="550px" border="normal" apply="com.is.autoReportsFiles.autoReportsFilesViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+                <datebox id="date_gni" format="dd.MM.yyyy" />
+                <toolbarbutton id="btn_gni" label="Загрузка Реестр Гос.Пошлин для ГНИ"
+                        image="/images/+.png" />
+                <datebox id="date_nps" format="dd.MM.yyyy" />
+                <toolbarbutton id="btn_nps" label="Загрузка НПЦ для ГНИ   ver.1.3"
+                        image="/images/+.png" />
+                       
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="autoreportsfilesPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{autoreportsfilesmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.autoreportsfiles.id}" width="50px" />
+                                <listheader label="${labels.autoreportsfiles.branch}" width="100px" />
+                                <listheader label="${labels.autoreportsfiles.file_name}" width="200px" />
+                                <listheader label="${labels.autoreportsfiles.file_type}" width="100px" />
+                                <listheader label="${labels.autoreportsfiles.create_date}" width="150px" />
+                                <listheader label="${labels.autoreportsfiles.send_date}" width="150px" />
+                                <listheader label="${labels.autoreportsfiles.state}" width="150px" />
+                                <listheader label="${labels.autoreportsfiles.num_rows}" width="100px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.autoreportsfiles.id}" /><textbox id="id"  mold="rounded"  value="@{autoreportsfilesmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.branch}" /><textbox id="branch"  mold="rounded"  value="@{autoreportsfilesmain$composer.current.branch}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{autoreportsfilesmain$composer.current.file_name}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.file_type}" /><decimalbox id="file_type"  mold="rounded"  value="@{autoreportsfilesmain$composer.current.file_type}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.create_date}" /><datebox id="create_date"  mold="rounded"  value="@{autoreportsfilesmain$composer.current.create_date}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.send_date}" /><datebox id="send_date"  mold="rounded"  value="@{autoreportsfilesmain$composer.current.send_date}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.state}" /><decimalbox id="state"  mold="rounded"  value="@{autoreportsfilesmain$composer.current.state}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.num_rows}" /><textbox id="num_rows"  mold="rounded"  value="@{autoreportsfilesmain$composer.current.num_rows}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.autoreportsfiles.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.autoreportsfiles.branch}" /><textbox id="abranch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.autoreportsfiles.file_name}" /><textbox id="afile_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.autoreportsfiles.file_type}" /><textbox id="afile_type"  mold="rounded"  /></row>
+                                  <row><label value="${labels.autoreportsfiles.create_date}" /><textbox id="acreate_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.autoreportsfiles.send_date}" /><textbox id="asend_date"  mold="rounded"  /></row>
+                                  <row><label value="${labels.autoreportsfiles.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                                  <row><label value="${labels.autoreportsfiles.num_rows}" /><textbox id="anum_rows"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.autoreportsfiles.id}" /><textbox id="fid"  mold="rounded"  value="@{autoreportsfilesmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.branch}" /><textbox id="fbranch"  mold="rounded"  value="@{autoreportsfilesmain$composer.filter.branch}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.file_name}" /><textbox id="ffile_name"  mold="rounded"  value="@{autoreportsfilesmain$composer.filter.file_name}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.file_type}" /><textbox id="ffile_type"  mold="rounded"  value="@{autoreportsfilesmain$composer.filter.file_type}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.create_date}" /><textbox id="fcreate_date"  mold="rounded"  value="@{autoreportsfilesmain$composer.filter.create_date}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.send_date}" /><textbox id="fsend_date"  mold="rounded"  value="@{autoreportsfilesmain$composer.filter.send_date}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.state}" /><textbox id="fstate"  mold="rounded"  value="@{autoreportsfilesmain$composer.filter.state}" /></row>
+                                  <row><label value="${labels.autoreportsfiles.num_rows}" /><textbox id="fnum_rows"  mold="rounded"  value="@{autoreportsfilesmain$composer.filter.num_rows}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

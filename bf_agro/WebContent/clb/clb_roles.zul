@@ -1,0 +1,115 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+<panel border="normal" width="100%" apply="com.is.clb.user.RoleViewCtrl">
+	<panelchildren>
+		<groupbox mold="3d" open="true" closable="false" >
+		<hbox width="100%">
+			<groupbox mold="3d" open="true" closable="false" >
+			<caption label="Роли" />
+				<listbox id="lrole" height="554px" width="300px"/>
+			</groupbox>
+			<separator orient="vertical" spacing="8px" />
+			<groupbox mold="3d" open="true" closable="false" >
+			<caption label="Редактирование ролей" />
+				<vlayout>
+					<groupbox mold="3d" open="true" closable="false" >
+						<grid>
+							<columns>
+								<column width="100px" />
+								<column />
+							</columns>
+							<rows>
+								<row>
+								<label value = "${labels.role.tbtext}" />
+								<textbox id="tbText" width="350px" value="" mold="rounded" />
+								</row>
+								<row>
+								<label value = "${labels.role.caccess}" />
+								<rcombobox id="caccess" width="350px" mold="rounded" />
+								</row>
+							</rows>
+						</grid>
+						<separator orient="horizontal" spacing="8px" />
+				        <toolbar >
+							<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+							<toolbarbutton id="btn_del" label="${labels.delete}" image="/images/delete.png" visible="false"/>
+							<toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png"/>
+				    	</toolbar>
+		    		</groupbox>		
+					<separator orient="horizontal" spacing="2px" />
+					<groupbox mold="3d" open="true" closable="false" >
+					<caption label="Модули роли" />
+						<hbox align="center" width="100%" widths="45%,10%,45%">
+				           <vbox align="center" width="100%">
+					       		<groupbox open="true" closable="false" >
+								<caption label="${labels.role.avmodule}" />
+					           	<listbox id="left" height="350px" width="250px" droppable="true"  style="border: none;"/>
+					           	</groupbox>
+				           </vbox>
+				           <separator orient="vertical" spacing="8px" />
+				           <vbox align="center" width="100%">
+					           	<groupbox open="true" closable="false" >
+								<caption label="${labels.role.rlmodule}" />
+					           	<listbox id="right" height="350px" width="250px" droppable="true"  style="border: none;"/>
+					           </groupbox>
+				           </vbox>
+						</hbox>	
+					</groupbox>	
+				</vlayout>
+			</groupbox>
+		</hbox>
+	
+		<window id="actwnd"  closable="true" onClose="self.visible = false; event.stopPropagation();" title="${labels.role.actwnd}" 
+	            border="normal" width="485px" position="center,center" mode="popup" visible="false">
+	        <hlayout>
+	           <vlayout>
+		           	<groupbox open="true" closable="false" >
+					<caption label="${labels.role.avaction}" />
+		           		<listbox id="left" height="250px" width="200px" droppable="true"  style="border: none;"/>
+		           	</groupbox>
+	           </vlayout>
+	           <separator orient="vertical" spacing="8px" />
+	           <vlayout>
+		           	<groupbox open="true" closable="false" >
+					<caption label="${labels.role.rlaction}" />
+		           		<listbox id="right" height="250px" width="200px" droppable="true"  style="border: none;"/>
+		           	</groupbox>
+	           </vlayout>
+	        </hlayout>
+		<!--          
+	        <toolbar >
+	           <toolbarbutton id="btn_save" label="${labels.save}" image="/images/front1.png" />
+	           <toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/delete.png"/>
+	        </toolbar>
+		-->        
+		</window>
+	
+	    <window id="addwnd" title="${labels.role.tbtext}" border="normal" width="480px" 
+	         position="center,center" mode="popup" visible="false">
+	                        <grid>
+	                            <columns>
+					              <column width="100px" />
+					              <column />
+				                </columns>
+	                              <rows>
+	                                        <row>
+	                                                <label value = "${labels.role.tbtext}" />
+	                                                <textbox id="tbText" width="350px" value="" mold="rounded" 
+	                                                        constraint="no empty: " />
+	                                        </row>
+	                                        <row>
+	                                                <label value = "${labels.role.caccess}" />
+					                                <rcombobox id="caccess" width="350px" mold="rounded"
+	                                                        constraint="no empty: " />
+	                                        </row>
+	                                </rows>
+	                        </grid>
+	        <toolbar >
+	           <toolbarbutton id="btn_save" label="${labels.save}" image="/images/front1.png" />
+	           <toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/delete.png"/>
+	        </toolbar>
+	     </window>
+		</groupbox>
+	</panelchildren>
+</panel>
+</zk>

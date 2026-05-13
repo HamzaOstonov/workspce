@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="nibbdLiquidationMain" width="100%"
+	contentStyle="overflow:auto;" border="normal"
+	apply="com.is.nibbd_liquidation.LiquidationVC">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" label="${labels.back}" visible="false"
+			image="/images/file.png" />
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+		<toolbarbutton id="btn_report" label="Отчет..."
+			image="/images/download.png" />
+		<toolbarbutton id="btn_close_cl" label="Закрыть..."
+			image="/images/download.png" />
+
+	</toolbar>
+
+	<div id="grd" width="200%">
+
+		<paging id="trtemplatePaging" width="100%" />
+		<listbox style="border:none" id="dataGrid" multiple="true"
+			selectedItem="@{nibbdLiquidationMain$composer.current}">
+			<listhead sizable="true">
+				<!-- <listheader label="ID_FR_FILE" /> -->
+				<listheader label="Имя файла" />
+				<listheader label="Дата приема" />
+
+				<!-- <listheader label="ID_FL" /> -->
+				<!-- <listheader label="FR_FILE_ID" /> -->
+				<listheader label="Филиал" />
+
+				<!-- <listheader label="ID_LINE" /> -->
+				<!-- <listheader label="NOTIFY_FILE_ID" /> -->
+				<!-- <listheader label="LINE_ID" /> -->
+				<listheader label="Код вида уведомления" />
+				<listheader label="Текст уведомление" />
+				<listheader label="Время формирования уведомления" />
+
+				<!-- <listheader label="ID_DTL" /> -->
+				<!-- <listheader label="NOTIFY_LINE_ID" /> -->
+				<listheader label="Уникальный номер уведомления" />
+				<listheader label="Дата основания" />
+				<listheader label="Основание" />
+				<listheader label="ИНН ликвидатора юридического лица" />
+				<listheader label="ИНН субъекта" />
+				<listheader label="Код страны гражданства " />
+				<listheader label="ПИНФЛ ликвидатора физического лица" />
+				<listheader label="Серия и номер паспорта ликв" />
+				<listheader label="Ссылка для файла решения" />
+				<listheader label="Ф.И.О ликвидатора " />
+			</listhead>
+
+		</listbox>
+
+	</div>
+
+
+	<div id="filterdiv" visible="false">
+		<div>
+			<label value="Поиск" />
+		</div>
+		<grid id="fgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+			
+				<row>
+					<label value="Филиал" />
+					<textbox id="fbranch" mold="rounded"
+						value="@{nibbdLiquidationMain$composer.filter.branch}" />
+				</row>
+				<row>
+					<label value="дата с ... " />
+					<datebox id="fdate_time" mold="rounded"
+						value="@{nibbdLiquidationMain$composer.filter.date_time}" />
+				</row>
+				<row>
+					<label value="дата по ... " />
+					<datebox id="fdate_time1" mold="rounded"
+						value="@{nibbdLiquidationMain$composer.filter.date_time1}" />
+				</row>
+				<row>
+					<label value="Наименование файла" />
+					<textbox id="fname" mold="rounded"
+						value="@{nibbdLiquidationMain$composer.filter.name}" />
+				</row>
+			</rows>
+		</grid>
+		<toolbar>
+			<toolbarbutton id="btn_flt_apply" label="Найти"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_flt_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+
+	<window id="reportWindow" width="80%" mode="modal"
+		title="Отчет в Excel" closable="true"
+		onClose="self.visible = false; event.stopPropagation();"
+		position="center, center" visible="false">
+
+		<label value="Уведомления по ликвидациям "
+			style="font-weight: bold;" />
+		<grid id="reportParams" style="border: none; padding: 0px;">
+			<columns>
+				<column hflex="1" />
+				<column hflex="1" />
+			</columns>
+			<rows>
+				<row id="repParam_datefrom" height="32px">
+					<label value="с даты" style="font-weight: bold;" />
+					<datebox id="datefrom" width="80%" />
+				</row>
+				<row id="repParam_dateto" height="32px">
+					<label value="по дату" style="font-weight: bold;" />
+					<datebox id="dateto" width="80%" />
+				</row>
+				<row id="repParam_mfo" height="32px">
+					<label value="МФО" style="font-weight: bold;" />
+					<textbox id="rep_mfo" width="80%" value="%" />
+				</row>
+				<row id="repParam_card" visible="false" height="32px">
+					<label value="Карта" style="font-weight: bold;" />
+					<textbox id="rep_card" width="80%" value="%" />
+				</row>
+				<row height="32px">
+					<label value="" style="font-weight: bold;" />
+					<button id="btnReportExcel" label="В эксел"
+						image="/images/excel.png" />
+				</row>
+			</rows>
+		</grid>
+
+	</window>
+
+    <window id="closeClWindow" width="80%" mode="modal"
+		title="Закрыть клиента" closable="true"
+		onClose="self.visible = false; event.stopPropagation();"
+		position="center, center" visible="false">
+
+		<label id="closeClientLabel" value="Параметры закрытия клиента "
+			style="font-weight: bold;" />
+		<grid id="closeParams" style="border: none; padding: 0px;">
+			<columns>
+				<column hflex="1" />
+				<column hflex="1" />
+			</columns>
+			<rows>
+				<row id="closeRow_closetype" height="32px">
+					<label value="Вид закрытия клиента" style="font-weight: bold;" />
+					<rcombobox id="close_type" mold="rounded" width="80%" />
+				</row>
+				<row id="closeRow_close_doc_n" height="32px">
+					<label value="Номер документа основания для закрытия" style="font-weight: bold;" />
+					<textbox id="close_doc_n" width="80%" />
+				</row>
+				<row id="closeRow_close_doc_d" height="32px">
+					<label value="Дата документа основания для закрытия" style="font-weight: bold;" />
+					<datebox id="close_doc_d" width="80%" />
+				</row>
+				<row height="32px">
+					<label value="" style="font-weight: bold;" />
+					<button id="btnCloseClient" label="Закрыть в НИББД и в Банке"
+						image="/images/delete.png" />
+				</row>
+			</rows>
+		</grid>
+
+	</window>
+	
+</window>

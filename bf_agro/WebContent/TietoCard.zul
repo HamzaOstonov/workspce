@@ -1,0 +1,42 @@
+<window width="100%" border="normal" apply="com.is.globalTieto.card.CardViewCtrl" id="cardmain">
+    <listbox width="100%" rows="10" id="cardsList" selectedItem="@{cardmain$composer.current}">
+        <listhead sizable="true">
+            <listheader label="${labels.refill.card}"/>
+            <listheader label="${labels.refill.expiry}"/>
+            <listheader label="${labels.refill.status}"/>
+            <listheader label="${labels.refill.card_balance}" sort="auto(status1)"/>
+        </listhead>
+    </listbox>
+    <window id="refillWindow" mode="modal"
+            title="${labels.refill.refill_window}" closable="true"
+            position="center, center" visible="false" width="25%" height="35%"
+            onClose="self.visible  =  false; event.stopPropagation();">
+        <div style="text-align:center;margin-bottom: 20px;">
+            <label style="font-size:16pt;"
+                   value="${labels.refill.refill_sum_quastion}"/>
+        </div>
+        <div style="text-align:center;margin-bottom: 20px;">
+            <textbox id="refillSum" width="90%" height="20px" style="font-size:12pt"  constraint="no empty"/>
+        </div>
+        <div style="text-align:center;margin-bottom: 20px;">
+            <combobox id="payMethod" constraint="no empty">
+                <comboitem label="${labels.refill.cash_refill}" />
+                <comboitem label="${labels.refill.cashless_refill}" />
+            </combobox>
+        </div>
+        <div style="text-align:center;margin-bottom: 20px;">
+            <combobox id="payCurrency" constraint="no empty">
+                <comboitem label="${labels.refill.cash_refill}" />
+                <comboitem label="${labels.refill.cashless_refill}" />
+            </combobox>
+        </div>
+        <div style="text-align:center">
+            <toolbarbutton id="btnRefill"
+                           label="${labels.refill.refill_btn}" image="/images/search.png"/>
+            <toolbarbutton id="btnRefillCancel"
+                           label="${labels.refill.refill_cancel_btn}"
+                           image="/images/search.png"/>
+        </div>
+
+    </window>
+</window>

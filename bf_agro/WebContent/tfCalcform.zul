@@ -1,0 +1,107 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="calcformmain" width="100%"  height="550px" border="normal" apply="com.is.tf.calcform.CalcformViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="calcformPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{calcformmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.calcform.id}" width="50px" />
+                                <listheader label="${labels.calcform.p0t16}" width="60px" />
+                                <listheader label="${labels.calcform.p1t16}" width="200px" />
+                                <listheader label="${labels.calcform.p2t16}" width="200px" />
+                                <listheader label="${labels.calcform.p3t16}" width="200px" />
+                                <listheader label="${labels.calcform.p4t16}" width="200px" />
+                                <listheader label="${labels.calcform.p5t16}" width="200px" />
+                                <listheader label="${labels.calcform.p6t16}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.calcform.id}" /><textbox id="id"  mold="rounded"  value="@{calcformmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.calcform.p0t16}" /><textbox id="p0t16"  mold="rounded"  value="@{calcformmain$composer.current.p0t16}" /></row>
+                                  <row><label value="${labels.calcform.p1t16}" /><textbox id="p1t16"  mold="rounded"  value="@{calcformmain$composer.current.p1t16}" /></row>
+                                  <row><label value="${labels.calcform.p2t16}" /><textbox id="p2t16"  mold="rounded"  value="@{calcformmain$composer.current.p2t16}" /></row>
+                                  <row><label value="${labels.calcform.p3t16}" /><datebox id="p3t16"  mold="rounded"  value="@{calcformmain$composer.current.p3t16}" /></row>
+                                  <row><label value="${labels.calcform.p4t16}" /><textbox id="p4t16"  mold="rounded"  value="@{calcformmain$composer.current.p4t16}" /></row>
+                                  <row><label value="${labels.calcform.p5t16}" /><datebox id="p5t16"  mold="rounded"  value="@{calcformmain$composer.current.p5t16}" /></row>
+                                  <row><label value="${labels.calcform.p6t16}" /><textbox id="p6t16"  mold="rounded"  value="@{calcformmain$composer.current.p6t16}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.calcform.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.calcform.p0t16}" /><textbox id="ap0t16"  mold="rounded"  /></row>
+                                  <row><label value="${labels.calcform.p1t16}" /><textbox id="ap1t16"  mold="rounded"  /></row>
+                                  <row><label value="${labels.calcform.p2t16}" /><textbox id="ap2t16"  mold="rounded"  /></row>
+                                  <row><label value="${labels.calcform.p3t16}" /><datebox id="ap3t16"  mold="rounded"  /></row>
+                                  <row><label value="${labels.calcform.p4t16}" /><textbox id="ap4t16"  mold="rounded"  /></row>
+                                  <row><label value="${labels.calcform.p5t16}" /><datebox id="ap5t16"  mold="rounded"  /></row>
+                                  <row><label value="${labels.calcform.p6t16}" /><textbox id="ap6t16"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.calcform.id}" /><textbox id="fid"  mold="rounded"  value="@{calcformmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.calcform.p0t16}" /><textbox id="fp0t16"  mold="rounded"  value="@{calcformmain$composer.filter.p0t16}" /></row>
+                                  <row><label value="${labels.calcform.p1t16}" /><textbox id="fp1t16"  mold="rounded"  value="@{calcformmain$composer.filter.p1t16}" /></row>
+                                  <row><label value="${labels.calcform.p2t16}" /><textbox id="fp2t16"  mold="rounded"  value="@{calcformmain$composer.filter.p2t16}" /></row>
+                                  <row><label value="${labels.calcform.p3t16}" /><datebox id="fp3t16"  mold="rounded"  value="@{calcformmain$composer.filter.p3t16}" /></row>
+                                  <row><label value="${labels.calcform.p4t16}" /><textbox id="fp4t16"  mold="rounded"  value="@{calcformmain$composer.filter.p4t16}" /></row>
+                                  <row><label value="${labels.calcform.p5t16}" /><datebox id="fp5t16"  mold="rounded"  value="@{calcformmain$composer.filter.p5t16}" /></row>
+                                  <row><label value="${labels.calcform.p6t16}" /><textbox id="fp6t16"  mold="rounded"  value="@{calcformmain$composer.filter.p6t16}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

@@ -1,0 +1,228 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="agreementmain" width="100%"  height="550px" border="normal" apply="com.is.agreement.AgreementViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="agreementPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{agreementmain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.agreement.id}" width="50px" />
+                                <listheader label="${labels.agreement.p2t5}" width="200px" />
+                                <listheader label="${labels.agreement.p3t5}" width="200px" />
+                                <listheader label="${labels.agreement.p4t5}" width="200px" />
+                                <listheader label="${labels.agreement.p5t5}" width="200px" />
+                                <listheader label="${labels.agreement.p6t5}" width="200px" />
+                                <listheader label="${labels.agreement.p7t5}" width="200px" />
+                                <listheader label="${labels.agreement.p8t5}" width="200px" />
+                                <listheader label="${labels.agreement.p9t5}" width="200px" />
+                                <listheader label="${labels.agreement.p10t5}" width="200px" />
+                                <listheader label="${labels.agreement.p11t5}" width="200px" />
+                                <listheader label="${labels.agreement.p12t5}" width="200px" />
+                                <listheader label="${labels.agreement.p13t5}" width="200px" />
+                                <listheader label="${labels.agreement.p14t5}" width="200px" />
+                                <listheader label="${labels.agreement.p15t5}" width="200px" />
+                                <listheader label="${labels.agreement.p16t5}" width="200px" />
+                                <listheader label="${labels.agreement.p17t5}" width="200px" />
+                                <listheader label="${labels.agreement.p18t5}" width="200px" />
+                                <listheader label="${labels.agreement.p19t5}" width="200px" />
+                                <listheader label="${labels.agreement.p20t5}" width="200px" />
+                                <listheader label="${labels.agreement.p21t5}" width="200px" />
+                                <listheader label="${labels.agreement.p22t5}" width="200px" />
+                                <listheader label="${labels.agreement.p23t5}" width="200px" />
+                                <listheader label="${labels.agreement.p24t5}" width="200px" />
+                                <listheader label="${labels.agreement.p25t5}" width="200px" />
+                                <listheader label="${labels.agreement.p26t5}" width="200px" />
+                                <listheader label="${labels.agreement.p27t5}" width="200px" />
+                                <listheader label="${labels.agreement.p28t5}" width="200px" />
+                                <listheader label="${labels.agreement.p29t5}" width="200px" />
+                                <listheader label="${labels.agreement.p30t5}" width="200px" />
+                                <listheader label="${labels.agreement.p31t5}" width="200px" />
+                                <listheader label="${labels.agreement.p32t5}" width="200px" />
+                                <listheader label="${labels.agreement.p33t5}" width="200px" />
+                                <listheader label="${labels.agreement.p34t5}" width="200px" />
+                                <listheader label="${labels.agreement.p35t5}" width="200px" />
+                                <listheader label="${labels.agreement.p36t5}" width="200px" />
+                                <listheader label="${labels.agreement.p37t5}" width="200px" />
+                                <listheader label="${labels.agreement.p38t5}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.agreement.id}" /><textbox id="id"  mold="rounded"  value="@{agreementmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.agreement.p2t5}" /><textbox id="p2t5"  mold="rounded"  value="@{agreementmain$composer.current.p2t5}" /></row>
+                                  <row><label value="${labels.agreement.p3t5}" /><textbox id="p3t5"  mold="rounded"  value="@{agreementmain$composer.current.p3t5}" /></row>
+                                  <row><label value="${labels.agreement.p4t5}" /><textbox id="p4t5"  mold="rounded"  value="@{agreementmain$composer.current.p4t5}" /></row>
+                                  <row><label value="${labels.agreement.p5t5}" /><textbox id="p5t5"  mold="rounded"  value="@{agreementmain$composer.current.p5t5}" /></row>
+                                  <row><label value="${labels.agreement.p6t5}" /><textbox id="p6t5"  mold="rounded"  value="@{agreementmain$composer.current.p6t5}" /></row>
+                                  <row><label value="${labels.agreement.p7t5}" /><textbox id="p7t5"  mold="rounded"  value="@{agreementmain$composer.current.p7t5}" /></row>
+                                  <row><label value="${labels.agreement.p8t5}" /><textbox id="p8t5"  mold="rounded"  value="@{agreementmain$composer.current.p8t5}" /></row>
+                                  <row><label value="${labels.agreement.p9t5}" /><rcombobox id="p9t5" width="320px" mold="rounded"  value="@{agreementmain$composer.current.p9t5}" /></row>
+                                  <row><label value="${labels.agreement.p10t5}" /><rcombobox id="p10t5" width="320px" mold="rounded"  value="@{agreementmain$composer.current.p10t5}" /></row>
+                                  <row><label value="${labels.agreement.p11t5}" /><rcombobox id="p11t5" width="320px" mold="rounded"  value="@{agreementmain$composer.current.p11t5}" /></row>
+                                  <row><label value="${labels.agreement.p12t5}" /><rcombobox id="p12t5" width="320px" mold="rounded"  value="@{agreementmain$composer.current.p12t5}" /></row>
+                                  <row><label value="${labels.agreement.p13t5}" /><textbox id="p13t5"  mold="rounded"  value="@{agreementmain$composer.current.p13t5}" /></row>
+                                  <row><label value="${labels.agreement.p14t5}" /><textbox id="p14t5"  mold="rounded"  value="@{agreementmain$composer.current.p14t5}" /></row>
+                                  <row><label value="${labels.agreement.p15t5}" /><textbox id="p15t5"  mold="rounded"  value="@{agreementmain$composer.current.p15t5}" /></row>
+                                  <row><label value="${labels.agreement.p16t5}" /><textbox id="p16t5"  mold="rounded"  value="@{agreementmain$composer.current.p16t5}" /></row>
+                                  <row><label value="${labels.agreement.p17t5}" /><textbox id="p17t5"  mold="rounded"  value="@{agreementmain$composer.current.p17t5}" /></row>
+                                  <row><label value="${labels.agreement.p18t5}" /><textbox id="p18t5"  mold="rounded"  value="@{agreementmain$composer.current.p18t5}" /></row>
+                                  <row><label value="${labels.agreement.p19t5}" /><textbox id="p19t5"  mold="rounded"  value="@{agreementmain$composer.current.p19t5}" /></row>
+                                  <row><label value="${labels.agreement.p20t5}" /><textbox id="p20t5"  mold="rounded"  value="@{agreementmain$composer.current.p20t5}" /></row>
+                                  <row><label value="${labels.agreement.p21t5}" /><textbox id="p21t5"  mold="rounded"  value="@{agreementmain$composer.current.p21t5}" /></row>
+                                  <row><label value="${labels.agreement.p22t5}" /><textbox id="p22t5"  mold="rounded"  value="@{agreementmain$composer.current.p22t5}" /></row>
+                                  <row><label value="${labels.agreement.p23t5}" /><textbox id="p23t5"  mold="rounded"  value="@{agreementmain$composer.current.p23t5}" /></row>
+                                  <row><label value="${labels.agreement.p24t5}" /><textbox id="p24t5"  mold="rounded"  value="@{agreementmain$composer.current.p24t5}" /></row>
+                                  <row><label value="${labels.agreement.p25t5}" /><textbox id="p25t5"  mold="rounded"  value="@{agreementmain$composer.current.p25t5}" /></row>
+                                  <row><label value="${labels.agreement.p26t5}" /><textbox id="p26t5"  mold="rounded"  value="@{agreementmain$composer.current.p26t5}" /></row>
+                                  <row><label value="${labels.agreement.p27t5}" /><textbox id="p27t5"  mold="rounded"  value="@{agreementmain$composer.current.p27t5}" /></row>
+                                  <row><label value="${labels.agreement.p28t5}" /><textbox id="p28t5"  mold="rounded"  value="@{agreementmain$composer.current.p28t5}" /></row>
+                                  <row><label value="${labels.agreement.p29t5}" /><textbox id="p29t5"  mold="rounded"  value="@{agreementmain$composer.current.p29t5}" /></row>
+                                  <row><label value="${labels.agreement.p30t5}" /><textbox id="p30t5"  mold="rounded"  value="@{agreementmain$composer.current.p30t5}" /></row>
+                                  <row><label value="${labels.agreement.p31t5}" /><textbox id="p31t5"  mold="rounded"  value="@{agreementmain$composer.current.p31t5}" /></row>
+                                  <row><label value="${labels.agreement.p32t5}" /><textbox id="p32t5"  mold="rounded"  value="@{agreementmain$composer.current.p32t5}" /></row>
+                                  <row><label value="${labels.agreement.p33t5}" /><textbox id="p33t5"  mold="rounded"  value="@{agreementmain$composer.current.p33t5}" /></row>
+                                  <row><label value="${labels.agreement.p34t5}" /><textbox id="p34t5"  mold="rounded"  value="@{agreementmain$composer.current.p34t5}" /></row>
+                                  <row><label value="${labels.agreement.p35t5}" /><textbox id="p35t5"  mold="rounded"  value="@{agreementmain$composer.current.p35t5}" /></row>
+                                  <row><label value="${labels.agreement.p36t5}" /><textbox id="p36t5"  mold="rounded"  value="@{agreementmain$composer.current.p36t5}" /></row>
+                                  <row><label value="${labels.agreement.p37t5}" /><textbox id="p37t5"  mold="rounded"  value="@{agreementmain$composer.current.p37t5}" /></row>
+                                  <row><label value="${labels.agreement.p38t5}" /><textbox id="p38t5"  mold="rounded"  value="@{agreementmain$composer.current.p38t5}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.agreement.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p2t5}" /><textbox id="ap2t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p3t5}" /><textbox id="ap3t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p4t5}" /><textbox id="ap4t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p5t5}" /><textbox id="ap5t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p6t5}" /><textbox id="ap6t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p7t5}" /><textbox id="ap7t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p8t5}" /><textbox id="ap8t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p9t5}" /><rcombobox id="ap9t5" width="320px" mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p10t5}" /><rcombobox id="ap10t5" width="320px" mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p11t5}" /><rcombobox id="ap11t5" width="320px" mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p12t5}" /><rcombobox id="ap12t5" width="320px" mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p13t5}" /><textbox id="ap13t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p14t5}" /><textbox id="ap14t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p15t5}" /><textbox id="ap15t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p16t5}" /><textbox id="ap16t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p17t5}" /><textbox id="ap17t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p18t5}" /><textbox id="ap18t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p19t5}" /><textbox id="ap19t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p20t5}" /><textbox id="ap20t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p21t5}" /><textbox id="ap21t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p22t5}" /><textbox id="ap22t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p23t5}" /><textbox id="ap23t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p24t5}" /><textbox id="ap24t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p25t5}" /><textbox id="ap25t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p26t5}" /><textbox id="ap26t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p27t5}" /><textbox id="ap27t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p28t5}" /><textbox id="ap28t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p29t5}" /><textbox id="ap29t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p30t5}" /><textbox id="ap30t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p31t5}" /><textbox id="ap31t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p32t5}" /><textbox id="ap32t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p33t5}" /><textbox id="ap33t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p34t5}" /><textbox id="ap34t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p35t5}" /><textbox id="ap35t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p36t5}" /><textbox id="ap36t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p37t5}" /><textbox id="ap37t5"  mold="rounded"  /></row>
+                                  <row><label value="${labels.agreement.p38t5}" /><textbox id="ap38t5"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.agreement.id}" /><textbox id="fid"  mold="rounded"  value="@{agreementmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.agreement.p2t5}" /><textbox id="fp2t5"  mold="rounded"  value="@{agreementmain$composer.filter.p2t5}" /></row>
+                                  <row><label value="${labels.agreement.p3t5}" /><textbox id="fp3t5"  mold="rounded"  value="@{agreementmain$composer.filter.p3t5}" /></row>
+                                  <row><label value="${labels.agreement.p4t5}" /><textbox id="fp4t5"  mold="rounded"  value="@{agreementmain$composer.filter.p4t5}" /></row>
+                                  <row><label value="${labels.agreement.p5t5}" /><textbox id="fp5t5"  mold="rounded"  value="@{agreementmain$composer.filter.p5t5}" /></row>
+                                  <row><label value="${labels.agreement.p6t5}" /><textbox id="fp6t5"  mold="rounded"  value="@{agreementmain$composer.filter.p6t5}" /></row>
+                                  <row><label value="${labels.agreement.p7t5}" /><textbox id="fp7t5"  mold="rounded"  value="@{agreementmain$composer.filter.p7t5}" /></row>
+                                  <row><label value="${labels.agreement.p8t5}" /><textbox id="fp8t5"  mold="rounded"  value="@{agreementmain$composer.filter.p8t5}" /></row>
+                                  <row><label value="${labels.agreement.p9t5}" /><rcombobox id="fp9t5" width="320px" mold="rounded"  value="@{agreementmain$composer.filter.p9t5}" /></row>
+                                  <row><label value="${labels.agreement.p10t5}" /><rcombobox id="fp10t5" width="320px" mold="rounded"  value="@{agreementmain$composer.filter.p10t5}" /></row>
+                                  <row><label value="${labels.agreement.p11t5}" /><rcombobox id="fp11t5" width="320px" mold="rounded"  value="@{agreementmain$composer.filter.p11t5}" /></row>
+                                  <row><label value="${labels.agreement.p12t5}" /><rcombobox id="fp12t5" width="320px" mold="rounded"  value="@{agreementmain$composer.filter.p12t5}" /></row>
+                                  <row><label value="${labels.agreement.p13t5}" /><textbox id="fp13t5"  mold="rounded"  value="@{agreementmain$composer.filter.p13t5}" /></row>
+                                  <row><label value="${labels.agreement.p14t5}" /><textbox id="fp14t5"  mold="rounded"  value="@{agreementmain$composer.filter.p14t5}" /></row>
+                                  <row><label value="${labels.agreement.p15t5}" /><textbox id="fp15t5"  mold="rounded"  value="@{agreementmain$composer.filter.p15t5}" /></row>
+                                  <row><label value="${labels.agreement.p16t5}" /><textbox id="fp16t5"  mold="rounded"  value="@{agreementmain$composer.filter.p16t5}" /></row>
+                                  <row><label value="${labels.agreement.p17t5}" /><textbox id="fp17t5"  mold="rounded"  value="@{agreementmain$composer.filter.p17t5}" /></row>
+                                  <row><label value="${labels.agreement.p18t5}" /><textbox id="fp18t5"  mold="rounded"  value="@{agreementmain$composer.filter.p18t5}" /></row>
+                                  <row><label value="${labels.agreement.p19t5}" /><textbox id="fp19t5"  mold="rounded"  value="@{agreementmain$composer.filter.p19t5}" /></row>
+                                  <row><label value="${labels.agreement.p20t5}" /><textbox id="fp20t5"  mold="rounded"  value="@{agreementmain$composer.filter.p20t5}" /></row>
+                                  <row><label value="${labels.agreement.p21t5}" /><textbox id="fp21t5"  mold="rounded"  value="@{agreementmain$composer.filter.p21t5}" /></row>
+                                  <row><label value="${labels.agreement.p22t5}" /><textbox id="fp22t5"  mold="rounded"  value="@{agreementmain$composer.filter.p22t5}" /></row>
+                                  <row><label value="${labels.agreement.p23t5}" /><textbox id="fp23t5"  mold="rounded"  value="@{agreementmain$composer.filter.p23t5}" /></row>
+                                  <row><label value="${labels.agreement.p24t5}" /><textbox id="fp24t5"  mold="rounded"  value="@{agreementmain$composer.filter.p24t5}" /></row>
+                                  <row><label value="${labels.agreement.p25t5}" /><textbox id="fp25t5"  mold="rounded"  value="@{agreementmain$composer.filter.p25t5}" /></row>
+                                  <row><label value="${labels.agreement.p26t5}" /><textbox id="fp26t5"  mold="rounded"  value="@{agreementmain$composer.filter.p26t5}" /></row>
+                                  <row><label value="${labels.agreement.p27t5}" /><textbox id="fp27t5"  mold="rounded"  value="@{agreementmain$composer.filter.p27t5}" /></row>
+                                  <row><label value="${labels.agreement.p28t5}" /><textbox id="fp28t5"  mold="rounded"  value="@{agreementmain$composer.filter.p28t5}" /></row>
+                                  <row><label value="${labels.agreement.p29t5}" /><textbox id="fp29t5"  mold="rounded"  value="@{agreementmain$composer.filter.p29t5}" /></row>
+                                  <row><label value="${labels.agreement.p30t5}" /><textbox id="fp30t5"  mold="rounded"  value="@{agreementmain$composer.filter.p30t5}" /></row>
+                                  <row><label value="${labels.agreement.p31t5}" /><textbox id="fp31t5"  mold="rounded"  value="@{agreementmain$composer.filter.p31t5}" /></row>
+                                  <row><label value="${labels.agreement.p32t5}" /><textbox id="fp32t5"  mold="rounded"  value="@{agreementmain$composer.filter.p32t5}" /></row>
+                                  <row><label value="${labels.agreement.p33t5}" /><textbox id="fp33t5"  mold="rounded"  value="@{agreementmain$composer.filter.p33t5}" /></row>
+                                  <row><label value="${labels.agreement.p34t5}" /><textbox id="fp34t5"  mold="rounded"  value="@{agreementmain$composer.filter.p34t5}" /></row>
+                                  <row><label value="${labels.agreement.p35t5}" /><textbox id="fp35t5"  mold="rounded"  value="@{agreementmain$composer.filter.p35t5}" /></row>
+                                  <row><label value="${labels.agreement.p36t5}" /><textbox id="fp36t5"  mold="rounded"  value="@{agreementmain$composer.filter.p36t5}" /></row>
+                                  <row><label value="${labels.agreement.p37t5}" /><textbox id="fp37t5"  mold="rounded"  value="@{agreementmain$composer.filter.p37t5}" /></row>
+                                  <row><label value="${labels.agreement.p38t5}" /><textbox id="fp38t5"  mold="rounded"  value="@{agreementmain$composer.filter.p38t5}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>
+

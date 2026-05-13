@@ -1,0 +1,507 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<?component name="refcbox" class="com.is.utils.RefCBox"?>
+<window id="useractionlogmain" width="100%" height="100%"
+	border="normal" apply="com.is.useractionlog.UserActionLogViewCtrl">
+	<tabbox id="mainTabbox">
+		<tabs>
+			<tab label="bf_user_actions_log" id="tab1" />
+			<tab label="general_log" id="tab2" />
+			<tab label="log_protocol" id="tab3" />
+			<tab label="report_history" id="tab4" />
+		</tabs>
+		<tabpanels>
+			
+			<tabpanel><!-- bf_user_actions_log -->
+				<vlayout id="grd1" hflex="1">
+					<grid id="mainGrid1" visible="true" width="100%">
+						<columns>
+							<column width="40%" />
+							<column width="60%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="USERNAME" />
+								<textbox id="txtusername1" hflex="1"
+									value="" />
+							</row>
+							<row>
+								<label value="DATE" />
+								<datebox id="txtdate1" hflex="1" />
+							</row>
+						</rows>
+					</grid>
+					<toolbar id="searchToolbar1" visible="true">
+						<toolbarbutton id="tbtn_search1" label="Поиск"
+							image="/images/search.png" />
+					</toolbar>
+					<paging id="userActionsLogPaging1" pageSize="10" />
+					<listbox id="dataDetailsGrid1" rows="20"
+						style="border:normal;height:700px;" width="100%">
+						<listhead sizable="true">
+							<listheader label="ID" />
+							<listheader label="BRANCH" />
+							<listheader label="USER_ID" />
+							<listheader label="USER_NAME" />
+							<listheader label="USER_IP" />
+							<listheader label="ACTION_DATE" />
+							<listheader label="ACT_TYPE" />
+							<listheader label="ENTITY_TYPE" />
+							<listheader label="ENTITY_ID" />
+						</listhead>
+					</listbox>
+				</vlayout>
+				<vlayout>
+					<window id="detailsWindow1" mode="overlapped"
+						visible="false" width="80%"
+						style="position: absolute; top: 50%; left: 50%; 
+           transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.9); 
+           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);"
+						closable="true" height="auto" border="normal">
+						<label value="detailsWindow"
+							style="font-weight:bold;" />
+						<vbox width="100%" pack="center">
+							<grid width="100%">
+								<columns>
+									<column width="60%" align="center"
+										valign="middle" /><!-- Changed align to center -->
+									<column width="40%" align="center"
+										valign="middle" /><!-- Changed align to center -->
+								</columns>
+
+								<rows>
+									<row>
+										<label value="ID" />
+										<textbox id="id" width="300px" />
+									</row>
+									<row>
+										<label value="BRANCH" />
+										<textbox id="branch"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_ID" />
+										<textbox id="user_id"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_NAME" />
+										<textbox id="user_name"
+											width="300px" />
+									</row>
+									<row>
+										<label value="IP ADRESS" />
+										<textbox id="ip_address"
+											width="300px" />
+									</row>
+									<row>
+										<label value="ACTION_DATE" />
+										<datebox id="action_date"
+											width="300px" />
+									</row>
+									<row>
+										<label value="ACT_TYPE" />
+										<textbox id="act_type"
+											width="300px" />
+									</row>
+									<row>
+										<label value="ENTITY_TYPE" />
+										<textbox id="entity_type"
+											width="300px" />
+									</row>
+									<row>
+										<label value="ENTITY_ID" />
+										<textbox id="entity_id"
+											width="300px" hflex="1" multiline="true" rows="1" />
+									</row>
+								</rows>
+							</grid>
+
+							<toolbar id="searchToolbar"
+								visible="true">
+								<hbox pack="center" width="100%">
+									<separator spacing="20px" />
+									<toolbarbutton id="btn_exit1"
+										label="Выход" image="/images/search.png" />
+								</hbox>
+							</toolbar>
+						</vbox>
+					</window>
+				</vlayout>
+			</tabpanel>
+
+			<tabpanel><!-- general_log -->
+				<vlayout id="grd2" hflex="1">
+					<grid id="mainGrid2" visible="true" width="100%">
+						<columns>
+							<column width="40%" />
+							<column width="60%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="USERNAME" />
+								<textbox id="txtusername2" hflex="1"
+									value="" />
+							</row>
+							<row>
+								<label value="DATE" />
+								<datebox id="txtdate2" hflex="1" />
+							</row>
+						</rows>
+					</grid>
+					<toolbar id="searchToolbar2" visible="true">
+						<toolbarbutton id="tbtn_search2" label="Поиск"
+							image="/images/search.png" />
+					</toolbar>
+					<paging id="userActionsLogPaging2" pageSize="10" />
+					<listbox id="dataDetailsGrid2" rows="20"
+						style="border:normal;height:700px;" width="100%">
+						<listhead sizable="true">
+							<listheader label="BRANCH" />
+							<listheader label="USER_ID" />
+							<listheader label="USER_NAME" />
+							<listheader label="USER_MAC" />
+							<listheader label="USER_IP" />
+							<listheader label="TYPE_LOG" />
+							<listheader label="LOG_TEXT" />
+							<listheader label="V_DATE" />
+							<listheader label="DATE_TIME" />
+							<listheader label="GROUP_ID" />
+						</listhead>
+					</listbox>
+				</vlayout>
+				<vlayout>
+					<window id="detailsWindow2" mode="overlapped"
+						visible="false" width="80%"
+						style="position: absolute; top: 50%; left: 50%; 
+           transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.9); 
+           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);"
+						closable="true" height="auto" border="normal">
+						<label value="detailsWindow"
+							style="font-weight:bold;" />
+						<vbox width="100%" pack="center">
+							<grid width="100%">
+								<columns>
+									<column width="60%" align="center"
+										valign="middle" />
+									<column width="40%" align="center"
+										valign="middle" />
+								</columns>
+
+								<rows>
+									<row>
+										<label value="BRANCH" />
+										<textbox id="branch"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_ID" />
+										<textbox id="user_id"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_NAME" />
+										<textbox id="user_name"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_MAC" />
+										<textbox id="user_mac"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_IP" />
+										<textbox id="user_ip"
+											width="300px" />
+									</row>
+									<row>
+										<label value="TYPE_LOG" />
+										<textbox id="type_log"
+											width="300px" />
+									</row>
+									<row>
+										<label value="LOG_TEXT" />
+										<textbox id="log_text"
+											width="300px" />
+									</row>
+									<row>
+										<label value="V_DATE" />
+										<datebox id="v_date"
+											width="300px" />
+									</row>
+									<row>
+										<label value="DATE_TIME" />
+										<datebox id="date_time"
+											width="300px" />
+									</row>
+									<row>
+										<label value="GROUP_ID" />
+										<textbox id="group_id"
+											width="300px" />
+									</row>
+								</rows>
+							</grid>
+
+							<toolbar id="searchToolbar2"
+								visible="true">
+								<hbox pack="center" width="100%">
+									<separator spacing="20px" />
+									<toolbarbutton id="btn_exit2"
+										label="Выход" image="/images/search.png" />
+								</hbox>
+							</toolbar>
+						</vbox>
+					</window>
+				</vlayout>
+			</tabpanel>
+			
+			<tabpanel><!-- log_protocol -->
+				<vlayout id="grd3" hflex="1">
+					<grid id="mainGrid3" visible="true" width="100%">
+						<columns>
+							<column width="40%" />
+							<column width="60%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="USERNAME" />
+								<textbox id="txtusername3" hflex="1"
+									value="" />
+							</row>
+							<row>
+								<label value="DATE" />
+								<datebox id="txtdate3" hflex="1" />
+							</row>
+						</rows>
+					</grid>
+					<toolbar id="searchToolbar3" visible="true">
+						<toolbarbutton id="tbtn_search3" label="Поиск"
+							image="/images/search.png" />
+					</toolbar>
+					<paging id="userActionsLogPaging3" pageSize="10" />
+					<listbox id="dataDetailsGrid3" rows="20"
+						style="border:normal;height:700px;" width="100%">
+						<listhead sizable="true">
+							<listheader label="BRANCH" />
+							<listheader label="USERNAME" />
+							<listheader label="ACTION" />
+							<listheader label="ACTIONDATE" />
+							<listheader label="USERIP" />
+							<listheader label="USERMAC" />
+							<listheader label="USERHOST" />
+							<listheader label="USERPORT" />
+							<listheader label="APPIP" />
+							<listheader label="CLIENTVER" />
+						</listhead>
+					</listbox>
+				</vlayout>
+				<vlayout>
+					<window id="detailsWindow3" mode="overlapped"
+						visible="false" width="80%"
+						style="position: absolute; top: 50%; left: 50%; 
+           transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.9); 
+           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);"
+						closable="true" height="auto" border="normal">
+						<label value="detailsWindow"
+							style="font-weight:bold;" />
+						<vbox width="100%" pack="center">
+							<grid width="100%">
+								<columns>
+									<column width="60%" align="center"
+										valign="middle" />
+									<column width="40%" align="center"
+										valign="middle" />
+								</columns>
+
+								<rows>
+									<row>
+										<label value="BRANCH" />
+										<textbox id="branch"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_NAME" />
+										<textbox id="user_name"
+											width="300px" />
+									</row>
+									<row>
+										<label value="ACTION" />
+										<textbox id="action"
+											width="300px" />
+									</row>
+									<row>
+										<label value="ACTIONDATE" />
+										<datebox id="actiondate"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_IP" />
+										<textbox id="user_ip"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_MAC" />
+										<textbox id="user_mac"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USERHOST" />
+										<textbox id="userhost"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USERPORT" />
+										<textbox id="userport"
+											width="300px" />
+									</row>
+									<row>
+										<label value="APPIP" />
+										<textbox id="appip"
+											width="300px" />
+									</row>
+									<row>
+										<label value="CLIENTVER" />
+										<textbox id="clientver"
+											width="300px" />
+									</row>
+								</rows>
+							</grid>
+
+							<toolbar id="searchToolbar3"
+								visible="true">
+								<hbox pack="center" width="100%">
+									<separator spacing="20px" />
+									<toolbarbutton id="btn_exit3"
+										label="Выход" image="/images/search.png" />
+								</hbox>
+							</toolbar>
+						</vbox>
+					</window>
+				</vlayout>
+			</tabpanel>
+			
+			<tabpanel><!-- report_history -->
+				<vlayout id="grd4" hflex="1">
+					<grid id="mainGrid4" visible="true" width="100%">
+						<columns>
+							<column width="40%" />
+							<column width="60%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="USERNAME" />
+								<textbox id="txtusername4" hflex="1"
+									value="" />
+							</row>
+							<row>
+								<label value="FROM" />
+								<datebox id="txtdate4" hflex="1" />
+							</row>
+							<row>
+								<label value="TO" />
+								<datebox id="txtdate5" hflex="1" />
+							</row>
+						</rows>
+					</grid>
+					<toolbar id="searchToolbar4" visible="true">
+						<toolbarbutton id="tbtn_search4" label="Поиск"
+							image="/images/search.png" />
+					</toolbar>  
+					<paging id="userActionsLogPaging4" pageSize="10" />
+					<listbox id="dataDetailsGrid4" rows="20"
+						style="border:normal;height:700px;" width="100%">
+						<listhead sizable="true">
+							<listheader label="ID" />
+							<listheader label="REP_DEAL_ID" />
+							<listheader label="REP_ID" />
+							<listheader label="PAR_NAME" />
+							<listheader label="PAR_VALUE" />
+							<listheader label="USER_ID" />
+							<listheader label="COMP_NAME" />
+							<listheader label="V_DATE" />
+							<listheader label="DATE_TIME" />
+						</listhead>
+					</listbox>
+				</vlayout>
+				<vlayout>
+					<window id="detailsWindow4" mode="overlapped"
+						visible="false" width="80%"
+						style="position: absolute; top: 50%; left: 50%; 
+           transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.9); 
+           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);"
+						closable="true" height="auto" border="normal">
+						<label value="detailsWindow"
+							style="font-weight:bold;" />
+						<vbox width="100%" pack="center">
+							<grid width="100%">
+								<columns>
+									<column width="60%" align="center"
+										valign="middle" />
+									<column width="40%" align="center"
+										valign="middle" />
+								</columns>
+
+								<rows>
+									<row>
+										<label value="ID" />
+										<textbox id="id"
+											width="300px" />
+									</row>
+									<row>
+										<label value="REP_DEAL_ID" />
+										<textbox id="rep_deal_id"
+											width="300px" />
+									</row>
+									<row>
+										<label value="REP_ID" />
+										<textbox id="rep_id"
+											width="300px" />
+									</row>
+									<row>
+										<label value="PAR_NAME" />
+										<textbox id="par_name"
+											width="300px" />
+									</row>
+									<row>
+										<label value="PAR_VALUE" />
+										<textbox id="par_value"
+											width="300px" />
+									</row>
+									<row>
+										<label value="USER_ID" />
+										<textbox id="user_id"
+											width="300px" />
+									</row>
+									<row>
+										<label value="COMP_NAME" />
+										<textbox id="comp_name"
+											width="300px" />
+									</row>
+									<row>
+										<label value="V_DATE" />
+										<datebox id="v_date"
+											width="300px" />
+									</row>
+									<row>
+										<label value="DATE_TIME" />
+										<datebox id="date_time"
+											width="300px" />
+									</row>
+								</rows>
+							</grid>
+
+							<toolbar id="searchToolbar3"
+								visible="true">
+								<hbox pack="center" width="100%">
+									<separator spacing="20px" />
+									<toolbarbutton id="btn_exit4"
+										label="Выход" image="/images/search.png" />
+								</hbox>
+							</toolbar>
+						</vbox>
+					</window>
+				</vlayout>
+			</tabpanel>
+
+		</tabpanels>
+	</tabbox>
+</window>

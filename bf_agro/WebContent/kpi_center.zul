@@ -1,0 +1,247 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="kpi_centermain" width="100%" height="100%" border="normal"
+	apply="com.is.kpi.center.kpi_centerViewCtrl">
+	<toolbar id="tb">
+		<toolbarbutton id="btn_back" label="${labels.back}"
+			image="/images/file.png" />
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" />
+
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+
+	</toolbar>
+
+	<div id="grd">
+
+		<paging id="kpi_centerPaging" width="100%" />
+		<listbox style="border:none" id="dataGrid" multiple="true"
+			rows="4" width="100%" selectedItem="@{kpi_centermain$composer.current}">
+			<listhead sizable="true"
+				style="height:45px; vertical-align:middle; text-align:center;">
+				<listheader label="${labels.kpi_center.id}" width="30px" />
+				<listheader label="${labels.kpi_center.name}" width="325px" />
+				<listheader style="font-size:11px;white-space: normal;"
+					label="${labels.kpi_center.date_last_plan}" width="95px" />
+				<listheader label="${labels.kpi_center.state}" style="font-size:11px;white-space: normal;"
+					width="150px" />
+				<listheader label="${labels.kpi_center.plan_value}"
+					width="100px" />
+				<listheader label="${labels.kpi_center.fact_value}"
+					width="100px" />
+				<listheader label="${labels.kpi_center.diff_value}"
+					width="100px" />
+				<listheader label="${labels.kpi_center.plan_cnt}" style="font-size:11px;white-space: normal;"
+					width="80px" />
+				<listheader label="${labels.kpi_center.fact_cnt}" style="font-size:11px;white-space: normal;"
+					width="80px" />
+				<listheader label="${labels.kpi_center.diff_cnt}" style="font-size:11px;white-space: normal;"
+					width="80px" />
+				<listheader label="${labels.kpi_center.getbranch}" width="100px" />
+			</listhead>
+
+		</listbox>
+
+
+
+	</div>
+	<div id="frm" visible="false">
+		<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+
+				<row>
+					<label value="${labels.kpi_center.id}" />
+					<textbox id="id" mold="rounded"
+						value="@{kpi_centermain$composer.current.id}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.name}" />
+					<textbox id="name" mold="rounded"
+						value="@{kpi_centermain$composer.current.name}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.date_last_plan}" />
+					<textbox id="date_last_plan" mold="rounded"
+						value="@{kpi_centermain$composer.current.date_last_plan}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.state}" />
+					<textbox id="state" mold="rounded"
+						value="@{kpi_centermain$composer.current.state}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.plan_value}" />
+					<textbox id="plan_value" mold="rounded"
+						value="@{kpi_centermain$composer.current.plan_value}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.fact_value}" />
+					<textbox id="fact_value" mold="rounded"
+						value="@{kpi_centermain$composer.current.fact_value}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.diff_value}" />
+					<textbox id="diff_value" mold="rounded"
+						value="@{kpi_centermain$composer.current.diff_value}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.plan_cnt}" />
+					<textbox id="plan_cnt" mold="rounded"
+						value="@{kpi_centermain$composer.current.plan_cnt}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.fact_cnt}" />
+					<textbox id="fact_cnt" mold="rounded"
+						value="@{kpi_centermain$composer.current.fact_cnt}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.diff_cnt}" />
+					<textbox id="diff_cnt" mold="rounded"
+						value="@{kpi_centermain$composer.current.diff_cnt}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.getbranch}" />
+					<textbox id="getbranch" mold="rounded"
+						value="@{kpi_centermain$composer.current.getbranch}" />
+				</row>
+			</rows>
+		</grid>
+		<grid id="addgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+
+				<row>
+					<label value="${labels.kpi_center.id}" />
+					<textbox id="aid" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.name}" />
+					<textbox id="aname" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.date_last_plan}" />
+					<textbox id="adate_last_plan" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.state}" />
+					<textbox id="astate" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.plan_value}" />
+					<textbox id="aplan_value" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.fact_value}" />
+					<textbox id="afact_value" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.diff_value}" />
+					<textbox id="adiff_value" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.plan_cnt}" />
+					<textbox id="aplan_cnt" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.fact_cnt}" />
+					<textbox id="afact_cnt" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.diff_cnt}" />
+					<textbox id="adiff_cnt" mold="rounded" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.getbranch}" />
+					<textbox id="agetbranch" mold="rounded" />
+				</row>
+			</rows>
+		</grid>
+		<grid id="fgrd" visible="false">
+			<columns>
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+
+				<row>
+					<label value="${labels.kpi_center.id}" />
+					<textbox id="fid" mold="rounded"
+						value="@{kpi_centermain$composer.filter.id}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.name}" />
+					<textbox id="fname" mold="rounded"
+						value="@{kpi_centermain$composer.filter.name}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.date_last_plan}" />
+					<textbox id="fdate_last_plan" mold="rounded"
+						value="@{kpi_centermain$composer.filter.date_last_plan}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.state}" />
+					<textbox id="fstate" mold="rounded"
+						value="@{kpi_centermain$composer.filter.state}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.plan_value}" />
+					<textbox id="fplan_value" mold="rounded"
+						value="@{kpi_centermain$composer.filter.plan_value}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.fact_value}" />
+					<textbox id="ffact_value" mold="rounded"
+						value="@{kpi_centermain$composer.filter.fact_value}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.diff_value}" />
+					<textbox id="fdiff_value" mold="rounded"
+						value="@{kpi_centermain$composer.filter.diff_value}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.plan_cnt}" />
+					<textbox id="fplan_cnt" mold="rounded"
+						value="@{kpi_centermain$composer.filter.plan_cnt}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.fact_cnt}" />
+					<textbox id="ffact_cnt" mold="rounded"
+						value="@{kpi_centermain$composer.filter.fact_cnt}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.diff_cnt}" />
+					<textbox id="fdiff_cnt" mold="rounded"
+						value="@{kpi_centermain$composer.filter.diff_cnt}" />
+				</row>
+				<row>
+					<label value="${labels.kpi_center.getbranch}" />
+					<textbox id="fgetbranch" mold="rounded"
+						value="@{kpi_centermain$composer.filter.getbranch}" />
+				</row>
+			</rows>
+		</grid>
+
+		<toolbar>
+			<toolbarbutton id="btn_save" label="${labels.save}"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+
+</window>
+

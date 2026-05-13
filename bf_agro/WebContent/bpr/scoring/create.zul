@@ -1,0 +1,76 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<div apply="com.is.bpri.creategrids.CreateCtrl">
+		<toolbar>
+			<toolbarbutton id="btn_add" label="Добавить" image="/images/+.png" />
+			<toolbarbutton id="btn_del" label="Удалить" image="/images/-.png" />
+			<toolbarbutton id="btn_app" label="Утвердить" image="/images/OK.png" />
+			<toolbarbutton id="btn_search" label="Выбор отчета"
+				image="/images/search.png" />
+			<toolbarbutton id="btn_imp_exl" label="Експорт в Excell"
+				image="/images/import.png" />
+		</toolbar>
+		<listbox id="creationList">
+			<listhead>
+				<listheader label="№" width="50" />
+				<listheader label="МФО" width="50" />
+				<listheader label="Дата" />
+				<listheader label="Заголовок" />
+				<listheader label="№ Шаблона" />
+				<listheader label="Наименование шаблона" />
+				<listheader label="Процесс" visible="false" />
+				<listheader label="Процесс" />
+				<listheader label="Состояние" />
+				<listheader label="Состояние" visible="false" />
+			</listhead>
+		</listbox>
+		<div id="divgrd" visible="false">
+			<grid>
+				<rows>
+					<row>
+						<label value="Заголовок" />
+						<textbox id="main_name" width="80%" maxlength="150" />
+					</row>
+					<row id="template_row">
+						<label value="Шаблон" />
+						<rcombobox id="template" width="80%" />
+					</row>
+				</rows>
+			</grid>
+			<grid>
+				<rows id="cRows" />
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_save" label="Сохранить" />
+				<toolbarbutton id="btn_cancel" label="Отмена" />
+			</toolbar>
+		</div>
+		<div id="divsearch" visible="false">
+			<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+				<columns>
+					<column width="20%" />
+					<column width="80%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="МФО" />
+						<textbox id="fbranch" mold="rounded" />
+					</row>
+					<row>
+						<label value="Дата" />
+						<datebox id="fdate_bank" mold="rounded" />
+					</row>
+					<row>
+						<label value="Шаблон" />
+						<rcombobox id="ftype_temp" width="80%" mold="rounded" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_searchOK" label="Найти" />
+				<toolbarbutton id="btn_searchCl" label="Очистить" />
+				<toolbarbutton id="btn_searchCan" label="Отмена" />
+			</toolbar>
+		</div>
+	</div>
+</zk>

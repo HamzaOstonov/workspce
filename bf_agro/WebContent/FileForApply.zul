@@ -1,0 +1,183 @@
+<window border="normal" id="apply"
+	apply="com.is.tieto_agro.apply.FileForApplyViewCtrl">
+	<toolbar>
+		<toolbarbutton id="btn_details"
+			label="${labels.fprocessing.details}" image="/images/file.png" />
+		<toolbarbutton id="btn_search" label="${labels.search}"
+			image="/images/search.png" />
+		<toolbarbutton id="btn_first" label="${labels.first}"
+			image="/images/backward.png" />
+		<toolbarbutton id="btn_prev" label="${labels.prev}"
+			image="/images/back.png" />
+		<toolbarbutton id="btn_next" label="${labels.next}"
+			image="/images/front.png" />
+		<toolbarbutton id="btn_last" label="${labels.last}"
+			image="/images/forward.png" />
+		<toolbarbutton id="btn_apply" style="color:red"
+			label="${labels.fprocessing.apply}" image="/images/approved.png" />
+	</toolbar>
+
+	<div id="list_grid">
+		<listbox style="border:none" width="100%" id="data_listbox"
+			selectedItem="@{apply$composer.current}">
+			<listhead sizable="true">
+				<listheader label="${labels.fprocessing.branch}" />
+				<listheader label="${labels.fprocessing.d_date}" />
+				<listheader label="${labels.fprocessing.acc_cl}" />
+				<listheader label="${labels.fprocessing.name_cl}" />
+				<listheader label="${labels.fprocessing.summa}" />
+			</listhead>
+		</listbox>
+		<div align="center">
+			<paging id="applyPaging" />
+		</div>
+	</div>
+
+	<div id="main_form" visible="false">
+		<div id="details_div">
+			<grid width="49%"
+				style="float: left; margin-right: 1.5%;">
+				<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.fprocessing.id}" />
+						<label id="id"
+							value="@{apply$composer.current.id}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.d_date}" />
+						<label id="d_date"
+							value="@{apply$composer.current.d_date}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.bank_cl}" />
+						<label id="bank_cl"
+							value="@{apply$composer.current.bank_cl}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.acc_cl}" />
+						<label id="acc_cl"
+							value="@{apply$composer.current.acc_cl}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.name_cl}" />
+						<label id="name_cl"
+							value="@{apply$composer.current.name_cl}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.bank_co}" />
+						<label id="bank_co"
+							value="@{apply$composer.current.bank_co}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.acc_co}" />
+						<label id="acc_co"
+							value="@{apply$composer.current.acc_co}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.name_co}" />
+						<label id="name_co"
+							value="@{apply$composer.current.name_co}" />
+					</row>
+				</rows>
+			</grid>
+			<grid width="49%">
+				<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.fprocessing.branch}" />
+						<label id="branch"
+							value="@{apply$composer.current.branch}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.summa}" />
+						<label id="summa"
+							value="@{apply$composer.current.summa}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.purpose}" />
+						<label id="purpose"
+							value="@{apply$composer.current.purpose}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.type_doc}" />
+						<label id="type_doc"
+							value="@{apply$composer.current.type_doc}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.pdc}" />
+						<label id="pdc"
+							value="@{apply$composer.current.pdc}" />
+					</row>
+					<row>
+						<label
+							value="${labels.fprocessing.parent_group_id}" />
+						<label id="parent_group_id"
+							value="@{apply$composer.current.parent_group_id}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.parent_id}" />
+						<label id="parent_id"
+							value="@{apply$composer.current.parent_id}" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.deal_id}" />
+						<label id="deal_id"
+							value="@{apply$composer.current.deal_id}" />
+					</row>
+				</rows>
+			</grid>
+		</div>
+
+		<div id="search_div">
+			<grid>
+				<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.fprocessing.branch}" />
+						<textbox id="fbranch"
+							value="@{apply$composer.filter.branch}" width="150px" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.d_date}" />
+						<datebox id="fd_date"
+							value="@{apply$composer.filter.d_date}" width="150px" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.acc_cl}" />
+						<textbox id="facc_cl"
+							value="@{apply$composer.filter.acc_cl}" width="150px" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.name_cl}" />
+						<textbox id="fname_cl"
+							value="@{apply$composer.filter.name_cl}" width="150px" />
+					</row>
+					<row>
+						<label value="${labels.fprocessing.summa}" />
+						<longbox id="fsumma"
+							value="@{apply$composer.filter.summa}" width="150px" />
+					</row>
+				</rows>
+			</grid>
+
+
+			<toolbar>
+				<toolbarbutton id="btn_search_accept"
+					label="${labels.fprocessing.btn_search_accept}"
+					image="/images/search.png" />
+				<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+					image="/images/stop.png" />
+			</toolbar>
+		</div>
+	</div>
+</window>

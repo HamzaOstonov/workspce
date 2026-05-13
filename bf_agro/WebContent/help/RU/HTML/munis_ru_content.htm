@@ -1,0 +1,122 @@
+﻿<!DOCTYPE HTML>
+<html><head>
+   <title>Руководство пользователя по системе &quot;МУНИС&quot;</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+   <!-- This line includes the general project style sheet (not required) -->
+   <link type="text/css" href="default.css" rel="stylesheet" />
+
+   <!-- This block defines the styles of the TOC headings, change them as needed -->
+   <style type="text/css">
+       body { background:#FFF; }
+       .navbar   { font-size: 120%; }
+
+       .heading1 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading2 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading3 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading4 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading5 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading6 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+
+       .hilight1 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+       .hilight2 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+       .hilight3 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+       .hilight4 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+       .hilight5 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+       .hilight6 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+
+       /* TOC LIST CSS */
+       #toc    { padding: 0; margin: 0 }
+       #toc li { margin-top: 2px }
+       #toc ul { padding-left: 0; margin-left: 0 }
+       /* TOC LIST CSS */
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript">
+     var parentScope = (parent.hmNavigationFrame);
+     if (!parentScope) {
+		      var s = document.createElement("script");
+		      s.setAttribute("type","text/javascript");
+		      s.setAttribute("src", "helpman_navigation.js");
+		      document.getElementsByTagName("head")[0].appendChild(s);
+	    }
+     else {
+       if (initialtocstate != "expandall") parent.hmAddCss(document, "#toc li ul { display: none }");
+     }
+     function loadicons() { var icons = new Array(); for (i=0; i<arguments.length; i++) { icons[i] = new Image(); icons[i].src = arguments[i]; } }
+     function loadtoc() { if (parentScope) parent.loadstate(document.getElementById("toc")); else loadstate(document.getElementById("toc")); }
+     function savetoc() { if (parentScope) parent.savestate(document.getElementById("toc")); else savestate(document.getElementById("toc")); }
+     function clicked(node, event) { deselect(); if (parentScope) parent.hmNodeClicked(node, event); else hmNodeClicked(node, event); }
+     function dblclicked(node) { if (parentScope) parent.hmNodeDblclicked(node); else hmNodeDblclicked(node); }
+     function deselect() { if (window.getSelection) window.getSelection().removeAllRanges(); else if (document.selection) document.selection.empty(); }
+     $(document).ready(function(){
+       loadtoc();
+       $(window).onunload = savetoc;
+     });
+   </script>
+</head>
+<body>
+<p style="margin-bottom: 16px"><span style="font-size: 12pt; font-weight: bold;">Руководство пользователя по системе &quot;МУНИС&quot;</span></p>
+<p><span style="font-size: 10pt"><b>Содержание</b>&nbsp;|&nbsp;<a href="munis_ru_kwindex.htm">Индекс</a>&nbsp;|&nbsp;<a href="munis_ru_ftsearch.htm">Поиск</a></span></p>
+<hr size="1" />
+
+
+
+
+
+
+
+
+
+  <!-- Place holder for the TOC - this variable is REQUIRED! -->
+  <ul id="toc" style="list-style-type:none;display:block;padding-left:0">
+<li class="heading1" id="i1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a1" href="introduction.htm" target="hmcontent"><span class="heading1" id="s1">Вход в систему &quot;МУНИС&quot;</span></a>
+</li>
+<li class="heading1" id="i2" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a2" href="admin.htm" target="hmcontent"><span class="heading1" id="s2" ondblclick="return dblclicked(this)">Администрирование</span></a>
+<ul id="ul2" style="list-style-type:none">
+<li class="heading2" id="i2.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a2.1" href="roles.htm" target="hmcontent"><span class="heading2" id="s2.1">Роли</span></a>
+</li>
+<li class="heading2" id="i2.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a2.2" href="users.htm" target="hmcontent"><span class="heading2" id="s2.2">Пользователи</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i3" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a3" href="communal_payments.htm" target="hmcontent"><span class="heading1" id="s3" ondblclick="return dblclicked(this)">Коммунальные платежи</span></a>
+<ul id="ul3" style="list-style-type:none">
+<li class="heading2" id="i3.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a3.1" href="suppliers.htm" target="hmcontent"><span class="heading2" id="s3.1">Поставщики</span></a>
+</li>
+<li class="heading2" id="i3.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a3.2" href="services.htm" target="hmcontent"><span class="heading2" id="s3.2">Услуги</span></a>
+</li>
+<li class="heading2" id="i3.3" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a3.3" href="payments.htm" target="hmcontent"><span class="heading2" id="s3.3">Платежи</span></a>
+</li>
+<li class="heading2" id="i3.4" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a3.4" href="transactionsettings.htm" target="hmcontent"><span class="heading2" id="s3.4">Настройка проводок</span></a>
+</li>
+<li class="heading2" id="i3.5" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a3.5" href="comacc_settings.htm" target="hmcontent"><span class="heading2" id="s3.5">Настройка счетов</span></a>
+</li>
+<li class="heading2" id="i3.6" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a3.6" href="protocol.htm" target="hmcontent"><span class="heading2" id="s3.6">Ком Протокол</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i4" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a4" href="incomepaymentsforsuppliers.htm" target="hmcontent"><span class="heading1" id="s4" ondblclick="return dblclicked(this)">Входящие платежи поставщикам</span></a>
+<ul id="ul4" style="list-style-type:none">
+<li class="heading2" id="i4.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a4.1" href="sup_transsettings.htm" target="hmcontent"><span class="heading2" id="s4.1">Пост. настройка проводок</span></a>
+</li>
+<li class="heading2" id="i4.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a4.2" href="sup_accsettings.htm" target="hmcontent"><span class="heading2" id="s4.2">Пост. настройка счетов</span></a>
+</li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript">loadicons('button_topic.gif','button_openbook.gif','button_closedbook.gif');</script>
+
+<hr size="1" /><p><span style="font-size: 8px">© 2014 Intellegent Solutions</span></p>
+
+
+
+
+
+
+
+
+</body>
+</html>

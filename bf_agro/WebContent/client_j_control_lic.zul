@@ -1,0 +1,71 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+
+<window id="licencemain" mode="modal" closable="true" width="80%"
+		onClose="self.visible = false; event.stopPropagation();"
+		title="Лицензии и свидетельства" position="center,center"
+		apply="com.is.clients.controllers.LicenceViewCtr">
+		<listbox id="lic_list" rows="5" 
+			selectedItem="@{licencemain$composer.currentLic}">
+			<listhead>
+				<listheader label="Филиал" />
+				<listheader label="Номер лицензии" />
+				<listheader label="Вид деятельности" />
+				<listheader label="Дата выдачи" />
+			</listhead>
+		</listbox>
+
+		<grid id="lic_info">
+			<columns>
+				<column />
+				<column />
+				<column />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="Вид деятельности" />
+					<cell colspan="3">
+						<textbox id="name" mold="rounded" hflex="1"
+							disabled="true"
+							value="@{licencemain$composer.currentLic.act_name}" />
+					</cell>
+				</row>
+				<row>
+					<label value="№ лицензии" />
+					<textbox id="lis_num" mold="rounded" hflex="1"
+						disabled="true"
+						value="@{licencemain$composer.currentLic.lis_num}" />
+					<label value="№ а реестре" />
+					<textbox id="reester_num" mold="rounded" hflex="1"
+						disabled="true"
+						value="@{licencemain$composer.currentLic.reester_num}" />
+				</row>
+				<row>
+					<label value="Дата выдачи" />
+					<datebox id="lis_date" mold="rounded" hflex="1"
+						disabled="true"
+						value="@{licencemain$composer.currentLic.lis_date}" />
+				</row>
+				<row>
+					<label value="Кем выдан" />
+					<cell colspan="3">
+						<textbox id="lis_give_organ" mold="rounded"
+							hflex="1" disabled="true"
+							value="@{licencemain$composer.currentLic.lis_give_organ}" />
+					</cell>
+				</row>
+				<row>
+					<label value="Срок действия" />
+					<datebox id="last_lis_date" mold="rounded" hflex="1"
+						disabled="true"
+						value="@{licencemain$composer.currentLic.last_lis_date}" />
+				</row>
+			</rows>
+		</grid>
+		<toolbar>
+			<toolbarbutton id="btn_new" label="Новый" />
+			<toolbarbutton id="btn_save" label="Сохранить"/>
+			<toolbarbutton id="btn_cancel" label="Отмена"/>
+			<toolbarbutton id="btn_delete" label="Удалить" />
+		</toolbar>
+	</window>

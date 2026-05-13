@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TI_APPL_UPAMOUNT" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="475" leftMargin="60" rightMargin="60" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="64"/>
+	<parameter name="BRANCH_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<BRANCH_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLIENT_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CLIENT_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TRANS_ACC" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<TRANS_ACC>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TRANS_ACC_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<TRANS_ACC_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MFO" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<MFO>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_ACC_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_ACC_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_ACC" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_ACC>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="AMOUNT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<AMOUNT>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="AMOUNT_TEXT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<AMOUNT_TEXT>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CARD_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<CARD_NAME>"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["<DATE>"]]></defaultValueExpression>
+	</parameter>
+	<title>
+		<band height="550" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="153" width="475" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Управляющему филиалом]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="173" width="475" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="193" width="475" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["От "+$P{CLIENT_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="281" width="475" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Заявление на пополнение карточки VISA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="317" width="475" height="131"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Прошу Вас со счета № "+$P{TRANS_ACC}+" "+$P{TRANS_ACC_NAME}+" филиала "+$P{MFO}+" перечислить на карточный счет "+$P{CARD_ACC_NAME}+" № "+$P{CARD_ACC}+" филиала 00444 сумму в размере "+$P{AMOUNT}+" "+$P{AMOUNT_TEXT}+" долл. США. Для пополнение  карты VISA "+$P{CARD_NAME}+"."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="448" width="218" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Дата "+$P{DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="218" y="448" width="170" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfFontName="arial.ttf" pdfEncoding="Cp1251"/>
+				</textElement>
+				<text><![CDATA[Подпись]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

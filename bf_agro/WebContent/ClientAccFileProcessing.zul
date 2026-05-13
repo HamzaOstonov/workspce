@@ -1,0 +1,340 @@
+<?component name = "rcombobox" extends = "combobox" class = "com.is.utils.RefCBox"?>
+
+<window id="filemain" width="100%" border="normal"
+	apply="com.is.client_acc.fileProcessing.FileViewCtrl">
+
+	<div id="grd">
+
+		<toolbar id="tb">
+			<toolbarbutton id="btn_back" label="${labels.back}"
+				image="/images/file.png" />
+			<toolbarbutton id="btn_first" label="${labels.first}"
+				image="/images/backward.png" />
+			<toolbarbutton id="btn_prev" label="${labels.prev}"
+				image="/images/back.png" />
+			<toolbarbutton id="btn_next" label="${labels.next}"
+				image="/images/front.png" />
+			<toolbarbutton id="btn_last" label="${labels.last}"
+				image="/images/forward.png" />
+			<toolbarbutton id="btn_show_acc_filter" label="Перейти к отборку счетов для закрытия..."
+				image="/images/file.png" />
+		</toolbar>
+
+		<div>
+			<grid width="100%">
+				<columns>
+					<column hflex="1" />
+					<column hflex="2" />
+					<column hflex="1" />
+					<column hflex="2" />
+					<column hflex="1" />
+					<column hflex="2" />
+					<column hflex="1" />
+					<column hflex="3" />
+					<column hflex="3" />
+					<column hflex="3" />
+				</columns>
+				<rows>
+					<row>
+						<label value="${labels.file.id}:" />
+						<textbox id="searchId" width="80%" />
+						<label value="${labels.file.fileName}:" />
+						<textbox id="searchFileName" width="80%" />
+						<label value="${labels.file.fileDate}:" />
+						<datebox id="searchDate" width="80%" />
+						<label value="Статус файла" />
+						<rcombobox id="humoFileId"
+							selecteditem="@{customermain$composer.filter.state_id}" />
+
+						<button id="btnSearch"
+							label="${labels.file.search}" image="/images/search.png" />
+						<button id="btnClearSearch"
+							label="${labels.file.clearSearch}" image="/images/zoom-.png" />
+
+					</row>
+				</rows>
+			</grid>
+		</div>
+
+		<listbox id="process" multiple="true" width="100%" vflex="3">
+			<listhead sizable="true">
+				<listheader label="ID файла" hflex="1" />
+				<listheader label="Названия файла" hflex="1" />
+				<listheader label="Общий" hflex="1" />
+				<listheader label="Обработана" hflex="4" />
+				<listheader label="Ошибка" hflex="2" />
+			</listhead>
+			<listitem>
+				<listcell>
+					<textbox id="fileId" hflex="1" readonly="true" />
+				</listcell>
+				<listcell>
+					<textbox id="fileName" hflex="4" readonly="true" />
+				</listcell>
+				<listcell>
+					<textbox id="common" hflex="1" readonly="true" />
+				</listcell>
+				<listcell>
+					<textbox id="success" hflex="4" readonly="true" />
+				</listcell>
+				<listcell>
+					<textbox id="error" hflex="2" readonly="true" />
+				</listcell>
+			</listitem>
+		</listbox>
+
+		<listbox style="border: none" id="dataGrid" multiple="true"
+			rows="4" selectedItem="@{filemain$composer.current}">
+			<listhead sizable="true">
+				<listheader label="ID" hflex="1" />
+				<listheader label="FileName" hflex="2" />
+				<listheader label="FileDate" hflex="2" />
+				<listheader label="State" hflex="2" />
+				<listheader label="Процесс" hflex="2" />
+				<listheader label="Действия" />
+				<listheader label="Действия 2" />
+			</listhead>
+		</listbox>
+		<div align="center">
+			<paging id="filePaging" width="100%" />
+		</div>
+	</div>
+
+    <div id="divFilterAccounts" visible="false">
+        <div> <label value="Фильтрация неработающих счетов" /> </div>
+        <div>
+			<grid width="100%">
+				<columns>
+					<column hflex="1" />
+					<column hflex="2" />
+					<column hflex="1" />
+					<column hflex="2" />
+					<column hflex="1" />
+					<column hflex="2" />
+				</columns>
+				<rows>
+					<row>
+						<label value="МФО:" />
+						<textbox id="asearchBranch" width="80%" value="00394" />
+						<label value="Без действующие счета в днях:" />
+						<textbox id="asearchDay" width="80%" />
+						<label value="Код баланса:" />
+						<rcombobox id="asearchAccBal" width="80%" />
+						
+					</row>
+					<row>
+						<label value="Номер распоряжения:" />
+						<textbox id="asearchNumDoc" width="80%" />
+						<label value="Дата распоряжения:" />
+						<datebox id="asearchDateDoc" width="80%" />
+						<label value="Основание на закрытие:" />
+						<textbox id="asearchPurpose" width="80%" />
+					</row>
+		            <row>
+						<label value="" />
+						<button id="btnAccSearch"
+							label="Поиск счетов" image="/images/search.png" />
+						<label value="" />
+						<button id="btnAddForClosing"
+							label="Подготовить найденных счетов к закрытию" image="/images/search.png" />
+						<label value="" />
+						<button id="btnAccClearSearch"
+							label="${labels.file.clearSearch}" image="/images/zoom-.png" />
+					</row>
+				</rows>
+			</grid>
+		</div>
+
+        <listbox style="border: none" id="accDataGrid" multiple="true"
+			rows="10" >
+			<listhead sizable="true">
+				<listheader label="Branch" hflex="1" />
+				<listheader label="Account" hflex="2" />
+				<listheader label="Last oper date" hflex="2" />
+				<listheader label="State" hflex="2" />
+				<listheader label="Процесс" hflex="2" />
+				<listheader label="Name" />
+				<listheader label="Saldo" />
+			</listhead>
+		</listbox>
+		<div align="center">
+			<paging id="accPaging" width="100%" />
+		</div>		
+	</div>
+
+	<window id="fileRecords" width="90%" mode="modal"
+		title="Строки файла" closable="true"
+		onClose="self.visible  =  false; event.stopPropagation();"
+		position="center, center" visible="false">
+
+		<div id="record">
+			<listbox id="fileRecordsListbox" style="border: none"
+				multiple="true" rows="10"
+				selectedItem="@{filemain$composer.currentRecord}" mold="paging">
+				<listhead sizable="true">
+					<listheader label="Id" hflex="1" />
+					<listheader label="Agreement_numver" hflex="1" />
+					<listheader label="Dbo_closed_dt" hflex="2" />
+					<listheader label="Doc_fio" hflex="2" />
+					<listheader label="Bank_account" hflex="1" />
+					<listheader label="Pinfl" hflex="1" />
+					<listheader label="Nciid" hflex="1" />
+					<listheader label="ErrorText" hflex="2" />
+					<listheader label="State" hflex="2" />
+				</listhead>
+			</listbox>
+		</div>
+
+	</window>
+
+	<window id="fileRecordFields" width="80%" mode="modal" title="Поля"
+		closable="true"
+		onClose="self.visible = false; event.stopPropagation();"
+		position="center, center" visible="false">
+
+		<grid id="fieldsGrid" style="border: none; padding: 0px;">
+			<columns>
+				<column hflex="2" />
+				<column hflex="4" />
+				<column hflex="2" />
+				<column hflex="4" />
+			</columns>
+			<rows>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.id}"
+						style="font-weight: bold;" />
+					<label id="id" />
+					<label value="${labels.visaTieto.file.tranz_acct}"
+						style="font-weight: bold;" />
+					<label id="tranz_acct" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.empc_file_id}"
+						style="font-weight: bold;" />
+					<label id="empc_file_id" />
+					<label value="${labels.visaTieto.file.term_id}"
+						style="font-weight: bold;" />
+					<label id="term_id" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.state_id}"
+						style="font-weight: bold;" />
+					<label id="state_id" />
+					<label value="${labels.visaTieto.file.iss_mfo}"
+						style="font-weight: bold;" />
+					<label id="iss_mfo" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.record_type}"
+						style="font-weight: bold;" />
+					<label id="record_type" />
+					<label value="${labels.visaTieto.file.product}"
+						style="font-weight: bold;" />
+					<label id="product" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.line_number}"
+						style="font-weight: bold;" />
+					<label id="line_number" />
+					<label value="${labels.visaTieto.file.internal_no}"
+						style="font-weight: bold;" />
+					<label id="internal_no" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.client}"
+						style="font-weight: bold;" />
+					<label id="client" />
+					<label value="${labels.visaTieto.file.proc_id}"
+						style="font-weight: bold;" />
+					<label id="proc_id" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.card_acct}"
+						style="font-weight: bold;" />
+					<label id="card_acct" />
+					<label value="${labels.visaTieto.file.city}"
+						style="font-weight: bold;" />
+					<label id="city" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.accnt_ccy}"
+						style="font-weight: bold;" />
+					<label id="accnt_ccy" />
+					<label value="${labels.visaTieto.file.country}"
+						style="font-weight: bold;" />
+					<label id="country" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.card}"
+						style="font-weight: bold;" />
+					<label id="card" />
+					<label value="${labels.visaTieto.file.abvr_name}"
+						style="font-weight: bold;" />
+					<label id="abvr_name" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.slip_nr}"
+						style="font-weight: bold;" />
+					<label id="slip_nr" />
+					<label value="${labels.visaTieto.file.merchant}"
+						style="font-weight: bold;" />
+					<label id="merchant" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.ref_number}"
+						style="font-weight: bold;" />
+					<label id="ref_number" />
+					<label value="${labels.visaTieto.file.mcc_code}"
+						style="font-weight: bold;" />
+					<label id="mcc_code" />
+				</row>
+				<row height="32px">
+					<label
+						value="${labels.visaTieto.file.tran_date_time}"
+						style="font-weight: bold;" />
+					<label id="tran_date_time" />
+					<label value="${labels.visaTieto.file.terminal}"
+						style="font-weight: bold;" />
+					<label id="terminal" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.rec_date}"
+						style="font-weight: bold;" />
+					<label id="rec_date" />
+					<label value="${labels.visaTieto.file.accnt_amt}"
+						style="font-weight: bold;" />
+					<label id="accnt_amt" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.post_date}"
+						style="font-weight: bold;" />
+					<label id="post_date" />
+					<label value="${labels.visaTieto.file.tran_amt}"
+						style="font-weight: bold;" />
+					<label id="tran_amt" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.deal_desc}"
+						style="font-weight: bold;" />
+					<label id="deal_desc" />
+					<label value="${labels.visaTieto.file.tran_ccy}"
+						style="font-weight: bold;" />
+					<label id="tran_ccy" />
+				</row>
+				<row height="32px">
+					<label value="${labels.visaTieto.file.tran_type}"
+						style="font-weight: bold;" />
+					<label id="tran_type" />
+					<label value="${labels.visaTieto.file.deb_cred}"
+						style="font-weight: bold;" />
+					<label id="deb_cred" />
+				</row>
+			</rows>
+		</grid>
+
+	</window>
+
+	<timer id="timer" running="false" delay="10000" repeats="true" />
+
+
+</window>

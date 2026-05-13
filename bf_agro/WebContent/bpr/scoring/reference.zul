@@ -1,0 +1,43 @@
+<zk>
+	<div id="maindiv" apply="com.is.bpri.reference.ReferenceCtrl">
+		<toolbar>
+			<toolbarbutton label="Добавить" id="btn_add" image="/images/+.png" />
+			<toolbarbutton label="Удалить" id="btn_del" image="/images/-.png" />
+		</toolbar>
+		<listbox id="referenceList" mold="paging" pageSize="15">
+			<listhead>
+				<listheader label="Номер" visible="false" />
+				<listheader label="Справочники" align="center" />
+				<listheader label="Пользователь" visible="false" />
+			</listhead>
+		</listbox>
+		<div id="divgrd" visible="false">
+			<grid id="main_grd">
+				<rows>
+					<row>
+						<cell colspan="2">
+							<label value="Наименование справочника" />
+						</cell>
+						<cell colspan="2">
+							<textbox id="main_name" width="80%" maxlength="150" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<grid>
+				<rows id="dRows" />
+			</grid>
+			<grid>
+				<rows>
+					<row>
+						<button id="btn_addField" label="Добавить значение" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar>
+				<toolbarbutton id="btn_save" label="Сохранить" />
+				<toolbarbutton id="btn_cancel" label="Отмена" />
+			</toolbar>
+		</div>
+	</div>
+</zk>

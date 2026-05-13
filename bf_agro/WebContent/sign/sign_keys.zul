@@ -1,0 +1,196 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<panel id="keymain" width="100%"  height="100%" border="normal" apply="com.is.sign.keys.KeyViewCtrl">
+	<toolbar id="tb" width="100%" align="center" height="35px">
+		<style>
+	       	.sp-paging.z-paging {
+			    background: none;
+			    border:none; 
+			}
+			.sp-paging.z-paging .z-paging-btn {
+			    background: none;
+			}
+	    </style>
+       	<div width="100%" align="center" height="35px">
+			<hbox width="100%" widths="100%,200px" align="center" height="35px">
+				<hbox width="100%">
+					<toolbarbutton id="btn_refresh" tooltiptext="${labels.refresh}" image="/images/refresh.png" />
+					<separator orient="vertical" spacing="10px" bar="true" height="24px" style="color: white;"></separator>
+					<toolbarbutton id="btn_first" tooltiptext="${labels.first}" image="/images/backward.png" />
+		            <toolbarbutton id="btn_prev" tooltiptext="${labels.prev}" image="/images/back.png" />
+			        <toolbarbutton id="btn_next" tooltiptext="${labels.next}" image="/images/front.png" />
+			        <toolbarbutton id="btn_last" tooltiptext="${labels.last}" image="/images/forward.png" />
+					<separator orient="vertical" spacing="10px" bar="true" height="24px" style="color: white;"></separator>
+							
+			    	<toolbarbutton id="btn_back" label="${labels.back}" image="/images/file.png" />
+				    <toolbarbutton id="btn_search" label="${labels.search}" image="/images/search.png" />
+				    <toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" />
+				</hbox>
+				<paging id="keyPaging" width="200px" sclass="sp-paging"/>
+			</hbox>
+		</div>
+	</toolbar>
+	<panelchildren>
+        <div id="grd">
+            <listbox style="border:none" id="dataGrid" multiple="true" fixedLayout="true" rows="4" width="100%" selectedItem="@{keymain$composer.current}">
+            	<listhead sizable="true">
+					<listheader label="${labels.sign.key.key_type}" width="100px"/>
+					<listheader label="${labels.sign.key.key_code}" width="100px"/>
+					<listheader label="${labels.sign.key.key_sn}" width="200px"/>
+					<listheader label="${labels.sign.key.key_certn}" width="200px"/>
+					<listheader label="${labels.sign.key.version}" width="100px"/>
+					<!--  
+					<listheader label="${labels.sign.key.signature_algoritm}" />
+					<listheader label="${labels.sign.key.key_size}" />
+					<listheader label="${labels.sign.key.issuer}" />
+					<listheader label="${labels.sign.key.pkey}" />
+					-->
+					<listheader label="${labels.sign.key.sign_failure}"/>
+					<listheader label="${labels.sign.key.key_expired}" width="100px"/>
+					<listheader label="${labels.sign.key.activate_date}" width="100px"/>
+					<listheader label="${labels.sign.key.deactivate_date}" width="120px"/>
+					<!--  
+					<listheader label="${labels.sign.key.branch}" />
+					<listheader label="${labels.sign.key.emp_id}" />
+					-->
+					<listheader label="${labels.sign.key.state}"/>
+					
+                </listhead>
+			</listbox>
+        </div>
+        <div id="frm" visible="false">
+			<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+            	<columns>
+                	<column width="15%" />
+                 	<column width="35%" />
+                 	<column width="15%" />
+                 	<column width="35%" />
+             	</columns>
+              	<rows>
+					<row>
+						<label value="${labels.sign.key.key_code}" /><textbox id="key_code"  mold="rounded"  value="@{keymain$composer.current.key_code}" width="300px" maxlength="20" readonly="true"/>
+						<label value="${labels.sign.key.key_sn}" /><textbox id="key_sn"  mold="rounded"  value="@{keymain$composer.current.key_sn}" width="300px" maxlength="20" readonly="true"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.key_type}" /><rcombobox id="key_type"  mold="rounded"  selecteditem="@{keymain$composer.current.key_type}" width="300px" readonly="true" disabled="true"/>
+						<label value="${labels.sign.key.key_certn}" /><textbox id="key_certn"  mold="rounded"  value="@{keymain$composer.current.key_certn}" width="300px" maxlength="20" readonly="true"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.activate_date}" /><datebox id="activate_date"  mold="rounded"  value="@{keymain$composer.current.activate_date}" width="300px" disabled="true"/>
+						<label value="${labels.sign.key.deactivate_date}" /><datebox id="deactivate_date"  mold="rounded"  value="@{keymain$composer.current.deactivate_date}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.sign_failure}" /><rcombobox id="sign_failure"  mold="rounded"  selecteditem="@{keymain$composer.current.sign_failure}" width="300px" readonly="true" />
+						<label value="${labels.sign.key.key_expired}" /><datebox id="key_expired"  mold="rounded"  value="@{keymain$composer.current.key_expired}" width="300px"/>
+					</row>
+					
+					<row>
+						<label value="${labels.sign.key.state}" /><rcombobox id="state"  mold="rounded"  selecteditem="@{keymain$composer.current.state}" width="300px"/>
+						<label value="${labels.sign.key.signature_algoritm}" /><textbox id="signature_algoritm"  mold="rounded"  value="@{keymain$composer.current.signature_algoritm}" width="300px"/>
+					</row>
+					
+					<row>
+						<label value="${labels.sign.key.key_size}" /><longbox id="key_size"  mold="rounded"  value="@{keymain$composer.current.key_size}" width="300px"/>
+						<label value="${labels.sign.key.issuer}" /><textbox id="issuer"  mold="rounded"  value="@{keymain$composer.current.issuer}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.pkey}" /><textbox id="pkey" mold="rounded" value="@{keymain$composer.current.pkey}" width="300px"/>
+						<label value="${labels.sign.key.version}" /><textbox id="version"  mold="rounded"  value="@{keymain$composer.current.version}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.branch}" /><rcombobox id="branch"  mold="rounded"  selecteditem="@{keymain$composer.current.branch}" width="300px" readonly="true" disabled="true"/>
+						<label value="${labels.sign.key.emp_id}" /><textbox id="emp_id"  mold="rounded"  value="@{keymain$composer.current.user_name}" width="300px" readonly="true"/>
+					</row>
+                </rows>
+          	</grid>
+          	<grid id="addgrd" visible="false">
+            	<columns>
+                	<column width="15%" />
+                 	<column width="35%" />
+                 	<column width="15%" />
+                 	<column width="35%" />
+            	</columns>
+             	<rows>
+					<row>
+						<label value="${labels.sign.key.key_code}" /><textbox id="akey_code"  mold="rounded"  value="@{keymain$composer.currentadd.key_code}" width="300px" maxlength="20"/>
+						<label value="${labels.sign.key.key_sn}" /><textbox id="akey_sn"  mold="rounded"  value="@{keymain$composer.currentadd.key_sn}" width="300px" maxlength="20" />
+					</row>
+					<row>
+						<label value="${labels.sign.key.key_type}" /><rcombobox id="akey_type"  mold="rounded"  selecteditem="@{keymain$composer.currentadd.key_type}" width="300px" readonly="true"  disabled="true"/>
+						<label value="${labels.sign.key.key_certn}" /><textbox id="akey_certn"  mold="rounded"  value="@{keymain$composer.currentadd.key_certn}" width="300px" maxlength="20"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.activate_date}" /><datebox id="aactivate_date"  mold="rounded"  value="@{keymain$composer.currentadd.activate_date}" width="300px" readonly="true"  disabled="true"/>
+						<label value="${labels.sign.key.deactivate_date}" /><datebox id="adeactivate_date"  mold="rounded"  value="@{keymain$composer.currentadd.deactivate_date}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.sign_failure}" /><rcombobox id="asign_failure"  mold="rounded"  selecteditem="@{keymain$composer.currentadd.sign_failure}" width="300px"  readonly="true" disabled="true"/>
+						<label value="${labels.sign.key.key_expired}" /><datebox id="akey_expired"  mold="rounded"  value="@{keymain$composer.currentadd.key_expired}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.state}" /><rcombobox id="astate"  mold="rounded"  selecteditem="@{keymain$composer.currentadd.state}" width="300px" disabled="true"/>
+						<label value="${labels.sign.key.signature_algoritm}" /><textbox id="asignature_algoritm"  mold="rounded"  value="@{keymain$composer.currentadd.signature_algoritm}" width="300px"/>
+					</row>
+					
+					<row>
+						<label value="${labels.sign.key.key_size}" /><longbox id="akey_size"  mold="rounded"  value="@{keymain$composer.currentadd.key_size}" width="300px"/>
+						<label value="${labels.sign.key.issuer}" /><textbox id="aissuer"  mold="rounded"  value="@{keymain$composer.currentadd.issuer}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.pkey}" /><textbox id="apkey" mold="rounded" value="@{keymain$composer.currentadd.pkey}" width="300px"/>
+						<label value="${labels.sign.key.version}" /><textbox id="aversion"  mold="rounded"  value="@{keymain$composer.currentadd.version}" width="300px"/>
+					</row>
+					<row visible="false">
+						<label value="${labels.sign.key.branch}" /><rcombobox id="abranch"  mold="rounded"  selecteditem="@{keymain$composer.currentadd.branch}" width="300px" readonly="true"/>
+						<label value="${labels.sign.key.emp_id}" /><textbox id="aemp_id"  mold="rounded"  value="@{keymain$composer.currentadd.emp_id}" width="300px" readonly="true"/>
+					</row>
+                </rows>
+           	</grid>
+   			<grid id="fgrd" visible="false">
+            	<columns>
+             		<column width="15%" />
+                 	<column width="35%" />
+                 	<column width="15%" />
+                 	<column width="35%" />
+             	</columns>
+          		<rows>
+					<row>
+						<label value="${labels.sign.key.key_code}" /><textbox id="fkey_code"  mold="rounded"  value="@{keymain$composer.filter.key_code}" width="300px" maxlength="10"/>
+						<label value="${labels.sign.key.key_sn}" /><textbox id="fkey_sn"  mold="rounded"  value="@{keymain$composer.filter.key_sn}" width="300px" maxlength="20"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.key_type}" /><rcombobox id="fkey_type"  mold="rounded"  selecteditem="@{keymain$composer.filter.key_type}" width="300px"/>
+						<label value="${labels.sign.key.key_certn}" /><textbox id="fkey_certn"  mold="rounded"  value="@{keymain$composer.filter.key_certn}" width="300px" />
+					</row>
+					<row>
+						<label value="${labels.sign.key.activate_date}" /><datebox id="factivate_date"  mold="rounded"  value="@{keymain$composer.filter.activate_date}" width="300px"/>
+						<label value="${labels.sign.key.deactivate_date}" /><datebox id="fdeactivate_date"  mold="rounded"  value="@{keymain$composer.filter.deactivate_date}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.sign_failure}" /><rcombobox id="fsign_failure"  mold="rounded"  selecteditem="@{keymain$composer.filter.sign_failure}" width="300px"/>
+						<label value="${labels.sign.key.key_expired}" /><datebox id="fkey_expired"  mold="rounded"  value="@{keymain$composer.filter.key_expired}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.state}" /><rcombobox id="fstate"  mold="rounded"  selecteditem="@{keymain$composer.filter.state}" width="300px"/>
+						<label value="${labels.sign.key.signature_algoritm}" /><textbox id="fsignature_algoritm"  mold="rounded"  value="@{keymain$composer.filter.signature_algoritm}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.key_size}" /><longbox id="fkey_size"  mold="rounded"  value="@{keymain$composer.filter.key_size}" width="300px"/>
+						<label value="${labels.sign.key.issuer}" /><textbox id="fissuer"  mold="rounded"  value="@{keymain$composer.filter.issuer}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.pkey}" /><cell colspan="3"><textbox id="fpkey" value="@{keymain$composer.filter.pkey}" width="100%"/></cell>
+						<label value="${labels.sign.key.version}" /><textbox id="fversion"  mold="rounded"  value="@{keymain$composer.filter.version}" width="300px"/>
+					</row>
+					<row>
+						<label value="${labels.sign.key.branch}" /><rcombobox id="fbranch"  mold="rounded"  selecteditem="@{keymain$composer.filter.branch}" width="300px" readonly="true"/>
+						<label value="${labels.sign.key.emp_id}" /><textbox id="femp_id"  mold="rounded"  value="@{keymain$composer.filter.emp_id}" width="300px" readonly="true"/>
+					</row>
+              	</rows>
+         	</grid>
+			<toolbar>
+         		<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+              	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+           	</toolbar>
+        </div>
+	</panelchildren>
+</panel>

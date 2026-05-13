@@ -1,0 +1,579 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<panel id="usermain" width="100%" border="normal" apply="com.is.clb.user.UserViewCtrl">
+	<toolbar id="tb" width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+    	<div width="100%" align="center" height="35px">
+			<hbox width="100%" widths="100%,50px,200px" align="center" height="35px">
+				<hbox width="100%">
+					<toolbarbutton id="checkall" image="/images/checkall.png" visible="false"/>
+					<toolbarbutton id="btn_refresh" label="${labels.refresh}" image="/images/refresh.png" />
+					<toolbarbutton id="btn_back" label="${labels.back}" image="/images/file.png" />
+					<toolbarbutton id="btn_search" label="${labels.search}" image="/images/search.png" />
+					<toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" />
+					<toolbarbutton id="btn_delete" label="${labels.delete}" image="/images/delete.png" />
+					
+					<toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png" />
+					<toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png" />
+					<toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png" />
+					<toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png" />
+				</hbox>
+				<rcombobox id="pagesize" mold="rounded" selecteditem="" width="50px"/>
+				<paging id="userPaging" width="200px" sclass="sp-paging"/>
+			</hbox>
+		</div>
+	</toolbar>
+	<panelchildren id="usermainchild">
+        <style>
+        	.sp-paging.z-paging {
+			    background: none;
+			    border:none; 
+			}
+			.sp-paging.z-paging .z-paging-btn {
+			    background: none;
+			}
+        </style>
+        <div id="grd">
+            <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%" selectedItem="@{usermain$composer.current}">
+            	<listhead sizable="true">
+					<listheader label="${labels.user.username}"  width="200px" sort="auto(username)"/>
+					<!--
+					<listheader label="${labels.user.password}" />
+					-->
+					<listheader label="${labels.user.name}"  style="min-width: 300px;" sort="auto(name)"/>
+					<listheader label="${labels.user.phone}"  width="200px" sort="auto(phone)"/>
+					<listheader label="${labels.user.email}"  width="150px" sort="auto(email)"/>
+						<!--
+					<listheader label="${labels.user.mngr}" />
+					<listheader label="${labels.user.isadmin}" />
+					-->
+					<listheader label="${labels.user.state}" width="150px" sort="auto(state)"/>
+					<!--
+					<listheader label="${labels.user.curclient}" />
+					-->
+                </listhead>
+			</listbox>
+        </div>
+        <div id="frm" visible="false">
+			<div id="frmgrddiv" ctrlKeys="^e#up#down" visible="true">
+				<groupbox mold="3d" open="true" closable="false" >
+				<caption label="${labels.user.info}" />
+					<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+		            	<columns>
+		                	<column width="10%" />
+		                 	<column width="10%" />	
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		                 	<column width="10%" />
+		             	</columns>
+		              	<rows>
+							<row>
+								<label value="${labels.user.username}" />
+								<cell colspan="3">
+									<textbox id="username" readonly="true" value="@{usermain$composer.current.username}" width="94%"/>
+								</cell>
+								<label value="${labels.user.name}" />
+								<cell colspan="3">
+									<textbox id="name" value="@{usermain$composer.current.name}" constraint="no empty: Имя не должен быть пустым" width="98%"/>
+								</cell>
+								<label value="${labels.user.pwd_expired}" />
+								<cell colspan="1">
+									<datebox id="pwd_expired" mold="rounded" value="@{usermain$composer.current.pwd_expired}" constraint="no empty: Дата не должна быть пустой" width="92%"/>
+								</cell>
+							</row>
+							<!--  
+							<row><label value="${labels.user.password}" /><textbox id="password"  mold="rounded"  value="@{usermain$composer.current.password}" /></row>
+							-->
+							<row>
+								<label value="${labels.user.phone}" />
+								<cell colspan="3">
+									<textbox id="phone" value="@{usermain$composer.current.phone}" constraint="no negative,no zero,no empty: Телефон не должен быть пустым" width="94%"/>
+								</cell>
+								<label value="${labels.user.email}" />
+								<cell colspan="2">
+									<textbox id="email" value="@{usermain$composer.current.email}" constraint="/.+@.+\.[a-z]+/: Введите e-mail адрес" width="94%"/>
+								</cell>
+								<label value="${labels.user.state}" />
+								<cell colspan="2">
+									<rcombobox id="state"  mold="rounded"  selecteditem="@{usermain$composer.current.state}" width="97%"/>
+								</cell>
+								<cell visible="false">
+									<label value="${labels.user.mngr}" />
+									<rcombobox id="mngr"  mold="rounded"  selecteditem="@{usermain$composer.current.mngr}" width="98%"/>
+								</cell>
+							</row>
+							<row visible="false">
+								<cell colspan="6">
+								</cell>
+								<cell colspan="2" align="right">
+									<label value="${labels.user.isadmin}" />
+								</cell>
+								<cell colspan="2">
+									<checkbox id="isadmin" checked="@{usermain$composer.current.isadmin}" />
+								</cell>
+							</row>
+							<!--  
+							<row><label value="${labels.user.curclient}" /><textbox id="curclient"  mold="rounded"  value="@{usermain$composer.current.curclient}" /></row>
+							-->
+		                </rows>
+		          	</grid>
+		          	<toolbar>
+		         		<toolbarbutton id="btn_saveusr" label="${labels.save}" image="/images/save.png" />
+		              	<toolbarbutton id="btn_cancelusr" label="${labels.cancel}" image="/images/stop.png" />
+		              	<toolbarbutton id="btnChPwd" label="Изменить пароль" image="/images/opened.png" />
+		           	</toolbar>
+	          	</groupbox>
+	          	<groupbox mold="3d" open="true" closable="false" >
+				<caption label="${labels.user.userclient}" />
+			        <listbox style="border:none" id="clientdataGrid" multiple="true" rows="5" width="100%" selectedItem="@{usermain$composer.currentclient}">
+		            	<listhead sizable="true">
+							<!--  
+							<listheader label="${labels.client.id}" />
+							<listheader label="${labels.client.username}" />
+							-->
+							<listheader label="${labels.client.branch}" width="50px" sort="auto(branch)"/>
+							<listheader label="${labels.client.client_id}" width="100px" sort="auto(client_id)"/>
+							<listheader label="${labels.client.client_name}" sort="auto(client_name)"/>
+							<listheader label="${labels.client.inn}" width="100px" sort="auto(inn)"/>
+							<!--  
+							<listheader label="${labels.client.schema}" />
+							<listheader label="${labels.client.state}" />
+							-->
+							<listheader label="${labels.user.clientaccess}" width="260px" sort="auto(userbindstate)" />
+		                </listhead>
+					</listbox>
+					<toolbar  align="center">
+						<div width="100%" align="center">
+							<hbox width="100%" widths="100%,200px" align="center">
+								<hbox width="100%">
+							        <toolbarbutton id="btn_addclient" label="${labels.add}" image="/images/+.png" />
+							        <toolbarbutton id="btn_deleteclient" label="${labels.delete}" image="/images/delete.png" />
+								</hbox>
+								<paging id="clientPaging" width="200px" sclass="sp-paging"/>
+							</hbox>
+						</div>
+					</toolbar>
+		          	<hbox width="100%" widths="30%,70%">
+					<groupbox mold="3d" open="true" closable="false" height="470px">
+					<caption label="${labels.user.clientroles}" />
+				        <div width="100%">
+						<hbox align="center" width="100%" widths="45%,10%,45%">
+				           <vbox align="center" width="100%">
+					       		<groupbox open="true" closable="false" >
+								<caption label="${labels.user.avrole}" />
+					           	<listbox id="left" height="400px" width="200px" droppable="true"  style="border: none;"/>
+					           	</groupbox>
+				           </vbox>
+				           <separator orient="vertical" spacing="8px" />
+				           <vbox align="center" width="100%">
+					           	<groupbox open="true" closable="false" >
+								<caption label="${labels.user.usrole}" />
+					           	<listbox id="right" height="400px" width="200px" droppable="true"  style="border: none;"/>
+					           </groupbox>
+				           </vbox>
+						</hbox>
+						</div>
+					</groupbox>
+					<groupbox mold="3d" open="true" closable="false" height="470px">
+					<caption label="${labels.user.clientaccounts}" />
+				        <div width="100%">
+				            <listbox style="border:none" id="clientAccDataGrid" multiple="true" rows="10" height="395px" width="100%" selectedItem="@{usermain$composer.currentclientacc}">
+				            	<listhead sizable="true">
+									<listheader label="${labels.globuzAccount.id}"  sort="auto(id)" visible="false"/>
+									<listheader label="${labels.globuzAccount.client_id}"  sort="auto(client_id)" visible="false"/>
+									<listheader label="${labels.globuzAccount.branch}"  sort="auto(branch)" width="70px"/>
+									<listheader label="${labels.globuzAccount.client}" width="80px"/>
+									<listheader label="${labels.globuzAccount.globuzAccount}"  sort="auto(globuzAccount)" style="min-width: 150px"/>
+									<listheader label="${labels.globuzAccount.access_id}"  sort="auto(access_id)" width="200px"/>
+									<listheader label="${labels.globuzAccount.state}"  sort="auto(state)" visible="false"/>
+				                </listhead>
+							</listbox>
+						</div>
+						<toolbar align="center">
+							<div width="100%" align="center">
+								<hbox width="100%" widths="100%,200px" align="center">
+									<hbox width="100%">
+								        <toolbarbutton id="btn_addacc" label="${labels.add}" image="/images/+.png" />
+								        <toolbarbutton id="btn_deleteacc" label="${labels.delete}" image="/images/delete.png" />
+									</hbox>
+									<paging id="clientAccPaging" width="200px" sclass="sp-paging"/>
+								</hbox>
+							</div>
+						</toolbar>
+		          	</groupbox>
+		          	</hbox>
+	          	</groupbox>
+          	</div>
+          	<div id="addgrddiv" visible="false">
+	          	<grid id="addgrd">
+			    	<columns>
+			        	<column width="30%" />
+			          	<column width="70%" />
+			   		</columns>
+			      	<rows>
+						<row><label value="${labels.user.name}" /><textbox id="aname"  mold="rounded"  value="" constraint="no empty: Имя не должено быть пустым" width="300px"/></row>
+						<row>
+				          	<label value="${labels.user.passport_sn}" />
+				           	<hbox width="300px" widths="50px,250px">
+					           	<textbox id="apassport_serial"  mold="rounded"  value="" constraint="no empty: Поле серия не должно быть пустым" width="50px"/>
+					           	<textbox id="apassport_number"  mold="rounded"  value="" constraint="no empty: Поле номер не должно быть пустым" width="248px"/>
+				       		</hbox>
+				      	</row>
+						<row><label value="${labels.user.username}" /><textbox id="ausername"  mold="rounded"  value="" width="300px" constraint="no empty: Имя не должено быть пустым"/></row><!-- constraint="/[a-z\\]*/:Введите имя" -->
+						<row>
+				     		<label value="${labels.user.password}" />
+				        	<textbox id="apassword" type="password" mold="rounded"  value="" constraint="no empty: Пароль не должен быть пустым" width="300px"/>
+				       	</row>	
+				       	<row>
+				     		<label value=" Подтвердите пароль:" />
+				        	<textbox id="apassword1" value="" type="password" mold="rounded" constraint="no empty: Пароль не должен быть пустым"  width="300px"/>
+				   		</row>
+						<row><label value="${labels.user.phone}" /><textbox id="aphone"  mold="rounded"  value="" constraint="no negative,no zero,no empty: Телефон не должен быть пустым" width="300px"/></row>
+						<row><label value="${labels.user.email}" /><textbox id="aemail"  mold="rounded"  value="" constraint="/.+@.+\.[a-z]+/: Введите e-mail адрес" width="300px"/></row>
+						<!--  
+						<row><label value="${labels.user.mngr}" /><rcombobox id="amngr"  mold="rounded"  selecteditem="" /></row>
+						<row><label value="${labels.user.isadmin}" /><checkbox id="aisadmin"  mold="rounded"  checked="" /></row>
+						<row><label value="${labels.user.state}" /><rcombobox id="astate"  mold="rounded"  selecteditem="" /></row>
+						<row><label value="${labels.user.curclient}" /><textbox id="acurclient"  mold="rounded"  value="" /></row>
+						-->
+			 		</rows>
+				</grid>
+				<groupbox mold="3d" open="true" closable="false" >
+				<caption label="${labels.user.userclient}" />
+			        <toolbar  align="center">
+						<div width="100%" align="center">
+							<hbox width="100%" widths="100%,200px" align="center">
+								<hbox width="100%">
+							        <toolbarbutton id="abtn_addclient" label="${labels.add}" image="/images/+.png" />
+							        <toolbarbutton id="abtn_deleteclient" label="${labels.delete}" image="/images/delete.png" />
+								</hbox>
+								<paging id="aclientPaging" width="200px" sclass="sp-paging"/>
+							</hbox>
+						</div>
+					</toolbar>
+			        <listbox style="border:none" id="aclientdataGrid" multiple="true" rows="2" width="100%" selectedItem="@{usermain$composer.addcurrentclient}">
+		            	<listhead sizable="true">
+							<!--  
+							<listheader label="${labels.client.id}" />
+							<listheader label="${labels.client.username}" />
+							-->
+							<listheader label="${labels.client.branch}" width="50px" sort="auto(branch)"/>
+							<listheader label="${labels.client.client_id}" width="100px" sort="auto(client_id)"/>
+							<listheader label="${labels.client.client_name}" sort="auto(client_name)"/>
+							<listheader label="${labels.client.inn}" width="100px" sort="auto(inn)"/>
+							<!--  
+							<listheader label="${labels.client.schema}" />
+							<listheader label="${labels.client.state}" />
+							<listheader label="${labels.user.clientaccess}" width="260px" sort="auto(userbindstate)" />
+							-->
+		                </listhead>
+					</listbox>
+				</groupbox>
+			</div>
+			<grid id="fgrd" visible="false">
+            	<columns>
+             		<column width="20%" />
+                   	<column width="80%" />
+             	</columns>
+          		<rows>
+					<row>
+						<label value="${labels.user.client.branch}" />
+						<hbox width="300px" widths="50px,100%">
+							<textbox id="fbranchtext"  mold="rounded"  value="@{usermain$composer.filter.branch}" width="50px"/>
+						  	<rcombobox id="fbranch"  mold="rounded"  selecteditem="@{usermain$composer.filter.branch}" width="248px" />
+						</hbox>
+					</row>		
+					<row><label value="${labels.user.username}" /><textbox id="fusername"  mold="rounded"  value="@{usermain$composer.filter.username}"  width="300px"/></row>
+					<!--  
+					<row><label value="${labels.user.password}" /><textbox id="fpassword"  mold="rounded"  value="@{usermain$composer.filter.password}"  width="300px"/></row>
+					-->
+					<row><label value="${labels.user.name}" /><textbox id="fname"  mold="rounded"  value="@{usermain$composer.filter.name}"  width="300px"/></row>
+					<row><label value="${labels.user.phone}" /><textbox id="fphone"  mold="rounded"  value="@{usermain$composer.filter.phone}"  width="300px"/></row>
+					<row><label value="${labels.user.email}" /><textbox id="femail"  mold="rounded"  value="@{usermain$composer.filter.email}"  width="300px"/></row>
+					<!--  
+					<row><label value="${labels.user.mngr}" /><rcombobox id="fmngr"  mold="rounded"  selecteditem="@{usermain$composer.filter.mngr}"  width="300px"/></row>
+					<row><label value="${labels.user.isadmin}" /><checkbox id="fisadmin" checked="@{usermain$composer.filter.isadmin}"  width="300px"/></row>
+					<row><label value="${labels.user.curclient}" /><textbox id="fcurclient"  mold="rounded"  value="@{usermain$composer.filter.curclient}"  width="300px"/></row>
+					-->
+					<row><label value="${labels.user.state}" /><rcombobox id="fstate"  mold="rounded"  selecteditem="@{usermain$composer.filter.state}"  width="300px"/></row>
+              	</rows>
+         	</grid>
+			<toolbar>
+         		<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+         		<toolbarbutton id="btn_clear" label="${labels.clear}" image="/images/clear_filter.png" visible="false"/>
+              	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+           	</toolbar>
+        </div>
+        <window id="addclienttouserwnd" closable="true" onClose="self.visible = false; event.stopPropagation();" sizable="true" maximizable="true" style="overflow-y: auto;"
+	    	title="${labels.user.addclienttouser} ${tbText.value}" border="normal" width="1000px" height="90%" position="center,center" mode="modal" visible="false">
+	   		<div width="100%" height="100%" style="overflow-y: scroll;">
+	        	<groupbox mold="3d" open="true" closable="true" width="100%" sclass="sp-groupbox" >
+				<caption label="${labels.user.usersearch}"/>
+					<grid id="fgrd">
+	                    <columns>
+	                    	<column width="15%" />
+	                        <column width="35%" />
+	                        <column width="15%" />
+	                        <column width="35%" />
+	                    </columns>
+	                    <rows>
+		                  	<row>
+		                  		<label value="${labels.user.client.branch}" />
+		                     	<hbox width="100%" widths="50px,100%">
+							  		<textbox id="fbranchtext"  mold="rounded"  value="@{usermain$composer.filterclientadd.branch}" width="50px"/>
+						          	<rcombobox id="fbranch"  mold="rounded"  selecteditem="@{usermain$composer.filterclientadd.branch}" width="248px" />
+						       	</hbox>
+		                   		<label value="${labels.user.client.id_client}" />
+		                      	<textbox id="fid_client"  mold="rounded"  value="@{usermain$composer.filterclientadd.id_client}" width="300px"/>
+		                  	</row>
+		                  	<row>
+		                    	<label value="${labels.user.client.name}" /><textbox id="fname"  mold="rounded"  value="@{usermain$composer.filterclientadd.name}" width="300px"/>
+		                     	<label value="${labels.user.client.j_short_name}" /><textbox id="fj_short_name"  mold="rounded"  value="@{bankClientmain$composer.filter.j_short_name}" width="300px"/>
+		                  	</row>
+		                  	<row>
+		                  		<label value="${labels.user.client.j_number_tax_registration}" /><textbox id="fj_number_tax_registration"  mold="rounded"  value="@{bankClientmain$composer.filter.j_number_tax_registration}" width="300px"/>
+		                  		<label value="${labels.user.client.code_subject}" /><rcombobox id="fcode_subject"  mold="rounded"  selecteditem="@{usermain$composer.filterclientadd.code_subject}" width="300px"/>
+		                  	</row>
+	                	</rows>
+	                </grid>
+			    	<toolbar>
+			    		<toolbarbutton id="btn_find" label="${labels.find}" image="/images/search.png" />
+	                    <toolbarbutton id="btn_find_clear" label="${labels.clear}" image="/images/clear_filter.png" />
+	                    <toolbarbutton id="btn_find_cancel" label="${labels.cancel}" image="/images/cancel_filter.gif" />
+			    	</toolbar>
+				</groupbox>
+	        	<groupbox mold="3d" open="true" closable="false" width="100%" sclass="sp-groupbox" >
+				<caption label="${labels.user.users}"/>
+					<toolbar id="tb" width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+				    	<div width="100%" align="center" height="35px">
+							<hbox width="100%" widths="100%,200px" align="center" height="35px">
+								<hbox width="100%">
+									<toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png" />
+									<toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png" />
+									<toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png" />
+									<toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png" />
+								</hbox>
+								<paging id="clientaddPaging" width="200px" sclass="sp-paging"/>
+							</hbox>
+						</div>
+					</toolbar>
+		            <listbox style="border:none" id="dataGrid" multiple="true" rows="5" width="100%" selectedItem="@{usermain$composer.currentclientadd}">
+		            	<listhead sizable="true">
+							<!--  
+							<listheader label="${labels.user.client.id}" />
+							-->
+							<listheader label="${labels.user.client.branch}"  width="50px" sort="auto(branch)"/>
+							<listheader label="${labels.user.client.id_client}"  width="90px" sort="auto(id_client)"/>
+							<listheader label="${labels.user.client.name}"  sort="auto(name)"/>
+							<listheader label="${labels.user.client.j_number_tax_registration}"  width="100px" sort="auto(j_number_tax_registration)"/>
+							<!--  
+							<listheader label="${labels.user.client.code_country}" />
+							<listheader label="${labels.user.client.code_type}" />
+							<listheader label="${labels.user.client.code_resident}" />
+							-->
+							<listheader label="${labels.user.client.code_subject}" width="100px" sort="auto(code_subject)"/>
+							<!--  
+							<listheader label="${labels.user.client.sign_registr}" />
+							<listheader label="${labels.user.client.code_form}" />
+							-->
+							<listheader label="${labels.user.client.date_open}" width="100px" sort="auto(date_open)"/>
+							<!--  
+							<listheader label="${labels.user.client.date_close}" />
+							-->
+							<listheader label="${labels.user.client.state}" width="100px" sort="auto(state)"/>
+							<!--  
+							<listheader label="${labels.user.client.kod_err}" />
+							<listheader label="${labels.user.client.file_name}" />
+							-->
+		                </listhead>
+					</listbox>
+					<toolbar width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+				    	<div width="100%" align="center" height="35px">
+							<hbox width="100%" widths="100%,200px" align="center" height="35px">
+								<hbox width="100%">
+									<toolbarbutton id="btn_clientadd" label="${labels.add}" image="/images/+.png" />
+								</hbox>
+							</hbox>
+						</div>
+					</toolbar>
+		       	</groupbox>
+			    <groupbox mold="3d" open="true" closable="true" width="100%" sclass="sp-groupbox" >
+				<caption label="${labels.user.userinfo}"/>
+				   	<grid id="frmgrd" ctrlKeys="^e#up#down">
+	                          <columns>
+	                                  <column width="15%" />
+	                                  <column width="35%" />
+	                                  <column width="15%" />
+	                                  <column width="35%" />
+	                          </columns>
+	                          <rows>
+		                                  <row>
+		                                  	<label value="${labels.user.client.id}" /><longbox id="id"  mold="rounded"  value="@{usermain$composer.currentclientadd.id}" width="300px"/>
+		                                  	<label value="${labels.user.client.code_resident}" /><rcombobox id="code_resident"  mold="rounded"  selecteditem="@{usermain$composer.currentclientadd.code_resident}" width="300px"/>
+		                                  </row>
+		                                  <row>
+		                                  	<label value="${labels.user.client.branch}" />
+		                                  	<hbox width="100%" widths="50px,100%">
+							                	<textbox id="branchtext" mold="rounded"  value="@{usermain$composer.currentclientadd.branch}" width="50px" />
+						              			<rcombobox id="branch"  mold="rounded"  selecteditem="@{usermain$composer.currentclientadd.branch}" width="248px" />
+						                    </hbox>
+		                                  	<label value="${labels.user.client.code_subject}" /><rcombobox id="code_subject" mold="rounded" selecteditem="@{usermain$composer.currentclientadd.code_subject}" width="300px"/>
+		                                  </row>
+		                                  <row>
+		                                  	<label value="${labels.user.client.id_client}" /><textbox id="id_client"  mold="rounded"  value="@{usermain$composer.currentclientadd.id_client}" width="300px"/>
+		                                  	<label value="${labels.user.client.code_form}" /><rcombobox id="code_form"  mold="rounded"  selecteditem="@{usermain$composer.currentclientadd.code_form}" width="300px"/>
+		                                  </row>
+		                                  <row>
+		                                  	<label value="${labels.user.client.name}" /><textbox id="name"  mold="rounded"  value="@{usermain$composer.currentclientadd.name}" width="300px"/>
+		                                  	<label value="${labels.user.client.date_open}" /><datebox id="date_open"  mold="rounded"  value="@{usermain$composer.currentclientadd.date_open}" width="300px"/>
+		                                  </row>
+		                                  <row>
+		                                  	<label value="${labels.user.client.code_country}" /><rcombobox id="code_country"  mold="rounded"  selecteditem="@{usermain$composer.currentclientadd.code_country}" width="300px"/>
+		                                  	<label value="${labels.user.client.date_close}" /><datebox id="date_close"  mold="rounded"  value="@{usermain$composer.currentclientadd.date_close}" width="300px"/>
+		                                  </row>
+		                                  <row>
+		                                  	<label value="${labels.user.client.code_type}" /><rcombobox id="code_type"  mold="rounded"  selecteditem="@{usermain$composer.currentclientadd.code_type}" width="300px"/>
+		                                  	<label value="${labels.user.client.state}" /><rcombobox id="state"  mold="rounded"  selecteditem="@{usermain$composer.currentclientadd.state}" width="300px"/>
+		                                  </row>
+		                                  <row>
+		                                  	<label value="${labels.user.client.j_short_name}" /><textbox id="j_short_name"  mold="rounded"  value="@{usermain$composer.currentclientadd.j_short_name}" width="300px"/>
+		                                  	<label value="${labels.user.client.j_number_tax_registration}" /><textbox id="j_number_tax_registration"  mold="rounded"  value="@{usermain$composer.currentclientadd.j_number_tax_registration}" width="300px"/>
+		                                  </row>
+		                                  <!-- 
+		                                  <row><label value="${labels.user.client.kod_err}" /><longbox id="kod_err"  mold="rounded"  value="@{usermain$composer.currentclientadd.kod_err}" width="300px"/></row>
+		                                  <row><label value="${labels.user.client.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{usermain$composer.currentclientadd.file_name}" width="300px"/></row>
+		                                  <row><label value="${labels.user.client.sign_registr}" /><longbox id="sign_registr"  mold="rounded"  value="@{usermain$composer.currentclientadd.sign_registr}" width="300px"/></row>
+		                                  <row><label value="${labels.user.client.id}" /><longbox id="id"  mold="rounded"  value="@{bankClientmain$composer.current.id}" /></row>
+		                                  -->
+	                          </rows>
+	                  </grid>
+			    </groupbox>
+	        </div>
+		</window>
+        <window id="addacctouserwnd" closable="true" onClose="self.visible = false; event.stopPropagation();" sizable="true" maximizable="true" style="overflow-y: auto;"
+    		title="${labels.user.addclienttouser} ${tbText.value}" border="normal" width="1000px" height="90%" position="center,center" mode="modal" visible="false">
+        	<div width="100%" height="100%" style="overflow-y: scroll;">
+	        	<groupbox mold="3d" open="true" closable="true" width="100%" sclass="sp-groupbox" >
+				<caption label="${labels.user.accsearch}"/>
+					<grid id="fgrd">
+		            	<columns>
+		             		<column width="10%" />
+		                   	<column width="40%" />
+		                   	<column width="10%" />
+		                   	<column width="40%" />
+		             	</columns>
+		          		<rows>
+							<!--  
+							<row><label value="${labels.tietoAccount.branch}" /><rcombobox id="fbranch"  mold="rounded"  selecteditem="@{usermain$composer.filterclientaccount.branch}" /></row>
+							-->
+							<row>
+								<label value="${labels.globuzAccount.id}" /><textbox id="fid"  mold="rounded"  value="@{usermain$composer.filterclientaccount.id}" width="300px"/>
+								<label value="${labels.globuzAccount.currency}" /><textbox id="fcurrency"  mold="rounded"  value="@{usermain$composer.filterclientaccount.currency}" width="300px"/>
+							</row>
+							<row>
+								<label value="${labels.globuzAccount.name}" /><textbox id="fname"  mold="rounded"  value="@{usermain$composer.filterclientaccount.name}" width="300px"/>
+								<label value="${labels.globuzAccount.date_open}" /><datebox id="fdate_open"  mold="rounded"  value="@{usermain$composer.filterclientaccount.date_open}" />
+							</row>
+							<!--  
+							<row><label value="${labels.tietoAccount.acc_bal}" /><textbox id="facc_bal"  mold="rounded"  value="@{usermain$composer.filterclientaccount.acc_bal}" /></row>
+							<row><label value="${labels.tietoAccount.currency}" /><textbox id="fcurrency"  mold="rounded"  value="@{usermain$composer.filterclientaccount.currency}" /></row>
+							<row><label value="${labels.tietoAccount.client}" /><textbox id="fclient"  mold="rounded"  value="@{usermain$composer.filterclientaccount.client}" /></row>
+							<row><label value="${labels.tietoAccount.id_order}" /><textbox id="fid_order"  mold="rounded"  value="@{usermain$composer.filterclientaccount.id_order}" /></row>
+							<row><label value="${labels.tietoAccount.name}" /><textbox id="fname"  mold="rounded"  value="@{usermain$composer.filterclientaccount.name}" /></row>
+							<row><label value="${labels.tietoAccount.sgn}" /><textbox id="fsgn"  mold="rounded"  value="@{usermain$composer.filterclientaccount.sgn}" /></row>
+							<row><label value="${labels.tietoAccount.bal}" /><textbox id="fbal"  mold="rounded"  value="@{usermain$composer.filterclientaccount.bal}" /></row>
+							<row><label value="${labels.tietoAccount.sign_registr}" /><longbox id="fsign_registr"  mold="rounded"  value="@{usermain$composer.filterclientaccount.sign_registr}" /></row>
+							<row><label value="${labels.tietoAccount.s_in}" /><longbox id="fs_in"  mold="rounded"  value="@{usermain$composer.filterclientaccount.s_in}" /></row>
+							<row><label value="${labels.tietoAccount.s_out}" /><longbox id="fs_out"  mold="rounded"  value="@{usermain$composer.filterclientaccount.s_out}" /></row>
+							<row><label value="${labels.tietoAccount.dt}" /><longbox id="fdt"  mold="rounded"  value="@{usermain$composer.filterclientaccount.dt}" /></row>
+							<row><label value="${labels.tietoAccount.ct}" /><longbox id="fct"  mold="rounded"  value="@{usermain$composer.filterclientaccount.ct}" /></row>
+							<row><label value="${labels.tietoAccount.s_in_tmp}" /><longbox id="fs_in_tmp"  mold="rounded"  value="@{usermain$composer.filterclientaccount.s_in_tmp}" /></row>
+							<row><label value="${labels.tietoAccount.s_out_tmp}" /><longbox id="fs_out_tmp"  mold="rounded"  value="@{usermain$composer.filterclientaccount.s_out_tmp}" /></row>
+							<row><label value="${labels.tietoAccount.dt_tmp}" /><longbox id="fdt_tmp"  mold="rounded"  value="@{usermain$composer.filterclientaccount.dt_tmp}" /></row>
+							<row><label value="${labels.tietoAccount.ct_tmp}" /><longbox id="fct_tmp"  mold="rounded"  value="@{usermain$composer.filterclientaccount.ct_tmp}" /></row>
+							<row><label value="${labels.tietoAccount.l_date}" /><datebox id="fl_date"  mold="rounded"  value="@{usermain$composer.filterclientaccount.l_date}" /></row>
+							<row><label value="${labels.tietoAccount.date_open}" /><datebox id="fdate_open"  mold="rounded"  value="@{usermain$composer.filterclientaccount.date_open}" /></row>
+							<row><label value="${labels.tietoAccount.date_close}" /><datebox id="fdate_close"  mold="rounded"  value="@{usermain$composer.filterclientaccount.date_close}" /></row>
+							<row><label value="${labels.tietoAccount.acc_group_id}" /><longbox id="facc_group_id"  mold="rounded"  value="@{usermain$composer.filterclientaccount.acc_group_id}" /></row>
+							<row><label value="${labels.tietoAccount.state}" /><rcombobox id="fstate"  mold="rounded"  selecteditem="@{usermain$composer.filterclientaccount.state}" /></row>
+							<row><label value="${labels.tietoAccount.kod_err}" /><longbox id="fkod_err"  mold="rounded"  value="@{usermain$composer.filterclientaccount.kod_err}" /></row>
+							<row><label value="${labels.tietoAccount.file_name}" /><textbox id="ffile_name"  mold="rounded"  value="@{usermain$composer.filterclientaccount.file_name}" /></row>
+							-->
+		              	</rows>
+		         	</grid>
+					<toolbar>
+			    		<toolbarbutton id="btn_find" label="${labels.find}" image="/images/search.png" />
+	                    <toolbarbutton id="btn_find_clear" label="${labels.clear}" image="/images/clear_filter.png" />
+	                    <toolbarbutton id="btn_find_cancel" label="${labels.cancel}" image="/images/cancel_filter.gif" />
+			    	</toolbar>
+	        	</groupbox>
+	        	<groupbox mold="3d" open="true" closable="true" width="100%" sclass="sp-groupbox" >
+				<caption label="${labels.user.accsearch}"/>
+					<toolbar id="tb" width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+				    	<div width="100%" align="center" height="35px">
+							<hbox width="100%" widths="100%,200px" align="center" height="35px">
+								<hbox width="100%">
+									<toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png" />
+									<toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png" />
+									<toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png" />
+									<toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png" />
+								</hbox>
+								<paging id="accountPaging" width="200px" sclass="sp-paging"/>
+							</hbox>
+						</div>
+					</toolbar>
+					<listbox style="border:none" id="dataGrid" multiple="true" fixedLayout="true" vflex="1" rows="10" width="100%" selectedItem="@{usermain$composer.currentclientaccount}">
+		            	<listhead sizable="true">
+							<listheader label="${labels.globuzAccount.branch}" width="50px" sort="auto(branch)"/>
+							<listheader label="${labels.globuzAccount.id}" width="150px" sort="auto(id)"/>
+							<!--  
+							<listheader label="${labels.tietoAccount.acc_bal}"  sort="auto()"/>
+							-->
+							<listheader label="${labels.globuzAccount.currency}" width="80px" sort="auto(currency)"/>
+							<!--  
+							<listheader label="${labels.tietoAccount.client}" />
+							<listheader label="${labels.tietoAccount.id_order}" />
+							-->
+							<listheader label="${labels.globuzAccount.name}"  sort="auto(name)"/>
+							<!--  
+							<listheader label="${labels.tietoAccount.sgn}" />
+							<listheader label="${labels.tietoAccount.bal}" />
+							<listheader label="${labels.tietoAccount.sign_registr}" />
+							<listheader label="${labels.tietoAccount.s_in}" />
+							<listheader label="${labels.tietoAccount.s_out}" />
+							<listheader label="${labels.tietoAccount.dt}" />
+							<listheader label="${labels.tietoAccount.ct}" />
+							<listheader label="${labels.tietoAccount.s_in_tmp}" />
+							<listheader label="${labels.tietoAccount.s_out_tmp}" />
+							<listheader label="${labels.tietoAccount.dt_tmp}" />
+							<listheader label="${labels.tietoAccount.ct_tmp}" />
+							<listheader label="${labels.tietoAccount.l_date}" />
+							<listheader label="${labels.tietoAccount.date_open}" />
+							<listheader label="${labels.tietoAccount.date_close}" />
+							<listheader label="${labels.tietoAccount.acc_group_id}" />
+							--> 
+							<listheader label="${labels.globuzAccount.state}" width="150px" sort="auto(state)"/>
+							<!--  
+							<listheader label="${labels.tietoAccount.kod_err}" />
+							<listheader label="${labels.tietoAccount.file_name}" />
+							-->
+		                </listhead>
+					</listbox>
+					<toolbar width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+				    	<div width="100%" align="center" height="35px">
+							<hbox width="100%" widths="100%,200px" align="center" height="35px">
+								<hbox width="100%">
+									<toolbarbutton id="btn_clientaddacc" label="${labels.add}" image="/images/+.png" />
+								</hbox>
+							</hbox>
+						</div>
+					</toolbar>
+				</groupbox>
+			</div>
+		</window>
+	</panelchildren>
+</panel>

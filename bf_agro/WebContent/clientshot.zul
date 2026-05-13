@@ -1,0 +1,164 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="clientmain" width="100%"  height="100%" border="normal" apply="com.is.clients.ClientViewCtrl">
+  	    <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}" image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}" image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}" image="/images/+.png" />
+                <toolbarbutton id="btn_first" label="${labels.first}" image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}" image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}" image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}" image="/images/forward.png" />
+        </toolbar>
+        <div id="grd">
+                <paging id="clientPaging" width="100%"/>
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%" selectedItem="@{clientmain$composer.current}">
+                        <listhead sizable="true">
+                                <listheader label="${labels.mailer.client.id}" width="150px"/>
+                                <listheader label="${labels.mailer.client.branch}" width="100px"/>
+                                <listheader label="${labels.mailer.client.id_client}" width="150px"/>
+                                <listheader label="${labels.mailer.client.name}" style="min-width: 300px;"/>
+                                <!--  
+                                <listheader label="${labels.mailer.client.code_country}" />
+                                <listheader label="${labels.mailer.client.code_type}" />
+                                <listheader label="${labels.mailer.client.code_resident}" />
+                                -->
+                                <listheader label="${labels.mailer.client.code_subject}" width="300px"/>
+                                <!--  
+                                <listheader label="${labels.mailer.client.code_form}" />
+                                -->
+                                <listheader label="${labels.mailer.client.date_open}" width="120px"/>
+                                <!--  
+                                <listheader label="${labels.mailer.client.date_close}" />
+                                <listheader label="${labels.mailer.client.state}" />
+                                <listheader label="${labels.mailer.client.kod_err}" />
+                                <listheader label="${labels.mailer.client.file_name}" />
+                                <listheader label="${labels.mailer.client.sign_registr}" />
+                                -->
+                        </listhead>
+                </listbox>
+        </div>
+        <div id="frm" visible="false">
+        	<div id="frmgrddiv" visible="true">          
+                  <grid id="frmgrd" ctrlKeys="^e#up#down">
+                          <columns>
+                                  <column width="15%" />
+                                  <column width="35%" />
+                                  <column width="15%" />
+                                  <column width="35%" />
+                          </columns>
+                          <rows>
+	                                  <row>
+	                                  	<label value="${labels.mailer.client.id}" /><longbox id="id"  mold="rounded"  value="@{clientmain$composer.current.id}" width="300px"/>
+	                                  	<label value="${labels.mailer.client.code_resident}" /><rcombobox id="code_resident"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_resident}" width="300px"/>
+	                                  </row>
+	                                  <row>
+	                                  	<label value="${labels.mailer.client.branch}" />
+	                                  	<hbox width="100%" widths="50px,100%">
+						                	<textbox id="branchtext" mold="rounded"  value="@{clientmain$composer.current.branch}" width="50px" />
+					              			<rcombobox id="branch"  mold="rounded"  selecteditem="@{clientmain$composer.current.branch}" width="248px" />
+					                    </hbox>
+	                                  	<label value="${labels.mailer.client.code_subject}" /><rcombobox id="code_subject" mold="rounded" selecteditem="@{clientmain$composer.current.code_subject}" width="300px"/>
+	                                  </row>
+	                                  <row>
+	                                  	<label value="${labels.mailer.client.id_client}" /><textbox id="id_client"  mold="rounded"  value="@{clientmain$composer.current.id_client}" width="300px"/>
+	                                  	<label value="${labels.mailer.client.code_form}" /><rcombobox id="code_form"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_form}" width="300px"/>
+	                                  </row>
+	                                  <row>
+	                                  	<label value="${labels.mailer.client.name}" /><textbox id="name"  mold="rounded"  value="@{clientmain$composer.current.name}" width="300px"/>
+	                                  	<label value="${labels.mailer.client.date_open}" /><datebox id="date_open"  mold="rounded"  value="@{clientmain$composer.current.date_open}" width="300px"/>
+	                                  </row>
+	                                  <row>
+	                                  	<label value="${labels.mailer.client.code_country}" /><rcombobox id="code_country"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_country}" width="300px"/>
+	                                  	<label value="${labels.mailer.client.date_close}" /><datebox id="date_close"  mold="rounded"  value="@{clientmain$composer.current.date_close}" width="300px"/>
+	                                  </row>
+	                                  <row>
+	                                  	<label value="${labels.mailer.client.code_type}" /><rcombobox id="code_type"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_type}" width="300px"/>
+	                                  	<label value="${labels.mailer.client.state}" /><rcombobox id="state"  mold="rounded"  selecteditem="@{clientmain$composer.current.state}" width="300px"/>
+	                                  </row>
+	                                  <row id="pemailrow" visible="false">
+	                                  	<label value="${labels.mailer.client.email}" />
+	                                  	<cell colspan="2">
+		                                  	<textbox id="email"  mold="rounded" value="" width="460px"/>
+	                                  	</cell>
+	                                  	<toolbarbutton id="btn_save_email" label="${labels.mailer.user.saveemail}"  width="300px" style="text-align: center;"/>
+	                                  </row>
+	                                  <!-- 
+	                                  <row><label value="${labels.mailer.client.kod_err}" /><longbox id="kod_err"  mold="rounded"  value="@{clientmain$composer.current.kod_err}" width="300px"/></row>
+	                                  <row><label value="${labels.mailer.client.file_name}" /><textbox id="file_name"  mold="rounded"  value="@{clientmain$composer.current.file_name}" width="300px"/></row>
+	                                  <row><label value="${labels.mailer.client.sign_registr}" /><longbox id="sign_registr"  mold="rounded"  value="@{clientmain$composer.current.sign_registr}" width="300px"/></row>
+	                                  -->
+                          </rows>
+                  </grid>
+                  <div id="addinfo"></div>
+      		</div>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+	                                  <row><label value="${labels.mailer.client.id}" /><longbox id="aid"  mold="rounded"  value="@{clientmain$composer.current.id}" /></row>
+	                                  <row>
+	                                  	<label value="${labels.mailer.client.branch}" />
+	                                  	<hbox width="100%" widths="50px,100%">
+						                	<textbox id="abranchtext"  mold="rounded"  value="@{clientmain$composer.current.branch}" width="50px"/>
+					              			<rcombobox id="abranch"  mold="rounded"  selecteditem="@{clientmain$composer.current.branch}" width="248px" />
+					                    </hbox>
+	                                  </row>
+	                                  <row><label value="${labels.mailer.client.id_client}" /><textbox id="aid_client"  mold="rounded"  value="@{clientmain$composer.current.id_client}" /></row>
+	                                  <row><label value="${labels.mailer.client.name}" /><textbox id="aname"  mold="rounded"  value="@{clientmain$composer.current.name}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_country}" /><rcombobox id="acode_country"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_country}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_type}" /><rcombobox id="acode_type"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_type}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_resident}" /><rcombobox id="acode_resident"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_resident}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_subject}" /><rcombobox id="acode_subject"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_subject}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_form}" /><rcombobox id="acode_form"  mold="rounded"  selecteditem="@{clientmain$composer.current.code_form}" /></row>
+	                                  <row><label value="${labels.mailer.client.date_open}" /><datebox id="adate_open"  mold="rounded"  value="@{clientmain$composer.current.date_open}" /></row>
+	                                  <row><label value="${labels.mailer.client.date_close}" /><datebox id="adate_close"  mold="rounded"  value="@{clientmain$composer.current.date_close}" /></row>
+	                                  <row><label value="${labels.mailer.client.state}" /><rcombobox id="astate"  mold="rounded"  selecteditem="@{clientmain$composer.current.state}" /></row>
+	                                  <!-- 
+	                                  <row><label value="${labels.mailer.client.kod_err}" /><longbox id="akod_err"  mold="rounded"  value="@{clientmain$composer.current.kod_err}" /></row>
+	                                  <row><label value="${labels.mailer.client.file_name}" /><textbox id="afile_name"  mold="rounded"  value="@{clientmain$composer.current.file_name}" /></row>
+	                                  <row><label value="${labels.mailer.client.sign_registr}" /><longbox id="asign_registr"  mold="rounded"  value="@{clientmain$composer.current.sign_registr}" /></row>
+	                                  -->
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+	                                  <row><label value="${labels.mailer.client.id}" /><longbox id="fid"  mold="rounded"  value="@{clientmain$composer.filter.id}" /></row>
+	                                  <row>
+	                                  	<label value="${labels.mailer.client.branch}" />
+	                                  	<hbox width="100%" widths="50px,100%">
+						                	<textbox id="fbranchtext"  mold="rounded"  value="@{clientmain$composer.filter.branch}" width="50px"/>
+					              			<rcombobox id="fbranch"  mold="rounded"  selecteditem="@{clientmain$composer.filter.branch}" width="248px" />
+					                    </hbox>
+	                                  </row>
+	                                  <row><label value="${labels.mailer.client.id_client}" /><textbox id="fid_client"  mold="rounded"  value="@{clientmain$composer.filter.id_client}" /></row>
+	                                  <row><label value="${labels.mailer.client.name}" /><textbox id="fname"  mold="rounded"  value="@{clientmain$composer.filter.name}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_country}" /><rcombobox id="fcode_country"  mold="rounded"  selecteditem="@{clientmain$composer.filter.code_country}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_type}" /><rcombobox id="fcode_type"  mold="rounded"  selecteditem="@{clientmain$composer.filter.code_type}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_resident}" /><rcombobox id="fcode_resident"  mold="rounded"  selecteditem="@{clientmain$composer.filter.code_resident}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_subject}" /><rcombobox id="fcode_subject"  mold="rounded"  selecteditem="@{clientmain$composer.filter.code_subject}" /></row>
+	                                  <row><label value="${labels.mailer.client.code_form}" /><rcombobox id="fcode_form"  mold="rounded"  selecteditem="@{clientmain$composer.filter.code_form}" /></row>
+	                                  <row><label value="${labels.mailer.client.date_open}" /><datebox id="fdate_open"  mold="rounded"  value="@{clientmain$composer.filter.date_open}" /></row>
+	                                  <row><label value="${labels.mailer.client.date_close}" /><datebox id="fdate_close"  mold="rounded"  value="@{clientmain$composer.filter.date_close}" /></row>
+	                                  <row><label value="${labels.mailer.client.state}" /><rcombobox id="fstate"  mold="rounded"  selecteditem="@{clientmain$composer.filter.state}" /></row>
+	                                  <!-- 
+	                                  <row><label value="${labels.mailer.client.kod_err}" /><longbox id="fkod_err"  mold="rounded"  value="@{clientmain$composer.filter.kod_err}" /></row>
+	                                  <row><label value="${labels.mailer.client.file_name}" /><textbox id="ffile_name"  mold="rounded"  value="@{clientmain$composer.filter.file_name}" /></row>
+	                                  <row><label value="${labels.mailer.client.sign_registr}" /><longbox id="fsign_registr"  mold="rounded"  value="@{clientmain$composer.filter.sign_registr}" /></row>
+	                                  -->
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+</window>

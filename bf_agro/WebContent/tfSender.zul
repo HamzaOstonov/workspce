@@ -1,0 +1,111 @@
+
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<window id="sendermain" width="100%"  height="550px" border="normal" apply="com.is.tf.sender.SenderViewCtrl" contentStyle="overflow:auto">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="senderPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{sendermain$composer.current}">
+                        <listhead sizable="true">
+                                
+                                <listheader label="${labels.sender.id}" width="40px" />
+                                <listheader label="${labels.sender.p0t10}" width="200px" />
+                                <listheader label="${labels.sender.p1t10}" width="200px" />
+                                <listheader label="${labels.sender.p2t10}" width="200px" />
+                                <listheader label="${labels.sender.p3t10}" width="200px" />
+                                <listheader label="${labels.sender.p4t10}" width="200px" />
+                                <listheader label="${labels.sender.p5t10}" width="200px" />
+                                <listheader label="${labels.sender.p6t10}" width="200px" />
+                                <listheader label="${labels.sender.p7t10}" width="200px" />
+                        </listhead>
+
+                </listbox>
+
+            
+
+        </div>
+        <div id="frm" visible="false">
+                  <grid id="frmgrd" ctrlKeys="^e#up#down"
+                          visible="true">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.sender.id}" /><textbox id="id"  mold="rounded"  value="@{sendermain$composer.current.id}" /></row>
+                                  <row><label value="${labels.sender.p0t10}" /><textbox id="p0t10"  mold="rounded"  value="@{sendermain$composer.current.p0t10}" /></row>
+                                  <row><label value="${labels.sender.p1t10}" /><textbox id="p1t10"  mold="rounded"  value="@{sendermain$composer.current.p1t10}" /></row>
+                                  <row><label value="${labels.sender.p2t10}" /><textbox id="p2t10"  mold="rounded"  value="@{sendermain$composer.current.p2t10}" /></row>
+                                  <row><label value="${labels.sender.p3t10}" /><textbox id="p3t10"  mold="rounded"  value="@{sendermain$composer.current.p3t10}" /></row>
+                                  <row><label value="${labels.sender.p4t10}" /><textbox id="p4t10"  mold="rounded"  value="@{sendermain$composer.current.p4t10}" /></row>
+                                  <row><label value="${labels.sender.p5t10}" /><textbox id="p5t10"  mold="rounded"  value="@{sendermain$composer.current.p5t10}" /></row>
+                                  <row><label value="${labels.sender.p6t10}" /><textbox id="p6t10"  mold="rounded"  value="@{sendermain$composer.current.p6t10}" /></row>
+                                  <row><label value="${labels.sender.p7t10}" /><textbox id="p7t10"  mold="rounded"  value="@{sendermain$composer.current.p7t10}" /></row>
+                          </rows>
+                  </grid>
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.sender.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sender.p0t10}" /><textbox id="ap0t10"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sender.p1t10}" /><textbox id="ap1t10"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sender.p2t10}" /><textbox id="ap2t10"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sender.p3t10}" /><textbox id="ap3t10"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sender.p4t10}" /><textbox id="ap4t10"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sender.p5t10}" /><textbox id="ap5t10"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sender.p6t10}" /><textbox id="ap6t10"  mold="rounded"  /></row>
+                                  <row><label value="${labels.sender.p7t10}" /><textbox id="ap7t10"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <grid id="fgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.sender.id}" /><textbox id="fid"  mold="rounded"  value="@{sendermain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.sender.p0t10}" /><textbox id="fp0t10"  mold="rounded"  value="@{sendermain$composer.filter.p0t10}" /></row>
+                                  <row><label value="${labels.sender.p1t10}" /><textbox id="fp1t10"  mold="rounded"  value="@{sendermain$composer.filter.p1t10}" /></row>
+                                  <row><label value="${labels.sender.p2t10}" /><textbox id="fp2t10"  mold="rounded"  value="@{sendermain$composer.filter.p2t10}" /></row>
+                                  <row><label value="${labels.sender.p3t10}" /><textbox id="fp3t10"  mold="rounded"  value="@{sendermain$composer.filter.p3t10}" /></row>
+                                  <row><label value="${labels.sender.p4t10}" /><textbox id="fp4t10"  mold="rounded"  value="@{sendermain$composer.filter.p4t10}" /></row>
+                                  <row><label value="${labels.sender.p5t10}" /><textbox id="fp5t10"  mold="rounded"  value="@{sendermain$composer.filter.p5t10}" /></row>
+                                  <row><label value="${labels.sender.p6t10}" /><textbox id="fp6t10"  mold="rounded"  value="@{sendermain$composer.filter.p6t10}" /></row>
+                                  <row><label value="${labels.sender.p7t10}" /><textbox id="fp7t10"  mold="rounded"  value="@{sendermain$composer.filter.p7t10}" /></row>
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.save}" image="/images/save.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+        </div>
+
+</window>

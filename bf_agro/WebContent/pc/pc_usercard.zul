@@ -1,0 +1,86 @@
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<panel id="user_cardmain" width="100%" height="280px" border="normal" apply="com.is.pc.user.card.User_cardViewCtrl">
+	<toolbar id="tbuc" width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+    	<div width="100%" align="center" height="35px">
+			<hbox width="100%" widths="100%,200px" align="center" height="35px">
+				<hbox width="100%">
+					<toolbarbutton id="uc_btn_refresh" tooltiptext="${labels.refresh}" image="/images/refresh.png" />
+					<toolbarbutton id="uc_btn_first" tooltiptext="${labels.first}" image="/images/backward.png" />
+					<toolbarbutton id="uc_btn_prev" tooltiptext="${labels.prev}" image="/images/back.png" />
+					<toolbarbutton id="uc_btn_next" tooltiptext="${labels.next}" image="/images/front.png" />
+					<toolbarbutton id="uc_btn_last" tooltiptext="${labels.last}" image="/images/forward.png" />
+				</hbox>
+				<paging id="user_cardPaging" width="200px" sclass="sp-paging"/>
+			</hbox>
+		</div>
+	</toolbar>
+	<panelchildren id="uc_panelchildren">
+        <div id="uc_grd">
+            <listbox style="border:none" id="uc_dataGrid" multiple="true" rows="5" width="100%" height="200px" selectedItem="@{user_cardmain$composer.current}">
+            	<listhead sizable="true">
+					<listheader label="${labels.pc.user_card.username}" />
+					<listheader label="${labels.pc.card.branch}" />
+					<listheader label="${labels.pc.user_card.client_id}" />
+					<listheader label="${labels.pc.user_card.card_number}" />
+					<listheader label="${labels.pc.user_card.access_id}" />
+					<!-- <listheader label="${labels.pc.user_card.state}" /> -->
+                </listhead>
+			</listbox>
+			<toolbar id="tbucbottom" width="100%" align="center" height="35px" style="background: rgba(147,102,170, 0.2);">
+		    	<div width="100%" align="center" height="35px">
+					<hbox width="100%" widths="100%" align="center" height="35px">
+						<hbox width="100%">
+							<toolbarbutton id="uc_btn_add" label="${labels.add}" image="/images/+.png"/>
+							<toolbarbutton id="uc_btn_delete" label="${labels.delete}" image="/images/delete.png" />
+						</hbox>
+					</hbox>
+				</div>
+			</toolbar>
+        </div>
+        <!-- <div id="frm" visible="false">
+			<grid id="frmgrd" ctrlKeys="^e#up#down" visible="true">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+             	</columns>
+              	<rows>
+					<row><label value="${labels.pc.user_card.username}" /><textbox id="username"  mold="rounded"  value="@{user_cardmain$composer.current.username}" /></row>
+					<row><label value="${labels.pc.user_card.client_id}" /><longbox id="client_id"  mold="rounded"  value="@{user_cardmain$composer.current.client_id}" /></row>
+					<row><label value="${labels.pc.user_card.card_number}" /><textbox id="card_number"  mold="rounded"  value="@{user_cardmain$composer.current.card_number}" /></row>
+					<row><label value="${labels.pc.user_card.access_id}" /><longbox id="access_id"  mold="rounded"  value="@{user_cardmain$composer.current.access_id}" /></row>
+					<row><label value="${labels.pc.user_card.state}" /><longbox id="state"  mold="rounded"  value="@{user_cardmain$composer.current.state}" /></row>
+                </rows>
+          	</grid>
+          	<grid id="addgrd" visible="false">
+            	<columns>
+                	<column width="20%" />
+                 	<column width="80%" />
+            	</columns>
+             	<rows>
+					<row><label value="${labels.pc.user_card.username}" /><textbox id="ausername"  mold="rounded"  value="@{user_cardmain$composer.current.username}" /></row>
+					<row><label value="${labels.pc.user_card.client_id}" /><longbox id="aclient_id"  mold="rounded"  value="@{user_cardmain$composer.current.client_id}" /></row>
+					<row><label value="${labels.pc.user_card.card_number}" /><textbox id="acard_number"  mold="rounded"  value="@{user_cardmain$composer.current.card_number}" /></row>
+					<row><label value="${labels.pc.user_card.access_id}" /><longbox id="aaccess_id"  mold="rounded"  value="@{user_cardmain$composer.current.access_id}" /></row>
+					<row><label value="${labels.pc.user_card.state}" /><longbox id="astate"  mold="rounded"  value="@{user_cardmain$composer.current.state}" /></row>
+               	</rows>
+           	</grid>
+   			<grid id="fgrd" visible="false">
+            	<columns>
+             		<column width="20%" />
+                   	<column width="80%" />
+             	</columns>
+          		<rows>
+					<row><label value="${labels.pc.user_card.username}" /><textbox id="fusername"  mold="rounded"  value="@{user_cardmain$composer.filter.username}" /></row>
+					<row><label value="${labels.pc.user_card.client_id}" /><longbox id="fclient_id"  mold="rounded"  value="@{user_cardmain$composer.filter.client_id}" /></row>
+					<row><label value="${labels.pc.user_card.card_number}" /><textbox id="fcard_number"  mold="rounded"  value="@{user_cardmain$composer.filter.card_number}" /></row>
+					<row><label value="${labels.pc.user_card.access_id}" /><longbox id="faccess_id"  mold="rounded"  value="@{user_cardmain$composer.filter.access_id}" /></row>
+					<row><label value="${labels.pc.user_card.state}" /><longbox id="fstate"  mold="rounded"  value="@{user_cardmain$composer.filter.state}" /></row>
+              	</rows>
+         	</grid>
+			<toolbar>
+         		<toolbarbutton id="btn_save" label="${labels.save}" image="/images/save.png" />
+              	<toolbarbutton id="btn_cancel" label="${labels.cancel}" image="/images/stop.png" />
+           	</toolbar>
+        </div> -->
+	</panelchildren>
+</panel>

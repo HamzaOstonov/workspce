@@ -1,0 +1,226 @@
+<?component name="rcombobox" extends="combobox" class="org.sl.utils.RefCBox"?>
+<window id="muniscbreestrmain" width="100%"  height="100%" border="normal" apply="com.is.muniscbreestr.MunisCbReestrViewCtrl">
+        <toolbar id="tb">
+                <toolbarbutton id="btn_back" label="${labels.back}"
+                        image="/images/file.png" />
+                <toolbarbutton id="btn_search" label="${labels.search}"
+                        image="/images/search.png" />
+                        <!--  
+                <toolbarbutton id="btn_add" label="${labels.add}"
+                        image="/images/+.png" />
+-->
+                <toolbarbutton id="btn_first" label="${labels.first}"
+                        image="/images/backward.png" />
+                <toolbarbutton id="btn_prev" label="${labels.prev}"
+                        image="/images/back.png" />
+                <toolbarbutton id="btn_next" label="${labels.next}"
+                        image="/images/front.png" />
+                <toolbarbutton id="btn_last" label="${labels.last}"
+                        image="/images/forward.png" />
+
+        </toolbar>
+
+        <div id="grd">
+
+                <paging id="muniscbreestrPaging" width="100%" />
+                <listbox style="border:none" id="dataGrid" multiple="true" rows="4" width="100%"
+                        selectedItem="@{muniscbreestrmain$composer.current}">
+                        <listhead sizable="true">
+                        
+                                <listheader label="${labels.muniscbreestr.payer_branch}" width="100px" />
+                                <listheader label="${labels.muniscbreestr.payer_account}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.payer_name}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.payer_inn}" width="100px" />
+                                <listheader label="${labels.muniscbreestr.payee_branch}" width="100px" />
+                                <listheader label="${labels.muniscbreestr.payee_account}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.payee_name}" width="200px" />
+                        <listheader label="${labels.muniscbreestr.payee_inn}" width="100px" />
+                                <!--  
+                                <listheader label="${labels.muniscbreestr.id}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.arch_id}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.arch_id_add}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.confirm_code}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.confirm_message}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.sysinfo_data}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.sysinfo_time}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.sysinfo_bid}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.sysinfo_tid}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.sysinfo_sid}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.sysinfo_fid}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.sysinfo_hash}" width="200px" />
+                                
+                                <listheader label="${labels.muniscbreestr.purpose_code}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.purpose_text}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.amount_currency}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.amount_value}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.document_doc_n}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.document_doc_d}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.settlement_supplier}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.settlement_code}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.ip}" width="200px" />
+                                <listheader label="${labels.muniscbreestr.state}" width="200px" />
+                                -->
+                        </listhead>
+
+                </listbox>
+
+
+
+        </div>
+        <div id="frm" visible="false">
+        <hbox id="frmgrd" visible="true">
+        
+                  <grid id="frmgrdl" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.muniscbreestr.id}" /><textbox id="id"  mold="rounded"  value="@{muniscbreestrmain$composer.current.id}" /></row>
+                                  <row><label value="${labels.muniscbreestr.arch_id}" /><textbox id="arch_id"  mold="rounded"  value="@{muniscbreestrmain$composer.current.arch_id}" /></row>
+<!--  
+                                  <row><label value="${labels.muniscbreestr.arch_id_add}" /><textbox id="arch_id_add"  mold="rounded"  value="@{muniscbreestrmain$composer.current.arch_id_add}" /></row>
+                                  <row><label value="${labels.muniscbreestr.confirm_code}" /><textbox id="confirm_code"  mold="rounded"  value="@{muniscbreestrmain$composer.current.confirm_code}" /></row>
+-->                                  
+                                  <row><label value="${labels.muniscbreestr.confirm_message}" /><textbox id="confirm_message"  mold="rounded"  value="@{muniscbreestrmain$composer.current.confirm_message}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_data}" /><textbox id="sysinfo_data"  mold="rounded"  value="@{muniscbreestrmain$composer.current.sysinfo_data}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_time}" /><textbox id="sysinfo_time"  mold="rounded"  value="@{muniscbreestrmain$composer.current.sysinfo_time}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_bid}" /><textbox id="sysinfo_bid"  mold="rounded"  value="@{muniscbreestrmain$composer.current.sysinfo_bid}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_tid}" /><textbox id="sysinfo_tid"  mold="rounded"  value="@{muniscbreestrmain$composer.current.sysinfo_tid}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_sid}" /><textbox id="sysinfo_sid"  mold="rounded"  value="@{muniscbreestrmain$composer.current.sysinfo_sid}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_fid}" /><textbox id="sysinfo_fid"  mold="rounded"  value="@{muniscbreestrmain$composer.current.sysinfo_fid}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_hash}" /><textbox id="sysinfo_hash"  mold="rounded"  value="@{muniscbreestrmain$composer.current.sysinfo_hash}" /></row>
+                                  <row><label value="${labels.muniscbreestr.document_doc_n}" /><textbox id="document_doc_n"  mold="rounded"  value="@{muniscbreestrmain$composer.current.document_doc_n}" /></row>
+                                  <row><label value="${labels.muniscbreestr.document_doc_d}" /><textbox id="document_doc_d"  mold="rounded"  value="@{muniscbreestrmain$composer.current.document_doc_d}" /></row>
+
+                          </rows>
+                  </grid>
+
+                  <grid id="frmgrdr" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.muniscbreestr.payer_branch}" /><textbox id="payer_branch"  mold="rounded"  value="@{muniscbreestrmain$composer.current.payer_branch}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_account}" /><textbox id="payer_account"  mold="rounded"  value="@{muniscbreestrmain$composer.current.payer_account}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_name}" /><textbox id="payer_name"  mold="rounded"  value="@{muniscbreestrmain$composer.current.payer_name}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_inn}" /><textbox id="payer_inn"  mold="rounded"  value="@{muniscbreestrmain$composer.current.payer_inn}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_branch}" /><textbox id="payee_branch"  mold="rounded"  value="@{muniscbreestrmain$composer.current.payee_branch}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_account}" /><textbox id="payee_account"  mold="rounded"  value="@{muniscbreestrmain$composer.current.payee_account}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_name}" /><textbox id="payee_name"  mold="rounded"  value="@{muniscbreestrmain$composer.current.payee_name}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_inn}" /><textbox id="payee_inn"  mold="rounded"  value="@{muniscbreestrmain$composer.current.payee_inn}" /></row>
+                                  <row><label value="${labels.muniscbreestr.purpose_code}" /><textbox id="purpose_code"  mold="rounded"  value="@{muniscbreestrmain$composer.current.purpose_code}" /></row>
+                                  <row><label value="${labels.muniscbreestr.purpose_text}" /><textbox id="purpose_text"  mold="rounded"  value="@{muniscbreestrmain$composer.current.purpose_text}" /></row>
+                                  <row><label value="${labels.muniscbreestr.amount_currency}" /><textbox id="amount_currency"  mold="rounded"  value="@{muniscbreestrmain$composer.current.amount_currency}" /></row>
+                                  <row><label value="${labels.muniscbreestr.amount_value}" /><textbox id="amount_value"  mold="rounded"  value="@{muniscbreestrmain$composer.current.amount_value}" /></row>
+<!--  
+                                  <row><label value="${labels.muniscbreestr.settlement_supplier}" /><textbox id="settlement_supplier"  mold="rounded"  value="@{muniscbreestrmain$composer.current.settlement_supplier}" /></row>
+                                  <row><label value="${labels.muniscbreestr.settlement_code}" /><textbox id="settlement_code"  mold="rounded"  value="@{muniscbreestrmain$composer.current.settlement_code}" /></row>
+                                  <row><label value="${labels.muniscbreestr.ip}" /><textbox id="ip"  mold="rounded"  value="@{muniscbreestrmain$composer.current.ip}" /></row>
+                                  
+                                  <row><label value="${labels.muniscbreestr.state}" /><textbox id="state"  mold="rounded"  value="@{muniscbreestrmain$composer.current.state}" /></row>
+                                  -->
+                          </rows>
+                  </grid>
+
+                  
+                  </hbox>
+                  
+                  
+                  <grid id="addgrd" visible="false">
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  
+                                  <row><label value="${labels.muniscbreestr.id}" /><textbox id="aid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.arch_id}" /><textbox id="aarch_id"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.arch_id_add}" /><textbox id="aarch_id_add"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.confirm_code}" /><textbox id="aconfirm_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.confirm_message}" /><textbox id="aconfirm_message"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_data}" /><textbox id="asysinfo_data"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_time}" /><textbox id="asysinfo_time"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_bid}" /><textbox id="asysinfo_bid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_tid}" /><textbox id="asysinfo_tid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_sid}" /><textbox id="asysinfo_sid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_fid}" /><textbox id="asysinfo_fid"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_hash}" /><textbox id="asysinfo_hash"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_branch}" /><textbox id="apayer_branch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_account}" /><textbox id="apayer_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_name}" /><textbox id="apayer_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_inn}" /><textbox id="apayer_inn"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_branch}" /><textbox id="apayee_branch"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_account}" /><textbox id="apayee_account"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_name}" /><textbox id="apayee_name"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_inn}" /><textbox id="apayee_inn"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.purpose_code}" /><textbox id="apurpose_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.purpose_text}" /><textbox id="apurpose_text"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.amount_currency}" /><textbox id="aamount_currency"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.amount_value}" /><textbox id="aamount_value"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.document_doc_n}" /><textbox id="adocument_doc_n"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.document_doc_d}" /><textbox id="adocument_doc_d"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.settlement_supplier}" /><textbox id="asettlement_supplier"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.settlement_code}" /><textbox id="asettlement_code"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.ip}" /><textbox id="aip"  mold="rounded"  /></row>
+                                  <row><label value="${labels.muniscbreestr.state}" /><textbox id="astate"  mold="rounded"  /></row>
+                          </rows>
+                  </grid>
+                  <div id="fgrd" visible="false">
+                  <grid id="fgrdl" >
+                          <columns>
+                                  <column width="20%" />
+                                  <column width="80%" />
+                          </columns>
+                          <rows>
+                                  <!--  
+                                  <row><label value="${labels.muniscbreestr.id}" /><textbox id="fid"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.id}" /></row>
+                                  <row><label value="${labels.muniscbreestr.arch_id}" /><textbox id="farch_id"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.arch_id}" /></row>
+                                  <row><label value="${labels.muniscbreestr.arch_id_add}" /><textbox id="farch_id_add"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.arch_id_add}" /></row>
+                                  <row><label value="${labels.muniscbreestr.confirm_code}" /><textbox id="fconfirm_code"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.confirm_code}" /></row>
+                                  <row><label value="${labels.muniscbreestr.confirm_message}" /><textbox id="fconfirm_message"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.confirm_message}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_data}" /><textbox id="fsysinfo_data"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.sysinfo_data}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_time}" /><textbox id="fsysinfo_time"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.sysinfo_time}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_bid}" /><textbox id="fsysinfo_bid"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.sysinfo_bid}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_tid}" /><textbox id="fsysinfo_tid"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.sysinfo_tid}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_sid}" /><textbox id="fsysinfo_sid"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.sysinfo_sid}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_fid}" /><textbox id="fsysinfo_fid"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.sysinfo_fid}" /></row>
+                                  <row><label value="${labels.muniscbreestr.sysinfo_hash}" /><textbox id="fsysinfo_hash"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.sysinfo_hash}" /></row>
+                                  -->
+                                  <row><label value="${labels.muniscbreestr.payer_branch}" /><textbox id="fpayer_branch"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.payer_branch}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_account}" /><textbox id="fpayer_account"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.payer_account}" /></row>
+                                  
+                                  <row><label value="${labels.muniscbreestr.payer_name}" /><textbox id="fpayer_name"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.payer_name}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payer_inn}" /><textbox id="fpayer_inn"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.payer_inn}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_branch}" /><textbox id="fpayee_branch"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.payee_branch}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_account}" /><textbox id="fpayee_account"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.payee_account}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_name}" /><textbox id="fpayee_name"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.payee_name}" /></row>
+                                  <row><label value="${labels.muniscbreestr.payee_inn}" /><textbox id="fpayee_inn"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.payee_inn}" /></row>
+                                  <!--  
+                                  <row><label value="${labels.muniscbreestr.purpose_code}" /><textbox id="fpurpose_code"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.purpose_code}" /></row>
+                                  <row><label value="${labels.muniscbreestr.purpose_text}" /><textbox id="fpurpose_text"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.purpose_text}" /></row>
+                                  <row><label value="${labels.muniscbreestr.amount_currency}" /><textbox id="famount_currency"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.amount_currency}" /></row>
+                                  <row><label value="${labels.muniscbreestr.amount_value}" /><textbox id="famount_value"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.amount_value}" /></row>
+                                  <row><label value="${labels.muniscbreestr.document_doc_n}" /><textbox id="fdocument_doc_n"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.document_doc_n}" /></row>
+                                  <row><label value="${labels.muniscbreestr.document_doc_d}" /><textbox id="fdocument_doc_d"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.document_doc_d}" /></row>
+                                  <row><label value="${labels.muniscbreestr.settlement_supplier}" /><textbox id="fsettlement_supplier"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.settlement_supplier}" /></row>
+                                  <row><label value="${labels.muniscbreestr.settlement_code}" /><textbox id="fsettlement_code"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.settlement_code}" /></row>
+                                  <row><label value="${labels.muniscbreestr.ip}" /><textbox id="fip"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.ip}" /></row>
+                                  <row><label value="${labels.muniscbreestr.state}" /><textbox id="fstate"  mold="rounded"  value="@{muniscbreestrmain$composer.filter.state}" /></row>
+                                  -->
+                          </rows>
+                  </grid>
+
+                  <toolbar>
+                          <toolbarbutton id="btn_save"
+                                  label="${labels.search}" image="/images/search.png" />
+                          <toolbarbutton id="btn_cancel"
+                                  label="${labels.cancel}" image="/images/stop.png" />
+                  </toolbar>
+                  </div>
+        </div>
+
+</window>

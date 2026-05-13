@@ -1,0 +1,75 @@
+<?page id="reppg" title="Report Service"?>
+<?component name="repcombobox" extends="combobox" class="com.is.report.RepCBox"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<div id="reportMain" apply="com.is.bfreport.ReportViewCtrl" width="100%" xmlns:n="native" xmlns:w="http://www.zkoss.org/2005/zk/client"
+					style=" margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; top: 0px; bottom: 0px; left: 0px; right: 0px;">
+<div id="reportParams" width="100%" height="100%" visible="true">
+		<!--
+		<panel id="repSelectPanel" title="${labels.setreport}" width="100%" height="160" border="normal">
+			<panelchildren>
+			<div width="100%" align="center">
+				<grid width="100%" >
+				<columns>
+                        <column  width="100%"/>
+                </columns>
+                <rows>
+	                <row>
+						<vbox align="center" width="100%">
+								<separator spacing="10px" orient="horizontal" />
+								<label value="Введите dial_id" />
+								<rcombobox id="repGroup" width="500px" mold="rounded" onAfterRender="self.setSelectedIndex(-1);" />
+								<separator spacing="10px" orient="horizontal" />
+						</vbox>
+					</row>
+					<row>
+						<vbox align="center" width="100%">
+								<separator spacing="10px" orient="horizontal" />
+								<label value="Введите id" />
+								<repcombobox id="report" width="500px" mold="rounded" onAfterRender="self.setSelectedIndex(-1);" />
+								<separator spacing="10px" orient="horizontal" />
+						</vbox>
+					</row>
+				</rows>
+				</grid>
+			</div>
+			</panelchildren>
+		</panel>
+		-->
+		<panel border="0" title="${labels.setparams}" style="overflow: auto;">
+			<toolbar id="paramNavigator" width="100%" align="center" visible="false">
+				<toolbarbutton id="btn_first" label="${labels.first}" image="/images/back.png" />
+				<separator orient="vertical" spacing="10"/>
+                <toolbarbutton id="btn_prev"  label="${labels.prev}"  image="/images/backward.png" />
+                <separator orient="vertical" spacing="10"/>
+                <toolbarbutton id="btn_next"  label="${labels.next}"  image="/images/forward.png" />
+                <!--<toolbarbutton id="btn_last"  label="${labels.last}"  image="/images/front.png" />-->
+			</toolbar>
+			<panelchildren>
+			<div id="repParamsPanel" width="100%">
+				<vbox id="repParamsDiv" width="100%" align="center"></vbox>
+				<grid id="repParamsGrid" width="100%" >
+	                <columns>
+	                    <column  width="200px"/>
+	                    <column />
+	                </columns>
+	                <rows id="repParamsRows">
+	                </rows>
+        		</grid>
+			</div>
+			</panelchildren>
+		</panel>
+</div>		
+<div id="reportIFrame" width="100%" height="95%" visible="false">
+	<toolbar id="toolbar" sclass="black-bar" width="100%" align="end" style=" font-size: 14px;">
+		<separator orient="vertical" spacing="10px"/>
+		<label id="lbl" value="${labels.downloadlbl}" style="color: black"/>
+		<separator orient="vertical" spacing="10px"/>
+		<toolbarbutton id="open" label="${labels.open}" width="70px" height="20px" style="border-style: none;"/>
+		<toolbarbutton id="save" label="${labels.save}" width="70px" height="20px" style="border-style: none;"/>
+		<separator orient="vertical" spacing="10px"/>
+		<toolbarbutton id="close" image="/images/delete.png" tooltiptext="Закрыть выгрузку файла..." style="background: none; border: none;"/>
+		<separator orient="vertical" spacing="10px"/>
+	</toolbar>
+	<iframe id="iframe" width="100%" height="100%" />
+</div>		
+</div>

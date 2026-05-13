@@ -1,0 +1,112 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?component name="rcombobox" extends="combobox" class="com.is.utils.RefCBox"?>
+<zk>
+	<div id="certificatesofdepositdiv" hflex="1" visible="false"
+		apply="com.is.bpri.ldguarrgrids.Certificatesofdeposit">
+		<grid>
+			<rows>
+				<row>
+					<label value="Номер клиента" />
+					<textbox id="id_client" maxlength="8" width="100%" />
+					<label
+						value="Наименование организации (лица) предоставившего обеспечение" />
+					<textbox id="name" maxlength="80" width="100%" />
+				</row>
+				<row>
+					<label value="Адрес" />
+					<textbox id="address" maxlength="80" width="100%" />
+					<label value="Валюта" />
+					<rcombobox id="currency" width="100%" />
+				</row>
+				<row>
+					<label value="№ документа" />
+					<textbox id="doc_num" maxlength="20" width="100%" />
+					<label value="Дата документа" />
+					<datebox id="doc_date" maxlength="10" format="dd.MM.yyyy"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Класс обеспечения" />
+					<rcombobox id="klass_o" width="100%" />
+					<label value="Признак юридического/физического лица" />
+					<rcombobox id="code_subject" width="100%" />
+				</row>
+				<row>
+					<label value="ИНН (залг. Реестр)" />
+					<textbox id="inn_reestr" maxlength="9" width="100%" />
+					<label value="ИНН эмитента" />
+					<textbox id="inn" maxlength="9" width="100%" />
+				</row>
+				<row>
+					<label value="Код банка эмитента" />
+					<textbox id="mfo" maxlength="5" width="100%" />
+					<label value="Расчетный счет эмитента" />
+					<textbox id="account" maxlength="20" width="100%" />
+				</row>
+				<row>
+					<label value="Дата погашения ценных бумаг" />
+					<datebox id="end_date" maxlength="10" format="dd.MM.yyy"
+						width="100%" />
+					<label value="Номинальная стоимость одной бумаги" />
+					<textbox id="stock_nominal_value" maxlength="20" width="100%" />
+				</row>
+				<row>
+					<label value="Общее количество ценных бумаг" />
+					<textbox id="stock_count" maxlength="20" width="100%" />
+					<label value="Дата выпуска ценных бумаг" />
+					<datebox id="start_date" maxlength="10" format="dd.MM.yyyy"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Дисконт" />
+					<textbox id="stock_diskont" maxlength="15" width="100%" />
+					<label value="Полное наименование ценной бумаги" />
+					<textbox id="stock_name" maxlength="100" width="100%" />
+				</row>
+				<row>
+					<label value="Эмитент" />
+					<textbox id="name2" maxlength="100" width="100%" />
+					<label value="Признак резидентности владельца залога" />
+					<rcombobox id="niki_res1" width="100%" />
+				</row>
+				<row>
+					<label value="Признак резидентности Эмитента" />
+					<rcombobox id="niki_res2" width="100%" />
+					<label value="ИНН владельца ценной бумаги" />
+					<textbox id="niki_inn" maxlength="9" width="100%" />
+				</row>
+				<row>
+					<label value="Наименование оценочной компании" />
+					<rcombobox id="acomp_name" width="100%" />
+					<label value="Дата отчета об оценки" />
+					<datebox id="acomp_date" maxlength="10" format="dd.MM.yyyy"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Валюта оценки рыночной стоимости" />
+					<rcombobox id="acomp_curr" width="100%" />
+					<label value="Рыночная стоимость объекта залога" />
+					<decimalbox id="acomp_summa" format="#0.00" maxlength="20"
+						width="100%" />
+				</row>
+				<row>
+					<label value="Номер сертификата" />
+					<textbox id="sertificate_num" maxlength="20" width="100%" />
+					<label value="Серия сертификата" />
+					<textbox id="sertificate_ser" maxlength="20" width="100%" />
+				</row>
+				<row>
+					<label value="Процентная ставка" />
+					<doublebox id="sertificate_rate" maxlength="11" width="100%" />
+				</row>
+			</rows>
+		</grid>
+		<toolbar>
+			<toolbarbutton id="btn_saving" label="${labels.save}"
+				image="/images/save.png" />
+			<toolbarbutton id="btn_del" label="Удалить" image="/images/delete.png" />
+			<toolbarbutton id="btn_cancel" label="${labels.cancel}"
+				image="/images/stop.png" />
+		</toolbar>
+	</div>
+</zk>
