@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/bf" docbase="webapps/bf/">
-	<!-- ipakyuli  -->
+	<!-- ipakyuli  
 	<Resource name="jdbc/myoracle" auth="Container"
 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" type="javax.sql.DataSource"
 		driverClassName="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@128.10.10.209:1521:ipakyuli"
@@ -8,7 +8,7 @@
 		minIdle="1" initSQL="ALTER SESSION SET CURRENT_SCHEMA=iy00444"
 		defaultAutoCommit="false" alternateUsernameAllowed="true" maxWait="-1"
 		removeAbandoned="true" removeAbandonedTimeout="600"/>
-   
+   -->
     <!-- ipakyuli end -->
 	<!-- ipakyuli 2 
 	<Resource name="jdbc/myoracle" auth="Container"
@@ -21,6 +21,17 @@
 		-->
     <!-- ipakyuli 2 end -->
     
+    <!-- agro  --> 
+	<Resource name="jdbc/myoracle" auth="Container"
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" type="javax.sql.DataSource"
+		driverClassName="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@128.10.10.209:1521:agro"
+		username="admin" password="admin" maxActive="18" maxIdle="4" minIdle="1"
+		initSQL="ALTER SESSION SET CURRENT_SCHEMA=bank394" defaultAutoCommit="false"
+		alternateUsernameAllowed="true" validationQuery="select 1 from dual"
+		testWhileIdle="true" maxWait="-1" removeAbandoned="true"
+		removeAbandonedTimeout="60" />
+  <!-- -->
+  
 	<!-- davrbank 
 	<Resource name="jdbc/myoracle" auth="Container"
 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" type="javax.sql.DataSource"
