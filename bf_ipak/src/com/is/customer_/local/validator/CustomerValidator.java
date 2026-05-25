@@ -715,6 +715,16 @@ public class CustomerValidator {
             
             /*end 2022.03.02*/
 
+            /*2026.05.25 begin*/
+            //nci atacama gruppadan Unknown role kelyapti dedilar. shuni aniqlash uchu exception qilmoqchiman
+            //if (nvl(param.getparam('GROUP_ID'),'0')='1' and nvl(param.getparam('S_DEAL_ID'),0) = '2' and nvl(param.getparam('PARENT_ID_CLIENT_J'),'_')!='_') then
+            //va customer.getPerson_role() ==null bulsa xato chiqarib beraylik
+            if (customer.getParent_id_client_j() != null && customer.getPerson_role() == null)
+            {
+            	throw new Exception("Person_role is null");
+            }
+            /*2026.05.25 end*/
+            
             callableStatement.execute();
             c.commit();
         } catch (Exception e) {
