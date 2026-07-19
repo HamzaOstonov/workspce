@@ -20,6 +20,7 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.EventQueues;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.event.SelectEvent;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zkplus.databind.BindingListModelList;
@@ -39,6 +40,7 @@ import org.zkoss.zul.Window;
 
 import com.is.base.Dao;
 import com.is.client_personmap.PersonMapUtil;
+import com.is.client_personmap.dao.PersonDao;
 import com.is.client_personmap.model.LegalEntity;
 import com.is.client_personmap.model.Person;
 import com.is.client_personmap.model.PersonMap;
@@ -72,7 +74,7 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
     private static Logger logger = Logger.getLogger(PersonMapViewCtrl.class);
 
     private Div grd, frm, search_client;
-    private Div contact_person, founders, search_org, beneficiaries;
+    private Div contact_person, founders, search_org, beneficiaries, div_persons;
     private Window legalFounder_wnd, individFounder_wnd, beneficiaryFounder_wnd;
     private Div legalFounder_wnd$legal_div, individFounder_wnd$individ_div, beneficiaryFounder_wnd$beneficiary_div;
     private Window individ_wnd, legal_wnd, benef_wnd;
@@ -84,12 +86,12 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
     private Include dp_wnd$incl_cp;
     private Listbox contactPersonList, resultListbox, sap_list;
 
-    private Textbox sap_docId;
+    private Textbox sap_docId, person_union_id;
     private RefCBox sap_docType;
     private Textbox sap_client_name;
     private RefCBox type_document1;
 
-    private Listbox founders_list, beneficiaries_list;
+    private Listbox founders_list, beneficiaries_list, client_addinfo_person_list;
     private Textbox foundersInfo;
 
     private ListModelList lmodel = null;
@@ -104,7 +106,9 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
     private PersonMap currentFounder = new PersonMap();
     
     private PersonMap currentBeneficiary = new PersonMap();
-    
+
+    public Person currentPerson = null;
+
     public UserForm bpFilter = new UserForm();
     private String idSap = null;
 
@@ -112,13 +116,14 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
     private HashMap<String, String> personKinds;
     private String clientId;
     private String clientInn;
-    private String branch;
+    private String branch, alias;
     private ClientJ client;
     private Map<Integer, String> statesMap;
     // private List<PersonMap> foundersList;
     private ServiceFactory serviceFactory;
     private Dao<PersonMap> personMapDao;
     private Dao<Person> personDao;
+    private PersonDao personDao2;
     // private Dao<Person> founderPersonDao;
     private Dao<LegalEntity> legalEntityDao;
     private RelationHandler personSync;
@@ -134,11 +139,14 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
         binder.bindBean("current", this.currentCP);
         binder.bindBean("currentMap", this.currentFounder);
         binder.bindBean("currentBeneficiary", this.currentBeneficiary);
+        //binder.bindBean("currentperson", this.currentPerson);
         binder.bindBean("bpFilter", this.bpFilter);
+        
         binder.loadAll();
 
         branch = (String) session.getAttribute("branch");
-        
+		alias = (String) session.getAttribute("alias");
+		
         if (!CustomerUtils.isAtaccamaOn()) {
           if (tab_beneficiaries!=null) 
         	  tab_beneficiaries.setVisible(false);
@@ -246,6 +254,45 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
                 });
             }
         });
+        
+        client_addinfo_person_list.setItemRenderer(new ListitemRenderer() {
+            @Override
+            public void render(Listitem row, Object data) throws Exception {
+                final Person client = (Person) data;
+                row.setValue(client);
+                row.appendChild(new Listcell(client.getId()));
+                //arg0.appendChild(new Listcell(client.getIdSap()));
+                row.appendChild(new Listcell(client.getFamily_local()));
+                row.appendChild(new Listcell(client.getFirst_name_local()));
+                row.appendChild(new Listcell(client.getPatronymic_local()));
+                row.appendChild(new Listcell(client.getBirthday() != null ? df.format(client.getBirthday()) : null));
+                row.appendChild(new Listcell(""+client.getState()));
+                row.setAttribute("client", client);
+                //arg0.addEventListener(Events.ON_DOUBLE_CLICK, new EventListener() {
+                //    @Override
+                //    public void onEvent(Event arg0) throws Exception {
+                //        int selIndex = tabs.getSelectedIndex();
+                //        Person person = ((Person) arg0.getTarget().getAttribute("client"));
+                //        idSap = person.getIdSap();
+                //        if (selIndex == 0) {
+                //            if (idSap != null && !idSap.trim().isEmpty()) {
+                //                dp_wnd$incl_cp.setSrc(ClientUtil.CLIENT_P_SRC + "?clientJId=" + clientId + "&inn="
+                //                        + clientInn + "&idSap=" + idSap + "&action=createContactPerson");
+                //                dp_wnd.setVisible(true);
+                //            } else {
+                //                dp_wnd$incl_cp.setSrc(ClientUtil.CLIENT_P_SRC + "?clientJId=" + clientId + "&inn="
+                //                        + clientInn + "&personId=" + person.getId() + "&personBranch="
+                //                        + person.getBranch() + "&position=" + null + "&idSap=" + currentCP.getIdSap()
+                //                        + "&old=" + currentCP.isOld() + "&action=showContactPerson");
+                //                dp_wnd.setVisible(true);
+                //            }
+                //        } else if (selIndex == 1) {
+                //            initIndividualFounder(idSap, ModuleMode.CREATION, person);
+                //        }
+                //    }
+                //});
+            }
+        });
     }
 
     private void refresh() {
@@ -325,7 +372,10 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
             founders.setVisible(true);
         } else if (tabs.getSelectedTab().getId().equals("tab_beneficiaries")) {
         	beneficiaries.setVisible(true);
+        } else if (tabs.getSelectedTab().getId().equals("tab_client_addinfo_person")) {
+        	div_persons.setVisible(true);
         }
+
     }
 
     public void onDoubleClick$contactPersonList$grd() {
@@ -687,6 +737,7 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
         search_org.setVisible(false);
         search_client.setVisible(false);
         beneficiaries.setVisible(false);
+        div_persons.setVisible(false);
     }
 
     private void showPersonSearch() {
@@ -782,6 +833,89 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
         }
     }
 
+    
+    public void onClick$tbtn_find_person() {
+        try {
+            //List<SearchResponse> list = new ArrayList<SearchResponse>();
+            List<Person> personList = new ArrayList<Person>();
+
+            if (person_union_id.getValue()!=null && !person_union_id.getValue().trim().equals("")) {
+                Person person = new Person();
+                person.setBranch(this.branch);
+                //person.setBirthday(bpFilter.getBirthday());
+                //person.setFamily(bpFilter.getLastName());
+                //person.setFirst_name(bpFilter.getFirstName());
+                //person.setPatronymic(bpFilter.getMiddleName());
+                //person.setPassport_serial(bpFilter.getDocumentSerial());
+                //person.setPassport_number(bpFilter.getDocumentNumber());
+                //person.setType_document(bpFilter.getDocumentType());
+                person.setUnion_id(person_union_id.getValue());
+                personDao.setFilter(person);
+                personList = personDao.getList();
+                client_addinfo_person_list.setModel(new BindingListModelList(personList, true));
+                
+                //if (personList.size() > 0) {
+                	//currentPerson=personList.get(0);
+                	//client_addinfo_person_list.setSelectedIndex(0);
+        			//SelectEvent evt = new SelectEvent("onSelect", client_addinfo_person_list, client_addinfo_person_list.getSelectedItems());
+        			//Events.sendEvent(evt);
+        		//}
+                //client_addinfo_person_list.setVisible(true);
+                //binder.loadAll();
+                //binder.loadComponent(client_addinfo_person_list);
+            }
+            
+        } catch (Exception e) {
+            alert(e.getMessage());
+            logger.error(CheckNull.getPstr(e));
+        }
+    }
+
+    
+//    public void onClick$btnDeleteBeneficiary() {
+//        try {
+//            if (currentBeneficiary != null) {
+//                if (currentBeneficiary.getPerson_type() == null)
+//                    return;
+//                if (currentBeneficiary.getPerson_type().equals("P")) {
+//                	if (currentBeneficiary.getPerson_kind().equals(PersonMapUtil.PERSONKIND_BENEFICIARY))
+//                	{
+//                		personMapDao.remove2(currentBeneficiary);
+//                		refresh();
+//                	}
+//                }
+//            }
+//        } catch (Exception e) {
+//            logger.error(CheckNull.getPstr(e));
+//        }
+//    }
+    
+    
+    public void onClick$btnDeletePerson() {
+    	
+    	if (client_addinfo_person_list.getSelectedItem()==null) {
+    		alert("Выберите лицо для удаления!");
+    		return;
+    	}
+    	currentPerson= (Person)client_addinfo_person_list.getSelectedItem().getValue();
+    	
+        try {
+          if (currentPerson != null) {
+              	{
+              		personDao2=PersonDao.getInStance(alias);
+              		personDao2.updatePersonState(currentPerson);
+              		//refresh();
+              	}
+          }
+        } catch (Exception e) {
+          logger.error(CheckNull.getPstr(e));
+        }
+    }
+    
+    public void onSelect$client_addinfo_person_list() {
+    	//alert("ii "+ client_addinfo_person_list.getSelectedIndex());
+    }
+    
     public UserForm getBpFilter() {
         return bpFilter;
     }
@@ -797,6 +931,14 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
 	public void setCurrentBeneficiary(PersonMap currentBeneficiary) {
 		this.currentBeneficiary = currentBeneficiary;
 	}
+
+	/*public Person getCurrentPerson() {
+		return currentPerson;
+	}*/
+
+	/*public void setCurrentPerson(Person currentPerson) {
+		this.currentPerson = currentPerson;
+	}*/
     
     
 }

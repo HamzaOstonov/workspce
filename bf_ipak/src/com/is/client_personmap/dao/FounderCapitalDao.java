@@ -11,6 +11,7 @@ import com.is.base.Dao;
 import com.is.base.utils.DbUtils;
 import com.is.client_personmap.PersonMapUtil;
 import com.is.client_personmap.model.FounderCapital;
+import com.is.client_personmap.model.PersonMap;
 import com.is.utils.CheckNull;
 import com.is.utils.FilterField;
 
@@ -196,5 +197,6 @@ public class FounderCapitalDao implements Dao<FounderCapital>{
 		
 		return count;
 	}
+
 
 }

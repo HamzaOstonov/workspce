@@ -3,6 +3,7 @@ package com.is.base;
 import java.sql.Connection;
 import java.util.List;
 
+import com.is.client_personmap.model.PersonMap;
 import com.is.utils.FilterField;
 
 public interface Dao<T> {
@@ -35,4 +36,5 @@ public interface Dao<T> {
     int remove(T item) throws Exception;
 
     int remove(Connection c, T item) throws Exception;
+
 }

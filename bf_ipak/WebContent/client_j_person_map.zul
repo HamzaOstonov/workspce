@@ -13,6 +13,7 @@
             <tab label="Контактные лица" id="tab_cp"/>
             <tab label="Учредители" id="tab_founders"/>
             <tab visible="true" label="Бенефециарные собственники" id="tab_beneficiaries"/>
+            <tab visible="true" label="client_addinfo_person" id="tab_client_addinfo_person"/>
         </tabs>
     </tabbox>
 
@@ -58,7 +59,26 @@
                 <listheader label="Состояние" sort="auto"/>
             </listhead>
         </listbox>
-    </div>    
+    </div> 
+    
+    <div id="div_persons">
+        <label value="Union ID: "/>
+        <textbox id ="person_union_id" mold="rounded"/>
+        <toolbarbutton id ="tbtn_find_person" label="Ок" image="/images/search.png" />
+        <toolbarbutton label="Удалить выбранного лица" id="btnDeletePerson"/>
+        <listbox id="client_addinfo_person_list" rows="5" >
+            <listhead>
+                <listheader label="Id"/>
+                <listheader label="Family" />
+                <listheader label="Firstname" />
+                <listheader label="Patronymic" />
+                <listheader label="Birthday" />
+                <listheader label="Состояние"/>
+            </listhead>
+        </listbox>
+    </div> 
+    
+       
     <div id="search_client" align="center">
         <div id="search_grid">
             <grid>

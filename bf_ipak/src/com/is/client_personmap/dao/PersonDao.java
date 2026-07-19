@@ -12,6 +12,7 @@ import com.is.ConnectionPool;
 import com.is.base.Dao;
 import com.is.base.utils.DbUtils;
 import com.is.client_personmap.model.Person;
+import com.is.client_personmap.model.PersonMap;
 import com.is.client_sap.SapFactory;
 import com.is.client_sap.exceptions.SapException;
 import com.is.clients.models.SapLogger;
@@ -53,7 +54,9 @@ public class PersonDao implements Dao<Person> {
             flFields.add(new FilterField(DbUtils.getCond(flFields) + "passport_serial=?",filter.getPassport_serial()));
         if (!CheckNull.isEmpty(filter.getPassport_number()))
             flFields.add(new FilterField(DbUtils.getCond(flFields) + "passport_number=?",filter.getPassport_number()));
-
+        if (!CheckNull.isEmpty(filter.getUnion_id()))
+            flFields.add(new FilterField(DbUtils.getCond(flFields) + "union_id=?",filter.getUnion_id()));
+        
         return flFields;
     }
 
@@ -596,6 +599,31 @@ public class PersonDao implements Dao<Person> {
         return count;
     }
 
+    public int updatePersonState(Person person) throws SapException, Exception {
+    	
+    	Connection c = null;
+        PreparedStatement ps = null;
+        int count = 0;        
+            
+        try {
+        	c = ConnectionPool.getConnection(alias);
+            ps = c.prepareStatement("update client_addinfo_person set state=? where id=?");
+
+            ps.setString(1, "2");
+            ps.setString(2, person.getId());
+            count = ps.executeUpdate();
+            c.commit();
+
+        }catch (Exception e) {
+            logger.error(CheckNull.getPstr(e));
+            throw new Exception(e.getMessage());
+        }finally {
+            DbUtils.closeStmt(ps);
+            ConnectionPool.close(c);
+        }
+        return count;
+    }
+    
     @Override
     public int remove(Connection c, Person item) {
         return 0;
@@ -703,4 +731,5 @@ public class PersonDao implements Dao<Person> {
         }
         return person;
     }
+
 }

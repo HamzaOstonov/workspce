@@ -18,6 +18,7 @@ import com.is.ConnectionPool;
 import com.is.base.Dao;
 import com.is.base.utils.DbUtils;
 import com.is.client_personmap.model.LegalEntity;
+import com.is.client_personmap.model.PersonMap;
 import com.is.client_sap.SapFactory;
 import com.is.client_sap.exceptions.SapException;
 import com.is.clients.models.SapLogger;
@@ -601,4 +602,5 @@ public class LegalEntityDao implements Dao<LegalEntity> {
 		}
 		return legal;
 	}
+
 }

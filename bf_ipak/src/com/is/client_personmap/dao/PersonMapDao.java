@@ -437,6 +437,35 @@ public class PersonMapDao implements Dao<PersonMap> {
     public int remove(Connection c, PersonMap item) {
         throw new UnsupportedOperationException();
     }
+    
+    /*@Override
+    public int remove2(PersonMap map) throws Exception {
+        Connection c = null;
+        PreparedStatement ps = null;
+        int count = 0;
+        try {
+            c = ConnectionPool.getConnection(alias);
+            
+            ps = c.prepareStatement("delete from client_addinfo_person where id=?");
+            ps.setString(1, map.getPerson_id());
+            count = ps.executeUpdate();
+            ps.close();
+
+            ps = c.prepareStatement("delete from client_addinfo_person_map where person_id=?");
+            ps.setString(1, map.getPerson_id());
+            count = ps.executeUpdate();
+
+            c.commit();
+        } catch (Exception e) {
+            logger.error(CheckNull.getPstr(e));
+            DbUtils.rollback(c);
+            throw new Exception(e.getMessage());
+        } finally {
+            ConnectionPool.close(c);
+            DbUtils.closeStmt(ps);
+        }
+        return count;
+    }*/
 
     public String getUnionIdByMap(Connection c, PersonMap personMap){
         String union_id = null;

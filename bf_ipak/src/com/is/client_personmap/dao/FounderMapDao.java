@@ -12,6 +12,7 @@ import com.is.base.Dao;
 import com.is.base.SqlScripts;
 import com.is.base.utils.DbUtils;
 import com.is.client_personmap.model.FounderMap;
+import com.is.client_personmap.model.PersonMap;
 import com.is.utils.CheckNull;
 import com.is.utils.FilterField;
 
@@ -182,5 +183,6 @@ public class FounderMapDao implements Dao<FounderMap> {
 		}
 		return count;
 	}
+
 
 }
