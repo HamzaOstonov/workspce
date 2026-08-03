@@ -893,21 +893,45 @@ public class PersonMapViewCtrl extends GenericForwardComposer {
     
     public void onClick$btnDeletePerson() {
     	
+    	
     	if (client_addinfo_person_list.getSelectedItem()==null) {
     		alert("Выберите лицо для удаления!");
     		return;
     	}
+    	
     	currentPerson= (Person)client_addinfo_person_list.getSelectedItem().getValue();
     	
         try {
           if (currentPerson != null) {
-              	{
-              		personDao2=PersonDao.getInStance(alias);
-              		personDao2.updatePersonState(currentPerson);
-              		//refresh();
-              	}
+        	  
+              		
+              personDao2=PersonDao.getInStance(alias);
+              personDao2.updatePersonState(currentPerson);
+              //refresh();
+              
+              alert("Успешно!");
+              
+              try {
+
+                  if (person_union_id.getValue()!=null && !person_union_id.getValue().trim().equals("")) {
+                      List<Person> personList = new ArrayList<Person>();
+                      Person person = new Person();
+                      person.setBranch(this.branch);
+                      person.setUnion_id(person_union_id.getValue());
+                      personDao.setFilter(person);
+                      personList = personDao.getList();
+                      client_addinfo_person_list.setModel(new BindingListModelList(personList, true));
+                  }
+                  
+              } catch (Exception e) {
+                  alert(e.getMessage());
+                  logger.error(CheckNull.getPstr(e));
+              }
+
+              		               	
           }
         } catch (Exception e) {
+        	   alert(e.getMessage());
           logger.error(CheckNull.getPstr(e));
         }
     }
